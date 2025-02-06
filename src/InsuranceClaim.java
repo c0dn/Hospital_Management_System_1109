@@ -10,7 +10,7 @@ public abstract class InsuranceClaim {
     private String policyId;
     private Patient patient;
     private LocalDate submissionDate;
-    private String typeOfClaim;
+    private TypeOfClaim typeOfClaim;
     private String claimStatus;
     private double claimAmount;
     private LocalDate followUpDate;
@@ -23,7 +23,11 @@ public abstract class InsuranceClaim {
     private double approvedAmount;
     private double coInsurance;
 
-    public InsuranceClaim(String claimId, MedicalRecord medicalRecord, String insuranceProvider, String policyId, Patient patient, LocalDate submissionDate, String typeOfClaim, String claimStatus, double claimAmount, LocalDate followUpDate, String notesComments, String denialReason, String adjustmentDetail, LocalDate paymentReceiptDate, String coverageType, String eob, double approvedAmount, double coInsurance) {
+    public InsuranceClaim(String claimId, MedicalRecord medicalRecord, String insuranceProvider,
+                          String policyId, Patient patient, LocalDate submissionDate, TypeOfClaim typeOfClaim,
+                          String claimStatus, double claimAmount, LocalDate followUpDate, String notesComments,
+                          String denialReason, String adjustmentDetail, LocalDate paymentReceiptDate,
+                          String coverageType, String eob, double approvedAmount, double coInsurance) {
         this.claimId = claimId;
         this.medicalRecord = medicalRecord;
         this.insuranceProvider = insuranceProvider;
@@ -57,7 +61,7 @@ public abstract class InsuranceClaim {
 
     public LocalDate getSubmissionDate() { return submissionDate; }
 
-    public String getTypeOfClaim() { return typeOfClaim; }
+    public TypeOfClaim getTypeOfClaim() { return typeOfClaim; }
 
     public String getClaimStatus() { return claimStatus; }
 
