@@ -2,6 +2,11 @@ package wards;
 
 import java.util.Map;
 
+/**
+ * This class represents wards available in hospitals.
+ * It stores information such as the ward name, daily rate and bed number.
+ */
+
 public abstract class Ward {
     protected String name;
     protected double dailyRate;

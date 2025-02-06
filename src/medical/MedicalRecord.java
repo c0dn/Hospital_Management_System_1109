@@ -6,6 +6,11 @@ import wards.Ward;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * This class represents a patient's medical record in the insurance system.
+ * It stores information such as the patient's name, medical history, and treatments.
+ */
+
 public class MedicalRecord {
     private String procedureCode;
     private LocalDate dateOfVisit;
