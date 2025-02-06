@@ -1,5 +1,17 @@
 package humans;
 
 public enum Sex {
-    MALE, FEMALE
+    MALE("M"),
+    FEMALE("F"),
+    OTHERS("O");
+
+    private final String value;
+
+    Sex(String value) {
+        this.value = value;
+    }
+
+    public String getValue() {
+        return value;
+    }
 }
