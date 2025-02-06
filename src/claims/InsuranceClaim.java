@@ -1,9 +1,11 @@
+package claims;
+
 import humans.Patient;
 import medical.MedicalRecord;
 
 import java.time.LocalDate;
 
-public abstract class InsuranceClaim {
+public class InsuranceClaim {
     private String claimId;
     private MedicalRecord medicalRecord;
     private String insuranceProvider;
