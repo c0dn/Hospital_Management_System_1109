@@ -9,7 +9,7 @@ public class InsuranceClaim {
     private String claimId;
     private MedicalRecord medicalRecord;
     private String insuranceProvider;
-    private String policyId;
+    private InsurancePolicy insurancePolicy;
     private Patient patient;
     private LocalDate submissionDate;
     private TypeOfClaim typeOfClaim;
@@ -26,14 +26,14 @@ public class InsuranceClaim {
     private double coInsurance;
 
     public InsuranceClaim(String claimId, MedicalRecord medicalRecord, String insuranceProvider,
-                          String policyId, Patient patient, LocalDate submissionDate, TypeOfClaim typeOfClaim,
+                          InsurancePolicy insurancePolicy, Patient patient, LocalDate submissionDate, TypeOfClaim typeOfClaim,
                           String claimStatus, double claimAmount, LocalDate followUpDate, String notesComments,
                           String denialReason, String adjustmentDetail, LocalDate paymentReceiptDate,
                           String coverageType, String eob, double approvedAmount, double coInsurance) {
         this.claimId = claimId;
         this.medicalRecord = medicalRecord;
         this.insuranceProvider = insuranceProvider;
-        this.policyId = policyId;
+        this.insurancePolicy = insurancePolicy;
         this.patient = patient;
         this.submissionDate = submissionDate;
         this.typeOfClaim = typeOfClaim;
@@ -57,7 +57,7 @@ public class InsuranceClaim {
 
     public String getInsuranceProvider() { return insuranceProvider; }
 
-    public String getPolicyId() { return policyId; }
+    public InsurancePolicy getInsurancePolicy() { return insurancePolicy; }
 
     public Patient getPatient() { return patient; }
 
