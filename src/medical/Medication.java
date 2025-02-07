@@ -9,26 +9,57 @@ import java.util.stream.Collectors;
 
 /**
  * Represents a medication with associated details loaded from a CSV file.
- * This class maintains a static registry of medications using {@link CSVHelper}
+ * <p>
+ *     This class maintains details about medications, including:
+ * </p>
+ * <ul>
+ *     <li>Drug code, name, category</li>
+ *     <li>Standard dosage and unit form</li>
+ *     <li>Price per unit and manufacturer details</li>
+ * </ul>
  */
 public class Medication {
+    /** The unique drug code identifying this medication. */
     private String drugCode;
+    /** The name of the medication. */
     private String name;
+    /** The category to which this medication belongs (eg. Antibiotics, Painkillers). */
     private String category;
+    /** The standard dosage for this medication. */
     private String standardDosage;
+    /** The unit form of the medication (eg. tablet, capsule, injection). */
     private String unitForm;
+    /** The price per unit of the medication. */
     private BigDecimal pricePerUnit;
+    /** A description of the unit of measurement (eg. per table, per bottle). */
     private String unitDescription;
+    /** The manufacturer of the medication. */
     private String manufacturer;
 
+    /**
+     * A registry storing all available medications, mapped by drug code.
+     */
     private static final Map<String, Medication> DRUG_REGISTRY = new HashMap<>();
 
-    // Static initializer to load medications from CSV
+    /**
+     * Static initializer to load medications from a CSV file when the class is first loaded.
+     */
     static {
         loadDrugsFromCsv();
     }
 
-
+    /**
+     * Constructs a new Medication instance.
+     *
+     * @param drugCode The unique identifier for the drug.
+     * @param name The name of the medication.
+     * @param category The category of the medication.
+     * @param standardDosage The standard dosage of the medication.
+     * @param unitForm The unit form of the medication.
+     * @param pricePerUnit The price per unit of the medication.
+     * @param unitDescription A description of the unit.
+     * @param manufacturer The manufacturer of the medication.
+     */
     private Medication(String drugCode, String name, String category,
                       String standardDosage, String unitForm, BigDecimal pricePerUnit,
                       String unitDescription, String manufacturer) {
@@ -134,6 +165,9 @@ public class Medication {
         return pricePerUnit.multiply(BigDecimal.valueOf(quantity));
     }
 
+    /**
+     * Prints the drug's information in a formatted manner.
+     */
     public void printDrugInformation() {
         System.out.format("Drug Code: %s%n", drugCode);
         System.out.format("%s - %s (%s)%n", manufacturer, name, category);
@@ -142,14 +176,21 @@ public class Medication {
                 pricePerUnit.setScale(2, RoundingMode.HALF_UP), unitForm);
     }
 
-
     // Getters
+
+    /**
+     * Retrieves the category of the medication.
+     *
+     * @return The category of the medication.
+     */
     public String getCategory() {
         return category;
     }
 
     /**
      * Returns a string representation of the medication.
+     *
+     * @return A formatted string with the medication details.
      */
     @Override
     public String toString() {

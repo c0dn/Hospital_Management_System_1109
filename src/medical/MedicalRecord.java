@@ -50,6 +50,41 @@ public class MedicalRecord {
     private List<String> attendingNurse;
 
     /**
+     * Constructs a new MedicalRecord instance with the provided details.
+     *
+     * @param procedureCode      The medical procedure code associated with this record.
+     * @param dateOfVisit        The date of the patient’s visit.
+     * @param typeOfVisit        The type of visit (e.g., inpatient, outpatient).
+     * @param medication         The list of medications prescribed.
+     * @param drugAllergy        The list of drug allergies the patient has.
+     * @param medicalHistory     The patient's past medical conditions.
+     * @param patient            The patient associated with this record.
+     * @param attendingDoctor    The name of the doctor who attended to the patient.
+     * @param medicalRecordId    The unique medical record ID.
+     * @param ward               The hospital ward where the patient was admitted.
+     * @param healthcareProvider The healthcare provider responsible for the treatment.
+     * @param attendingNurse     The list of nurses attending to the patient.
+     */
+    public MedicalRecord(String procedureCode, LocalDate dateOfVisit, TypeOfVisit typeOfVisit,
+                         List<String> medication, List<String> drugAllergy, List<String> medicalHistory,
+                         Patient patient, String attendingDoctor, String medicalRecordId, Ward ward,
+                         HealthcareProvider healthcareProvider, List<String> attendingNurse) {
+
+        this.procedureCode = procedureCode;
+        this.dateOfVisit = dateOfVisit;
+        this.typeOfVisit = typeOfVisit;
+        this.medication = medication;
+        this.drugAllergy = drugAllergy;
+        this.medicalHistory = medicalHistory;
+        this.patient = patient;
+        this.attendingDoctor = attendingDoctor;
+        this.medicalRecordId = medicalRecordId;
+        this.ward = ward;
+        this.healthcareProvider = healthcareProvider;
+        this.attendingNurse = attendingNurse;
+    }
+
+    /**
      * Retrieves the medical procedure code associated with this record.
      *
      * @return The procedure code.
