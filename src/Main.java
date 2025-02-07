@@ -1,7 +1,5 @@
-import medical.Medication;
-
-import java.util.List;
-import java.util.Objects;
+import tests.DiagnosticCodeTest;
+import tests.ProcedureCodeTest;
 
 /**
  * The main entry point for the insurance system.

@@ -86,7 +86,6 @@ public class Patient extends Human {
         this.weight = weight;
         this.insurancePolicy = insurancePolicy;
     }
-
     /**
      * Retrieves the unique identifier for the patient.
      *
@@ -145,9 +144,7 @@ public class Patient extends Human {
      *
      * @return The patient's height in metres.
      */
-    public double getHeight() {
-        return height;
-    }
+    public double getHeight() { return height;}
 
     /**
      * Retrieves the patient's weight in kilograms.
@@ -164,4 +161,15 @@ public class Patient extends Human {
      * @return The patient's insurance policy details.
      */
     public InsurancePolicy getInsurancePolicy() { return insurancePolicy; }
+
+    public void displayPatientInfo() {
+            System.out.println("Name: " + name);
+            System.out.println("Patient ID: " + getPatientId());
+            System.out.println("Date of Birth: getDateOfBirth");
+            System.out.println("Height: " + getHeight() + "m");
+            System.out.println("Weight: " + getWeight() + "kg");
+            System.out.println("Next of Kin: " + getNokName() + " (" + nokRelation + "), Address: " + getNokAddress());
+            System.out.println("Drug Allergies:  " + getDrugAllergies());
+        }
+
 }

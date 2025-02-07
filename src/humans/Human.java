@@ -10,37 +10,37 @@ import java.time.LocalDate;
 public abstract class Human {
 
     /** The name of the person. */
-    private String name;
+    protected String name;
 
     /** The date of birth of the person. */
-    private LocalDate dateOfBirth;
+    protected LocalDate dateOfBirth;
 
     /** The NRIC/FIN (identification number) of the person. */
-    private String nricFin;
+    protected String nricFin;
 
     /** The marital status of the person. */
-    private MaritalStatus maritalStatus;
+    protected MaritalStatus maritalStatus;
 
     /** The residential status of the person. */
-    private ResidentialStatus residentialStatus;
+    protected ResidentialStatus residentialStatus;
 
     /** The nationality of the person. */
-    private String nationality;
+    protected String nationality;
 
     /** The residential address of the person. */
-    private String address;
+    protected String address;
 
     /** The contact details of the person. */
-    private Contact contact;
+    protected Contact contact;
 
     /** The sex of the person. */
-    private Sex sex;
+    protected Sex sex;
 
     /** The blood type of the person. */
-    private BloodType bloodType;
+    protected BloodType bloodType;
 
     /** The vaccination status of the person. */
-    private boolean isVaccinated;
+    protected boolean isVaccinated;
 
     /**
      * Constructs a Human object with the specified attributes.
@@ -72,5 +72,6 @@ public abstract class Human {
         this.bloodType = bloodType;
         this.isVaccinated = isVaccinated;
     }
+
 
 }

@@ -2,36 +2,31 @@ package humans;
 
 import java.time.LocalDate;
 
-/**
- * Represents a doctor in the insurance system.
- * <p>
- *     A doctor is a specilaized type of {@link Staff} with an additional Medical Council Registration (MCR) number.
- * </p>
- */
+public class Doctor extends Staff {
 
-public class Doctor extends Staff{
-
-    /** The Medical Council Registration (MCR) number of the doctor. */
+    /**
+     * The Medical Council Registration (MCR) number of the doctor.
+     */
     private String mcr;
 
     /**
      * Constructs a Doctor object with the specified details.
      *
-     * @param name The name of the doctor.
-     * @param dateOfBirth The date of birth of the doctor.
-     * @param nricFin The NRIC/FIN (identification number) of the doctor.
-     * @param maritalStatus The marital status of the doctor.
+     * @param name              The name of the doctor.
+     * @param dateOfBirth       The date of birth of the doctor.
+     * @param nricFin           The NRIC/FIN (identification number) of the doctor.
+     * @param maritalStatus     The marital status of the doctor.
      * @param residentialStatus The residential status of the doctor.
-     * @param nationality The nationality of the doctor.
-     * @param address The residential address of the doctor.
-     * @param contact The contact details of the doctor.
-     * @param sex The sex of the doctor.
-     * @param bloodType The blood type of the doctor.
-     * @param isVaccinated The vaccination status of the doctor.
-     * @param staffId The staff ID of the doctor.
-     * @param title The title of the doctor (eg. Senior Doctor, Specialist).
-     * @param department The department the doctor belongs to.
-     * @param mcr The Medical Council Registration (MCR) number of the doctor.
+     * @param nationality       The nationality of the doctor.
+     * @param address           The residential address of the doctor.
+     * @param contact           The contact details of the doctor.
+     * @param sex               The sex of the doctor.
+     * @param bloodType         The blood type of the doctor.
+     * @param isVaccinated      The vaccination status of the doctor.
+     * @param staffId           The staff ID of the doctor.
+     * @param title             The title of the doctor (eg. Senior Doctor, Specialist).
+     * @param department        The department the doctor belongs to.
+     * @param mcr               The Medical Council Registration (MCR) number of the doctor.
      */
     public Doctor(String name, LocalDate dateOfBirth, String nricFin, MaritalStatus maritalStatus,
                   ResidentialStatus residentialStatus, String nationality, String address, Contact contact,
@@ -49,5 +44,14 @@ public class Doctor extends Staff{
      *
      * @return The MCR number.
      */
-    public String getmcr() { return mcr; }
+    public String getMcr() {
+        return mcr;
+    }
+    @Override
+    public void displayStaff()
+    {
+        super.displayStaff();
+        System.out.println("MCR: " + mcr);
+
+    }
 }

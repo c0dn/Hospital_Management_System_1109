@@ -47,5 +47,11 @@ public class Nurse extends Staff{
      *
      * @return The RNID.
      */
-    public String getrnid() { return rnid; }
+    private String getRnid() { return rnid; }
+
+    @Override
+    public void displayStaff(){
+        super.displayStaff();
+        System.out.println("RNID: " + rnid);
+    }
 }
