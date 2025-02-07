@@ -2,12 +2,18 @@ package humans;
 
 import java.time.LocalDate;
 
+/**
+ * Represents a doctor in the insurance system.
+ * <p>
+ *     A doctor is a specialized type of {@link Staff} with an additional Medical Council Registration (MCR) number.
+ * </p>
+ */
 public class Doctor extends Staff {
 
     /**
      * The Medical Council Registration (MCR) number of the doctor.
      */
-    private String mcr;
+    private final String mcr;
 
     /**
      * Constructs a Doctor object with the specified details.
@@ -47,11 +53,11 @@ public class Doctor extends Staff {
     public String getMcr() {
         return mcr;
     }
+
     @Override
     public void displayStaff()
     {
         super.displayStaff();
         System.out.println("MCR: " + mcr);
-
     }
 }

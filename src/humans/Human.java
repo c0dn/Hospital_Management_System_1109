@@ -71,7 +71,6 @@ public abstract class Human {
         this.sex = sex;
         this.bloodType = bloodType;
         this.isVaccinated = isVaccinated;
+
     }
-
-
 }

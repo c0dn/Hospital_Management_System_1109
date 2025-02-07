@@ -57,24 +57,24 @@ public class Staff extends Human {
      *
      * @return The staff ID.
      */
-    protected String getStaffId() { return staffId; }
+    private String getStaffId() { return staffId; }
 
     /**
      * Retrieves the staff's job title.
      *
      * @return The job title.
      */
-    protected String getTitle() { return title; }
+    private String getTitle() { return title; }
 
     /**
      * Retrieves the department where the staff works.
      *
      * @return The department name.
      */
-    protected String getDepartment() { return department; }
+    private String getDepartment() { return department; }
 
     public void displayStaff () {
-        System.out.println("Name: " + name);
+        System.out.println("Name: " + getName());
         System.out.println("Title: " + getTitle());
         System.out.println("Department: " + getDepartment());
         System.out.println("Staff ID" + getStaffId());

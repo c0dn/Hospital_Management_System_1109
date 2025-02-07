@@ -103,6 +103,7 @@ public class DiagnosticCode {
      * @param code The diagnostic code.
      * @return The description of the code, or {@code null} if the code is not found.
      */
+
     public static String getDescriptionForCode(String code) {
         return CODE_REGISTRY.get(code);
     }
