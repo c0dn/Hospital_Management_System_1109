@@ -6,6 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Represents a diagnostic code based on the ICD-10 classification.
+ * This class allows retrieving descriptions for diagnostic codes from a predefined CSV file.
+ *
+ * <br><br> It maintains a static registry of codes and descriptions, which are loaded at runtime from a CSV file using {@link CSVHelper}
+ */
 public class DiagnosticCode {
     private String code;
     private String description;
@@ -16,11 +22,25 @@ public class DiagnosticCode {
         loadCodesFromCsv();
     }
 
+    /**
+     * Constructs a DiagnosticCode instance.
+     * @param code The diagnostic code.
+     * @param description The description of the diagnostic code.
+     */
     public DiagnosticCode(String code, String description) {
         this.code = code;
         this.description = description;
     }
 
+    /**
+     * Loads diagnostic codes and descriptions from a CSV file into the registry.
+     *
+     * <br><br> The CSV file should have at least 2 columns:
+     * <br>- Column 1: Diagnostic code
+     * <br>- Column 2: Description
+     *
+     * <br><br> This method removes any quotes from the descriptions before storing them.
+     */
     private static void loadCodesFromCsv() {
         CSVHelper csvHelper = CSVHelper.getInstance();
         List<String[]> records = csvHelper.readCSV("icd-10-codes.csv");
@@ -36,6 +56,13 @@ public class DiagnosticCode {
         }
     }
 
+    /**
+     * Creates a new {@new DiagnosticCode} instance from and existing code.
+     *
+     * @param code The diagnostic code.
+     * @return A new DiagnosticCode instance corresponding to the given code.
+     * @throws IllegalArgumentException if the code is not found in the registry.
+     */
     public static DiagnosticCode createFromCode(String code) {
         String description = CODE_REGISTRY.get(code);
         if (description == null) {
@@ -44,18 +71,39 @@ public class DiagnosticCode {
         return new DiagnosticCode(code, description);
     }
 
+    /**
+     * Gets the diagnostic code.
+     *
+     * @return The diagnostic code as a string.
+     */
     public String getCode() {
         return code;
     }
 
+    /**
+     * Get the description of the diagnostic code.
+     *
+     * @return The description associated with this diagnostic code.
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Retrieves the description for a given diagnostic code form the registry.
+     *
+     * @param code The diagnostic code.
+     * @return The description of the code, or {@code null} if the code is not found.
+     */
     public static String getDescriptionForCode(String code) {
         return CODE_REGISTRY.get(code);
     }
 
+    /**
+     * Returns a string representation of the diagnostic code.
+     *
+     * @return A formatted string in the form of "code: description".
+     */
     @Override
     public String toString() {
         return String.format("%s: %s", code, description);
