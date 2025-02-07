@@ -14,8 +14,12 @@ package humans;
  */
 
 public enum MaritalStatus {
-    SINGLE, /** The individual is not married. */
-    MARRIED, /** The individual is married. */
-    DIVORCED, /** The individual is divorced. */
-    WIDOWED /** The individual has lost their spouse due to death. */
+    /** The individual is not married. */
+    SINGLE,
+    /** The individual is married. */
+    MARRIED,
+    /** The individual is divorced. */
+    DIVORCED,
+    /** The individual has lost their spouse due to death. */
+    WIDOWED
 }
