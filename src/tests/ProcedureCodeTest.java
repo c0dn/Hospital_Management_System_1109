@@ -2,6 +2,9 @@ package tests;
 
 import medical.ProcedureCode;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class ProcedureCodeTest {
     public static void main(String[] args) {
         try {
@@ -19,8 +22,10 @@ public class ProcedureCodeTest {
 
             // Test 3: Calculate total cost
             System.out.println("\nTest 3 - Calculating total cost:");
-            double totalCost = proc1.getPrice() + proc2.getPrice();
-            System.out.printf("Total cost for both procedures: $%.2f%n", totalCost);
+            BigDecimal totalCost = proc1.getPrice().add(proc2.getPrice());
+            System.out.printf("Total cost for both procedures: $%s%n",
+                    totalCost.setScale(2, RoundingMode.HALF_UP));
+
 
             // Test 4: Try invalid code
             System.out.println("\nTest 4 - Testing invalid code:");

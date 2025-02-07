@@ -2,6 +2,8 @@ package medical;
 
 import utils.CSVHelper;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +16,7 @@ public class ProcedureCode {
     private String code;
     private String description;
     private String category;
-    private double price;
+    private BigDecimal price;
 
     private static final Map<String, ProcedureCode> CODE_REGISTRY = new HashMap<>();
 
@@ -23,14 +25,8 @@ public class ProcedureCode {
         loadCodesFromCsv();
     }
 
-    /**
-     * Constructs a ProcedureCode instance.
-     * @param code The procedure code
-     * @param description The description of the procedure
-     * @param category The category of the procedure
-     * @param price The price of the procedure
-     */
-    public ProcedureCode(String code, String description, String category, double price) {
+
+    private ProcedureCode(String code, String description, String category, BigDecimal price) {
         this.code = code;
         this.description = description;
         this.category = category;
@@ -51,7 +47,7 @@ public class ProcedureCode {
                 String code = record[0];
                 String description = record[1].replaceAll("\"", "");
                 String category = record[2];
-                double price = Double.parseDouble(record[3]);
+                BigDecimal price = new BigDecimal(record[3]).setScale(2, RoundingMode.HALF_UP);
 
                 CODE_REGISTRY.put(code, new ProcedureCode(code, description, category, price));
             }
@@ -73,7 +69,7 @@ public class ProcedureCode {
         return procedureCode;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
@@ -84,8 +80,8 @@ public class ProcedureCode {
      */
     @Override
     public String toString() {
-        return String.format("%s: %s (Category: %s, Price: $%.2f)",
-                code, description, category, price);
+        return String.format("%s: %s (Category: %s, Price: $%s)",
+                code, description, category, price.setScale(2, RoundingMode.HALF_UP));
     }
 
     public Object getCode() {

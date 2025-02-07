@@ -2,9 +2,12 @@ package medical;
 
 import utils.CSVHelper;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * Represents a diagnostic code based on the ICD-10 classification.
@@ -15,6 +18,7 @@ import java.util.Map;
 public class DiagnosticCode {
     private String code;
     private String description;
+    private BigDecimal cost;
     private static final Map<String, String> CODE_REGISTRY = new HashMap<>();
 
     // Static initializer to load codes from CSV
@@ -22,14 +26,11 @@ public class DiagnosticCode {
         loadCodesFromCsv();
     }
 
-    /**
-     * Constructs a DiagnosticCode instance.
-     * @param code The diagnostic code.
-     * @param description The description of the diagnostic code.
-     */
-    public DiagnosticCode(String code, String description) {
+
+    private DiagnosticCode(String code, String description, BigDecimal cost) {
         this.code = code;
         this.description = description;
+        this.cost = cost;
     }
 
     /**
@@ -68,8 +69,15 @@ public class DiagnosticCode {
         if (description == null) {
             throw new IllegalArgumentException("Invalid diagnostic code: " + code);
         }
-        return new DiagnosticCode(code, description);
+        return new DiagnosticCode(code, description, generateRandomPrice());
     }
+
+    private static BigDecimal generateRandomPrice() {
+        Random random = new Random();
+        double randomValue = 100 + (random.nextDouble() * 200);
+        return BigDecimal.valueOf(randomValue).setScale(2, RoundingMode.HALF_UP);
+    }
+
 
     /**
      * Gets the diagnostic code.

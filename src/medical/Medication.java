@@ -2,10 +2,9 @@ package medical;
 
 import utils.CSVHelper;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -18,7 +17,7 @@ public class Medication {
     private String category;
     private String standardDosage;
     private String unitForm;
-    private double pricePerUnit;
+    private BigDecimal pricePerUnit;
     private String unitDescription;
     private String manufacturer;
 
@@ -29,11 +28,9 @@ public class Medication {
         loadDrugsFromCsv();
     }
 
-    /**
-     * Constructs a Medication instance.
-     */
-    public Medication(String drugCode, String name, String category,
-                      String standardDosage, String unitForm, double pricePerUnit,
+
+    private Medication(String drugCode, String name, String category,
+                      String standardDosage, String unitForm, BigDecimal pricePerUnit,
                       String unitDescription, String manufacturer) {
         this.drugCode = drugCode;
         this.name = name;
@@ -61,7 +58,7 @@ public class Medication {
                 String category = record[2];
                 String standardDosage = record[3];
                 String unitForm = record[4];
-                double pricePerUnit = Double.parseDouble(record[5]);
+                BigDecimal pricePerUnit = new BigDecimal(record[5]).setScale(2, RoundingMode.HALF_UP);
                 String unitDescription = record[6];
                 String manufacturer = record[7];
 
@@ -71,6 +68,7 @@ public class Medication {
             }
         }
     }
+
 
     /**
      * Creates a new Medication instance from an existing drug code.
@@ -132,30 +130,22 @@ public class Medication {
      * @param quantity The number of units needed
      * @return The total cost
      */
-    public double calculateCost(int quantity) {
-        return pricePerUnit * quantity;
+    public BigDecimal calculateCost(int quantity) {
+        return pricePerUnit.multiply(BigDecimal.valueOf(quantity));
+    }
+
+    public void printDrugInformation() {
+        System.out.format("Drug Code: %s%n", drugCode);
+        System.out.format("%s - %s (%s)%n", manufacturer, name, category);
+        System.out.format("Dosage: %s%n", standardDosage);
+        System.out.format("Price: $%s / %s%n",
+                pricePerUnit.setScale(2, RoundingMode.HALF_UP), unitForm);
     }
 
 
     // Getters
-    public String getDrugCode() {
-        return drugCode;
-    }
-
-    public String getName() {
-        return name;
-    }
-
     public String getCategory() {
         return category;
-    }
-
-    public String getBillingUnit() {
-        return unitForm;
-    }
-
-    public String getManufacturer() {
-        return manufacturer;
     }
 
     /**
