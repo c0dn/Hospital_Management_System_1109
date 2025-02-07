@@ -2,10 +2,10 @@ package claims;
 
 /**
  * Defines the current status of an insurance claim.
- * Possible statuses include:
- * - Submitted
- * - Approved
- * - Rejected
+ * <br><br>Possible statuses include:
+ * <br>- Submitted
+ * <br>- Approved
+ * <br>- Rejected
  *
  */
 

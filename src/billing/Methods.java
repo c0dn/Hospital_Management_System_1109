@@ -7,6 +7,11 @@ import policy.InsurancePolicy;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Handles the calculations of the medical bills.
+ * The class includes calculations for total charges, insurance coverage and total payable.
+ */
+
 //currently missing diagnosisCharges, consultationFees, medicationCosts, procedureCharges
 //submitting insurance claim should be referencing total charges (invoice) and insuranceCoverage
 //approved insurance claim should be referencing total payable and insuranceCoverage
