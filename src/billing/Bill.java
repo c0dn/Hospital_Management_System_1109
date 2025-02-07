@@ -1,5 +1,10 @@
 package billing;
 
+/**
+ * Represents an individual bill for medical services.
+ * This class contains details such as patient ID, ward name and total charges.
+ */
+
 public class Bill {
     private String patientId;
     private String wardName;

@@ -8,6 +8,15 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Provides utility functions for handling CSV file operations.
+ * <br><br>This class includes methods for:
+ * <br>- Reading data from CSV files
+ * <br>- Writing data to CSV files
+ * <br>- Parsing and formatting CSV records
+ *
+ * <br><br>This helps in exporting and importing medical records and billing details.
+ */
 
 public class CSVHelper {
     private static volatile CSVHelper instance;
