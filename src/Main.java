@@ -1,4 +1,5 @@
-import medical.DiagnosticCode;
+import tests.DiagnosticCodeTest;
+import tests.ProcedureCodeTest;
 
 /**
  * The main entry point for the insurance system.
@@ -7,35 +8,7 @@ import medical.DiagnosticCode;
 
 public class Main {
     public static void main(String[] args) {
-        try {
-            System.out.println("Testing DiagnosticCode functionality...\n");
-
-            // Test 1: Create a diagnostic code
-            System.out.println("Test 1 - Creating code A000:");
-            DiagnosticCode code1 = DiagnosticCode.createFromCode("A000");
-            System.out.println(code1);
-
-            // Test 2: Create another code
-            System.out.println("\nTest 2 - Creating code A071:");
-            DiagnosticCode code2 = DiagnosticCode.createFromCode("A071");
-            System.out.println(code2);
-
-            // Test 3: Direct description lookup
-            System.out.println("\nTest 3 - Direct lookup for A150:");
-            String description = DiagnosticCode.getDescriptionForCode("A150");
-            System.out.println("A150: " + description);
-
-            // Test 4: Try invalid code
-            System.out.println("\nTest 4 - Testing invalid code:");
-            try {
-                DiagnosticCode invalid = DiagnosticCode.createFromCode("XYZ");
-            } catch (IllegalArgumentException e) {
-                System.out.println("Expected error: " + e.getMessage());
-            }
-
-        } catch (Exception e) {
-            System.err.println("Unexpected error: " + e.getMessage());
-        }
-
+        DiagnosticCodeTest.main(args);
+        ProcedureCodeTest.main(args);
     }
 }
