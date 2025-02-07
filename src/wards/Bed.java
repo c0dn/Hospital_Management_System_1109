@@ -2,6 +2,10 @@ package wards;
 
 import humans.Patient;
 
+/**
+ * Represents a hospital bed assigned to a patient.
+ */
+
 public class Bed {
     private int bedNumber;
     private Patient currentPatient;

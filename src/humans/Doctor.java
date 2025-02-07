@@ -2,6 +2,10 @@ package humans;
 
 import java.time.LocalDate;
 
+/**
+ * Represents a doctor in the insurance system.
+ */
+
 public class Doctor extends Staff{
     private String mcr;
 

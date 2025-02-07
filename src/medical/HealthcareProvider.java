@@ -1,8 +1,8 @@
 package medical;
 
 /**
- * This class represents a Healthcare Provider's details in the insurance system.
- * It stores information such as the Healthcare Provide Name and Code.
+ * This class represents a healthcare provider such as a hospital or clinic.
+ * It stores information such as the Healthcare Provider Name and Code.
  */
 
 public class HealthcareProvider {

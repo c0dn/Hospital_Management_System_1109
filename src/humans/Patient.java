@@ -6,6 +6,11 @@ import policy.InsurancePolicy; //reference to patient Insurance Policy
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Represents a patient in the insurance system.
+ * Patients have medical records have insurance details.
+ */
+
 public class Patient extends Human {
     private String patientId;
     private List<String> drugAllergies;

@@ -3,7 +3,7 @@ package wards;
 import java.util.Map;
 
 /**
- * This class represents wards available in hospitals.
+ * This class represents the ward types available in the insurance system.
  * It stores information such as the ward name, daily rate and bed number.
  */
 

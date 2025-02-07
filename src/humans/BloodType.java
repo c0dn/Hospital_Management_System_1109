@@ -1,5 +1,9 @@
 package humans;
 
+/**
+ * Defines the blood type of a person.
+ */
+
 public enum BloodType {
     A_POSITIVE("A+"),
     A_NEGATIVE("A-"),

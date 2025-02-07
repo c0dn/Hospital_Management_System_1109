@@ -1,5 +1,9 @@
 package humans;
 
+/**
+ * Defines the sex of a person.
+ */
+
 public enum Sex {
     MALE("M"),
     FEMALE("F"),

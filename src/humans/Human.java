@@ -2,6 +2,11 @@ package humans;
 
 import java.time.LocalDate;
 
+/**
+ * Represents a general human entity in the insurance system.
+ * This serves as a base class for patients, doctors and other human-related roles.
+ */
+
 public abstract class Human {
     private String name;
     private LocalDate dateOfBirth;

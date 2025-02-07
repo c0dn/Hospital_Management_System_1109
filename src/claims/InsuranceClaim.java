@@ -6,6 +6,12 @@ import policy.InsurancePolicy;
 
 import java.time.LocalDate;
 
+/**
+ * Represents an insurance claim made.
+ * This class includes details such as claim amount, type of claim and submission date.
+ */
+
+
 public class InsuranceClaim {
     private String claimId;
     private MedicalRecord medicalRecord;

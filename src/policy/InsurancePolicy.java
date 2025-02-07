@@ -2,6 +2,11 @@ package policy;
 
 import java.time.LocalDate;
 
+/**
+ * Represents an insurance policy associated with a patient.
+ * It contains details such as insurance provider name, deductible and expiry date.
+ */
+
 public abstract class InsurancePolicy {
     private String policyId;
     private String insuranceProvider;

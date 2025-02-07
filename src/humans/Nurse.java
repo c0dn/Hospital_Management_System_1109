@@ -2,6 +2,10 @@ package humans;
 
 import java.time.LocalDate;
 
+/**
+ * Represents a nurse in the insurance system.
+ */
+
 public class Nurse extends Staff{
     private String rnid;
 

@@ -1,5 +1,9 @@
 package humans;
 
+/**
+ * Stores contact details of a person, such as phone number and email.
+ */
+
 public class Contact {
     private String personalPhone;
     private String homePhone;

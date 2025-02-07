@@ -1,5 +1,10 @@
 import medical.DiagnosticCode;
 
+/**
+ * The main entry point for the insurance system.
+ * This class initializes the system and processes user input.
+ */
+
 public class Main {
     public static void main(String[] args) {
         try {

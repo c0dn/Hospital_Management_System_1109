@@ -1,5 +1,14 @@
 package claims;
 
+/**
+ * Defines the current status of an insurance claim.
+ * Possible statuses include:
+ * - Submitted
+ * - Approved
+ * - Rejected
+ *
+ */
+
 public enum ClaimStatus {
     SUBMITTED("Claim has been submitted"),
     IN_REVIEW("Claim is under review"),

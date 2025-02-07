@@ -2,6 +2,11 @@ package humans;
 
 import java.time.LocalDate;
 
+/**
+ * Represents staff in the insurance system.
+ * Staff members includes Doctors, Nurses and members who handle administrative roles.
+ */
+
 public class Staff extends Human {
     private String staffId;
     private String title;
