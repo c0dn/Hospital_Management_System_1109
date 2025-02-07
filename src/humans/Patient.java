@@ -1,6 +1,7 @@
 package humans;
 
 import medical.MedicalRecord;
+import policy.InsurancePolicy; //reference to patient Insurance Policy
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,6 +15,7 @@ public class Patient extends Human {
     private String nokRelation;
     private double height; // in meters
     private double weight; // in kilograms
+    private InsurancePolicy insurancePolicy;
 
     public Patient(String name, LocalDate dateOfBirth, String nricFin,
                    MaritalStatus maritalStatus, ResidentialStatus residentialStatus,
@@ -22,7 +24,7 @@ public class Patient extends Human {
                    String patientId, List<String> drugAllergies,
                    List<MedicalRecord> medicalRecords, String nokName,
                    String nokAddress, String nokRelation,
-                   double height, double weight) {
+                   double height, double weight, InsurancePolicy insurancePolicy) {
 
         super(name, dateOfBirth, nricFin, maritalStatus, residentialStatus,
                 nationality, address, contact, sex, bloodType, isVaccinated);
@@ -35,6 +37,7 @@ public class Patient extends Human {
         this.nokRelation = nokRelation;
         this.height = height;
         this.weight = weight;
+        this.insurancePolicy = insurancePolicy;
     }
 
 
@@ -69,4 +72,6 @@ public class Patient extends Human {
     public double getWeight() {
         return weight;
     }
+
+    public InsurancePolicy getInsurancePolicy() { return insurancePolicy; }
 }

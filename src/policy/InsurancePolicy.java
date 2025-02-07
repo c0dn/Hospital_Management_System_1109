@@ -9,9 +9,11 @@ public abstract class InsurancePolicy {
     private InsuranceStatus insuranceStatus;
     private LocalDate startDate;
     private LocalDate endDate;
+    private double coInsuranceRate;
 
     public InsurancePolicy(String policyId, String insuranceProvider, double deductible,
-                           InsuranceStatus insuranceStatus, LocalDate startDate, LocalDate endDate) {
+                           InsuranceStatus insuranceStatus, LocalDate startDate, LocalDate endDate,
+                           double coInsuranceRate) {
 
         this.policyId = policyId;
         this.insuranceProvider = insuranceProvider;
@@ -19,6 +21,7 @@ public abstract class InsurancePolicy {
         this.insuranceStatus = insuranceStatus;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.coInsuranceRate = coInsuranceRate;
     }
 
     // getters
@@ -33,4 +36,6 @@ public abstract class InsurancePolicy {
     public LocalDate getStartDate() { return startDate; }
 
     public LocalDate getEndDate() { return endDate; }
+
+    public double getCoInsuranceRate() { return coInsuranceRate; }
 }
