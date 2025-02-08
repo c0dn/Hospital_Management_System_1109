@@ -1,5 +1,5 @@
 package policy;
-
+import humans.Patient;
 import java.time.LocalDate;
 
 /**
@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 public abstract class InsurancePolicy {
     /** Unique identifier for the insurance policy. */
-    private String policyId;
+    private final String policyId;
     /** Name of the insurance provider issuing the policy. */
     private String insuranceProvider;
     /** The deductible amount the policyholder must pay before insurance coverage begins. */
@@ -22,6 +22,10 @@ public abstract class InsurancePolicy {
     private LocalDate endDate;
     /** The percentage of costs shared by the insured person after the deductible is met. */
     private double coInsuranceRate;
+    /** This is the amount the policyholder pays for the insurance policy */
+    private double premiumAmount;
+
+    private Patient policyHolder;
 
     /**
      * Constructs an InsurancePolicy object with the specified details.
@@ -36,7 +40,7 @@ public abstract class InsurancePolicy {
      */
     public InsurancePolicy(String policyId, String insuranceProvider, double deductible,
                            InsuranceStatus insuranceStatus, LocalDate startDate, LocalDate endDate,
-                           double coInsuranceRate) {
+                           double coInsuranceRate, double premiumAmount, Patient policyHolder) {
 
         this.policyId = policyId;
         this.insuranceProvider = insuranceProvider;
@@ -45,6 +49,8 @@ public abstract class InsurancePolicy {
         this.startDate = startDate;
         this.endDate = endDate;
         this.coInsuranceRate = coInsuranceRate;
+        this.premiumAmount = premiumAmount;
+        this.policyHolder = policyHolder;
     }
 
     // getters
@@ -96,4 +102,19 @@ public abstract class InsurancePolicy {
      * @return The co-insurance rate as a percentage.
      */
     public double getCoInsuranceRate() { return coInsuranceRate; }
+
+    public double getPremiumAmount() { return premiumAmount; }
+
+    public Patient getPolicyholder() { return policyHolder; }
+
+
+    public void displayPolicyDetails(){
+        System.out.format("Name: %s%n", policyHolder);
+        System.out.format("Policy ID: %s%n", policyId);
+        System.out.format("Insurance Provider: %s%n", insuranceProvider);
+        System.out.format("Insurance Status: %s%n", insuranceStatus);
+        System.out.format("Start Date: %s%n", startDate);
+        System.out.format("End Date: %s%n", endDate);
+        System.out.format("Premium Amount: $%.2f%n", premiumAmount);
+    }
 }
