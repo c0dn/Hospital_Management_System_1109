@@ -5,7 +5,18 @@ import medical.ProcedureCode;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+/**
+ * A test class for the {@link ProcedureCode} class.
+ * This class verifies the functionality of procedure code creation, cost calculations, and handling invalid codes.
+ */
 public class ProcedureCodeTest {
+    /**
+     * Main method to execute tests for {@link ProcedureCode}.
+     * It tests creating procedure codes, calculating total costs,
+     * and handling invalid or duplicate codes.
+     *
+     * @param args Command-line arguments (not used)
+     */
     public static void main(String[] args) {
         try {
             System.out.println("Testing ProcedureCode functionality...\n");

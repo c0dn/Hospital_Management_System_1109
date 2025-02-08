@@ -13,19 +13,37 @@ import java.util.Map;
  * This class maintains a static registry of codes loaded from a CSV file using {@link CSVHelper}
  */
 public class ProcedureCode {
+    /** The unique procedure code identifier. */
     private String code;
+    /** A description of the procedure. */
     private String description;
+    /** The category to which this procedure belongs. */
     private String category;
+    /** The cost of the procedure. */
     private BigDecimal price;
 
+    /**
+     * A registry storing all available procedure codes, mapped by code identifier.
+     */
     private static final Map<String, ProcedureCode> CODE_REGISTRY = new HashMap<>();
 
     // Static initializer to load codes from CSV
+
+    /**
+     * Static initializer that loads procedure codes from a CSV file when the class is first loaaded.
+     */
     static {
         loadCodesFromCsv();
     }
 
-
+    /**
+     * Constructs a new {@code ProcedureCode} instance.
+     *
+     * @param code The unique identifier for the procedure.
+     * @param description A brief description of the procedure.
+     * @param category The category of the procedure.
+     * @param price The cost of the procedure.
+     */
     private ProcedureCode(String code, String description, String category, BigDecimal price) {
         this.code = code;
         this.description = description;
@@ -57,9 +75,9 @@ public class ProcedureCode {
     /**
      * Creates a new ProcedureCode instance from an existing code.
      *
-     * @param code The procedure code
-     * @return A new ProcedureCode instance
-     * @throws IllegalArgumentException if the code is not found in the registry
+     * @param code The procedure code.
+     * @return A new ProcedureCode instance.
+     * @throws IllegalArgumentException if the code is not found in the registry.
      */
     public static ProcedureCode createFromCode(String code) {
         ProcedureCode procedureCode = CODE_REGISTRY.get(code);
@@ -69,6 +87,11 @@ public class ProcedureCode {
         return procedureCode;
     }
 
+    /**
+     * Retrieves the price of the procedure.
+     *
+     * @return The cost of the procedure as a {@link BigDecimal}.
+     */
     public BigDecimal getPrice() {
         return price;
     }
@@ -76,7 +99,7 @@ public class ProcedureCode {
     /**
      * Returns a string representation of the procedure code.
      *
-     * @return A formatted string containing code, description, category, and price
+     * @return A formatted string containing code, description, category, and price.
      */
     @Override
     public String toString() {
@@ -84,6 +107,11 @@ public class ProcedureCode {
                 code, description, category, price.setScale(2, RoundingMode.HALF_UP));
     }
 
+    /**
+     * Retrieves the procedure code identifier.
+     *
+     * @return The procedure code as a {@code String}.
+     */
     public Object getCode() {
         return code;
     }

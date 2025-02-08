@@ -6,25 +6,33 @@ package humans;
 
 public class Contact {
 
-    /** The personal phone number of the person. */
-    private String personalPhone;
+    /**
+     * The personal phone number of the person.
+     */
+    private final String personalPhone;
 
-    /** The home phone number of the person. */
-    private String homePhone;
+    /**
+     * The home phone number of the person.
+     */
+    private final String homePhone;
 
-    /** The company phone number of the person. */
-    private String companyPhone;
+    /**
+     * The company phone number of the person.
+     */
+    private final String companyPhone;
 
-    /** The email address of the person. */
-    private String email;
+    /**
+     * The email address of the person.
+     */
+    private final String email;
 
     /**
      * Constructs a Contact object with the specified phone numbers and email.
      *
      * @param personalPhone The personal phone number.
-     * @param homePhone The home phone number.
-     * @param companyPhone The company phone number.
-     * @param email The email address.
+     * @param homePhone     The home phone number.
+     * @param companyPhone  The company phone number.
+     * @param email         The email address.
      */
     public Contact(String personalPhone, String homePhone, String companyPhone, String email) {
         this.personalPhone = personalPhone;
@@ -33,41 +41,11 @@ public class Contact {
         this.email = email;
     }
 
-    /**
-     * Retrieves the personal phone number.
-     *
-     * @return The personal phone number.
-     */
-    public String getPersonalPhone() {
-        return personalPhone;
+    public void displayContactInfo() {
+        System.out.format("Personal Phone: %s%n", personalPhone);
+        System.out.format("Home Phone: %s%n", homePhone);
+        System.out.format("Company Phone: %s%n", companyPhone);
+        System.out.format("Email: %s%n", email);
     }
-
-    /**
-     * Retrieves the home phone number.
-     *
-     * @return The home phone number.
-     */
-    public String getHomePhone() {
-        return homePhone;
-    }
-
-    /**
-     * Retrieves the company phone number.
-     *
-     * @return The company phone number.
-     */
-    public String getCompanyPhone() {
-        return companyPhone;
-    }
-
-    /**
-     * Retrieves the email address.
-     *
-     * @return The email address.
-     */
-    public String getEmail() {
-        return email;
-    }
-
 
 }

@@ -2,7 +2,17 @@ package tests;
 
 import medical.DiagnosticCode;
 
+/**
+ * A test class for the {@link DiagnosticCode} class.
+ * This class verifies the functionality of diagnostic code creation and lookup.
+ */
 public class DiagnosticCodeTest {
+    /**
+     * Main method to execute tests for {@link DiagnosticCode}.
+     * It tests creating diagnostic codes, direct lookups, and handling invalid codes.
+     *
+     * @param args Command-line arguments (not used)
+     */
     public static void main(String[] args) {
         try {
             System.out.println("Testing DiagnosticCode functionality...\n");

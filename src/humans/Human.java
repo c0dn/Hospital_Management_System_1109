@@ -6,7 +6,6 @@ import java.time.LocalDate;
  * Represents a general human entity in the insurance system.
  * This serves as a base class for patients, doctors and other human-related roles.
  */
-
 public abstract class Human {
 
     /** The name of the person. */
@@ -71,6 +70,23 @@ public abstract class Human {
         this.sex = sex;
         this.bloodType = bloodType;
         this.isVaccinated = isVaccinated;
+    }
 
+    /**
+     * Retrieves the NRIC/FIN (identification number) of the person.
+     *
+     * @return The NRIC/FIN of the person.
+     */
+    public String getNricFin() {
+        return nricFin;
+    }
+
+    /**
+     * Displays the contact information of the person.
+     * This method delegates the actual display functionality
+     * to the {@code displayContactInfo} method of the {@code Contact} class.
+     */
+    public void displayContactInformation() {
+        contact.displayContactInfo();
     }
 }
