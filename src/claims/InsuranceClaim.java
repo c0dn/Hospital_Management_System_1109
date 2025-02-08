@@ -151,4 +151,12 @@ public class InsuranceClaim {
     public void setComments(String comments) {
         this.comments = comments;
     }//setter, add comments overtime
+
+    public void displayClaimInfo() {
+        System.out.printf("\n\n%-10s %-14s %-19s %-14s %-10s %-14s %-11s %-12s %-14s%n",
+                "Claim ID", "Medical Record", "Insurance Provider", "Policy", "Patient", "Submission Date", "Status", "Amount", "Comments");
+        System.out.printf("%-10s %-14s %-19s %-14s %-10s %-14s %-11s %-12.2f %-14s%n",
+                claimId, medicalRecord, insuranceProvider, insurancePolicy, patient, submissionDate, claimStatus, claimAmount, comments);
+    }
+
 }
