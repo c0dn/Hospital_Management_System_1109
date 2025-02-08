@@ -1,0 +1,76 @@
+package tests;
+
+import humans.*;
+import humans.builder.DoctorBuilder;
+import java.time.LocalDate;
+
+/**
+ * A test class for the {@link Doctor} class.
+ * This class verifies the functionality of doctor creation and data access.
+ */
+public class DoctorTest {
+    /**
+     * Main method to execute tests for {@link Doctor}.
+     * It tests creating doctors using both constructor and builder pattern.
+     *
+     * @param args Command-line arguments (not used)
+     */
+    public static void main(String[] args) {
+        try {
+            System.out.println("Testing Doctor functionality...\n");
+
+            // Test 1: Create a doctor manually
+            System.out.println("Test 1 - Creating doctor manually:");
+            Doctor doctor1 = new Doctor(
+                    "Dr. Jane Smith",
+                    LocalDate.of(1980, 6, 15),
+                    "S8012345B",
+                    MaritalStatus.MARRIED,
+                    ResidentialStatus.CITIZEN,
+                    "Singaporean",
+                    "123 Medical Drive",
+                    new Contact("91234567", "62345678", "62345679", "jane.smith@hospital.com"),
+                    Sex.FEMALE,
+                    BloodType.O_POSITIVE,
+                    true,
+                    "D1001",
+                    "Senior Consultant",
+                    "Cardiology",
+                    "M12345A"
+            );
+            doctor1.displayStaff();
+
+            // Test 2: Create a doctor using builder with random data
+            System.out.println("\nTest 2 - Creating doctor using builder with random data:");
+            Doctor doctor2 = new DoctorBuilder()
+                    .withRandomBaseData()
+                    .build();
+            doctor2.displayStaff();
+
+            // Test 3: Create a doctor using builder with specific data
+            System.out.println("\nTest 3 - Creating doctor using builder with specific data:");
+            Doctor doctor3 = new DoctorBuilder()
+                    .name("Dr. John Doe")
+                    .dateOfBirth(LocalDate.of(1975, 3, 20))
+                    .nricFin("S7512345C")
+                    .maritalStatus(MaritalStatus.SINGLE)
+                    .residentialStatus(ResidentialStatus.CITIZEN)
+                    .nationality("Singaporean")
+                    .address("456 Hospital Road")
+                    .contact(new Contact("98765432", "63456789", "63456780", "john.doe@hospital.com"))
+                    .sex(Sex.MALE)
+                    .bloodType(BloodType.B_NEGATIVE)
+                    .isVaccinated(true)
+                    .staffId("D1002")
+                    .title("Consultant")
+                    .department("Neurology")
+                    .mcr("M54321B")
+                    .build();
+            doctor3.displayStaff();
+
+        } catch (Exception e) {
+            System.err.println("Unexpected error: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+}

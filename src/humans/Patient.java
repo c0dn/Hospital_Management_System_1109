@@ -154,7 +154,7 @@ public class Patient extends Human {
         System.out.format("Height: %.2fm%n", height);
         System.out.format("Weight: %.2fkg%n", weight);
         System.out.format("Next of Kin: %s (%s), Address: %s%n", nokName, nokRelation, nokAddress);
-        System.out.format("Drug Allergies: %s%n", drugAllergies);
+        System.out.format("Drug Allergies: %s%n%n", drugAllergies);
     }
 
     public void displayInsrPatient() {

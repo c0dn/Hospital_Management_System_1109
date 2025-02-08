@@ -1,18 +1,20 @@
 package tests;
 
 import humans.*;
+import humans.builder.PatientBuilder;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * A test class for the {@link Patient} class.
- * This class verifies the functionality of patient creation and data access.
+ * This class verifies the functionality of patient creation and data access using the builder pattern.
  */
 public class PatientTest {
     /**
      * Main method to execute tests for {@link Patient}.
-     * It tests creating patients manually and through the generator, and accessing patient data.
+     * It tests creating patients using the builder pattern with both specific and random data.
      *
      * @param args Command-line arguments (not used)
      */
@@ -20,41 +22,50 @@ public class PatientTest {
         try {
             System.out.println("Testing Patient functionality...\n");
 
-            // Test 1: Create a patient manually
-            System.out.println("Test 1 - Creating patient manually:");
-            Patient patient1 = new Patient(
-                    "John Doe",
-                    LocalDate.of(1990, 1, 1),
-                    "S9012345A",
-                    MaritalStatus.SINGLE,
-                    ResidentialStatus.CITIZEN,
-                    "Singaporean",
-                    "123 Test Street",
-                    new Contact("91234567", "61234567", "61234568", "john@test.com"),
-                    Sex.MALE,
-                    BloodType.A_POSITIVE,
-                    true,
-                    "P1001",
-                    Arrays.asList("Penicillin"),
-                    "Jane Doe",
-                    "456 Test Street",
-                    NokRelation.SPOUSE,
-                    1.75,
-                    70.0,
-                    "Engineer",
-                    "Test Company",
-                    "789 Test Street"
-            );
-            System.out.println(patient1);
+            // Test 1: Create a patient using builder with specific data
+            System.out.println("Test 1 - Creating patient using builder with specific data:");
+            Patient patient1 = new PatientBuilder()
+                    .name("John Doe")
+                    .dateOfBirth(LocalDate.of(1990, 1, 1))
+                    .nricFin("S9012345A")
+                    .maritalStatus(MaritalStatus.SINGLE)
+                    .residentialStatus(ResidentialStatus.CITIZEN)
+                    .nationality("Singaporean")
+                    .address("123 Test Street")
+                    .contact(new Contact("91234567", "61234567", "61234568", "john@test.com"))
+                    .sex(Sex.MALE)
+                    .bloodType(BloodType.A_POSITIVE)
+                    .isVaccinated(true)
+                    .patientId("P1001")
+                    .drugAllergies(Arrays.asList("Penicillin"))
+                    .nokName("Jane Doe")
+                    .nokAddress("456 Test Street")
+                    .nokRelation(NokRelation.SPOUSE)
+                    .height(1.75)
+                    .weight(70.0)
+                    .occupation("Engineer")
+                    .companyName("Test Company")
+                    .companyAddress("789 Test Street")
+                    .build();
+            patient1.displayPatientInfo();
 
-            // Test 2: Generate a random patient
-            System.out.println("\nTest 2 - Generating random patient:");
-            Patient patient2 = Patient.Generator.createRandom("P1002");
-            System.out.println(patient2);
+            // Test 2: Create a patient using builder with random data
+            System.out.println("\nTest 2 - Creating patient using builder with random data:");
+            Patient patient2 = new PatientBuilder()
+                    .withRandomData("P1002")
+                    .build();
+            patient2.displayPatientInfo();
 
             // Test 3: Generate multiple random patients
             System.out.println("\nTest 3 - Generating multiple random patients:");
-            List<Patient> patients = Patient.Generator.createRandom(3);
+            List<Patient> patients = new ArrayList<>();
+            for (int i = 0; i < 3; i++) {
+                String patientId = String.format("P%04d", 1003 + i);
+                patients.add(new PatientBuilder()
+                        .withRandomData(patientId)
+                        .build());
+            }
+
             for (Patient patient : patients) {
                 System.out.println("Generated patient ID: " + patient.getPatientId());
             }
@@ -64,9 +75,9 @@ public class PatientTest {
             System.out.println("\nTest 4 - Verifying patient data access:");
             patients.forEach(Patient::displayPatientInfo);
 
-
         } catch (Exception e) {
             System.err.println("Unexpected error: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }

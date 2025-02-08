@@ -67,6 +67,26 @@ public class DataGenerator {
                 random.nextInt(460000, 569999));
     }
 
+
+    /**
+     * Gets a random occupation from the OCCUPATIONS array.
+     *
+     * @return A randomly selected occupation
+     */
+    public static String getRandomOccupation() {
+        return getRandomElement(OCCUPATIONS);
+    }
+
+    /**
+     * Gets a random company name from the SG_COMPANIES array.
+     *
+     * @return A randomly selected company name
+     */
+    public static String getRandomCompanyName() {
+        return getRandomElement(SG_COMPANIES);
+    }
+
+
     /**
      * Generates random contact information.
      *
