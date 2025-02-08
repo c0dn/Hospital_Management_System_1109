@@ -1,10 +1,15 @@
 package billing;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public interface BillableItem {
-    BigDecimal getPrice();
-    String getDescription();
-    String getCategory();
-    String getCode();
+    BigDecimal getUnsubsidisedCharges();
+
+    String getBillItemDescription();
+
+    String getBillItemCategory();
+
+    String getBillingItemCode();
+
 }

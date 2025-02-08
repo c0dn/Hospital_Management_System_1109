@@ -12,16 +12,16 @@ public class BillingItem {
     public BillingItem(BillableItem item, int quantity) {
         this.item = item;
         this.quantity = quantity;
-        this.unitPrice = item.getPrice();
+        this.unitPrice = item.getUnsubsidisedCharges();
         this.totalPrice = unitPrice.multiply(BigDecimal.valueOf(quantity));
     }
 
     public String getBillEntry() {
-        return String.format("%s %s - %s %s%n%s", item.getCode(), item.getDescription(), quantity, unitPrice, item.getCategory());
+        return String.format("%s %s - %s %s%n%s", item.getBillingItemCode(), item.getBillItemDescription(), quantity, unitPrice, item.getBillItemCategory());
     }
 
     public String getCategory() {
-        return item.getCategory();
+        return item.getBillItemCategory();
     }
 
     public BigDecimal getTotalPrice() {

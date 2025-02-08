@@ -1,5 +1,6 @@
 package medical;
 
+import billing.BillableItem;
 import utils.CSVHelper;
 
 import java.math.BigDecimal;
@@ -15,7 +16,7 @@ import java.util.Random;
  *
  * <br><br> It maintains a static registry of codes and descriptions, which are loaded at runtime from a CSV file using {@link CSVHelper}
  */
-public class DiagnosticCode {
+public class DiagnosticCode implements BillableItem {
     private String code;
     private String description;
     private BigDecimal cost;
@@ -78,14 +79,14 @@ public class DiagnosticCode {
         return BigDecimal.valueOf(randomValue).setScale(2, RoundingMode.HALF_UP);
     }
 
+    
+    public String getBillingItemCode() {
+        return String.format("DIAG-%s", code);
+    }
 
-    /**
-     * Gets the diagnostic code.
-     *
-     * @return The diagnostic code as a string.
-     */
-    public String getCode() {
-        return code;
+    @Override
+    public BigDecimal getUnsubsidisedCharges() {
+        return cost;
     }
 
     /**
@@ -93,8 +94,13 @@ public class DiagnosticCode {
      *
      * @return The description associated with this diagnostic code.
      */
-    public String getDescription() {
+    public String getBillItemDescription() {
         return description;
+    }
+
+    @Override
+    public String getBillItemCategory() {
+        return "DIAGNOSIS";
     }
 
     /**

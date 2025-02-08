@@ -1,5 +1,6 @@
 package medical;
 
+import billing.BillableItem;
 import utils.CSVHelper;
 
 import java.math.BigDecimal;
@@ -12,7 +13,7 @@ import java.util.Map;
  * Represents a medical procedure code with associated description, category, and price.
  * This class maintains a static registry of codes loaded from a CSV file using {@link CSVHelper}
  */
-public class ProcedureCode {
+public class ProcedureCode implements BillableItem {
     /** The unique procedure code identifier. */
     private String code;
     /** A description of the procedure. */
@@ -114,5 +115,25 @@ public class ProcedureCode {
      */
     public Object getCode() {
         return code;
+    }
+
+    @Override
+    public BigDecimal getUnsubsidisedCharges() {
+        return price;
+    }
+
+    @Override
+    public String getBillItemDescription() {
+        return description;
+    }
+
+    @Override
+    public String getBillItemCategory() {
+        return String.format("PROCEDURE (%s)", category);
+    }
+
+    @Override
+    public String getBillingItemCode() {
+        return String.format("PROC-%s", code);
     }
 }

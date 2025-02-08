@@ -20,21 +20,21 @@ import java.util.stream.Collectors;
  */
 public class Medication {
     /** The unique drug code identifying this medication. */
-    private String drugCode;
+    protected String drugCode;
     /** The name of the medication. */
-    private String name;
+    protected String name;
     /** The category to which this medication belongs (eg. Antibiotics, Painkillers). */
-    private String category;
+    protected String category;
     /** The standard dosage for this medication. */
-    private String standardDosage;
+    protected String standardDosage;
     /** The unit form of the medication (eg. tablet, capsule, injection). */
-    private String unitForm;
+    protected String unitForm;
     /** The price per unit of the medication. */
-    private BigDecimal pricePerUnit;
+    protected BigDecimal pricePerUnit;
     /** A description of the unit of measurement (eg. per table, per bottle). */
-    private String unitDescription;
+    protected String unitDescription;
     /** The manufacturer of the medication. */
-    private String manufacturer;
+    protected String manufacturer;
 
     /**
      * A registry storing all available medications, mapped by drug code.
@@ -127,7 +127,7 @@ public class Medication {
      */
     public static List<Medication> getMedicationsByCategory(String category, int limit, boolean randomize) {
         List<Medication> medications = DRUG_REGISTRY.values().stream()
-                .filter(med -> med.getCategory().equalsIgnoreCase(category))
+                .filter(med -> med.category.equalsIgnoreCase(category))
                 .collect(Collectors.toList());
 
         if (randomize) {
@@ -148,7 +148,7 @@ public class Medication {
      */
     public static List<String> getAllCategories() {
         return DRUG_REGISTRY.values().stream()
-                .map(Medication::getCategory)
+                .map(med -> med.category)
                 .distinct()
                 .sorted()
                 .collect(Collectors.toList());
@@ -175,17 +175,7 @@ public class Medication {
         System.out.format("Price: $%s / %s%n",
                 pricePerUnit.setScale(2, RoundingMode.HALF_UP), unitForm);
     }
-
-    // Getters
-
-    /**
-     * Retrieves the category of the medication.
-     *
-     * @return The category of the medication.
-     */
-    public String getCategory() {
-        return category;
-    }
+    
 
     /**
      * Returns a string representation of the medication.
