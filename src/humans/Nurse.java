@@ -10,35 +10,28 @@ public class Nurse extends Staff{
     /** The Registered Nurse ID (RNID) of a nurse. */
     private String rnid;
 
+
     /**
-     * Constructs a Nurse object with specified details.\
+     * Constructs a Nurse instance using the provided NurseBuilder.
+     * This constructor initializes the attributes of the Nurse class, including
+     * the Registered Nurse ID (RNID) specific to nurses, while also inheriting
+     * and initializing attributes from the Staff class.
      *
-     * @param name The nurse's name.
-     * @param dateOfBirth The nurse's date of birth.
-     * @param nricFin The nurse's NRIC or FIN number.
-     * @param maritalStatus The nurse's marital status.
-     * @param residentialStatus The nurse's residential status.
-     * @param nationality The nurse's nationality.
-     * @param address The nurse's residential address.
-     * @param contact The nurse's contact details.
-     * @param sex The nurse's sex.
-     * @param bloodType The nurse's blood type.
-     * @param isVaccinated Indicates if the nurse is vaccinated.
-     * @param staffId The nurse's staff ID.
-     * @param title The nurse's job title.
-     * @param department The department the nurse works in.
-     * @param rnid The nurse's registered nurse ID.
+     * @param builder The builder instance of type {@code NurseBuilder} used to initialize
+     *                the Nurse object. The builder provides the data necessary
+     *                for populating the nurse-specific and inherited fields.
      */
-    public Nurse(String name, LocalDate dateOfBirth, String nricFin, MaritalStatus maritalStatus,
-                  ResidentialStatus residentialStatus, String nationality, String address, Contact contact,
-                  Sex sex, BloodType bloodType, boolean isVaccinated, String staffId, String title, String department,
-                  String rnid) {
-
-        super(name, dateOfBirth, nricFin, maritalStatus, residentialStatus, nationality, address, contact, sex,
-                bloodType, isVaccinated, staffId, title, department);
-
-        this.rnid = rnid;
+    Nurse(NurseBuilder builder) {
+        super(builder);
+        this.rnid = builder.rnid;
     }
+
+
+    public static NurseBuilder builder() {
+        return new NurseBuilder();
+    }
+
+
 
     /**
      * Gets the nurse's Registered Nurse ID.

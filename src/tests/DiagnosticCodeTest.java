@@ -42,6 +42,7 @@ public class DiagnosticCodeTest {
 
         } catch (Exception e) {
             System.err.println("Unexpected error: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }

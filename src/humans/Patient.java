@@ -1,9 +1,9 @@
 package humans;
 
-import medical.MedicalRecord;
-
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Represents a patient in the insurance system.
@@ -15,84 +15,58 @@ public class Patient extends Human {
     private final String patientId;
     /** A list of the patient's drug allergies. */
     private List<String> drugAllergies;
-    /** A list of the patient's medical records. */
-    private List<MedicalRecord> medicalRecords;
     /** The next of kin's name. */
     private String nokName;
     /** The next of kin's residential address. */
     private String nokAddress;
     /** The relationship of the patient and the next of kin. */
-    private String nokRelation;
+    private NokRelation nokRelation;
     /** The patient's height in metres. */
     private double height; // in meters
     /** The patient's weight in kilograms. */
-    private double weight; // in kilograms
-    //    /** The patient's insurance policy details. */
-//    private InsurancePolicy insurancePolicy;
+    private double weight;
+    /** Represents the occupation of a patient. */
     private String occupation;
+    /** Represents the name of the company where the patient is employed. */
     private String companyName;
+    /** Represents the business address of the company associated with the patient. */
     private String companyAddress;
 
 
     /**
-     * Constructs a Patient object with specified details.
+     * Constructs a new {@code Patient} instance using the given {@code PatientBuilder}.
+     * This constructor initializes the patient-specific attributes by copying
+     * the values provided through the builder.
      *
-     * @param name The patient's name.
-     * @param dateOfBirth The patient's date of birth.
-     * @param nricFin The patient's NRIC or FIN number.
-     * @param maritalStatus The patient's marital status.
-     * @param residentialStatus The patient's residential status.
-     * @param nationality The patient's nationality.
-     * @param address The patient's residental address.
-     * @param contact The patient's contact details.
-     * @param sex The patient's sex.
-     * @param bloodType The patient's blood type.
-     * @param isVaccinated Indicates if the patient is vaccinated.
-     * @param patientId The patient's unique ID.
-     * @param drugAllergies A list of the patient's drug allergies.
-     * @param nokName The next of kin's name.
-     * @param nokAddress The next of kin's residential address.
-     * @param nokRelation The relationship between the patient and the next of kin.
-     * @param height The patient's height in metres.
-     * @param weight The patient's weight in kilograms.
+     * @param builder The {@code PatientBuilder} instance containing the data
+     *                to initialize the {@code Patient} object. Fields such as
+     *                patientId, drugAllergies, next of kin details, height,
+     *                weight, occupation, and company details are expected
+     *                to be set in the builder before constructing a {@code Patient}.
      */
-    
+    Patient(PatientBuilder builder) {
+        super(builder);
+        this.patientId = builder.patientId;
+        this.drugAllergies = new ArrayList<>(builder.drugAllergies);
+        this.nokName = builder.nokName;
+        this.nokAddress = builder.nokAddress;
+        this.nokRelation = builder.nokRelation;
+        this.height = builder.height;
+        this.weight = builder.weight;
+        this.occupation = builder.occupation;
+        this.companyName = builder.companyName;
+        this.companyAddress = builder.companyAddress;
+    }
 
-    public Patient(String name, LocalDate dateOfBirth, String nricFin,
-                   MaritalStatus maritalStatus, ResidentialStatus residentialStatus,
-                   String nationality, String address, Contact contact,
-                   Sex sex, BloodType bloodType, boolean isVaccinated,
-                   String patientId, List<String> drugAllergies, String nokName,
-                   String nokAddress, String nokRelation,
-                   double height, double weight,
-                   String occupation, String companyName, String companyAddress) {
 
-        super(name, dateOfBirth, nricFin, maritalStatus, residentialStatus,
-                nationality, address, contact, sex, bloodType, isVaccinated);
-
-        this.patientId = patientId;
-        this.drugAllergies = drugAllergies;
-        this.nokName = nokName;
-        this.nokAddress = nokAddress;
-        this.nokRelation = nokRelation;
-        this.height = height;
-        this.weight = weight;
-        this.occupation = occupation;
-        this.companyName = companyName;
-        this.companyAddress = companyAddress;
+    public static PatientBuilder builder() {
+        return new PatientBuilder();
     }
 
     public String getPatientId() {
         return patientId;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public List<MedicalRecord> getMedicalRecords() {
-        return medicalRecords;
-    }
 
     public void displayPatientInfo() {
         System.out.format("Name: %s%n", name);
@@ -101,7 +75,7 @@ public class Patient extends Human {
         System.out.format("Height: %.2fm%n", height);
         System.out.format("Weight: %.2fkg%n", weight);
         System.out.format("Next of Kin: %s (%s), Address: %s%n", nokName, nokRelation, nokAddress);
-        System.out.format("Drug Allergies: %s%n", drugAllergies);
+        System.out.format("Drug Allergies: %s%n%n", drugAllergies);
     }
 
     public void displayInsrPatient() {
