@@ -1,10 +1,7 @@
 package wardsAmelia;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class ICUWard extends AbstractWard{
-    public ICUWard(String wardName, WardClass wardClass, double dailyRate) {
-        super(wardName, wardClass, dailyRate);
+    public ICUWard(String wardName, WardClassType wardClassType, int numberOfBeds) {
+        super(wardName, wardClassType, numberOfBeds);
     }
 }

@@ -67,6 +67,10 @@ public class Patient extends Human {
         return patientId;
     }
 
+    public String getName() {
+        return name;
+    }
+
 
     public void displayPatientInfo() {
         System.out.format("Name: %s%n", name);

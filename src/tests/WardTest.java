@@ -1,44 +1,55 @@
 package tests;
 
-import humans.*;
-import medical.MedicalRecord;
 import wardsAmelia.*;
-
+import humans.Patient;
 import java.time.LocalDate;
-import java.util.List;
 
+/**
+ * A test class for the Ward system.
+ * This class verifies the functionality of ward creation, bed management, and patient assignment.
+ */
 public class WardTest {
+    /**
+     * Main method to execute tests for Ward system.
+     * It tests creating different types of wards, bed allocation, and patient assignment.
+     *
+     * @param args Command-line arguments (not used)
+     */
     public static void main(String[] args) {
-        Ward generalWard = WardFactory.getWard("G", "General", WardClass.CLASS_C);
-        System.out.println(generalWard.getWardName() + " - Daily Rate: " + generalWard.getDailyRate());
-        generalWard.getBeds().forEach((bedNumber, bed) -> System.out.println(bed));
+        try {
+            System.out.println("Testing Ward System functionality...\n");
 
-        // Assign a patient to Bed 1 in the Labour Ward
-        Bed bed1 = generalWard.getBeds().get(1);
-        bed1.assignPatient(new Patient("John Doe",
-                LocalDate.of(1985, 4, 23),
-                "S1234567D",
-                MaritalStatus.MARRIED,
-                ResidentialStatus.PERMANENT_RESIDENT,
-                "Singaporean",
-                "123 Fake Street, Singapore 123456",
-                new Contact("+65 9123 4567", "12345578", "87655678", "johndoe@email.com"),
-                Sex.MALE,
-                BloodType.O_POSITIVE,
-                true,
-                "P123456789",
-                List.of("Penicillin", "Aspirin"),
+            // Test 1: Create a General Ward
+            System.out.println("Test 1 - Creating General Ward Class C:");
+            Ward generalWard = WardFactory.getWard("General Ward", WardClassType.GENERAL_CLASS_C);
+            System.out.println("Ward Name: " + generalWard.getWardName());
+            System.out.println("Daily Rate: $" + generalWard.getDailyRate());
+            System.out.println("Number of Beds: " + generalWard.getBeds().size());
 
-                "Jane Doe",
-                "456 Another Street, Singapore 654321",
-                "Spouse",
-                1.75,
-                75.0,
-                "Software Engineer",
-                "TechCorp Pte Ltd",
-                "789 Business Road, Singapore 789654"));
-        System.out.println("Updated " + bed1);
+            // Test 2: Create an ICU Ward
+            System.out.println("\nTest 2 - Creating ICU Ward Class A:");
+            Ward icuWard = WardFactory.getWard("ICU Ward", WardClassType.ICU_CLASS_A);
+            System.out.println("Ward Name: " + icuWard.getWardName());
+            System.out.println("Daily Rate: $" + icuWard.getDailyRate());
+            System.out.println("Number of Beds: " + icuWard.getBeds().size());
 
+            // Test 3: Assign a patient to a bed
+            System.out.println("\nTest 3 - Assigning patient to bed:");
+            Bed bed = generalWard.getBeds().get(1);
+            Patient patient = Patient.builder().withRandomData("P1002").build();
+            bed.assignPatient(patient);
+            System.out.println(bed);
 
+            // Test 4: Try invalid ward class
+            System.out.println("\nTest 4 - Testing invalid ward class:");
+            try {
+                Ward invalidWard = WardFactory.getWard("Test Ward", null);
+            } catch (IllegalArgumentException e) {
+                System.out.println("Expected error: " + e.getMessage());
+            }
+
+        } catch (Exception e) {
+            System.err.println("Unexpected error: " + e.getMessage());
+        }
     }
 }
