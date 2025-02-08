@@ -35,60 +35,9 @@ public class Patient extends Human {
         private static final String[] DRUG_ALLERGIES = {
                 "Penicillin", "Aspirin", "Ibuprofen", "Sulfa", "None"
         };
-        private static final String[] OCCUPATIONS = {
-                "Engineer", "Teacher", "Doctor", "Artist", "Chef", "Programmer"
-        };
-        private static final String[] SG_NAMES = {
-                "Tan Wei Ming", "Lim Mei Ling", "Muhammad Ibrahim", "Siti Nurhaliza",
-                "Zhang Wei", "Kumar Ravi", "Abdullah Malik", "Lee Hui Ling"
-        };
-        private static final String[] SG_STREETS = {
-                "Ang Mo Kio Ave", "Tampines St", "Jurong East Ave", "Serangoon Road",
-                "Bedok North St", "Woodlands Drive", "Yishun Ring Road", "Punggol Way"
-        };
-        private static final String[] SG_BUILDINGS = {
-                "Plaza", "Tower", "Complex", "Centre", "Building", "Point"
-        };
-        private static final String[] SG_COMPANIES = {
-                "DBS Bank", "Singapore Airlines", "Singtel", "OCBC Bank",
-                "CapitaLand", "Keppel Corporation", "ST Engineering", "ComfortDelGro"
-        };
-        private static final String[] SG_INDUSTRIAL_AREAS = {
-                "Jurong Industrial Estate", "Tuas South", "Woodlands Industrial Park",
-                "Changi Business Park", "One-North", "Alexandra Business Park"
-        };
-
-        private String generateSGAddress() {
-            String block = String.format("Blk %d", random.nextInt(100, 999));
-            String street = SG_STREETS[random.nextInt(SG_STREETS.length)];
-            String unit = String.format("#%02d-%02d",
-                    random.nextInt(1, 50), random.nextInt(1, 999));
-            return String.format("%s %s %d, %s, Singapore %d",
-                    block, street, random.nextInt(1, 12), unit,
-                    random.nextInt(460000, 569999));
-        }
-
-        private String generateCompanyAddress() {
-            String building = SG_BUILDINGS[random.nextInt(SG_BUILDINGS.length)];
-            String area = SG_INDUSTRIAL_AREAS[random.nextInt(SG_INDUSTRIAL_AREAS.length)];
-            return String.format("%d %s %s, Singapore %d",
-                    random.nextInt(1, 100), area, building,
-                    random.nextInt(460000, 569999));
-        }
-
-        private Contact generateContact() {
-            String personalPhone = String.format("9%07d", random.nextInt(0, 9999999));
-            String homePhone = String.format("6%07d", random.nextInt(0, 9999999));
-            String companyPhone = String.format("6%07d", random.nextInt(0, 9999999));
-            String email = String.format("%s%d@%s",
-                    "user", random.nextInt(100, 999),
-                    random.nextBoolean() ? "gmail.com" : "hotmail.com");
-            return new Contact(personalPhone, homePhone, companyPhone, email);
-        }
 
         public static Patient createRandom(String patientId) {
-            Generator generator = new Generator();
-            String name = SG_NAMES[random.nextInt(SG_NAMES.length)];
+            String name = DataGenerator.getRandomElement(DataGenerator.SG_NAMES);
             LocalDate dob = LocalDate.now().minusYears(20 + random.nextInt(60));
 
             String nricPrefix = dob.getYear() < 2000 ? "S" : "T";
@@ -98,40 +47,42 @@ public class Patient extends Human {
 
             List<String> allergies = List.of(DRUG_ALLERGIES[random.nextInt(DRUG_ALLERGIES.length)]);
 
-            NokRelation nokRelation = NokRelation.values()[random.nextInt(NokRelation.values().length)];
-            String nokName;
-            if (nokRelation == NokRelation.SPOUSE || nokRelation == NokRelation.PARENT ||
-                    nokRelation == NokRelation.CHILD || nokRelation == NokRelation.SIBLING) {
-                String[] nameParts = name.split(" ");
-                nokName = SG_NAMES[random.nextInt(SG_NAMES.length)].split(" ")[0] +
-                        " " + nameParts[nameParts.length - 1];
-            } else {
-                nokName = SG_NAMES[random.nextInt(SG_NAMES.length)];
-            }
+            NokRelation nokRelation = DataGenerator.getRandomEnum(NokRelation.class);
+            String nokName = generateNokName(name, nokRelation);
 
             return new Patient(
                     name,
                     dob,
                     nricFin,
-                    MaritalStatus.values()[random.nextInt(MaritalStatus.values().length)],
-                    ResidentialStatus.values()[random.nextInt(ResidentialStatus.values().length)],
+                    DataGenerator.getRandomEnum(MaritalStatus.class),
+                    DataGenerator.getRandomEnum(ResidentialStatus.class),
                     "Singaporean",
-                    generator.generateSGAddress(),
-                    generator.generateContact(),
-                    Sex.values()[random.nextInt(Sex.values().length)],
-                    BloodType.values()[random.nextInt(BloodType.values().length)],
+                    DataGenerator.generateSGAddress(),
+                    DataGenerator.generateContact(),
+                    DataGenerator.getRandomEnum(Sex.class),
+                    DataGenerator.getRandomEnum(BloodType.class),
                     random.nextBoolean(),
                     patientId,
                     allergies,
                     nokName,
-                    generator.generateSGAddress(),
+                    DataGenerator.generateSGAddress(),
                     nokRelation,
                     150 + random.nextDouble() * 50,
                     50 + random.nextDouble() * 50,
-                    OCCUPATIONS[random.nextInt(OCCUPATIONS.length)],
-                    SG_COMPANIES[random.nextInt(SG_COMPANIES.length)],
-                    generator.generateCompanyAddress()
+                    DataGenerator.getRandomElement(DataGenerator.OCCUPATIONS),
+                    DataGenerator.getRandomElement(DataGenerator.SG_COMPANIES),
+                    DataGenerator.generateCompanyAddress()
             );
+        }
+
+        private static String generateNokName(String patientName, NokRelation relation) {
+            if (relation == NokRelation.SPOUSE || relation == NokRelation.PARENT ||
+                    relation == NokRelation.CHILD || relation == NokRelation.SIBLING) {
+                String[] nameParts = patientName.split(" ");
+                return DataGenerator.getRandomElement(DataGenerator.SG_NAMES).split(" ")[0] +
+                        " " + nameParts[nameParts.length - 1];
+            }
+            return DataGenerator.getRandomElement(DataGenerator.SG_NAMES);
         }
 
         public static List<Patient> createRandom(int count) {
@@ -142,6 +93,7 @@ public class Patient extends Human {
             return patients;
         }
     }
+
 
 
     /**
