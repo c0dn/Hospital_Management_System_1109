@@ -50,7 +50,6 @@ public class Patient extends Human {
      * @param isVaccinated Indicates if the patient is vaccinated.
      * @param patientId The patient's unique ID.
      * @param drugAllergies A list of the patient's drug allergies.
-     * @param medicalRecords A list of the patient's medical records.
      * @param nokName The next of kin's name.
      * @param nokAddress The next of kin's residential address.
      * @param nokRelation The relationship between the patient and the next of kin.
@@ -63,8 +62,7 @@ public class Patient extends Human {
                    MaritalStatus maritalStatus, ResidentialStatus residentialStatus,
                    String nationality, String address, Contact contact,
                    Sex sex, BloodType bloodType, boolean isVaccinated,
-                   String patientId, List<String> drugAllergies,
-                   List<MedicalRecord> medicalRecords, String nokName,
+                   String patientId, List<String> drugAllergies, String nokName,
                    String nokAddress, String nokRelation,
                    double height, double weight,
                    String occupation, String companyName, String companyAddress) {
@@ -74,7 +72,6 @@ public class Patient extends Human {
 
         this.patientId = patientId;
         this.drugAllergies = drugAllergies;
-        this.medicalRecords = medicalRecords;
         this.nokName = nokName;
         this.nokAddress = nokAddress;
         this.nokRelation = nokRelation;
@@ -87,6 +84,10 @@ public class Patient extends Human {
 
     public String getPatientId() {
         return patientId;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public List<MedicalRecord> getMedicalRecords() {
