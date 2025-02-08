@@ -77,6 +77,18 @@ public class InsuranceClaim {
         this.comments = comments;
     }//setter, add comments overtime
 
+    public void displayClaimInfo(){
+        System.out.format("Claim ID: %s%n", claimId);
+        System.out.format("Medical Record: %s%n", medicalRecord);
+        System.out.format("Insurance Provider: %s%n", insuranceProvider);
+        System.out.format("Insurance Policy: %s%n", insurancePolicy);
+        System.out.format("Patient: %s%n", patient);
+        System.out.format("Submission Date: %s%n", submissionDate);
+        System.out.format("Claim Status: %s%n", claimStatus);
+        System.out.format("Claim Amount: %.2f%n", claimAmount);
+        System.out.format("Comments: %s%n", comments);
 
-    
+    }
+
+
 }
