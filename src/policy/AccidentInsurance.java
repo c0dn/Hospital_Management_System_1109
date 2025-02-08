@@ -5,17 +5,17 @@ import humans.Patient;
 import java.time.LocalDate;
 
 public class AccidentInsurance extends InsurancePolicy{
-    private CoveredAccidentsType accidents;
+    private AccidentsType accidents;
     private double dailyAllowance;
 
     public AccidentInsurance(String policyId, String insuranceProvider, double deductible, InsuranceStatus insuranceStatus,
                              LocalDate startDate, LocalDate endDate, double coInsuranceRate, double premiumAmount, Patient policyHolder,
-                             CoveredAccidentsType accidents, double dailyAllowance) {
+                             AccidentsType accidents, double dailyAllowance) {
         super(policyId, insuranceProvider, deductible, insuranceStatus, startDate, endDate, coInsuranceRate, premiumAmount, policyHolder);
         this.accidents = accidents;
         this.dailyAllowance = dailyAllowance;
     }
-    public CoveredAccidentsType getAccidents() {
+    public AccidentsType getAccidents() {
         return accidents;
     }
 

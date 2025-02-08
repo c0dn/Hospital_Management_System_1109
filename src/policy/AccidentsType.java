@@ -1,6 +1,6 @@
 package policy;
 
-public enum CoveredAccidentsType {
+public enum AccidentsType {
     DEATH,
     PERMANENT_DISABILITY,
     PARTIAL_DISABILITY,
