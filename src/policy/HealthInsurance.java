@@ -2,15 +2,14 @@ package policy;
 import humans.Patient;
 import java.time.LocalDate;
 
-public class HealthInsurancePolicy extends InsurancePolicy {
+public class HealthInsurance extends InsurancePolicy {
     private double hospitalCharges;
 
-    public HealthInsurancePolicy(String policyId, String insuranceProvider, double deductible, InsuranceStatus insuranceStatus,
-                                 LocalDate startDate, LocalDate endDate, double coInsuranceRate,
-                                 double premiumAmount, Patient policyHolder, double hospitalCharges) {
+    public HealthInsurance(String policyId, String insuranceProvider, double deductible, InsuranceStatus insuranceStatus,
+                           LocalDate startDate, LocalDate endDate, double coInsuranceRate,
+                           double premiumAmount, Patient policyHolder, double hospitalCharges) {
         super(policyId, insuranceProvider, deductible, insuranceStatus, startDate,
                 endDate, coInsuranceRate, premiumAmount, policyHolder);
-        this.hospitalCharges = hospitalCharges;
 
         this.hospitalCharges = hospitalCharges;
     }

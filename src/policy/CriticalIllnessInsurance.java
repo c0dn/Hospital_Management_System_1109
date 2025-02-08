@@ -8,10 +8,9 @@ import java.time.LocalDate;
  */
 public class CriticalIllnessInsurance extends InsurancePolicy {
     private double insurancePayout;
+    private CriticalIllnessType coveredIllness;
 
         // Constructor
-
-
         public CriticalIllnessInsurance(String policyId, String insuranceProvider, double deductible,
                                         InsuranceStatus insuranceStatus, LocalDate startDate, LocalDate endDate,
                                         double coInsuranceRate, double premiumAmount, Patient policyHolder, double insurancePayout) {
@@ -19,7 +18,11 @@ public class CriticalIllnessInsurance extends InsurancePolicy {
             this.insurancePayout = insurancePayout;
         }
 
-        public double getInsurancePayout() {
+    public CriticalIllnessType getCoveredIllness() {
+        return coveredIllness;
+    }
+
+    public double getInsurancePayout() {
             return insurancePayout;
         }
 
@@ -27,6 +30,8 @@ public class CriticalIllnessInsurance extends InsurancePolicy {
         @Override
         public void displayPolicyDetails() {
             super.displayPolicyDetails();
+            System.out.format("Covered Illness: %s%n", coveredIllness);
             System.out.format("Insurance Payout: $%.2f%n", insurancePayout);
+
         }
     }
