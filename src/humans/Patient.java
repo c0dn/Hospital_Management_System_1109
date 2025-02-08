@@ -21,11 +21,10 @@ public class Patient extends Human {
     private String nokRelation;
     private double height; // in meters
     private double weight; // in kilograms
-    private InsurancePolicy insurancePolicy;
+//    private InsurancePolicy insurancePolicy;
     private String occupation;
     private String companyName;
     private String companyAddress;
-    private String jobDuties;
 
     public Patient(String name, LocalDate dateOfBirth, String nricFin,
                    MaritalStatus maritalStatus, ResidentialStatus residentialStatus,
@@ -34,9 +33,8 @@ public class Patient extends Human {
                    String patientId, List<String> drugAllergies,
                    List<MedicalRecord> medicalRecords, String nokName,
                    String nokAddress, String nokRelation,
-                   double height, double weight, InsurancePolicy insurancePolicy,
-                            String occupation, String companyName,String companyAddress,
-                            String jobDuties) {
+                   double height, double weight, String occupation,
+                   String companyName,String companyAddress) {
 
         super(name, dateOfBirth, nricFin, maritalStatus, residentialStatus,
                 nationality, address, contact, sex, bloodType, isVaccinated);
@@ -49,11 +47,10 @@ public class Patient extends Human {
         this.nokRelation = nokRelation;
         this.height = height;
         this.weight = weight;
-        this.insurancePolicy = insurancePolicy;
+//        this.insurancePolicy = insurancePolicy;
         this.occupation = occupation;
         this.companyName = companyName;
         this.companyAddress=companyAddress;
-        this.jobDuties= jobDuties;
 
     }
 
@@ -89,10 +86,6 @@ public class Patient extends Human {
         return weight;
     }
 
-    public InsurancePolicy getInsurancePolicy() {
-        return insurancePolicy;
-    }
-
     public String getOccupation() {
         return occupation;
     }
@@ -105,9 +98,6 @@ public class Patient extends Human {
         return companyAddress;
     }
 
-    public String getJobDuties() {
-        return jobDuties;
-    }
 
     public void displayPatientInfo() {
             System.out.println("Name: " + getName());
@@ -129,9 +119,6 @@ public class Patient extends Human {
         System.out.println("Occupation: " + getOccupation());
         System.out.println("Company Name: " + getCompanyName());
         System.out.println("Company Business Address: " + getCompanyAddress());
-        System.out.println("Exact Job Duties: " + getJobDuties());
-        System.out.println("Insurance policies: " + getInsurancePolicy());
-        // exact job duties is in the form, but can dont incl.
     }
 
         //create an insurance grouping information (all the information needed for insurance claim)

@@ -167,4 +167,38 @@ public class MedicalRecord {
      * @return A list of names of attending nurses.
      */
     public List<String> getAttendingNurse() { return attendingNurse; }
+
+    public void displayAllMedRec() {
+        System.out.println("----- Medical Record Details -----");
+        System.out.println("Medical Record ID: " + medicalRecordId);
+        System.out.println("Healthcare Provider: " + (healthcareProvider != null ? healthcareProvider.toString() : "None"));
+        System.out.println("Patient: " + (patient != null ? patient.toString() : "None"));
+        System.out.println("Date of Visit: " + dateOfVisit);
+        System.out.println("Type of Visit: " + typeOfVisit);
+        System.out.println("Procedure Code: " + procedureCode);
+        System.out.println("Medications: " + (medication.isEmpty() ? "None" : medication));
+        System.out.println("Drug Allergies: " + (drugAllergy.isEmpty() ? "None" : drugAllergy));
+        System.out.println("Medical History: " + (medicalHistory.isEmpty() ? "None" : medicalHistory));
+        System.out.println("Ward: " + (ward != null ? ward.toString() : "None"));
+        System.out.println("Attending Doctor: " + attendingDoctor);
+        System.out.println("Attending Nurses: " + (attendingNurse.isEmpty() ? "None" : attendingNurse));
+        System.out.println("----------------------------------");
+        //show ALL records -- can be used for looking up info for HEALTHCARE STAFF side
+    }
+
+//    public void displayInsrMedRec() {
+//        System.out.println("----- Medical Record Details -----");
+//        System.out.println("Medical Record ID: " + medicalRecordId);
+//        System.out.println("Healthcare Provider: " + (healthcareProvider != null ? healthcareProvider.toString() : "None"));
+//        System.out.println("Patient: " + (patient != null ? patient.toString() : "None"));
+//        System.out.println("Date of Visit: " + dateOfVisit);
+//        System.out.println("Type of Visit: " + typeOfVisit);
+//        System.out.println("Procedure Code: " + procedureCode);
+//        System.out.println("Medications: " + (medication.isEmpty() ? "None" : medication));
+//        System.out.println("Ward: " + (ward != null ? ward.toString() : "None"));
+//        System.out.println("Attending Doctor: " + attendingDoctor);
+//        System.out.println("----------------------------------");
+//        // did not include attending nurses, drug allergies, medical history
+//    }
+
 }

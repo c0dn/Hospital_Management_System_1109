@@ -76,4 +76,7 @@ public class InsuranceClaim {
     public void setComments(String comments) {
         this.comments = comments;
     }//setter, add comments overtime
+
+
+    
 }
