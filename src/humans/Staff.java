@@ -73,6 +73,9 @@ public class Staff extends Human {
      */
     private String getDepartment() { return department; }
 
+    /**
+     * Displays staff information.
+     */
     public void displayStaff () {
         System.out.println("Name: " + getName());
         System.out.println("Title: " + getTitle());

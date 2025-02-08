@@ -54,6 +54,9 @@ public class Doctor extends Staff {
         return mcr;
     }
 
+    /**
+     * Displays doctor's Medical Council Registration (MCR) number, including the inherited staff details.
+     */
     @Override
     public void displayStaff()
     {

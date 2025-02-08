@@ -74,25 +74,52 @@ public abstract class Human {
 
     }
 
+    /**
+     * Retrieves the name of the person.
+     *
+     * @return The name of the person.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Retrieves the date of birth of the person.
+     *
+     * @return The date of birth of the person.
+     */
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
+
+    /**
+     * Retrieves the NRIC/FIN (identification number) of the person.
+     *
+     * @return The NRIC/FIN of the person.
+     */
     public String getNricFin() {
         return nricFin;
     }
 
+    /**
+     * Retrieves the marital status of the person.
+     *
+     * @return The marital status of the person.
+     */
     public MaritalStatus getMaritalStatus() {
         return maritalStatus;
     }
 
+    /**
+     * Retrieves the residential status of the person.
+     *
+     * @return The residential status of the person.
+     */
     public ResidentialStatus getResidentialStatus() {
         return residentialStatus;
     }
+
 
     public String getNationality() {
         return nationality;
