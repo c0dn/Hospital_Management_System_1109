@@ -2,33 +2,87 @@ package humans;
 
 import java.time.LocalDate;
 
+/**
+ * Represents a general human entity in the insurance system.
+ * This serves as a base class for patients, doctors and other human-related roles.
+ */
 public abstract class Human {
-    private String name;
-    private LocalDate dateOfBirth;
-    private String nricFin;
-    private MaritalStatus maritalStatus;
-    private ResidentialStatus residentialStatus;
-    private String nationality;
-    private String address;
-    private Contact contact;
-    private Sex sex;
-    private BloodType bloodType;
-    private boolean isVaccinated;
 
-    public Human(String name, LocalDate dateOfBirth, String nricFin, MaritalStatus maritalStatus,
-                 ResidentialStatus residentialStatus, String nationality, String address,
-                 Contact contact, Sex sex, BloodType bloodType, boolean isVaccinated) {
-        this.name = name;
-        this.dateOfBirth = dateOfBirth;
-        this.nricFin = nricFin;
-        this.maritalStatus = maritalStatus;
-        this.residentialStatus = residentialStatus;
-        this.nationality = nationality;
-        this.address = address;
-        this.contact = contact;
-        this.sex = sex;
-        this.bloodType = bloodType;
-        this.isVaccinated = isVaccinated;
+    /** The name of the person. */
+    protected String name;
+
+    /** The date of birth of the person. */
+    protected LocalDate dateOfBirth;
+
+    /** The NRIC/FIN (identification number) of the person. */
+    protected String nricFin;
+
+    /** The marital status of the person. */
+    protected MaritalStatus maritalStatus;
+
+    /** The residential status of the person. */
+    protected ResidentialStatus residentialStatus;
+
+    /** The nationality of the person. */
+    protected String nationality;
+
+    /** The residential address of the person. */
+    protected String address;
+
+    /** The contact details of the person. */
+    protected Contact contact;
+
+    /** The sex of the person. */
+    protected Sex sex;
+
+    /** The blood type of the person. */
+    protected BloodType bloodType;
+
+    /** The vaccination status of the person. */
+    protected boolean isVaccinated;
+
+    /**
+     * Constructs a Human object using the provided HumanBuilder, initializing
+     * various attributes of the Human entity such as name, date of birth, NRIC,
+     * marital status, and other personal details.
+     * Package-private constructor, only accessible by builders in the same package
+     *
+     * @param builder The builder object that contains the data used to initialize
+     *                the Human instance. The builder must include fields such as
+     *                name, dateOfBirth, nricFin, maritalStatus, residentialStatus,
+     *                nationality, address, contact, sex, bloodType, and vaccination
+     *                status to properly construct a Human object.
+     */
+    Human(HumanBuilder<?> builder) {
+        this.name = builder.name;
+        this.dateOfBirth = builder.dateOfBirth;
+        this.nricFin = builder.nricFin;
+        this.maritalStatus = builder.maritalStatus;
+        this.residentialStatus = builder.residentialStatus;
+        this.nationality = builder.nationality;
+        this.address = builder.address;
+        this.contact = builder.contact;
+        this.sex = builder.sex;
+        this.bloodType = builder.bloodType;
+        this.isVaccinated = builder.isVaccinated;
     }
 
+
+    /**
+     * Retrieves the NRIC/FIN (identification number) of the person.
+     *
+     * @return The NRIC/FIN of the person.
+     */
+    public String getNricFin() {
+        return nricFin;
+    }
+
+    /**
+     * Displays the contact information of the person.
+     * This method delegates the actual display functionality
+     * to the {@code displayContactInfo} method of the {@code Contact} class.
+     */
+    public void displayContactInformation() {
+        contact.displayContactInfo();
+    }
 }

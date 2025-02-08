@@ -1,11 +1,39 @@
 package humans;
 
-public class Contact {
-    private String personalPhone;
-    private String homePhone;
-    private String companyPhone;
-    private String email;
+/**
+ * Stores contact details of a person, such as phone number and email.
+ */
 
+public class Contact {
+
+    /**
+     * The personal phone number of the person.
+     */
+    private final String personalPhone;
+
+    /**
+     * The home phone number of the person.
+     */
+    private final String homePhone;
+
+    /**
+     * The company phone number of the person.
+     */
+    private final String companyPhone;
+
+    /**
+     * The email address of the person.
+     */
+    private final String email;
+
+    /**
+     * Constructs a Contact object with the specified phone numbers and email.
+     *
+     * @param personalPhone The personal phone number.
+     * @param homePhone     The home phone number.
+     * @param companyPhone  The company phone number.
+     * @param email         The email address.
+     */
     public Contact(String personalPhone, String homePhone, String companyPhone, String email) {
         this.personalPhone = personalPhone;
         this.homePhone = homePhone;
@@ -13,21 +41,11 @@ public class Contact {
         this.email = email;
     }
 
-    public String getPersonalPhone() {
-        return personalPhone;
+    public void displayContactInfo() {
+        System.out.format("Personal Phone: %s%n", personalPhone);
+        System.out.format("Home Phone: %s%n", homePhone);
+        System.out.format("Company Phone: %s%n", companyPhone);
+        System.out.format("Email: %s%n", email);
     }
-
-    public String getHomePhone() {
-        return homePhone;
-    }
-
-    public String getCompanyPhone() {
-        return companyPhone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
 
 }

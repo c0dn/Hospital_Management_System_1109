@@ -1,0 +1,333 @@
+code,description,category,price
+0011M,Onc prst8 ca mrna 12 gen alg,ONCOLOGY_MOLECULAR,2500.00
+0012M,Onc mrna 5 gen rsk urthl ca,ONCOLOGY_MOLECULAR,2500.00
+0013M,Onc mrna 5 gen recr urthl ca,ONCOLOGY_MOLECULAR,2500.00
+0016M,Onc bladder mrna 219 gen alg,ONCOLOGY_MOLECULAR,2500.00
+0017M,Onc dlbcl mrna 20 genes alg,ONCOLOGY_MOLECULAR,2500.00
+0018U,Onc thyr 10 microrna seq alg,ONCOLOGY_MOLECULAR,2500.00
+0019M,Cv ds plasma alys prtn bmrk,CARDIOVASCULAR,1800.00
+0019U,Onc rna tiss predict alg,ONCOLOGY_MOLECULAR,2500.00
+0020M,Onc cns alys 30000 dna loci,ONCOLOGY_MOLECULAR,2500.00
+0021U,Onc prst8 detcj 8 autoantb,ONCOLOGY_MOLECULAR,2500.00
+0022U,Tgsap nsm lung neo dna&rna23,MOLECULAR_GENETIC,2000.00
+0023U,Onc aml dna detcj/nondetcj,ONCOLOGY_MOLECULAR,2500.00
+0024U,Glyca nuc mr spectrsc quan,DIAGNOSTIC_IMAGING,1200.00
+0025U,Tenofovir liq chrom ur quan,OTHER_PROCEDURE,500.00
+0026U,Onc thyr dna&mrna 112 genes,ONCOLOGY_MOLECULAR,2500.00
+0027U,Jak2 gene trgt seq alys,MOLECULAR_GENETIC,2000.00
+0029U,Rx metab advrs trgt seq alys,THERAPEUTIC_MONITORING,600.00
+0030U,Rx metab warf trgt seq alys,THERAPEUTIC_MONITORING,600.00
+0031U,Cypia2 gene,MOLECULAR_GENETIC,2000.00
+0032U,Comt gene,MOLECULAR_GENETIC,2000.00
+0033U,Htr2a htr2c genes,MOLECULAR_GENETIC,2000.00
+0034U,Tpmt nudt15 genes,MOLECULAR_GENETIC,2000.00
+0035U,Neuro csf prion prtn qual,NEUROLOGICAL,1500.00
+0036U,Xome tum & nml spec seq alys,OTHER_PROCEDURE,500.00
+0037U,Trgt gen seq rgt gen seq dna 324 genes,MOLECULAR_GENETIC,2000.00
+0038U,Vitamin d srm microsamp quan,OTHER_PROCEDURE,500.00
+0039U,Dna antb 2strand hi avidity,MOLECULAR_GENETIC,2000.00
+0040U,Bcr/abl1 gene major bp quan,MOLECULAR_GENETIC,2000.00
+0041U,B brgdrferi antb 5 prtn igm,OTHER_PROCEDURE,500.00
+0042T,Ct perfusion w/contrast cbf,DIAGNOSTIC_IMAGING,1200.00
+0042U,B brgdrferi antb 12 prtn igg,OTHER_PROCEDURE,500.00
+0043U,Tbrg b grp antb 4 prtn igm,OTHER_PROCEDURE,500.00
+0044U,Tbrf b grp antb 4 prtn igg,OTHER_PROCEDURE,500.00
+0045U,Onc brst dux carc is 12 gene,ONCOLOGY_MOLECULAR,2500.00
+0046U,Flt3 genie itd variants quan,MOLECULAR_GENETIC,2000.00
+0047U,Onc prst8 mrna 17 gene alg,ONCOLOGY_MOLECULAR,2500.00
+0048U,Onc sld org neo dna 468 gene,ONCOLOGY_MOLECULAR,2500.00
+0049U,Npm1 gene analysis quan,MOLECULAR_GENETIC,2000.00
+0050U,Trgt gen seq dna 194 genes,MOLECULAR_GENETIC,2000.00
+0051U,Rx mntr lc-ms/ms ur 31 pnl,THERAPEUTIC_MONITORING,600.00
+0052U,Lpoprtn bld w/5 maj classes,HEMATOLOGY,900.00
+0054U,Rx mntr 14+ drugs & sbsts,THERAPEUTIC_MONITORING,600.00
+0055U,Card hrt trnspl 96 dna seq,CARDIOVASCULAR,1800.00
+0058U,Onc merkel cll carc srm quan,ONCOLOGY_MOLECULAR,2500.00
+0059U,Onc merkel cll carc srm+/-,ONCOLOGY_MOLECULAR,2500.00
+0060U,Twn zyg gen seq alys chrms2,MOLECULAR_GENETIC,2000.00
+0061U,Tc meas 5 bmrk sfdi m-s alys,OTHER_PROCEDURE,500.00
+0095U,Ee 2 prtn bmrk elisa est,OTHER_PROCEDURE,500.00
+0153U,Onc breast mrna 101 genes,ONCOLOGY_MOLECULAR,2500.00
+0154U,Onc urthl ca rna fgfr3 gene,ONCOLOGY_MOLECULAR,2500.00
+0155U,Onc brst ca dna pik3ca gene,ONCOLOGY_MOLECULAR,2500.00
+0172U,Onc sld tum alys brca1 brca2,ONCOLOGY_MOLECULAR,2500.00
+0174T,Cad cxr with interp,OTHER_PROCEDURE,500.00
+0174U,Onc solid tumor 30 prtn trgt,ONCOLOGY_MOLECULAR,2500.00
+0175T,Cad cxr remote,OTHER_PROCEDURE,500.00
+0177U,Onc brst ca dna pik3ca 11,ONCOLOGY_MOLECULAR,2500.00
+0179U,Onc nonsm cll lng ca alys 23,ONCOLOGY_MOLECULAR,2500.00
+0202U,Nfct ds 22 trgt sars-cov-2,DIAGNOSTIC_IMAGING,1200.00
+0223U,Nfct ds 22 trgt sars-cov-2,DIAGNOSTIC_IMAGING,1200.00
+0224U,Antibody sars-cov-2 titer(s),OTHER_PROCEDURE,500.00
+0225U,Nfct ds dna&rna 21 sarscov2,DIAGNOSTIC_IMAGING,1200.00
+0226U,Svnt sarscov2 elisa plsm srm,INFECTIOUS_DISEASE,800.00
+0229U,Bcat1&ikzf1 prmtr mthln alys,OTHER_PROCEDURE,500.00
+0230U,Ar full sequence analysis,OTHER_PROCEDURE,500.00
+0231U,Cacna1a full gene analysis,MOLECULAR_GENETIC,2000.00
+0232U,Cstb full gene analysis,MOLECULAR_GENETIC,2000.00
+0233U,Fxn gene analysis,MOLECULAR_GENETIC,2000.00
+0234U,Mecp2 full gene analysis,MOLECULAR_GENETIC,2000.00
+0235U,Pten full gene analysis,MOLECULAR_GENETIC,2000.00
+0236U,Smn1&smn2 full gene analysis,MOLECULAR_GENETIC,2000.00
+0237U,Car ion chnlpthy gen seq pnl,MOLECULAR_GENETIC,2000.00
+0238U,Onc lnch syn gen dna seq aly,ONCOLOGY_MOLECULAR,2500.00
+0239U,Trgt gen seq alys pnl 311+,MOLECULAR_GENETIC,2000.00
+0240U,Nfct ds vir resp rna 3 trgt,DIAGNOSTIC_IMAGING,1200.00
+0241U,Nfct ds vir resp rna 4 trgt,DIAGNOSTIC_IMAGING,1200.00
+0242U,Trgt gen seq alys pnl 55-74,MOLECULAR_GENETIC,2000.00
+0244U,Onc solid orgn dna 257 genes,ONCOLOGY_MOLECULAR,2500.00
+0245U,Onc thyr mut alys 10 gen&37,ONCOLOGY_MOLECULAR,2500.00
+0246U,Rbc dna gnotyp 16 bld groups,MOLECULAR_GENETIC,2000.00
+0248U,Onc sphrd cell cul 12 rx pnl,ONCOLOGY_MOLECULAR,2500.00
+0250U,Onc sld org neo dna 505 gene,ONCOLOGY_MOLECULAR,2500.00
+0258U,Ai psor mrna 50-100 gen alg,MOLECULAR_GENETIC,2000.00
+0260U,Rare ds id opt genome mapg,MOLECULAR_GENETIC,2000.00
+0261U,Onc clrct ca img alys w/ai,ONCOLOGY_MOLECULAR,2500.00
+0262U,Onc sld tum rtpcr 7 gen,ONCOLOGY_MOLECULAR,2500.00
+0264U,Rare ds id opt genome mapg,MOLECULAR_GENETIC,2000.00
+0265U,Rar do whl gn&mtcdrl dna als,MOLECULAR_GENETIC,2000.00
+0266U,Unxpl cnst hrtbl do gn xprsn,OTHER_PROCEDURE,500.00
+0267U,Rare do id opt gen mapg&seq,MOLECULAR_GENETIC,2000.00
+0268U,Hem ahus gen seq alys 15 gen,DIAGNOSTIC_IMAGING,1200.00
+0269U,Hem aut dm cgen trmbctpna 22,DIAGNOSTIC_IMAGING,1200.00
+0270U,Hem cgen coagj do 20 genes,MOLECULAR_GENETIC,2000.00
+0271U,Hem cgen neutropenia 24 gen,MOLECULAR_GENETIC,2000.00
+0272U,Hem genetic bld do 60 genes,MOLECULAR_GENETIC,2000.00
+0273U,Hem gen hyprfibrnlysis 8 gen,MOLECULAR_GENETIC,2000.00
+0274U,Hem gen pltlt do 62 genes,MOLECULAR_GENETIC,2000.00
+0276U,Hem inh thrombocytopenia 42,HEMATOLOGY,900.00
+0277U,Hem gen pltlt funcj do 40,MOLECULAR_GENETIC,2000.00
+0278U,Hem gen thrombosis 14 genes,MOLECULAR_GENETIC,2000.00
+0282U,Rbc dna gntyp 12 bld grp gen,MOLECULAR_GENETIC,2000.00
+0287U,Onc thyr dna&mrna 112 genes,ONCOLOGY_MOLECULAR,2500.00
+0288U,Onc lung mrna quan pcr 11&3,ONCOLOGY_MOLECULAR,2500.00
+0305U,Hem rbc fnclty&dfrm shr strs,HEMATOLOGY,900.00
+0306U,Onc mrd nxt-gnrj alys 1st,ONCOLOGY_MOLECULAR,2500.00
+0307U,Onc mrd nxt-gnrj alys sbsq,ONCOLOGY_MOLECULAR,2500.00
+0308U,Crd cad alys 3 prtn 3 param,CARDIOVASCULAR,1800.00
+0313U,Onc pncrs dna&mrna seq 74,ONCOLOGY_MOLECULAR,2500.00
+0314U,Onc cutan mlnma mrna 35 gene,ONCOLOGY_MOLECULAR,2500.00
+0315U,Onc cutan sq cll ca mrna 40,ONCOLOGY_MOLECULAR,2500.00
+0317U,Onc lung ca 4-prb fish assay,ONCOLOGY_MOLECULAR,2500.00
+0318U,Ped whl gen mthyltn alys 50+,MOLECULAR_GENETIC,2000.00
+0330T,Tear film img uni/bi w/i&r,DIAGNOSTIC_IMAGING,1200.00
+0331T,Heart symp image plnr,CARDIOVASCULAR,1800.00
+0332T,Heart symp image plnr spect,CARDIOVASCULAR,1800.00
+0332U,Onc pan tum gen prflg 8 dna,ONCOLOGY_MOLECULAR,2500.00
+0334U,Onc sld orgn tgsa dna 84/+,ONCOLOGY_MOLECULAR,2500.00
+0335U,Rare ds whl gen seq feta,MOLECULAR_GENETIC,2000.00
+0336U,Rare ds whl gen seq bld/slv,MOLECULAR_GENETIC,2000.00
+0337U,Onc plsm cell do&myeloma id,ONCOLOGY_MOLECULAR,2500.00
+0338U,Onc sld tum crcg tum cl slct,ONCOLOGY_MOLECULAR,2500.00
+0339U,Onc prst8 mrna hoxc6 & dlx1,ONCOLOGY_MOLECULAR,2500.00
+0340U,Onc pan ca alys mrd plasma,ONCOLOGY_MOLECULAR,2500.00
+0341U,Ftl aneup dna seq cmpr alys,MOLECULAR_GENETIC,2000.00
+0342U,Onc pncrtc ca mult ia eclia,ONCOLOGY_MOLECULAR,2500.00
+0343U,Onc prst8 xom aly 442 sncrna,ONCOLOGY_MOLECULAR,2500.00
+0344U,Hep nafld semiq evl 28 lipid,OTHER_PROCEDURE,500.00
+0345U,Psyc genom alys pnl 15 gen,MOLECULAR_GENETIC,2000.00
+0347U,Rx metab/pcx dna 16 gen alys,MOLECULAR_GENETIC,2000.00
+0348U,Rx metab/pcx dna 25 gen alys,MOLECULAR_GENETIC,2000.00
+0349U,Rx metab/pcx dna 27gen rx ia,MOLECULAR_GENETIC,2000.00
+0350U,Rx metab/pcx dna 27 gen alys,MOLECULAR_GENETIC,2000.00
+0351U,Nfct ds bct/viral trail ip10,DIAGNOSTIC_IMAGING,1200.00
+0355U,Apol1 risk variants,OTHER_PROCEDURE,500.00
+0356U,Onc orop/anal 17 dna ddpcr,ONCOLOGY_MOLECULAR,2500.00
+0358U,Neuro alys β-amyl 1-42&1-40,NEUROLOGICAL,1500.00
+0359U,Onc prst8 ca alys all psa,ONCOLOGY_MOLECULAR,2500.00
+0360U,Onc lung elisa 7 autoant alg,ONCOLOGY_MOLECULAR,2500.00
+0361U,Neurflmnt lt chn dig ia quan,OTHER_PROCEDURE,500.00
+0362U,Onc pap thyr ca rna 82&10,ONCOLOGY_MOLECULAR,2500.00
+0363U,Onc urthl mrna 5 gen alg,ONCOLOGY_MOLECULAR,2500.00
+0364U,Onc hl neo gen seq alys alg,ONCOLOGY_MOLECULAR,2500.00
+0365U,Onc bldr 10 ur hrbr urthl ca,ONCOLOGY_MOLECULAR,2500.00
+0366U,Onc bldr 10 prb recr bldr ca,ONCOLOGY_MOLECULAR,2500.00
+0367U,Onc bldr 10 flwg trurl rescj,ONCOLOGY_MOLECULAR,2500.00
+0369U,Iadna gi pthgn 31 org&21 arg,MOLECULAR_GENETIC,2000.00
+0370U,Iadna surg wnd pthgn 34&21,MOLECULAR_GENETIC,2000.00
+0371U,Iadna gu pthgn semiq dna16&1,MOLECULAR_GENETIC,2000.00
+0372U,Nfct ds gu pthgn arg detcj,DIAGNOSTIC_IMAGING,1200.00
+0373U,Iadna rsp tr nfct 17 8 13&16,DIAGNOSTIC_IMAGING,1200.00
+0374U,Iadna gu pthgn 21 org&21arg,MOLECULAR_GENETIC,2000.00
+0375U,Onc ovrn bchm asy 7 prtn alg,ONCOLOGY_MOLECULAR,2500.00
+0376U,Onc prst8 ca img alys 128,ONCOLOGY_MOLECULAR,2500.00
+0377U,Cv ds quan advsrm/plsm lprtn,CARDIOVASCULAR,1800.00
+0378U,Rfc1 repeat xpnsj vrnt alys,OTHER_PROCEDURE,500.00
+0379U,Tgsap sl or neo dna523&rna55,MOLECULAR_GENETIC,2000.00
+0381U,Maple syrup ur ds mntr quan,OTHER_PROCEDURE,500.00
+0382U,Hyprphenylalninmia mntr quan,OTHER_PROCEDURE,500.00
+0383U,Tyrosinemia typ i mntr quan,OTHER_PROCEDURE,500.00
+0384U,Neph ckd rsk hi stg kdn ds,OTHER_PROCEDURE,500.00
+0385U,Neph ckd alg rsk dbtc kdn ds,OTHER_PROCEDURE,500.00
+0387U,Onc mlnma ambra1&amlo,ONCOLOGY_MOLECULAR,2500.00
+0388U,Onc nonsm cll lng ca 37 gen,ONCOLOGY_MOLECULAR,2500.00
+0389U,Ped fbrl kd ifi27&mcemp1 rna,OTHER_PROCEDURE,500.00
+0390U,Ob pe kdr eng&rbp4 ia alg,OBSTETRICS,1000.00
+0391U,Onc sld tum dna&rna 437 gen,ONCOLOGY_MOLECULAR,2500.00
+0392U,Rx metab genrx ia 16 genes,MOLECULAR_GENETIC,2000.00
+0393U,Neu prksn msfl a-syncln prtn,OTHER_PROCEDURE,500.00
+0394T,Hdr elctrnc skn surf brchytx,DIAGNOSTIC_IMAGING,1200.00
+0394U,Pfas 16 pfas compnd lc ms/ms,OTHER_PROCEDURE,500.00
+0395T,Hdr elctr ntrst/ntrcv brchtx,CARDIOVASCULAR,1800.00
+0395U,Onc lng multiomics plsm alg,ONCOLOGY_MOLECULAR,2500.00
+0398U,Gi baret esph dna mthyln aly,MOLECULAR_GENETIC,2000.00
+0399U,Neuro cere folate defncy srm,NEUROLOGICAL,1500.00
+0400U,Ob xpnd car scr 145 genes,MOLECULAR_GENETIC,2000.00
+0401U,Crd c hrt ds 9 gen 12 vrnts,CARDIOVASCULAR,1800.00
+0402U,Nfct agt sti mult amp prb tq,DIAGNOSTIC_IMAGING,1200.00
+0403U,Onc prst8 mrna 18 gen 1st ur,ONCOLOGY_MOLECULAR,2500.00
+0404U,Onc brst semiq meas thym kn,ONCOLOGY_MOLECULAR,2500.00
+0405U,Onc pncrtc 59 mthltn blk mrk,ONCOLOGY_MOLECULAR,2500.00
+0406U,Onc lung flow cytmtry 5 mrk,ONCOLOGY_MOLECULAR,2500.00
+0407U,Neph dbtc ckd mult eclia alg,OTHER_PROCEDURE,500.00
+0408U,Iaad blk ac wv bsnsr sarscv2,CARDIOVASCULAR,1800.00
+0409U,Onc sld tum dna 80 & rna 36,ONCOLOGY_MOLECULAR,2500.00
+0410U,Onc pncrtc dna whl gn seq 5-,ONCOLOGY_MOLECULAR,2500.00
+0411U,Psyc genom alys pnl 15 gen,MOLECULAR_GENETIC,2000.00
+0412U,Beta amyloid ab42/40 imprcip,OTHER_PROCEDURE,500.00
+0413U,Onc hl neo opt gen mapg dna,ONCOLOGY_MOLECULAR,2500.00
+0414U,Onc lng aug alg aly whl sld8,ONCOLOGY_MOLECULAR,2500.00
+0415U,Cv ds acs bld alg 5 yr score,CARDIOVASCULAR,1800.00
+0417U,Rare ds alys 335 nuc genes,MOLECULAR_GENETIC,2000.00
+0418U,Onc brst aug alg aly whl sl8,ONCOLOGY_MOLECULAR,2500.00
+0419U,Nrpsyc gen seq vrnt aly 13,MOLECULAR_GENETIC,2000.00
+0420U,Onc urthl mrna xprsn 6 snp,ONCOLOGY_MOLECULAR,2500.00
+0421U,Onc clrct scr sgl amp 8 rna,ONCOLOGY_MOLECULAR,2500.00
+0422T,Tactile breast img uni/bi,DIAGNOSTIC_IMAGING,1200.00
+0422U,Onc pan solid tum alys dna,ONCOLOGY_MOLECULAR,2500.00
+0423U,Psyc genomic alys pnl 26 gen,MOLECULAR_GENETIC,2000.00
+0424U,Onc prst8 xom alys 53 sncrna,ONCOLOGY_MOLECULAR,2500.00
+0425U,Genom rpd seq alys ea cmprtr,MOLECULAR_GENETIC,2000.00
+0426U,Genome ultra-rapid seq alys,MOLECULAR_GENETIC,2000.00
+0427U,Monocyte dstrbj wdth whl bld,HEMATOLOGY,900.00
+0429U,Hpv orop swab 14 hi-risk typ,INFECTIOUS_DISEASE,800.00
+0430U,Gi malabs aat calpro pncrtc,GASTROINTESTINAL,1200.00
+0431U,Gly rcptr alpha1 igg srm/csf,OTHER_PROCEDURE,500.00
+0432U,Klhl11 antb sr/csf asy qual,OTHER_PROCEDURE,500.00
+0433U,Onc prst8 5 dna reg mrk pcr,ONCOLOGY_MOLECULAR,2500.00
+0434U,Rx metab advrs vrnt alys 25,THERAPEUTIC_MONITORING,600.00
+0435U,Onc chemo rx cytox csc 14 rx,ONCOLOGY_MOLECULAR,2500.00
+0436U,Onc lng plsm alys 388 prtn,ONCOLOGY_MOLECULAR,2500.00
+0437U,Psyc anxiety do mrna 15 bmrk,MOLECULAR_GENETIC,2000.00
+0438U,Rx metab advrs vrnt alys 33,THERAPEUTIC_MONITORING,600.00
+0439U,Crd chd dna alys 5 snp 3 dna,CARDIOVASCULAR,1800.00
+0440U,Crd chd dna alys 10 snp 6dna,CARDIOVASCULAR,1800.00
+0441U,Nfct ds bct fngl/viral semiq,DIAGNOSTIC_IMAGING,1200.00
+0442U,Nfct ds respir nfctj mxa&crp,DIAGNOSTIC_IMAGING,1200.00
+0443U,Neurflmnt lt chn ultrsens ia,OTHER_PROCEDURE,500.00
+0444U,Onc sld orgn neo tgsap 361,ONCOLOGY_MOLECULAR,2500.00
+0445U,Abeta42 & ptau181 eclia csf,OTHER_PROCEDURE,500.00
+0446U,Ai ds sle alys 10 cytokine,AUTOIMMUNE,1600.00
+0447U,Ai ds sle alys 11 cytokine,AUTOIMMUNE,1600.00
+0449U,Car scr sev inh cond 5 genes,MOLECULAR_GENETIC,2000.00
+0450U,Onc mm lc-ms/ms monoc p-prtn,ONCOLOGY_MOLECULAR,2500.00
+0451U,Onc mm lc-ms/ms pep ion quan,ONCOLOGY_MOLECULAR,2500.00
+0452U,Onc bldr mthyl penk lte-qmsp,ONCOLOGY_MOLECULAR,2500.00
+0453U,Onc clrct ca cfdna qpcr asy,ONCOLOGY_MOLECULAR,2500.00
+0454U,Rare ds id opt genome mapg,MOLECULAR_GENETIC,2000.00
+0455U,Nfct agt sti mult amp prb ur,DIAGNOSTIC_IMAGING,1200.00
+0457U,Pfas 9 cmpnd lcms/ms pls/sr,OTHER_PROCEDURE,500.00
+0458U,Onc brst ca s100 a8&a9 elisa,ONCOLOGY_MOLECULAR,2500.00
+0459U,Abeta42 & ttau eclia csf,OTHER_PROCEDURE,500.00
+0460U,Onc whl bld/bucc rtpcr 24gen,ONCOLOGY_MOLECULAR,2500.00
+0461U,Onc rxgenom alys rtpcr 24gen,ONCOLOGY_MOLECULAR,2500.00
+0462U,Melatonin lvl tst slp std7/9,OTHER_PROCEDURE,500.00
+0463U,Onc crvx mrna genxprsn 14bmk,ONCOLOGY_MOLECULAR,2500.00
+0464U,Onc clrct scr qrtsa dna mrk,ONCOLOGY_MOLECULAR,2500.00
+0465U,Onc urthl carc dna qmsp 2gen,ONCOLOGY_MOLECULAR,2500.00
+0466U,Crd cad dna gwas 564856 snp,CARDIOVASCULAR,1800.00
+0467U,Onc bldr dna ngs 60gen&aneup,ONCOLOGY_MOLECULAR,2500.00
+0468U,Hep nash mir34a5p a2m ykl40,OTHER_PROCEDURE,500.00
+0469U,Rare ds whl gen seq ftl samp,MOLECULAR_GENETIC,2000.00
+0470U,Onc orop detcj mrd 8 dna hpv,ONCOLOGY_MOLECULAR,2500.00
+0471U,Onc clrc ca 35 vrn kras&nras,ONCOLOGY_MOLECULAR,2500.00
+0472U,Ca vi psp&sp1 antb sjogren,OTHER_PROCEDURE,500.00
+0473U,Onc sld tum bld/slv 648 gene,ONCOLOGY_MOLECULAR,2500.00
+0474U,Hered pan ca gsap 88gene ngs,MOLECULAR_GENETIC,2000.00
+0475U,Hered prst8 ca gsap 23 genes,MOLECULAR_GENETIC,2000.00
+0476U,Rx metab psyc 14gen&cyp2d6,MOLECULAR_GENETIC,2000.00
+0477U,Rx metab psy 14&cyp2d6 gn-rx,THERAPEUTIC_MONITORING,600.00
+0478U,Onc nsclc dna&rna dpcr 9gens,ONCOLOGY_MOLECULAR,2500.00
+0479U,Tau phosphorylated ptau217,OTHER_PROCEDURE,500.00
+0480U,Nfct ds csf metag ngs alys,DIAGNOSTIC_IMAGING,1200.00
+0481U,Idh1 idh2&tert promoter ngs,OTHER_PROCEDURE,500.00
+0482U,Ob pe biochem asy sflt1&plgf,HEMATOLOGY,900.00
+0483U,Nfct ds ng gyra s91f pt mut,DIAGNOSTIC_IMAGING,1200.00
+0484U,Nfct ds mgen 23s rrna pt mut,DIAGNOSTIC_IMAGING,1200.00
+0485U,Onc sol tum cfdna&rna ngs gm,ONCOLOGY_MOLECULAR,2500.00
+0486U,Onc pan sol tum ngs cfctdna,ONCOLOGY_MOLECULAR,2500.00
+0487U,Onc sol tum cfcdna tgsap 84,ONCOLOGY_MOLECULAR,2500.00
+0488U,Ob fetal ag nipt cfdna alys,MOLECULAR_GENETIC,2000.00
+0489U,Ob sgnipt cfdna seq alys 1+,MOLECULAR_GENETIC,2000.00
+0490U,Onc cutan/uveal mlnma cd146,ONCOLOGY_MOLECULAR,2500.00
+0491U,Onc sol tum ctc slct er prtn,ONCOLOGY_MOLECULAR,2500.00
+0492U,Onc sol tum ctc slctn pd-l1,ONCOLOGY_MOLECULAR,2500.00
+0493U,Trnspl med quan dd-cfdna ngs,MOLECULAR_GENETIC,2000.00
+0494U,Rbc ag ftl rhd gene alys ngs,MOLECULAR_GENETIC,2000.00
+0495U,Onc prst8 alys crcg plsm prt,ONCOLOGY_MOLECULAR,2500.00
+0496U,Onc clrct cfdna 8/7 genes,ONCOLOGY_MOLECULAR,2500.00
+0497U,Onc prst8 mrna rt-pcr 6genes,ONCOLOGY_MOLECULAR,2500.00
+0498U,Onc clrct ngs mut detc 43gen,ONCOLOGY_MOLECULAR,2500.00
+0499U,Onc clrct&lng dna ngs 8genes,ONCOLOGY_MOLECULAR,2500.00
+0500U,Autoinflam ds vexas synd dna,MOLECULAR_GENETIC,2000.00
+0501U,Onc clrc bld quan meas cfdna,ONCOLOGY_MOLECULAR,2500.00
+0502U,Hpv e6/e7 mrk hirsk typ crv,INFECTIOUS_DISEASE,800.00
+0503U,Neuro alz ds βamyl&tau prtn,NEUROLOGICAL,1500.00
+0504U,Nfct ds uti id 17 path orgs,DIAGNOSTIC_IMAGING,1200.00
+0505U,Nfct ds vag infctj id 32orgs,DIAGNOSTIC_IMAGING,1200.00
+0506U,Gi barretts esophgl cell 89,GASTROINTESTINAL,1200.00
+0507U,Onc ovr dna whole gen w/5hmc,ONCOLOGY_MOLECULAR,2500.00
+0508U,Trnsplj med ddcfdna 40 snps,MOLECULAR_GENETIC,2000.00
+0509U,Trnsplj med ddcfdna<12 snps,MOLECULAR_GENETIC,2000.00
+0510U,Onc pncrtc ca alg alys 16gen,ONCOLOGY_MOLECULAR,2500.00
+0511U,Onc sol tum 3dmicroenvir 36+,ONCOLOGY_MOLECULAR,2500.00
+0512U,Onc prst8 alys dgtz img msi,ONCOLOGY_MOLECULAR,2500.00
+0513U,Onc prst8 alg alys msi&hrd,ONCOLOGY_MOLECULAR,2500.00
+0514U,Gi ibd ia quan deter adl lvl,GASTROINTESTINAL,1200.00
+0515U,Gi ibd ia quan deter ifx lvl,GASTROINTESTINAL,1200.00
+0516U,Rx metab rxgenomic gnotyp 40,MOLECULAR_GENETIC,2000.00
+0517U,Ther rx mntr 80+ psyactiv rx,DIAGNOSTIC_IMAGING,1200.00
+0518U,Ther rx mntr 90+ pn&mtl hlth,THERAPEUTIC_MONITORING,600.00
+0519U,Ther rx mntr meds p/d/a 110+,THERAPEUTIC_MONITORING,600.00
+0520U,Ther rx mntr 200+ rx/sbsts,THERAPEUTIC_MONITORING,600.00
+0521U,Rf iga&igm ccp antb sr-a ia,OTHER_PROCEDURE,500.00
+0522U,Ca vi psp&sp1 antb cl semiql,OTHER_PROCEDURE,500.00
+0523U,Onc soltum dna ngs snv 22gen,ONCOLOGY_MOLECULAR,2500.00
+0524U,Ob pe sflt-1/plgf ia srm/pls,OBSTETRICS,1000.00
+0525U,Onc sphrd cell cul 11-rx pnl,ONCOLOGY_MOLECULAR,2500.00
+0526U,Nefro rnl trnspl quan cxcl10,OTHER_PROCEDURE,500.00
+0527U,Hsv 1&2 vzv amp prb tq pthgn,OTHER_PROCEDURE,500.00
+0528U,Lrt iad 18bct/8vir&7arg rna,DIAGNOSTIC_IMAGING,1200.00
+0529U,Hem vte snp f2&f5 gen leiden,MOLECULAR_GENETIC,2000.00
+0530U,Onc pan-sol tum ctdna 77 gen,ONCOLOGY_MOLECULAR,2500.00
+0558T,Ct scan f/biomchn ct alys,DIAGNOSTIC_IMAGING,1200.00
+0633T,Ct breast w/3d uni c-,DIAGNOSTIC_IMAGING,1200.00
+0634T,Ct breast w/3d uni c+,DIAGNOSTIC_IMAGING,1200.00
+0635T,Ct breast w/3d uni c-/c+,DIAGNOSTIC_IMAGING,1200.00
+0636T,Ct breast w/3d bi c-,DIAGNOSTIC_IMAGING,1200.00
+0637T,Ct breast w/3d bi c+,DIAGNOSTIC_IMAGING,1200.00
+0638T,Ct breast w/3d bi c-/c+,DIAGNOSTIC_IMAGING,1200.00
+0640T,Ncntc ifr spctrsc o/t pad 1,DIAGNOSTIC_IMAGING,1200.00
+0721T,Quan ct tiss charac w/o ct,DIAGNOSTIC_IMAGING,1200.00
+0722T,Quan ct tiss charac w/ct,DIAGNOSTIC_IMAGING,1200.00
+0723T,Qmrcp w/o dx mri sm anat ses,DIAGNOSTIC_IMAGING,1200.00
+0724T,Qmrcp w/dx mri same anatomy,DIAGNOSTIC_IMAGING,1200.00
+0815T,Us rems b1 dns hips plvs/spi,DIAGNOSTIC_IMAGING,1200.00
+0857T,Opto-acoustic img breast uni,DIAGNOSTIC_IMAGING,1200.00
+0859T,Ncntc ifr spctrsc o/t pad ea,DIAGNOSTIC_IMAGING,1200.00
+0860T,Ncntc ifr spctrsc scr pad,DIAGNOSTIC_IMAGING,1200.00
+0865T,Quan mri alys brn w/o dx mri,DIAGNOSTIC_IMAGING,1200.00
+0866T,Quan mri alys brn w/dx mri,DIAGNOSTIC_IMAGING,1200.00
+0877T,Augmnt alys ch ct ild w/o ct,DIAGNOSTIC_IMAGING,1200.00
+0878T,Augmnt alys ch ct ild w/ct,DIAGNOSTIC_IMAGING,1200.00
+0879T,Augmnt alys ch ct ild prep,DIAGNOSTIC_IMAGING,1200.00
+0880T,Augmnt alys ch ct ild i&r,DIAGNOSTIC_IMAGING,1200.00
+0889T,Prsnlz trgt dvl arhfcmrigtbs,DIAGNOSTIC_IMAGING,1200.00
+0898T,N-invas prst8 cancer est map,OTHER_PROCEDURE,500.00
+0898T,N-invas prst8 cancer est map,OTHER_PROCEDURE,500.00
+0899T,N-invas deter aqmbf aug cmr,OTHER_PROCEDURE,500.00
+0900T,N-invas est aqmbf asstv cmr,OTHER_PROCEDURE,500.00
+0932T,N-invs det hrt fail aug echo,AUTOIMMUNE,1600.00
+0944T,3d cntr simula trgt lvr les,OTHER_PROCEDURE,500.00
+0946T,Ortho impl mvmt alys pair ct,DIAGNOSTIC_IMAGING,1200.00
+0947T,Mrgfus strtctc bl-br disrpj,DIAGNOSTIC_IMAGING,1200.00
