@@ -53,6 +53,13 @@ public class Staff extends Human {
     }
 
     /**
+     * Retrieves the staff's name.
+     *
+     * @return The staff's name.
+     */
+    private String getName() { return name; }
+
+    /**
      * Retrieves the staff's unique ID.
      *
      * @return The staff ID.

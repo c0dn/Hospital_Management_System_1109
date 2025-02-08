@@ -55,8 +55,16 @@ public class Patient extends Human {
         this.insurancePolicy = insurancePolicy;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public String getPatientId() {
         return patientId;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
     }
 
     public List<String> getDrugAllergies() {
