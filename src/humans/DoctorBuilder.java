@@ -1,12 +1,19 @@
-package humans.builder;
-
-import humans.Doctor;
+package humans;
 
 import java.util.Random;
 
 public class DoctorBuilder extends StaffBuilder<DoctorBuilder> {
-    private String mcr;
+    String mcr;
 
+    DoctorBuilder() {}
+
+
+    /**
+     * Sets the Medical Council Registration (MCR) number for the doctor.
+     *
+     * @param mcr The MCR number to be assigned to the doctor.
+     * @return The current instance of the {@code DoctorBuilder} to allow method chaining.
+     */
     public DoctorBuilder mcr(String mcr) {
         this.mcr = mcr;
         return this;
@@ -34,22 +41,7 @@ public class DoctorBuilder extends StaffBuilder<DoctorBuilder> {
     @Override
     public Doctor build() {
         validateRequiredFields();
-        return new Doctor(
-                name,
-                dateOfBirth,
-                nricFin,
-                maritalStatus,
-                residentialStatus,
-                nationality,
-                address,
-                contact,
-                sex,
-                bloodType,
-                isVaccinated,
-                staffId,
-                title,
-                department,
-                mcr
-        );
+        return new Doctor(this);
     }
+
 }

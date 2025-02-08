@@ -1,27 +1,35 @@
-package humans.builder;
-
-import humans.*;
+package humans;
 
 import java.time.LocalDate;
 import java.util.Random;
 
-public abstract class HumanBuilder<T extends HumanBuilder<T>> {
-    protected String name;
-    protected LocalDate dateOfBirth;
-    protected String nricFin;
-    protected MaritalStatus maritalStatus;
-    protected ResidentialStatus residentialStatus;
-    protected String nationality;
-    protected String address;
-    protected Contact contact;
-    protected Sex sex;
-    protected BloodType bloodType;
-    protected boolean isVaccinated;
+abstract class HumanBuilder<T extends HumanBuilder<T>> {
+    String name;
+    LocalDate dateOfBirth;
+    String nricFin;
+    MaritalStatus maritalStatus;
+    ResidentialStatus residentialStatus;
+    String nationality;
+    String address;
+    Contact contact;
+    Sex sex;
+    BloodType bloodType;
+    boolean isVaccinated;
 
+    HumanBuilder() {}
+
+
+    /**
+     * Returns the current instance of the builder class.
+     * Exists so chaining is possible
+     *
+     * @return The current instance of type T.
+     */
     @SuppressWarnings("unchecked")
-    protected T self() {
+    public T self() {
         return (T) this;
     }
+
 
     public T name(String name) {
         this.name = name;

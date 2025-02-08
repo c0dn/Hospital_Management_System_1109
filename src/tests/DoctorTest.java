@@ -1,7 +1,7 @@
 package tests;
 
 import humans.*;
-import humans.builder.DoctorBuilder;
+
 import java.time.LocalDate;
 
 /**
@@ -19,37 +19,37 @@ public class DoctorTest {
         try {
             System.out.println("Testing Doctor functionality...\n");
 
-            // Test 1: Create a doctor manually
-            System.out.println("Test 1 - Creating doctor manually:");
-            Doctor doctor1 = new Doctor(
-                    "Dr. Jane Smith",
-                    LocalDate.of(1980, 6, 15),
-                    "S8012345B",
-                    MaritalStatus.MARRIED,
-                    ResidentialStatus.CITIZEN,
-                    "Singaporean",
-                    "123 Medical Drive",
-                    new Contact("91234567", "62345678", "62345679", "jane.smith@hospital.com"),
-                    Sex.FEMALE,
-                    BloodType.O_POSITIVE,
-                    true,
-                    "D1001",
-                    "Senior Consultant",
-                    "Cardiology",
-                    "M12345A"
-            );
+            // Test 1: Create a doctor using builder with specific data
+            System.out.println("Test 1 - Creating doctor using builder with specific data:");
+            Doctor doctor1 = Doctor.builder()
+                    .name("Dr. Jane Smith")
+                    .dateOfBirth(LocalDate.of(1980, 6, 15))
+                    .nricFin("S8012345B")
+                    .maritalStatus(MaritalStatus.MARRIED)
+                    .residentialStatus(ResidentialStatus.CITIZEN)
+                    .nationality("Singaporean")
+                    .address("123 Medical Drive")
+                    .contact(new Contact("91234567", "62345678", "62345679", "jane.smith@hospital.com"))
+                    .sex(Sex.FEMALE)
+                    .bloodType(BloodType.O_POSITIVE)
+                    .isVaccinated(true)
+                    .staffId("D1001")
+                    .title("Senior Consultant")
+                    .department("Cardiology")
+                    .mcr("M12345A")
+                    .build();
             doctor1.displayStaff();
 
             // Test 2: Create a doctor using builder with random data
             System.out.println("\nTest 2 - Creating doctor using builder with random data:");
-            Doctor doctor2 = new DoctorBuilder()
+            Doctor doctor2 = Doctor.builder()
                     .withRandomBaseData()
                     .build();
             doctor2.displayStaff();
 
-            // Test 3: Create a doctor using builder with specific data
+            // Test 3: Create another doctor using builder with specific data
             System.out.println("\nTest 3 - Creating doctor using builder with specific data:");
-            Doctor doctor3 = new DoctorBuilder()
+            Doctor doctor3 = Doctor.builder()
                     .name("Dr. John Doe")
                     .dateOfBirth(LocalDate.of(1975, 3, 20))
                     .nricFin("S7512345C")

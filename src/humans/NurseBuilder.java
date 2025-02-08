@@ -1,11 +1,13 @@
-package humans.builder;
-
-import humans.Nurse;
+package humans;
 
 import java.util.Random;
 
 public class NurseBuilder extends StaffBuilder<NurseBuilder> {
-    private String rnid;
+    String rnid;
+
+
+    NurseBuilder() {}
+
 
     public NurseBuilder rnid(String rnid) {
         this.rnid = rnid;
@@ -33,22 +35,6 @@ public class NurseBuilder extends StaffBuilder<NurseBuilder> {
     @Override
     public Nurse build() {
         validateRequiredFields();
-        return new Nurse(
-                name,
-                dateOfBirth,
-                nricFin,
-                maritalStatus,
-                residentialStatus,
-                nationality,
-                address,
-                contact,
-                sex,
-                bloodType,
-                isVaccinated,
-                staffId,
-                title,
-                department,
-                rnid
-        );
+        return new Nurse(this);
     }
 }

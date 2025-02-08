@@ -24,122 +24,43 @@ public class Patient extends Human {
     /** The patient's height in metres. */
     private double height; // in meters
     /** The patient's weight in kilograms. */
-    private double weight; // in kilograms
+    private double weight;
+    /** Represents the occupation of a patient. */
     private String occupation;
+    /** Represents the name of the company where the patient is employed. */
     private String companyName;
+    /** Represents the business address of the company associated with the patient. */
     private String companyAddress;
 
 
-    public static class Generator {
-        private static final Random random = new Random();
-        private static final String[] DRUG_ALLERGIES = {
-                "Penicillin", "Aspirin", "Ibuprofen", "Sulfa", "None"
-        };
-
-        public static Patient createRandom(String patientId) {
-            String name = DataGenerator.getRandomElement(DataGenerator.SG_NAMES);
-            LocalDate dob = LocalDate.now().minusYears(20 + random.nextInt(60));
-
-            String nricPrefix = dob.getYear() < 2000 ? "S" : "T";
-            String nricFin = String.format("%s%07d%c",
-                    nricPrefix, random.nextInt(1000000, 9999999),
-                    (char)('A' + random.nextInt(26)));
-
-            List<String> allergies = List.of(DRUG_ALLERGIES[random.nextInt(DRUG_ALLERGIES.length)]);
-
-            NokRelation nokRelation = DataGenerator.getRandomEnum(NokRelation.class);
-            String nokName = generateNokName(name, nokRelation);
-
-            return new Patient(
-                    name,
-                    dob,
-                    nricFin,
-                    DataGenerator.getRandomEnum(MaritalStatus.class),
-                    DataGenerator.getRandomEnum(ResidentialStatus.class),
-                    "Singaporean",
-                    DataGenerator.generateSGAddress(),
-                    DataGenerator.generateContact(),
-                    DataGenerator.getRandomEnum(Sex.class),
-                    DataGenerator.getRandomEnum(BloodType.class),
-                    random.nextBoolean(),
-                    patientId,
-                    allergies,
-                    nokName,
-                    DataGenerator.generateSGAddress(),
-                    nokRelation,
-                    150 + random.nextDouble() * 50,
-                    50 + random.nextDouble() * 50,
-                    DataGenerator.getRandomElement(DataGenerator.OCCUPATIONS),
-                    DataGenerator.getRandomElement(DataGenerator.SG_COMPANIES),
-                    DataGenerator.generateCompanyAddress()
-            );
-        }
-
-        private static String generateNokName(String patientName, NokRelation relation) {
-            if (relation == NokRelation.SPOUSE || relation == NokRelation.PARENT ||
-                    relation == NokRelation.CHILD || relation == NokRelation.SIBLING) {
-                String[] nameParts = patientName.split(" ");
-                return DataGenerator.getRandomElement(DataGenerator.SG_NAMES).split(" ")[0] +
-                        " " + nameParts[nameParts.length - 1];
-            }
-            return DataGenerator.getRandomElement(DataGenerator.SG_NAMES);
-        }
-
-        public static List<Patient> createRandom(int count) {
-            List<Patient> patients = new ArrayList<>();
-            for (int i = 0; i < count; i++) {
-                patients.add(createRandom("P" + (i + 1000)));
-            }
-            return patients;
-        }
+    /**
+     * Constructs a new {@code Patient} instance using the given {@code PatientBuilder}.
+     * This constructor initializes the patient-specific attributes by copying
+     * the values provided through the builder.
+     *
+     * @param builder The {@code PatientBuilder} instance containing the data
+     *                to initialize the {@code Patient} object. Fields such as
+     *                patientId, drugAllergies, next of kin details, height,
+     *                weight, occupation, and company details are expected
+     *                to be set in the builder before constructing a {@code Patient}.
+     */
+    Patient(PatientBuilder builder) {
+        super(builder);
+        this.patientId = builder.patientId;
+        this.drugAllergies = new ArrayList<>(builder.drugAllergies);
+        this.nokName = builder.nokName;
+        this.nokAddress = builder.nokAddress;
+        this.nokRelation = builder.nokRelation;
+        this.height = builder.height;
+        this.weight = builder.weight;
+        this.occupation = builder.occupation;
+        this.companyName = builder.companyName;
+        this.companyAddress = builder.companyAddress;
     }
 
 
-
-    /**
-     * Constructs a Patient object with specified details.
-     *
-     * @param name The patient's name.
-     * @param dateOfBirth The patient's date of birth.
-     * @param nricFin The patient's NRIC or FIN number.
-     * @param maritalStatus The patient's marital status.
-     * @param residentialStatus The patient's residential status.
-     * @param nationality The patient's nationality.
-     * @param address The patient's residental address.
-     * @param contact The patient's contact details.
-     * @param sex The patient's sex.
-     * @param bloodType The patient's blood type.
-     * @param isVaccinated Indicates if the patient is vaccinated.
-     * @param patientId The patient's unique ID.
-     * @param drugAllergies A list of the patient's drug allergies.
-     * @param nokName The next of kin's name.
-     * @param nokAddress The next of kin's residential address.
-     * @param nokRelation The relationship between the patient and the next of kin.
-     * @param height The patient's height in metres.
-     * @param weight The patient's weight in kilograms.
-     */
-    public Patient(String name, LocalDate dateOfBirth, String nricFin,
-                   MaritalStatus maritalStatus, ResidentialStatus residentialStatus,
-                   String nationality, String address, Contact contact,
-                   Sex sex, BloodType bloodType, boolean isVaccinated,
-                   String patientId, List<String> drugAllergies, String nokName,
-                   String nokAddress, NokRelation nokRelation,
-                   double height, double weight,
-                   String occupation, String companyName, String companyAddress) {
-
-        super(name, dateOfBirth, nricFin, maritalStatus, residentialStatus,
-                nationality, address, contact, sex, bloodType, isVaccinated);
-
-        this.patientId = patientId;
-        this.drugAllergies = drugAllergies;
-        this.nokName = nokName;
-        this.nokAddress = nokAddress;
-        this.nokRelation = nokRelation;
-        this.height = height;
-        this.weight = weight;
-        this.occupation = occupation;
-        this.companyName = companyName;
-        this.companyAddress = companyAddress;
+    public static PatientBuilder builder() {
+        return new PatientBuilder();
     }
 
     public String getPatientId() {

@@ -1,8 +1,4 @@
-package humans.builder;
-
-import humans.DataGenerator;
-import humans.NokRelation;
-import humans.Patient;
+package humans;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,17 +10,18 @@ public class PatientBuilder extends HumanBuilder<PatientBuilder> {
             "Penicillin", "Aspirin", "Ibuprofen", "Sulfa", "None"
     };
 
-    private String patientId;
-    private List<String> drugAllergies = new ArrayList<>();
-    private String nokName;
-    private String nokAddress;
-    private NokRelation nokRelation;
-    private double height;
-    private double weight;
-    private String occupation;
-    private String companyName;
-    private String companyAddress;
+    String patientId;
+    List<String> drugAllergies = new ArrayList<>();
+    String nokName;
+    String nokAddress;
+    NokRelation nokRelation;
+    double height;
+    double weight;
+    String occupation;
+    String companyName;
+    String companyAddress;
 
+    PatientBuilder() {}
 
     public PatientBuilder patientId(String patientId) {
         this.patientId = patientId;
@@ -151,18 +148,7 @@ public class PatientBuilder extends HumanBuilder<PatientBuilder> {
     public Patient build() {
         validateRequiredFields();
         validatePatientFields();
-
-        if (drugAllergies.isEmpty()) {
-            drugAllergies.add("None");
-        }
-
-        return new Patient(
-                name, dateOfBirth, nricFin, maritalStatus,
-                residentialStatus, nationality, address, contact, sex,
-                bloodType, isVaccinated, patientId, drugAllergies, nokName,
-                nokAddress, nokRelation, height, weight, occupation,
-                companyName, companyAddress
-        );
+        return new Patient(this);
     }
 
     private void validatePatientFields() {

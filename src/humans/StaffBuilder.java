@@ -1,13 +1,15 @@
-package humans.builder;
-
-import humans.Staff;
+package humans;
 
 import java.util.Random;
 
 public abstract class StaffBuilder<T extends StaffBuilder<T>> extends HumanBuilder<T> {
-    protected String staffId;
-    protected String title;
-    protected String department;
+    String staffId;
+    String title;
+    String department;
+
+    // Package-private constructor
+    StaffBuilder() {}
+
 
     public T staffId(String staffId) {
         this.staffId = staffId;
@@ -63,28 +65,8 @@ public abstract class StaffBuilder<T extends StaffBuilder<T>> extends HumanBuild
         }
     }
 
-    /**
-     * Creates a new Staff instance with the builder's properties.
-     *
-     * @return a new Staff instance
-     */
-    protected Staff buildStaff() {
-        validateRequiredFields();
-        return new Staff(
-                name,
-                dateOfBirth,
-                nricFin,
-                maritalStatus,
-                residentialStatus,
-                nationality,
-                address,
-                contact,
-                sex,
-                bloodType,
-                isVaccinated,
-                staffId,
-                title,
-                department
-        );
-    }
+    // Remove buildStaff() as each concrete builder will implement build()
+    @Override
+    protected abstract Staff build();
+
 }

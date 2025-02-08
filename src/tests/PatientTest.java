@@ -1,11 +1,12 @@
 package tests;
 
 import humans.*;
-import humans.builder.PatientBuilder;
+
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * A test class for the {@link Patient} class.
@@ -24,7 +25,7 @@ public class PatientTest {
 
             // Test 1: Create a patient using builder with specific data
             System.out.println("Test 1 - Creating patient using builder with specific data:");
-            Patient patient1 = new PatientBuilder()
+            Patient patient1 = Patient.builder()
                     .name("John Doe")
                     .dateOfBirth(LocalDate.of(1990, 1, 1))
                     .nricFin("S9012345A")
@@ -51,7 +52,7 @@ public class PatientTest {
 
             // Test 2: Create a patient using builder with random data
             System.out.println("\nTest 2 - Creating patient using builder with random data:");
-            Patient patient2 = new PatientBuilder()
+            Patient patient2 = Patient.builder()
                     .withRandomData("P1002")
                     .build();
             patient2.displayPatientInfo();
@@ -61,7 +62,7 @@ public class PatientTest {
             List<Patient> patients = new ArrayList<>();
             for (int i = 0; i < 3; i++) {
                 String patientId = String.format("P%04d", 1003 + i);
-                patients.add(new PatientBuilder()
+                patients.add(Patient.builder()
                         .withRandomData(patientId)
                         .build());
             }
