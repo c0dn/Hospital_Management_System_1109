@@ -73,4 +73,48 @@ public abstract class Human {
         this.isVaccinated = isVaccinated;
 
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public String getNricFin() {
+        return nricFin;
+    }
+
+    public MaritalStatus getMaritalStatus() {
+        return maritalStatus;
+    }
+
+    public ResidentialStatus getResidentialStatus() {
+        return residentialStatus;
+    }
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public Sex getSex() {
+        return sex;
+    }
+
+    public BloodType getBloodType() {
+        return bloodType;
+    }
+
+    public boolean isVaccinated() {
+        return isVaccinated;
+    }
 }
