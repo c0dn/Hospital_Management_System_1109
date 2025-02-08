@@ -1,7 +1,6 @@
 package humans;
 
 import medical.MedicalRecord;
-import policy.InsurancePolicy; //reference to patient Insurance Policy
 
 import java.time.LocalDate;
 import java.util.List;
@@ -12,7 +11,6 @@ import java.util.List;
  */
 
 public class Patient extends Human {
-
     /** The unique identifier for the patient. */
     private final String patientId;
     /** A list of the patient's drug allergies. */
@@ -29,11 +27,12 @@ public class Patient extends Human {
     private double height; // in meters
     /** The patient's weight in kilograms. */
     private double weight; // in kilograms
-//    /** The patient's insurance policy details. */
+    //    /** The patient's insurance policy details. */
 //    private InsurancePolicy insurancePolicy;
     private String occupation;
     private String companyName;
     private String companyAddress;
+
 
     /**
      * Constructs a Patient object with specified details.
@@ -58,17 +57,17 @@ public class Patient extends Human {
      * @param height The patient's height in metres.
      * @param weight The patient's weight in kilograms.
      */
-
+    
 
     public Patient(String name, LocalDate dateOfBirth, String nricFin,
-                          MaritalStatus maritalStatus, ResidentialStatus residentialStatus,
-                          String nationality, String address, Contact contact,
-                          Sex sex, BloodType bloodType, boolean isVaccinated,
-                          String patientId, List<String> drugAllergies,
-                          List<MedicalRecord> medicalRecords, String nokName,
-                          String nokAddress, String nokRelation,
-                          double height, double weight,
-                          String occupation, String companyName, String companyAddress) {
+                   MaritalStatus maritalStatus, ResidentialStatus residentialStatus,
+                   String nationality, String address, Contact contact,
+                   Sex sex, BloodType bloodType, boolean isVaccinated,
+                   String patientId, List<String> drugAllergies,
+                   List<MedicalRecord> medicalRecords, String nokName,
+                   String nokAddress, String nokRelation,
+                   double height, double weight,
+                   String occupation, String companyName, String companyAddress) {
 
         super(name, dateOfBirth, nricFin, maritalStatus, residentialStatus,
                 nationality, address, contact, sex, bloodType, isVaccinated);
@@ -81,122 +80,42 @@ public class Patient extends Human {
         this.nokRelation = nokRelation;
         this.height = height;
         this.weight = weight;
-//        this.insurancePolicy = insurancePolicy;
         this.occupation = occupation;
         this.companyName = companyName;
         this.companyAddress = companyAddress;
     }
-    /**
-     * Retrieves the patient's unique ID.
-     *
-     * @return The patient ID.
-     */
+
     public String getPatientId() {
         return patientId;
     }
 
-    /**
-     * Retrieves the patient's drug allergies.
-     *
-     * @return A list of patient's know drug allergies.
-     */
-    public List<String> getDrugAllergies() {
-        return drugAllergies;
-    }
-
-    /**
-     * Retrieves the patient's medical records.
-     *
-     * @return A list of patient's medical records.
-     */
     public List<MedicalRecord> getMedicalRecords() {
         return medicalRecords;
     }
 
-    /**
-     * Retrieves the next of kin's name.
-     *
-     * @return The next of kin's name.
-     */
-    public String getNokName() {
-        return nokName;
-    }
-
-    /**
-     * Retrieves the next of kin's residential address.
-     *
-     * @return The next of kin's residential address.
-     */
-    public String getNokAddress() {
-        return nokAddress;
-    }
-
-    /**
-     * Retrieves the relationship between the patient and the next of kin.
-     *
-     * @return The relationship between the patient and the next of kin.
-     */
-    public String getNokRelation() {
-        return nokRelation;
-    }
-
-    /**
-     * Retrieves the patient's height in metres.
-     *
-     * @return The height of the patient in metres.
-     */
-    public double getHeight() {
-        return height;
-    }
-
-    /**
-     * Retrieves the patient's weight in kilograms.
-     *
-     * @return The weight of the patient in kilograms.
-     */
-    public double getWeight() {
-        return weight;
-    }
-
-    public String getOccupation() {
-        return occupation;
-    }
-
-    public String getCompanyName() {
-        return companyName;
-    }
-
-    public String getCompanyAddress() {
-        return companyAddress;
-    }
-
-    /**
-     * Displays patient information.
-     */
     public void displayPatientInfo() {
-            System.out.println("Name: " + getName());
-            System.out.println("Patient ID: " + getPatientId());
-            System.out.println("Date of Birth:" + getDateOfBirth());
-            System.out.println("Height: " + getHeight() + 'm');
-            System.out.println("Weight: " + getWeight() + "kg");
-            System.out.println("Next of Kin: " + getNokName() + " (" + nokRelation + "), Address: " + getNokAddress());
-            System.out.println("Drug Allergies:  " + getDrugAllergies());
+        System.out.format("Name: %s%n", name);
+        System.out.format("Patient ID: %s%n", patientId);
+        System.out.format("Date of Birth: %s%n", dateOfBirth);
+        System.out.format("Height: %.2fm%n", height);
+        System.out.format("Weight: %.2fkg%n", weight);
+        System.out.format("Next of Kin: %s (%s), Address: %s%n", nokName, nokRelation, nokAddress);
+        System.out.format("Drug Allergies: %s%n", drugAllergies);
     }
 
-
-    public void displayInsrPatient(){
-        System.out.println("Patient ID: " + getPatientId());
-        System.out.println("Name of Insured/Covered Member: " + getName());
-        System.out.println("NRIC/FIN: " + getNricFin());
-        System.out.println("Contact Information: " + getContact());
-        System.out.println("Mailing Address: " + getAddress());
-        System.out.println("Occupation: " + getOccupation());
-        System.out.println("Company Name: " + getCompanyName());
-        System.out.println("Company Business Address: " + getCompanyAddress());
-        // exact job duties is in the form, but can dont incl.
+    public void displayInsrPatient() {
+        System.out.format("Patient ID: %s%n", patientId);
+        System.out.format("Name of Insured/Covered Member: %s%n", name);
+        System.out.format("NRIC/FIN: %s%n", nricFin);
+        System.out.format("Contact Information: %s%n", contact);
+        System.out.format("Mailing Address: %s%n", address);
+        System.out.format("Occupation: %s%n", occupation);
+        System.out.format("Company Name: %s%n", companyName);
+        System.out.format("Company Business Address: %s%n", companyAddress);
     }
 
-        //create an insurance grouping information (all the information needed for insurance claim)
-        //if there is a shared method (example displayInfo) for all the extend class, do the super method
+    //create an insurance grouping information (all the information needed for insurance claim)
+    //if there is a shared method (example displayInfo) for all the extend class, do the super method
 }
+
 
