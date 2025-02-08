@@ -6,7 +6,6 @@ import java.time.LocalDate;
  * Represents a general human entity in the insurance system.
  * This serves as a base class for patients, doctors and other human-related roles.
  */
-
 public abstract class Human {
 
     /** The name of the person. */
@@ -71,27 +70,7 @@ public abstract class Human {
         this.sex = sex;
         this.bloodType = bloodType;
         this.isVaccinated = isVaccinated;
-
     }
-
-    /**
-     * Retrieves the name of the person.
-     *
-     * @return The name of the person.
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Retrieves the date of birth of the person.
-     *
-     * @return The date of birth of the person.
-     */
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
-    }
-
 
     /**
      * Retrieves the NRIC/FIN (identification number) of the person.
@@ -103,45 +82,11 @@ public abstract class Human {
     }
 
     /**
-     * Retrieves the marital status of the person.
-     *
-     * @return The marital status of the person.
+     * Displays the contact information of the person.
+     * This method delegates the actual display functionality
+     * to the {@code displayContactInfo} method of the {@code Contact} class.
      */
-    public MaritalStatus getMaritalStatus() {
-        return maritalStatus;
-    }
-
-    /**
-     * Retrieves the residential status of the person.
-     *
-     * @return The residential status of the person.
-     */
-    public ResidentialStatus getResidentialStatus() {
-        return residentialStatus;
-    }
-
-
-    public String getNationality() {
-        return nationality;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public Contact getContact() {
-        return contact;
-    }
-
-    public Sex getSex() {
-        return sex;
-    }
-
-    public BloodType getBloodType() {
-        return bloodType;
-    }
-
-    public boolean isVaccinated() {
-        return isVaccinated;
+    public void displayContactInformation() {
+        contact.displayContactInfo();
     }
 }
