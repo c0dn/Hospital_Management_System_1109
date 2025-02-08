@@ -27,6 +27,7 @@ public abstract class InsurancePolicy {
 
     private Patient policyHolder;
 
+    private double insurancePayout;
     /**
      * Constructs an InsurancePolicy object with the specified details.
      *
@@ -40,7 +41,7 @@ public abstract class InsurancePolicy {
      */
     public InsurancePolicy(String policyId, String insuranceProvider, double deductible,
                            InsuranceStatus insuranceStatus, LocalDate startDate, LocalDate endDate,
-                           double coInsuranceRate, double premiumAmount, Patient policyHolder) {
+                           double coInsuranceRate, double premiumAmount, Patient policyHolder, double insurancePayout) {
 
         this.policyId = policyId;
         this.insuranceProvider = insuranceProvider;
@@ -51,6 +52,7 @@ public abstract class InsurancePolicy {
         this.coInsuranceRate = coInsuranceRate;
         this.premiumAmount = premiumAmount;
         this.policyHolder = policyHolder;
+        this.insurancePayout = insurancePayout;
     }
 
     // getters
@@ -107,6 +109,9 @@ public abstract class InsurancePolicy {
 
     public Patient getPolicyholder() { return policyHolder; }
 
+    public double getInsurancePayout() {
+        return insurancePayout;
+    }
 
     public void displayPolicyDetails(){
         System.out.format("Name: %s%n", policyHolder);
