@@ -1,9 +1,9 @@
 package humans;
 
-import medical.MedicalRecord;
-
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Represents a patient in the insurance system.
@@ -15,23 +15,85 @@ public class Patient extends Human {
     private final String patientId;
     /** A list of the patient's drug allergies. */
     private List<String> drugAllergies;
-    /** A list of the patient's medical records. */
-    private List<MedicalRecord> medicalRecords;
     /** The next of kin's name. */
     private String nokName;
     /** The next of kin's residential address. */
     private String nokAddress;
     /** The relationship of the patient and the next of kin. */
-    private String nokRelation;
+    private NokRelation nokRelation;
     /** The patient's height in metres. */
     private double height; // in meters
     /** The patient's weight in kilograms. */
     private double weight; // in kilograms
-    //    /** The patient's insurance policy details. */
-//    private InsurancePolicy insurancePolicy;
     private String occupation;
     private String companyName;
     private String companyAddress;
+
+
+    public static class Generator {
+        private static final Random random = new Random();
+        private static final String[] DRUG_ALLERGIES = {
+                "Penicillin", "Aspirin", "Ibuprofen", "Sulfa", "None"
+        };
+
+        public static Patient createRandom(String patientId) {
+            String name = DataGenerator.getRandomElement(DataGenerator.SG_NAMES);
+            LocalDate dob = LocalDate.now().minusYears(20 + random.nextInt(60));
+
+            String nricPrefix = dob.getYear() < 2000 ? "S" : "T";
+            String nricFin = String.format("%s%07d%c",
+                    nricPrefix, random.nextInt(1000000, 9999999),
+                    (char)('A' + random.nextInt(26)));
+
+            List<String> allergies = List.of(DRUG_ALLERGIES[random.nextInt(DRUG_ALLERGIES.length)]);
+
+            NokRelation nokRelation = DataGenerator.getRandomEnum(NokRelation.class);
+            String nokName = generateNokName(name, nokRelation);
+
+            return new Patient(
+                    name,
+                    dob,
+                    nricFin,
+                    DataGenerator.getRandomEnum(MaritalStatus.class),
+                    DataGenerator.getRandomEnum(ResidentialStatus.class),
+                    "Singaporean",
+                    DataGenerator.generateSGAddress(),
+                    DataGenerator.generateContact(),
+                    DataGenerator.getRandomEnum(Sex.class),
+                    DataGenerator.getRandomEnum(BloodType.class),
+                    random.nextBoolean(),
+                    patientId,
+                    allergies,
+                    nokName,
+                    DataGenerator.generateSGAddress(),
+                    nokRelation,
+                    150 + random.nextDouble() * 50,
+                    50 + random.nextDouble() * 50,
+                    DataGenerator.getRandomElement(DataGenerator.OCCUPATIONS),
+                    DataGenerator.getRandomElement(DataGenerator.SG_COMPANIES),
+                    DataGenerator.generateCompanyAddress()
+            );
+        }
+
+        private static String generateNokName(String patientName, NokRelation relation) {
+            if (relation == NokRelation.SPOUSE || relation == NokRelation.PARENT ||
+                    relation == NokRelation.CHILD || relation == NokRelation.SIBLING) {
+                String[] nameParts = patientName.split(" ");
+                return DataGenerator.getRandomElement(DataGenerator.SG_NAMES).split(" ")[0] +
+                        " " + nameParts[nameParts.length - 1];
+            }
+            return DataGenerator.getRandomElement(DataGenerator.SG_NAMES);
+        }
+
+        public static List<Patient> createRandom(int count) {
+            List<Patient> patients = new ArrayList<>();
+            for (int i = 0; i < count; i++) {
+                patients.add(createRandom("P" + (i + 1000)));
+            }
+            return patients;
+        }
+    }
+
 
 
     /**
@@ -50,22 +112,18 @@ public class Patient extends Human {
      * @param isVaccinated Indicates if the patient is vaccinated.
      * @param patientId The patient's unique ID.
      * @param drugAllergies A list of the patient's drug allergies.
-     * @param medicalRecords A list of the patient's medical records.
      * @param nokName The next of kin's name.
      * @param nokAddress The next of kin's residential address.
      * @param nokRelation The relationship between the patient and the next of kin.
      * @param height The patient's height in metres.
      * @param weight The patient's weight in kilograms.
      */
-    
-
     public Patient(String name, LocalDate dateOfBirth, String nricFin,
                    MaritalStatus maritalStatus, ResidentialStatus residentialStatus,
                    String nationality, String address, Contact contact,
                    Sex sex, BloodType bloodType, boolean isVaccinated,
-                   String patientId, List<String> drugAllergies,
-                   List<MedicalRecord> medicalRecords, String nokName,
-                   String nokAddress, String nokRelation,
+                   String patientId, List<String> drugAllergies, String nokName,
+                   String nokAddress, NokRelation nokRelation,
                    double height, double weight,
                    String occupation, String companyName, String companyAddress) {
 
@@ -74,7 +132,6 @@ public class Patient extends Human {
 
         this.patientId = patientId;
         this.drugAllergies = drugAllergies;
-        this.medicalRecords = medicalRecords;
         this.nokName = nokName;
         this.nokAddress = nokAddress;
         this.nokRelation = nokRelation;
@@ -89,9 +146,6 @@ public class Patient extends Human {
         return patientId;
     }
 
-    public List<MedicalRecord> getMedicalRecords() {
-        return medicalRecords;
-    }
 
     public void displayPatientInfo() {
         System.out.format("Name: %s%n", name);
