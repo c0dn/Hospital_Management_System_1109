@@ -1,18 +1,17 @@
 package tests;
 
 import policy.*;
-import humans.Patient;
-import humans.PatientBuilder;
+
 import java.time.LocalDate;
 
-public class InsuranceTest {
+public class HealthInsuranceTest {
     public static void main(String[] args) {
         try {
             System.out.println("\nTesting Insurance Policy functionality...");
 
             // Test: Creating insurance policy using builder with specific data
             System.out.println("\nTest - Creating insurance policy using builder with specific data:");
-            InsurancePolicy specificPolicy = new InsuranceBuilder()
+            InsurancePolicy specificPolicy = new HealthInsuranceBuilder()
                     .insuranceName("AIA HealthShield Gold (HSG) Max")
                     .policyId("POL123456")
                     .provider("AIA")
@@ -24,6 +23,7 @@ public class InsuranceTest {
                     .coInsuranceRate(0.05)
                     .premium(1199.00)
                     .payout(25000.0)
+                    .hospitalCharges(6000)
                     .build();
 
             specificPolicy.displayPolicyDetails();
