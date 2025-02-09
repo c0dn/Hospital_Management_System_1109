@@ -8,9 +8,14 @@ import java.time.LocalDate;
 public class CriticalIllnessInsurance extends InsurancePolicy {
     private CriticalIllnessType coveredIllness;
 
-    public CriticalIllnessInsurance(String policyId, String insuranceProvider, double deductible, InsuranceStatus insuranceStatus, LocalDate startDate, LocalDate endDate, double coInsuranceRate, double premiumAmount, Patient policyHolder, double insurancePayout, CriticalIllnessType coveredIllness) {
-        super(policyId, insuranceProvider, deductible, insuranceStatus, startDate, endDate, coInsuranceRate, premiumAmount, policyHolder, insurancePayout);
+    public CriticalIllnessInsurance(String policyId, String insuranceProvider, double deductible,
+                                    InsuranceStatus insuranceStatus, LocalDate startDate, LocalDate endDate,
+                                    double coInsuranceRate, double premiumAmount, double insurancePayout,
+                                    String insuranceName, String insuranceDescription, CriticalIllnessType coveredIllness) {
+        super(policyId, insuranceProvider, deductible, insuranceStatus, startDate, endDate, coInsuranceRate, premiumAmount, insurancePayout, insuranceName, insuranceDescription);
         this.coveredIllness = coveredIllness;
+
+
     }
 
     @Override

@@ -1,13 +1,12 @@
 package policy;
-import humans.Patient;
 import java.time.LocalDate;
 
 public class AccidentInsurance extends InsurancePolicy {
     private AccidentsType accidents;
     private double allowance;
 
-    public AccidentInsurance(String policyId, String insuranceProvider, double deductible, InsuranceStatus insuranceStatus, LocalDate startDate, LocalDate endDate, double coInsuranceRate, double premiumAmount, Patient policyHolder, double insurancePayout, AccidentsType accidents, double allowance) {
-        super(policyId, insuranceProvider, deductible, insuranceStatus, startDate, endDate, coInsuranceRate, premiumAmount, policyHolder, insurancePayout);
+    public AccidentInsurance(String policyId, String insuranceProvider, double deductible, InsuranceStatus insuranceStatus, LocalDate startDate, LocalDate endDate, double coInsuranceRate, double premiumAmount, double insurancePayout, AccidentsType accidents, double allowance, String insuranceName, String insuranceDescription) {
+        super(policyId, insuranceProvider, deductible, insuranceStatus, startDate, endDate, coInsuranceRate, premiumAmount, insurancePayout, insuranceName,  insuranceDescription);
         this.accidents = accidents;
         this.allowance = allowance;
     }

@@ -1,5 +1,4 @@
 package policy;
-import humans.Patient;
 import java.time.LocalDate;
 
 public class HealthInsurance extends InsurancePolicy {
@@ -7,9 +6,9 @@ public class HealthInsurance extends InsurancePolicy {
 
     public HealthInsurance(String policyId, String insuranceProvider, double deductible, InsuranceStatus insuranceStatus,
                            LocalDate startDate, LocalDate endDate, double coInsuranceRate,
-                           double premiumAmount, Patient policyHolder, double hospitalCharges , double insurancePayout) {
+                           double premiumAmount, double hospitalCharges , double insurancePayout, String insuranceName, String insuranceDescription) {
         super(policyId, insuranceProvider, deductible, insuranceStatus, startDate, endDate,
-                coInsuranceRate, premiumAmount, policyHolder, insurancePayout);
+                coInsuranceRate, premiumAmount, insurancePayout, insuranceName, insuranceDescription);
 
         this.hospitalCharges = hospitalCharges;
     }
