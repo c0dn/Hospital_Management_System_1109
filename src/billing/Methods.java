@@ -1,4 +1,4 @@
-package billing;
+/* package billing;
 
 import policy.InsuranceStatus;
 import wards.Ward;
@@ -10,13 +10,13 @@ import java.util.Map;
 /**
  * Handles the calculations of the medical bills.
  * The class includes calculations for total charges, insurance coverage and total payable.
- */
+ /*
 
 //currently missing diagnosisCharges, consultationFees, medicationCosts, procedureCharges
 //submitting insurance claim should be referencing total charges (invoice) and insuranceCoverage
 //approved insurance claim should be referencing total payable and insuranceCoverage
 
-public class Methods {
+/* public class Methods {
     private static Map<String, Bill> billingRecords = new HashMap<>();
 
     public static void generateBill(Patient patient, Ward ward, InsurancePolicy insurancePolicy, int days,
@@ -43,7 +43,7 @@ public class Methods {
         System.out.println("Ward: " + " (Daily Rate: $" + dailyRate + ")");
         System.out.println("Insurance Provider: " + insuranceProvider + " (Policy ID: " + policyId + ", Status: " + insuranceStatus + ")");
         System.out.println("Total Charges: $" + totalCharge);
-        System.out.println("Deductible amoun: $" + deductible);
+        System.out.println("Deductible amount: $" + deductible);
         System.out.println("Insurance Coverage: $" + insuranceCoverage);
         System.out.println("Amount Payable by Patient: $" + totalPayable);
 
@@ -60,4 +60,4 @@ public class Methods {
     public static Bill displayPatientBill(String patientId) {
         return billingRecords.get(patientId);
     }
-}
+} */

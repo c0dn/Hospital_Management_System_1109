@@ -7,7 +7,7 @@ import java.time.LocalDate;
  * It contains details such as insurance provider name, deductible and expiry date.
  */
 
-public abstract class InsurancePolicy {
+public class InsurancePolicy {
     /** Unique identifier for the insurance policy. */
     private final String policyId;
     /** Name of the insurance provider issuing the policy. */
