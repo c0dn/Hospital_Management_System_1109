@@ -114,12 +114,11 @@ public class InsurancePolicy {
     }
 
     public void displayPolicyDetails(){
-        System.out.format("Name: %s%n", policyHolder);
-        System.out.format("Policy ID: %s%n", policyId);
-        System.out.format("Insurance Provider: %s%n", insuranceProvider);
-        System.out.format("Insurance Status: %s%n", insuranceStatus);
-        System.out.format("Start Date: %s%n", startDate);
-        System.out.format("End Date: %s%n", endDate);
-        System.out.format("Premium Amount: $%.2f%n", premiumAmount);
+        policyHolder.displayInsrPatient();
+
+        System.out.printf("\n%-13s %-30s %-18s %-11s %-14s %-18s%n",
+                "Policy ID", "Insurance Provider", "Insurance Status", "Start Date", "End Date", "Premium Amount");
+        System.out.printf("%-13s %-30s %-18s %-11s %-14s %-18s%n",
+                policyId, insuranceProvider, insuranceStatus, startDate, endDate, premiumAmount);
     }
 }

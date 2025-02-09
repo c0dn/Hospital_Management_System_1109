@@ -2,18 +2,16 @@ package tests;
 
 import policy.*;
 import humans.Patient;
-import humans.PatientBuilder;  // Import the PatientBuilder
+import humans.PatientBuilder;
 import java.time.LocalDate;
 
 public class InsuranceTest {
     public static void main(String[] args) {
         try {
-            System.out.println("Testing Insurance Policy functionality...\n");
+            System.out.println("\nTesting Insurance Policy functionality...\n");
 
-            // Use the PatientBuilder to create a Patient
-            // Ignore the name for now, just use a valid birthdate
             Patient policyHolder = new PatientBuilder()
-                    .birthDate(LocalDate.of(1990, 5, 15))  // Provide birthdate
+                    .withRandomData("PAT123456")
                     .build();
 
             // Test 1: Creating insurance policy using builder with random data
@@ -21,6 +19,7 @@ public class InsuranceTest {
             InsurancePolicy randomPolicy = new InsuranceBuilder()
                     .withRandomData(policyHolder)
                     .build();
+
             randomPolicy.displayPolicyDetails();
 
             // Test 2: Creating insurance policy using builder with specific data
@@ -37,6 +36,7 @@ public class InsuranceTest {
                     .payout(25000.0)
                     .policyHolder(policyHolder)
                     .build();
+
             specificPolicy.displayPolicyDetails();
 
         } catch (Exception e) {
@@ -45,3 +45,4 @@ public class InsuranceTest {
         }
     }
 }
+

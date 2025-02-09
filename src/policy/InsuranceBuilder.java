@@ -8,7 +8,6 @@ public class InsuranceBuilder {
 
     private static final Random random = new Random();
 
-    // Fields for the insurance policy
     private String policyId;
     private String provider;
     private double deductible;
@@ -23,7 +22,6 @@ public class InsuranceBuilder {
     // Constructor
     public InsuranceBuilder() {}
 
-    // Chaining methods for setting the fields
     public InsuranceBuilder policyId(String policyId) {
         this.policyId = policyId;
         return this;
@@ -74,7 +72,6 @@ public class InsuranceBuilder {
         return this;
     }
 
-    // Method to set random values for all the fields
     public InsuranceBuilder withRandomData(Patient policyHolder) {
         this.policyId = generatePolicyId();
         this.provider = getRandomInsuranceProvider();
@@ -89,8 +86,6 @@ public class InsuranceBuilder {
         this.policyHolder = policyHolder;
         return this;
     }
-
-    // Helper methods to generate random values for each field
 
     private static String generatePolicyId() {
         return String.format("POL%06d", random.nextInt(1000000));
@@ -138,7 +133,6 @@ public class InsuranceBuilder {
         return values[random.nextInt(values.length)];
     }
 
-    // Build method to create the final InsurancePolicy object
     public InsurancePolicy build() {
         validateFields();
 
@@ -148,7 +142,6 @@ public class InsuranceBuilder {
         );
     }
 
-    // Validate all required fields
     private void validateFields() {
         if (policyId == null || policyId.trim().isEmpty()) {
             throw new IllegalStateException("Policy ID is required");

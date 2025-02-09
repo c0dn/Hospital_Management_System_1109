@@ -58,7 +58,6 @@ public class Patient extends Human {
         this.companyAddress = builder.companyAddress;
     }
 
-
     public static PatientBuilder builder() {
         return new PatientBuilder();
     }
@@ -66,7 +65,6 @@ public class Patient extends Human {
     public String getPatientId() {
         return patientId;
     }
-
 
     public void displayPatientInfo() {
         System.out.printf("\n\n%-20s%-15s%-20s%-15s%-15s%-25s%-20s%-20s%-60s%n",
@@ -83,8 +81,8 @@ public class Patient extends Human {
                 patientId, name, nricFin, contact, address, occupation, companyName, companyAddress);
     }
 
-    //create an insurance grouping information (all the information needed for insurance claim)
-    //if there is a shared method (example displayInfo) for all the extend class, do the super method
+    @Override
+    public String toString() {
+        return "Patient Name: " + name + ", Patient ID: " + patientId;
+    }
 }
-
-
