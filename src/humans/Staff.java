@@ -22,35 +22,27 @@ public class Staff extends Human {
     /** The department of the staff. */
     private String department;
 
+
     /**
-     * Constructs a Staff object with the specified details.
+     * Constructs a Staff object using the provided StaffBuilder.
+     * This constructor initializes the attributes of the Staff class, including staff-specific
+     * details such as staff ID, title, and department, based on the values provided in the builder.
+     * The constructor also leverages the parent Human class constructor to set generic human
+     * attributes such as name, date of birth, and contact information.
+     * Package-private constructor
      *
-     * @param name The staff member's full name.
-     * @param dateOfBirth The staff member's date of birth.
-     * @param nricFin The staff member's NRIC or FIN number.
-     * @param maritalStatus The staff member's marital status.
-     * @param residentialStatus The staff member's residential status.
-     * @param nationality The staff member's contact details.
-     * @param address The staff member's residential address.
-     * @param contact The staff member's contact details.
-     * @param sex The staff member's sex.
-     * @param bloodType The staff member's blood type.
-     * @param isVaccinated Indicates if the staff member is vaccinated.
-     * @param staffId The unique identifier for the staff.
-     * @param title The staff member's job title.
-     * @param department The department the staff member belongs to.
+     * @param builder The builder instance of type {@code StaffBuilder<?>} used to initialize
+     *                the Staff object.
+     *                The builder provides the data necessary for populating
+     *                the staff-specific and inherited fields.
      */
-    public Staff(String name, LocalDate dateOfBirth, String nricFin, MaritalStatus maritalStatus,
-                 ResidentialStatus residentialStatus, String nationality, String address, Contact contact,
-                 Sex sex, BloodType bloodType, boolean isVaccinated, String staffId, String title, String department) {
-
-        super(name, dateOfBirth, nricFin, maritalStatus, residentialStatus, nationality, address,
-                contact, sex, bloodType, isVaccinated);
-
-        this.staffId = staffId;
-        this.title = title;
-        this.department = department;
+    Staff(StaffBuilder<?> builder) {
+        super(builder);
+        this.staffId = builder.staffId;
+        this.title = builder.title;
+        this.department = builder.department;
     }
+
 
     /**
      * Displays staff information.

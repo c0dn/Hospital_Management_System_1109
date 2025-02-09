@@ -167,4 +167,16 @@ public class MedicalRecord {
      * @return A list of names of attending nurses.
      */
     public List<String> getAttendingNurse() { return attendingNurse; }
+
+    public void displayMedicalRecord() {
+        System.out.printf("%-20s %-20s %-15s %-20s %-20s %-20s %-15s %-20s %-20s %-20s %-20s%n",
+                "Procedure Code", "Date of Visit", "Type of Visit", "Medication", "Drug Allergy", "Medical History", "Patient", "Attending Doctor", "Medical Record ID", "Ward", "Healthcare Provider");
+
+        System.out.printf("%-20s %-20s %-15s %-20s %-20s %-20s %-15s %-20s %-20s %-20s %-20s%n",
+                procedureCode, dateOfVisit, typeOfVisit, String.join(", ", medication),
+                String.join(", ", drugAllergy), String.join(", ", medicalHistory),
+                patient.getPatientId(), attendingDoctor, medicalRecordId, ward, healthcareProvider);
+    }
+
+
 }
