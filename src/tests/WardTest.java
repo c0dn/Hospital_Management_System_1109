@@ -27,21 +27,28 @@ public class WardTest {
             System.out.println("Number of Beds: " + generalWard.getBeds().size());
 
             // Test 2: Create an ICU Ward
-            System.out.println("\nTest 2 - Creating ICU Ward Class A:");
-            Ward icuWard = WardFactory.getWard("ICU Ward", WardClassType.ICU_CLASS_A);
+            System.out.println("\nTest 2 - Creating ICU Ward:");
+            Ward icuWard = WardFactory.getWard("ICU", WardClassType.ICU);
             System.out.println("Ward Name: " + icuWard.getWardName());
             System.out.println("Daily Rate: $" + icuWard.getDailyRate());
             System.out.println("Number of Beds: " + icuWard.getBeds().size());
 
-            // Test 3: Assign a patient to a bed
-            System.out.println("\nTest 3 - Assigning patient to bed:");
+            // Test 3: Create a Day Surgery Ward
+            System.out.println("\nTest 3 - Creating Day Surgery Seater Ward:");
+            Ward daySurgeryWard = WardFactory.getWard("Day Surgery", WardClassType.DAYSURGERY_CLASS_SINGLE);
+            System.out.println("Ward Name: " + daySurgeryWard.getWardName());
+            System.out.println("Daily Rate: $" + daySurgeryWard.getDailyRate());
+            System.out.println("Number of Beds: " + daySurgeryWard.getBeds().size());
+
+            // Test 4: Assign a patient to a bed
+            System.out.println("\nTest 4 - Assigning patient to bed:");
             Bed bed = generalWard.getBeds().get(1);
             Patient patient = Patient.builder().withRandomData("P1002").build();
             bed.assignPatient(patient);
             System.out.println(bed);
 
-            // Test 4: Try invalid ward class
-            System.out.println("\nTest 4 - Testing invalid ward class:");
+            // Test 5: Try invalid ward class
+            System.out.println("\nTest 5 - Testing invalid ward class:");
             try {
                 Ward invalidWard = WardFactory.getWard("Test Ward", null);
             } catch (IllegalArgumentException e) {

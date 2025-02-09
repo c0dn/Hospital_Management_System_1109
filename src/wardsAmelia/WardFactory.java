@@ -6,8 +6,9 @@ public class WardFactory {
             throw new IllegalArgumentException("Ward class cannot be null");
         }
 
-        String wardType = wardClassType.name().split("_")[0];
-        String classType = wardClassType.name().split("_CLASS_")[1];
+        String[] parts = wardClassType.name().split("_CLASS_|_");
+        String wardType = parts[0]; // First part is always the ward type
+        String classType = parts.length > 1 ? parts[1] : ""; // Second part is the class type (if it exists)
 
         // Determine number of beds based on class type
         int numberOfBeds = switch (classType) {
@@ -15,6 +16,10 @@ public class WardFactory {
             case "B1" -> 4;
             case "B2" -> 6;
             case "C" -> 8;
+            case "SEATER" -> 10;
+            case "COHORT" -> 5;
+            case "SINGLE" -> 1;
+            case "" -> 1;
             default -> throw new IllegalArgumentException("Invalid class type: " + classType);
         };
 
@@ -22,7 +27,7 @@ public class WardFactory {
         return switch (wardType) {
             case "LABOUR" -> new LabourWard(name, wardClassType, numberOfBeds);
             case "ICU" -> new ICUWard(name, wardClassType, numberOfBeds);
-            case "DAY" -> new DaySurgeryWard(name, wardClassType, numberOfBeds);
+            case "DAYSURGERY" -> new DaySurgeryWard(name, wardClassType, numberOfBeds);
             case "GENERAL" -> new GeneralWard(name, wardClassType, numberOfBeds);
             default -> throw new IllegalArgumentException("Invalid ward type: " + wardType);
         };
