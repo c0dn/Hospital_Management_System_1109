@@ -1,4 +1,4 @@
-package wardsAmelia;
+package wards;
 
 public enum WardClassType {
     LABOUR_CLASS_A(1500, "Labour Class A"),

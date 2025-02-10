@@ -1,4 +1,4 @@
-package wardsAmelia;
+package wards;
 
 public class WardFactory {
     public static Ward getWard(String name, WardClassType wardClassType) {

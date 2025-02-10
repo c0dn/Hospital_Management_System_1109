@@ -1,8 +1,7 @@
 package tests;
 
-import wardsAmelia.*;
+import wards.*;
 import humans.Patient;
-import java.time.LocalDate;
 
 /**
  * A test class for the Ward system.
