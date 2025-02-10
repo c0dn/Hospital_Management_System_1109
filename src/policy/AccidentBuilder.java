@@ -22,8 +22,8 @@ public class AccidentBuilder extends InsuranceBuilder<AccidentBuilder> {
         return this;
     }
 
-    @Override
-    public AccidentInsurance build() {
+   @Override
+   public AccidentInsurance build() {
         validateFields();
 
         return new AccidentInsurance(

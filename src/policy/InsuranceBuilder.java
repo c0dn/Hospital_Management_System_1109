@@ -79,29 +79,23 @@ public abstract class InsuranceBuilder<T extends InsuranceBuilder<T>> {
     }
 
     protected void validateFields() {
+        if (insuranceName == null || insuranceName.trim().isEmpty()) {
+            throw new IllegalStateException("Insurance name is required");
+        }
         if (policyId == null || policyId.trim().isEmpty()) {
             throw new IllegalStateException("Policy ID is required");
         }
         if (insuranceProvider == null || insuranceProvider.trim().isEmpty()) {
             throw new IllegalStateException("Insurance provider is required");
         }
-        if (deductible <= 0) {
-            throw new IllegalStateException("Deductible must be greater than 0");
+        if (insuranceDescription == null || insuranceDescription.trim().isEmpty()) {
+            throw new IllegalStateException("Insurance description is required");
         }
         if (insuranceStatus == null) {
             throw new IllegalStateException("Insurance status is required");
         }
         if (startDate == null || endDate == null) {
             throw new IllegalStateException("Valid start and end dates are required");
-        }
-        if (coInsuranceRate < 0 || coInsuranceRate > 1) {
-            throw new IllegalStateException("Co-insurance rate must be between 0 and 1");
-        }
-        if (premiumAmount <= 0) {
-            throw new IllegalStateException("Premium amount must be greater than 0");
-        }
-        if (insurancePayout <= 0) {
-            throw new IllegalStateException("Insurance payout must be greater than 0");
         }
     }
 
