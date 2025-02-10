@@ -16,9 +16,14 @@ public class HealthInsurance extends InsurancePolicy {
     @Override
     public void displayPolicyDetails() {
         super.displayPolicyDetails();
-        System.out.format("Co-Insurance Rate: %.2f%%%n", getCoInsuranceRate()* 100);
-        System.out.format("Deductible: $%.2f%n", getDeductible());
-        System.out.format("Hospital Coverage Amount: $%.2f%n", hospitalCharges);
+//        System.out.format("Co-Insurance Rate: %.2f%%%n", getCoInsuranceRate()* 100);
+//        System.out.format("Deductible: $%.2f%n", getDeductible());
+//        System.out.format("Hospital Coverage Amount: $%.2f%n", hospitalCharges);
+        System.out.println("HEALTH INSURANCE");
+        System.out.println("---------------------------------------------------------------------");
+        System.out.printf("%-23s %-15s %-24s%n", "Co-Insurance Rate:", "Deductible:", "Hospital Coverage Amount:");
+        System.out.printf("%-23.2f %-15.2f %-24.2f%n",getCoInsuranceRate()*100, getDeductible(), hospitalCharges);
+        System.out.println("=====================================================================");
 
         //if Claim is less than or equal to deductible = reject claim
         //policy limit has reached = reject claim

@@ -71,12 +71,28 @@ public class Patient extends Human {
     }
 
 
-    public void displayPatientInfo() {
-        System.out.printf("\n\n%-20s%-15s%-20s%-15s%-15s%-25s%-20s%-20s%-60s%n",
-                "Name", "Patient ID", "Date of Birth", "Height", "Weight", "Drug Allergies", "NOK Name", "NOK Relation", "NOK Address");
+    public void displayHuman() {
+//        System.out.printf("\n\n%-20s%-15s%-20s%-15s%-15s%-25s%-20s%-20s%-60s%n",
+//                "Name", "Patient ID", "Date of Birth", "Height", "Weight", "Drug Allergies", "NOK Name", "NOK Relation", "NOK Address");
+//
+//        System.out.printf("%-20s%-15s%-20s%-15.2f%-15.2f%-25s%-20s%-20s%-60s%n",
+//                name, patientId, dateOfBirth, height, weight, String.join(", ", drugAllergies), nokName, nokRelation, nokAddress);
 
-        System.out.printf("%-20s%-15s%-20s%-15.2f%-15.2f%-25s%-20s%-20s%-60s%n",
-                name, patientId, dateOfBirth, height, weight, String.join(", ", drugAllergies), nokName, nokRelation, nokAddress);
+        super.displayHuman();
+        System.out.printf("%n%n");
+        System.out.println("PATIENT DETAILS");
+        System.out.println("---------------------------------------------------------------------");
+
+//        System.out.printf("%nName: " + name);
+        System.out.printf("Patient ID: " + patientId);
+        System.out.printf("\t\tHeight: %3.2f", height);
+        System.out.printf("\t\tWeight: %3.2f", weight);
+        System.out.println("\nDrug Allergies: " + drugAllergies);
+        System.out.println("\nNEXT OF KIN (NOK) DETAILS");
+        System.out.println("---------------------------------------------------------------------");
+        System.out.printf("Name: " + nokName);
+        System.out.printf("\t   Relationship: " + nokRelation);
+        System.out.printf("\n\nAddress: " + nokAddress);
     }
 
     public void displayInsrPatient() {

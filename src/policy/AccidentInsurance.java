@@ -21,11 +21,40 @@ public class AccidentInsurance extends InsurancePolicy {
     // rejection reason
     public void displayPolicyDetails() {
         super.displayPolicyDetails();
-        System.out.format("Covered Accident Type: %s%n", accidents);
+        System.out.println("ACCIDENT INSURANCE");
+        System.out.println("---------------------------------------------------------------------");
         if (accidents == AccidentsType.MEDICAL) {
-            System.out.format("Daily Allowance: $%.2f%n", allowance);
+            System.out.printf("%-27s %-20s%n", "Covered Accident Type:", "Daily Allowance:");
+            System.out.printf("%-27s %-20.2f", accidents, allowance);
         } else {
-            System.out.format("Insurance Payout: $%.2f%n", getInsurancePayout());
+            System.out.printf("%-27s %-20s%n", "Covered Accident Type:", "Insurance Payout:");
+            System.out.printf("%-27s %-20.2f%n",  accidents, getInsurancePayout());
         }
+        System.out.println("=====================================================================");
+        // line
+//        System.out.format("Covered Accident Type: %s%n", accidents);
+//        if (accidents == AccidentsType.MEDICAL) {
+//            System.out.format("Daily Allowance: $%.2f%n", allowance);
+//        } else {
+//            System.out.format("Insurance Payout: $%.2f%n", getInsurancePayout());
+//        }
+//        System.out.printf("%-30s%n", "Covered Accident Type");
+//        System.out.printf("%-30s", accidents);
+
+        // table
+//        if (accidents == AccidentsType.MEDICAL) {
+//            System.out.printf("%-30s %-20.2f", accidents, allowance);
+//        } else {
+//            System.out.printf("%-30s %-20.2f",  accidents, getInsurancePayout());
+//        }
+//    }
+//    // table
+//    public void printHeaders() {
+//        super.printHeaders();
+//        if (accidents == AccidentsType.MEDICAL) {
+//            System.out.printf("%-30s %-20s%n", "Covered Accident Type", "Daily Allowance");
+//        } else {
+//            System.out.printf("%-30s %-20s%n", "Covered Accident Type", "Insurance Payout");
+//        }
     }
 }

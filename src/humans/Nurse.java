@@ -44,8 +44,13 @@ public class Nurse extends Staff{
      * Displays the nurse's Registered Nurse ID (RNID), including the inherited staff details.
      */
     @Override
-    public void displayStaff() {
-        super.displayStaff();
+    public void displayHuman() {
+        super.displayHuman();
+//        System.out.format("RNID: %s%n", rnid);
+
+        System.out.println("\n\nROLE: NURSE");
+        System.out.println("---------------------------------------------------------------------");
         System.out.format("RNID: %s%n", rnid);
+        System.out.println("=====================================================================");
     }
 }

@@ -38,14 +38,14 @@ public class DoctorTest {
                     .department("Cardiology")
                     .mcr("M12345A")
                     .build();
-            doctor1.displayStaff();
+            doctor1.displayHuman();
 
             // Test 2: Create a doctor using builder with random data
             System.out.println("\nTest 2 - Creating doctor using builder with random data:");
             Doctor doctor2 = Doctor.builder()
                     .withRandomBaseData()
                     .build();
-            doctor2.displayStaff();
+            doctor2.displayHuman();
 
             // Test 3: Create another doctor using builder with specific data
             System.out.println("\nTest 3 - Creating doctor using builder with specific data:");
@@ -66,7 +66,7 @@ public class DoctorTest {
                     .department("Neurology")
                     .mcr("M54321B")
                     .build();
-            doctor3.displayStaff();
+            doctor3.displayHuman();
 
         } catch (Exception e) {
             System.err.println("Unexpected error: " + e.getMessage());

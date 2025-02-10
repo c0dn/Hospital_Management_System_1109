@@ -159,13 +159,79 @@ public class InsurancePolicy {
 
     public void displayPolicyDetails() {
 
-        System.out.format("Policy Name: %s%n", insuranceName);
-        System.out.format("Insurance Provider: %s%n", insuranceProvider);
-        System.out.format("Policy ID: %s%n", policyId);
-        System.out.format("Policy Description: %s%n", insuranceDescription);
-        System.out.format("Insurance Status: %s%n", insuranceStatus);
-        System.out.format("Start Date: %s%n", startDate);
-        System.out.format("End Date: %s%n", endDate);
-        System.out.format("Premium Amount: $%.2f%n", premiumAmount);
+        // line
+//        System.out.format("Policy Name: %s%n", insuranceName);
+//        System.out.format("Insurance Provider: %s%n", insuranceProvider);
+//        System.out.format("Policy ID: %s%n", policyId);
+//        System.out.format("Policy Description: %s%n", insuranceDescription);
+//        System.out.format("Insurance Status: %s%n", insuranceStatus);
+//        System.out.format("Start Date: %s%n", startDate);
+//        System.out.format("End Date: %s%n", endDate);
+//        System.out.format("Premium Amount: $%.2f%n", premiumAmount);
+
+        // table
+//        System.out.printf("%-25s %-27s %-15s %-30s %-20s %-12s %-12s %-20.2f", insuranceName, insuranceProvider, policyId,
+//                insuranceDescription, insuranceStatus, startDate, endDate, premiumAmount);
+
+        System.out.printf("%n");
+        System.out.println("=====================================================================");
+        System.out.printf("                       INSURANCE POLICY DETAILS%n");
+        System.out.println("=====================================================================");
+        System.out.println("POLICY DETAILS");
+        System.out.println("---------------------------------------------------------------------");
+        System.out.println("Policy ID: " + policyId);
+        System.out.println("Policy Name: " + insuranceName);
+        System.out.printf("Description: ");
+        wrapTextByWords(insuranceDescription, 50);
+        System.out.printf("%n");
+        System.out.println("INSURANCE DETAILS");
+        System.out.println("---------------------------------------------------------------------");
+        System.out.printf("%-27s %-19s %-14s%n", "Insurance Provider:", "Start Date:", "End Date:");
+        System.out.printf("%-27s %-19s %-14s %n%n", insuranceProvider, startDate, endDate);
+        System.out.printf("%-23s %-20s%n", "Insurance Status:", "Premium Amount:");
+        System.out.printf("%-23s %-15.2f%n%n", insuranceStatus, premiumAmount);
+
+//        System.out.printf("%n");
+//        System.out.println("================================================================================");
+//        System.out.printf("INSURANCE POLICY DETAILS%n");
+//        System.out.println("================================================================================");
+//        System.out.println("INSURANCE DETAILS");
+//        System.out.println("--------------------------------------------------------------------------------");
+//        System.out.printf("%-31s %-27s%n", "Policy Name:", "Insurance Provider:");
+//        System.out.printf("%-31s %-27s%n%n", insuranceName, insuranceProvider);
+//        System.out.printf("%-16s %-14s %-23s %-20s%n", "Start Date:", "End Date:", "Insurance Status:", "Premium Amount:");
+//        System.out.printf("%-16s %-14s %-23s %-15.2f%n%n", startDate, endDate, insuranceStatus, premiumAmount);
+//        System.out.println("POLICY DETAILS");
+//        System.out.println("--------------------------------------------------------------------------------");
+//        System.out.println("Policy ID: " + policyId);
+//        System.out.printf("Description: ");
+//        wrapTextByWords(insuranceDescription, 75);
+//        System.out.printf("%n");
     }
+    //table
+//    public void printHeaders() {
+//        System.out.printf("%-25s %-27s %-15s %-30s %-20s %-12s %-12s %-20s",
+//                "Policy Name", "Insurance Provider", "Policy ID", "Policy Description",
+//                "Insurance Status", "Start Date", "End Date", "Premium Amount");
+//    }
+    public static void wrapTextByWords(String text, int maxLineLength) {
+        String[] words = text.split("\\s+"); // Split text into words
+        StringBuilder line = new StringBuilder();
+
+        for (String word : words) {
+            // Check if adding the next word exceeds maxLineLength
+            if (line.length() + word.length() + 1 > maxLineLength) {
+                System.out.println(line.toString().trim()); // Print current line
+                line.setLength(0); // Clear the line
+            }
+            line.append(word).append(" "); // Add word to line
+        }
+
+        // Print any remaining words in the last line
+        if (!line.isEmpty()) {
+            System.out.println("             " + line.toString().trim());
+        }
+    }
+
+
 }

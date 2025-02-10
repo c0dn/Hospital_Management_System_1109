@@ -21,8 +21,21 @@ public class CriticalIllnessInsurance extends InsurancePolicy {
     @Override
     public void displayPolicyDetails() {
         super.displayPolicyDetails();
-        System.out.format("Covered Illness: %s%n", coveredIllness);
-        System.out.format("Insurance Payout: $%.2f%n", getInsurancePayout());
+//        System.out.format("Covered Illness: %s%n", coveredIllness);
+//        System.out.format("Insurance Payout: $%.2f%n", getInsurancePayout());
+        System.out.println("CRITICAL INSURANCE");
+        System.out.println("---------------------------------------------------------------------");
+            System.out.printf("%-20s %-30s%n", "Insurance Payout:", "Covered Illness:");
+            System.out.printf("%-20.2f %-30s%n", getInsurancePayout(),  coveredIllness);
+        System.out.println("=====================================================================");
+
+//        System.out.println("CRITICAL INSURANCE");
+//        System.out.println("-----------------------------------------------------------------");
+//        System.out.printf("%-27s%n", "Covered Illness:");
+//        System.out.printf("%-27s%n%n",  coveredIllness);
+//        System.out.printf("%-20s%n", "Insurance Payout:");
+//        System.out.printf("%-20.2f%n", getInsurancePayout());
+//        System.out.println("=================================================================");
     }
     //if not critical illness = reject claim
 }
