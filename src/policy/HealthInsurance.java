@@ -4,13 +4,15 @@ import java.time.LocalDate;
 public class HealthInsurance extends InsurancePolicy {
     private double hospitalCharges;
 
-    public HealthInsurance(String policyId, String insuranceProvider, double deductible, InsuranceStatus insuranceStatus,
-                           LocalDate startDate, LocalDate endDate, double coInsuranceRate,
-                           double premiumAmount, double hospitalCharges , double insurancePayout, String insuranceName, String insuranceDescription) {
-        super(policyId, insuranceProvider, deductible, insuranceStatus, startDate, endDate,
-                coInsuranceRate, premiumAmount, insurancePayout, insuranceName, insuranceDescription);
-
-        this.hospitalCharges = hospitalCharges;
+    /**
+     * Package-private constructor that accepts only a HealthInsuranceBuilder
+     * to enforce the builder pattern.
+     *
+     * @param builder The builder object containing initialization data
+     */
+    HealthInsurance(HealthInsuranceBuilder builder) {
+        super(builder);
+        this.hospitalCharges = builder.hospitalCharges;
     }
 
     @Override

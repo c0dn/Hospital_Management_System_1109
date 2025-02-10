@@ -3,7 +3,7 @@ package medical;
 import billing.BillableItem;
 import humans.Doctor;
 import humans.Nurse;
-import wardsAmelia.Ward;
+import wards.Ward;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

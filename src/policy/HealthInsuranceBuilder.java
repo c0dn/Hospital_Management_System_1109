@@ -1,9 +1,9 @@
 package policy;
 
-import java.time.LocalDate;
-
 public class HealthInsuranceBuilder extends InsuranceBuilder<HealthInsuranceBuilder> {
-    private double hospitalCharges;
+    double hospitalCharges;
+
+    public HealthInsuranceBuilder() {}
 
     @Override
     protected HealthInsuranceBuilder self() {
@@ -16,14 +16,26 @@ public class HealthInsuranceBuilder extends InsuranceBuilder<HealthInsuranceBuil
     }
 
     @Override
-    public HealthInsurance build() {
-        // Validate fields specific to HealthInsurance
-        validateFields();
+    protected void validateFields() {
+        super.validateFields();
+        if (hospitalCharges <= 0) {
+            throw new IllegalStateException("Hospital charges must be greater than 0");
+        }
+    }
 
-        return new HealthInsurance(
-                policyId, insuranceProvider, deductible, insuranceStatus, startDate, endDate,
-                coInsuranceRate, premiumAmount, hospitalCharges, insurancePayout, insuranceName, insuranceDescription
-        );
+    @Override
+    public HealthInsuranceBuilder withRandomBaseData() {
+        super.withRandomBaseData();
+        this.hospitalCharges = dataGenerator.generateHospitalCharges();
+        this.insuranceName = dataGenerator.getRandomHealthInsuranceName();
+        this.insuranceDescription = dataGenerator.generateHealthInsuranceDescription();
+        this.policyId = dataGenerator.generateHealthPolicyId();
+        return self();
+    }
+
+    @Override
+    public HealthInsurance build() {
+        validateFields();
+        return new HealthInsurance(this);
     }
 }
-

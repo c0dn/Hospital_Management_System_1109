@@ -1,7 +1,5 @@
 package humans;
 
-import java.util.Random;
-
 public abstract class StaffBuilder<T extends StaffBuilder<T>> extends HumanBuilder<T> {
     String staffId;
     String title;
@@ -9,7 +7,6 @@ public abstract class StaffBuilder<T extends StaffBuilder<T>> extends HumanBuild
 
     // Package-private constructor
     StaffBuilder() {}
-
 
     public T staffId(String staffId) {
         this.staffId = staffId;
@@ -35,11 +32,8 @@ public abstract class StaffBuilder<T extends StaffBuilder<T>> extends HumanBuild
     public T withRandomBaseData() {
         super.withRandomBaseData();
 
-        // Generate a random staff ID (e.g., "S12345")
-        this.staffId = String.format("S%05d", new Random().nextInt(100000));
-
-        // Use DataGenerator for title and department if available,
-        // or set some default values
+        // Generate a random staff ID using DataGenerator
+        this.staffId = dataGenerator.generateStaffId();
         this.title = "Staff Member";
         this.department = "General";
 
@@ -68,5 +62,4 @@ public abstract class StaffBuilder<T extends StaffBuilder<T>> extends HumanBuild
     // Remove buildStaff() as each concrete builder will implement build()
     @Override
     protected abstract Staff build();
-
 }

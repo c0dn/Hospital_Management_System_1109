@@ -1,12 +1,14 @@
 package policy;
 
 import java.time.LocalDate;
+import utils.DataGenerator;
 
 /**
  * A generic superclass for building different types of insurance policies.
  * @param <T> The type of the subclass builder to enable method chaining.
  */
 public abstract class InsuranceBuilder<T extends InsuranceBuilder<T>> {
+    protected static final DataGenerator dataGenerator = DataGenerator.getInstance();
 
     protected String policyId;
     protected String insuranceProvider;
@@ -20,8 +22,18 @@ public abstract class InsuranceBuilder<T extends InsuranceBuilder<T>> {
     protected String insuranceName;
     protected String insuranceDescription;
 
-    // Self-reference for method chaining
-    protected abstract T self();
+    InsuranceBuilder() {}
+
+    /**
+     * Returns the current instance of the builder class.
+     * Exists so chaining is possible
+     *
+     * @return The current instance of type T.
+     */
+    @SuppressWarnings("unchecked")
+    protected T self() {
+        return (T) this;
+    }
 
     public T policyId(String policyId) {
         this.policyId = policyId;
@@ -97,6 +109,18 @@ public abstract class InsuranceBuilder<T extends InsuranceBuilder<T>> {
         if (startDate == null || endDate == null) {
             throw new IllegalStateException("Valid start and end dates are required");
         }
+    }
+
+    public T withRandomBaseData() {
+        this.insuranceProvider = dataGenerator.getRandomInsuranceCompany();
+        this.deductible = dataGenerator.generateDeductible();
+        this.insuranceStatus = dataGenerator.getRandomEnum(InsuranceStatus.class);
+        this.startDate = LocalDate.now();
+        this.endDate = startDate.plusYears(1);
+        this.coInsuranceRate = dataGenerator.generateCoInsuranceRate();
+        this.premiumAmount = dataGenerator.generatePremium();
+        this.insurancePayout = 100000 + dataGenerator.generatePremium() * 100; // Higher payout based on premium
+        return self();
     }
 
     public abstract InsurancePolicy build();

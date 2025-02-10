@@ -1,13 +1,13 @@
 package policy;
 
-import java.time.LocalDate;
-
 /**
  * A builder class for creating Critical Illness Insurance policies.
  */
 public class CriticalIllnessBuilder extends InsuranceBuilder<CriticalIllnessBuilder> {
 
-    private CriticalIllnessType coveredIllness;
+    CriticalIllnessType coveredIllness;
+
+    public CriticalIllnessBuilder() {}
 
     @Override
     protected CriticalIllnessBuilder self() {
@@ -20,15 +20,26 @@ public class CriticalIllnessBuilder extends InsuranceBuilder<CriticalIllnessBuil
     }
 
     @Override
-    public CriticalIllnessInsurance build() {
-        validateFields();
+    protected void validateFields() {
+        super.validateFields();
         if (coveredIllness == null) {
             throw new IllegalStateException("Covered illness is required for Critical Illness Insurance.");
         }
-        return new CriticalIllnessInsurance(
-                policyId, insuranceProvider, deductible, insuranceStatus, startDate, endDate,
-                coInsuranceRate, premiumAmount, insurancePayout, insuranceName, insuranceDescription, coveredIllness
-        );
+    }
+
+    @Override
+    public CriticalIllnessBuilder withRandomBaseData() {
+        super.withRandomBaseData();
+        this.coveredIllness = dataGenerator.getRandomEnum(CriticalIllnessType.class);
+        this.insuranceName = dataGenerator.getRandomCriticalIllnessName();
+        this.insuranceDescription = dataGenerator.generateCriticalIllnessDescription();
+        this.policyId = dataGenerator.generateCriticalIllnessPolicyId();
+        return self();
+    }
+
+    @Override
+    public CriticalIllnessInsurance build() {
+        validateFields();
+        return new CriticalIllnessInsurance(this);
     }
 }
-

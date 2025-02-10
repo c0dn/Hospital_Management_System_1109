@@ -1,13 +1,9 @@
 package humans;
 
-import java.util.Random;
-
 public class NurseBuilder extends StaffBuilder<NurseBuilder> {
     String rnid;
 
-
     NurseBuilder() {}
-
 
     public NurseBuilder rnid(String rnid) {
         this.rnid = rnid;
@@ -17,8 +13,7 @@ public class NurseBuilder extends StaffBuilder<NurseBuilder> {
     @Override
     public NurseBuilder withRandomBaseData() {
         super.withRandomBaseData();
-        // Generate a random RNID (RN12345B format)
-        this.rnid = String.format("RN%05dB", new Random().nextInt(100000));
+        this.rnid = dataGenerator.generateRNIDNumber();
         this.title = "Nurse";
         this.department = "Nursing";
         return self();

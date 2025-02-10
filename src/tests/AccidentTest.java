@@ -1,16 +1,15 @@
 package tests;
 
-import policy.*;
-
 import java.time.LocalDate;
+import policy.*;
 
 public class AccidentTest {
     public static void main(String[] args) {
         try {
             System.out.println("\nTesting Accident Insurance functionality...");
 
-            // Test: Creating an accident insurance policy using builder with specific data
-            System.out.println("\nTest - Creating accident insurance policy using builder with specific data:");
+            // Test 1: Creating accident insurance policy using builder with specific data
+            System.out.println("\nTest 1 - Creating accident insurance policy with specific data:\n");
             InsurancePolicy specificPolicy = new AccidentBuilder()
                     .insuranceName("AIA Accident Protection")
                     .provider("AIA")
@@ -25,8 +24,25 @@ public class AccidentTest {
                     .allowance(100.0)  // Daily allowance for medical accidents
                     .build();
 
-            // Display policy details
             specificPolicy.displayPolicyDetails();
+
+            // Test 2: Creating accident insurance policy using builder with random data
+            System.out.println("\nTest 2 - Creating accident insurance policy with random data:\n");
+            InsurancePolicy randomPolicy = new AccidentBuilder()
+                    .withRandomBaseData()
+                    .build();
+
+            randomPolicy.displayPolicyDetails();
+
+            // Test 3: Creating multiple random policies to demonstrate variety
+            System.out.println("\nTest 3 - Creating multiple random accident policies:\n");
+            for (int i = 0; i < 3; i++) {
+                System.out.println("\nRandom Policy " + (i + 1) + ":");
+                InsurancePolicy policy = new AccidentBuilder()
+                        .withRandomBaseData()
+                        .build();
+                policy.displayPolicyDetails();
+            }
 
         } catch (Exception e) {
             System.err.println("Unexpected error: " + e.getMessage());

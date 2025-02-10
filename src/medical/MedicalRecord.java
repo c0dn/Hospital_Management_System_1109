@@ -28,8 +28,6 @@ public class MedicalRecord {
     private String procedureCode;
     /** The date on which the patient visited the healthcare facility. */
     private LocalDate dateOfVisit;
-    /** The type of visit, such as inpatient or outpatient. */
-    private TypeOfVisit typeOfVisit;
     /** A list of prescribed medications during the visit. */
     private List<String> medication;
     /** A list of drug allergies that the patient has. */
@@ -54,7 +52,6 @@ public class MedicalRecord {
      *
      * @param procedureCode      The medical procedure code associated with this record.
      * @param dateOfVisit        The date of the patient’s visit.
-     * @param typeOfVisit        The type of visit (e.g., inpatient, outpatient).
      * @param medication         The list of medications prescribed.
      * @param drugAllergy        The list of drug allergies the patient has.
      * @param medicalHistory     The patient's past medical conditions.
@@ -65,14 +62,13 @@ public class MedicalRecord {
      * @param healthcareProvider The healthcare provider responsible for the treatment.
      * @param attendingNurse     The list of nurses attending to the patient.
      */
-    public MedicalRecord(String procedureCode, LocalDate dateOfVisit, TypeOfVisit typeOfVisit,
+    public MedicalRecord(String procedureCode, LocalDate dateOfVisit,
                          List<String> medication, List<String> drugAllergy, List<String> medicalHistory,
                          Patient patient, String attendingDoctor, String medicalRecordId, Ward ward,
                          HealthcareProvider healthcareProvider, List<String> attendingNurse) {
 
         this.procedureCode = procedureCode;
         this.dateOfVisit = dateOfVisit;
-        this.typeOfVisit = typeOfVisit;
         this.medication = medication;
         this.drugAllergy = drugAllergy;
         this.medicalHistory = medicalHistory;
@@ -98,12 +94,6 @@ public class MedicalRecord {
      */
     public LocalDate getDateOfVisit() { return dateOfVisit; }
 
-    /**
-     * Retrieves the type of visit (eg. inpatient, outpatient).
-     *
-     * @return The type of visit as a {@link TypeOfVisit}.
-     */
-    public TypeOfVisit getTypeOfVisit() { return typeOfVisit; }
 
     /**
      * Retrieves the list of medications prescribed during the visit.
@@ -174,7 +164,6 @@ public class MedicalRecord {
         System.out.println("Healthcare Provider: " + (healthcareProvider != null ? healthcareProvider.toString() : "None"));
         System.out.println("Patient: " + (patient != null ? patient.toString() : "None"));
         System.out.println("Date of Visit: " + dateOfVisit);
-        System.out.println("Type of Visit: " + typeOfVisit);
         System.out.println("Procedure Code: " + procedureCode);
         System.out.println("Medications: " + (medication.isEmpty() ? "None" : medication));
         System.out.println("Drug Allergies: " + (drugAllergy.isEmpty() ? "None" : drugAllergy));

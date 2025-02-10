@@ -1,9 +1,11 @@
 package humans;
 
 import java.time.LocalDate;
-import java.util.Random;
+import utils.DataGenerator;
 
 abstract class HumanBuilder<T extends HumanBuilder<T>> {
+    protected static final DataGenerator dataGenerator = DataGenerator.getInstance();
+    
     String name;
     LocalDate dateOfBirth;
     String nricFin;
@@ -18,7 +20,6 @@ abstract class HumanBuilder<T extends HumanBuilder<T>> {
 
     HumanBuilder() {}
 
-
     /**
      * Returns the current instance of the builder class.
      * Exists so chaining is possible
@@ -29,7 +30,6 @@ abstract class HumanBuilder<T extends HumanBuilder<T>> {
     public T self() {
         return (T) this;
     }
-
 
     public T name(String name) {
         this.name = name;
@@ -86,27 +86,18 @@ abstract class HumanBuilder<T extends HumanBuilder<T>> {
         return self();
     }
 
-    private String generateNRIC() {
-        Random random = new Random();
-        String prefix = random.nextBoolean() ? "S" : "T";
-        String numbers = String.format("%07d", random.nextInt(10000000));
-        // Note: This is a simplified NRIC generation, not following actual checksum rules
-        char[] checksum = {'J', 'Z', 'I', 'H', 'G', 'F', 'E', 'D', 'C', 'B', 'A'};
-        return prefix + numbers + checksum[random.nextInt(checksum.length)];
-    }
-
     public T withRandomBaseData() {
-        this.name = DataGenerator.getRandomElement(DataGenerator.SG_NAMES);
-        this.dateOfBirth = LocalDate.now().minusYears(20 + new Random().nextInt(40));
-        this.nricFin = generateNRIC();
-        this.maritalStatus = DataGenerator.getRandomEnum(MaritalStatus.class);
-        this.residentialStatus = DataGenerator.getRandomEnum(ResidentialStatus.class);
+        this.name = dataGenerator.getRandomElement(dataGenerator.getSgNames());
+        this.dateOfBirth = LocalDate.now().minusYears(dataGenerator.generateRandomInt(20, 60)); // Age between 20-60
+        this.nricFin = dataGenerator.generateNRICNumber();
+        this.maritalStatus = dataGenerator.getRandomEnum(MaritalStatus.class);
+        this.residentialStatus = dataGenerator.getRandomEnum(ResidentialStatus.class);
         this.nationality = "Singaporean";
-        this.address = DataGenerator.generateSGAddress();
-        this.contact = DataGenerator.generateContact();
-        this.sex = DataGenerator.getRandomEnum(Sex.class);
-        this.bloodType = DataGenerator.getRandomEnum(BloodType.class);
-        this.isVaccinated = new Random().nextBoolean();
+        this.address = dataGenerator.generateSGAddress();
+        this.contact = dataGenerator.generateContact();
+        this.sex = dataGenerator.getRandomEnum(Sex.class);
+        this.bloodType = dataGenerator.getRandomEnum(BloodType.class);
+        this.isVaccinated = dataGenerator.generateRandomInt(2) == 1; // 50% chance of being vaccinated
         return self();
     }
 

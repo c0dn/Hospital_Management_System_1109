@@ -89,14 +89,14 @@ public class PatientBuilder extends HumanBuilder<PatientBuilder> {
         this.weight = 45 + random.nextDouble() * 55;
 
         // Generate NOK relation and name
-        this.nokRelation = DataGenerator.getRandomEnum(NokRelation.class);
+        this.nokRelation = dataGenerator.getRandomEnum(NokRelation.class);
         this.nokName = generateNokName(this.name, this.nokRelation);
 
         // Generate addresses and other details
-        this.nokAddress = DataGenerator.generateSGAddress();
-        this.occupation = DataGenerator.getRandomOccupation();
-        this.companyName = DataGenerator.getRandomCompanyName();
-        this.companyAddress = DataGenerator.generateSGAddress();
+        this.nokAddress = dataGenerator.generateSGAddress();
+        this.occupation = dataGenerator.getRandomOccupation();
+        this.companyName = dataGenerator.getRandomCompanyName();
+        this.companyAddress = dataGenerator.generateSGAddress();
 
         // Generate drug allergies (0-2 allergies)
         this.drugAllergies.clear();
@@ -116,24 +116,24 @@ public class PatientBuilder extends HumanBuilder<PatientBuilder> {
         switch (relation) {
             case SPOUSE, SIBLING, PARENT -> {
                 // Keep the same family name
-                String[] nokNameParts = DataGenerator.getRandomElement(DataGenerator.SG_NAMES).split(" ");
+                String[] nokNameParts = dataGenerator.getRandomElement(dataGenerator.getSgNames()).split(" ");
                 return nokNameParts[0] + " " + familyName;
             }
             case CHILD, GRANDCHILD -> {
                 // Child/Grandchild should have patient's family name
-                String[] nokNameParts = DataGenerator.getRandomElement(DataGenerator.SG_NAMES).split(" ");
+                String[] nokNameParts = dataGenerator.getRandomElement(dataGenerator.getSgNames()).split(" ");
                 return nokNameParts[0] + " " + familyName;
             }
             case GRANDPARENT -> {
                 // Grandparent might have different family name
-                return DataGenerator.getRandomElement(DataGenerator.SG_NAMES);
+                return dataGenerator.getRandomElement(dataGenerator.getSgNames());
             }
             case GUARDIAN, OTHER -> {
                 // Different family name for non-blood relations
-                return DataGenerator.getRandomElement(DataGenerator.SG_NAMES);
+                return dataGenerator.getRandomElement(dataGenerator.getSgNames());
             }
             default -> {
-                return DataGenerator.getRandomElement(DataGenerator.SG_NAMES);
+                return dataGenerator.getRandomElement(dataGenerator.getSgNames());
             }
         }
     }

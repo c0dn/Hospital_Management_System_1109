@@ -1,5 +1,4 @@
 package policy;
-import humans.Patient;
 import java.time.LocalDate;
 
 /**
@@ -7,7 +6,7 @@ import java.time.LocalDate;
  * It contains details such as insurance provider name, deductible and expiry date.
  */
 
-public class InsurancePolicy {
+public abstract class InsurancePolicy {
     /**
      * Unique identifier for the insurance policy.
      */
@@ -48,32 +47,25 @@ public class InsurancePolicy {
     private String insuranceDescription;
 
     /**
-     * Constructs an InsurancePolicy object with the specified details.
+     * Constructs an InsurancePolicy object using the provided InsuranceBuilder.
+     * Package-private constructor, only accessible by builders in the same package.
      *
-     * @param policyId          Unique identifier for the insurance policy.
-     * @param insuranceProvider Name of the insurance provider.
-     * @param deductible        Deductible amount before coverage applies.
-     * @param insuranceStatus   Current status of the insurance policy.
-     * @param startDate         Start date of the insurance coverage.
-     * @param endDate           End date of the insurance coverage.
-     * @param coInsuranceRate   Co-insurance rate, representing the cost-sharing percentage.
+     * @param builder The builder object containing the data used to initialize
+     *                the InsurancePolicy instance. Must include all required fields
+     *                as validated by the builder's validateFields method.
      */
-    public InsurancePolicy(String policyId, String insuranceProvider, double deductible,
-                           InsuranceStatus insuranceStatus, LocalDate startDate, LocalDate endDate,
-                           double coInsuranceRate, double premiumAmount, double insurancePayout,
-                           String insuranceName, String insuranceDescription) {
-
-        this.policyId = policyId;
-        this.insuranceProvider = insuranceProvider;
-        this.deductible = deductible;
-        this.insuranceStatus = insuranceStatus;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.coInsuranceRate = coInsuranceRate;
-        this.premiumAmount = premiumAmount;
-        this.insurancePayout = insurancePayout;
-        this.insuranceName = insuranceName;
-        this.insuranceDescription = insuranceDescription;
+    InsurancePolicy(InsuranceBuilder<?> builder) {
+        this.policyId = builder.policyId;
+        this.insuranceProvider = builder.insuranceProvider;
+        this.deductible = builder.deductible;
+        this.insuranceStatus = builder.insuranceStatus;
+        this.startDate = builder.startDate;
+        this.endDate = builder.endDate;
+        this.coInsuranceRate = builder.coInsuranceRate;
+        this.premiumAmount = builder.premiumAmount;
+        this.insurancePayout = builder.insurancePayout;
+        this.insuranceName = builder.insuranceName;
+        this.insuranceDescription = builder.insuranceDescription;
     }
 
     // getters
