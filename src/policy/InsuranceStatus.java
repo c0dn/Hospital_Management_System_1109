@@ -10,5 +10,7 @@ public enum InsuranceStatus {
     /** The insurance policy has expired and is no longer valid. */
     EXPIRED,
     /** The insurance policy has been canceled before its expiration date. */
-    CANCELLED
+    CANCELLED,
+    /** The insurance policy has been cancelled and submitted but not processed. */
+    PENDING
 }

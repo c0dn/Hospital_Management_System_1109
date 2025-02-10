@@ -58,7 +58,6 @@ public class Patient extends Human {
         this.companyAddress = builder.companyAddress;
     }
 
-
     public static PatientBuilder builder() {
         return new PatientBuilder();
     }
@@ -73,28 +72,22 @@ public class Patient extends Human {
 
 
     public void displayPatientInfo() {
-        System.out.format("Name: %s%n", name);
-        System.out.format("Patient ID: %s%n", patientId);
-        System.out.format("Date of Birth: %s%n", dateOfBirth);
-        System.out.format("Height: %.2fm%n", height);
-        System.out.format("Weight: %.2fkg%n", weight);
-        System.out.format("Next of Kin: %s (%s), Address: %s%n", nokName, nokRelation, nokAddress);
-        System.out.format("Drug Allergies: %s%n%n", drugAllergies);
+        System.out.printf("\n\n%-20s%-15s%-20s%-15s%-15s%-25s%-20s%-20s%-60s%n",
+                "Name", "Patient ID", "Date of Birth", "Height", "Weight", "Drug Allergies", "NOK Name", "NOK Relation", "NOK Address");
+
+        System.out.printf("%-20s%-15s%-20s%-15.2f%-15.2f%-25s%-20s%-20s%-60s%n",
+                name, patientId, dateOfBirth, height, weight, String.join(", ", drugAllergies), nokName, nokRelation, nokAddress);
     }
 
     public void displayInsrPatient() {
-        System.out.format("Patient ID: %s%n", patientId);
-        System.out.format("Name of Insured/Covered Member: %s%n", name);
-        System.out.format("NRIC/FIN: %s%n", nricFin);
-        System.out.format("Contact Information: %s%n", contact);
-        System.out.format("Mailing Address: %s%n", address);
-        System.out.format("Occupation: %s%n", occupation);
-        System.out.format("Company Name: %s%n", companyName);
-        System.out.format("Company Business Address: %s%n", companyAddress);
+        System.out.printf("\n\n%-13s %-30s %-11s %-18s %-24s %-14s %-18s %-30s%n",
+                "Patient ID", "Name of Insured", "NRIC/FIN", "Contact", "Mailing Address", "Occupation", "Company Name", "Company Address");
+        System.out.printf("%-13s %-30s %-11s %-18s %-24s %-14s %-18s %-30s%n",
+                patientId, name, nricFin, contact, address, occupation, companyName, companyAddress);
     }
 
-    //create an insurance grouping information (all the information needed for insurance claim)
-    //if there is a shared method (example displayInfo) for all the extend class, do the super method
+    @Override
+    public String toString() {
+        return "Patient Name: " + name + ", Patient ID: " + patientId;
+    }
 }
-
-

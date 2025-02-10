@@ -1,4 +1,4 @@
-package wardsAmelia;
+package wards;
 
 public enum WardClassType {
     LABOUR_CLASS_A(1500, "Labour Class A"),
@@ -6,15 +6,11 @@ public enum WardClassType {
     LABOUR_CLASS_B2(500, "Labour Class B2"),
     LABOUR_CLASS_C(250, "Labour Class C"),
 
-    ICU_CLASS_A(200, "ICU Class A"),
-    ICU_CLASS_B1(1500, "ICU Class B1"),
-    ICU_CLASS_B2(1250, "ICU Class B2"),
-    ICU_CLASS_C(1000, "ICU Class C"),
+    ICU(2000, "ICU"),
 
-    DAY_SURGERY_CLASS_A(300.0, "Day Surgery Class A"),
-    DAY_SURGERY_CLASS_B1(250.0, "Day Surgery Class B1"),
-    DAY_SURGERY_CLASS_B2(200.0, "Day Surgery Class B2"),
-    DAY_SURGERY_CLASS_C(150.0, "Day Surgery Class C"),
+    DAYSURGERY_CLASS_SEATER(300.0, "Day Surgery Seater"),
+    DAYSURGERY_CLASS_COHORT(250.0, "Day Surgery Bed Cohort"),
+    DAYSURGERY_CLASS_SINGLE(200.0, "Day Surgery Bed Single"),
 
     GENERAL_CLASS_A(500, "General Class A"),
     GENERAL_CLASS_B1(250, "General Class B1"),

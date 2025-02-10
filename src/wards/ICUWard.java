@@ -1,4 +1,4 @@
-package wardsAmelia;
+package wards;
 
 public class ICUWard extends AbstractWard{
     public ICUWard(String wardName, WardClassType wardClassType, int numberOfBeds) {

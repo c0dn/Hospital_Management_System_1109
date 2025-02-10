@@ -21,7 +21,7 @@ public class PatientBuilder extends HumanBuilder<PatientBuilder> {
     String companyName;
     String companyAddress;
 
-    PatientBuilder() {}
+    public PatientBuilder() {}
 
     public PatientBuilder patientId(String patientId) {
         this.patientId = patientId;

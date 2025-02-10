@@ -1,4 +1,4 @@
-package wardsAmelia;
+package wards;
 
 import java.util.HashMap;
 import java.util.Map;
