@@ -2,12 +2,10 @@ package wards;
 
 import humans.Patient;
 
-/**
- * Represents a hospital bed assigned to a patient.
- */
-
 public class Bed {
+
     private int bedNumber;
+
     private Patient currentPatient;
 
     public Bed(int bedNumber) {
@@ -19,7 +17,14 @@ public class Bed {
         return currentPatient != null;
     }
 
+
     public void assignPatient(Patient patient) {
         this.currentPatient = patient;
+    }
+
+    @Override
+    public String toString() {
+        String patientName = (currentPatient != null) ? currentPatient.getName() : "No patient assigned";
+        return "Bed " + bedNumber + " - " + patientName;
     }
 }

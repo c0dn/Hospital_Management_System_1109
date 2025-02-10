@@ -26,7 +26,6 @@ public enum Sex {
     /**
      * Gets the string representation of the sex.
      *
-     * @param value The sex value.
      */
     public String getValue() {
         return value;

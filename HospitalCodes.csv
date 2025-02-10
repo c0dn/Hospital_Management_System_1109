@@ -1,0 +1,3760 @@
+code,Name
+5,ALEXANDRA HOSPITAL (INPATIENT)
+10,Institute of Mental Health/Woodbridge Hospital
+15,ALEXANDRA HOSPITAL (OUTPATIENT)
+22,Institute of Mental Health/Woodbridge Hospital
+23,Institute of Mental Health/Woodbridge Hospital
+24,VIEW ROAD HOSPITAL
+30,HEALTH PROMOTION BOARD
+34,COMMUNICABLE DISEASES CENTRE
+50,SINGAPORE NATIONAL EYE CENTRE
+51,TAN TOCK SENG HOSPITAL (INPATIENT)
+52,TAN TOCK SENG HOSPITAL (OUTPATIENT)
+56,SINGAPORE GAMMA KNIFE PTE LTD
+58,NATIONAL DENTAL CENTRE
+67,SINGAPORE GENERAL HOSPITAL PTE LTD (INPATIENT)
+68,SINGAPORE GENERAL HOSPITAL PTE LTD (OUTPATIENT)
+69,CHANGI GENERAL HOSPITAL PTE LTD
+70,CHANGI GENERAL HOSPITAL PTE LTD
+76,KANDANG KERBAU HOSPITAL (INPATIENT)
+77,KANDANG KERBAU HOSPITAL (OUTPATIENT)
+78,NATIONAL UNIVERSITY HOSPITAL (INPATIENT)
+79,NATIONAL UNIVERSITY HOSPITAL (OUTPATIENT)
+91,ALEXANDRA DAY HOSPITAL
+99,CENTRAL PROVIDENT FUND BOARD
+A2,Khoo Teck Puat Hospital
+A3,Khoo Teck Puat Hospital
+A4,Institute of Mental Health (Outpatient)
+A5,Bukit Batok Polyclinic
+A6,Clementi Polyclinic
+A7,Choa Chu Kang Polyclinic
+A8,Jurong Polyclinic
+A9,Pioneer Polyclinic
+AA,Queenstown Polyclinic
+AB,Geylang Polyclinic
+BR,DSC Clinic
+CU,Jurong Medical Centre
+G1,GERIATRIC DAY HOSPITAL AT CGH
+G2,GERIATRIC DAY HOSPITAL AT TTSH
+H1,NATIONAL HEART CENTRE
+H2,NATIONAL CANCER CENTRE
+HY,National Skin Centre
+K3F,RAFFLES HOSPITAL
+K7H,RAFFLES HOSPITAL
+KAD,Hougang Family Medicine Clinic @ Ci Yuan Community Club
+KMO,"NHG Diagnostics - Xray Laboratory, Woodlands Polyclinic"
+KQA,PIONEER POLYCLINIC
+KR6,"NHG DIAGNOSTICS X-RAY LABORATORY, PIONEER POLYCLINIC"
+KRS,"NHG DIAGNOSTICS â€“ XRAY LABORATORY, GEYLANG POLYCLINIC"
+KRT,"NHG DIAGNOSTICS â€“ XRAY LABORATORY, QUEENSTOWN POLYCLINIC"
+KVI,"NHG Diagnostics - Xray Laboratory, Woodlands Polyclinic"
+NGW,NHG DIAGNOSTICS X-RAY BUKIT BATOK POLYCLINIC
+NGX,"NHG Diagnostics - Xray Laboratory, Yishun Polyclinic"
+NGY,"NHG DIAGNOSTICS - X-RAY, HOUGANG POLYCLINIC"
+NGZ,"NHG DIAGNOSTICS - X-RAY, JURONG POLYCLINIC"
+NH0,"NHG DIAGNOSTICS - XRAY LABORATORY, TOA PAYOH POLYCLINIC"
+NH1,"NHG Diagnostics - Xray Laboratory, Woodlands Polyclinic"
+NH2,"NHG Diagnostics - Xray Laboratory, Ang Mo Kio Polyclinic"
+NHH,"NHG DIAGNOSTICS -  X-RAY, CLEMENTI POLYCLINIC"
+NHI,"NHG DIAGNOSTICS - XRAY LABORATORY, CHOA CHU KANG POLYCLINIC"
+NP,NATIONAL HEALTHCARE GROUP POLYCLINIC
+NSE,Gleneagles (CGH Dengue Collab)
+NWY,MENH (TTSH Collab)
+NWZ,PEH (CGH Dengue Collab)
+Q1,Sengkang Hospital Inpatient
+Q2,Sengkang Hospital Outpatient
+Q3,Ng Teng Fong General Hospital Inpatient
+Q4,Ng Teng Fong General Hospital Outpatient
+Q9,Admiralty Medical Centre
+QA,Admiralty Medical Centre
+QB,ALEXANDRA HOSPITAL (INPATIENT)
+QC,ALEXANDRA HOSPITAL (OUTPATIENT)
+SH,HEALTH PROMOTION BOARD
+SP,SINGHEALTH POLYCLINIC
+ZZ,Ministry of Health
+53,RAFFLES HOSPITAL
+55,ST LUKE'S HOSPITAL (CONVALESCENT)
+59,WESTPOINT FAMILY HOSPITAL PTE LTD
+5A,St. Luke's Hospital
+60,MOUNT ELIZABETH HOSPITAL
+61,MOUNT ALVERNIA HOSPITAL
+63,GLENEAGLES HOSPITAL
+64,YOUNGBERG ADVENTIST HOSPITAL
+65,PARKWAY EAST HOSPITAL
+62,Thomson Medical Pte Ltd
+66,JURONG HOSPITAL
+72,KWONG WAI SHIU HOSPITAL
+74,ADAM ROAD HOSPITAL
+A0,Kwong Wai Shiu Hospital
+C2,Kwong Wai Shiu Hospital
+HA,CHRONIC SICK HOSPITAL
+I0,Westpoint Family Hospital
+K3P,"NHG Diagnostics - XRay Laboratory, Ang Mo Kio - Thye Hua Kwan Hospital Ltd"
+K7I,ST ANDREW'S MISSION HOSPITAL CLINIC (SIMEI)
+KC4,RenalTeam Dialysis Centre at Ren Ci Community Hospital
+KD3,Concord Cancer Hospital
+KG1,St. Andrew's Mission Hospital Clinic (Kampong Glam)
+N3V,Ang Mo Kio - Thye Hua Kwan Hospital Geriatric Clinic
+N5F,WESTPOINT FAMILY HOSPITAL
+N7B,Ren Ci Community Hospital (Convalescent)
+NL0,Mount Elizabeth Novena Hospital
+NLG,Fortis Colorectal Hospital
+NMC,ST ANDREW'S MISSION HOSPITAL CLINIC (ELLIOT ROAD)
+NV8,Fortis Surgical Hospital
+NWU,FARRER PARK HOSPITAL
+OM,Kwong Wai Shiu Hospital
+R01,St Luke Hospital For The Elderly Ltd
+R09,Kwong Wai Shiu Hospital DRC
+R11,Bright Vision Hospital DRC
+R28,FARRER PARK HOSPITAL
+W3,ANG MO KIO COMMUNITY HOSPITAL ANG MO KIO SCHCC
+14,Ang Mo Kio -  Thye Hua Kwan Hospital Ltd
+36,St Andrew's Community Hospital
+54,ST LUKE'S HOSPITAL (COMMUNITY)
+AJL,SATA CommHealth Community Hub
+H4,BRIGHT VISION HOSPITAL
+HQ,WEST POINT FAMILY HOSPITAL PTE LTD
+K5J,Yishun Community Hospital
+KLY,St Andrew's Community Hospital
+N7A,Ren Ci Community Hospital (Community)
+NWV,Jurong Community Hospital Outpatient
+NWX,Jurong Community Hospital
+P0,St Andrew's Community Hospital
+Q5,Sengkang Community Hospital (Inpatient)
+Q6,Sengkang Community Hospital (Outpatient)
+R02,St Andrew's Community Hospital
+R20,NTUC Eldercare Co-operative Ltd â€“ Silver Circle (Fengshan)
+R25,Ren Ci Hospital
+R27,Jurong Community Hospital DRC
+R31,Yishun Community Hospital DRC (D37 THERAPY SERVICES)
+0,Silver Cross Medical Centre Pte Ltd
+1,Silver Cross Family Clinic (Serangoon)
+2,Silver Cross Family Clinic
+0A,Lifeline Punggol Medical Clinic
+0B,Lifeline Fernvale Medical Clinic
+0C,Lifeline Loyang Point Medical Clinic
+0D,Healthmark Family Medicine Clinic
+0E,Kee & Partners Family Clinic
+0F,Mutual Healthcare Medical Clinic
+0G,King George's Medical Centre (Hougang) Pte Ltd
+0H,Healthmed Family Clinic (Bukit Panjang)
+0I,Healthmark Family Clinic (Compassvale)
+0J,Healthmark Medical Clinic
+0K,Ubi Medical Clinic
+0L,Lee Medical Associates Pte Ltd
+0M,Frontier Medical Associates
+0N,Frontier Medical Associates
+0O,Frontier Medical Associates
+0P,Sterling Family Clinic
+0Q,My Family Clinic (Jurong West Ext)
+0R,My Family Clinic (SJ) Pte Ltd
+0S,My Family Clinic (Rivervale)
+0T,My Family Clinic (Pioneer)
+0U,My Family Clinic (Tanglin Halt)
+0V,My Family Clinic (Woodlands)
+0W,My Family Clinic (Choa Chu Kang)
+0X,My Little Family Clinic Pte Ltd
+0Y,The Bonham Clinic Pte Ltd
+0Z,Y S Teo Family Clinic & Surgery
+17,Drs Ong Medical Clinic
+1A,Mediview Clinic & Surgery Pte Ltd
+1B,Meridian Medical Centre
+1C,Pacific Family Clinic Pte Ltd
+1D,The Bishan Family Doctors
+1E,E. J. Tan Clinic & Surgery
+1F,Shifa Clinic & Surgery
+1G,E J Family Clinic Pte Ltd
+1H,Cheng Clinic
+1I,Phoon Clinic & Surgery
+1J,Drs Chua & Partners Pte Ltd
+1K,Chin Leong Clinic
+1L,Royal Medical Centre
+1M,G & H Medical Clinic Pte Ltd
+1N,River Of Life Family Clinic
+1O,Chua Medico Clinic LLP
+1P,Sims Drive Medical Clinic
+1Q,Pier Medical Centre
+1R,Cashew Medical & Surgery
+1S,Kim Tian Clinic
+1T,Camry Medical Centre
+1U,Lee & Tan Family Clinic & Surgery
+1V,Meden Clinic & Surgery
+1W,MEI LING CLINIC (TOA PAYOH) LLP
+1X,Nyam Family Clinic
+1Y,Soong Clinic And Surgery
+1Z,T S Wong Clinic & Surgery
+25,Nephrocare Singapore Dialysis Centre
+26,PEOPLE'S DIALYSIS CENTRE
+27,AcuMed Medical Group
+2A,Faith Family Clinic (Jurong)
+2B,Faith Clinic (Rivervale)
+2C,Faith Clinic (Simei)
+2D,Faith Clinic (Toa Payoh)
+2E,Chiew Clinic Pte Ltd
+2F,Gethin-Jones Medical Practice Pte Ltd
+2G,King George's Medical Centre Pte Ltd
+2H,Little Cross Family Clinic Pte Ltd
+2I,Rochor Centre Clinic
+2J,Temasek Clinic and Surgery
+2K,Universal Medical Clinic
+2L,Woodlands Family Clinic
+2M,Lifeline Bishan Medical Clinic
+2N,Lifeline Neighbourhood Medical Clinic
+2O,Lifeline Yishun Ring Medical Clinic
+2P,Care Medical Clinic
+2Q,Chern Medical Clinic
+2R,JW Corporation Clinic
+2S,Kho Clinic
+2T,Ko Family Clinic
+2U,Public Medical Clinic & Surgery
+2V,S T Medical Centre
+2W,Tan Lee Clinic & Surgery
+2X,Yao Medical Clinic
+2Y,"Drs Trythall, Hoy, Davies (Pte) Ltd"
+2Z,Everhealth Family Clinic & Surgery
+31,National Clinic
+32,Healthmark Pioneer Mall Clinic
+33,BALESTIER MEDICAL CENTRE PTE LTD
+35,Pandan Clinic Pte Ltd
+37,Shenton Family Medical Clinic (Bedok South)
+38,Shenton Family Medical Clinic (Bukit Gombak)
+39,Shenton Family Medical Clinic (Jurong East)
+3A,Shenton Family Medical Clinic (Serangoon)
+3B,Shenton Family Medical Clinic (Bedok Reservoir)
+3C,Eastern Clinic & Surgery Pte Ltd
+3D,Everhealth Medical Centre
+3E,Lifecare Medical Centre
+3F,Lily Aw Pasir Ris Family Clinic & Surgery
+3G,Lifecare Family Clinic & Surgery
+3H,Victoria Medical Hall Clinic & Surgery
+3I,S Y Lee Clinic
+3J,S Lee Clinic
+3K,Senja Family Clinic
+3L,Lifecare Family Clinic
+3M,MEI LING CLINIC LLP
+3N,Healthspring Family Clinic & Surgery
+3O,B S Chew Clinic
+3P,Diabetic Society of Singapore
+3Q,Excel Family Clinic
+3R,Family Point Clinic & Surgery
+3S,Healthcare Family Clinic & Surgery
+3T,Leong Clinic
+3U,Lim Clinic
+3V,Lim Clinic & Surgery
+3W,Our Family Clinic & Surgery Pte Ltd
+3X,SATA CommHealth Medical Centre - Uttamram
+3Y,Sia & Yeo Family Clinic
+3Z,The Family Clinic
+40,NATIONAL KIDNEY FOUNDATION
+42,Nephrocare S&J Dialysis Centre
+43,GRACE POLYCLINIC
+44,RENAL & DIALYSIS CLINIC (S) PTE LTD
+45,Gleneagles Dialysis International Pte Ltd
+46,RENAL THERAPY CENTRE PTE LTD
+47,IMMANUEL DIALYSIS CENTRE (AMK) PTE LTD
+48,KIDNEY DIALYSIS FOUNDATION LTD PTE LTD
+49,DIALYSIS CENTRE - YOUNGBERG PTE LTD
+4A,F K Lim Family Clinic
+4B,Fraser Medical Centre
+4C,Hafiz Clinic and Surgery
+4D,Healthlink Family Clinic & Surgery
+4E,MHC Medical Center (Amara)
+4F,People's Clinic
+4G,Phoenix Clinic & Surgery
+4H,Singapura Clinic
+4I,Tan Medical Clinic Pte Ltd
+4J,Tan Medicare Clinic Pte Ltd
+4K,Y T Lim Clinic & Surgery
+4L,Yang & Chin Medical & Dental Associates Yang Ing Shyong Medical & Aesthetic Clinic
+4M,C K Tan Family Clinic & Surgery
+4N,Drs Fernandez & Partners
+4O,East Coast Family Clinic
+4P,Healthgain Clinic & Surgery
+4Q,Koh Clinic & Surgery Pte Ltd
+4R,Lavender Medical Clinic & Surgery
+4S,Lee Clinic
+4T,Marina Medical Centre (Tiong Bahru)
+4U,Neighbourhood Medical Clinic Pte Ltd
+4V,Oasis Family Clinic
+4W,Dayspring Medical Clinic (Pasir Ris)
+4X,Ridgewood Medical Clinic
+4Y,Rivervale Family Clinic & Surgery
+4Z,S G Clinic Family Practice
+53,RAFFLES HOSPITAL
+55,ST LUKE'S HOSPITAL (CONVALESCENT)
+57,HOME NURSING FOUNDATION
+59,WESTPOINT FAMILY HOSPITAL PTE LTD
+5A,St. Luke's Hospital
+5B,Starcare Clinic And Surgery Pte. Ltd.
+5C,Ama Keng Medical Clinic
+5D,AcuMed Medical Group Central
+5E,The Family Medical Centre
+5F,The Olive Tree Family Clinic & Surgery Pte Ltd
+5G,Wong Clinic
+5H,Woods Medical Clinic Pte Ltd
+5I,Yim Clinic & Surgery
+5J,818 Family Clinic And Surgery
+5K,Bedok Clinic & Surgery (Family Medical Centre)
+5L,Boon Lay Corporation Clinic Pte Ltd
+5M,C & K Family Clinic Pte Ltd
+5N,Chang Clinic
+5O,Yishun Central Medical Clinic
+5P,Grace Clinic & Surgery
+5Q,L & H Polyclinic & Surgery
+5R,Lifecare Family Clinic & Surgery
+5S,Mandarin Medical Centre
+5T,Meridian Medical And Dental Centre
+5U,Premier Clinic & Surgery Pte Ltd
+5V,Tang Family Clinic
+5W,Temasek Medical Centre
+5X,Temasek Medical Centre
+5Y,Temasek Medical Centre
+5Z,Temasek Medical Centre
+60,MOUNT ELIZABETH HOSPITAL
+61,MOUNT ALVERNIA HOSPITAL
+62,Thomson Medical Pte. Ltd
+63,GLENEAGLES HOSPITAL
+64,YOUNGBERG ADVENTIST HOSPITAL
+65,PARKWAY EAST HOSPITAL
+66,JURONG HOSPITAL
+6A,Pacific Medical and Dental Group
+6B,Yap Medical Clinic
+6C,Balestier Dispensary Medical & Surgical Clinic Pte Ltd
+6D,Balkis Family Clinic
+6E,Central Medical Group
+6F,Doctor Jay Medical Centre
+6G,Drs Lim and Chan Clinic
+6H,Drs Lim and Chan Clinic
+6I,Drs Wee & Oh
+6J,Health Partnership Medical Centre
+6K,Hong Family Clinic
+6L,Hougang Clinic
+6M,Huan Clinic
+6N,Hwang & Liang Family Clinic & Surgery
+6O,Hwang & Liang Family Clinic & Surgery
+6P,J J Clinic & Surgery
+6Q,Manhattan Medical Centre
+6R,Rapha Medical Centre
+6S,River Clinic
+6T,Street 21 Clinic (Tampines)
+6U,Tan & Yik Clinic & Surgery
+6V,United Medical Practitioners Pte Ltd
+6W,Vernon Clinic & Surgery
+6X,Winstedt Clinic
+6Y,Bishan Grace Clinic
+6Z,Bukit Batok Medical Clinic
+71,Corporation Clinic (Choa Chu Kang)
+72,KWONG WAI SHIU HOSPITAL
+73,SINGAPORE NURSING HOME
+74,ADAM ROAD HOSPITAL
+7A,Evangel Medical Clinic
+7B,Galilee Clinic
+7C,Goh Clinic & Surgery
+7D,Jo-Lin Family Clinic & Surgery
+7E,Kong Clinic & Surgery Pte Ltd
+7F,Lai Medical Clinic Pte Ltd
+7G,Ler Clinic & Surgery
+7H,Lim Clinic
+7I,Lim Country Clinic
+7J,Medipoint Family Clinic
+7K,Neoh & Ong Medical Clinic
+7L,New Town Clinic Pte Ltd
+7M,Ong Medical Clinic
+7N,Our Family Physician Clinic & Surgery
+7O,Oxford Medical Centre
+7P,Seah Clinic
+7Q,Tampines Medilife Clinic
+7R,Tay Clinic
+7S,The Medical Health Clinic Pte Ltd
+7T,18 Clinic
+7U,911 Family Clinic
+7V,911 Family Clinic
+7W,Albarakah Clinic & Surgery
+7X,A. M. P.M. Family Clinic & Surgery Pte Ltd
+7Y,B L Medical Associates Pte Ltd
+7Z,B L Medical Associates Pte Ltd
+8A,Central Clinic & Surgery (Marine Parade)
+8B,Ong Clinic & Surgery Pte Ltd
+8C,Pacific Medicare Family Clinic Pte Ltd
+8D,Peace Family Clinic & Surgery (At Sembawang Drive)
+8E,S K Tay Clinic & Surgery
+8F,Central Clinic & Surgery (Yishun) (Medical Aesthetics Clinic)
+8G,Trinity Medical Clinic
+8H,W M Wong Cardiac & Medical Clinic
+8I,Advance Clinic & Surgery
+8J,Alliance Clinic & Partners Pte Ltd
+8K,Apex Medical Centre (Jurong) Pte Ltd
+8L,Central Clinic & Surgery (Clementi)
+8M,E C Ng Medical Centre
+8N,Everwell Clinic and Surgery
+8O,Family Medicare Clinic & Surgery
+8P,Jurong East Clinic
+8Q,Khoo Clinic & Surgery
+8R,Marine Parade Clinic
+8S,Marine Terrace Family Clinic
+8T,Medipoint Medical Centre (Punggol branch)
+8U,Neo Medical Centre
+8V,S S Tan Medical Clinic
+8W,Siglap Family Clinic
+8X,Tong Clinic & Surgery
+8Y,United Health Family Clinic & Surgery
+8Z,Yang & Yap Clinic & Surgery Pte Ltd
+90,SNEC EYE ASSOCIATES
+92,ASSISI HOSPICE
+93,Ren Ci Long Term Care Buangkok (Community)
+94,DOVER PARK HOSPICE
+95,APPROVED PRIVATE ONCOLOGY CLINICS
+96,Yeo's Clinic
+97,NTUC Income Insurance Co-Operative Ltd
+98,SMA/APMPS MEDISAVE A/C OFFICE
+9A,Central Health Screening Centre (Medical Aesthetics)
+9B,Chong & Lim Family Clinic
+9C,Simei Medical Centre
+9D,Bedok Medical Centre
+9E,First Medical Clinic & Surgery
+9F,Chai Chee Clinic & Surgery
+9G,Adidah Family Clinic & Surgery
+9H,Balestier Clinic and Health Screening Centre
+9I,Changi Clinic
+9J,Chong Medical Clinic
+9K,Countryside Clinic & Surgery
+9L,Eastern Medical Centre
+9M,Family Healthcare Clinic & Surgery
+9N,Gong Surgery Pte Ltd
+9O,Han Clinic & Surgery
+9P,Keppel Medical Group
+9Q,Lau Clinic & Surgery
+9R,Low Medical Clinic
+9S,Medical Associates Centre
+9T,Orchard Group Clinic
+9U,Premier Healthcare Clinic & Surgery
+9V,Reservoir Road Clinic & Surgery
+9W,S T Medical Clinic
+9X,Springs of Joy Clinic & Surgery
+9Y,Sunshine Family Clinic
+9Z,Thai Shen Family Clinic Pte Ltd
+A0,Kwong Wai Shiu Hospital
+A1,For PMI use
+AC0,EH Medical
+AC1,Jireh Heart centre
+AC2,K2 MEDICAL CLINIC
+AC3,NG JOHN NEUROLOGY PRACTICE
+AC4,Norwood Medical Clinic
+AC5,Fullerton Health @ Bedok Heartbeat
+AC6,ORTHOPAEDIC & HAND MRI (OHM) NOVENA PTE LTD
+AC7,PRECIOUS MEDICAL CLINIC
+AC8,ML've URoCare Center
+AC9,SW1 PLASTIC SURGERY
+ACA,Specialist Women's Clinic
+ACB,Hand Surgery Associates (Farrer Park) Pte Ltd
+ACD,My Family Dental Serangoon
+ACE,Royce Dental Surgery
+ACF,Royce Dental Surgery (TAMPINES BRANCH)
+ACG,Medivale Medical Clinic
+ACH,THE ORCHARD IMAGING CENTRE PTE LTD
+ACI,THE ORCHARD IMAGING CENTRE PTE LTD
+ACK,HealthMatters - The Family Practice
+ACL,i.Medical & i.Aesthetics
+ACM,TPC Medical Clinic
+ACN,One Surgical Clinic & Surgery (East)
+ACO,CROSS STREET MEDICAL CLINIC
+ACQ,Wee HealthFirst Medical Clinic
+ACR,CARDIAC CENTRE INTERNATIONAL
+ACS,OneCare Clinic Canberra
+ACT,LSC EYE CLINIC
+ACU,Q & M Dental Surgery (Tampines)
+ACV,Stephen Chew Centre For Kidney Disease and Hypertension Pte Ltd
+ACW,MAY MEDICAL CLINIC & SURGERY PTE LTD
+ACX,DE PACIFIC DENTAL GROUP (PASIR RIS)
+ACY,MY FAMILY CLINIC (ST GEORGE)
+ACZ,MY FAMILY CLINIC (WOODLANDS GLEN)
+AD1,Integrated Wellness Clinic
+AD2,HEALTHCARE AMK MEDICAL CLINIC
+AD3,HL FAMILY CLINIC & SURGERY PTE LTD
+AD4,MUTUAL HEALTHCARE MEDICAL CLINIC
+AD5,Mutual Healthcare Medical Clinic
+AD6,MUTUAL HEALTHCARE MEDICAL CLINIC
+AD9,WEE'S FAMILY CLINIC & SURGERY
+ADA,Drs Chan & Tang Family Clinic
+ADB,AGLOW BABY & CHILD SPECIALIST CLINIC
+ADC,DR JOYCE & PARTNERS FAMILY CLINIC
+ADD,Healthlife Family Clinic
+ADE,Mediview Clinic and Surgery
+ADF,DAYSPRING MEDICAL CLINIC (TAMPINES)
+ADG,Executive Health Screeners
+ADH,Executive Health Screeners
+ADJ,FUSION MEDICAL & AESTHETIC EXECUTIVE CENTRE
+ADK,PINNACLE FAMILY CLINIC (WOODLANDS)
+ADM,E C TAN UROLOGY
+ADO,Clement Dental
+ADP,Crystal Dental Care
+ADQ,Excel Dental
+ADR,The Dental Hub (Telok Blangah)
+ADS,LIEW & KOH DENTAL SURGERY
+ADT,NOBLE DENTAL SURGERY
+ADW,1728 Dental Practice (Ang Mo Kio)
+ADX,LIANG CLINIC
+ADY,The Dental Hub (Dover)
+ADZ,Cornerstone Medical
+AE0,KIDS CLINIC @ BEDOK
+AE1,MINT MEDICAL CENTRE
+AE2,PACIFIC FERTILITY INSTITUTES MEDICAL CLINIC
+AE3,saudara clinic by A+J general physicians
+AE4,K M HENG WOMEN'S CLINIC PTE LTD
+AE6,Parkway Shenton Medical Group
+AE8,The Clinic Group @ Marina One
+AE9,Digestive & Liver Surgery (Orchard)
+AEA,Popular Dental (Woodlands) PTE LTD
+AEB,1728 Dental Practice (Jurong)
+AEC,1728 Dental Practice (Tampines)
+AED,Royce Dental Aesthetic And Implant Centre
+AEE,Q & M Dental Surgery (Yishun Ring Road)
+AEF,RAFFLESDENTAL
+AEG,RAFFLESDENTAL
+AEH,RAFFLESDENTAL
+AEI,RafflesDental
+AEJ,APOLLONIA DENTAL SURGERY
+AEK,LAN MEDICAL CLINIC & SURGERY
+AEL,WHITECOAT MEDICAL
+AEM,K W ONG BREAST AND GENERAL SURGERY CLINIC
+AEO,"Drs Koo, Fok & Associates Pte Ltd"
+AEP,Healthway Medical
+AER,STREET 11 CLINIC
+AES,SUMMIT MEDICAL CLINIC
+AET,ALLSMILES DENTAL CARE PUNGGOL PTE. LTD.
+AEU,PAINCARE CENTER
+AEV,HAFcare Novena Clinic
+AEW,ONE SURGICAL CLINIC & SURGERY (ORCHARD)
+AEX,DP DENTAL (Kovan Branch)
+AEY,International Eye Cataract Retina Centre
+AEZ,Boston Medical
+AF0,COMPASSVALE 297A MEDICAL CLINIC
+AF2,Potong Pasir Medical Clinic
+AF3,The Chest and Internal Medicine Clinic
+AF4,FRONTIER MEDICAL ASSOCIATES
+AF5,FAITH CLINIC (YISHUN)
+AF6,K2 MEDICAL CLINIC TPY
+AF7,MINMED CLINIC (PASIR RIS)
+AF8,PARKWAY CANCER CENTRE
+AF9,STARMED SPECIALIST CENTRE
+AFA,Singapore Paincare Center
+AFB,T Medical Clinic
+AFC,Boon Lay Dental Centre
+AFD,Elements Dental
+AFF,Q & M Dental Centre (Bugis)
+AFG,CREST FAMILY CLINIC PTE. LTD.
+AFH,Kenneth Tan Medical Clinic
+AFI,P Tan Family Medicine Clinic
+AFJ,CENTRAL 24-HR CLINIC (MARSILING)
+AFK,Healthway Medical
+AFM,MWH Centre for Medical Imaging
+AFN,"MWH Heart, Stroke & Cancer Centre"
+AFO,MWH Medical Specialists Centre
+AFP,AJ WARREN DENTAL CLINIC
+AFQ,Q & M Dental Surgery (Tiong Bahru) Pte Ltd
+AFR,MEDICO CLINIC & SURGERY
+AFS,HOUGANG FAMILY MEDICINE CLINIC
+AFT,SUPERSIGHT EYE AND LASIK CENTRE
+AFU,Dermatology Associates
+AFV,AA DENTAL SURGERY
+AFW,CREST  DENTAL SURGERY
+AFX,UNIVERSAL DENTAL CENTRE
+AFY,Novena Medical Center Family Clinic
+AFZ,MARINE TERRACE FAMILY CLINIC
+AG0,Well Medical Clinic & Surgery
+AG1,WONG CLINIC & SURGERY
+AG2,Maysprings Family Clinic
+AG3,DA Clinic @ Anson
+AG4,FRONTIER MEDICAL ASSOCIATES
+AG5,TAN-TEOH CLINIC & SURGERY (ANG MO KIO BRANCH)
+AG6,THE RESPIRATORY PRACTICE LUNG â€¢ ASTHMA â€¢ COUGH â€¢ ALLERGY
+AG7,TWIN CITY MEDICAL CENTRE
+AG8,"A SPECIALIST CLINIC FOR SINUS, SNORING & ENT"
+AG9,Advanced Urology
+AGA,ADVANCED UROLOGY
+AGB,ADVANCED UROLOGY
+AGC,BreastCare Surgery Pte Ltd
+AGD,iSmile Dental surgery
+AGE,Q & M Dental Surgery (Woodlands)
+AGF,AESTHETIC DENTAL CARE
+AGG,Children & Adult Skin Hair Laser Clinic
+AGH,EAGLE EYE CENTRE PTE LTD (EEC)
+AGJ,Specialist Pain International Clinic
+AGK,Aesthetic Reconstructive Jaw Surgery
+AGL,GPA CENTRE FOR DENTISTRY
+AGM,GPA Dentalcare @ Goldhill
+AGN,GPA Dentalcare @ Katong
+AGO,GPA Dentalcare @ one-north
+AGR,PANG & NG DENTAL SURGERY (HOUGANG) PTE. LTD.
+AGS,Smile Link Dental Pte. Ltd.
+AGT,TOOFDOCTOR Dental Surgeons (Serangoon Central)
+AGU,The Implant and Oral Surgery Centre
+AGV,WOODGROVE DENTAL SURGERY
+AGX,Calrose Medical Family Clinic
+AGY,CANA MEDICAL CLINIC & SURGERY
+AGZ,CURIE ONCOLOGY PTE. LTD.
+AH0,MEDI CLINIC
+AH2,VICTORY CLINIC AND SURGERY
+AH4,Women's Specialist  Associates
+AH5,Vivid Dental Surgeons
+AH7,BEDOK MEDICAL CENTRE
+AH8,EASTERN CLINIC & SURGERY PTE LTD
+AH9,EASTERN CLINIC & SURGERY PTE LTD
+AHA,HAEM - ONC CLINIC PTE LTD
+AHB,PRECIOUS SURGERY CENTRE
+AHC,Greenlife Dental Clinic
+AHD,i.Dental Surgeons
+AHE,Q & M Dental Surgery (Redhill MRT) Pte Ltd
+AHF,Complete Healthcare International
+AHI,Global Care Medical
+AHJ,B & F DENTAL
+AHK,Weety Orthodontics Specialist Care
+AHL,MYDENTAL @ TAMANJURONG
+AHM,Healthway Medical
+AHN,The Heart and Vascular Centre (Novena)
+AHO,UNITY DENTICARE
+AHP,Unity Denticare
+AHQ,UNITY DENTICARE
+AHR,UNITY DENTICARE
+AHS,UNITY DENTICARE
+AHT,UNITY Denticare
+AHU,UNITY DENTICARE
+AHV,UNITY DENTICARE
+AHW,Unity Denticare
+AHX,UNITY DENTICARE
+AHY,Unity Denticare
+AHZ,RafflesDental
+AI0,The Dental Studio
+AI1,THE DENTAL STUDIO
+AI2,Healthway Dental
+AI4,Novena MRI Diagnostics
+AI5,Orthopaedic & Arthritis Centre
+AI6,ONG CLINIC & SURGERY (YISHUN)
+AI7,Island Family Clinic (Bukit Batok)
+AI8,MY FAMILY CLINIC (BUKIT BATOK WEST)
+AI9,The Clinic @ Tai Seng
+AIA,Kidney Life Centre
+AIB,AGAPE WOMEN'S SPECIALISTS
+AIC,STANLEY EAR NOSE THROAT AND SINUS CENTRE
+AID,Prime Surgery
+AIE,Absolute Smile Dental
+AIF,Rivers Dental Clinic
+AIG,LEE & LEE (DENTAL SURGEONS) PTE LTD
+AIH,TES Clinic for Face & Jaw
+AIJ,Universe Dental Clinic
+AIK,DR. CATHERINE LEE ORTHODONTICS @ RAFFLES
+AIL,SINGAPORE TELECOM CLINIC
+AIN,ALLIANCE CLINIC AND PARTNERS PTE LTD
+AIO,NEWCASTLE CLINIC
+AIP,W. H. YAK FAMILY CLINIC
+AIQ,Q & M Dental Surgery (Elias Mall) Pte Ltd
+AIR,I-HEALTH MEDICAL CLINIC
+AIS,Platinum Medical Centre @Dorm
+AIT,Asia Eye Centre Cataract & Retina Specialist
+AIU,DERMATOLOGY & CO
+AIV,COLIN TEO UROLOGY
+AIX,The Endodontic Office
+AIY,Winston Tan Oral Maxillofacial Surgery
+AIZ,Astra Women's Specialists
+AJ0,DA clinic @ Bukit Batok
+AJ1,FRONTIER MEDICAL ASSOCIATES
+AJ2,Kids Clinic @ Punggol
+AJ3,LIFESCAN MEDICAL CENTRE
+AJ4,Vista Healthsprings Medical & Laser Clinic
+AJ5,Edgedale Medical Clinic (Cambridge)
+AJ6,EYE & RETINA SURGEONS
+AJ7,Alda Dental Surgery(Bedok)
+AJA,Mount Alvernia Hospital
+AJB,Braddell Family Clinic
+AJC,Novaptus Surgery Centre
+AJE,Quantum Medical Imaging
+AJF,DA clinic @ Anchorvale
+AJG,DA Clinic @ Bishan
+AJH,DA clinic @ Sembawang
+AJI,EH MEDICAL FAMILY CLINIC (BUKIT BATOK)
+AJJ,ONECARE CLINIC PUNGGOL PLAZA
+AJK,PHOENIX MEDICAL GROUP ( CACTUS )
+AJM,Unihealth Clinic (Bedok)
+AJP,EAGLE EYE CENTRE
+AJQ,Clear Dental Clinic
+AJR,My Dental Team
+AJU,ROYCE DENTAL SURGERY
+AJV,Unity Denticare
+AJW,SW1 PLASTIC SURGERY
+AJY,HUAN CLINIC
+AJZ,Circuit Medical Clinic
+AK0,Lily Neo Clinic Pte Ltd
+AK1,Procross Medical Center
+AK2,VITACARE FAMILY CLINIC @ CANBERRA PTE. LTD.
+ak3,ADVANCED UROLOGY
+AK5,Centre for Ear Nose Throat Allergy & Snoring
+AK6,UNITY DENTICARE
+AK8,TAN-TEOH CLINIC & SURGERY
+AK9,United Medical Practitioners
+AKA,WOODLANDS FAMILY CLINIC
+AKB,FEM SURGERY @ MACPHERSON
+AKE,PINNACLE FAMILY CLINIC (BUANGKOK SQUARE)
+AKF,Trucare Medical And Surgery
+AKH,Nobel Heart Centre
+AKJ,Straits Aesthetic
+AKL,Smiles R Us Dental (Punggol)
+AKR,NOVI HEALTH
+AKS,The Medical Clinic Pte Ltd
+AL7,IDOC CLINIC (HONG KAH) PTE LTD
+ALB,PRISTINE DENTALWORKS
+AND,Total EyeCare Center
+B0,The Medical Centre Clinic (Hong Leong)
+B1,Thean Clinic Pte Ltd
+B2,Town Clinic
+B3,Universal Medical Clinic
+B4,Wee Medical Clinic
+B5,Yap Family Clinic and Surgery
+B6,Yau Medical Clinic Pte Ltd
+B7,Ang Mo Kio Medical Centre
+B8,Chan Family Clinic
+B9,Chan-Gwee Medicare Clinic
+BA,BOON KENG CLINIC AND SURGERY
+BB,CHONG'S MEDICAL CENTRE
+BC,HARMONY FAMILY CLINIC
+BD,JOYSPRING FAMILY CLINIC
+BE,JUNCTION 8 FAMILY CLINIC
+BF,K N CHIN ASSOCIATES
+BG,KUSUMA LEE CLINIC & SURGERY FOR WOMEN
+BH,LIFELINK BUKIT TIMAH
+BI,NTUC Medicare Family Clinic
+BJ,PICTON MEDICAL CENTRE
+BK,THE EDINBURGH CLINIC
+BL,Y M CHAN CLINIC & SURGERY
+BM,YISHUN MEDICAL & DENTAL SURGERY
+BN,H.S. LEE CLINIC & SURGERY
+BO,RAFFLES MEDICAL GROUP
+BP,TAMPINES CLINIC & SURGERY PTE LTD
+BQ,ACCENT DENTAL SURGERY PTE LTD (AMK BRANCH)
+BS,Dayspring Medical Clinic
+BT,Shenton Clinic
+BU,Lee Clinic And Surgery
+BV,Drs Horne & Chin Pte Ltd
+BW,Essential Family Clinic And Surgery
+BX,G J Medical Clinic (Jurong Point)
+BY,G P Medical Centre & Surgery
+C0,IM Medical Specialist
+C1,Ear Nose Throat & Snoring Centre
+C2,Kwong Wai Shiu Hospital
+C3,Excellence Healthcare Pte Ltd
+C4,Hyperbaric Medical Services Pte Ltd
+C5,MD Specialist Healthcare Pte Ltd
+C6,The ENT Clinic
+C7,Pacific Endoscopic & Day Surgery Centre
+C8,K L Tay Clinic & Surgery
+C9,Singapore Sports and Orthopaedic Clinic Pte Ltd
+CA,GH Chee Ear Nose Throat & Dizziness Centre
+CB,Ming Medical Centre
+CC,Rayman Dispensary
+CD,S W Medical Centre
+CE,Tan Clinic & Surgery Pte Ltd
+CF,Tanglin Halt Clinic
+CG,Tek Dispensary
+CH,Toa Payoh Clinic
+CI,Universal Medical Clinic
+CJ,Victoria Medical House
+CK,Yim Medical Centre (Admiralty Mrt)
+CL,Yong Clinic & Surgery
+CM,Drs Oh Lim Wong & Partners
+CN,Silver Cross Family Clinic (Marsiling)
+CO,Central Clinic & Surgery (Hougang)
+CP,Drs Tang & Partners Pte Ltd
+CQ,Silver Cross Family Clinic
+CR,Silver Cross Family Clinic (Upper Bukit Timah)
+CS,Silver Cross Family Clinic (Jurong)
+CT,Singapore Day Surgery Centre
+CV,ONELIFE FAMILY CLINIC
+CW,Ar-Raudhah Medical Clinic
+CX,Aspen Clinic
+CY,Canberra Medical Aesthetics
+CZ,Chang Clinic & Surgery
+D0,G. S. Clinic & Surgery Pte Ltd
+D1,WU MEDICAL CLINIC PTE LTD
+D2,KIDNEY AND MEDICAL CENTRE
+D3,CENTRE FOR KIDNEY DISEASES PTE LTD
+D4,Fresenius Medical Care Katong Dialysis Centre
+D5,RENAL CARE (JURONG) PTE LTD
+D6,Asia Renal Care Mt Elizabeth Pte Ltd
+D7,KIDNEY DIALYSIS CENTER
+D8,GRACE LEE RENAL AND MEDICAL CLINIC
+DA,SINGAPORE CHILDREN'S SOCIETY - SGH PERITONEAL DIALYSIS (PD) CENTRE
+DB,KIDNEY DIALYSIS CENTRE (BEDOK) PTE LTD
+DC,Lifeline Medical Group - Sengkang
+DD,Lifeline Bukit Panjang Medical Clinic
+DE,RENAL MEDICAL SERVICES PTE LTD
+DF,Renal Therapy Services Pte Ltd
+DG,Goodhealth Medical Centre
+DH,L & L Family Medicine Clinic
+DI,Lee and Koh Family Clinic
+DJ,Leong Clinic & Surgery
+DK,Lin & Sons Clinic & Surgery Pte Ltd
+DL,London (MH) Clinic & Surgery
+DM,Mary Medical Clinic And Surgery
+DN,Northland Family Clinic & Surgery
+DO,Ong's Clinic
+DP,Pinnacle Medical Centre
+DQ,Pro-Life Medical Associates Pte Ltd
+DR,Simon Road Family Clinic
+DS,Sincere Medical & Dental Clinic
+DT,Tay Clinic
+DU,Teban Garden Clinic
+DV,Trinity Medical & Aesthetic Clinic Pte Ltd
+DW,Vista Medical Centre
+DX,Yap Medicare Clinic & Surgery
+DY,Yoong Family Clinic & Surgery
+DZ,Alexandra Family Clinic & Surgery
+E0,Beo Crescent Family Clinic & Surgery
+E1,New Age Cosmetic Dentists
+E2,Shenton Republic Dental Surgery Pte Ltd
+E3,Singapore Dental Implant Centre
+E4,T & T Dental Surgery
+E5,iSmile Dental Clinic
+E6,Thomson Dental Surgeons Pte Ltd
+E7,Thomson Plaza Dental Surgery Pte Ltd
+E8,Popular Dental
+E9,GPA Dentalcare@Goldhill Pte Ltd
+EA,New Life Dental Surgery
+EB,Bedok Town Dental Surgery
+EC,Harbourpoint Dental Centre
+ED,Lee & Lee Dental Surgeons Pte Ltd
+EE,Apex Dental Surgery
+EF,Chen Dental Surgery
+EG,Dental Care @ Fajar Pte Ltd
+EH,Elias Dental Surgery
+EI,Emerald Dental Centre
+EJ,Gentle Dental Group Pte Ltd - 27 East Coast Clinic
+EK,Ho Kee Hai & Partners Dental Implant Maxillofacial Aesthetic Centre
+EL,I Care Dental Pte Ltd
+EM,International Dental Centre
+EN,Killiney Dental Centre Pte Ltd
+EO,Orchard Dental Surgery
+EP,Radiance Dental Care @Dawson
+EQ,SmileArts Dental Studio
+ER,The Dental People
+ES,White Dental Group
+ET,Yen Dental Surgery Pte Ltd
+EU,Gentle Dental Group Pte Ltd - 401 River Valley Clinic
+EV,HK FAMILY CLINIC AND SURGERY PTE LTD
+EW,HL Clinic Pte Ltd
+EX,HL Family Clinic & Surgery (Bedok)
+EY,HL Family Clinic & Surgery
+EZ,Horizon Medical Centre
+F0,Island Group Clinic
+F1,CAMDEN FERTILITY CENTRE
+F2,Cassia Clinic And Surgery
+F3,Charis Clinic & Surgery
+F4,Cheong Medical Clinic
+F5,Chong's Clinic
+F6,Choong's Clinic (at Old Airport Rd)
+F7,Choong's Clinic
+F8,Cityhealth Clinic & Surgery
+F9,Hamid Family Clinic & Surgery
+FA,Hope Family Clinic And Surgery
+FB,Eunos 5 Clinic
+FC,Mao Medical Centre & Surgery
+FD,Millennium Medical Group (Choa Chu Kang)
+FE,New Health Family Clinic
+FF,POW Family Clinic & Surgery
+FG,Primecare Medical Clinic
+FH,Saw Baby & Child Clinic & Khoo Family Clinic
+FI,Seasons Clinic
+FJ,Sp Clinic
+FK,Sterling Clinic & Surgery
+FL,Summit Medical Clinic
+FM,Tai Seng Clinic
+FN,Teo Clinic & Surgery Pte Ltd
+FP,W H Yak Family Clinic
+FQ,Yishun Medical And Dental Centre
+FR,Family Healthcare Clinic & Surgery Pte Ltd
+FS,Focus Medical Centre
+FT,Healthmatters - The Family Practice
+FU,Healthplus Family Clinic & Surgery
+FV,Joyhealth Medical Clinic & Surgery
+FW,Kong Kian Clinic
+FX,L & G Medical Clinic
+FY,Lim Clinic & Surgery
+FZ,Medora Clinic & Surgery
+G0,Sembawang Station 7am-11pm Clinic
+G3,ParkwayHealth Day Surgery & Medical Centre
+G4,Ansar Clinic and Dental Surgery
+G5,Anteh Dispensary Family Clinic & Surgery
+G6,Associate Dispensaries
+G7,Cambridge Clinic
+G8,Doctors Clinic & Surgery
+G9,Evercare Medical Clinic
+GA,Women & Fetal Centre
+GB,Haig Specialist O & G Clinic Pte Ltd
+GC,Evercare Medical Clinic
+GD,Friendship Clinic & Surgery
+GE,Foo And Ong Family Clinic Pte. Ltd.
+GF,Japan Clinic And Surgery
+GG,KCS Medical Centre Pte Ltd
+GH,K P Tan Medical Clinic
+GI,Koo Cardiac Clinic
+GJ,MacPherson Medical Clinic
+GK,St Georges Clinic And Surgery
+GL,Textile Centre Clinic
+GM,The Civic Clinic
+GN,Yio Chu Kang Mrt Clinic Pte Ltd
+GO,531 Clinic & Surgery
+GP,Ansari Family Clinic & Surgery
+GQ,Apex Clinic & Surgery
+GR,Apex Clinic & Surgery
+GS,Bedok Day & Night Clinic
+GT,Bukit Timah Nam Sang Clinic
+GU,Clinical Associates Medical Centre
+GV,Dawson Place Clinic
+GW,Drs Chan Lee Thng & Partners (Clifford Dispensary)
+GX,Kang An Clinic Pte Ltd
+GY,"Kevin Tan Clinic For Diabetes, Thyroid And Hormones Pte Ltd"
+GZ,MW Medical Pte Ltd
+H0,Kang Clinic
+H3,Karri Family Clinic
+H5,A CLINIC FOR WOMEN
+H6,STEPHEN CHEW CENTRE FOR KIDNEY DISEASE & HYPERTENSION
+H7,CENTRE FOR ASSISTED REPRODUCTION PTE LTD
+H8,ANTENATAL DIAGNOSTIC CENTRE & WELL WOMEN CLINIC
+H9,Nyam Endoscopy Centre
+HA,CHRONIC SICK HOSPITAL
+HB,CHRONIC SICK HOSPICE
+HC,ALEX OOI & ASSOCIATES OBYGYN CONSULTANTS
+HD,SIDEK CLINIC FOR WOMEN
+HE,Parkway Women & Fertility Clinic
+HF,P S LUI CLINIC & SURGERY FOR WOMEN
+HG,THE LONDON CLINIC & SURGERY FOR WOMEN PTE LTD
+HH,K C CHING CLINIC & SURGERY FOR WOMEN PTE LTD
+HI,The Lady Gynaecologist Obstetrician's Clinic Pte Ltd
+HJ,May Medical Clinic & Surgery Pte Ltd
+HK,C K Yong Surgery & Breast Clinic
+HL,K C CHING CLINIC & SURGERY FOR WOMEN
+HM,S C Low Breast Centre Pte Ltd
+HN,A Company For Women Pte Ltd
+HO,Gynae Health Clinic for Women Pte Ltd
+HP,K W Lee Clinic & Surgery For Women
+HR,Healthsense Clinic Pte Ltd
+HS,Beh's Clinic For Women Pte Ltd
+HT,C F Koh Women's Clinic and Gynae-Oncology Surgery
+HU,Lien Clinic for Women
+HV,Cheng Clinic For Women Pte Ltd
+HW,K C Chee Surgery
+HX,TC Family Clinic
+HZ,Northern Hope Medical Specialists
+I0,Westpoint Family Hospital
+I1,LP Surgery
+I2,Singapore Heart Stroke & Cancer Centre Pte Ltd
+I3,Drs Koo Loh & Associates (Pte) Ltd
+I4,Healthlink Family Clinic & Surgery
+I5,Hui Clinic & Surgery
+I6,Jane & Lee Sembawang Family Clinic
+I7,Lifelink Clinic & Surgery
+I8,Lifelink 24hrs Clinic & Surgery
+I9,Lighthouse Clinic And Surgery
+IA,Medica Clinic
+IB,Northeast Medical Centre Pte Ltd
+IC,Northeast (Simei) Medical Centre Pte Ltd
+ID,The Healing Light Clinic
+IE,The People's Clinic
+IF,HEALTHSPRINGS MEDICAL ASSOCIATES
+IG,"Drs Singh & Partners, Raffles City Medical Centre"
+IH,Drs Singh & Partners (Starsway Clinic)
+II,Esther Yeo Clinic
+IJ,Family Medicine Clinic
+IK,First Medical Centre Pte Ltd
+IL,Geylang Serai Clinic
+IM,Health Care Medical Centre
+IN,Lum Clinic & Surgery
+IO,Lusumu Family Clinic
+IP,PJ Clinic
+IQ,Picton Medical Centre
+IR,Teoh Clinic Family Practice
+IS,Twin City Medical Group Pte Ltd
+IT,Woodlands Medical Centre & Woodlands Dental Clinic (Medical)
+IU,Make-Well Family Clinic & Surgery
+IV,Marine Clinic
+IW,Susan Quek Heart Care Clinic
+IX,The Flame Tree Medical Centre
+IY,Toh Yi Family Clinic
+IZ,Caritas Clinic
+J0,Bukit Timah Clinic
+J1,JOHN HOPKINS SINGAPORE INTERNATIONAL MEDICAL CENTRE PTE LTD
+J2,T32 Dental Centre Pte Ltd
+J3,KOH Dental Surgery Pte Ltd-Hong Leong
+J4,Toof Doctor Dental Surgeons
+J5,Universe Dental Surgery Pte. Ltd.
+J6,Apollonia Dental Surgery
+J7,Smile Link Dental Pte Ltd
+J8,Q & M Dental Surgery (Serangoon) Pte Ltd
+J9,Vincent's Dental Surgery
+JA,Crest Dental Surgery
+JB,Le Mint's Dental Practice
+JC,Orange Dental Clinic Pte Ltd
+JD,Sensentional Smiles Dentistry LLP
+JE,Rapha Specialist Clinic
+JF,Accent Dental Surgery Pte Ltd (JALAN MEMBINA)
+JG,Nam Sang Dental Surgery Pte Ltd
+JH,Friends Dental Surgeons
+JI,Faith Family Clinic
+JJ,Hospital Dental Surgery
+JK,Universal Dental Surgery
+JL,Aaron CTP Dental Surgery Pte Ltd
+JM,Aaron Dentalcare Pte Ltd
+JN,Aaron Seow Dental Surgery
+JO,Bukit Panjang Family Clinic
+JP,Dentigiene Dental Surgery Pte Ltd
+JQ,Royce Dental Surgery Pte Ltd
+JR,Yishun Dental Surgery Pte Ltd
+JS,Greenlife Dental Clinic
+JT,Sunshine Smile Dental Implant Centre Pte Lte
+JU,Foo & Associates Dental Surgeons
+JV,Perumal Dental Surgery Pte Ltd
+JW,Bright Smile Dental Surgery Pte Ltd
+JX,Chai Chee Dental Surgery
+JY,Neptune Dental Group
+JZ,Q & M Dental Surgery (Hougang Mall) Pte Ltd
+K00,Asia Kidney Dialysis Centre (Teck Whye)
+K01,advanced dental clinic bedok pte ltd
+K02,Broad Smile Dental Pte Ltd
+K03,DENTIGIENE DENTAL SURGERY PTE LTD
+K04,HEALTHWAY DENTAL CLINIC
+K05,HEALTHWAY DENTAL CLINIC
+K06,Ko Djeng Sakura Dental Clinic
+K07,LITTLE INDIA DENTIST
+K08,Nuffield Dental @ Kovan
+K09,Rafflesia Dental Surgery
+K0A,RafflesDental
+K0B,RAFFLESDENTAL
+K0C,TAY DENTAL SURGERY
+K0D,Unity Denticare
+K0E,WEST COAST DENTAL CLINIC PTE LTD
+K0F,NOEL LEONG FERTILITY & IVF CLINIC PTE LTD
+K0G,The Heart and Vascular Centre
+K0H,BEDOK  CENTRAL CLINIC
+K0I,Benessere Clinic Pte. Ltd.
+K0J,C Y KOK CLINIC & SURGERY
+K0K,Clinic@Costa
+K0L,DRS CHUA & PARTNERS PTE LTD
+K0M,DRS HORNE & CHIN PTE LTD
+K0N,EXCELSIOR CLINIC & SURGERY
+K0O,GREAT HEALTH MEDICAL CLINIC
+K0P,KL NG MEDICAL CLINIC PTE LTD
+K0Q,LIEW CLINIC & SURGERY
+K0R,P N YEO CLINIC
+K0S,PIONEER MEDICARE
+K0T,Qure Medical Clinic
+K0U,The Respiratory Practice Lung.Asthma.Cough.Allergy
+K0V,The Respiratory Practice Lung.Asthma.Cough.Allergy
+K0W,SL Goh Women's Clinic
+K0X,St Luke's Outpatient Clinic
+K0Y,Shenton Medical Group
+K0Z,TAY MEDICAL CENTRE CLINIC & SURGERY
+K10,The Heart Doctors Clinic
+K11,WEST POINT SURGERY CENTRE
+K12,YISHUN GREEN CLINIC
+K13,SIMPANG BEDOK CLINIC
+K14,TANJONG PAGAR MEDICAL CLINIC
+K15,UNITY DENTICARE
+K16,Novena Medical Center Family Clinic
+K17,Thomson Paediatric Centre
+K18,Raintree Dental Clinic
+K19,DentalTalk (Ubi)
+K1A,Farrer Park Imaging
+K1B,RADIOLOGIC CLINIC
+K1C,Fullerton Healthcare @ NTU
+K1D,LEE CLINIC PTE LTD
+K1E,RafflesMedical (Marina Bay Financial Centre Tower 3)
+K1F,Twin City Endodontic Partners Pte Ltd
+K1G,LE MINT'S ORAL MAXILLOFACIAL SURGERY
+K1H,Casa Dental (AMK)
+K1I,BERNARD TAN DENTAL SURGERY
+K1J,Renal Life (Alexandra) Dialysis Centre Pte Ltd
+K1K,OncoCare Cancer Centre
+K1L,OncoCare Cancer Centre
+K1M,CAMBRIDGE CLINIC
+K1N,CHUA CLINIC
+K1O,CHUA CLINIC & SURGERY
+K1P,CLIFFORD FAMILY CLINIC
+K1Q,Dermatology & Surgery Clinic
+K1R,Dermatology & Surgery Clinic
+K1S,Dr Steven Ang Aesthetic & Family Clinic
+K1T,EL SHADDAI ARTHRITIS + RHEUMATISM SPECIALIST MEDICAL CENTRE
+K1U,G.I.F.T MEDICAL CENTRE
+K1V,Green Cross medical centre pte ltd
+K1W,Heng Clinic & Surgery
+K1X,K. B. TAN CLINIC & LASER SURGERY
+K1Y,M LAM CLINIC
+K1Z,PIDEMCO MEDICAL CENTRE
+K20,POINT MEDICAL GROUP (TAMAN JURONG)
+K21,S Y NG CLINIC
+K22,STEWARD CLINIC
+K23,TEIN CLINIC & SURGERY
+K24,THAM CLINIC SINGAPORE PTE.LTD.
+K25,THE BALMORAL CLINIC
+K26,The Family Physician Clinic
+K27,UNION MEDICAL CLINIC & SURGERY
+K28,VIDA MEDICAL
+K29,WILMER CLINIC PTE LTD
+K2A,YSL ALJUNIED CLINIC & SURGERY PTE LTD
+K2B,Fullerton Healthcare @ Drs Horne & Chin
+K2C,HEALTHCARE MEDICAL @ Kovan
+K2D,HEALTHCARE MEDICAL @ RAILMALL
+K2E,HEALTHCARE MEDICAL @ SENTOSA
+K2F,JUBILEE FAMILY PHYSICIANS
+K2H,L'ving Vine Medical & Wellness Clinic
+K2I,LOW & LEE CLINIC & SURGERY
+K2J,SIMEI CLINIC & SURGERY
+K2K,TECK GHEE CLINIC
+K2L,Vienna Medical Clinic
+K2M,YAP WEE SEE RESPIRATORY AND SLEEP CLINIC
+K2N,ANG DENTAL SURGERY
+K2O,DRS.ERNEST LAM & PARTNERS dental surgeons
+K2P,LAM DENTAL SURGERY PTE LTD
+K2Q,Nuffield Dental Simpang Bedok
+K2R,Smile Central Clinic
+K2S,SmileArts Dental Studio (Hillview)
+K2T,TOOFDOCTOR Dental Surgeons (Toa Payoh)
+K2U,VISTA DENTAL SURGERY
+K2V,I.Dental Invisalign Dedicated Clinic
+K2W,PACIFIC ADVANCE RENAL CARE (WOODLANDS)
+K2X,International Eye Cataract Retina Centre
+K2Y,International Specialist Eye Centre
+K2Z,LUKE TAN ENT-HEAD & NECK CANCER AND THYROID SURGERY CENTRE
+K31,SOG - KW Lee Clinic for Women
+K32,TLC GYNAECOLOGY PRACTICE CLINIC & SURGERY FOR WOMEN
+K33,Thoracic & Cardiovascular Surgery Specialist
+K34,PTL Spine & Orthopaedics Clinic
+k35,WEE'S CLINIC & SURGERY
+K36,WS LAW WOMEN'S CLINIC AND LAPAROSCOPIC SURGERY CENTRE
+K37,ZENITH MEDICAL CLINIC (at Punggol Way)
+K38,OncoCare Cancer Centre
+K39,SOC CLINIC @ FARRER PARK
+K3A,BUKIT TIMAH CLINIC
+K3B,CHANGI MEDICAL CENTRE
+K3C,MY FAMILY CLINIC (ANCHORVALE)
+K3D,MY FAMILY CLINIC (SEGAR)
+K3E,Q & M Dental Centre (Jurong East Central)
+K3G,Avenue K Clinic @ Punggol
+K3H,EVERHEALTH MEDICAL CENTRE
+K3I,EVERHEALTH FAMILY CLINIC & SURGERY
+K3J,FULLERTON HEALTHCARE @ DRS TRYTHALL HOY DAVIES IMAGING CENTRE
+K3K,Renal Life (Pioneer) Dialysis Centre Pte Ltd
+K3L,"NHG DIAGNOSTICS - XRAY LABORATORY, INSTITUTE OF MENTAL HEALTH"
+K3M,SINGAPORE CANCER SOCIETY
+K3N,Q & M Dental Surgery (Braddell)
+K3O,Q & M Dental Surgery (Seletar)
+K3P,"NHG Diagnostics - XRay Laboratory, Ang Mo Kio - Thye Hua Kwan Hospital Ltd"
+K3Q,C & A Dental Studio @ UE Square
+K3R,Coast Dental
+K3S,DE PACIFIC DENTAL GROUP (BALESTIER) PTE. LTD.
+K3T,DR LEO AESTHETIC PLASTIC & RECONSTRUCTIVE SURGERY PTE LTD
+K3U,DR PRIYA SEN SKIN AND LASER CENTRE
+K3W,ELITE DENTAL GROUP
+K3Y,Fullerton Dental @ NTU
+K3Z,RAFFLESDENTAL
+K40,RSim General & Colorectal Surgery
+K41,Smiles R Us Dental Centre
+K42,THE DENTAL BOUTIQUE
+K43,The Endoscopy & Piles Centre (Hougang)
+K44,The O&G Specialist Clinic
+K47,888 PLAZA FAMILY CLINIC
+K48,Bewell Clinic @ Dorm Pte Ltd
+K49,BOON LAY CENTRAL CLINIC
+K4A,CRESCENT CLINIC &  SURGERY
+K4B,"DOCTORS KOO, TEY & ASSOCIATES P. L."
+K4D,KANG CLINIC
+K4E,KOH CLINIC & SURGERY
+K4F,DRS LIM & CHAN CLINIC
+K4G,DRS LIM & CHAN CLINIC
+K4H,MAO MEDICAL CENTRE & SURGERY
+K4I,MICHELE LEE WOMEN & FERTILITY CLINIC PTE LTD
+K4J,Phoenix Medical Group (Hillview)
+K4K,RafflesMedical (Seletar Mall)
+K4L,SAINT-JULIEN CLINIC
+K4M,S AND L FAMILY CLINIC
+K4N,S & L FAMILY CLINIC
+K4O,Sunshine Clinic Family Practice & Surgery
+K4P,TAI SENG CLINIC
+K4Q,TAMPINES CLINIC AND SURGERY PTE LTD
+K4R,THE DOCTOR'S CLINIC
+K4S,The Hale Medical Clinic
+K4T,HISEMAINN MEDICAL CLINIC (SIMS PLACE)
+K4U,Dental Essence
+K4V,Facial Aesthetics Dental Surgery
+K4W,Focal Eye Centre
+K4X,HEALTHWAY DENTAL CLINIC
+K4Y,Luminous Dental Clinic @ Tampines
+K4Z,Lynne Lim Ear Nose Throat & Hearing Centre (Child & Adult)
+K50,MISSION DENTAL SURGERY
+K51,FDC TAMAN JURONG DENTAL CENTRE
+K52,The ENT Specialist Centre
+K53,VIRTUS FERTILITY CENTRE
+K54,BJIOS Orthopaedics
+K55,RENALTEAM dialysis centre bukit merah
+K56,Alfred Cheng Cardiac Care
+K57,ASTIQUE THE AESTHETIC CLINIC
+K58,CITIZEN FAMILY CLINIC AND SURGERY
+K59,Clover Medical Clinic Pte Ltd
+K5A,GLEN ARDEN ENDOCRINOLOGY SPECIALIST CLINIC PTE LTD
+K5B,Irene & Jon Clinic for Women
+K5C,JALAN KUKOH CLINIC
+K5D,PSALMS FAMILY CLINIC
+K5E,THE BALMORAL CLINIC  FAMILY MEDICINE
+K5F,THE HEALER CLINIC + SURGERY
+K5G,The Pinnacle Medical Centre @ Maritime
+K5H,WOODLANDS FAMILY CLINIC
+K5K,Agency for Integrated Care Pte Ltd
+K5M,Eye Max Centre
+K5N,SEGAR VALE DENTAL SURGERY
+K5O,SMILE DOCTOR AESTHETICS & IMPLANT DENTISTRY
+K5P,Access Medical (Circuit Road)
+K5Q,HEALTHLINK FAMILY CLINC & SURGERY
+K5R,PROHEALTH 24-HOUR MEDICAL CLINIC
+K5S,ARCA(FARRER PARK) DIALYSIS PTE LTD
+K5T,ADVANCED DENTAL CLINIC JURONG WEST PTE LTD
+K5U,advanced dental clinic toa payoh pte ltd
+K5V,CENTRE FOR COSMETIC REJUVENATION & SURGERY
+K5W,Centre For Orthopaedics And Hip And Knee Surgery
+K5X,Centre For Spine And Orthopaedic Surgery
+K5Y,Centre For Sports And Shoulder And Elbow Surgery
+K5Z,DENTALTOWN (GSM)
+K60,"DRS. LIM, HOE & WONG RADIOLOGY PTE LTD"
+K61,"Drs. Lim, Hoe & Wong Radiology Pte Ltd"
+K62,New Life Dental Surgery
+K63,Parkway Dental Services
+K64,PROCROSS MEDICAL CENTRE
+K65,PURE NZ DENTAL
+K66,Q & M Dental Surgery (Pasir Ris MRT)
+K67,RADLINK DIAGNOSTIC IMAGING (S) PTE LTD
+K68,S A LOH DENTAL SURGERY PTE LTD
+K69,"Smile Central Clinic (At Aljunied Ave 2, #01-74)"
+K6A,SMILE DESIGNERS DENTAL CLINIC
+K6B,SOC Clinic @ Gleneagles
+K6C,SOC CLINIC @ MT ELIZABETH
+K6D,SOG - Cindy Pang Clinic for Women & GynaeOncology
+K6E,SOG - Natalie Chua Clinic For Women
+K6F,The Smile Division dental surgeons@CCK Pte Ltd
+K6G,The Smile Division dental surgeons@Tampines Pte Ltd
+K6H,Town Hall Dental Surgery Pte Ltd
+K6I,BUKIT BATOK WEST CLINIC
+K6J,CENTRE FOR MEDICAL IMAGING
+K6K,Cynthia Kew Clinic for Women & Laparoscopic Surgery
+K6L,Eterna Medical Clinic
+K6M,Fullerton Healthcare @ OFC Imaging Centre
+K6N,HEALTH PARTNERS MEDICAL CLINIC
+K6O,"HEART, STROKE & CANCER CENTRE"
+K6P,KC Ong Chest & Medical Clinic
+K6Q,Kai Clinic
+K6R,Lee Respiratory and Sleep Clinic
+K6S,N B THAM CLINIC PTE LTD
+K6U,Onecare Clinic Yishun
+K6V,PHOENIX MEDICAL GROUP (PAYA LEBAR)
+K6W,SIGLAP CLINIC PTE LTD
+K6X,The Medical Suite An SMG Clinic
+K6Y,UBI FAMILY CLINIC & SURGERY
+K6Z,HEALTHWAY DENTAL CLINIC
+K70,Phoenix Dental Surgery (Marine Parade Central)
+K71,The Dental Hub @ Bedok
+K72,115 EASTPOINT CLINIC & SURGERY
+K73,A+FFORDABLE CLINIC (HOUGANG)
+K74,CHANLAI HEALTHCARE CLINIC
+K75,David Lau ENT Centre
+K76,Elyon Family Clinic And Surgery
+K77,LAU CLINIC AND SURGERY
+K78,Sia & Yeo Hougang Clinic Pte Ltd
+K7B,The Clinic @ Aperia
+K7C,THE CLINIQ
+K7D,The Pain Relief Clinic
+K7E,Viva Medical Group
+K7F,WEST COAST CLINIC & SURGERY (CLEMENTI WEST) PTE LTD
+K7G,YISHUN RING ROAD CLINIC
+K7I,ST ANDREW'S MISSION HOSPITAL CLINIC (SIMEI)
+K7J,Q & M Dental Surgery (Bedok)
+K7L,DENTAL SURGERY CENTRE
+K7M,DENTALFAMILY (PIONEER)
+K7O,GERALD TAN UROLOGY + ROBOTICS
+K7P,Gerald Tan Urology + Robotics
+K7Q,Healthway Dental Clinic
+K7R,SOG - Beh Clinic for Women
+K7S,LOYAL DENTAL PTE LTD
+K7T,LUMINOUS DENTAL CLINIC @ BEDOK POINT
+K7U,Manchester Dental Care Pte Ltd
+K7V,NeuSmile Dental Group (Kovan) Pte Ltd
+K7W,NUFFIELD DENTAL SIGLAP
+K7X,Pacific Healthcare Specialist Centre
+K7Y,Pacific Healthcare Specialist Centre
+K7Z,Procross Medical Clinic
+K80,SOG - Choo Wan Ling Clinic for Women
+K81,SOG - Radhika Breast & General Surgicare
+K82,Sainte Chapelle Clinic
+K83,Sainte Chapelle Orthodontics And Aesthetic Dentistry
+K84,The Oral Maxillofacial Practice
+K85,Advent Dental Surgery Pte. Ltd.
+K86,ADVANCE DIALYSIS SERVICES PTE LTD
+K87,AllSmiles Dental Care Plus
+K88,The Braces Practice
+K89,CANTERBURY MEDICAL CENTRE
+K8A,Dr. Tan & Partners @ Scotts
+K8B,Epismile (Bt Batok) Dental Group Pte Ltd
+K8C,Heartland Family Clinic
+K8D,Island Family Clinic (Sengkang)
+K8E,LIANG CLINIC
+K8F,LUA CLINIC & SURGERY
+K8G,Mission (Hougang) Medical Clinic
+K8H,MRI Center for The Extremities (MCE) Pte Ltd
+K8I,NUFFIELD MEDICAL SIGLAP
+K8J,PEACE FAMILY CLINIC
+K8L,RAFFLES EXECUTIVE MEDICAL CENTRE (Raffles Hospital)
+K8M,RafflesMedical (Eastpoint Mall)
+K8N,RAFFLESMEDICAL (Raffles Hospital)
+K8O,SMILE CENTRAL CLINIC (At Toa Payoh Central)
+K8P,SMG Specialist Centre
+K8Q,SMG Specialist Centre
+K8R,Swiss Clinic
+K8S,The iClinic
+K8T,Trinity Medical (Shenton)
+K8U,Yap + Ang Surgical Associates
+K8V,"Allergy, Arthritis & Rheumatism Clinic"
+K8W,CENTURY DENTAL CARE
+K8X,Dr. Smile Dental Clinic
+K8Y,JESSELTON DENTAL CENTRE
+K8Z,MY ENT SPECIALIST
+K90,MySmile Dental Clinic
+K91,NAIR CARDIAC MEDICAL SPECIALIST CENTRE
+K92,Neo Smiles Dental Studio
+K93,NOBLE DENTAL SURGERY
+K94,Novena Cancer Centre
+K95,RAFFLESDENTAL
+K97,The Lasik Surgery Clinic
+K98,ADVANCED DENTAL CLINIC SERANGOON PTE LTD
+K9A,Caring Dental (Punggol)
+K9B,LVDA DENTAL CENTRE
+K9C,Medicare Dental Surgery
+K9D,Lakeside Family Medicine Clinic
+K9E,Onecare Clinic Bukit Batok
+K9F,TRIPOD DENTAL CLINIC
+K9G,PACIFIC ADVANCE RENAL CARE (PUNGGOL)
+K9H,PURE DENTAL STUDIO
+K9I,The Dental Studio (At OUE Downtown)
+K9J,UNITY DENTICARE
+K9K,UNITY DENTICARE
+K9L,SMILE CENTRAL CLINIC (At Hougang Mall)
+K9M,TOA PAYOH DENTAL CENTRE
+K9N,The Harley Street Heart & Cancer Centre
+K9O,Lifescan Medical Centre
+K9P,Lifescan Medical Centre
+K9Q,Acumed Medical Group (At Joo Koon - Fairprice Hub)
+K9R,SATA CommHealth Tanjong Pagar Clinic
+K9S,K C Yeo Clinic & Surgery for Women Pte Ltd
+K9T,"1Aesthetics, Medical & Surgery"
+K9U,ANG MO KIO X-RAY CLINIC & LABORATORY
+K9V,bsp clinic
+K9W,Cairnhill X-Ray and Diagnostic Center
+K9X,CHUAH CLINIC & SURGERY PTE LTD
+K9Y,Dr Nah & Lee Family Clinic
+KA0,Kong Dental Surgery
+KA1,MEDIHEALTH BISHAN 24 HOURS CLINIC & SURGERY
+KA2,PARKWAY CANCER CENTRE
+KA3,Radlink Medicare
+KA4,RafflesMedical (Changi Airport T3 Departure Hall)
+KA5,RafflesMedical (At Passenger Terminal Building 2 #26-053)
+KA6,RAFFLES MEDICAL GROUP
+KA7,RafflesMedical
+KA8,RafflesMedical (Shaw Centre)
+KA9,RafflesMedical (GlobalFoundries)
+KAA,SOG - Heng Clinic for Women
+KAB,Specialist Centre @ Farrer Park
+KAC,STO+G Practice
+KAE,TANG MEDICAL & SURGERY PTE LTD
+KAF,TAMPINES STREET 11 X-RAY CLINIC
+KAG,Thomson Women's Clinic
+KAH,WellCare Family Clinic
+KAI,ADVANCED DENTAL CLINIC PASIR RIS PTE LTD
+KAJ,Astra Centre for Women & Fertility Pte Ltd
+KAK,Delta Dental Surgeons
+KAL,DIGESTIVE & LIVER SURGERY
+KAM,Evan Woo Plastic Surgery
+KAN,HEALTHWAY DENTAL CLINIC
+KAO,Heartland Dental Pte Ltd
+KAP,ISLAND GROUP DENTAL SURGERY
+KAQ,JJ Chua Rejuvenative Cosmetic & Laser Surgery
+KAR,NEIGHBOURHOOD DENTAL SURGERY
+KAS,"NOBEL ENT Head, Neck & Thyroid  Surgery Centre"
+KAT,SINGAPORE DENTAL SURGERY
+KAU,Simply Dental Pte Ltd
+KAV,SMILE INC. DENTAL SURGEONS PTE. LTD.
+KAW,Smilearts Dental Studio (Tiong Bahru)
+KAX,TAI DENTAL SURGERY
+KAY,ASC Clinic for Women
+KAZ,MEDIVENE CLINIC & SURGERY
+KB0,Thomson Paediatric Centre
+KB3,HEALTHWAY DENTAL CLINIC
+KB4,"Allergy, Arthritis & Rheumatism Clinic"
+KB5,Alpha Clinic & Surgery
+KB6,ARCADIA CLINIC
+KB7,CRAWFURD MEDICAL
+KB8,Fusion Medical & Health Screening Centre
+KB9,KOH'S T & T CLINIC AND SURGERY PTE. LTD.
+KBA,MEDIHEALTH CLINIC & SURGERY
+KBB,O2 Medical Clinic
+KBC,PanHealth Family Clinic
+KBD,Q Medical Clinic
+KBE,SOZO CARDIOLOGY
+KBF,The Good Life Medical Center
+KBG,Sweng Plastic Aesthetic and Reconstructive Surgery
+KBH,GynaeMD Women's Clinic (Clementi)
+KBI,Dr. Tan & Partners @ Somerset
+KBJ,Onecare Clinic Bukit Panjang
+KBK,Radlink Medicare
+KBL,RafflesMedical (Rivervale)
+KBM,Shenton Medical Group
+KBN,Viva Medical Group (Westside)
+KBO,C & A Dental Studio @ Parkway Parade Pte Ltd
+KBP,Casa Dental
+KBQ,HEALTHWAY DENTAL CLINIC
+KBR,Julian Lee Ear Nose Throat Specialist
+KBS,Luminous Dental Clinic @ 821 Tampines
+KBT,OncoCare Cancer Centre
+KBU,Nam Fung Dental Centre @ Toa Payoh
+KBV,Shinagawa Eye Centre
+KBW,T32 Dental Centre At Financial Distict
+KBX,TAI DENTAL SURGERY (CITY PLAZA) PTE. LTD.
+KBY,Tampines Dental On 81
+KBZ,"ENDOSCOPY, VEINS & PILES CENTRE"
+KC0,HAFcare OG Clinic
+KC1,ORCHARD SCOTTS DENTAL: AESTHETICS AND IMPLANT CENTER PTE. LTD.
+KC2,PACIFIC ADVANCE RENAL CARE (SENGKANG)
+KC3,PRENATAL DIAGNOSTIC CENTRE
+KC4,RenalTeam Dialysis Centre at Ren Ci Community Hospital
+KC5,SMILE INC. DENTAL SURGEONS
+KC6,SMILE INC. DENTAL SURGEONS
+KC7,"Teeth @ Tiong Bahru, Dental Clinic"
+KC8,Access Medical (East Coast)
+KC9,Access Medical (Whampoa)
+KCA,AMK FAMILY CLINIC PTE LTD
+KCB,Asian American Radiation Oncology
+KCC,Atlas Eye Specialist Centre
+KCD,BETTER LIFE PSYCHOLOGICAL MEDICINE CLINIC
+KCE,C C Tang Dental Surgery Pte Ltd
+KCF,Centre For Screening & Surgery
+KCG,Desmond Wai Liver & Gastrointestinal Diseases Centre
+KCH,ENT & Sinus Centre
+KCI,FIRST AVENUE DENTAL SURGERY
+KCJ,Healthwerkz medical centre @ orchard
+KCK,HOLLAND DENTAL PTE. LTD.
+KCL,Kidney Life Centre
+KCM,KOONG & HO SURGERY CENTRE PTE. LTD.
+KCN,Koong & Ho Surgery Centre Pte Ltd
+kCO,MindChamps Medical Clinic
+KCP,Mount Alvernia Outreach Medical Clinic
+KCQ,Neua Dental
+KCR,Novena MRI Diagnostics
+KCS,Nuffield Dental Serangoon Gardens
+KCT,Orchard Radiology
+KCU,Petite Smiles Children's Dental Clinic
+KCV,SENJA GATEWAY FAMILY CLINIC
+KCW,Teeth. Q Dental Surgeons
+KCX,Tetsuyu Medical Clinic
+KCY,THE WISDOM TOOTH CLINIC
+KCZ,The ENT Clinic
+KD0,THE ORCHARD IMAGING CENTRE PTE LTD
+KD1,ADVANCED DENTAL CLINIC PASIR RIS PTE LTD
+KD2,CHOO DENTAL SURGERY
+KD3,Concord International Hospital
+KD4,CROWN DENTAL CLINIC
+KD5,Dr Jeremy Chan Medical Clinic
+KD6,MY FAMILY CLINIC (PUNGGOL WATERWAY TERRACE)
+KD7,Q & M Dental Surgery (Ang Mo Kio Central)
+KD8,Standard Clinic & Surgery
+KD9,SH TAN KIDNEY AND MEDICAL CLINIC
+KDA,The EyeClinic by Dr Cheryl Lee
+KDB,TP DENTAL SURGEONS TANGLIN
+KDC,VICTORIA DENTALCARE (HOUGANG CAPEVIEW)
+KDD,FAMILY CARE MEDICAL CENTRE PTE LTD
+KDE,AURORA AESTHETIC DENTISTRY
+KDF,THE DENTAL HUB (BOON LAY)
+KDG,NEUGen Dental
+KDH,OncoCare Cancer Centre
+KDI,Pacific Dental
+KDJ,The Dental Gallery Dawson
+KDK,Twinkle Dental (Tampines North) Pte Ltd
+KDL,CROWN DENTAL SURGERY
+KDM,Lifescan Medical Centre
+KDN,SOONG CLINIC AND SURGERY
+KDO,Acacia Medical Clinic
+KDP,Kin Mun Clinic
+KDQ,Phoenix Medical Group
+KDR,Royal Care Medical Yishun Junction 9
+KDS,THE OCCUPATIONAL AND DIVING MEDICINE CENTRE
+KDT,Dr.W Family Clinic
+KDU,WEN & WENG FAMILY CLINIC
+KDV,LOH DENTAL SURGERY
+KDW,ProHealth Medical Group @ Hougang Pte Ltd
+KDX,SMG Vision Centre
+KDY,T32 Dental Pearl At Clementi
+KDZ,KING GEORGE'S MEDICAL CLINIC PTE LTD
+KE0,ALDA DENTAL SURGERY
+KE1,Ambulatory SurgiCare (ASC)
+KE2,CASA DENTAL (HOLLAND)
+KE3,CHARLES DENTAL SURGERY
+KE4,dental @ UNI
+KE5,DENTAL FOCUS PIONEER CLINIC
+KE7,KIDNEYCARE DIALYSIS CENTRE @ YISHUN
+KE8,N.K.CHEONG DENTAL CLINIC
+KE9,PACIFIC ADVANCE RENAL CARE (TAMPINES)
+KEA,SMG ENT CENTRE EAR NOSE THROAT FACE NECK
+KEB,"Specialist Endocrine Clinic for Diabetes, Thyroid and Hormones"
+KEC,SIMON DENTAL SURGERY
+KEF,THE RHINOPLASTY CLINIC ENT FACIAL PLASTICS
+KEG,The Skin Specialist
+KEH,Twin City Perio-Endo Clinic Pte Ltd
+KEK,EC Family Clinic
+KEL,HEALTHWAY MEDICAL CLINIC
+KEN,Toothsmith Dental Surgery
+KEO,EAST COAST MEDICAL CENTRE
+KEP,FEMA CLINIC & SURGERY
+KEQ,Fresenius Medical Care Bukit Merah Central Dialysis Clinic
+KER,MEDICO CLINIC & SURGERY
+KES,Mission Cross Family Clinic
+KET,Platinum Medical Centre pte ltd
+KEU,SJ Clinic & Surgery
+KEV,Wendy Women's Clinic
+KEW,W P SIM FAMILY CLINIC & SURGERY
+KEX,FRONTIER MEDICAL ASSOCIATES (AT ANG MO KIO AVE 4)
+KEY,FRONTIER MEDICAL ASSOCIATES (AT BUANGKOK CRESCENT)
+KEZ,LIFE FAMILY CLINIC
+KF0,Lifescan Imaging
+KF1,OneDoctors Family Clinic
+KF2,AEGIS DIALYSIS CENTRE PTE LTD
+KF3,Dental Suites @ Bedok
+KF4,Dermatology Associates (Connexion)
+KF5,GUTCARE DIGESTIVE â€¢ LIVER â€¢ ENDOSCOPY ASSOCIATES
+KF6,My Eye Specialist & Retina Surgeon
+KF7,Shuang Dentistry
+KF9,WH Dental Surgeons
+KFA,FRESENIUS MEDICAL CARE KHATIB DIALYSIS CLINIC
+KFB,LIEW & KOH DENTAL SURGERY (YISHUN)
+KFC,LIEW AND KOH DENTAL SURGERY (HOUGANG GREEN)
+KFD,AA DENTAL SURGERY
+KFE,Dr Alicia Eye Specialist
+KFF,NF DentiSmile
+KFH,Smile Doctor Dentalcare @ Punggol Waterway
+KFI,WHITE CLOUD DENTAL
+KFJ,Q & M Dental Surgery (Bishan)
+KFK,The Radiant Eye Centre
+KFL,Family Doctors at 365
+KFM,Ang Mo Kio Family Medicine Clinic
+KFN,Dawson Medical Clinic
+KFO,Thomson Paediatric Centre
+KFP,EAGLE EYE CENTRE
+KFQ,EAGLE EYE CENTRE@ MOUNT ELIZABETH
+KFR,Lian Clinic
+KFS,RafflesMedical (Waterway Point)
+KFT,Lighthouse Clinic And Surgery Pte. Ltd.
+KFU,Sembawang Mart Medical Centre
+KFV,Q & M Medical Clinic (Bukit Batok)
+KFW,Shenton Medical Group
+KFX,Shenton Medical Group
+KFZ,HEALTHWAY DENTAL CLINIC
+KG1,St. Andrew's Mission Hospital Clinic (Kampong Glam)
+KG2,FRESENIUS MEDICAL CARE ANG MO KIO DIALYSIS CLINIC
+KG3,FRESENIUS MEDICAL CARE ANG MO KIO DIALYSIS CLINIC
+KG4,FRESENIUS MEDICAL CARE BEDOK NORTH DIALYSIS CLINIC
+KG5,FRESENIUS MEDICAL CARE BEDOK RESERVOIR DIALYSIS CLINIC
+KG6,FRESENIUS MEDICAL CARE BUKIT BATOK DIALYSIS CLINIC
+KG7,FRESENIUS MEDICAL CARE BUKIT MERAH DIALYSIS CLINIC
+KG8,FRESENIUS MEDICAL CARE HOUGANG DIALYSIS CLINIC
+KG9,FRESENIUS MEDICAL CARE JURONG BOON LAY DIALYSIS CLINIC
+KGA,FRESENIUS MEDICAL CARE JURONG EAST DIALYSIS CLINIC
+KGB,FRESENIUS MEDICAL CARE JURONG EAST CENTRAL DIALYSIS CLINIC
+KGC,FRESENIUS MEDICAL CARE JURONG WEST DIALYSIS CLINIC
+KGD,FRESENIUS MEDICAL CARE LUCKY PLAZA DIALYSIS CLINIC
+KGE,FRESENIUS MEDICAL CARE NAPIER DIALYSIS CLINIC
+KGF,FRESENIUS MEDICAL CARE TANGLIN DIALYSIS CLINIC
+KGG,FRESENIUS MEDICAL CARE TAMPINES DIALYSIS CLINIC
+KGH,FRESENIUS MEDICAL CARE TOA PAYOH DIALYSIS CLINIC
+KGI,FRESENIUS MEDICAL CARE YISHUN DIALYSIS CLINIC
+KGJ,Dr D AESTHETICS MEDICAL CLINIC
+KGK,Dr W.K. Koo & Associates P.L.
+KGL,Duxton Medical Clinic
+KGM,The Family Practice@ Skyville
+KGN,Waheeda's Clinic & Surgery
+KGO,Aptus Surgery Centre
+KGP,Excelsior Dental Surgery Pte Ltd
+KGQ,W GYNAE WOMEN'S CLINIC
+KGR,"Drs Koo, Fok & Associates( Pioneer )"
+KGS,SUNBEAM MEDICAL CLINIC
+KGT,MINMED CLINIC (PUNGGOL)
+KGU,Hand Surgery Associates (Alvernia)
+KGV,Dr Gary's Family Clinic
+KGW,PRISTINE DENTALWORKS FAMILY DENTAL CENTRE
+KGX,HEALTHCONNEXION MEDICAL CLINIC
+KGY,Holland Medical Clinic
+KGZ,Minmed Health Screeners
+KH0,SIA FAMILY CLINIC AND SURGERY
+KH1,ACCESS MEDICAL (MARINE TERRACE)
+KH2,Enhance Dental Centre
+KH3,HEALTHMARK FAMILY CLINIC (WATERWAY)
+KH4,Family Dental Surgery Pte Ltd
+KH5,PARKWAY CANCER CENTRE
+KH6,L&G Medical Clinic
+KH7,Newport Dental
+KH8,MEDINA MEDICAL CENTRE
+KH9,Greenlife Dental Clinic(New Upper Changi Road)
+KHA,Marina Bay Dental
+KHB,Shenton Dental Group
+KHC,CMY Medical
+KHD,HO TONG CLINIC
+KHE,Naaman Skin & Laser Centre
+KHF,PROVIDENCE CLINIC @ BALESTIER
+KHG,SHALOM MEDICAL GROUP
+KHH,TEMASEK CLINIC & SURGERY
+KHI,UNIHEALTH 24-HR CLINIC (TOA PAYOH)
+KHJ,SATA CommHealth Ang Mo Kio Medical Centre
+KHK,AUDREY & ALEXANDER CENTRE FOR GENERAL DENTISTRY
+KHL,SYMMETRY DENTOFACIAL AESTHETICS
+KHM,Peace Family Clinic (WL832)
+KHN,Eastern Hougang Eye Specialist
+KHO,Garden Dental
+KHP,YSL BEDOK CLINIC & SURGERY
+KHQ,B.Braun Dialysis Centre
+KHR,Caring Dental Sengkang
+KHS,Women & Fertility Clinic by Marianne
+KHT,Onecare Clinic Tampines
+KHU,Straits Dental Group (TS) Pte Ltd
+KHV,SHENTON FAMILY MEDICAL CLINIC (TAMPINES)
+KHW,SYNERGY DENTAL SPECIALISTS (fka Dental Focus Capitol Clinic)
+KHX,Dental Focus People's Park Clinic
+KHY,LIFESCAN IMAGING
+KHZ,LIFESCAN IMAGING
+KI1,Fresenius Medical Care Kovan Dialysis Clinic
+KI2,Fresenius Medical Care Upper Serangoon Dialysis Clinic
+KI3,Fresenius Medical Care Serangoon Dialysis Clinic
+KI4,Fresenius Medical Care Whampoa Dialysis Clinic
+KI5,Nihon Dental Centre
+KI6,RafflesDental
+KI7,RafflesDental
+KI8,RafflesDental
+KI9,RafflesMedical (Bukit Batok)
+KIA,RafflesMedical
+KIB,RafflesMedical (Holland V)
+KIC,AMDA International Peace Clinic
+KID,Astra Women's Specialist Centre
+KIE,The Skin Specialists & Laser Clinic
+KIF,Advanced Dental Clinic Whampoa Pte Ltd
+KIG,GILEAD EAR NOSE & THROAT CENTRE
+KIH,Dr. Tan & Partners @ Katong
+KII,Onecare Clinic Tiong Bahru
+KIJ,PIONEER FAMILY HEALTHCARE CENTRE
+KIK,RafflesMedical (Harbourfront centre)
+KIL,Thomson Paediatric Centre
+KIM,BISHAN GRACE CLINIC
+KIN,THE OLIVE TREE FAMILY CLINIC & SURGERY PTE. LTD.
+KIO,G.DENTAL @ CLEMENTI
+KIP,advanced dental clinic east coast pte ltd
+KIQ,"ABEL SOH DIABETES, THYROID AND ENDOCRINE CLINIC"
+KIR,EHA clinic @ Toa Payoh
+KIS,Vascular & Interventional Centre
+KIT,AE Medical Clinic
+KIV,UNITY DENTICARE
+KIW,Kong Clinic for Chest & Internal Medicine
+KIX,ISLAND FAMILY CLINIC (FERNVALE)
+KIY,The Respiratory Practice Lung Â· Asthma Â· Cough Â· Allergy
+KIZ,The Respiratory Practice Lung Â· Asthma Â· Cough Â· Allergy
+KJ0,EDGEDALE MEDICAL CLINIC
+KJ1,Nyam Family Clinic
+KJ2,CECILIA FAMILY CLINIC & SURGERY
+KJ3,Aura Dental Clinic
+KJ4,ANG MO KIO 10 DENTAL
+KJ5,NF DentiSmile @ MarinaSq
+KJ6,RafflesMedical
+KJ9,Kong Dental Surgery
+KJA,POLYGEMS (PG) DENTAL CARE PTE. LTD.
+KJB,ISLAND GROUP DENTAL SURGERY
+KJC,SHANG DENTAL
+KJD,The Dental Gallery Choa Chu Kang
+KJE,TRIPOD DENTAL CLINIC (CIRCUIT ROAD)
+KJF,SENNETT MEDICAL CLINIC
+KJG,Nuffield Dental Seletar
+KJH,Dental Designs Clinic
+KJI,Mission (Bukit Batok) Medical Clinic
+KJJ,SBCC BABY & CHILD CLINIC
+KJK,JOY CLINIC AND SURGERY
+KJL,Drs Chua & Partners (AV) Pte Ltd
+KJM,M Dental (Pasir Ris) Pte Ltd
+KJN,LUMINOUS DENTAL CLINIC @ HOUGANG
+KJO,ML've Medical Diagnostic Suite
+KJP,NANYANG DENTIST
+KJQ,The Clinic @ Capitagreen
+KJR,Q & M Dental Surgery (Hougang)
+KJS,ONE SURGICAL CLINIC & SURGERY
+KJT,PARKWAY SHENTON MEDICAL GROUP
+KJU,UNITY FAMILY MEDICINE CLINIC
+KJV,RenalTeam Dialysis Centre Yishun
+KJW,Mount Alvernia Outreach Medical Clinic
+KJY,Minmed Clinic (Jurong East)
+KJZ,Minmed Clinic (Sengkang)
+KK0,The ENT Specialist Centre
+KK1,plushealth Medical Clinic & Surgery
+KK2,NIGHTINGALE MEDICAL GROUP
+KK3,APICARE PAIN CLINIC
+KK4,EON MEDICAL CLINIC
+KK5,ISLAND FAMILY CLINIC (KEAT HONG)
+KK6,SOG - SK LIM BREAST & GENERAL SURGICARE
+KK8,VIVIEN @ ROBINSON.PRACTICE
+KK9,Ho Dental Surgery
+KKA,Lynne Lim Ear Nose Throat and Hearing Centre (Child & Adult)
+KKB,SMILE CENTRAL CLINIC (At Aljunied Ave 2 #01-80/84)
+KKC,LQ DENTAL
+KKD,Dr. Tan & Partners
+KKE,ADVANCED DENTAL CLINIC BUKIT PANJANG PTE LTD
+KKF,AELITE IMPLANT AND DENTAL CENTER
+KKG,HEALTHWAY MEDICAL CLINIC
+KKH,TLC DENTAL CENTRE
+KKI,LUMINOUS DENTAL CLINIC @ 201D TAMPINES
+KKJ,Premier Dental Care
+KKK,RafflesDental
+KKL,ACCESS MEDICAL (KIM KEAT)
+KKM,ACCESS MEDICAL (TOA PAYOH)
+KKN,TEMASEK MEDICAL CENTRE
+KKO,TEMASEK MEDICAL CENTRE
+KKP,TEMASEK MEDICAL CENTRE
+KKQ,TEMASEK MEDICAL CENTRE
+KKR,SPRING HOPE ORTHOPAEDIC SPINE SURGERY
+KKS,STANLEY EAR NOSE THROAT AND SINUS CENTRE
+KKT,Tai Dental Surgery (Chai Chee) Pte. Ltd.
+KKU,L20 DAY SURGERY
+KKV,RafflesMedical
+KKW,RafflesMedical (Changi Airport Terminal 3)
+KKX,DAYSPRING MEDICAL CLINIC
+KKY,PACIFIC ADVANCE RENAL CARE (FAJAR)
+KKZ,Tanglin MRI Diagnostics
+KL0,Lakeside Family Medicine Clinic
+KL1,Trinity Medical Clinic (AT jURONG GATEWAY)
+KL3,FAJAR FAMILY CLINIC & SURGERY
+KL4,Healthcare Hougang Medical Clinic
+KL5,NICHII INTERNATIONAL CLINIC
+KL6,Onecare Clinic Choa Chu Kang
+KL7,Onecare Clinic Marine Parade
+KL8,OC Medical Raffles Place
+KL9,SINGAPORE AEROMEDICAL CENTRE
+KLA,The Obstetrics & Gynaecology Centre
+KLB,TPC Medical Clinic
+KLC,SHALOM CLINC & SURGERY
+KLD,Aesthetic & Reconstructive Centre
+KLE,JOY LEE BREAST AND GENERAL SURGERY
+KLF,"K K CHEW EAR, NOSE & THROAT SURGERY"
+KLG,Acumed Medical Group (At JTC Biomed @ Tuas Biomedical Park)
+KLH,JIREH FAMILY CLINIC
+KLI,Katong Family Clinic Pte Ltd
+KLJ,NOUR!SH DENTAL CARE & IMPLANTS
+KLK,Okio Dental Centre
+KLL,UNITED DENTAL SURGERY
+KLM,WELLNESS DENTAL STUDIO
+KLN,White & Co. Dental Care
+KLO,WINSTON OMP ADVANCED DENTAL IMPLANTOLOGY
+KLP,ASSURANCE MEDICARE CLINIC AND SURGERY
+KLQ,LIFE FAMILY CLINIC
+KLR,MEI LING CLINIC
+KLS,NUFFIELD MEDICAL SIGLAP
+KLT,Greenlife Dental Clinic (Toa Payoh)
+KLU,GREENLIFE DENTAL CLINIC (Clementi Ave 3)
+KLV,Greenlife Dental Clinic (Yew Tee Square)
+KLW,Jurong Point Dental Surgery
+KLX,HEAL DENTAL CLINIC
+KM0,Beacon Ear Nose Throat Snoring Centre
+KM1,KOH DENTAL SURGERY PTE LTD
+KM2,Leong & Tan Clinic & Surgery
+KM3,"Seed of Life, Fertility & Women's Care Medical Centre"
+KM4,RenalTeam Dialysis Centre Woodlands Peak
+KM5,Azure Dental
+KM6,London Dental Care
+KM7,TAI DENTAL SURGERY (Ang Mo Kio) PTE. LTD.
+KM8,W DENTAL
+KM9,"HUA MEI CLINIC, WHAMPOA"
+KMA,RafflesMedical (Tampines Hub)
+KMB,ECON ADVANCE RENAL CARE (YUNG KUANG)
+KMD,DENTAL FOCUS JUNCTION 10 CLINIC
+KME,LEE Dental Surgery
+KMF,LUMINOUS DENTAL CLINIC @ TAMPINES PLAZA
+KMG,RafflesDental
+KMH,DAYSPRING MEDICAL CLINIC (PASIR RIS)
+KMI,FAITH CLINIC (BEDOK)
+KMJ,FAITH HEALTHCARE (RIVERVALE)
+KMK,FRESENIUS MEDICAL CARE MARSILING DIALYSIS CLINIC
+KML,FRESENIUS MEDICAL CARE YISHUN RING DIALYSIS CLINIC
+KMM,International Cancer Specialists
+KMN,LEE WOMEN'S CLINIC & SURGERY
+KMP,Tay Clinic
+KMQ,The Respiratory Practice Lung Â· Asthma Â· Cough Â· Allergy
+KMR,VISTA MEDICAL CENTRE
+KMS,Asian American Liver Centre
+KMT,Esther Chuwa BreastCare Practice
+KMU,West Point Hospital
+KMW,VICTORIA DENTALCARE (RIVERVALE)
+KMX,VISTA DENTAL SURGERY
+KMY,VISTA DENTAL SURGERY
+KMZ,VISTA DENTAL SURGERY
+KN0,Vitacare Family Clinic@Punggol West Pte Ltd
+KN2,The Clinic @ Business City
+KN3,B9 DENTAL CENTRE (MARSILING)
+KN4,Cheng SC Vein and Endovascular Clinic
+KN5,Gentle Dental Centre for Aesthetics and Implantology Pte Ltd
+KN6,GENTLE DENTAL GROUP @ TANJONG KATONG PTE. LTD.
+KN7,Greenlife Dental Clinic (Ang Mo Kio)
+KN8,ASTRA WOMEN'S SPECIALIST CLINIC
+KN9,banyan clinic @ jw
+KNA,BOON LAY CORPORATION CLINIC PTE LTD
+KNB,FAMILY HEALTHCARE CLINIC & SURGERY PTE LTD
+KNC,YSL ALJUNIED CLINIC & SURGERY
+KNE,KINGSLEY CLINIC
+KNF,FAITH HEALTHCARE (TAMPINES)
+KNG,NORTHEAST MEDICAL GROUP
+KNH,K C CHING CLINIC & SURGERY FOR WOMEN PTE LTD
+KNI,LAI ENDOSCOPY & COLORECTAL SURGERY
+KNJ,LUMINOUS DENTAL CLINIC @ 25A CHAI CHEE
+KNK,LUMINOUS DENTAL CLINIC @ PASIR RIS
+KNL,PARAGON DENTAL CENTRE
+KNM,TAL Dialysis @ Clementi
+KNN,LIVEWELL MEDICAL FAMILY CLINIC
+KNO,LOI+WONG CLINIC & SURGERY
+KNP,SOG-SC HONG CLINIC FOR WOMEN
+KNQ,NEWEST MEDICAL AND LASER CLINIC PTE LTD
+KNR,Yarra Medical Clinic
+KNS,The Smile Division Dental Group@Yishun
+KNT,KEAT HONG FAMILY MEDICINE CLINIC
+KNU,OncoCare Women's Cancer Clinic
+KNV,BALESTIER DENTAL SURGERY
+KNW,KINGSLEY FAMILY CLINIC
+KNY,Mindchamps Medical Clinic
+KNZ,MY ENT SPECIALIST
+KO0,PANHEALTH FAMILY CLINIC (HOUGANG)
+KO1,RAFFLESMEDICAL (Hillion Mall)
+KO2,SBCC BABY & CHILD CLINIC
+KO3,SATA CommHealth Tampines Medical Centre
+KO4,SUNBEAM MEDICAL CLINIC
+KO5,KIDNEYCARE DIALYSIS CENTRE @ WEST COAST
+KO6,PACIFIC ADVANCE RENAL CARE (CHOA CHU KANG)
+KO7,ENT Surgeons Medical Centre
+KO8,ICON SOC FARRER PARK MEDICAL CLINIC
+KO9,ICON SOC GLENEAGLES MEDICAL CLINIC
+KOA,ICON SOC MOUNT ALVERNIA MEDICAL CLINIC
+KOB,ICON SOC MOUNT ELIZABETH MEDICAL CLINIC
+KOC,GREENLIFE CLINIC & SURGERY
+KOD,The Family Practice @Keppel
+KOE,HealthQuay Medical
+KOF,Ang Mo Kio - Thye Hua Kwan Hospital Dialysis Centre
+KOG,MEDILINE WEI MIN CLINIC
+KOH,Medi Healthcare Clinic (Punggol)
+KOI,W DENTAL
+KOJ,STAT MEDICAL CLINIC
+KOK,Trucare Medical And Surgery
+KOL,TEETH. Q DENTAL SURGEONS @ MATILDA PORTICO
+KOM,Kensington Square Medical Clinic And Surgery
+KON,AR-Raudhah Medical Clinic and Surgery Pte Ltd
+KOP,Q & M Dental Surgery (Punggol MRT)
+KOQ,Dr. Tan & Partners @ Scotts
+KOR,VICTORIA DENTALCARE (HOUGANG CAPEVIEW)
+KOS,VICTORIA DENTALCARE (PUNGGOL)
+KOT,VICTORIA DENTALCARE (MARINE PARADE)
+KOU,VICTORIA DENTALCARE (RIVERVALE)
+KOV,DENTALWORKZ STUDIO
+KOX,AMITY MEDICAL CLINIC & DENTAL SURGERY
+KOZ,E Medical Clinic & Surgery
+KP0,Pacific Medical Clinic
+KP1,Pacific Medical Clinic
+KP2,The Chong Family Clinic Pte Ltd
+KP3,MEDICAL AESTHETICS
+KP4,MEDICAL AESTHETICS
+KP5,Onecare Clinic Loyang
+KP6,Sembawang X-Ray Centre
+KP8,UNIHEALTH 24-HR CLINIC (ANG MO KIO)
+KP9,Ocean Dental
+KPA,Rochor Centre Dental Surgery
+KPB,THE DENTAL IMPLANT CENTRE
+KPC,YIP DENTAL SURGERY PTE LTD
+KPD,ALLURE PLASTIC SURGERY
+KPE,Shens Reconstructive Surgery Centre
+KPF,Aaron Dentalcare@ Holland V.
+KPG,ANGELSMILE DENTAL CENTRE
+KPH,Advanced Dental Clinic Sengkang
+KPI,HEALTHWAY DENTAL CLINIC
+KPJ,POLYGEMS DENTAL CARE (YISHUN)
+KPK,Popular Dental (Serangoon Central)
+KPL,Q & M Dental Centre (Jurong East Central)
+KPM,Q & M Dental Surgery (Yew Tee)
+KPN,The Dental Lodge Sembawang
+KPO,MANHATTAN MEDICAL CENTRE
+KPP,TEBAN GARDEN CLINIC
+KPQ,Pacific Healthcare Specialist Centre (#12-01)
+KPR,Pacific Healthcare Specialist Centre (#12-01)
+KPT,Teehee Dental Works
+KPV,ML've HealthCare (Novena)
+KPX,VASCULAR & INTERVENTIONAL CENTRE
+KPY,B9 DENTAL CENTRE (Tanjong Pagar)
+KQ0,ECON ADVANCE RENAL CARE (BEDOK)
+KQ1,GreenForest Family Clinic
+KQ2,INTERNATIONAL PLAZA DENTAL SURGEONS
+KQ3,Asia HealthPartners
+KQ4,Asia HealthPartners Pte Ltd (Imaging)
+KQ5,Astra Women's Specialist Centre
+KQ6,DRS TANG & PARTNERS PTE. LTD.
+KQ7,TOWN CLINIC
+KQ8,Harmony Dental Surgery
+KQ9,Royce Dental Surgery
+KQB,ATLAS PACIFIC MEDICAL
+KQC,Canberra Care Medical Clinic
+KQD,Mediway Medical Centre
+KQE,Q & M MUTUAL HEALTHCARE MEDICAL CLINIC
+KQG,Physicians Practice Family Medical Center
+KQH,Sengkang Family Clinic
+KQI,AcuMed Medical Group (At Blk 215C Compassvale Drive)
+KQJ,ROYAL CARE MEDICAL FAMILY CLINIC CHOA CHU KANG
+KQK,THE DERMATOLOGY PRACTICE SKIN.HAIR.ALLERGY.LASER @GLENEAGLES
+KQL,HC ENDOSCOPY & PILES CENTRE (HILLFORD)
+KQM,HC ENDOSCOPY & PILES CENTRE (GM)
+KQN,Access Medical (Jurong West)
+KQO,TLC Lifestyle Practice
+KQP,G Dental Center
+KQQ,SMILEWORKS @ MIRAGE PTE. LTD.
+KQR,CLEMENTI DENTAL CENTRE
+KQS,RafflesDental
+KQT,Farrer Park Imaging
+KQU,GOH CLINIC & SURGERY
+KQV,LONDON (MH) CLINIC & SURGERY
+KQW,PRISTINE DENTALWORKS
+KR0,AICARE FAMILY CLINIC
+KR1,CARE4LIFE MEDICAL CLINIC (YISHUN)
+KR2,DOCTORS FOR LIFE MEDICAL
+KR3,Mind Care Clinic
+KR4,Access Medical (Bukit Batok)
+KR5,My Family Clinic (Angsana Breeze @ Yishun)
+KR7,PINNACLE FAMILY CLINIC (COMPASSVALE)
+KR8,Tampines Family Medicine Clinic
+KR9,"LIM EAR, NOSE & THROAT SURGERY"
+KRA,THE GP ENDOSCOPY & PILES CENTRE (DLEEDON)
+KRB,TOWN HALL DENTAL SURGERY (TAMPINES)
+KRC,TANGLIN DENTAL @ YISHUN
+KRD,NEO SMILES DENTAL STUDIO KOVAN
+KRE,Royce Dental Surgery
+KRF,Nyam Endoscopy Centre
+KRG,C3 Family Clinic @Aljunied Crescent
+KRH,KILLINEY MEDICAL CLINIC
+KRI,Kerry Medical
+KRK,MY Clinic
+KRL,Bedok Day & Night Clinic
+KRM,HEALTHSPRINGS MEDICAL ASSOCIATES
+KRN,MINMED CLINIC (HAIG ROAD)
+KRO,Access Medical (Redhill Close)
+KRP,ACUMED MEDICAL GROUP (At Blk 38 Teban Gardens)
+KRQ,ACUMED MEDICAL GROUP (At Woodlands st 31)
+KRR,NCS Medical Clinic
+KRU,Parkway Shenton Medical Group (At Heartland Mall - Kovan)
+KRV,Parkway Shenton Medical Group
+KRW,Onecare Clinic Bukit Gombak MRT
+KRX,SINGAPORE TELECOM CLINIC
+KRY,ST Aerospace Engineering Medical Centre
+KRZ,STAT MEDICAL CLINIC @ HOUGANG
+KS1,Allhealth Family Clinic
+KS2,Advanced Medical Tampines
+KS3,Clinic For Women Obs + Gynae
+KS4,ESTEEMED MEDICAL CLINIC
+KS5,iDOC Clinic
+KS7,Dermatology & Surgery Clinic
+KS8,GLORY DENTAL SURGERY (ROXY SQUARE) PTE.LTD.
+KS9,ADVANCED DENTAL ANG MO KIO
+KSA,Heritage Dental
+KSC,J DENTAL
+KSD,LUMINOUS DENTAL @ RAFFLES PLACE
+KSE,V DENTAL
+KSG,THOMSON CARDIOLOGY CENTRE
+KSH,SIMS DRIVE MEDICAL CLINIC
+KSJ,ASTRA WOMEN'S SPECIALISTS CENTRE
+KSK,Dental Essence
+KSM,FDC DENTAL BEDOK CENTRAL
+KSN,U DENTAL
+KSO,Hyperbaric Medical Services Pte Ltd
+KSP,CHIRON MEDICAL CLINIC
+KSQ,GOODDOCTORS MEDICAL CLINIC
+KSS,RafflesMedical
+KST,RafflesMedical
+KSU,RafflesMedical (Northpoint City)
+KSV,SOG CLINIC FOR CHILDREN
+KSW,"SINGAPORE KNEE, SPORTS AND ORTHOPAEDIC CLINIC"
+KSX,THE OBSTETRICS & GYNAECOLOGY CENTRE
+KSY,Horizon Dental Surgery
+KSZ,Liverpool Dental Care
+KT0,St Josephâ€™s Home
+KT1,TAMPINES CLINIC AND SURGERY PTE LTD
+KT2,ACMS MEDICAL CLINIC
+KT3,Clearbridge Medical Group
+KT4,DR D.Y.H. POON & ASSOCIATES MEDICAL ONCOLOGY CLINIC PTE. LTD.
+KT5,PINETREE MEDICAL CLINIC
+KT6,ORTHOPAEDIC & HAND MRI (OHM) ORCHARD PTE LTD
+KT7,ONECARE CLINIC TAMPINES MRT
+KT8,SATA CommHealth Potong Pasir Medical Centre
+KT9,"The ENT, Voice & Snoring Clinic"
+KTA,SMILE DESIGN DENTAL PRACTICE
+KTB,TAG Dental
+KTC,BRACES & IMPLANT DENTAL CENTRE
+KTD,Smiles R Us Dental (Aljunied)
+KTE,VISTA DENTAL SURGERY
+KTF,CLIFFORD DISPENSARY PTE LTD
+KTG,ROYCE DENTAL SURGERY (MARINE PARADE)
+KTH,TAMPINES ENDOSCOPY & SURGERY CENTRE
+KTI,CHIA & LEE MEDICAL & DENTAL CLINIC
+KTJ,ABLE MEDICAL
+KTK,WC Ong Plastic Reconstructive Surgery
+KTL,OncoCare Cancer Centre
+KTM,ADVANCED CENTRE FOR REPRODUCTIVE MEDICINE PTE. LTD.
+KTN,DP DENTAL (ORCHARD BRANCH)
+KTO,Dental Icon
+KTP,Q & M Dental Surgery (Yishun Central)
+KTQ,GSH CLINIC & SURGERY PTE. LTD.
+KTR,HK FAMILY CLINIC & SURGERY PTE LTD
+KTS,Reservoir Road Clinic & Surgery
+KTT,Corporate Dental Clinic
+KTU,T32 Dental Centre
+KTW,DAY & NIGHT FAMILY CLINIC
+KTX,Diagnostix Imaging Centre
+KTZ,Telok Blangah Clinic
+KU0,UNICARE FAMILY CLINIC & SURGERY
+KU1,Advance Renal Care (Kovan)
+KU2,ICON SOC NOVENA MEDICAL CLINIC
+KU3,TAN-TEOH CLINIC & SURGERY (Towner #01-212)
+KU4,THE FAMILY MEDICAL CENTRE (YISHUN) PTE. LTD.
+KU6,THOMSON PAEDIATRIC CENTRE
+KU8,IMC DENTAL
+KU9,JOY DENTAL CENTRE
+KUB,KONG KIAN CLINIC
+KUC,SBCC BABY & CHILD CLINIC
+KUD,CODEN Specialists Dental Implant Maxillofacial Aesthetics
+KUE,ROBERTSON CHOO OEHLERS LEE & LYE DENTAL SURGEONS
+KUF,Vincent's Dental Surgery
+KUG,Dr Matthew Tan Diabetes and Endocrine Care
+KUH,FINEST HEALTH MEDICAL CENTRE
+KUI,LEE CLINIC
+KUJ,Lucence Diagnostics Medical Centre
+KUK,"DRS KOO, KOH & ASSOCIATES P.L."
+KUL,FRONTIER MEDICAL ASSOCIATES (AT WOODLANDS DR 73)
+KUM,RafflesMedical
+KUN,RafflesMedical
+KUO,Saint-Julien Clinic for Diabetes & Endocrinology
+KUP,SOG CLINIC FOR CHILDREN
+KUQ,Trinity Medical Centre (Marine Parade)
+KUR,POLYGEMS DENTAL CARE (SELETAR)
+KUS,SHANG DENTAL (KALLANG)
+KUT,TOOFDOCTOR DENTAL SURGEONS (PELIKAT)
+KUU,Dental Focus Chinatown Clinic
+KUV,TWIN CITY PERIODONTICS PTE. LTD.
+KUW,MHC FAMILY CLINIC (ANG MO KIO)
+KUX,SBCC BABY & CHILD CLINIC
+KUY,Soon Diabetes Thyroid And Endocrinology Clinic
+KUZ,The Medical Centre Clinic ( Hong Leong )
+KV0,OEI & KHO CLINIC AND SURGERY
+KV1,Radoc Imaging Radiology Centre
+KV3,TRUE MEDICAL CLINIC TAMPINES WEST
+KV4,Urohealth Medical Clinic
+KV5,Dr JJ Chee Obstetrics & Gynaecology
+KV6,NOVENA BLADELESS CATARACT SURGERY & EYE SPECIALIST CENTRE
+KV7,WISMA GEYLANG SERAI CLINIC & SURGERY
+KV9,ACCESS MEDICAL (TAMPINES 730)
+KVA,DR NATASHA LIM EYE CENTRE
+KVB,MINMED CLINIC (YISHUN)
+KVC,SBCC BABY & CHILD CLINIC
+KVD,ASIA KIDNEY DIALYSIS CENTRE (TAMPINES) PTE LTD
+KVE,DR CHUA'S FAMILY CLINIC PTE. LTD.
+KVF,FIRSTHEALTH CLINIC & SURGERY
+KVG,FRASER MEDICAL CENTRE
+KVH,K K HO CLINIC FOR WOMEN PTE LTD
+KVJ,NOBEL PSYCHOLOGICAL WELLNESS CLINIC
+KVK,TAN'S T & T CLINIC AND SURGERY
+KVL,TAY CLINIC
+KVM,WOODLANDS MEDICAL CENTRE
+KVN,iSmile Dental Clinic
+KVP,PanCare Medical Clinic
+KVQ,PRECIOUS MEDICAL CLINIC
+KVR,HC Orthopaedic Surgery
+KVS,IMC MEDICAL
+KVT,MOBILEDOCTOR CLINIC
+KVV,"Abraham's Ear, Nose & Throat Surgery Pte Ltd"
+KVW,FRONTIER MEDICAL ASSOCIATES (At CANBERRA STREET)
+KVX,THE OBSTETRICS & GYNAECOLOGY CENTRE
+KVY,Ashford Dental Centre
+KVZ,MEIPLUS DENTALCARE
+KW0,MEIPLUS DENTALCARE
+KW1,KONG DENTAL SURGERY
+KW3,IMMANUEL DIALYSIS CENTRE PTE LTD
+KW4,ICON SOC ORCHARD MEDICAL CLINIC
+KW5,MTFA Dialysis Centre
+KW6,SMILE CENTRAL CLINIC (At Jurong Gateway)
+KW7,Singapore Dental Implant Centre
+KW8,WL&H Medical
+KW9,Advent Medical Clinic
+KWA,The Tenteram Clinic
+KWB,Vitacare Family Clinic@Seletar Pte.Ltd.
+KWC,Anteh Dispensary Pte Ltd
+KWD,CENTRAL 24-HR CLINIC (CLEMENTI)
+KWH,Lim Clinic
+KWI,MHC MEDICAL CENTRE (AMARA)
+KWJ,River of Life Family Clinic
+KWK,TEXTILE CENTRE CLINIC
+KWL,Wee's Clinic & Surgery Pte. Ltd.
+KWM,CLUNY COURT FAMILY DENTAL PTE. LTD.
+KWN,LUMINOUS DENTAL CLINIC @ YISHUN
+KWO,EAGLE EYE CENTRE
+KWP,ATRIA PAN DENTAL GROUP
+KWQ,HEALTHWAY DENTAL CLINIC
+KWR,TOOTH ANGELS & CO. DENTAL CENTRE
+KWS,PK WOMEN'S SPECIALIST CLINIC
+KWT,HEALTHWAY MEDICAL CLINIC
+KWU,MY FAMILY DOCTOR (At Ang Mo Kio)
+KWV,BEDOK FAMILY CLINIC & SURGERY
+KWW,HEALTHWAY MEDICAL CLINIC
+KWX,SINGAPORE FAMILY CLINIC & SURGERY
+KWY,HEALTHWAY MEDICAL CLINIC
+KWZ,Healthway Compassvale Clinic
+KX0,Healthway Medical Clinic
+KX1,HEALTHWAY MEDICAL CLINIC
+KX2,SINGAPORE FAMILY CLINIC & SURGERY (HOUGANG)
+KX3,Healthway Medical Clinic (At Hougang Mall)
+KX4,Healthway West Coast Clinic
+KX5,HEALTHWAY MEDICAL CLINIC
+KX6,HEALTHWAY MEDICAL CLINIC
+KX7,HEALTHWAY MEDICAL CLINIC
+KX8,Healthway Medical Centre
+KX9,HEALTHWAY ANCHORVALE CLINIC
+KXA,PICTON MEDICAL CENTRE
+KXB,HEALTHWAY MEDICAL CLINIC
+KXC,PEACE FAMILY CLINIC & SURGERY (At Sembawang Drive)
+KXD,Healthway Punggol Clinic
+KXE,HEALTHWAY MEDICAL CLINIC
+KXF,SILVER CROSS CLINIC (MARSILING)
+KXG,HEALTHWAY MEDICAL CLINIC
+KXH,HEALTHWAY MEDICAL CLINIC
+KXI,Healthway Tampines Central Clinic
+KXJ,HEALTHWAY TAMPINES CLINIC
+KXK,Healthway Toa Payoh Clinic
+KXL,HEALTHWAY MEDICAL CLINIC
+KXM,SINGAPORE FAMILY CLINIC & SURGERY (WOODLANDS)
+KXN,HEALTHWAY MEDICAL CENTRE
+KXO,RafflesMedical
+KXP,RafflesMedical
+KXQ,Oneness Medical
+KXR,RC'S FAMILY CLINIC PTE LTD
+KXS,Red Dot Medical
+KXT,Reste Medical
+KXV,TrueCare Clinic
+KXX,RafflesMedical
+KXY,ISLAND FAMILY CLINIC (ANCHORVALE)
+KXZ,RafflesMedical (Rivervale Mall)
+KY0,Thomson Women's Clinic
+KY1,Camry Medical Centre
+KY2,NCS Medical Clinic
+KY3,CLARION MEDICAL
+KY4,SLK FAMILY CLINIC & SURGERY PTE. LTD.
+KY5,ASTRA LAPAROSCOPIC & ROBOTIC CENTRE FOR WOMEN AND FERTILITY
+KY6,AZATACA Plastic Surgery
+KY7,Coronation Medical Centre
+KY8,ACCESS MEDICAL (TECK GHEE)
+KY9,Island Family Clinic & Endoscopy Centre
+KYA,Shens Clinic
+KYB,Glee! Dental Surgery
+KYC,Thean Clinic Pte Ltd
+KYD,My Family Clinic (Clementi)
+KYE,My Family Clinic (Hougang Central)
+KYF,My Family Clinic (Senja)
+KYG,ACUMED MEDICAL GROUP
+KYH,ACUMED MEDICAL GROUP
+KYJ,ACUMED MEDICAL GROUP
+KYK,ACUMED MEDICAL GROUP
+KYL,ACUMED MEDICAL GROUP
+KYM,ACUMED MEDICAL GROUP
+KYN,ACUMED MEDICAL GROUP
+KYO,ADVANCED MEDICINE IMAGING
+KYP,CLINIC @ THE SAIL
+KYQ,Central 24-HR Clinic ( Pioneer North )
+KYR,OneCare Clinic Woodlands
+KZ3,ASIA RETINA EYE SURGERY CENTRE
+KZ6,BEN NEO CLINIC FOR WOMEN
+KZ7,Care Sinus Snoring ENT Centre
+KZ8,POLYGEMS DENTAL CARE (CANBERRA)
+KZ9,Toronto Dental Care
+KZA,Adam Road Medical Centre Psychiatric & Psychological Services
+KZB,Diagnostix Imaging Centre
+KZC,EVERTON CLINIC
+KZD,THE ORAL CARE CENTRE
+KZE,AESTHETICS DENTAL SURGERY
+KZF,RAFFLESMEDICAL
+KZG,RafflesMedical
+KZH,RafflesMedical
+KZI,RafflesMedical
+KZJ,RafflesMedical
+KZK,RafflesMedical
+KZL,RAFFLESMEDICAL
+KZM,RAFFLESMEDICAL
+KZN,RafflesMedical
+KZO,RAFFLESMEDICAL
+KZP,RafflesMedical
+KZQ,RafflesMedical
+KZR,RafflesMedical
+KZS,RafflesMedical
+KZT,RafflesMedical
+KZU,RafflesMedical
+KZV,RafflesMedical
+KZW,RafflesMedical
+KZX,RafflesMedical
+KZY,RafflesMedical
+KZZ,RafflesMedical
+L0,PARKWAY CANCER CENTRE
+L1,SPECIALIST SURGERY AND LASER CENTRE
+L2,JERRY TAN EYE SURGERY PTE LTD
+L3,ASIAMEDIC EYE CENTRE PTE LTD
+L4,The Lasik Surgery Clinic
+L5,Clearvision Eye Clinic
+L6,Asia HealthPartners Pte Ltd
+L7,Pacific Healthcare Specialist Centre
+L8,Yap & Ang Surgical Associates
+L9,Aesthetic Medical Centre Pte Ltd
+LA,Radlink Diagnostic Imaging (S) Pte Ltd
+LB,British Dental Surgery
+LC,Bukit Timah Nam Seng Dental Surgery
+LD,Careway Dental Surgery
+LE,De Dental Practice Pte Ltd
+LF,Dhoby Dental Surgery LLP
+LG,Dr KS Wong & Partners Dental Surgery
+LH,Eastwood Dentalcare Family Dental Clinic
+LI,Day Surgery International Pte Ltd
+LJ,Ko Djeng Gleneagles Pte Ltd
+LK,Oral-Health Dental Surgery
+LL,Pan Island Dental Surgery
+LM,Pinnacle Dental
+LN,Smile Makers Dental Clinic
+LO,Smiley Dentalcare
+LP,ST Medical Services Pte Ltd (Singapore Aeromedical Centre)
+LQ,Straits Dental Group
+LR,Tanglin Dental Surgeons
+LS,The Dental Practice
+LT,The Family's Dental Surgery
+LU,Cecilia Family Clinic & Surgery
+LV,Chen Family Clinic
+LW,Cheong Clinic
+LY,Family Life Clinic
+LZ,First Medical Centre
+M0,Goh Clinic & Surgery
+M1,Crown Dental Surgery Pte Ltd
+M2,Universal Dental Group
+M3,Atria-Pan Dental Pte Ltd
+M4,Chin Dental Surgery
+M5,W S Go & Associates Dental Surgeons
+M5L,de dental practice
+M6,Poon & Phay Dental Surgeons Pte Ltd
+M7,Dr Seah Root Canal + Implant Surgical Clinic
+M8,St Andrew's Dental Surgeon
+M9,Aesthete SmileStudio Pte Ltd
+MA,Centre for Oral Surgery & Implants
+MB,Epismile Inc Dental Group Pte Ltd
+MC,First Impressions Dental Surgery Pte Ltd
+MD,Premier Dental Clinic
+ME,Sunshine Smile Dental Pte Ltd
+MF,Vista Dental Surgery
+MG,Dr. Tooth Dental Centre
+MH,Lee & Ong Dental Surgeons Pte Ltd
+MI,DR GHOWS & Associates
+MJ,Tooth Angels & Co Dental Clinic
+MK,Smile Dental Group Pte Ltd
+ML,Woodgrove Dental Surgery Pte Ltd
+MM,TP Dental Surgeons Pte Ltd(Drs Tay & Partners)
+MN,Smileworks Pte Ltd
+MP,The Dental Inn Pte Ltd
+MQ,Stamford Dental Clinic and Surgery Pte Ltd
+MR,Covenant Dental Surgery
+MS,Ace Family Dentalcare
+MT,Amical Dental Surgery
+MU,Hong Whye Clinic
+MV,Pristine Dental Works
+MW,Liew & Koh Dental Surgery
+MX,Unity Denticare
+MY,Eden Dental Surgery
+MZ,Wong Dental Surgery
+N00,Haig Specialist Medical Clinic Pte Ltd
+N01,East Coast Specialist Polyclinic
+N02,Dr Soh Family Clinic
+N03,Fitrah Medicare Centre
+N04,Goodwill Clinic
+N05,Healthcare Clinic & Surgery
+N06,Joy Family Clinic
+N07,Loyang Medical Centre
+N08,Medina Medical Centre
+N09,Mission Medical Clinic
+N0A,Mission (Bukit Batok) Medical Clinic
+N0B,Newcastle Clinic
+N0C,Parkway Clinic & Surgery
+N0D,The Neptune Clinic
+N0E,Toh Guan Family Clinic
+N0F,Universal Medical Clinic
+N0G,Citilife Family Clinic
+N0H,Chng Clinic & Surgery
+N0I,Family Medical Clinic Pte Ltd
+N0J,First Care Family Clinic & Surgery Pte Ltd
+N0K,Greenlife Clinic & Surgery Pte Ltd
+N0L,Healthlink Medical Clinic and Surgery Pte Ltd
+N0M,Nanyang Centre Clinic
+N0N,Our Family Clinic + Surgery
+N0O,Pasir Ris Clinic & Surgery (Asthetic Medical Pte Ltd)
+N0P,Shenton Medical Group (Boon Lay)
+N0Q,Shenton Medical Group (Harbourfront)
+N0R,Shenton Medical Group (Singpost)
+N0S,Shenton Lifestyle Clinic (Paragon)
+N0T,Wen Xin Clinic
+N0U,Amity Medical Clinic & Dental Surgery
+N0V,Banyan Clinic @ jw Pte Ltd
+N0W,Banyan Clinic Pte Ltd
+N0X,Faith Medical Clinic & Surgery
+N0Y,K N Chin & Associates Pte Ltd (Raffles Place)
+N0Z,K N Chin & Associates Pte Ltd (Temasek Boulevard)
+N10,Asian Centre for Liver Diseases & Transplantation Pte Ltd
+N11,Canaan Dental Surgery Pte Ltd
+N12,City Dental Pte Ltd
+N13,Dental On The Bay
+N14,Dr David K L Tay & Associates
+N15,H H Lee & Associates Dental Surgery
+N16,Henry Lee Dental Surgery
+N17,Icon Dental Surgeons Pte Ltd
+N18,Jurong Point Dental Surgery
+N19,Khoo Dental Surgery
+N1A,Mandarin Dental Centre (BT) Pte Ltd
+N1B,Mandarin Dental Centre (Katong) Pte Ltd
+N1C,Mandarin Dental Centre Pte Ltd
+N1D,Orchard Scotts Dental Pte Ltd
+N1E,Pang & Ng Dental Surgery (Bishan) Pte. Ltd.
+N1F,Pang & Ng Dental Surgery (Hougang) Pte. Ltd.
+N1G,Planet Dental Centre
+N1H,Profile Dental Surgery Pte Ltd
+N1I,Sengkang Dental Surgery
+N1J,Supreme Dental Surgery
+N1K,Tampines-Logic Dental Surgery Pte Ltd
+N1L,Tangs Dental Group (Say Aah! Pte Ltd)
+N1M,The Implant And Oral Surgery Centre
+N1N,Tooth Art Dental Centre Pte Ltd
+N1O,Town Hall Dental Surgery
+N1P,Pacific Specialist Practice
+N1Q,Pacific Specialist Practice
+N1R,@Just Braces Dental Centre
+N1S,Braces & Aesthetics Dental Clinic Pte Ltd
+N1T,Brilliant Dental Surgery
+N1U,C.H. Koh Clinic For Women Pte Ltd
+N1V,Dr Angeline Ang & Associates
+N1W,Flozz Dental Surgery
+N1X,Kaiserâ€™s Zahnklinik Pte Ltd
+N1Y,Millennium Dental Care
+N1Z,Smile Creation Dental Surgeons Pte Ltd
+N20,Sparkle Dental Surgery
+N21,The Dentist@Orchard Pte Ltd
+N22,The Smile Clinique Dental Surgeons
+N25,The Clinic @Cuppage Pte Ltd
+N26,Star Dental Surgery Pte Ltd
+N27,Irene Chua Dental Surgery Pte Ltd
+N28,Plaza Dental
+N29,Ace Dental Centre
+N2A,Cheok Dental Surgery
+N2B,HEALTHTEETH DENTAL SURGERY PTE.LTD.
+N2C,Sembawang Dental Surgery
+N2D,Glory Dental Surgery
+N2E,Regent Dental Clinic
+N2F,Primecare Dental Clinic
+N2G,Hougang Central Dental Surgery
+N2H,Saw & Lee Dental Surgery
+N2I,Tropical Dental Surgery
+N2J,Shenton Dental Surgery
+N2K,Medicare Associates & Dental Surgery
+N2L,El-Shaddai Dental Surgery
+N2M,Harmony Dental Surgery
+N2N,CHRIS DENTAL SURGEON
+N2O,Dentalworks Pte Ltd
+N2P,Yeo Dental Surgery
+N2Q,The Endodontic Office
+N2R,Lee Dentalcare Pte Ltd
+N2S,The Dental Boutique (The Dental Studio)
+N2T,TOOFDOCTOR Dental Surgeons (Serangoon Central)
+N2U,Smile Care Dental Surgery
+N2V,Smile Dental @ Marine Terrace Pte Ltd
+N2W,"Smile Centre for Dental Excellence - Aesthetics, Oral Surgery and Dental Implanatology"
+N2X,Woodlands Dental Clinic
+N2Y,ToothCraft Dental Surgeons
+N2Z,Specialist Womenâ€™s Medical Centre
+N30,G Chee Ear Nose Throat Sinus & Dizziness Centre
+N31,Heah Colorectal Endoscopy and Piles Centre
+N32,SuperSight Eye & Lasik Centre
+N33,Total Eye Care Centre
+N34,Singapore Oncology Consultants@Alvernia
+N35,OncoCare Cancer Centre
+N36,Raffles Dental (Tampines Junction)
+N37,Raffles Dental (Causeway Point)
+N38,RafflesMedical (Singapore Land Tower)
+N39,RafflesMedical (Marina Square)
+N3A,Vista Dental Surgery (CCK) Pte Ltd
+N3B,WEE BREAST & GENERAL SURGERY PTE LTD
+N3C,AESTHETIC PLASTIC RECONSTRUCTIVE SURGERY
+N3D,Tooth Angels & Co. Dental Surgeons
+N3E,DENTALTRENDZ PTE. LTD.
+N3F,LEE DENTAL PTE LTD
+N3G,LEE & ONG DENTAL SURGEONS
+N3H,Luminous Dental Clinic
+N3I,HOLLAND VILLAGE DENTAL SURGERY
+N3J,UBI DENTAL CLINIC
+N3K,NAM FUNG DENTAL SURGERY PTE LTD
+N3L,Crescent Dental Clinic
+N3M,JUNCTION 8 DENTAL SURGERY
+N3N,RADIANCE Dental Care @ Aljunied
+N3O,KCS Dental Group
+N3P,RENAL HEALTH PTE LTD
+N3Q,Orthe Pte Ltd
+N3R,Peace Family Clinic And Surgery (AMK)
+N3S,Healthway Anchorvale Clinic
+N3T,Winsome Medical & Dental Center
+N3U,Peace Family Clinic (WL832) Pte Ltd
+N3V,Ang Mo Kio - Thye Hua Kwan Hospital Geriatric Clinic
+N3W,Vista Dental Surgery
+N3X,GASTROINTESTINAL ENDOSCOPY & LIVER CENTRE
+N3Y,HUANG EAR NOSE & THROAT SURGERY PTE LTD
+N3Z,Starcap Medical Group Pte Ltd
+N40,MARITIME DENTAL SURGERY PTE LTD
+N41,ALLSMILES DENTAL CARE PTE LTD
+N42,i.dental surgeons
+N43,"Johnny Lee, Hinly Lau Dental Surgeons Pte Ltd"
+N44,My Dentist's Clinique
+N45,Flinders Practice Pte Ltd
+N46,Novena Surgery
+N47,K O Chan Ear Nose Throat Sinus & Sleep Centre
+N48,Zam Family Clinic
+N49,Ambulatory SurgiCare (ASC)
+N4A,EAR NOSE & THROAT PARTNERS PTE LTD
+N4B,LUKE TAN EAR NOSE THROAT & THYROID SURGERY
+N4C,STILL ROAD DENTAL SURGERY
+N4D,The Oral Care Centre
+N4E,Specialist Dental Group
+N4F,Synergy Dental Group Pte Ltd
+N4G,HOSANNA ! DENTAL SURGERY
+N4H,TAH CHONG DENTAL SURGERY
+N4I,Novena Dental Aesthetic Practice Pte Ltd Centre for Aesthetic Dentistry
+N4J,RAFFLESDENTAL
+N4K,Q & M DENTAL SURGERY (BOON LAY MRT) PTE LTD
+N4L,Newlife Dental Practice Pte. Ltd.
+N4M,Tayka Medical Pte Ltd
+N4N,RADIOLOGIC CLINIC - BREAST IMAGING CENTRE
+N4O,RADIOLOGIC CLINIC
+N4P,RADIOLOGIC CLINIC
+N4Q,RADIOLOGIC CLINIC
+N4R,RADIOLOGIC CLINIC
+N4S,Radiologic Clinic
+N4T,CAIRNHILL X-RAY CLINIC & LABORATORY
+N4U,THE ORCHARD IMAGING CENTRE PTE LTD
+N4V,Health Partners Family Clinic
+N4W,Icon Medical Clinic
+N4X,Agape Clinic
+N4Y,Elias Family Clinic
+N4Z,Frontier People's Clinic
+N50,Corporate Medical Centre
+N51,My Family Clinic (Toa Payoh Central)
+N52,Furama Clinic
+N53,The Cancer Centre
+N54,Gleneagles Dialysis International Pte Ltd
+N55,The Dental Pearl
+N56,Swan's Family Clinic and Surgery
+N57,Trendz Dental Surgeons Pte. Ltd.
+N58,Flinders Practice Pte Ltd (Middle Road)
+N59,Aesthetic Reconstructive Jaw Surgery
+N5A,Pinnacle Dental Group Pte Ltd
+N5B,PINNACLE DENTAL GROUP
+N5C,NTUC DENTICARE
+N5D,NTUC DENTICARE
+N5E,NTUC DENTICARE
+N5F,WESTPOINT FAMILY HOSPITAL
+N5G,Eye & Retina Surgeons
+N5H,Shinagawa LASIK Centre
+N5I,Apple Eye Centre / Apple ENT Centre
+N5J,HAND WRIST & MICROSURGICAL CENTRE PTE LTD
+N5K,Freia Medical Aesthetics
+N5L,Singapore International Eye Cataract Retina Centre
+N5M,Eastern Hougang Eye Specialist
+N5N,International Cancer Specialists
+N5O,Healthmark Clinic (Pasir Ris)
+N5P,First Light Family Clinic & Surgery
+N5Q,My Doctor's Place Pte Ltd
+N5R,Yang Clinic
+N5S,Clarke Medical
+N5T,Foo Clinic
+N5V,GSH Clinic & Surgery
+N5W,MEDICAL AND DENTAL CENTRE @ COMMONWEALTH
+N5X,Apple Eye Centre
+N5Y,APPLE EAR NOSE THROAT SINUS AND  SNORING CENTRE
+N60,ASCENT Ear Nose Throat Specialist Group
+N61,Healthway Medical Assessment Centre
+N62,Twin City Medical and Dental Clinic Pte Ltd
+N63,Smile Dental Centre For Aesthetics Pte Ltd
+N64,Q & M Dental Surgery (Gombak MRT) Pte Ltd
+N65,The Singapore Clinic for Kidney Diseases (Pte Ltd)
+N66,Singapore PET & Cardiac Imaging Centre Pte Ltd
+N67,Drs. Chua & Partners (Alexandra Village)
+N68,Medicare Associates
+N69,Punggol Family Clinic Pte Ltd
+N6A,Admiralty Family Clinic Pte Ltd
+N6B,Tampines 24-Hr Family Clinic Pte Ltd
+N6C,KONG LING CLINIC & SURGERY
+N6D,BEDOK LIFE CLINIC
+N6E,HARMONY FAMILY CLINIC
+N6F,AcuMed Medical Group
+N6G,RafflesMedical
+N6H,HL FAMILY CLINIC & SURGERY(BEDOK) PTE LTD
+N6I,Vagus Medical
+N6J,SH TAN KIDNEY AND MEDICAL CLINIC
+N6K,Advance Renal Therapy
+N6L,LAM CLINIC
+N6M,Toofdoctor Dental Surgeons (Adelphi)
+N6N,INTERNATIONAL EYE SURGERY PTE LTD
+N6O,Gynecology Consultants Clinic & Surgery
+N6R,ALJUNIED DENTAL SURGERY
+N6S,VICTORIA DENTALCARE
+N6T,Dr HC Leong Dental Surgeon
+N6U,The Smile Division@Hougang Central Dental Surgery Pte Ltd
+N6V,The Smile Division@Primecare Dental Clinic Pte Ltd
+N6W,The Smile Division Dental Surgery
+N6X,The Smile Division dental surgeons
+N6Y,KU KIDNEY & MEDICAL CENTRE
+N6Z,The Rafflesian Clinic & Surgery
+N70,338 Family Clinic Pte Ltd
+N71,Elim Family Clinic & Surgery
+N72,Atlas Medical
+N73,WHAMPOA CLINIC
+N74,CHIA CLINIC AND SURGERY
+N75,CHIA & LEE MEDICAL & DENTAL CLINIC
+N76,Soon Diabetes Thyroid And Endocrinology Clinic
+N77,CLEARSPRING CLINIC
+N78,SATA CommHealth Woodlands Medical Centre
+N79,CENTRAL CLINIC & SURGERY (BEDOK)
+N7B,Ren Ci Community Hospital (Convalescent)
+N7C,The Eye & Cornea Transplant Centre
+N7D,PREMIUM LASIK SURGERY CLINIC
+N7E,Apollo Medical Centre
+N7F,TIONG BAHRU MEDICAL CENTRE
+N7H,CHIN CHOO CLINIC
+N7I,HONG ASSOCIATES CLINIC
+N7J,Chua Medical Centre Pte Ltd
+N7K,Shalom Community Clinic
+N7L,Healthsprings Medical Clinic
+N7M,ROCHOR MEDICAL CENTRE / ROCHOR CENTRE DENTAL SURGERY
+N7N,THOMAS CLINIC & SURGERY
+N7O,PRAISE FAMILY CLINIC
+N7P,SATA Commhealth Uttamram Medical Centre
+N7Q,SATA CommHealth Jurong Medical Centre
+N7R,SATA CommHealth Medical Centre - Ang Mo Kio
+N7S,Canberra Medical Aesthetics
+N7T,JURONG DENTAL SURGERY
+N7U,Crown Dental @Kovan Pte Ltd
+N7V,SMILE CONCEPT DENTAL PRACTICE
+N7W,WEST COAST DENTAL CLINIC
+N7X,THOMSON WOMEN CANCER CENTRE
+N7Y,DR ONG THENG KIAT CLINIC & SURGERY FOR WOMEN
+N7Z,EAGLE EYE CENTRE PTE LTD (EEC)
+N80,INTERCEPT HEALTHCARE PTE LTD
+N81,United Specialist Centre
+N82,Seow-Choen Colorectal Centre Pte Ltd
+N83,The Eye & Aesthetics Clinic
+N84,EJ Family Clinic & Surgery
+N85,DentalTown (AMK) Pte Ltd
+N86,"WONG, ONG & PARTNERS DENTAL SURGEONS"
+N87,iSmile Studio Pte Ltd
+N88,I Care Dental
+N89,DR JIMMY YAP & PARTNERS DENTAL SURGEONS
+N8A,WH DENTAL SURGEONS
+N8B,ALLSMILES DENTAL CARE @ TAMPINES
+N8C,K C YEO CLINIC & SURGERY FOR WOMEN PTE. LTD
+N8D,Y Y TAN'S CLINIC FOR WOMEN PTE LTD
+N8E,JAMES TAN CENTRE FOR UROLOGY & ROBOTIC SURGERY
+N8F,H L KONG MEDICAL ONCOLOGY CENTRE
+N8G,Kidney Therapy Centre Pte Ltd
+N8H,CENTRAL CLINIC & SURGERY 24 HR (TAMPINES)
+N8I,SINGAPORE VEIN CENTRE
+N8J,Singapore Medical Specialists Centre
+N8K,Mow Blood & Cancer Clinic
+N8L,Trinity Medical Clinic (AT DOVER CRESCENT)
+N8M,PROHEALTH 24-HOUR MEDICAL CLINIC
+N8N,CLIFFORD DISPENSARY PTE. LTD.
+N8O,Frontier Medical Associates (AT JURONG WEST ST 64)
+N8P,The Cliniq
+N8Q,ALEXANDRA MEDICAL CENTRE PTE. LTD.
+N8R,SILVER CROSS FAMILY CLINIC
+N8S,Orchard Surgery Center
+N8T,Ko Djeng Dental Centre Pte Ltd
+N8U,SINGAPORE WOMEN'S CLINIC (CLEMENTI)
+N8V,K M HENG WOMEN'S CLINIC PTE LTD
+N8W,TIONG BAHRU DENTAL SURGERY PTE. LTD.
+N8X,ELI DENTAL SURGERY
+N8Y,SHARON DENTAL SURGERY
+N8Z,TOOTH ANGELS & CO. DENTAL SURGEONS
+N90,ROCHOR MEDICAL CENTRE / ROCHOR CENTRE DENTAL SURGERY
+N91,VISTA DENTAL SURGERY
+N92,L'ving Vine Dental Clinic
+N93,RADIANCE Dental Care @ Depot
+N94,Corporate Dental Clinic
+N95,CENTRE FOR EAR NOSE THROAT ALLERGY & SLEEP
+N96,The Ear Nose Throat - Head & Neck Centre
+N97,Dermatology Associates
+N98,Dermatology Associates
+N99,CHIA KH VEIN VASCULAR & GENERAL SURGERY CENTRE
+N9A,THE MEDICAL AND AESTHETIC CLINIC PTE LTD
+N9B,BUKIT BATOK DENTAL SURGERY
+N9C,NTUC DENTICARE
+N9D,S M CHUA CLINIC & SURGERY FOR WOMEN
+N9E,UNIVERSAL DENTAL SURGERY
+N9F,A ST*R DENTAL SURGERY
+N9G,White on Whites Dental Surgeon
+N9H,WHITE ON WHITES DENTAL SURGEON
+N9I,Q & M Dental Surgery (At Century Square)
+N9J,NOBEL EYE & VISION CENTRE
+N9K,"NOBEL ENT , Head, Neck and Thyroid Surgery Centre"
+N9L,SOC CARE CENTRE PTE LTD
+N9M,FRESENIUS MEDICAL CARE KEMBANGAN DIALYSIS CLINIC
+N9N,AESTHETIC MEDICAL PARTNERS
+N9O,Joash Family Clinic & Surgery
+N9P,CENTRAL CLINIC & SURGERY 24 HR (PASIR RIS)
+N9Q,VALLEY MEDICAL CENTRE
+N9R,EMMANUEL MEDICAL CLINIC
+N9S,THE PSYCHOTHERAPY CLINIC FOR ADULTS AND CHILDREN (ANG & KONG)
+N9T,THE PSYCHIATRIC & BEHAVIOURAL MEDICINE CLINIC (ANG & KONG)
+N9U,My doctor @ Lakeside
+N9V,DAYSPRING MEDICAL CLINIC (TAMPINES)
+N9W,KOH DENTAL SURGERY PTE LTD - JURONG EAST
+N9X,DIALYSIS CENTRE-YOUNGBERG PTE LTD
+N9Y,Dialysis Centre-Youngberg Pte Ltd
+N9Z,COMFORT DENTAL SURGERY
+NA0,SYDNEY DENTAL CLINIC
+NA1,ATRIA-CITY DENTAL GROUP PTE LTD
+NA2,Implantdontics Cosmetic and Implant Dentistry
+NA3,NTUC DENTICARE
+NA5,NOBEL Surgery Centre
+NA6,EAGLE EYE CENTRE
+NA7,Pacific Cancer Centre
+NA8,AESTHETIC SURGICAL GROUP
+NA9,Twinkle Family Dentalcare Pte. Ltd.
+NAA,NeuGlow The Aesthetics Doctors
+NAB,NeuGlow The Aesthetics Doctors
+NAC,NeuGlow The Aesthetics Doctors
+NAD,NEW DENTAL CENTRE
+NAE,LUCENT DENTAL CLINIC PTE LTD
+NAF,The Head & Neck Surgery Centre
+NAG,A DENTAL CLINIC @ JURONG EAST CENTRAL
+NAH,ALOHA DENTAL CLINIC
+NAI,SBCC BABY & CHILD CLINIC (FOR RIVERVALE)
+NAJ,SBCC BABY & CHILD CLINIC (FOR TIONG BAHRU)
+NAK,PAEDIATRIC CENTRE
+NAL,SBCC BABY & CHILD CLINIC (FOR BISHAN )
+NAM,Etern Medical Clinic & Surgery
+NAN,Northeast (Tampines) Medical Centre Pte Ltd
+NAO,Maritime Medical Centre
+NAP,GARDEN CLINIC
+NAQ,CHIANG BABY & CHILD CLINIC
+NAR,Adam Road Medical Centre Psychiatric & Psychological Services
+NAS,81 FAMILY CLINIC
+NAT,CHANGI MEDICAL CENTRE
+NAU,JOY CLINIC AND SURGERY
+NAV,CUSTODIA MEDICAL & DENTAL CLINIC
+NAW,NEPHROCARE GDI PTE LTD
+NAX,RafflesMedical (Sixth Avenue)
+NAY,ARC KIDNEY DIALYSIS CENTRE
+NAZ,Gamma Knife Centre
+NB0,HEALTHWAY MEDICAL CENTRE
+NB1,HEALTHWAY MEDICAL FAMILY CLINIC
+NB2,HEALTHWAY CCK CLINIC
+NB3,HEALTHWAY MEDICAL CLINIC
+NB4,TCS at CENTRAL CLINIC
+NB5,VIVA DENTAL
+NB6,Straits Dental Group CBP
+NB7,IT DENTAL SURGERY
+NB8,Q & M Dental Centre Pte Ltd
+NB9,Q & M Dental Surgery (Sun Plaza)
+NBA,VICTORIA DENTALCARE
+NBB,Mendis Aesthetics & Surgery
+NBC,Vein & General Surgery Clinic
+NBD,Orthopaedic & Arthritis Centre
+NBE,PACIFIC SURGICAL CONSULTANTS
+NBF,PACIFIC HEALTHCARE IMAGING
+NBG,FRONTIER MEDICAL ASSOCIATES (AT WOODLANDS DR 50)
+NBH,FRONTIER MEDICAL ASSOCIATES (at ubi ave 1)
+NBI,FRONTIER MEDICAL ASSOCIATES (YISHUN AVE 4)
+NBJ,LEE FAMILY CLINIC PTE. LTD.
+NBK,The Heart Specialists Medical Group
+NBL,NOBEL HEART CENTRE
+NBM,NOBEL PSYCHOLOGICAL WELLNESS CLINIC
+NBN,My Family Clinic (Punggol Central)
+NBO,Central Clinic & Surgery 24-HR (Woodlands)
+NBP,Abdullah Clinic & Surgery
+NBQ,HEALTHBRIDGE FAMILY CLINIC
+NBR,RafflesMedical (Changi Business Park Cresent)
+NBS,RafflesMedical
+NBT,SBCC BABY & CHILD CLINIC
+NBU,SBCC BABY & CHILD CLINIC - Neurology Centre (Paragon)
+NBV,SBCC BABY & CHILD CLINIC - Growth And Endocrinology Centre
+NBW,SBCC BABY & CHILD CLINIC
+NBX,SBCC BABY & CHILD CLINIC (At Ang Mo Kio Ave 6)
+NBY,SBCC BABY & CHILD CLINIC
+NBZ,"SBCC  BABY & CHILD CLINIC - ASTHMA, LUNG, SLEEP & ALLERGY CENTRE"
+NC0,NEUGLOW Dental White Centre
+NC1,VISTA DENTAL SURGERY
+NC2,SMILE INC. DENTAL SURGEONS
+NC3,LQ Dental Pte Ltd
+NC4,SUNSHINE DENTAL
+NC5,Island Sports Medicine and Surgery
+NC6,ISLAND ORTHOPAEDIC CONSULTANTS PTE LTD
+NC7,ISLAND ORTHOPAEDIC CONSULTANTS PTE LTD
+NC8,ISLAND ORTHOPAEDIC CONSULTANTS
+NC9,ASCENT Ear Nose Throat SG East
+NCA,The Obstetrics & Gynaecology Centre
+NCB,RadLink PET And Cardiac Imaging Centre Pte Ltd
+NCC,Hua Mei Clinic
+NCD,W Y TEH FAMILY CLINIC AND SURGERY
+NCE,WOODLANDS CLINIC
+NCF,THOMSON PAEDIATRIC CENTRE
+NCG,The Dublin Clinic
+NCH,HENDERSON CLINIC & SURGERY
+NCI,Shahi Family Clinic
+NCJ,OneDoctors Family Clinic
+NCK,OneDoctors Family Clinic
+NCL,PASIR RIS CLINIC & SURGERY PTE LTD
+NCM,Care Family Clinic
+NCN,HEALTHWAY MEDICAL CLINIC
+NCO,Robertson Family Clinic Pte. Ltd.
+NCP,NEUGLOW DENTAL
+NCQ,Johan Dental Surgery Pte Ltd
+NCR,ASIA HEALTHCARE DENTAL SURGEONS
+NCS,NTUC DENTICARE
+NCT,NTUC DENTICARE
+NCU,GS HONG SURGICAL CARE
+NCV,Heah Endoscopy & Piles Centre ( Bukit Batok)
+NCW,ADVANCE SURGICAL GROUP PTE. LTD.
+NCX,Alliance Medical Centre (Orchard)
+NCY,NOBEL CHEST & INTERNAL MEDICINE CENTRE
+NCZ,NOBEL PSYCHOLOGICAL WELLNESS CLINIC
+ND0,SHENTON FAMILY MEDICAL CLINIC
+ND1,PrivÃ© Clinic
+ND2,RafflesMedical
+ND3,TOOFDOCTOR Dental Surgeons (Pinnacle)
+ND4,SPECIALIST ORAL SURGEONS
+ND5,Q & M Dental Surgery (Serangoon Garden)
+ND6,KO DJENG DENTAL CENTRE (JELITA BRANCH)
+ND7,MEDICAL AND DENTAL CENTRE @ COMMONWEALTH
+ND8,"Andrea's digestive, colon, liver and gallbladder clinic Pte Ltd"
+ND9,Roland Chieng Fertility and Women Care
+NDA,Balestier Clinic and Health Screening Centre
+NDB,Pristine Medical Clinic
+NDC,Sanitas Medical Practice
+NDD,WONG CLINIC
+NDE,CENTRAL CLINIC & SURGERY (JURONG WEST)
+NDF,YEE DENTAL SURGERY
+NDG,The Smile Division Dental Surgery@Clementi Pte Ltd
+NDH,RADIANCE Dental Care @ Thomson
+NDI,SHINE DENTAL INC
+NDJ,Bukit Timah Dental Clinic LLP
+NDK,i.Dental @ Northpoint
+NDL,Q & M Dental Surgery (Novena)
+NDM,GATEWAY DENTAL SURGEON
+NDN,Toh Khai Lee Urology Clinic
+NDO,PANASIA SURGERY
+NDP,PANASIA SURGERY
+NDQ,Immanuel Dialysis Centre Pte Ltd
+NDR,ANN ARBOR DENTAL SURGERY PTE LTD
+NDS,Royce Dental Surgery
+NDT,Tooth Matters Dental Surgery
+NDU,VICTORIA DENTALCARE
+NDV,YIO CHU KANG DENTAL SURGERY
+NDW,The Breast Surgery Centre
+NDX,Health & Fertility Centre for Women
+NDY,LISA WONG WOMEN & GYNAE ONCOLOGY CENTRE
+NDZ,MediFast Medical Centre
+NE0,The OBGYN Centre
+NE1,The Women's Specialist Centre
+NE2,THE WOMEN'S SPECIALIST CENTRE
+NE3,Tampines GP ENT Pain Urology & Surgery Centre
+NE4,Renal Life Dialysis Centre Pte Ltd
+NE5,VISTA DENTAL SURGERY
+NE6,Q & M Dental Centre (Orchard) Pte Ltd
+NE7,Q & M Dental Surgery (Serangoon Central)
+NE8,AcuFem Women's Specialist Services
+NE9,WOMEN'S CLINIC OF SINGAPORE
+NEA,PETER CHEW CLINIC FOR WOMEN
+NEB,DOVER MEDICAL CENTRE
+NEC,THE CLINIC @ ONE GEORGE STREET
+NED,Healthcare For Women
+NEE,TWIN CITY MEDICAL PRACTICE PTE LTD
+NEF,FU-XING CLINIC
+NEG,THE MEDICAL PRACTICE PTE LTD
+NEH,DAILY MEDICAL CENTRE
+NEI,CASHEW MEDICAL
+NEJ,RafflesMedical
+NEK,LinkMedical @ Shenton
+NEL,LinkMedical @ Kovan
+NEM,LinkMedical @ Upper Bukit Timah
+NEN,LinkMedical @ Serangoon North
+NEO,Chin Medical Clinic
+NEP,ChariSmile Dentistry
+NEQ,Medical Oral & Maxillofacial Surgery Dental Specialist Centre
+NER,DRS JITEN & CAROLINE MEDICAL CENTRE + X-RAY
+NES,Kong Dental Surgery
+NET,Gentle Dental Group @ Bukit Timah
+NEU,Simply Endodontics Pte Ltd
+NEV,Parkway Eye Centre @ Mount Elizabeth
+NEW,THE WOMEN'S CLINIC & SURGERY
+NEX,A Dental Clinic @ Clementi Central Pte Ltd
+NEY,DentalTown (Eunos) Pte Ltd
+NF1,SHENTON MEDICAL GROUP
+NF2,SHENTON MEDICAL GROUP
+NF3,Shenton Medical Group
+NF4,SHENTON MEDICAL GROUP
+NF5,SHENTON MEDICAL GROUP
+NF6,Shenton Medical Group
+NF7,SHENTON MEDICAL GROUP
+NF8,SHENTON MEDICAL GROUP
+NF9,SHENTON LIFESTYLE CLINIC
+NFA,SIA ALH CLINIC
+NFB,SIA TRAINING CENTRE CLINIC
+NFC,DR CHUA'S FAMILY CLINIC PTE. LTD.
+NFD,DR LIM LEAN HUAT & ASSOCIATES PTE. LTD.
+NFE,HEALTHWAY MEDICAL CLINIC
+NFF,Jade Medical Clinic Pte Ltd
+NFG,Dayspring Health Screeners
+NFH,James Lee Women's Clinic & Pelvic Floor Surgery
+NFI,Centre for Joint & Cartilage Surgery
+NFJ,NOBEL HEART CENTRE
+NFK,OneDoctors Medical Centre
+NFL,HO MEDICAL CENTRE PTE LTD
+NFM,KENSINGTON FAMILY CLINIC
+NFN,DENTAL ON THE BAY
+NFO,The Dental Clinic
+NFP,DENTAL WERKS @ SEMBAWANG
+NFQ,Dental Werks @ Farrer
+NFR,Ng & Lum Dental Surgery
+NFS,Viva Medical Clinic
+NFT,TAN CLINIC & SURGERY
+NFU,B. Braun Avitum Dialysis Centre
+NFV,Care Sinus Snoring ENT Centre
+NFX,RafflesMedical (NEX Shopping Centre)
+NFY,RafflesMedical
+NFZ,SHENTON MEDICAL GROUP
+NG0,Thomson Lifestyle Centre
+NG1,MYOS MEDICAL CLINIC
+NG2,PARKWAY WOMEN & FERTILITY CLINIC
+NG3,Centre for Eye Surgery
+NG4,The Lasik Surgery Clinic
+NG5,The Obstetrics & Gynaecology Centre
+NG6,RADIOLOGIC CLINIC
+NG7,RADIOLOGIC CLINIC
+NG8,RADIOLOGIC CLINIC
+NG9,RADIOLOGIC CLINIC
+NGA,VISTA DENTAL SURGERY
+NGB,HealthTeeth Dental Surgery (Toa Payoh) Pte. Ltd.
+NGC,ISLAND GROUP CLINIC
+NGD,ISLAND GROUP CLINIC
+NGE,A Life Clinic Pte Ltd
+NGF,My Family Clinic (Hougang Central)
+NGG,Mint Medical Centre
+NGH,NOBEL CHEST & INTERNAL MEDICINE CENTRE
+NGI,Healthwerkz Medical Centre
+NGJ,K N  CHIN & ASSOCIATES PTE LTD (At Clifford Centre)
+NGK,K N CHIN & ASSOCIATES PTE LTD (At Suntec city mall)
+NGL,About Braces Dental Surgery
+NGM,Ko Djeng Dental Centre (Tanjong Pagar)
+NGN,The Dental Clinic and Surgery
+NGO,EDWIN NG TECK HONG DENTAL SURGERY
+NGP,PARAMOUNT DENTAL CLINIC
+NGQ,NOBEL Eye Clinic
+NGR,NOBEL ENT & Head and Neck Surgery
+NGS,NOBEL Colorectal & General Surgery
+NGT,CK NG UROLOGY & MINIMALLY INVASIVE SURGERY
+NGU,Q & M Dental Surgery (Boon Lay MRT)
+NGV,The Women's Specialist
+NH3,PROHEALTH MEDICAL GROUP @LRT FERNVALE PTE LTD
+NH4,ProHealth Medical Group @Taman Jurong Pte Ltd
+NH5,Prohealth Medical Group @ Jurong West Pte Ltd
+NH6,ProHealth Medical Group @Fernvale Pte Ltd
+NH7,WU CLINIC & SURGERY
+NH8,MEDLIFE CLINIC & SURGERY
+NH9,THE FLAME TREE MEDICAL CENTRE
+NHA,GREENLINK MEDICAL CLINIC
+NHB,Healthway International Medical Clinic
+NHC,Healthway Screening & Wellness Centre
+NHD,HEALTHWAY MEDICAL CLINIC
+NHE,HEALTHWAY MEDICAL CLINIC ( AT PASIR RIS MRT STATION BRANCH)
+NHF,HEALTHWAY MEDICAL CLINIC (At Yishun Ave 5 Branch)
+NHG,Healthway Medical Clinic
+NHJ,Smilefocus Implant & Restorative Dentistry
+NHK,Smilefocus
+NHL,OLIVER DENTAL SURGERY PTE LTD - MINI DENTAL IMPLANT CENTRE
+NHM,Glittz Smile Dental Surgery
+NHN,WOW DENTAL SURGERY PTE. LTD.
+NHO,Burlinson Dental Surgery
+NHP,Boon Lay Dental Surgery Pte Ltd
+NHQ,Madeliene Gunaratnam Dental Surgery
+NHR,Shenton Dental Group
+NHS,Dover Dental Surgery
+NHT,Royce Dental Surgery
+NHU,Ho Kok Sun Colorectal Pte Ltd
+NHV,The Vascular & General Surgery Centre
+NHW,RADLINK DIAGNOSTIC IMAGING (S) PTE LTD
+NHX,"DRS. LIM, HOE & WONG RADIOLOGY PTE LTD"
+NHY,ASIA KIDNEY DIALYSIS CENTRE (TPY)
+NHZ,WHITE DENTAL GROUP
+NI0,ASIA KIDNEY DIALYSIS CENTRE (TP)
+NI1,STARCARE CLINIC AND SURGERY  PTE. LTD.
+NI2,Q & M DENTAL SURGERY (MARINE PARADE)
+NI3,Tucker Medical
+NI4,"Drs. Lim, Hoe & Wong Radiology Pte Ltd"
+NI5,DENTALWORKZ STUDIO
+NI6,Valley Point Dental Clinic
+NI7,Pure Dental
+NI8,Sincere Medical Specialist Center for Women
+NI9,OncoCare Cancer Centre
+NIA,Irene Chua Clinic For Women
+NIB,Q & M DENTAL SURGERY (RIVER VALLEY)
+NIC,The Aesthetics Clinic
+NID,CENTRAL 24-HR CLINIC (BEDOK)
+NIE,The Clinic @ Campus
+NIF,FITRAH CLINIC
+NIG,Tampines-Ho Dental Surgery
+NIH,Q & M Dental Surgery (Holland Village)
+NII,Q & M Dental Surgery (Bt Batok)
+NIJ,Island Family Clinic
+NIK,Parklane Medical Centre
+NIL,SBCC WOMEN'S CLINIC
+NIM,SBCC WOMEN'S CLINIC
+NIN,PARKWAY GYNAECOLOGY SCREENING & TREATMENT CENTRE
+NIO,Hill Spring Medical
+NIP,Shenton Family Medical Clinic
+NIQ,The Kidney Clinic Pte Ltd
+NIR,SHENTON MEDICAL GROUP
+NIS,ACUMED MEDICAL GROUP
+NIT,RafflesMedical (Asia Square)
+NIU,Healthway Medical Clinic
+NIV,HEALTHWAY MEDICAL CLINIC
+NIW,SILVER CROSS FAMILY CLINIC
+NIX,Silver Cross Family Clinic (Serangoon)
+NIY,SILVER CROSS CLINIC (MARSILING)
+NIZ,Silver Cross Family Clinic
+NJ0,Silver Cross Family Clinic
+NJ1,SILVER CROSS MEDICAL CENTRE PTE LTD
+NJ2,NGOI DENTAL SURGERY
+NJ3,Prime Dental Surgeons Pte Ltd
+NJ4,SmileArts Dental Studio (Buangkok)
+NJ5,SPECIALIST SKIN CLINIC (S) PTE LTD
+NJ6,Unity Denticare
+NJ7,VISTA DENTAL SURGERY
+NJ8,WH DENTAL SURGEONS
+NJ9,Alda Dental Surgery (Tampines)
+NJA,HAPPY TOOTH DENTAL
+NJB,Q & M Dental Surgery (Simei MRT)
+NJC,SMILES R US DENTAL (at Woodlands Mart)
+NJD,Boston Imaging (Radiology) & Diagnostic Pte Ltd
+NJE,Royce Dental Surgery
+NJF,DENTALTOWN (BEDOK RES.) PTE.LTD.
+NJG,Le MinT'S Parade Dental Practice
+NJH,Q & M Dental Centre (Bugis)
+NJI,Q & M Dental Surgery (Toh Yi)
+NJJ,KATONG DENTAL SURGERY
+NJK,OrthoSmile Dental Practice LLP
+NJL,SMILEPOD DENTISTRY LLP
+NJM,FHC DIALYSIS CENTRE PTE LTD
+NJN,KUSUMA LEE CLINIC & SURGERY FOR WOMEN PTE LTD
+NJO,PK WOMEN'S SPECIALIST CLINIC
+NJP,The O&G Specialist Clinic
+NJQ,Png Urology
+NJR,Capstone Colorectal Surgery Centre
+NJS,The Vein Clinic & Surgery Pte Ltd
+NJT,Novena Colorectal Centre
+NJU,Shine Family Clinic
+NJV,Accord Medical Clinic
+NJW,CODE 4 MEDICAL CLINIC
+NJX,POINT MEDICAL GROUP (TAMAN JURONG)
+NJY,UNITED MEDICAL PRACTITIONERS PTE. LTD.
+NJZ,TOWN HALL CLINIC PTE LTD
+NK0,Frontier Medical Associates (AT HAVELOCK ROAD)
+NK1,RafflesMedical (Changi City Point)
+NK2,RafflesMedical (112 Katong)
+NK3,GynaeMD Women's & Rejuvenation Clinic
+NK4,Pacific Surgical and Endoscopy Centre
+NK5,Ki Medical Clinic
+NK6,Parsons Medical Clinic Pte Ltd
+NK8,Chiang Children's Allergy and Asthma Clinic
+NK9,CHIANG BABY & CHILD CLINIC
+NKA,RafflesMedical (Robinson)
+NKB,RafflesMedical (Changi City Point)
+NKC,Caring Dental
+NKD,C & A Dental Studio
+NKE,C & A DENTAL STUDIO @ THOMSON
+NKF,POON & PHAY DENTAL SURGEONS PTE LTD
+NKG,PEOPLE'S DENTAL SURGERY
+NKH,The Dental Hub (Alexandra)
+NKI,THE DENTAL HUB (Yew Tee)
+NKJ,THOMSON SPECIALIST DENTISTRY
+NKK,THOMSON DENTAL CENTRE
+NKL,UNIVERSAL DENTAL CENTRE
+NKM,VICTORIA DENTALCARE
+NKN,THE TOW YUNG CLINIC
+NKO,KIDNEY MEDICAL CENTRE
+NKP,HII WOMEN'S CLINIC
+NKQ,Thomson Fertility Centre
+NKR,ATLANTIC DENTAL SURGERY
+NKS,De Dental Clinic Pte Ltd
+NKT,Singh Implant & Dental Surgery Pte Ltd
+NKU,Tooth Angels & Co Dental Surgeons (Chinatown) Pte Ltd
+NKV,SIMON DENTAL SURGERY
+NKW,T32 Dental Pearl
+NKX,COZY DENTAL GROUP
+NKY,ARTHUR TSENG WOMEN'S HEALTH SERVICES PTE. LTD.
+NKZ,T G Ng Kidney & Medical Centre
+NL0,Mount Elizabeth Novena Hospital
+NL1,Astique The Aesthetic Clinic
+NL2,Parkway East Specialist Centre (Bedok)
+NL3,SHENTON FAMILY MEDICAL CLINIC
+NL4,HONG'S CLINIC PEOPLE'S PARK CENTRE
+NL5,Tay Clinic
+NL6,KALLANG MEDICAL CENTRE PTE LTD
+NL7,Tzu Chi Free Health Screening and Medical Clinic
+NL8,RAFFLESMEDICAL
+NL9,RafflesMedical
+NLA,Raffles Executive Medical Centre
+NLB,Shenton Medical Group
+NLC,Shenton Medical Group
+NLD,Jurong Day & Night Clinic
+NLE,Dr Seow Dental Centre
+NLF,THE BLOOD SPECIALISTS
+NLG,Fortis Colorectal Hospital
+NLH,HCA HOSPICE CARE CLINIC
+NLI,Q & M Dental Surgery (Tampines MRT)
+NLJ,Q & M Dental Centre (Bugis Village)
+NLK,Q & M Dental Surgery (Bedok Central)
+NLL,Providence Orthopaedics
+NLM,ME NOVENA SPECIALIST GROUP
+NLN,PEACE FAMILY CLINIC & SURGERY
+NLO,PARAGON MEDICAL CENTRE PTE LTD
+NLP,GynaeMD Women's Clinic (Clementi)
+NLQ,PIDEMCO MEDICAL CENTRE
+NLR,Northeast (Jurong West) Medical Centre Pte Ltd
+NLS,SH TAN KIDNEY AND MEDICAL CLINIC
+NLT,289E Medical Clinic Pte. Ltd.
+NLU,Thomson Women's Clinic
+NLV,Shenton Medical Group
+NLW,Neptune Healthcare Medical & Surgery
+NLX,Thomson Specialist Skin Centre
+NLY,AMANDELA ENT HEAD & NECK CENTRE
+NLZ,Lim Jit Fong Colorectal Centre
+NM0,LAKESIDE DENTIST
+NM1,LEE & LEE (DENTAL SURGEONS) PTE LTD
+NM2,URBAN DENTAL (SG) PTE LTD
+NM3,KidneyCare Centre
+NM4,Pacific Vein and Endovascular Centre
+NM5,Asia Kidney Dialysis Centre (Bedok) Pte Ltd
+NM6,Caring Family Clinic
+NM7,RafflesMedical (Singapore Land Tower)
+NM8,Shenton Medical Group
+NM9,WELLNESS ASSESSMENT CENTRE
+NMA,Health First Family Clinic
+NMB,B K Poh Urology
+NMC,ST ANDREW'S MISSION HOSPITAL CLINIC (ELLIOT ROAD)
+NMD,Neecare Medical Centre
+NME,NuHealth Medical Centre
+NMF,access MEDICAL BEDOK SOUTH
+NMG,SOG Breast SurgiCare
+NMH,THOMSON WOMEN'S CLINIC (ANG MO KIO HUB)
+NMI,Sincere IVF Center
+NMJ,Dentalplus Oral Surgery and Aesthetics
+NMK,LEE & LEE (DENTAL SURGEONS) PTE LTD
+NML,The Cancer Centre
+NMM,"YH Goh Ear Nose Throat, Head & Neck Surgery"
+NMN,Yim Gastroenterology Liver And Endoscopy Centre
+NMO,OncoCare Cancer Centre
+NMP,Q & M Dental Surgery (Eunos MRT)
+NMQ,Q & M DENTAL SURGERY (PUNGGOL)
+NMR,CityHealth Clinic & Surgery
+NMS,BETHESDA MEDICAL CENTRE
+NMT,THE CHELSEA CLINIC (ROCHESTER)
+NMU,One Medical Clinic
+NMV,Halley Medical Clinic
+NMW,HEALTHTRENDS FAMILY CLINIC
+NMX,Luminous Dental Clinic Pte. Ltd.
+NMY,Island Family Clinic (Bedok)
+NMZ,ProHealth Medical Group @ Punggol Damai Pte Ltd
+NN0,Hand Surgery Associates
+NN1,EAGLE EYE CENTRE
+NN2,"EAR NOSE THROAT, HEAD & NECK SURGERY"
+NN3,ChanMee family Dentalcare Pte Ltd
+NN4,City Hall Dental Centre
+NN5,FDC @ HARBOURPOINT DENTAL CENTRE
+NN6,The Dental Gallery
+NN7,The Smile Division Dental Surgeons @ AMK Pte Ltd
+NN8,The Smile Division Dental Surgery@Clementi Pte Ltd
+NN9,TJEN FATT  DENTAL SURGERY
+NNA,The Choolani Clinic
+NNB,The O&G Care Clinic
+NNC,JUDE LEE GASTROINTESTINAL & LAPAROSCOPIC SURGERY
+NND,The ENT Practice
+NNE,Renal Life (W) Dialysis Centre Pte Ltd
+NNF,AMOY STREET DENTAL
+NNG,AUDREY & ALEXANDER CENTRE FOR GENERAL DENTISTRY
+NNH,Dr Lam's Dental Surgery
+NNI,TWIN CITY ENDODONTICS PTE LTD
+NNJ,RENALTEAM DIALYSIS CENTRE WOODLANDS
+NNK,RenalTeam dialysis centre Bedok
+NNL,A ST*R Dental Surgery
+NNM,HEALTHWAY MEDICAL CLINIC
+NNN,OneDoctors Family Clinic
+NNO,OneDoctors Family Clinic
+NNP,Shenton Medical Group
+NNQ,Shenton Medical Group
+NNR,Shenton Medical Group
+NNS,Shenton Medical Group
+NNT,Shenton Family Medical Clinic
+NNU,Prohealth Medical Group @Clementi One Pte Ltd
+NNV,PROHEALTH MEDICAL GROUP @ BUANGKOK PTE LTD
+NNW,Shenton Medical Group
+NNX,Kai Medical Clinic
+NNY,Woodgrove Medical
+NNZ,Northeast (TMA) Medical Associates Pte Ltd
+NO1,First Health Clinic & Surgery
+NO2,HEALTHTRENDS MEDICAL CENTRE
+NO3,My Family Clinic (Clementi)
+NO4,FONG CLINIC
+NO5,Dr. Tan & Partners
+NO6,KIM TIAN GREEN FAMILY CLINIC
+NO7,Fullerton Healthcare
+NO8,THE WOMEN'S SPECIALIST
+NO9,SHENTON FAMILY MEDICAL CLINIC (BUKIT GOMBAK)
+NOA,TRINITY MEDICAL (PUNGGOL)
+NOB,Pacific Specialist Centre
+NOC,Northeast (Buona Vista) Medical Centre Pte Ltd
+NOD,Northeast (Bukit Batok) 24 HR Family Clinic
+NOE,Pacific Neurosurgery A Centre for Pain Management & Neurosurgery
+NOF,The Family Clinic @ Towner
+NOG,Atrio Family Clinic
+NOH,WONG CLINIC & SURGERY
+NOI,MediFast Medical Centre
+NOK,Alleve Pain Management Centre
+NOL,HAND SURGERY ASSOCIATES (GLENEAGLES) PRIVATE LIMITED
+NOM,ASIA SLEEP CENTRE
+NON,Colorectal Clinic Associates
+NOO,KING'S DENTAL SURGERY (KOVAN) PTE LTD
+NOP,One Orthodontics Dental Surgery
+NOQ,KANG REN DENTAL SURGERY
+NOR,ELI DENTAL SURGERY
+NOS,REDHILL DENTAL SURGERY PTE LTD
+NOT,StarBite Dental Centre
+NOU,KidneyCare Dialysis Centre @ Pasir Ris
+NOV,Pacific Vein and Endovascular Centre
+NOX,Dr Natasha Lim Eye Center
+NOY,Children & Adult Skin Hair Laser Clinic
+NOZ,Novena ENT -  Head & Neck Surgery Specialist Centre
+NQ0,Parkway Cancer Centre
+NQ1,PARKWAY CANCER CENTRE
+NQ2,PARKWAY CANCER CENTRE
+NQ3,Parkway Cancer Centre
+NQ4,Parkway Cancer Centre
+NQ5,Advanced Dental Surgery Pte Ltd
+NQ6,Quek & Me Dental Surgery
+NQ7,Plastic Surgery by S J Lee
+NQ8,BUKIT MERAH CLINIC
+NQ9,Bless Medical Centre
+NQA,WAN Medical Clinic
+NQB,The Mobile Physician Clinic
+NQC,CHUA CLINIC & SURGERY
+NQE,SHENTON FAMILY MEDICAL CLINIC
+NQG,Koh Dental Surgery Pte Ltd @ One-North
+NQH,Lee Respiratory and Sleep Clinic
+NQI,Famicare Bedok Clinic
+NQJ,Beo Crescent Clinic & Surgery
+NQK,Tzu Chi Free Clinic (Singapore)
+NQL,M Medical Clinic
+NQM,Frontier Family Medicine Clinic
+NQN,A & A Clinic
+NQO,ANG MO KIO FAMILY MEDICINE CLINIC PTE LTD
+NQP,Kids Dental World
+NQQ,B9 Dental Centre
+NQR,de dental practice two (pte.) ltd
+NQS,Asia Kidney Dialysis Centre  (JURONG)
+NQT,Fullerton Healthcare @ Gethin-Jones
+NQU,ASCENT EAR NOSE THROAT SG ALVERNIA
+NQV,Singapore Vision Centre
+NQW,Angelsmile Dental Centre
+NQX,Q & M Dental Centre (Raffles Place) Pte Ltd
+NQY,VISTA DENTAL SURGERY
+NQZ,Westfield Dental Surgery Pte. Ltd.
+NR0,LC LEE UROGYNAE CENTRE
+NR1,RENALTEAM DIALYSIS CENTRE ANG MO KIO
+NR2,THE HARLEY STREET CLINIC HEART AND CANCER CENTRE
+NR4,Gynaecology & Oncology Specialists
+NR5,RCMC RIVERVALE CRESCENT MEDICAL CENTRE
+NR6,iCare Medical and Wellness Clinic
+NR7,THE FAHRENHEIT MEDICAL CENTRE
+NR8,EVERTON CLINIC
+NR9,Audra Fong Eye Clinic & Surgery
+NRA,OneHealth Medical Group
+NRB,OneHealth Medical Group
+NRC,HEAL MEDICAL CENTRE
+NRD,The O&G Care Clinic
+NRE,Pacific Women's Clinic and Laparoscopic Surgery Centre
+NRG,Providence Clinic @ Redhill
+NRH,Gerrard Teoh Hematology & Medical Clinic
+NRI,HOUGANG GREEN FAMILY CLINIC AND DENTAL SURGERY
+NRJ,LEE WOMEN'S CLINIC & SURGERY
+NRK,Etern Medical Clinic
+NRL,Lakeside Family Medicine Clinic
+NRM,Lang Eye Centre
+NRN,Novena Cancer Centre
+NRO,The Dermatology Practice Skin. Hair.  Allergy. Laser
+NRP,About Braces Dental Surgery
+NRQ,proDENTAL Pte Ltd
+NRR,proDENTAL (Haig) Pte Ltd
+NRS,Q & M Dental Surgery (Tampines Central)
+NRT,Smile Avenue Dentistry
+NRU,WS GO SPECIALIST DENTAL
+NRV,Renal Life (Hougang) Dialysis Centre Pte Ltd
+NRW,Novena ENT-Head & Neck Surgery Specialist Centre
+NRX,Shenton Medical Group (at Esplanade MRT Station)
+NRY,The Clinic@Fusionopolis
+NRZ,Vitacare Family Clinic (Punggol Central)
+NS0,Fullerton Healthcare @ Gethin-Jones
+NS1,Fullerton Healthcare @ Gethin-Jones
+NS2,Fullerton Healthcare @ Gethin-Jones
+NS3,FULLERTON HEALTHCARE
+NS4,Fullerton Healthcare Screening Centre
+NS5,STATS CHIPPAC CLINIC
+NS6,SPECIALIST SKIN CLINIC AND ASSOCIATES PTE. LTD.
+NS7,BRICKWORKS DENTAL SURGERY
+NS8,Fusion Dental
+NS9,Immanuel Dialysis Centre (Woodlands) Pte Ltd
+NSA,RenalTeam Dialysis Centre Jurong East
+NSB,The Oral Maxillofacial Practice
+NSC,The Oral Maxillofacial Practice
+NSF,Thomson Paediatric Centre
+NSG,The New Teban Clinic
+NSH,THE KID'S CLINIC
+NSI,SHENTON MEDICAL GROUP
+NSJ,Dr Goh Eye Neuro-ophthalmic & Low Vision Specialist
+NSK,SM HANEEFA CLINIC
+NSL,SUNNYVALE CLINIC & SURGERY
+NSM,Q & M Medical & Aesthetic Clinic (Serangoon Garden) Pte Ltd
+NSN,Q & M MEDICAL & AESTHETIC CLINIC (TAMPINES CENTRAL) PTE. LTD.
+NSO,Q & M Medical Clinic (Raffles Place)
+NSP,Shenton Medical Group
+NSQ,"Parkway East Diabetes, Endocrine and Endovascular Clinic"
+NSR,Prohealth Medical Group @Punggol Spectra Pte. Ltd.
+NSS,CHEE EAR NOSE THROAT SURGERY
+NST,HN Tay ENT | Head&Neck | Thyroid | Sleep Robotic Surgery
+NSU,Specialist Pain International Clinic
+NSV,The Eye Surgery Partners Pte Ltd
+NSW,CHNG DENTAL SURGERY
+NSX,Expat Dental
+NSY,LAKESIDE DENTIST
+NSZ,MOUTH DENTAL SURGERY
+NT0,TAI DENTAL SURGERY
+NT1,Orange Orthodontics & Dentofacial Orthopaedics
+NT2,Princeton Dental Surgery
+NT3,Smile Doctor
+NT4,NOBLE DENTAL SURGERY
+NT5,The Orthodontic Clinic
+NT6,TLC DENTAL CENTRE
+NT7,Specialist Pain International Clinic
+NT8,STAR HEALTH FAMILY CLINIC
+NT9,Inliven - Center for Osteoarthritis Solutions
+NTA,Immanuel Dialysis Centre (Yishun) Pte Ltd
+NTB,BEDOK TOWN DENTAL SURGERY
+NTC,PARKWAY DENTAL PRACTICE
+NTD,Specialist Dental Group
+NTE,The Dental Practice (Bedok) Pte Ltd
+NTF,The Dental Practice (Paya Lebar) Pte Ltd
+NTG,Fullerton Healthcare @ Drs Trythall Hoy Davies (Ngee Ann City Tower B)
+NTH,OneHealth Medical Group
+NTI,Smiles R Us Dental (Champions Court)
+NTJ,Fullerton Healthcare @ Drs Trythall Hoy Davies (Jurong Point at #B1A-19B)
+NTK,KIDS CLINIC @ BISHAN
+NTL,SBCC BABY & CHILD CLINIC
+NTM,MYHEALTH MEDICAL CENTRE
+NTN,BVH Community and Continuing Care Clinic
+NTO,Healthwerkz Medical Centre (CCK)
+NTP,Raffles Place Specialist Medical Centre
+NTQ,SIMPLYHEALTH MEDICAL CLINIC & SURGERY
+NTR,Tayka Medical Family Clinic
+NTS,ChariSmile Dentistry
+NTT,GATEWAY DENTAL CENTER
+NTU,HO DENTAL SURGERY
+NTV,Lakeview Dentist
+NTW,PRODENTAL (BEDOK) PTE LTD
+NTX,Smileworks @ Keat Hong Pte Ltd
+NTY,VISTA DENTAL SURGERY
+NTZ,WEST COAST DENTAL (MARINA) PTE LTD
+NU0,CK Ng Urology & Minimally Invasive Surgery
+NU1,CAPE PLASTIC SURGERY PTE LTD
+NU2,A L LIM CLINIC FOR WOMEN PTE LTD
+NU3,Bertha Woon General and Breast Surgery
+NU5,RenalTeam dialysis centre tampines
+NU6,Q & M Dental Centre (Novena)
+NU7,Q & M Dental Surgery (Buangkok MRT)
+NU8,GREENLIFE CLINIC & SURGERY
+NU9,Accord Medical Clinic
+NUA,CHINATOWN MEDICAL CENTRE
+NUB,E MEDICAL CLINIC & SURGERY ( TOA PAYOH )
+NUC,CLINIC FARIDAH
+NUD,TAN & KOH CLINIC & SURGERY
+NUE,B T GOH FAMILY CLINIC & SURGERY
+NUF,ANTEH DISPENSARY
+NUH,Shenton Wellness Centre
+NUI,Onehealth Medical Group
+NUJ,OneHealth Medical Group
+NUK,RafflesMedical (White Sands)
+NUL,DentalSpecialists@Scotts
+NUM,Ginza Dental Surgery
+NUN,HEALTHWAY DENTAL CLINIC
+NUO,Lee Dentalcare Pte. Ltd.
+NUP,ASCENSION DENTAL CLINIC
+NUQ,RafflesDental
+NUR,The Dental Specialist
+NUS,UNITY DENTICARE
+NUT,UNITY DENTICARE
+NUU,Victoria Dentalcare (Punggol) Pte Ltd
+NUV,CHIA & LEE MEDICAL & DENTAL CLINIC
+NUW,BLOOD SPECIALIST CLINIC
+NUX,Esther Chuwa BreastCare Practice
+NUY,TAMPINES ENDOSCOPY & SURGERY CENTRE
+NV0,Ravenna Urology Clinic
+NV1,Prestige Radiology & Diagnostic Centre Pte Ltd
+NV2,Singapore Sports and Orthopaedic Clinic
+NV3,TAN CLINIC & DENTAL SURGERY
+NV4,"DRS KOO, FOK & ASSOCIATES PTE LTD"
+NV5,COMFORT CLINIC & SURGERY
+NV7,Thomson Women's Clinic
+NV8,Fortis Surgical Hospital
+NV9,THE DIGESTIVE & LIVER SPECIALIST CENTRE
+NVA,THE LUNG SPECIALIST CENTRE
+NVB,Charles Tan Surgery
+NVC,FRESENIUS MEDICAL CARE TECK WHYE DIALYSIS CLINIC
+NVE,W Eye Clinic
+NVF,B9 Dental Centre (Toa Payoh)
+NVG,B9 Dental Centre (The Star)
+NVH,Casa Dental
+NVJ,Dental Icon @ Costa
+NVK,Dentigiene Dental Surgery Pte Ltd
+NVL,LUMINOUS DENTAL CLINIC @ BEDOK SOUTH
+NVM,My Braces Clinic
+NVN,RafflesDental
+NVO,RafflesDental
+NVP,The Dental Practice (Pasir Ris) Pte. Ltd.
+NVQ,The Smile Cliniques
+NVR,Theng & Partners Dental Surgeons
+NVS,True Dental Studio
+NVT,URBAN DENTAL LONDON
+NVU,CCK FAMILY CLINIC
+NVV,EC FAMILY CLINIC
+NVW,EVERCARE MEDICAL CLINIC (475) PTE LTD
+NVX,HALLEY MEDICAL AESTHETICS
+NVY,HEALTH-LINK (AMK) MEDICAL CENTRE
+NVZ,Healthpath Medical Clinic and Surgery
+NW0,NEW HEALTH FAMILY CLINIC Pte Ltd
+NW1,OneCare Clinic Boon Lay
+NW2,RafflesMedical (Jurong Point)
+NW3,CHUA KAY HIAN DENTAL SURGERY
+NW4,Dhoby Dental Surgery
+NW5,Le MinT's Oral Maxillofacial Surgery
+NW6,PLANET DENTAL CENTRE
+NW7,THONG HOE DENTAL SURGERY PTE LTD
+NW8,True Dental In The City Pte Ltd
+NW9,ATRIO FAMILY CLINIC (AMK) PTE. LTD.
+NWA,Q & M Medical Family Clinic
+NWB,Apex Heart Clinic
+NWC,Family Medicine Clinic Chinatown
+NWD,Fernvale Family Clinic
+NWE,LIM CLINIC
+NWF,Novena ENT -  Head & Neck Surgery Specialist Centre
+NWG,NOVENA ENT-HEAD & NECK SURGERY SPECIALIST CENTRE
+NWH,PINNACLE FAMILY CLINIC
+NWI,Prudence Family Clinic
+NWJ,Punggol Ripples Family Clinic
+NWK,RafflesMedical (Yew Tee)
+NWL,UNITY FAMILY MEDICINE CLINIC
+NWM,Asian American Blood & Marrow Transplant Centre
+NWN,Aloha Dental Pte Ltd
+NWO,Breast Care and Surgery Centre
+NWP,"CENTRE FOR UROLOGY, ROBOTIC & MINIMALLY INVASIVE SURGERY"
+NWQ,Dream Plastic Surgery
+NWR,SMG Orthopaedic Group
+NWS,SMILEPOINT DENTAL CENTRE
+NWT,Orient Dental Clinic
+NWU,FARRER PARK HOSPITAL
+NX0,AA DENTAL SURGERY
+NX1,Beacon Ear Nose Throat Snoring Centre
+NX2,J.K. LEONG (DENTAL CENTRE) PTE LTD
+NX3,OncoCare Cancer Centre
+NX4,SYNERGY DENTAL SPECIALISTS
+NX5,DOCTORS INC MEDICAL GROUP
+NX6,JOY FAMILY CLINIC
+NX7,Radiant Medical + Aesthetic Centre
+NX8,Rophi Clinic
+NX9,Phoenix Dental Surgery
+NXA,SASCO CLINIC
+NXB,SHENTON MEDICAL GROUP
+NXC,SHENTON MEDICAL GROUP
+NXD,SHENTON MEDICAL GROUP
+NXE,SHENTON MEDICAL GROUP
+NXF,SINGAPORE TECHNOLOGIES AEROSPACE MEDICAL CENTRE
+NXG,SINGAPORE TECHNOLOGIES MARINE LTD (MEDICAL CLINIC)
+NXH,SINGAPORE TECHNOLOGIES ELECTRONICS LIMITED (IN-HOUSE MEDICAL CLINIC)
+NXI,SRC Medical Centre
+NXJ,ST KINETICS IN-HOUSE CLINIC
+NXK,STREET 11 CLINIC
+NXL,Pacific Heart Centre
+NXM,Excelsior Dental Surgery
+NXN,ONCOSOLUTIONS CANCER CENTER
+NXO,Orthe Pte Ltd (Dialysis Centre)
+NXP,Orthe Pte Ltd (Dialysis Centre)
+NXQ,Orthe Pte Ltd (Dialysis Centre)
+NXR,Orthe Pte Ltd (Dialysis Centre)
+NXS,RENAL THERAPY SERVICES PTE LTD
+NXT,RENAL THERAPY SERVICES PTE LTD
+NXU,Renal Therapy Services Pte Ltd
+NXV,Renal Therapy Centre Pte Ltd
+NXW,Renal Therapy Centre Pte Ltd
+NXX,Renal Therapy Centre Pte Ltd
+NXY,Renal Therapy Centre Pte Ltd
+NXZ,SMG Surgery Centre
+NY0,The Orthopaedic Centre Novena
+NY1,UNITY DENTICARE
+NY2,VICTORIA DENTALCARE (MARINE PARADE)
+NY3,AcuMed Medical Group (At Boon Lay MRT Stn)
+NY4,AcuMed Medical Group
+NY5,ACUMED MEDICAL GROUP
+NY6,CENTRAL MEDICAL GROUP PTE LTD
+NY7,Fullerton Healthcare @ Metropolis
+NY8,Hisemainn Medical Clinic (Bukit Batok)
+NY9,Hisemainn Medical Clinic (Jurong West)
+NYA,Holland Close Clinic Pte. Ltd.
+NYB,NEW TOWN CLINIC
+NYC,NOVO VITA CLINIC AND SURGERY
+NYD,NUTRAMED CLINIC
+NYE,MW MEDICALÂ®CENTRE
+NYF,Q & M MEDICAL & AESTHETIC CLINIC (FARRER PARK)
+NYG,Shifa Clinic (Jurong)
+NYH,YAP FAMILY CLINIC
+NYI,ASPEN CLINIC
+NYJ,Onecare Clinic Hougang
+NYK,CLIFFORD DISPENSARY PTE LTD
+NYL,"A Company for Women, Obstetrics & Gynaecology"
+NYM,B. Braun Avitum Dialysis Centre
+NYN,B.Braun Dialysis Centre
+NYO,Dermatology Associates
+NYP,SMILE CENTRAL CLINIC (At Jurong Gateway)
+NYQ,Abundant Health Medical Clinic Pte Ltd
+NYR,BEDOK FAMILY MEDICINE CENTRE
+NYS,Etern Medical Clinic (Fernvale Palm)
+NYT,HEALTHWAY MEDICAL CLINIC (AT YISHUN ST 72 BRANCH)
+NYU,HEALTHWAY MEDICAL CLINIC
+NYV,KHO CLINIC
+NYW,RafflesMedical (Bedok North)
+NYX,Q & M Dental Surgery (Boon Lay MRT) Pte Ltd
+NYY,Advent Endodontics Inc Pte Ltd
+NYZ,Astra Women's Specialists
+NZ0,CENTRE FOR HAND AND RECONSTRUCTIVE MICROSURGERY (GLENEAGLES) PTE LTD
+NZ1,Dr Leo Adult & Paediatric Eye Specialist Pte Ltd
+NZ2,EH Heart Specialist Private Limited
+NZ3,Eastcare Pain Specialist
+NZ4,Freia Medical
+NZ5,Hand Surgery Associates (Parkway East)
+NZ6,HEALTHWAY DENTAL CLINIC
+NZ7,Immanuel Dialysis Centre (Mayflower) Pte Ltd
+NZ8,Lim Ing Ruen ENT Clinic
+NZ9,Liverpool Dental & Aesthetic Clinic
+NZA,Q & M Dental Surgery (Aljunied MRT)
+NZB,Q & M Dental Surgery (Bt Batok Central)
+NZC,RafflesDental
+NZD,SMILE CENTRAL CLINIC
+NZE,SYMMETRY DENTOFACIAL AESTHETICS
+NZF,T32 Dental Pearl At Bedok Pte Ltd
+NZG,UNITY DENTICARE
+NZH,B9 MEDICAL CENTRE
+NZI,BEWELL CLINIC
+NZJ,Central 24HR Clinic (Jurong West)
+NZK,CHONG'S MEDICAL CENTRE
+NZL,Dr. Tan & Partners
+NZM,E. L. CHIN FAMILY CLINIC & SURGERY PTE. LTD.
+NZN,FAMILY HEALTH CLINIC
+NZO,HEALTHWAY MEDICAL CLINIC
+NZP,Medic Surgical & Laser Clinic
+NZQ,Oasis Family Clinic
+NZR,"Specialist Endocrine Clinic for Diabetes, Thyroid and Hormones"
+NZS,TH Chia Medical Practice
+NZT,THE CORONATION CLINIC
+NZU,Thomson Wellth Clinic
+NZW,Victor's Family Clinic
+NZX,YEO CLINIC
+NZY,YISHUNONE FAMILY CLINIC
+NZZ,SENNETT MEDICAL CLINIC
+O0,Universal Dental Group (Woodlands) Pte Ltd
+O1,Dr Venga Clinic for Women Pte Ltd
+O2,K K Ho Clinic for Women
+O3,Lim Clinic & Surgery for Women
+O4,Millennium Medical Group (At Woodlands)
+O5,Ng Medical Centre
+O6,P K Ang Family Clinic & Surgery
+O7,Spring Medical Clinic (Old Airport Road)
+O8,Tan's T & T Clinic & Surgery
+O9,CMC Wong Binjai Clinic
+OA,Dr Steven Ang Aesthetic & Family Clinic
+OB,Family Health Clinic & Surgery Pte Ltd
+OC,Havelock Family Clinic
+OD,Healthline Family Clinic And Surgery
+OE,Kallang Bahru Family Clinic Pte. Ltd.
+OF,Lee Clinic
+OG,Rowell Clinic & Surgery
+OH,Tampines Medical Centre
+OI,United Medical Clinic
+OJ,Well Family Clinic & Surgery
+OK,West Coast Clinic & Surgery
+OL,Comwell Medical Clinic
+OM,Kwong Wai Shiu Hospital
+ON,Wen & Weng Medical Group
+OO,Paragon Medical Centre Pte Ltd
+OP,Princeton Family Clinic Pte Ltd
+OQ,Ruby Medical Centre Pte Ltd
+OR,Bok Family Clinic Pte Ltd
+OS,Boon Lay Clinic & Surgery
+OT,Dover Clinic And Surgery
+OU,Focus Medical Group
+OV,Geylang Bahru Clinic
+OW,K N Lau Clinic
+OY,Life Clinic
+OZ,Pan Island Clinic & Surgery
+P1,THE ONCOLOGY CENTRE
+P2,HAEM-ONC CLINIC PTE LTD
+P3,GYNECOLOGY CONSULTANTS CLINIC & SURGERY
+P4,FOONG SURGICAL CLINIC
+P5,MEDICAL & HAEMATOLOGY
+P6,MIDLAND CLINIC
+P7,Y O TAN MEDICAL ONCOLOGY
+P8,MEDICAL ONCOLOGY CENTRE
+P9,P T ANG MEDICAL ONCOLOGY CLINIC
+PA,HAEMATOLOGY AND CANCER CENTRE PTE LTD
+PB,DR JOANNA LIN'S MEDICAL AND CANCER CLINIC PTE LTD
+PC,KARMEN WONG MEDICAL ONCOLOGY CLINIC
+PE,ELIZABETH AU ONCOLOGY
+PF,Popular Dental (Choa Chu Kang) Pte Ltd
+PG,KS Khoo Medical Oncology
+PH,Pritam's Clinic & Surgery For Women Pte Ltd
+PI,Medical Oncology Specialist Clinic Pte Ltd
+PJ,H L Kong Medical Oncology Pte Ltd
+PK,"The Family Practice, Clinic & Surgery"
+PL,YSL Bedok Clinic & Surgery Pte Ltd
+PM,Kao & Tan Family Medical Centre & Surgery Pte Ltd
+PN,The Family Clinic
+PO,Yishun Medical Clinic
+PP,Hua Mei Seniors Clinic Of Tsao Foundation
+PQ,Chungkiaw Clinic Pte Ltd
+PR,The Chungkiaw Family Practice Pte Ltd
+PS,Drs Chan & Tang Family Clinic
+PT,Eastern Clinic & Dental Surgery
+PU,Healthpoint Family Clinic & Surgery
+PV,MHC Family & Specialist Medical Centre (Yew Tee)
+PW,MHC Medical Centre (Ang Mo Kio)
+PX,Newlife Family Clinic & Surgery
+PY,Vineyard Medical Clinic
+PZ,West Coast Clinic & Surgery (Clementi)
+QM0,Q & M DENTAL SURGERY (ADMIRALTY) PTE LTD
+QM1,Q & M DENTAL SURGERY (ANG MO KIO CENTRAL) PTE LTD
+QM2,Q & M DENTAL SURGERY (BRADDELL) PTE LTD
+QM3,Q & M DENTAL SURGERY (BT. PANJANG) PTE LTD
+QM4,Q & M DENTAL SURGERY (BT. TIMAH) PTE LTD
+QM5,Q & M DENTAL SURGERY (CLEMENTI CENTRAL) PTE LTD
+QM6,Q & M DENTAL SURGERY (CLEMENTI) PTE LTD
+QM7,Q & M DENTAL CLINIC (CLEMENTI) PTE LTD
+QM8,Q & M DENTAL SURGERY (HOUGANG PLAZA) PTE LTD
+QM9,Q & M DENTAL SURGERY (HOUGANG CENTRAL) PTE LTD
+QMA,Q & M DENTAL SURGERY (JELAPANG) PTE LTD
+QMB,Q & M DENTAL SURGERY (JURONG EAST CENTRAL) PTE LTD
+QMC,Q & M DENTAL SURGERY (KALLANG MRT) PTE LTD
+QMD,Q & M DENTAL SURGERY (KHATIB) PTE LTD
+QME,Q & M DENTAL SURGERY (MARSILING) PTE LTD
+QMF,Q & M DENTAL SURGERY (OLD AIRPORT RD) PTE LTD
+QMG,Q & M DENTAL SURGERY (PASIR RIS) PTE LTD
+QMH,Q & M DENTAL SURGERY (SEMBAWANG) PTE LTD
+QMI,Q & M DENTAL SURGERY (SEMBAWANG MRT) PTE LTD
+QMJ,Q & M DENTAL SURGERY (SERANGOON CENTRAL) PTE LTD
+QMK,Q & M DENTAL CLINIC (SERANGOON CENTRAL) PTE LTD
+QML,Q & M DENTAL SURGERY (SERANGOON NORTH) PTE LTD
+QMM,Q & M DENTAL SURGERY (SIMS PLACE) PTE LTD
+QMO,Q & M DENTAL SURGERY (TIONG BAHRU) PTE LTD
+QMP,Q & M DENTAL CLINIC (TIONG BAHRU) PTE LTD
+QMQ,Q & M DENTAL SURGERY (TOA PAYOH) PTE LTD
+QMR,Q & M DENTAL CLINIC (TOA PAYOH) PTE LTD
+QMS,Q & M DENTAL SURGERY (TOA PAYOH CENTRAL) PTE LTD
+QMT,Q & M DENTAL CLINIC (TOA PAYOH CENTRAL) PTE LTD
+QMU,Q & M DENTAL SURGERY (YISHUN CENTRAL) PTE LTD
+QMV,MY DENTISTS @ BOON LAY PTE LTD
+QMW,Q & M DENTAL CLINIC PTE LTD
+QMX,Q & M Dental Surgery (Gombak) Pte Ltd
+QMY,Corporate Dental Clinic Pte Ltd (Tiong Bahru) AKA Q & M Dental Surgery (at Redhill MRT station)
+QMZ,Corporate Dental Clinic Pte Ltd (Haig Rd)
+R01,St Luke Hospital For The Elderly Ltd
+R03,Apex Day Rehabilitation Centre for Elderly
+R04,Sunlove Senior Care Centre @ Ang Mo Kio
+R05,Sunshine Welfare Action Mission
+R06,NTUC Eldercare Co-operative Ltd
+R07,St Hildaâ€™s Community Services Centre
+R08,All Saints Home (Tampines)
+R09,Kwong Wai Shiu Hospital DRC
+R10,Man Fut Tong Nursing Home (At Woodlands)
+R11,Bright Vision Hospital DRC
+R12,St Lukeâ€™s Eldercare Centre (Bukit Timah)
+R13,St Lukeâ€™s Eldercare Centre (Golden Years)
+R14,St Lukeâ€™s Eldercare Centre (Jurong East)
+R15,St Lukeâ€™s Eldercare Centre (Whampoa)
+R16,St Lukeâ€™s Eldercare Centre (Clementi)
+R17,St Lukeâ€™s Eldercare Centre (Hougang)
+R18,St Lukeâ€™s Eldercare Centre (Serangoon)
+R19,St Lukeâ€™s Eldercare Centre (Yishun)
+R21,St Luke's Eldercare Centre (Changkat)
+R22,St Luke's Eldercare - Ayer Rajah
+R23,St Luke's Eldercare - Tampines
+R24,St Luke's Eldercare - Telok Blangah
+R26,Econ Health & Wellness Centre (Queenstown)
+R28,FARRER PARK HOSPITAL
+R29,Thye Hua Kwan Seniors Activity Centre @ Ang Mo Kio
+R30,Jamiyah Senior Care Centre
+R32,St Andrewâ€™s Senior Care Joy Connect
+R33,Ren Ci Senior Care Centre @ Bukit Batok
+R34,PCF SPARKLE CARE @ CHANGI SIMEI
+R35,ALL SAINTS HOME (YISHUN)
+R36,St Lukeâ€™s Eldercare Centre (Chong Pang)
+R37,St Lukeâ€™s Eldercare Centre (Nee Soon East)
+R38,St Lukeâ€™s Eldercare Centre (Nee Soon Central)
+R40,Kwong Wai Shiu Community Care Centre @ McNair
+R41,Ren Ci @ Ang Mo Kio (Senior Care Centre)
+R42,St. Andrew's Senior Care (Henderson)
+R43,St. Andrew's Senior Care (Tampines)
+R44,St Luke's Eldercare Centre (Ayer Rajah)
+R45,St Luke's Eldercare Centre (Keat Hong)
+R46,St. Andrew's Senior Care (Queenstown)
+R47,Anglican Senior Centre (Hillview)
+R48,St Luke's  Eldercare Centre (Rivervale)
+R50,Vanguard Senior Care (Woodlands)
+R51,St Luke's  Eldercare  Centre (AMK Poly)
+R52,St Luke's  Eldercare Centre (Sumang)
+R53,St Luke's  Eldercare Centre (Hougang Meadow)
+R54,St Luke's  Eldercare Centre (Marine Parade)
+R55,St Luke's Eldercare Centre (Kebun Baru)
+R56,Active Global Active Ageing Hub @ Ghim Moh Edge
+R57,Kwong Wai Shiu Care @ Jalan Besar
+R59,All Saints Silver Lifestyle Club @ Yishun Central
+R60,Active Global Active Ageing Hub @ Telok Blangah Parcview
+S0,Wong Family Clinic & Surgery
+S1,Prime Medical Group Pte Ltd
+S2,Tan Teoh Clinic & Surgery
+S3,Eden Family Clinic
+S4,Eden Medical Aesthetics Pte Ltd
+S5,Chua & Partners Family Clinic Pte Ltd
+S6,Faber Clinic & Surgery
+S7,Ho Medical Centre Pte Ltd
+S8,Hosanna Medical Centre
+S9,Kenneth Loo Family Clinic
+SA,MHC Medical Centre
+SB,Northeast (Kallang) Medical Centre Pte Ltd
+SC,Pariqua Clinic
+SD,Point Medical Group (Taman Jurong)
+SE,Ren Medical Clinic
+SF,Sefton Medical Centre Pte Ltd
+SG,Vagus Specialist & Family Clinic
+SI,Yip Family Clinic
+SJ,Universal Dental Group (Braddell) Pte Ltd
+SK,Ee Clinic
+SL,Familycare Clinic & Surgery
+SM,Family Health Medical Centre
+SN,Kelinik Maju
+SO,Milford Medical Group
+SR,Neptune Healthcare Medical & Surgery
+SS,Robertson Medical Practice
+ST,Telok Blangah Medical Centre (Chang Zhen Pte Ltd)
+SU,Clementi Family Healthpoint Clinic & Surgery
+SV,Family Care Clinic & Surgery
+SW,Healthwise Medical Clinic & Surgery
+SX,Lifeline Medical Centre
+SY,Regional Patientcare Medical Group Pte Ltd
+SZ,TP Sim Family Clinic & Surgery
+T0,Teh's Clinic And Surgery
+T1,Drs Tang & Associates
+T2,GPA Centre for Dentistry
+T3,Oliver Dental Surgery Pte Ltd
+T4,Robertson Choo Oehler Lee & Lye  Pte Ltd
+T5,Progessive Dental Specialist PL (Mt A Dental Care)
+T6,The Oral Maxillofacial Practice Pte Ltd
+T7,Lim K A Oral & Maxillofacial Surgery Pte Ltd
+T8,Mount Elizabeth Dental Surgery Pte Ltd
+T9,My Dentist @ Gombak Pte Ltd
+TA,Omni Dental Centre
+TB,Q & M Dental Surgery(Bt. Batok) Pte Ltd
+TC,The Surgeons Dental Surgery
+TD,Aesthetics Dental Surgery
+TE,DP Dental Pte Ltd
+TF,De Pacific Dental Group (AMK) Pte Ltd
+TG,De Pacific Dental Group (Pasir Ris) Pte Ltd
+TH,De Pacific Dental Group (Jurong West) Pte Ltd
+TI,Loh Fun Chee & Associates Pte Ltd
+TJ,Rochor Dental Clinic
+TK,The Smile Cliniques
+TL,"Wong, Ong & Partners Dental Surgeons"
+TM,Bethel Dental Surgery
+TN,Chew & Chew Dental Surgery Pte Ltd
+TO,Alpha Dental Group
+TP,Family Dental Surgery
+TQ,Li Dental Centre Pte Ltd
+TR,Lu Ally Dental Surgery
+TS,WH Dental Surgeons
+TT,K C Tan's Clinic & Bright Dental Surgery
+TU,Philip Goh Dental Surgery
+TV,Dentaland Pte Ltd
+TW,DentalPlus Clinic Pte Ltd
+TX,Metro Dental @Marina
+TY,Dennis Tan Dental Surgery Pte Ltd
+TZ,Logos Dental Surgery
+V1,PARKWAY SHENTON PTE LTD
+V2,HEALTHWAY MEDICAL GROUP PTE LTD
+VO,Viva Medical Clinic
+W0,CCK 24-HR Family Clinic Pte Ltd
+W1,B.WELL LTD
+W2,SPD @ Toa Payoh
+W3,ANG MO KIO COMMUNITY HOSPITAL ANG MO KIO SCHCC
+W4,SATHY SAI SOCIAL SERVICES (Tembusu Rehab and Day Care Centre)
+W5,SUNLOVE ABODE FOR INTELLECTUALLY INFIRMED LTD (HOUGANG - SCHCC)
+W6,NEW HORIZON CENTRE (LOKE YEW - TAMPINES)
+W7,Teng Clinic
+W8,Tng Family Clinic
+W9,Usrah Medical Clinic
+WB,Medilife Clinic & Surgery
+WC,Mediline Wei Min Clinic
+WD,Ooi Clinic
+WE,Swan's Family Clinic And Surgery Pte Ltd
+WF,"Tan Yong Seng Heart, Lung & Vascular Surgery Pte Ltd"
+WG,Temasek Medical Clinic
+WH,Temasek Medical Clinic
+WI,The Family Practice - Potong Pasir
+WJ,Lo & Lee Clinic And Surgery
+WK,Shenton Family Medical Clinic (Yishun)
+WL,Healthplus Clinic And Surgery
+WM,Arthritis + Rheumatism Specialist Medical Centre
+WN,C.H.Tan Medical Clinic & Dental Surgery
+WP,Chang Clinic
+WQ,Doctors Inc Medical Group Pte Ltd
+WR,"Drs Tang, Virabhak & Partners"
+WS,Klinik Li Ling
+WT,Lifesprings Family Clinic
+WU,Medical Associates Park Mall
+WV,Medical Union Clinic
+WW,Medical Union Clinic
+WX,Neo Clinic & Surgery
+WY,Westside Medical Clinic
+WZ,Wong Clinic & Surgery

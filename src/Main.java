@@ -11,6 +11,12 @@ import java.util.Objects;
  */
 
 public class Main {
+    /**
+     * This method demonstrates how to create a medication from its code, check its category,
+     * and print information about the medication. It also retrieves a list of medications
+     * from a specific category.
+     * @param args
+     */
     public static void main(String[] args) {
 
         Medication med = Medication.createFromCode("D0001");

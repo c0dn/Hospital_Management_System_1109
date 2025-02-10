@@ -6,7 +6,6 @@ import java.time.LocalDate;
  * Represents a general human entity in the insurance system.
  * This serves as a base class for patients, doctors and other human-related roles.
  */
-
 public abstract class Human {
 
     /** The name of the person. */
@@ -43,78 +42,47 @@ public abstract class Human {
     protected boolean isVaccinated;
 
     /**
-     * Constructs a Human object with the specified attributes.
+     * Constructs a Human object using the provided HumanBuilder, initializing
+     * various attributes of the Human entity such as name, date of birth, NRIC,
+     * marital status, and other personal details.
+     * Package-private constructor, only accessible by builders in the same package
      *
-     * @param name The name of the person.
-     * @param dateOfBirth The date of birth of the person.
-     * @param nricFin The NRIC/FIN (identification) of the person.
-     * @param maritalStatus The marital status of the person.
-     * @param residentialStatus The residential status of the person.
-     * @param nationality The nationality of the person.
-     * @param address The residential address of the person.
-     * @param contact The contact details of the person.
-     * @param sex The sex of the person.
-     * @param bloodType The blood type of the person.
-     * @param isVaccinated The vaccination status of the person.
+     * @param builder The builder object that contains the data used to initialize
+     *                the Human instance. The builder must include fields such as
+     *                name, dateOfBirth, nricFin, maritalStatus, residentialStatus,
+     *                nationality, address, contact, sex, bloodType, and vaccination
+     *                status to properly construct a Human object.
      */
-    public Human(String name, LocalDate dateOfBirth, String nricFin, MaritalStatus maritalStatus,
-                 ResidentialStatus residentialStatus, String nationality, String address,
-                 Contact contact, Sex sex, BloodType bloodType, boolean isVaccinated) {
-        this.name = name;
-        this.dateOfBirth = dateOfBirth;
-        this.nricFin = nricFin;
-        this.maritalStatus = maritalStatus;
-        this.residentialStatus = residentialStatus;
-        this.nationality = nationality;
-        this.address = address;
-        this.contact = contact;
-        this.sex = sex;
-        this.bloodType = bloodType;
-        this.isVaccinated = isVaccinated;
-
+    Human(HumanBuilder<?> builder) {
+        this.name = builder.name;
+        this.dateOfBirth = builder.dateOfBirth;
+        this.nricFin = builder.nricFin;
+        this.maritalStatus = builder.maritalStatus;
+        this.residentialStatus = builder.residentialStatus;
+        this.nationality = builder.nationality;
+        this.address = builder.address;
+        this.contact = builder.contact;
+        this.sex = builder.sex;
+        this.bloodType = builder.bloodType;
+        this.isVaccinated = builder.isVaccinated;
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
-    }
-
+    /**
+     * Retrieves the NRIC/FIN (identification number) of the person.
+     *
+     * @return The NRIC/FIN of the person.
+     */
     public String getNricFin() {
         return nricFin;
     }
 
-    public MaritalStatus getMaritalStatus() {
-        return maritalStatus;
-    }
-
-    public ResidentialStatus getResidentialStatus() {
-        return residentialStatus;
-    }
-
-    public String getNationality() {
-        return nationality;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public Contact getContact() {
-        return contact;
-    }
-
-    public Sex getSex() {
-        return sex;
-    }
-
-    public BloodType getBloodType() {
-        return bloodType;
-    }
-
-    public boolean isVaccinated() {
-        return isVaccinated;
+    /**
+     * Displays the contact information of the person.
+     * This method delegates the actual display functionality
+     * to the {@code displayContactInfo} method of the {@code Contact} class.
+     */
+    public void displayContactInformation() {
+        contact.displayContactInfo();
     }
 }
