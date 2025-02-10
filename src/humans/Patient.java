@@ -1,9 +1,7 @@
 package humans;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Represents a patient in the insurance system.
@@ -22,7 +20,7 @@ public class Patient extends Human {
     /** The relationship of the patient and the next of kin. */
     private NokRelation nokRelation;
     /** The patient's height in metres. */
-    private double height; // in meters
+    private double height;
     /** The patient's weight in kilograms. */
     private double weight;
     /** Represents the occupation of a patient. */
