@@ -4,13 +4,25 @@ import policy.*;
 
 import java.time.LocalDate;
 
+/**
+ * The {@code AccidentTest} class is a test suite for verifying the functionality of accident insurance policies.
+ * It tests the creation of an accident insurance policy using the builder pattern and displays the policy details.
+ */
 public class AccidentTest {
+    /**
+     * The main method to execute the accident insurance tests.
+     *
+     * @param args Command-line arguments (not used).
+     */
     public static void main(String[] args) {
         try {
             System.out.println("\nTesting Accident Insurance functionality...");
 
             // Test: Creating an accident insurance policy using builder with specific data
             System.out.println("\nTest - Creating accident insurance policy using builder with specific data:");
+            /**
+             * Creates an accident insurance policy using the {@code AccidentBuilder}.
+             */
             InsurancePolicy specificPolicy = new AccidentBuilder()
                     .insuranceName("AIA Accident Protection")
                     .provider("AIA")

@@ -2,7 +2,16 @@ package tests;
 
 import claims.HospitalCode;
 
+/**
+ * A test class for the {@link HospitalCode} class.
+ * This class verifies the creation and lookup of hospital codes.
+ */
 public class HospitalCodeTest {
+    /**
+     * The main method to execute tests for hospital codes.
+     *
+     * @param args Command-line arguments (not used).
+     */
     public static void main(String[] args) {
         try {
             System.out.println("Testing HospitalCode functionality...\n");

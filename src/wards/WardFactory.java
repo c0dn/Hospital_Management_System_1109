@@ -1,6 +1,18 @@
 package wards;
 
+/**
+ * A factory class for creating different types of hospital wards.
+ * Determines the appropriate ward type based on the ward class.
+ */
 public class WardFactory {
+    /**
+     * Creates and returns a specific ward instance based on the given ward class type.
+     *
+     * @param name         The name of the ward.
+     * @param wardClassType The classification of the ward.
+     * @return An instance of a specific ward type.
+     * @throws IllegalArgumentException If the ward class type is invalid.
+     */
     public static Ward getWard(String name, WardClassType wardClassType) {
         if (wardClassType == null) {
             throw new IllegalArgumentException("Ward class cannot be null");
@@ -20,6 +32,13 @@ public class WardFactory {
         };
     }
 
+    /**
+     * Determines the number of beds in a ward based on its classification.
+     *
+     * @param parts The parts of the ward classification type name.
+     * @return The number of beds in the ward.
+     * @throws IllegalArgumentException If the class type is invalid.
+     */
     private static int getNumberOfBeds(String[] parts) {
         String classType = parts.length > 1 ? parts[1] : null; // Second part is the class type (if it exists)
 
