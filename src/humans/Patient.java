@@ -100,6 +100,7 @@ public class Patient extends Human {
                 "Patient ID", "Name of Insured", "NRIC/FIN", "Contact", "Mailing Address", "Occupation", "Company Name", "Company Address");
         System.out.printf("%-13s %-30s %-11s %-18s %-24s %-14s %-18s %-30s%n",
                 patientId, name, nricFin, contact, address, occupation, companyName, companyAddress);
+
     }
 
     @Override

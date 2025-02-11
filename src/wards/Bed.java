@@ -17,6 +17,10 @@ public class Bed {
         return currentPatient != null;
     }
 
+    // Getter method to return bed number
+    public int getBedNumber() {
+        return bedNumber;
+    }
 
     public void assignPatient(Patient patient) {
         this.currentPatient = patient;

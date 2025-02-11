@@ -1,6 +1,7 @@
 package medical;
 
 import humans.Patient;
+import wards.Bed;
 import wards.Ward;
 
 import java.time.LocalDate;
@@ -169,14 +170,43 @@ public class MedicalRecord {
     public List<String> getAttendingNurse() { return attendingNurse; }
 
     public void displayMedicalRecord() {
-        System.out.printf("%-20s %-20s %-15s %-20s %-20s %-20s %-15s %-20s %-20s %-20s %-20s%n",
-                "Procedure Code", "Date of Visit", "Type of Visit", "Medication", "Drug Allergy", "Medical History", "Patient", "Attending Doctor", "Medical Record ID", "Ward", "Healthcare Provider");
+//        System.out.printf("%-20s %-20s %-15s %-20s %-20s %-20s %-15s %-20s %-20s %-20s %-20s%n",
+//                "Procedure Code", "Date of Visit", "Type of Visit", "Medication", "Drug Allergy",
+//                "Medical History", "Patient", "Attending Doctor", "Medical Record ID", "Ward",
+//                "Healthcare Provider");
+//
+//        System.out.printf("%-20s %-20s %-15s %-20s %-20s %-20s %-15s %-20s %-20s %-20s %-20s%n",
+//                procedureCode, dateOfVisit, typeOfVisit, String.join(", ", medication),
+//                String.join(", ", drugAllergy), String.join(", ", medicalHistory),
+//                patient.getPatientId(), attendingDoctor, medicalRecordId, ward, healthcareProvider);
 
-        System.out.printf("%-20s %-20s %-15s %-20s %-20s %-20s %-15s %-20s %-20s %-20s %-20s%n",
-                procedureCode, dateOfVisit, typeOfVisit, String.join(", ", medication),
-                String.join(", ", drugAllergy), String.join(", ", medicalHistory),
-                patient.getPatientId(), attendingDoctor, medicalRecordId, ward, healthcareProvider);
+        System.out.printf("%n%n");
+        System.out.println("=====================================================================");
+        System.out.printf("                           MEDICAL RECORD%n");
+        System.out.println("=====================================================================");
+        System.out.println("PATIENT INFORMATION");
+        System.out.println("---------------------------------------------------------------------");
+        System.out.printf("Patient ID: " + patient.getPatientId());
+        System.out.printf("\t\tMedical Record ID: " + medicalRecordId);
+        System.out.println("\n\nVISIT INFORMATION");
+        System.out.println("---------------------------------------------------------------------");
+        System.out.printf("Hospital Name: " + healthcareProvider.healthcareProviderName);
+        System.out.printf("\t\tHospital Code: " + healthcareProvider.hospitalCode);
+        System.out.printf("%n%nDate of Visit: " + dateOfVisit);
+        System.out.printf("\t\tType of Visit: " + typeOfVisit);
+        System.out.printf("\n\nWard: " + ward.getWardName());
+        System.out.println("\n\nMEDICAL INFORMATION");
+        System.out.println("---------------------------------------------------------------------");
+        System.out.printf("Medical History: " + medicalHistory);
+        System.out.printf("\t\tDrug Allergy: " + drugAllergy);
+        System.out.println("\n\nDIAGNOSIS INFORMATION");
+        System.out.println("---------------------------------------------------------------------");
+        System.out.printf("Attending Doctor: " + attendingDoctor);
+        System.out.printf("\t\tProcedure Code: " + procedureCode);
+        System.out.println("");
+        System.out.println("=====================================================================");
     }
+
 
 
 }
