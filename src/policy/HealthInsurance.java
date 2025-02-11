@@ -1,9 +1,29 @@
 package policy;
 import java.time.LocalDate;
 
+/**
+ * Represents a Health Insurance policy that extends {@link InsurancePolicy}.
+ */
 public class HealthInsurance extends InsurancePolicy {
+    /** The maximum coverage amount for hospital charges under this policy. */
     private double hospitalCharges;
 
+    /**
+     * Constructs a Health Insurance policy.
+     *
+     * @param policyId The unique identifier for the policy.
+     * @param insuranceProvider The insurance provider.
+     * @param deductible The deductible amount.
+     * @param insuranceStatus The status of the insurance policy.
+     * @param startDate The policy start date.
+     * @param endDate The policy end date.
+     * @param coInsuranceRate The co-insurance rate.
+     * @param premiumAmount The premium amount.
+     * @param hospitalCharges The coverage amount for hospital charges.
+     * @param insurancePayout The total payout for insurance claims.
+     * @param insuranceName The name of the insurance policy.
+     * @param insuranceDescription A brief description of the insurance policy.
+     */
     public HealthInsurance(String policyId, String insuranceProvider, double deductible, InsuranceStatus insuranceStatus,
                            LocalDate startDate, LocalDate endDate, double coInsuranceRate,
                            double premiumAmount, double hospitalCharges , double insurancePayout, String insuranceName, String insuranceDescription) {
@@ -13,6 +33,10 @@ public class HealthInsurance extends InsurancePolicy {
         this.hospitalCharges = hospitalCharges;
     }
 
+    /**
+     * Displays the details of the health insurance policy.
+     * Prints co-insurance rate, deductible, and hospital coverage amount.
+     */
     @Override
     public void displayPolicyDetails() {
         super.displayPolicyDetails();

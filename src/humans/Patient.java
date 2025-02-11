@@ -5,7 +5,10 @@ import java.util.List;
 
 /**
  * Represents a patient in the insurance system.
- * Patients have medical records have insurance details.
+ * <p>
+ * Patients have personal details, medical records, drug allergies, next-of-kin (NOK) information,
+ * height, weight, occupation, and company-related details.
+ * </p>
  */
 
 public class Patient extends Human {
@@ -56,19 +59,41 @@ public class Patient extends Human {
         this.companyAddress = builder.companyAddress;
     }
 
+    /**
+     * Creates and returns a new {@link PatientBuilder} instance.
+     *
+     * @return A new {@code PatientBuilder} instance.
+     */
     public static PatientBuilder builder() {
         return new PatientBuilder();
     }
 
+    /**
+     * Gets the unique patient identifier.
+     *
+     * @return The patient's ID.
+     */
     public String getPatientId() {
         return patientId;
     }
 
+    /**
+     * Gets the patient's full name.
+     *
+     * @return The patient's name.
+     */
     public String getName() {
         return name;
     }
 
 
+    /**
+     * Displays the patient's personal details, including medical and NOK information.
+     * <p>
+     * This method prints formatted information about the patient such as name,
+     * ID, date of birth, height, weight, drug allergies, and next of kin details.
+     * </p>
+     */
     public void displayPatientInfo() {
         System.out.printf("\n\n%-20s%-15s%-20s%-15s%-15s%-25s%-20s%-20s%-60s%n",
                 "Name", "Patient ID", "Date of Birth", "Height", "Weight", "Drug Allergies", "NOK Name", "NOK Relation", "NOK Address");
@@ -77,6 +102,14 @@ public class Patient extends Human {
                 name, patientId, dateOfBirth, height, weight, String.join(", ", drugAllergies), nokName, nokRelation, nokAddress);
     }
 
+    /**
+     * Displays the patient's insurance-related information.
+     * <p>
+     * This method prints formatted details relevant to insurance,
+     * including patient ID, insured name, NRIC/FIN, contact information,
+     * mailing address, occupation, and company details.
+     * </p>
+     */
     public void displayInsrPatient() {
         System.out.printf("\n\n%-13s %-30s %-11s %-18s %-24s %-14s %-18s %-30s%n",
                 "Patient ID", "Name of Insured", "NRIC/FIN", "Contact", "Mailing Address", "Occupation", "Company Name", "Company Address");
@@ -84,6 +117,11 @@ public class Patient extends Human {
                 patientId, name, nricFin, contact, address, occupation, companyName, companyAddress);
     }
 
+    /**
+     * Returns a string representation of the patient.
+     *
+     * @return A formatted string containing the patient's name and ID.
+     */
     @Override
     public String toString() {
         return "Patient Name: " + name + ", Patient ID: " + patientId;

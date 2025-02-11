@@ -72,6 +72,13 @@ public class DiagnosticCode {
         return new DiagnosticCode(code, description, generateRandomPrice());
     }
 
+    /**
+     * Generate a random price for a diagnostic code.
+     *
+     * <br><br> The price is randomly generated between 100 and 300, then rounded to 2 decimal places.
+     *
+     * @return A randomly generated BigDecimal price.
+     */
     private static BigDecimal generateRandomPrice() {
         Random random = new Random();
         double randomValue = 100 + (random.nextDouble() * 200);
