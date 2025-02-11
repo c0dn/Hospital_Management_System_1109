@@ -1,5 +1,4 @@
 package policy;
-import java.time.LocalDate;
 
 /**
  * Represents a Critical Illness Insurance Policy that extends the general {@link InsurancePolicy}.

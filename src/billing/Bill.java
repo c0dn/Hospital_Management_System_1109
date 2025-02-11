@@ -69,9 +69,6 @@ public class Bill {
 
     /**
      * Retrieves the total charge for a specified category.
-     * If the category does not exist, returns {@code BigDecimal.ZERO}.
-     *
-     * @param category The category name whose total charge is to be retrieved.
      * @return The total charge for the given category, or {@code BigDecimal.ZERO} if not found.
      */
     public void calculateInsuranceCoverage() {
