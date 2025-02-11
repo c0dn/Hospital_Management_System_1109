@@ -1,0 +1,11 @@
+package policy;
+
+public enum AccidentType {
+    DEATH,
+    PERMANENT_DISABILITY,
+    PARTIAL_DISABILITY,
+    TEMPORARY_DISABILITY,
+    FRACTURE,
+    BURNS,
+    MEDICAL_EXPENSES
+}

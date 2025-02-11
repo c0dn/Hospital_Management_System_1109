@@ -1,6 +1,11 @@
 package utils;
 
 import humans.Contact;
+import medical.Medication;
+import policy.AccidentType;
+
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -63,6 +68,9 @@ public class DataGenerator {
             "Crisis Cover", "Critical Care Advantage", "MultiPay Critical Illness"
     };
 
+    private final AccidentType[] ACCIDENT_TYPES = AccidentType.values();
+
+
     private DataGenerator() {}
 
     /**
@@ -97,6 +105,23 @@ public class DataGenerator {
     public int generateRandomInt(int max) {
         return random.nextInt(max);
     }
+
+
+    public Medication getRandomMedication() {
+        List<String> categories = Medication.getAllCategories();
+        String randomCategory = categories.get(random.nextInt(categories.size()));
+
+        // Get up to 5 medications from the category and select one randomly
+        List<Medication> medications = Medication.getMedicationsByCategory(
+                randomCategory, 5, true);
+
+        if (medications.isEmpty()) {
+            throw new IllegalStateException("No medications available in the system");
+        }
+
+        return medications.get(0); // First one since the list is already randomized
+    }
+
 
     /**
      * Gets all available Singapore names

@@ -1,9 +1,6 @@
 package billing;
 
 
-import policy.InsurancePolicy;
-import policy.InsuranceStatus;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -73,7 +70,7 @@ public class Bill {
      */
     public void calculateInsuranceCoverage() {
         if (insurancePolicy == null ||
-                insurancePolicy.getInsuranceStatus() != InsuranceStatus.ACTIVE) {
+                insurancePolicy.getStatus() != InsuranceStatus.ACTIVE) {
             patientResponsibility = getTotalAmount();
             insuranceCoverage = BigDecimal.ZERO;
             return;

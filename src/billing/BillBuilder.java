@@ -14,7 +14,7 @@ import java.util.UUID;
  * This class follows the Builder design pattern to allow
  * step-by-step construction of a Bill object.
  */
-public class BillBuilder {
+public class BillBuilder<T extends Visit> {
     /** A unique identifier for the bill, generated automatically. */
     String billId;
     /** The unique identifier of the patient associated with the bill. */
@@ -22,7 +22,7 @@ public class BillBuilder {
     /** The date and time when the bill was created, set to the current timestamp by default. */
     LocalDateTime billDate;
     private InsurancePolicy insurancePolicy;
-    private Visit visit;
+    private T visit;
     private List<Consultation> consultations;
     private List<BillingItem> billingItems;
 
@@ -44,7 +44,7 @@ public class BillBuilder {
      * @param patientId The unique identifier of the patient
      * @return The current instance of {@code BillBuilder} for method chaining
      */
-    public BillBuilder withPatientId(String patientId) {
+    public BillBuilder<T> withPatientId(String patientId) {
         this.patientId = patientId;
         return this;
     }
@@ -55,22 +55,33 @@ public class BillBuilder {
      * @param policy the {@link InsurancePolicy} to be linked to the bill
      * @return The current instance of {@code BillBuilder} for method chaining
      */
-    public BillBuilder withInsurancePolicy(InsurancePolicy policy) {
+    public BillBuilder<T> withInsurancePolicy(InsurancePolicy policy) {
         this.insurancePolicy = policy;
         return this;
     }
 
-    public BillBuilder withVisit(Visit visit) {
+    /**
+     * Associates a visit with the bill.
+     *
+     * @param visit the visit to be linked to the bill
+     * @return The current instance of {@code BillBuilder} for method chaining
+     */
+    public BillBuilder<T> withVisit(T visit) {
         this.visit = visit;
         return this;
     }
 
-    public BillBuilder withConsultation(Consultation consultation) {
+    /**
+     * Adds a consultation to the bill.
+     *
+     * @param consultation the consultation to be added to the bill
+     * @return The current instance of {@code BillBuilder} for method chaining
+     */
+    public BillBuilder<T> withConsultation(Consultation consultation) {
         this.consultations.add(consultation);
         return this;
     }
 
-    // Additional processing logic in the future?
     private void processVisit() {
         if (visit != null) {
             visit.getRelatedBillableItems().forEach(item ->

@@ -3,14 +3,12 @@ package medical;
 import billing.BillableItem;
 import humans.Doctor;
 import humans.Nurse;
-import wards.Ward;
+import humans.Patient;
+import utils.DataGenerator;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Represents an inpatient hospital visit.
@@ -87,6 +85,157 @@ public class Visit {
      * This field is used to track and update the lifecycle of the hospital visit.
      */
     private VisitStatus status;
+    private Patient patient;
+
+
+    Visit(LocalDateTime admissionDateTime, Patient patient) {
+        this.visitId = generateVisitId();
+        this.admissionDateTime = admissionDateTime;
+        this.patient = patient;
+        this.status = VisitStatus.ADMITTED;
+        this.wardStays = new ArrayList<>();
+        this.inpatientProcedures = new ArrayList<>();
+        this.diagnosticCodes = new ArrayList<>();
+        this.AttendingNurses = new ArrayList<>();
+        this.prescriptions = new HashMap<>();
+    }
+
+
+    private String generateVisitId() {
+        return "V" + System.currentTimeMillis() +
+                String.format("%04d", DataGenerator.getInstance().generateRandomInt(10000));
+    }
+
+
+    /**
+     * Creates a new visit for a patient
+     *
+     * @param admissionDateTime The admission date and time
+     * @param patient The patient being admitted
+     * @return A new Visit instance
+     */
+    public static Visit createNew(LocalDateTime admissionDateTime, Patient patient) {
+        return new Visit(admissionDateTime, patient);
+    }
+
+
+    protected static <T extends Visit> T populateWithRandomData(T visit) {
+        DataGenerator gen = DataGenerator.getInstance();
+
+        // Assign staff
+        visit.assignDoctor(Doctor.builder().withRandomBaseData().build());
+        int nurseCount = gen.generateRandomInt(1, 4);
+        for (int i = 0; i < nurseCount; i++) {
+            visit.assignNurse(Nurse.builder().withRandomBaseData().build());
+        }
+
+        // Add medications
+        int medicationCount = gen.generateRandomInt(1, 5);
+        for (int i = 0; i < medicationCount; i++) {
+            visit.prescribeMedicine(gen.getRandomMedication(),
+                    gen.generateRandomInt(1, 10));
+        }
+
+        return visit;
+    }
+
+    /**
+     * Creates a regular visit with random data
+     *
+     * @return A randomly populated Visit instance
+     */
+    public static Visit withRandomData() {
+        DataGenerator gen = DataGenerator.getInstance();
+        LocalDateTime admissionTime = LocalDateTime.now()
+                .minusDays(gen.generateRandomInt(1, 30));
+        Patient randomPatient = Patient.builder().withRandomBaseData().build();
+
+        return populateWithRandomData(new Visit(admissionTime, randomPatient));
+    }
+
+
+
+
+    /**
+     * Prescribes medication for the patient during their visit.
+     *
+     * @param medication The medication to prescribe
+     * @param quantity The quantity to prescribe
+     * @throws IllegalStateException if the visit is not in an active state
+     */
+    public void prescribeMedicine(Medication medication, int quantity) {
+        if (status != VisitStatus.ADMITTED && status != VisitStatus.IN_PROGRESS) {
+            throw new IllegalStateException("Cannot prescribe medication for a non-active visit");
+        }
+
+        if (quantity <= 0) {
+            throw new IllegalArgumentException("Quantity must be positive");
+        }
+
+        prescriptions.merge(medication, quantity, Integer::sum);
+    }
+
+    /**
+     * Adds a diagnostic code to the visit record.
+     *
+     * @param diagnosticCode The diagnostic code to add
+     * @throws IllegalStateException if the visit is not in an active state
+     */
+    public void diagnose(DiagnosticCode diagnosticCode) {
+        if (status != VisitStatus.ADMITTED && status != VisitStatus.IN_PROGRESS) {
+            throw new IllegalStateException("Cannot add diagnosis for a non-active visit");
+        }
+
+        if (!diagnosticCodes.contains(diagnosticCode)) {
+            diagnosticCodes.add(diagnosticCode);
+        }
+    }
+
+    /**
+     * Adds a procedure to the visit record.
+     *
+     * @param procedureCode The procedure to be performed
+     * @throws IllegalStateException if the visit is not in an active state
+     */
+    public void procedure(ProcedureCode procedureCode) {
+        if (status != VisitStatus.ADMITTED && status != VisitStatus.IN_PROGRESS) {
+            throw new IllegalStateException("Cannot add procedure for a non-active visit");
+        }
+
+        inpatientProcedures.add(procedureCode);
+    }
+
+    /**
+     * Assigns a nurse to attend to the patient.
+     *
+     * @param nurse The nurse to be assigned
+     * @throws IllegalStateException if the visit is not in an active state
+     */
+    public void assignNurse(Nurse nurse) {
+        if (status != VisitStatus.ADMITTED && status != VisitStatus.IN_PROGRESS) {
+            throw new IllegalStateException("Cannot assign nurse for a non-active visit");
+        }
+
+        if (!AttendingNurses.contains(nurse)) {
+            AttendingNurses.add(nurse);
+        }
+    }
+
+    /**
+     * Assigns a doctor as the primary attending physician.
+     *
+     * @param doctor The doctor to be assigned
+     * @throws IllegalStateException if the visit is not in an active state
+     */
+    public void assignDoctor(Doctor doctor) {
+        if (status != VisitStatus.ADMITTED && status != VisitStatus.IN_PROGRESS) {
+            throw new IllegalStateException("Cannot assign doctor for a non-active visit");
+        }
+
+        this.AttendingDoctor = doctor;
+    }
+
+
 
     public BigDecimal calculateCharges() {
         BigDecimal total = BigDecimal.ZERO;
@@ -137,29 +286,12 @@ public class Visit {
         // Add medications with their quantities as MedicationBillableItem
         if (prescriptions != null) {
             prescriptions.forEach((medication, quantity) ->
-                    items.add(new MedicationBillableItem(medication, quantity)));
+                    items.add(new MedicationBillableItem(medication, quantity, true)));
         }
 
         return items;
     }
 
 
-}
-
-/**
- * Represents a patient's stay in a hospital ward, including the ward information and the duration
- * of the stay. This class is used to track ward-specific stays, including transfers to different wards.
- */
-record WardStay(Ward ward,
-                LocalDateTime startDateTime,
-                LocalDateTime endDateTime) {
-
-    public BigDecimal calculateCharges() {
-        long daysStayed = ChronoUnit.DAYS.between(
-                startDateTime.toLocalDate(),
-                endDateTime.toLocalDate());
-        return BigDecimal.valueOf(ward.getDailyRate())
-                .multiply(BigDecimal.valueOf(Math.max(1, daysStayed)));
-    }
 }
 

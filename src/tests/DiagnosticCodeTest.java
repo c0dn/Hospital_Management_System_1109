@@ -1,7 +1,6 @@
 package tests;
 
 import medical.DiagnosticCode;
-import policy.CriticalIllnessType;
 
 /**
  * A test class for the {@link DiagnosticCode} class.

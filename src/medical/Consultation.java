@@ -40,7 +40,7 @@ public class Consultation {
         // Add medications with their quantities as MedicationBillableItem
         if (prescriptions != null) {
             prescriptions.forEach((medication, quantity) ->
-                    items.add(new MedicationBillableItem(medication, quantity)));
+                    items.add(new MedicationBillableItem(medication, quantity, true)));
         }
 
         return items;
@@ -83,26 +83,3 @@ public class Consultation {
 }
 
 
-
-record MedicationBillableItem(Medication medication, int quantity) implements BillableItem {
-
-    @Override
-    public BigDecimal getUnsubsidisedCharges() {
-        return medication.calculateCost(quantity);
-    }
-
-    @Override
-    public String getBillItemDescription() {
-        return medication.name + " x " + quantity;
-    }
-
-    @Override
-    public String getBillItemCategory() {
-        return "MEDICATION";
-    }
-
-    @Override
-    public String getBillingItemCode() {
-        return "MED-" + medication.drugCode;
-    }
-}
