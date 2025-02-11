@@ -2,9 +2,11 @@ package policy;
 import java.time.LocalDate;
 
 /**
- * Represents a Critical Illness Insurance Policy that extends the general InsurancePolicy.
+ * Represents a Critical Illness Insurance Policy that extends the general {@link InsurancePolicy}.
+ * This policy provides coverage for specified critical illnesses.
  */
 public class CriticalIllnessInsurance extends InsurancePolicy {
+    /** The specific critical illness covered under this policy. */
     private CriticalIllnessType coveredIllness;
 
     /**
@@ -18,6 +20,10 @@ public class CriticalIllnessInsurance extends InsurancePolicy {
         this.coveredIllness = builder.coveredIllness;
     }
 
+    /**
+     * Displays the details of the critical illness insurance policy.
+     * Prints the covered illness and insurance payout details.
+     */
     @Override
     public void displayPolicyDetails() {
         super.displayPolicyDetails();

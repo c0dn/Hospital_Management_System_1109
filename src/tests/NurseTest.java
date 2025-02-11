@@ -10,7 +10,12 @@ import java.time.LocalDate;
  */
 public class NurseTest {
 
-
+    /**
+     * Main method to execute tests for {@link Nurse}.
+     * It tests creating nurses using the builder pattern.
+     *
+     * @param args Command-line arguments (not used)
+     */
     public static void main(String[] args) {
         try {
             System.out.println("Testing Nurse functionality...\n");

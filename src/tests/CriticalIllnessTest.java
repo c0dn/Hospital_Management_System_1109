@@ -3,13 +3,25 @@ package tests;
 import java.time.LocalDate;
 import policy.*;
 
+/**
+ * The {@code CriticalIllnessTest} class is a test suite for verifying the functionality of critical illness insurance policies.
+ * It tests the creation of a critical illness insurance policy using the builder pattern and displays the policy details.
+ */
 public class CriticalIllnessTest {
+    /**
+     * The main method to execute the critical illness insurance tests.
+     *
+     * @param args Command-line arguments (not used).
+     */
     public static void main(String[] args) {
         try {
             System.out.println("\nTesting Critical Illness Insurance functionality...");
 
             // Test 1: Creating critical illness insurance policy using builder with specific data
             System.out.println("\nTest 1 - Creating critical illness policy with specific data:\n");
+            /**
+             * Creates a critical illness insurance policy using the {@code CriticalIllnessBuilder}.
+             */
             InsurancePolicy specificPolicy = new CriticalIllnessBuilder()
                     .insuranceName("AIA Beyond Critical Care")
                     .provider("AIA")

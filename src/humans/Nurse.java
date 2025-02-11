@@ -4,6 +4,11 @@ import java.time.LocalDate;
 
 /**
  * Represents the details of a nurse in the insurance system.
+ * <p>
+ * This class extends {@link Staff} and adds attributes specific to nurses,
+ * such as the Registered Nurse ID (RNID). It is constructed using the
+ * {@link NurseBuilder} to ensure proper initialization of required fields.
+ * </p>
  */
 public class Nurse extends Staff{
 
@@ -26,7 +31,15 @@ public class Nurse extends Staff{
         this.rnid = builder.rnid;
     }
 
-
+    /**
+     * Creates and returns a new instance of {@code NurseBuilder}.
+     * <p>
+     * This method provides a fluent interface for constructing
+     * a {@code Nurse} object using the builder pattern.
+     * </p>
+     *
+     * @return A new instance of {@link NurseBuilder} to facilitate nurse creation.
+     */
     public static NurseBuilder builder() {
         return new NurseBuilder();
     }
@@ -40,8 +53,12 @@ public class Nurse extends Staff{
      */
     private String getRnid() { return rnid; }
 
-    /**
-     * Displays the nurse's Registered Nurse ID (RNID), including the inherited staff details.
+     /**
+     * Displays the nurse's Registered Nurse ID (RNID) along with the inherited staff details.
+     * <p>
+     * This method first calls {@code displayStaff()} from the {@link Staff} class
+     * and then prints the RNID specific to the nurse.
+     * </p>
      */
     @Override
     public void displayStaff() {

@@ -3,7 +3,16 @@ package tests;
 import java.time.LocalDate;
 import policy.*;
 
+/**
+ * A test class for the {@link HealthInsuranceBuilder} class.
+ * This class verifies the creation and functionality of health insurance policies.
+ */
 public class HealthInsuranceTest {
+    /**
+     * The main method executes tests for health insurance policies.
+     *
+     * @param args Command-line arguments (not used).
+     */
     public static void main(String[] args) {
         try {
             System.out.println("\nTesting Health Insurance functionality...");

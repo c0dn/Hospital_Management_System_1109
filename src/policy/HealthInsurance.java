@@ -1,7 +1,11 @@
 package policy;
 import java.time.LocalDate;
 
+/**
+ * Represents a Health Insurance policy that extends {@link InsurancePolicy}.
+ */
 public class HealthInsurance extends InsurancePolicy {
+    /** The maximum coverage amount for hospital charges under this policy. */
     private double hospitalCharges;
 
     /**
@@ -15,6 +19,10 @@ public class HealthInsurance extends InsurancePolicy {
         this.hospitalCharges = builder.hospitalCharges;
     }
 
+    /**
+     * Displays the details of the health insurance policy.
+     * Prints co-insurance rate, deductible, and hospital coverage amount.
+     */
     @Override
     public void displayPolicyDetails() {
         super.displayPolicyDetails();

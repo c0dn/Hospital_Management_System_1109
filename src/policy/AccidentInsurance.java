@@ -1,8 +1,14 @@
 package policy;
 import java.time.LocalDate;
 
+/**
+ * Represents an accident insurance policy that extends {@link InsurancePolicy}.
+ * This policy includes coverage for different types of accidents and provides an optional daily allowance for medical-related accidents.
+ */
 public class AccidentInsurance extends InsurancePolicy {
+    /** The type of accident covered by this insurance policy. */
     private AccidentsType accidents;
+    /** The daily allowance amount provided for medical-related accidents. */
     private double allowance;
 
     /**
@@ -17,14 +23,31 @@ public class AccidentInsurance extends InsurancePolicy {
         this.allowance = builder.allowance;
     }
 
+    /**
+     * Gets the type of accident covered by this policy.
+     *
+     * @return The accident type.
+     */
     public AccidentsType getAccidents() {
         return accidents;
     }
 
+    /**
+     * Gets the daily allowance amount for medical-related accidents.
+     *
+     * @return The allowance amount.
+     */
     public double getAllowance() {
         return allowance;
     }
-    // rejection reason
+
+
+    /**
+     * Displays the details of the accident insurance policy.
+     *
+     * <p>This method overrides {@link InsurancePolicy#displayPolicyDetails()} to provide additional
+     * information about the accident type and allowance if applicable.</p>
+     */
     public void displayPolicyDetails() {
         super.displayPolicyDetails();
         System.out.format("Covered Accident Type: %s%n", accidents);

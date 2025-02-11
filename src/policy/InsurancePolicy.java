@@ -133,22 +133,45 @@ public abstract class InsurancePolicy {
         return coInsuranceRate;
     }
 
+    /**
+     * Retrieves the premium amount.
+     *
+     * @return The premium amount.
+     */
     public double getPremiumAmount() {
         return premiumAmount;
     }
 
+    /**
+     * Retrieves the insurance payout.
+     *
+     * @return The insurance payout.
+     */
     public double getInsurancePayout() {
         return insurancePayout;
     }
 
+    /**
+     * Retrieves the insurance name.
+     *
+     * @return The insurance name.
+     */
     public String getInsuranceName() {
         return insuranceName;
     }
 
+    /**
+     * Retrieves the insurance description.
+     *
+     * @return The insurance description.
+     */
     public String getInsuranceDescription() {
         return insuranceDescription;
     }
 
+    /**
+     * Displays the insurance policy details in a formatted way.
+     */
     public void displayPolicyDetails() {
 
         System.out.format("Policy Name: %s%n", insuranceName);
