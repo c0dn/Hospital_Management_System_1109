@@ -13,7 +13,9 @@ import java.util.UUID;
 /**
  * A builder class for creating instances of {@link Bill}.
  * This class follows the Builder design pattern to allow
- * step-by-step construction of a Bill object.
+ * step-by-step construction of a {@link Bill} object.
+ *
+ * @param <T> The type of {@link Visit} associated with the bill.
  */
 public class BillBuilder<T extends Visit> {
     /**
@@ -51,8 +53,8 @@ public class BillBuilder<T extends Visit> {
     /**
      * Sets the patient ID for the bill.
      *
-     * @param patientId The unique identifier of the patient
-     * @return The current instance of {@code BillBuilder} for method chaining
+     * @param patientId The unique identifier of the patient.
+     * @return The current instance of {@code BillBuilder} for method chaining.
      */
     public BillBuilder<T> withPatientId(String patientId) {
         // logic to get patient from id
@@ -65,8 +67,8 @@ public class BillBuilder<T extends Visit> {
     /**
      * Associates an insurance policy with the bill.
      *
-     * @param policy the {@link InsurancePolicy} to be linked to the bill
-     * @return The current instance of {@code BillBuilder} for method chaining
+     * @param policy the {@link InsurancePolicy} to be linked to the bill.
+     * @return The current instance of {@code BillBuilder} for method chaining.
      */
     public BillBuilder<T> withInsurancePolicy(InsurancePolicy policy) {
         this.insurancePolicy = policy;
@@ -76,8 +78,8 @@ public class BillBuilder<T extends Visit> {
     /**
      * Associates a visit with the bill.
      *
-     * @param visit the visit to be linked to the bill
-     * @return The current instance of {@code BillBuilder} for method chaining
+     * @param visit the visit to be linked to the bill.
+     * @return The current instance of {@code BillBuilder} for method chaining.
      */
     public BillBuilder<T> withVisit(T visit) {
 
@@ -97,8 +99,8 @@ public class BillBuilder<T extends Visit> {
     /**
      * Adds a consultation to the bill.
      *
-     * @param consultation the consultation to be added to the bill
-     * @return The current instance of {@code BillBuilder} for method chaining
+     * @param consultation the consultation to be added to the bill.
+     * @return The current instance of {@code BillBuilder} for method chaining.
      */
     public BillBuilder<T> withConsultation(Consultation consultation) {
         this.isInpatient = false;
@@ -106,6 +108,9 @@ public class BillBuilder<T extends Visit> {
         return this;
     }
 
+    /**
+     * Processes the visit and adds related billable items to the bill.
+     */
     private void processVisit() {
         if (visit != null) {
             visit.getRelatedBillableItems().forEach(item ->
@@ -113,6 +118,9 @@ public class BillBuilder<T extends Visit> {
         }
     }
 
+    /**
+     * Processes the consultations and adds related billable items to the bill.
+     */
     private void processConsultations() {
         for (Consultation consultation : consultations) {
             consultation.getRelatedBillableItems().forEach(item ->
@@ -120,6 +128,12 @@ public class BillBuilder<T extends Visit> {
         }
     }
 
+    /**
+     * Builds the {@link Bill} object based on the data in the {@code BillBuilder}.
+     *
+     * @return The constructed {@link Bill}.
+     * @throws IllegalStateException if required fields are not set (e.g., patientId, visit, or consultations).
+     */
     public Bill build() {
         validateBuildRequirements();
 
@@ -128,6 +142,7 @@ public class BillBuilder<T extends Visit> {
 
         Bill bill = new Bill(this);
 
+        // Add related line items from visit and consultations
         if (visit != null) {
             visit.getRelatedBillableItems().forEach(item ->
                     bill.addLineItem(item, 1));
@@ -138,6 +153,7 @@ public class BillBuilder<T extends Visit> {
                     bill.addLineItem(item, 1));
         }
 
+        // If insurance policy is set, calculate insurance coverage
         if (insurancePolicy != null) {
             bill.calculateInsuranceCoverage();
         }
@@ -145,6 +161,11 @@ public class BillBuilder<T extends Visit> {
         return bill;
     }
 
+    /**
+     * Validates the required fields for building a {@link Bill}.
+     *
+     * @throws IllegalStateException if any of the required fields are not set (e.g., patientId, visit, or consultations).
+     */
     private void validateBuildRequirements() {
         if (patient == null) {
             throw new IllegalStateException("Patient ID is required");

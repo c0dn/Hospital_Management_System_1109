@@ -6,11 +6,26 @@ import utils.DataGenerator;
 
 import java.time.LocalDateTime;
 
+
+/**
+ * Represents an emergency visit for a patient, which includes details about the accident type,
+ * police report number (if applicable), and the admission details.
+ * This class extends {@link Visit} to inherit general visit-related properties.
+ */
+
 public class EmergencyVisit extends Visit {
     private AccidentType accidentType;
     // For hospital reference, should law enforcement or the courts require this information
     private String policeReportNumber;
 
+    /**
+     * Private constructor to initialize an EmergencyVisit with the given accident type,
+     * admission date and time, and patient.
+     *
+     * @param type The type of accident that caused the emergency visit.
+     * @param admissionDateTime The date and time of admission to the emergency department.
+     * @param patient The patient associated with the emergency visit.
+     */
     private EmergencyVisit(AccidentType type, LocalDateTime admissionDateTime, Patient patient) {
         super(admissionDateTime, patient);
         this.accidentType = type;
@@ -52,9 +67,12 @@ public class EmergencyVisit extends Visit {
         );
     }
 
-    // Specific accident-related methods
+    /**
+     * Gets the accident type associated with this emergency visit.
+     *
+     * @return The type of accident that caused the emergency visit.
+     */
     public AccidentType getAccidentType() {
         return accidentType;
     }
-
 }

@@ -23,7 +23,7 @@ public class PatientTest {
         try {
             System.out.println("Testing Patient functionality...\n");
 
-            // Test 1: Create a patient using builder with specific data
+            // Create a patient using builder with specific data
             System.out.println("Test 1 - Creating patient using builder with specific data:");
             Patient patient1 = Patient.builder()
                     .name("John Doe")
@@ -50,14 +50,14 @@ public class PatientTest {
                     .build();
             patient1.displayHuman();
 
-            // Test 2: Create a patient using builder with random data
+            // Create a patient using builder with random data
             System.out.println("\nTest 2 - Creating patient using builder with random data:");
             Patient patient2 = Patient.builder()
                     .withRandomData("P1002")
                     .build();
             patient2.displayHuman();
 
-            // Test 3: Generate multiple random patients
+            // Generate multiple random patients
             System.out.println("\nTest 3 - Generating multiple random patients:");
             List<Patient> patients = new ArrayList<>();
             for (int i = 0; i < 3; i++) {
@@ -72,7 +72,7 @@ public class PatientTest {
             }
             System.out.println("Number of patients generated: " + patients.size());
 
-            // Test 4: Verify patient data access
+            //Verify patient data access
             System.out.println("\nTest 4 - Verifying patient data access:");
             patients.forEach(Patient::displayHuman);
 

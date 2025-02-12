@@ -114,6 +114,7 @@ public class Patient extends Human {
      * mailing address, occupation, and company details.
      * </p>
      */
+
     public void displayInsrPatient() {
         System.out.printf("\n\n%-13s %-30s %-11s %-18s %-24s %-14s %-18s %-30s%n",
                 "Patient ID", "Name of Insured", "NRIC/FIN", "Contact", "Mailing Address", "Occupation", "Company Name", "Company Address");

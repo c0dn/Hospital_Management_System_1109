@@ -10,22 +10,56 @@ import policy.BenefitType;
 import policy.ClaimableItem;
 import utils.CSVHelper;
 
+/**
+ * Represents a diagnostic code, typically used for medical diagnosis.
+ * <p>
+ * This class provides functionality to map a code to its relevant description, category,
+ * and cost. It also determines the type of benefit (hospitalization, maternity, dental, etc.)
+ * based on the category code.
+ * </p>
+ */
 public class DiagnosticCode implements BillableItem, ClaimableItem {
+    /** The category code of the diagnosis (e.g., ICD-10 category) */
     private String categoryCode;
-    private String diagnosisCode;
-    private String fullCode;
-    private String abbreviatedDescription;
-    private String fullDescription;
-    private String categoryTitle;
-    private BigDecimal cost; // We'll keep this for billing purposes
 
+    /** The diagnosis code (e.g., ICD-10 code) */
+    private String diagnosisCode;
+
+    /** The full code (e.g., ICD-10 CM code) */
+    private String fullCode;
+
+    /** The abbreviated description of the diagnosis */
+    private String abbreviatedDescription;
+
+    /** The full description of the diagnosis */
+    private String fullDescription;
+
+    /** The category title of the diagnosis */
+    private String categoryTitle;
+
+    /** The cost of the diagnostic code, used for billing purposes */
+    private BigDecimal cost;// keep this for billing purpose
+
+    /** A registry to store diagnostic codes loaded from a CSV file */
     private static final Map<String, DiagnosticCode> CODE_REGISTRY = new HashMap<>();
-    private static final BigDecimal DEFAULT_COST = new BigDecimal("100.00"); // Default cost if needed
+
+    /** The default cost assigned to a diagnostic code if not specified */
+    private static final BigDecimal DEFAULT_COST = new BigDecimal("100.00");
 
     static {
         loadCodesFromCsv();
     }
 
+    /**
+     * Private constructor to initialize a {@link DiagnosticCode}.
+     *
+     * @param categoryCode          Category code of the diagnosis.
+     * @param diagnosisCode         The diagnosis code.
+     * @param fullCode              The full code (ICD-10 CM code).
+     * @param abbreviatedDescription Abbreviated description of the diagnosis.
+     * @param fullDescription       Full description of the diagnosis.
+     * @param categoryTitle         The category title for the diagnosis.
+     */
     private DiagnosticCode(String categoryCode, String diagnosisCode, String fullCode,
                            String abbreviatedDescription, String fullDescription,
                            String categoryTitle) {
@@ -38,6 +72,9 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
         this.cost = DEFAULT_COST; // Setting default cost
     }
 
+    /**
+     * Loads diagnostic codes from a CSV file and stores them in the code registry.
+     */
     private static void loadCodesFromCsv() {
         CSVHelper csvHelper = CSVHelper.getInstance();
         List<String[]> records = csvHelper.readCSV("icd-10-cm.csv");
@@ -66,6 +103,14 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
         }
     }
 
+    /**
+     * Creates a {@link DiagnosticCode} from the given code.
+     * If the code does not exist, an exception will be thrown.
+     *
+     * @param code The diagnostic code to create from.
+     * @return The corresponding {@link DiagnosticCode} object.
+     * @throws IllegalArgumentException if the code is invalid.
+     */
     public static DiagnosticCode createFromCode(String code) {
         DiagnosticCode diagnosticCode = CODE_REGISTRY.get(code);
         if (diagnosticCode == null) {
@@ -81,41 +126,106 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
         );
     }
 
+
+    /**
+     * Returns the billing item code for the diagnostic code.
+     * <p>
+     * This method generates a billing item code using the diagnostic code's full code.
+     * </p>
+     *
+     * @return A string representing the billing item code.
+     */
     @Override
     public String getBillingItemCode() {
         return String.format("DIAG-%s", fullCode);
     }
 
+    /**
+     * Returns the unsubsidized charges for the diagnostic code.
+     * <p>
+     * The unsubsidized charges refer to the cost of the diagnostic code, used for billing.
+     * </p>
+     *
+     * @return The unsubsidized charges (cost).
+     */
     @Override
     public BigDecimal getUnsubsidisedCharges() {
         return cost;
     }
 
+    /**
+     * Returns the abbreviated description of the diagnostic code.
+     * <p>
+     * This description provides a brief overview of the diagnosis.
+     * </p>
+     *
+     * @return The abbreviated description of the diagnostic code.
+     */
     @Override
     public String getBillItemDescription() {
         return abbreviatedDescription;
     }
 
+    /**
+     * Returns the category of the diagnostic code for billing purposes.
+     * <p>
+     * The category for diagnostic codes is always "DIAGNOSIS".
+     * </p>
+     *
+     * @return The category of the diagnostic code ("DIAGNOSIS").
+     */
     @Override
     public String getBillItemCategory() {
         return "DIAGNOSIS";
     }
 
+    /**
+     * Returns the full description of the diagnostic code.
+     * <p>
+     * This method retrieves the full description of the diagnostic code from the registry.
+     * </p>
+     *
+     * @param code The diagnostic code to retrieve the description for.
+     * @return The full description of the diagnostic code.
+     */
     public static String getDescriptionForCode(String code) {
         DiagnosticCode diagnosticCode = CODE_REGISTRY.get(code);
         return diagnosticCode != null ? diagnosticCode.fullDescription : null;
     }
 
+    /**
+     * Returns a string representation of the diagnostic code.
+     * <p>
+     * This method returns a string that includes the full code, abbreviated description, and cost.
+     * </p>
+     *
+     * @return A string representation of the diagnostic code.
+     */
     @Override
     public String toString() {
         return String.format("%s: %s [%s]", fullCode, abbreviatedDescription, cost);
     }
 
+    /**
+     * Returns the charges for the diagnostic code.
+     * <p>
+     * @return The charges for the diagnostic code.
+     */
     @Override
     public BigDecimal getCharges() {
         return cost;
     }
 
+    /**
+     * Resolves the benefit type based on the category code.
+     * <p>
+     * This method determines the type of benefit (e.g., hospitalization, maternity, dental) based on
+     * the category code. If no match is found, it falls back to a default benefit type based on inpatient status.
+     * </p>
+     *
+     * @param isInpatient A boolean indicating if the diagnosis is related to inpatient treatment.
+     * @return The resolved {@link BenefitType}.
+     */
 
     @Override
     public BenefitType resolveBenefitType(boolean isInpatient) {
@@ -153,11 +263,28 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
     }
 
 
+    /**
+     * Returns the benefit description for the diagnostic code.
+     * <p>
+     * This method provides a detailed description of the benefit for the given diagnostic code.
+     * </p>
+     *
+     * @param isInpatient A boolean indicating if the diagnosis is related to inpatient treatment.
+     * @return The benefit description for the diagnostic code.
+     */
     @Override
     public String getBenefitDescription(boolean isInpatient) {
         return fullDescription;
     }
 
+    /**
+     * Returns the full diagnostic code.
+     * <p>
+     * This method returns the full code for the diagnosis, such as the ICD-10 code.
+     * </p>
+     *
+     * @return The full diagnostic code.
+     */
     @Override
     public String getDiagnosisCode() {
         return this.fullCode;
@@ -174,7 +301,24 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
     }
 }
 
+/**
+ * A record that represents a mapping between a regular expression pattern and a {@link BenefitType}.
+ * <p>
+ * This record is used to associate a diagnostic code's category with a specific type of benefit (e.g., maternity,
+ * critical illness, accident, etc.). The mapping is based on matching the category code to a regular expression pattern.
+ * </p>
+ */
 record BenefitMapping(String pattern, BenefitType benefitType) {
+    /**
+     * Checks if the provided diagnostic code matches the pattern defined for this benefit mapping.
+     * <p>
+     * This method evaluates whether the given diagnostic code (e.g., category code) matches the regular expression pattern
+     * defined for this benefit mapping.
+     * </p>
+     *
+     * @param code The diagnostic code (category code) to match against the pattern.
+     * @return {@code true} if the code matches the pattern, {@code false} otherwise.
+     */
     public boolean matches(String code) {
         return Pattern.matches(pattern, code);
     }

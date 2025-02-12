@@ -87,7 +87,13 @@ public class Visit {
     private VisitStatus status;
     private Patient patient;
 
-
+    /**
+     * Constructs a new Visit instance with the provided admission date and patient details.
+     * This constructor sets the initial visit status to ADMITTED and initializes all related data structures.
+     *
+     * @param admissionDateTime The date and time when the patient is admitted.
+     * @param patient The patient associated with the visit.
+     */
     Visit(LocalDateTime admissionDateTime, Patient patient) {
         this.visitId = generateVisitId();
         this.admissionDateTime = admissionDateTime;
@@ -100,7 +106,11 @@ public class Visit {
         this.prescriptions = new HashMap<>();
     }
 
-
+    /**
+     * Generates a unique visit ID using the current system time and a random integer.
+     *
+     * @return A unique visit ID string.
+     */
     private String generateVisitId() {
         return "V" + System.currentTimeMillis() +
                 String.format("%04d", DataGenerator.getInstance().generateRandomInt(10000));

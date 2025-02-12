@@ -33,7 +33,6 @@ public class Bill {
     private boolean isInpatient;
     private boolean isEmergency;
 
-
     /**
      * Constructs a {@code Bill} object using the {@link BillBuilder}.
      * Initializes the bill with default values.
@@ -57,6 +56,7 @@ public class Bill {
      *
      * @param item     The {@link BillableItem} being added to the bill.
      * @param quantity The quantity of the item being added.
+     * @throws IllegalArgumentException if the {@code item} is null or {@code quantity} is not positive.
      */
     public void addLineItem(BillableItem item, int quantity) {
         if (item == null) {
@@ -71,8 +71,9 @@ public class Bill {
     }
 
     /**
-     * Retrieves the total charge for a specified category.
-     * @return The total charge for the given category, or {@code BigDecimal.ZERO} if not found.
+     * Calculates the insurance coverage based on the associated insurance policy.
+     * Updates the {@code insuranceCoverage} and {@code patientResponsibility} values.
+     * The billing status is also updated to {@code BillingStatus.INSURANCE_PENDING} if insurance is active.
      */
     public Optional<InsuranceClaim> calculateInsuranceCoverage() {
         if (lineItems.isEmpty()) {
@@ -130,14 +131,24 @@ public class Bill {
 
     }
 
-
+    /**
+     * Retrieves the total amount for the bill, summing all categorized charges.
+     *
+     * @return The total amount for the bill.
+     */
     public BigDecimal getTotalAmount() {
         return categorizedCharges.values()
                 .stream()
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-
+    /**
+     * Retrieves the total charge for a specified category.
+     * If the category is not found, {@code BigDecimal.ZERO} is returned.
+     *
+     * @param category The category for which to retrieve the total charge.
+     * @return The total charge for the given category.
+     */
     public BigDecimal getTotalByCategory(String category) {
         return categorizedCharges.getOrDefault(category, BigDecimal.ZERO);
     }
