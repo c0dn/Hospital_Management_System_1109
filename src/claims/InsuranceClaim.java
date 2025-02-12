@@ -464,7 +464,7 @@ public class InsuranceClaim {
 
     private void printHeader() {
         System.out.println("\n====================================================");
-        System.out.println("                 INSURANCE CLAIM RECORD              ");
+        System.out.println("                INSURANCE CLAIM RECORD               ");
         System.out.println("====================================================");
     }
 

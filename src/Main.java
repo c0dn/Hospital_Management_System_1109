@@ -1,5 +1,6 @@
 import medical.Medication;
 import tests.DiagnosticCodeTest;
+import tests.InsuranceClaimTest;
 import tests.ProcedureCodeTest;
 
 import java.util.List;
@@ -18,6 +19,6 @@ public class Main {
      * @param args
      */
     public static void main(String[] args) {
-
+        InsuranceClaimTest.main(args);
     }
 }
