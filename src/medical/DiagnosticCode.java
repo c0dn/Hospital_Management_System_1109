@@ -10,6 +10,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Represents a diagnostic code, typically used for medical diagnosis.
+ * <p>
+ * This class provides functionality to map a code to its relevant description, category,
+ * and cost. It also determines the type of benefit (hospitalization, maternity, dental, etc.)
+ * based on the category code.
+ * </p>
+ */
 public class DiagnosticCode implements BillableItem, ClaimableItem {
     private String categoryCode;
     private String diagnosisCode;
@@ -26,6 +34,16 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
         loadCodesFromCsv();
     }
 
+    /**
+     * Private constructor to initialize a {@link DiagnosticCode}.
+     *
+     * @param categoryCode          Category code of the diagnosis.
+     * @param diagnosisCode         The diagnosis code.
+     * @param fullCode              The full code (ICD-10 CM code).
+     * @param abbreviatedDescription Abbreviated description of the diagnosis.
+     * @param fullDescription       Full description of the diagnosis.
+     * @param categoryTitle         The category title for the diagnosis.
+     */
     private DiagnosticCode(String categoryCode, String diagnosisCode, String fullCode,
                            String abbreviatedDescription, String fullDescription,
                            String categoryTitle) {
@@ -66,6 +84,14 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
         }
     }
 
+    /**
+     * Creates a {@link DiagnosticCode} from the given code.
+     * If the code does not exist, an exception will be thrown.
+     *
+     * @param code The diagnostic code to create from.
+     * @return The corresponding {@link DiagnosticCode} object.
+     * @throws IllegalArgumentException if the code is invalid.
+     */
     public static DiagnosticCode createFromCode(String code) {
         DiagnosticCode diagnosticCode = CODE_REGISTRY.get(code);
         if (diagnosticCode == null) {
