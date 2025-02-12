@@ -2,7 +2,7 @@ package billing;
 
 
 import claims.InsuranceClaim;
-import people.Patient;
+import humans.Patient;
 import policy.*;
 
 import java.math.BigDecimal;

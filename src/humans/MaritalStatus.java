@@ -1,4 +1,4 @@
-package people;
+package humans;
 
 /**
  * Defines the marital status of a human.

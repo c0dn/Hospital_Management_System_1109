@@ -5,4 +5,4 @@
  * <p> These classes store personal details like name, date of birth and address.</p>
  */
 
-package people;
+package humans;

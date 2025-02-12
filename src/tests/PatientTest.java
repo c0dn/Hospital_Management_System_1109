@@ -1,6 +1,6 @@
 package tests;
 
-import people.*;
+import humans.*;
 
 import java.time.LocalDate;
 import java.util.Arrays;

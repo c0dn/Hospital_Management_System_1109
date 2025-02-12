@@ -1,4 +1,4 @@
-package people;
+package humans;
 
 /**
  * Represents the details of a nurse in the insurance system.

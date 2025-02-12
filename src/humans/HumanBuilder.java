@@ -1,15 +1,15 @@
-package people;
+package humans;
 
 import java.time.LocalDate;
 import utils.DataGenerator;
 
 /**
- * Abstract builder class for constructing instances of {@link Person} or its subclasses.
+ * Abstract builder class for constructing instances of {@link Human} or its subclasses.
  * Implements a fluent builder pattern to allow method chaining.
  *
  * @param <T> The specific subclass of {@code HumanBuilder}, ensuring method chaining returns the correct type.
  */
-abstract class PersonBuilder<T extends PersonBuilder<T>> {
+abstract class HumanBuilder<T extends HumanBuilder<T>> {
     protected static final DataGenerator dataGenerator = DataGenerator.getInstance();
 
     /** The full name of the individual. */
@@ -39,7 +39,7 @@ abstract class PersonBuilder<T extends PersonBuilder<T>> {
      * Default constructor for {@code HumanBuilder}.
      * It is package-private to ensure controlled instantiation by subclasses.
      */
-    PersonBuilder() {}
+    HumanBuilder() {}
 
     /**
      * Returns the current instance of the builder class.
@@ -189,13 +189,13 @@ abstract class PersonBuilder<T extends PersonBuilder<T>> {
     }
 
     /**
-     * Builds and returns an instance of {@link Person} or its subclass.
+     * Builds and returns an instance of {@link Human} or its subclass.
      * Subclasses must implement this method to return the appropriate type.
      *
-     * @return A constructed instance of {@link Person} or its subclass.
+     * @return A constructed instance of {@link Human} or its subclass.
      * @throws IllegalStateException if required fields are missing.
      */
-    protected abstract Person build();
+    protected abstract Human build();
 
     /**
      * Validates that all required fields are set before building an instance.

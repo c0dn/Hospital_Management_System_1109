@@ -1,12 +1,10 @@
 package tests;
 
 import insurance.PrivateProvider;
-import people.Patient;
+import humans.Patient;
 import policy.InsurancePolicy;
-import policy.BenefitType;
 import policy.CoverageLimit;
 import policy.BaseCoverage;
-import policy.ExclusionCriteria;
 import utils.DataGenerator;
 
 import java.math.BigDecimal;

@@ -1,6 +1,6 @@
 package policy;
 
-import people.Patient;
+import humans.Patient;
 import insurance.InsuranceProvider;
 
 import java.time.LocalDateTime;

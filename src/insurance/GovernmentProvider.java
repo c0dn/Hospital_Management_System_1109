@@ -1,7 +1,7 @@
 package insurance;
 
 import billing.Bill;
-import people.Patient;
+import humans.Patient;
 import policy.*;
 import utils.DataGenerator;
 import wards.WardClassType;

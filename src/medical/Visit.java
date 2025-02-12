@@ -1,9 +1,9 @@
 package medical;
 
 import billing.BillableItem;
-import people.Doctor;
-import people.Nurse;
-import people.Patient;
+import humans.Doctor;
+import humans.Nurse;
+import humans.Patient;
 import utils.DataGenerator;
 
 import java.math.BigDecimal;

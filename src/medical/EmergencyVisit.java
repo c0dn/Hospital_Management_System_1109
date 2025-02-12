@@ -1,6 +1,6 @@
 package medical;
 
-import people.Patient;
+import humans.Patient;
 import policy.AccidentType;
 import utils.DataGenerator;
 

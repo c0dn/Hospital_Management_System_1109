@@ -1,8 +1,8 @@
 package tests;
 
-import people.Patient;
-import people.PatientBuilder;
-import people.ResidentialStatus;
+import humans.Patient;
+import humans.PatientBuilder;
+import humans.ResidentialStatus;
 import insurance.GovernmentProvider;
 import policy.InsurancePolicy;
 import utils.DataGenerator;

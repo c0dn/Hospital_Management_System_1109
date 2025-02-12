@@ -1,9 +1,9 @@
 package tests;
 
 import billing.BillableItem;
-import people.Doctor;
-import people.Nurse;
-import people.Patient;
+import humans.Doctor;
+import humans.Nurse;
+import humans.Patient;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;

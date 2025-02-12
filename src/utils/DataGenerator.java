@@ -1,6 +1,6 @@
 package utils;
 
-import people.Contact;
+import humans.Contact;
 import medical.Medication;
 import policy.AccidentType;
 

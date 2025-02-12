@@ -1,4 +1,4 @@
-package people;
+package humans;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.Random;
  * It supports both manual field population and randomized data generation.
  * </p>
  */
-public class PatientBuilder extends PersonBuilder<PatientBuilder> {
+public class PatientBuilder extends HumanBuilder<PatientBuilder> {
     /**
      * A shared random number generator used for generating random patient attributes,
      * such as height, weight, drug allergies, and next of kin details.

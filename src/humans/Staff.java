@@ -1,4 +1,4 @@
-package people;
+package humans;
 
 /**
  * Represents staff in the insurance system.
@@ -12,7 +12,7 @@ package people;
  * </ul>
  */
 
-public class Staff extends Person {
+public class Staff extends Human {
     /** The unique identifier for the staff. */
     private String staffId;
     /** The title of the staff. */
