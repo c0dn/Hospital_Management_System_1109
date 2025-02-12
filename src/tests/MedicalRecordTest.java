@@ -27,7 +27,8 @@ public class MedicalRecordTest {
      * <p>
      * This method runs the following tests:
      * <ul>
-     *     <li>Creating a {@link MedicalRecord} with sample data including the patient's medication list, allergies, and attending physician.</li>
+     *     <li>Creating a {@link MedicalRecord} with sample data including the patient's medication list,
+     *     allergies, and attending nurse.</li>
      *     <li>Displaying the details of the medical record after it is created.</li>
      * </ul>
      * </p>

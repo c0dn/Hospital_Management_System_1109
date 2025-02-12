@@ -159,6 +159,10 @@ public class MedicalRecord {
      */
     public List<String> getAttendingNurse() { return attendingNurse; }
 
+
+    /**
+     * Displays the full medical record for visit.
+     */
     public void displayMedicalRecord() {
 //        System.out.printf("%-20s %-20s %-15s %-20s %-20s %-20s %-15s %-20s %-20s %-20s %-20s%n",
 //                "Procedure Code", "Date of Visit", "Type of Visit", "Medication", "Drug Allergy",
@@ -196,7 +200,5 @@ public class MedicalRecord {
         System.out.println("");
         System.out.println("=====================================================================");
     }
-
-
 
 }

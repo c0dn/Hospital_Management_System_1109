@@ -173,6 +173,12 @@ abstract class HumanBuilder<T extends HumanBuilder<T>> {
         return self();
     }
 
+    /**
+     * Fills the builder with random data using a data generator.
+     * This is used to create a fully random {@code Human} instance.
+     *
+     * @return The current builder instance with random data.
+     */
     public T withRandomBaseData() {
         this.name = dataGenerator.getRandomElement(dataGenerator.getSgNames());
         this.dateOfBirth = LocalDate.now().minusYears(dataGenerator.generateRandomInt(20, 60)); // Age between 20-60

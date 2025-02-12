@@ -5,6 +5,8 @@ import java.time.LocalDate;
 /**
  * Represents a general human entity in the insurance system.
  * This serves as a base class for patients, doctors and other human-related roles.
+ * Attributes include general information (like name, date of birth, NRIC/FIN), which are commonly found in SingPass,
+ * HealthHub and staff onboarding procedures and patient-provided information.
  */
 public abstract class Human {
 
@@ -86,6 +88,10 @@ public abstract class Human {
         contact.displayContactInfo();
     }
 
+    /**
+     * Displays the full details of the person including personal, demographic, residential,
+     * and medical information.
+     */
     public void displayHuman() {
         System.out.printf("%n%n");
         System.out.println("=====================================================================");
