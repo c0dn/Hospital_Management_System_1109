@@ -89,8 +89,8 @@ public class PrivateProvider extends InsuranceProvider {
                 String.format("P%06d", dataGen.generateRandomInt(100_000, 999_999)),
                 patient,
                 coverage,
-                dataGen.getRandomInsuranceName()
-        )
+                this,
+                dataGen.getRandomInsuranceName())
                 .withExpirationDate(expirationDate)
                 .build());
 

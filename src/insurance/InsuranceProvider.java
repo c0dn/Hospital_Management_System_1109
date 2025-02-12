@@ -22,4 +22,8 @@ public abstract class InsuranceProvider {
 
     public abstract boolean hasActiveCoverage(Patient patient);
 
+    public String getProviderName() {
+        return providerName;
+    }
+
 }

@@ -1,15 +1,14 @@
 package medical;
 
 import billing.BillableItem;
-import policy.BenefitType;
-import policy.ClaimableItem;
-import utils.CSVHelper;
-
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
+import policy.BenefitType;
+import policy.ClaimableItem;
+import utils.CSVHelper;
 
 public class DiagnosticCode implements BillableItem, ClaimableItem {
     private String categoryCode;
@@ -162,6 +161,16 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
     @Override
     public String getDiagnosisCode() {
         return this.fullCode;
+    }
+
+    /**
+     * Gets a random diagnostic code from the registry
+     * @return A randomly selected DiagnosticCode
+     */
+    public static DiagnosticCode getRandomCode() {
+        String[] codes = CODE_REGISTRY.keySet().toArray(new String[0]);
+        int randomIndex = (int) (Math.random() * codes.length);
+        return createFromCode(codes[randomIndex]);
     }
 }
 

@@ -1,12 +1,13 @@
 package medical;
 
 import billing.BillableItem;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import utils.DataGenerator;
 
 public class Consultation {
     private String consultationId;
@@ -19,6 +20,50 @@ public class Consultation {
     private Map<Medication, Integer> prescriptions;
     private String notes;
 
+    /**
+     * Creates a consultation with random data for testing purposes
+     * @return A randomly populated Consultation instance
+     */
+    public static Consultation withRandomData() {
+        DataGenerator gen = DataGenerator.getInstance();
+        Consultation consultation = new Consultation();
+        
+        // Set basic fields
+        consultation.consultationId = "C" + System.currentTimeMillis() + 
+            String.format("%04d", gen.generateRandomInt(10000));
+        consultation.type = gen.getRandomEnum(ConsultationType.class);
+        consultation.doctorId = "D" + gen.generateRandomInt(1000, 9999);
+        consultation.consultationTime = LocalDateTime.now()
+            .minusDays(gen.generateRandomInt(1, 30));
+        consultation.consultationFee = new BigDecimal(gen.generateRandomInt(50, 300));
+        consultation.notes = "Consultation notes for patient visit #" + gen.generateRandomInt(1000, 9999);
+        
+        // Add random diagnostic codes
+        consultation.diagnosticCodes = new ArrayList<>();
+        int diagCount = gen.generateRandomInt(1, 3);
+        for (int i = 0; i < diagCount; i++) {
+            consultation.diagnosticCodes.add(DiagnosticCode.getRandomCode());
+        }
+        
+        // Add random procedure codes
+        consultation.procedureCodes = new ArrayList<>();
+        int procCount = gen.generateRandomInt(0, 2);
+        for (int i = 0; i < procCount; i++) {
+            consultation.procedureCodes.add(ProcedureCode.getRandomCode());
+        }
+        
+        // Add random prescriptions
+        consultation.prescriptions = new HashMap<>();
+        int medCount = gen.generateRandomInt(1, 4);
+        for (int i = 0; i < medCount; i++) {
+            consultation.prescriptions.put(
+                gen.getRandomMedication(),
+                gen.generateRandomInt(1, 10)
+            );
+        }
+        
+        return consultation;
+    }
 
     /**
      * Returns all related charges as separate BillableItems
@@ -45,7 +90,6 @@ public class Consultation {
 
         return items;
     }
-
 
     public BigDecimal calculateCharges() {
         BigDecimal total = consultationFee;
@@ -79,7 +123,4 @@ public class Consultation {
             case FOLLOW_UP -> "FOLLOW_UP_CONSULTATION";
         };
     }
-
 }
-
-

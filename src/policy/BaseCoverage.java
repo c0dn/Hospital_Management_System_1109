@@ -60,7 +60,6 @@ public class BaseCoverage implements Coverage {
         }
 
 
-
         public BaseCoverage build() {
             // Validate required fields
             if (limits == null) {

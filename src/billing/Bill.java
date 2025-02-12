@@ -1,15 +1,13 @@
 package billing;
 
 
+import claims.InsuranceClaim;
 import humans.Patient;
-import policy.InsurancePolicy;
+import policy.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Represents a bill for a patient, containing billing items, categorized charges,
@@ -29,8 +27,8 @@ public class Bill {
     /** Current status of the bill, such as DRAFT. */
     private BillingStatus status;
     private InsurancePolicy insurancePolicy;
-    private BigDecimal insuranceCoverage;
-    private BigDecimal patientResponsibility;
+    private boolean isInpatient;
+    private boolean isEmergency;
 
 
     /**
@@ -44,8 +42,10 @@ public class Bill {
         this.patient = builder.patient;
         this.billDate = builder.billDate;
         this.lineItems = new ArrayList<>();
+        this.insurancePolicy = builder.insurancePolicy;
         this.categorizedCharges = new HashMap<>();
         this.status = BillingStatus.DRAFT;
+        this.isInpatient = builder.isInpatient;
     }
 
     /**
@@ -71,10 +71,60 @@ public class Bill {
      * Retrieves the total charge for a specified category.
      * @return The total charge for the given category, or {@code BigDecimal.ZERO} if not found.
      */
-    public void calculateInsuranceCoverage() {
+    public Optional<InsuranceClaim> calculateInsuranceCoverage() {
+        if (lineItems.isEmpty()) {
+            return Optional.empty();
+        }
+        if (insurancePolicy.isActive()) {
+            Coverage coverage = insurancePolicy.getCoverage();
+            BigDecimal deductibleAmount = coverage.getDeductibleAmount();
+            BigDecimal claimableAmount = BigDecimal.ZERO;
+            BigDecimal accidentCoverage = BigDecimal.ZERO;
+            BigDecimal totalCoverage = BigDecimal.ZERO;
+            for (BillingItem item : lineItems) {
 
-        // Update status
-        status = BillingStatus.INSURANCE_PENDING;
+                if (item instanceof ClaimableItem claimableItem) {
+                    if (coverage.isItemCovered(claimableItem, isInpatient)) {
+                        BigDecimal itemAmount = item.getTotalPrice();
+                        claimableAmount = claimableAmount.add(itemAmount);
+
+                        if (isEmergency && claimableItem.getAccidentSubType() != null) {
+                            AccidentType accidentType = claimableItem.getAccidentSubType();
+                            BigDecimal accidentPayout = coverage.calculateAccidentPayout(accidentType);
+
+                            CoverageLimit limits = coverage.getLimits();
+                            if (limits.isWithinAccidentLimit(accidentType, accidentPayout)) {
+                                accidentCoverage = accidentCoverage.add(accidentPayout);
+                            }
+                        }
+                    }
+
+                }
+
+            }
+            BigDecimal claimAmount = claimableAmount.subtract(deductibleAmount);
+            CoverageLimit limits = coverage.getLimits();
+            if (limits.isWithinAnnualLimit(claimAmount)) {
+                totalCoverage = totalCoverage.add(claimableAmount);
+            }
+            totalCoverage = totalCoverage.add(accidentCoverage);
+            status = BillingStatus.INSURANCE_PENDING;
+
+            if (totalCoverage.compareTo(BigDecimal.ZERO) > 0) {
+
+                InsuranceClaim claim = InsuranceClaim.createNew(
+                        this,
+                        insurancePolicy.getInsuranceProvider(),
+                        insurancePolicy,
+                        this.patient,
+                        totalCoverage
+                );
+                return Optional.of(claim);
+            }
+
+        }
+        return Optional.empty();
+
     }
 
 

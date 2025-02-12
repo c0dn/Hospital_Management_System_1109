@@ -42,7 +42,7 @@ public class Visit {
      * A collection of procedure codes representing the medical procedures performed during an inpatient visit.
      * Each procedure is identified by a {@link ProcedureCode} object, which includes details like
      * code, description, category, and associated cost.
-     *
+     * <p>
      * This list is used to calculate the charges for all inpatient procedures during the visit
      * and to provide a detailed breakdown of the medical services rendered.
      */
@@ -50,7 +50,7 @@ public class Visit {
 
     /**
      * Represents a list of diagnostic codes associated with a visit.
-     *
+     * <p>
      * This list holds diagnostic codes, where each code corresponds to a specific diagnosis
      * classified under the ICD-10 standard. These codes are used for billing, medical
      * documentation, and other healthcare-related purposes.
@@ -68,7 +68,7 @@ public class Visit {
     /**
      * A map representing the prescriptions associated with a visit.
      * Each entry maps a specific medication to its prescribed quantity.
-     *
+     * <p>
      * Key: {@link Medication} instance representing the prescribed medication.
      * Value: An {@code Integer} indicating the quantity prescribed.
      */
@@ -111,7 +111,7 @@ public class Visit {
      * Creates a new visit for a patient
      *
      * @param admissionDateTime The admission date and time
-     * @param patient The patient being admitted
+     * @param patient           The patient being admitted
      * @return A new Visit instance
      */
     public static Visit createNew(LocalDateTime admissionDateTime, Patient patient) {
@@ -153,14 +153,11 @@ public class Visit {
         return populateWithRandomData(new Visit(admissionTime, randomPatient));
     }
 
-
-
-
     /**
      * Prescribes medication for the patient during their visit.
      *
      * @param medication The medication to prescribe
-     * @param quantity The quantity to prescribe
+     * @param quantity   The quantity to prescribe
      * @throws IllegalStateException if the visit is not in an active state
      */
     public void prescribeMedicine(Medication medication, int quantity) {
@@ -182,13 +179,15 @@ public class Visit {
      * @throws IllegalStateException if the visit is not in an active state
      */
     public void diagnose(DiagnosticCode diagnosticCode) {
-        if (status != VisitStatus.ADMITTED && status != VisitStatus.IN_PROGRESS) {
-            throw new IllegalStateException("Cannot add diagnosis for a non-active visit");
+        validateModifiable();
+        if (diagnosticCode == null) {
+            throw new IllegalArgumentException("Diagnostic code cannot be null");
         }
+        if (diagnosticCodes == null) {
+            diagnosticCodes = new ArrayList<>();
+        }
+        diagnosticCodes.add(diagnosticCode);
 
-        if (!diagnosticCodes.contains(diagnosticCode)) {
-            diagnosticCodes.add(diagnosticCode);
-        }
     }
 
     /**
@@ -198,11 +197,15 @@ public class Visit {
      * @throws IllegalStateException if the visit is not in an active state
      */
     public void procedure(ProcedureCode procedureCode) {
-        if (status != VisitStatus.ADMITTED && status != VisitStatus.IN_PROGRESS) {
-            throw new IllegalStateException("Cannot add procedure for a non-active visit");
+        validateModifiable();
+        if (procedureCode == null) {
+            throw new IllegalArgumentException("Procedure code cannot be null");
         }
-
+        if (inpatientProcedures == null) {
+            inpatientProcedures = new ArrayList<>();
+        }
         inpatientProcedures.add(procedureCode);
+
     }
 
     /**
@@ -235,6 +238,148 @@ public class Visit {
         this.AttendingDoctor = doctor;
     }
 
+
+    /**
+     * Adds a ward stay to the visit.
+     *
+     * @param wardStay The ward stay to add
+     * @throws IllegalStateException    if the visit is not modifiable
+     * @throws IllegalArgumentException if ward stay is null
+     */
+    public void addWardStay(WardStay wardStay) {
+        validateModifiable();
+        if (wardStay == null) {
+            throw new IllegalArgumentException("Ward stay cannot be null");
+        }
+        if (wardStays == null) {
+            wardStays = new ArrayList<>();
+        }
+        wardStays.add(wardStay);
+    }
+
+
+    /**
+     * Throws an exception if the visit is not modifiable.
+     *
+     * @throws IllegalStateException if the visit is finalized
+     */
+    private void validateModifiable() {
+        if (!isModifiable()) {
+            throw new IllegalStateException(
+                    "Cannot modify visit with status " + status +
+                            ". Visit is " + (isDischarged() ? "discharged" : "cancelled")
+            );
+        }
+    }
+
+    /**
+     * Checks if the visit is currently active.
+     *
+     * @return true if the visit is either ADMITTED or IN_PROGRESS
+     */
+    public boolean isActive() {
+        return status == VisitStatus.ADMITTED || status == VisitStatus.IN_PROGRESS;
+    }
+
+    /**
+     * Checks if the visit is finalized (completed or cancelled).
+     *
+     * @return true if the visit is either DISCHARGED or CANCELLED
+     */
+    public boolean isFinalized() {
+        return status == VisitStatus.DISCHARGED || status == VisitStatus.CANCELLED;
+    }
+
+    /**
+     * Checks if the visit was cancelled.
+     *
+     * @return true if the visit status is CANCELLED
+     */
+    public boolean isCancelled() {
+        return status == VisitStatus.CANCELLED;
+    }
+
+    /**
+     * Checks if the visit is in its initial state.
+     *
+     * @return true if the visit status is ADMITTED
+     */
+    public boolean isNewlyAdmitted() {
+        return status == VisitStatus.ADMITTED;
+    }
+
+    /**
+     * Checks if the visit is currently in progress.
+     *
+     * @return true if the visit status is IN_PROGRESS
+     */
+    public boolean isInProgress() {
+        return status == VisitStatus.IN_PROGRESS;
+    }
+
+    /**
+     * Checks if the patient has been discharged.
+     *
+     * @return true if the visit status is DISCHARGED
+     */
+    public boolean isDischarged() {
+        return status == VisitStatus.DISCHARGED;
+    }
+
+    /**
+     * Gets the current status of the visit.
+     *
+     * @return the current VisitStatus
+     */
+    public VisitStatus getStatus() {
+        return status;
+    }
+
+    /**
+     * Checks if the visit can be modified.
+     *
+     * @return true if the visit is not finalized
+     */
+    public boolean isModifiable() {
+        return !isFinalized();
+    }
+
+    /**
+     * Updates the visit status.
+     *
+     * @param newStatus The new status to set
+     * @throws IllegalArgumentException if newStatus is null
+     * @throws IllegalStateException    if trying to modify a finalized visit
+     */
+    public void updateStatus(VisitStatus newStatus) {
+        if (newStatus == null) {
+            throw new IllegalArgumentException("Status cannot be null");
+        }
+        if (isFinalized() && newStatus != status) {
+            throw new IllegalStateException("Cannot change status of finalized visit");
+        }
+        this.status = newStatus;
+
+        if (newStatus == VisitStatus.DISCHARGED || newStatus == VisitStatus.CANCELLED) {
+            this.dischargeDateTime = LocalDateTime.now();
+        }
+    }
+
+
+    /**
+     * Gets the duration of the visit if it's completed.
+     *
+     * @return Optional containing the duration in hours, or empty if visit is not complete
+     */
+    public Optional<Long> getVisitDuration() {
+        if (admissionDateTime != null && dischargeDateTime != null) {
+            return Optional.of(java.time.Duration.between(
+                    admissionDateTime,
+                    dischargeDateTime
+            ).toHours());
+        }
+        return Optional.empty();
+    }
 
 
     public BigDecimal calculateCharges() {

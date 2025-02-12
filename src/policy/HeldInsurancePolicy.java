@@ -1,6 +1,7 @@
 package policy;
 
 import humans.Patient;
+import insurance.InsuranceProvider;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -10,12 +11,12 @@ public class HeldInsurancePolicy extends BaseInsurancePolicy implements Insuranc
     private final String policyNumber;
     private final Patient policyHolder;
     private final String name;
-    private LocalDateTime expirationDate;
-    private LocalDateTime cancellationDate;
+    private final LocalDateTime expirationDate;
+    private final LocalDateTime cancellationDate;
     private InsuranceStatus status;
 
     protected HeldInsurancePolicy(Builder builder) {
-        super(builder.coverage);
+        super(builder.coverage, builder.provider);
         this.policyNumber = Objects.requireNonNull(builder.policyNumber);
         this.policyHolder = Objects.requireNonNull(builder.policyHolder);
         this.expirationDate = builder.expirationDate;
@@ -37,6 +38,11 @@ public class HeldInsurancePolicy extends BaseInsurancePolicy implements Insuranc
     @Override
     public String getPolicyName() {
         return name;
+    }
+
+    @Override
+    public InsuranceProvider getInsuranceProvider() {
+        return this.provider;
     }
 
     @Override
@@ -71,15 +77,17 @@ public class HeldInsurancePolicy extends BaseInsurancePolicy implements Insuranc
     public static class Builder {
         private String policyNumber;
         private Patient policyHolder;
+        private InsuranceProvider provider;
         private String name;
         private Coverage coverage;
         private LocalDateTime expirationDate;
         private LocalDateTime cancellationDate;
         private InsuranceStatus status = InsuranceStatus.ACTIVE;
 
-        public Builder(String policyNumber, Patient policyHolder, Coverage coverage, String name) {
+        public Builder(String policyNumber, Patient policyHolder, Coverage coverage, InsuranceProvider provider, String name) {
             this.policyNumber = policyNumber;
             this.policyHolder = policyHolder;
+            this.provider = provider;
             this.name = name;
             this.coverage = coverage;
         }
