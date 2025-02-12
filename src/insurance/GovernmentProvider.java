@@ -155,7 +155,7 @@ public class GovernmentProvider extends InsuranceProvider {
 
         HeldInsurancePolicy policy = new HeldInsurancePolicy.Builder(String.format("GOVT-%010d-%s",
                 DataGenerator.getInstance().generateRandomInt(1_000_000_000),
-                patient.getPatientId()), patient, finalCoverage)
+                patient.getPatientId()), patient, finalCoverage, "Government base policy")
                 .withExpirationDate(LocalDateTime.now().plusYears(1))
                 .build();
 

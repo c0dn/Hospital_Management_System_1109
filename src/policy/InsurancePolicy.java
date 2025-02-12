@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 public interface InsurancePolicy {
     String getPolicyNumber();
     Patient getPolicyHolder();
+    String getPolicyName();
     Coverage getCoverage();
     boolean isActive();
     boolean isExpired(LocalDateTime now);

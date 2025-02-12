@@ -54,7 +54,7 @@ public class DataGenerator {
     };
 
     private final String[] HEALTH_INSURANCE_NAMES = {
-            "HealthShield Gold Max", "Enhanced IncomeShield", "PRUShield", 
+            "HealthShield Gold Max", "Enhanced IncomeShield", "PRUShield",
             "MyShield", "Great Eastern Supreme Health", "Elite Health Plus"
     };
 
@@ -71,7 +71,8 @@ public class DataGenerator {
     private final AccidentType[] ACCIDENT_TYPES = AccidentType.values();
 
 
-    private DataGenerator() {}
+    private DataGenerator() {
+    }
 
     /**
      * Gets the singleton instance of DataGenerator
@@ -200,10 +201,10 @@ public class DataGenerator {
 
     public String generateHealthInsuranceDescription() {
         String[] templates = {
-            "Comprehensive medical coverage including pre and post hospitalization care with coverage up to %d per year",
-            "Protection against medical bills arising from hospitalization with coverage up to %d per policy year",
-            "All-rounded health protection plan covering hospital stays and surgical expenses up to %d annually",
-            "Premium healthcare coverage with as-charged benefits for hospitalization up to %d yearly"
+                "Comprehensive medical coverage including pre and post hospitalization care with coverage up to %d per year",
+                "Protection against medical bills arising from hospitalization with coverage up to %d per policy year",
+                "All-rounded health protection plan covering hospital stays and surgical expenses up to %d annually",
+                "Premium healthcare coverage with as-charged benefits for hospitalization up to %d yearly"
         };
         int coverage = 100000 * (1 + generateRandomInt(15)); // 100k to 1.5M coverage
         return String.format(templates[generateRandomInt(templates.length)], coverage);
@@ -211,9 +212,9 @@ public class DataGenerator {
 
     public String generateAccidentInsuranceDescription() {
         String[] templates = {
-            "24/7 worldwide personal accident coverage up to %d with daily hospital income benefit",
-            "Comprehensive accident protection with coverage up to %d and medical expense reimbursement",
-            "Total accident coverage up to %d with optional riders for enhanced protection"
+                "24/7 worldwide personal accident coverage up to %d with daily hospital income benefit",
+                "Comprehensive accident protection with coverage up to %d and medical expense reimbursement",
+                "Total accident coverage up to %d with optional riders for enhanced protection"
         };
         int coverage = 10000 * (1 + generateRandomInt(20)); // 10k to 200k coverage
         return String.format(templates[generateRandomInt(templates.length)], coverage);
@@ -221,9 +222,9 @@ public class DataGenerator {
 
     public String generateCriticalIllnessDescription() {
         String[] templates = {
-            "Protection against critical illnesses with coverage up to %d for early to advanced stages",
-            "Comprehensive critical illness coverage up to %d with multiple claim feature",
-            "Financial protection against critical illnesses with sum assured up to %d"
+                "Protection against critical illnesses with coverage up to %d for early to advanced stages",
+                "Comprehensive critical illness coverage up to %d with multiple claim feature",
+                "Financial protection against critical illnesses with sum assured up to %d"
         };
         int coverage = 50000 * (1 + generateRandomInt(30)); // 50k to 1.5M coverage
         return String.format(templates[generateRandomInt(templates.length)], coverage);
@@ -276,40 +277,40 @@ public class DataGenerator {
     }
 
     /**
-     * Gets a random insurance company name.
+     * Gets all insurance policy names (combined from all types)
      *
-     * @return A randomly selected insurance company name
+     * @return Array of all insurance policy names
      */
-    public String getRandomInsuranceCompany() {
-        return getRandomElement(INSURANCE_COMPANIES);
+    private String[] getInsuranceNames() {
+        int totalLength = HEALTH_INSURANCE_NAMES.length +
+                ACCIDENT_INSURANCE_NAMES.length +
+                CRITICAL_ILLNESS_NAMES.length;
+
+        String[] allNames = new String[totalLength];
+
+        System.arraycopy(HEALTH_INSURANCE_NAMES, 0, allNames, 0,
+                HEALTH_INSURANCE_NAMES.length);
+        System.arraycopy(ACCIDENT_INSURANCE_NAMES, 0, allNames,
+                HEALTH_INSURANCE_NAMES.length,
+                ACCIDENT_INSURANCE_NAMES.length);
+        System.arraycopy(CRITICAL_ILLNESS_NAMES, 0, allNames,
+                HEALTH_INSURANCE_NAMES.length + ACCIDENT_INSURANCE_NAMES.length,
+                CRITICAL_ILLNESS_NAMES.length);
+
+        return allNames;
     }
 
-    /**
-     * Gets a random health insurance product name.
-     *
-     * @return A randomly selected health insurance name
-     */
-    public String getRandomHealthInsuranceName() {
-        return getRandomElement(HEALTH_INSURANCE_NAMES);
-    }
 
     /**
-     * Gets a random accident insurance product name.
+     * Gets a random insurance policy name
      *
-     * @return A randomly selected accident insurance name
+     * @return Random insurance policy name
      */
-    public String getRandomAccidentInsuranceName() {
-        return getRandomElement(ACCIDENT_INSURANCE_NAMES);
+    public String getRandomInsuranceName() {
+        String[] allNames = getInsuranceNames();
+        return allNames[random.nextInt(allNames.length)];
     }
 
-    /**
-     * Gets a random critical illness insurance product name.
-     *
-     * @return A randomly selected critical illness insurance name
-     */
-    public String getRandomCriticalIllnessName() {
-        return getRandomElement(CRITICAL_ILLNESS_NAMES);
-    }
 
     /**
      * Generates random contact information.

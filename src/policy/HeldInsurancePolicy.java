@@ -9,6 +9,7 @@ public class HeldInsurancePolicy extends BaseInsurancePolicy implements Insuranc
 
     private final String policyNumber;
     private final Patient policyHolder;
+    private final String name;
     private LocalDateTime expirationDate;
     private LocalDateTime cancellationDate;
     private InsuranceStatus status;
@@ -18,6 +19,7 @@ public class HeldInsurancePolicy extends BaseInsurancePolicy implements Insuranc
         this.policyNumber = Objects.requireNonNull(builder.policyNumber);
         this.policyHolder = Objects.requireNonNull(builder.policyHolder);
         this.expirationDate = builder.expirationDate;
+        this.name = builder.name;
         this.cancellationDate = builder.cancellationDate;
         this.status = Objects.requireNonNull(builder.status);
     }
@@ -30,6 +32,11 @@ public class HeldInsurancePolicy extends BaseInsurancePolicy implements Insuranc
     @Override
     public Patient getPolicyHolder() {
         return policyHolder;
+    }
+
+    @Override
+    public String getPolicyName() {
+        return name;
     }
 
     @Override
@@ -64,14 +71,16 @@ public class HeldInsurancePolicy extends BaseInsurancePolicy implements Insuranc
     public static class Builder {
         private String policyNumber;
         private Patient policyHolder;
+        private String name;
         private Coverage coverage;
         private LocalDateTime expirationDate;
         private LocalDateTime cancellationDate;
         private InsuranceStatus status = InsuranceStatus.ACTIVE;
 
-        public Builder(String policyNumber, Patient policyHolder, Coverage coverage) {
+        public Builder(String policyNumber, Patient policyHolder, Coverage coverage, String name) {
             this.policyNumber = policyNumber;
             this.policyHolder = policyHolder;
+            this.name = name;
             this.coverage = coverage;
         }
 
