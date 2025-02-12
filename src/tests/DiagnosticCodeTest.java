@@ -39,7 +39,7 @@ public class DiagnosticCodeTest {
             // Test 4: Test benefit type resolution
             System.out.println("\nTest 4 - Testing benefit type resolution:");
             // Test maternity code (O-series)
-            DiagnosticCode maternityCode = DiagnosticCode.createFromCode("O000");
+            DiagnosticCode maternityCode = DiagnosticCode.createFromCode("O0001");
             System.out.println("Maternity code benefit type: " + maternityCode.resolveBenefitType(false));
             
             // Test cancer code (C-series)
