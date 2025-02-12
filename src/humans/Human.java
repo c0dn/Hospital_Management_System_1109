@@ -85,4 +85,28 @@ public abstract class Human {
     public void displayContactInformation() {
         contact.displayContactInfo();
     }
+
+    public void displayHuman() {
+        System.out.printf("%n%n");
+        System.out.println("=====================================================================");
+        System.out.printf("                           PERSON DETAILS%n");
+        System.out.println("=====================================================================");
+        System.out.println("PERSONAL INFORMATION");
+        System.out.println("---------------------------------------------------------------------");
+        System.out.printf("Name: " + name);
+        System.out.printf("\t\tNRIF/FIN: " + nricFin);
+        System.out.printf("%n%nDate of Birth: " + dateOfBirth);
+        System.out.printf("\t\tNationality: " + nationality);
+        System.out.println("\n\nDEMOGRAPHIC & RESIDENTIAL INFORMATION");
+        System.out.println("---------------------------------------------------------------------");
+        System.out.printf("Contact: " + contact);
+        System.out.printf("\t\tMarital Status: " + maritalStatus);
+        System.out.printf("%n%nResidential Status: " + residentialStatus);
+        System.out.printf("\n\nAddress: " + address);
+        System.out.println("\n\nMEDICAL INFORMATION");
+        System.out.println("---------------------------------------------------------------------");
+        System.out.printf("Sex: " + sex);
+        System.out.printf("\t\tBlood Type: " + bloodType);
+        System.out.printf("\t\tVaccinated: " + isVaccinated);
+    }
 }

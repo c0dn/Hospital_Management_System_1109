@@ -1,6 +1,7 @@
 package medical;
 
 import humans.Patient;
+import wards.Bed;
 import wards.Ward;
 
 import java.time.LocalDate;
@@ -158,36 +159,44 @@ public class MedicalRecord {
      */
     public List<String> getAttendingNurse() { return attendingNurse; }
 
-    public void displayAllMedRec() {
-        System.out.println("----- Medical Record Details -----");
-        System.out.println("Medical Record ID: " + medicalRecordId);
-        System.out.println("Healthcare Provider: " + (healthcareProvider != null ? healthcareProvider.toString() : "None"));
-        System.out.println("Patient: " + (patient != null ? patient.toString() : "None"));
-        System.out.println("Date of Visit: " + dateOfVisit);
-        System.out.println("Procedure Code: " + procedureCode);
-        System.out.println("Medications: " + (medication.isEmpty() ? "None" : medication));
-        System.out.println("Drug Allergies: " + (drugAllergy.isEmpty() ? "None" : drugAllergy));
-        System.out.println("Medical History: " + (medicalHistory.isEmpty() ? "None" : medicalHistory));
-        System.out.println("Ward: " + (ward != null ? ward.toString() : "None"));
-        System.out.println("Attending Doctor: " + attendingDoctor);
-        System.out.println("Attending Nurses: " + (attendingNurse.isEmpty() ? "None" : attendingNurse));
-        System.out.println("----------------------------------");
-        //show ALL records -- can be used for looking up info for HEALTHCARE STAFF side
+    public void displayMedicalRecord() {
+//        System.out.printf("%-20s %-20s %-15s %-20s %-20s %-20s %-15s %-20s %-20s %-20s %-20s%n",
+//                "Procedure Code", "Date of Visit", "Type of Visit", "Medication", "Drug Allergy",
+//                "Medical History", "Patient", "Attending Doctor", "Medical Record ID", "Ward",
+//                "Healthcare Provider");
+//
+//        System.out.printf("%-20s %-20s %-15s %-20s %-20s %-20s %-15s %-20s %-20s %-20s %-20s%n",
+//                procedureCode, dateOfVisit, typeOfVisit, String.join(", ", medication),
+//                String.join(", ", drugAllergy), String.join(", ", medicalHistory),
+//                patient.getPatientId(), attendingDoctor, medicalRecordId, ward, healthcareProvider);
+
+        System.out.printf("%n%n");
+        System.out.println("=====================================================================");
+        System.out.printf("                           MEDICAL RECORD%n");
+        System.out.println("=====================================================================");
+        System.out.println("PATIENT INFORMATION");
+        System.out.println("---------------------------------------------------------------------");
+        System.out.printf("Patient ID: " + patient.getPatientId());
+        System.out.printf("\t\tMedical Record ID: " + medicalRecordId);
+        System.out.println("\n\nVISIT INFORMATION");
+        System.out.println("---------------------------------------------------------------------");
+        System.out.printf("Hospital Name: " + healthcareProvider.healthcareProviderName);
+        System.out.printf("\t\tHospital Code: " + healthcareProvider.hospitalCode);
+        System.out.printf("%n%nDate of Visit: " + dateOfVisit);
+        System.out.printf("\t\tType of Visit: " + typeOfVisit);
+        System.out.printf("\n\nWard: " + ward.getWardName());
+        System.out.println("\n\nMEDICAL INFORMATION");
+        System.out.println("---------------------------------------------------------------------");
+        System.out.printf("Medical History: " + medicalHistory);
+        System.out.printf("\t\tDrug Allergy: " + drugAllergy);
+        System.out.println("\n\nDIAGNOSIS INFORMATION");
+        System.out.println("---------------------------------------------------------------------");
+        System.out.printf("Attending Doctor: " + attendingDoctor);
+        System.out.printf("\t\tProcedure Code: " + procedureCode);
+        System.out.println("");
+        System.out.println("=====================================================================");
     }
 
-//    public void displayInsrMedRec() {
-//        System.out.println("----- Medical Record Details -----");
-//        System.out.println("Medical Record ID: " + medicalRecordId);
-//        System.out.println("Healthcare Provider: " + (healthcareProvider != null ? healthcareProvider.toString() : "None"));
-//        System.out.println("Patient: " + (patient != null ? patient.toString() : "None"));
-//        System.out.println("Date of Visit: " + dateOfVisit);
-//        System.out.println("Type of Visit: " + typeOfVisit);
-//        System.out.println("Procedure Code: " + procedureCode);
-//        System.out.println("Medications: " + (medication.isEmpty() ? "None" : medication));
-//        System.out.println("Ward: " + (ward != null ? ward.toString() : "None"));
-//        System.out.println("Attending Doctor: " + attendingDoctor);
-//        System.out.println("----------------------------------");
-//        // did not include attending nurses, drug allergies, medical history
-//    }
+
 
 }

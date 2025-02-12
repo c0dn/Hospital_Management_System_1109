@@ -39,14 +39,14 @@ public class NurseTest {
                     .department("Emergency")
                     .rnid("RN12345B")
                     .build();
-            nurse1.displayStaff();
+            nurse1.displayHuman();
 
             // Test 2: Create a nurse using builder with random data
             System.out.println("\nTest 2 - Creating nurse using builder with random data:");
             Nurse nurse2 = Nurse.builder()
                     .withRandomBaseData()
                     .build();
-            nurse2.displayStaff();
+            nurse2.displayHuman();
 
             // Test 3: Create a nurse using builder with specific data
             System.out.println("\nTest 3 - Creating nurse using builder with specific data:");
@@ -67,7 +67,7 @@ public class NurseTest {
                     .department("Pediatrics")
                     .rnid("RN54321C")
                     .build();
-            nurse3.displayStaff();
+            nurse3.displayHuman();
 
         } catch (Exception e) {
             System.err.println("Unexpected error: " + e.getMessage());

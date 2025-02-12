@@ -141,7 +141,7 @@ public class InsuranceClaim {
      */
     public void setClaimStatus(ClaimStatus claimStatus) {
         this.claimStatus = claimStatus;
-    } //setter, may change over time approved etc
+    }
 
     /**
      * Sets the comments of the claim.
@@ -150,19 +150,24 @@ public class InsuranceClaim {
      */
     public void setComments(String comments) {
         this.comments = comments;
-    }//setter, add comments overtime
+    }
 
-    public void displayClaimInfo(){
-        System.out.format("Claim ID: %s%n", claimId);
-        System.out.format("Medical Record: %s%n", medicalRecord);
-        System.out.format("Insurance Provider: %s%n", insuranceProvider);
-        System.out.format("Insurance Policy: %s%n", insurancePolicy);
-        System.out.format("Patient: %s%n", patient);
-        System.out.format("Submission Date: %s%n", submissionDate);
-        System.out.format("Claim Status: %s%n", claimStatus);
-        System.out.format("Claim Amount: %.2f%n", claimAmount);
-        System.out.format("Comments: %s%n", comments);
+    public void displayClaimInfo() {
+        System.out.printf("\n\n%-10s %-14s %-19s %-14s %-10s %-14s %-11s %-12s %-14s%n",
+                "Claim ID", "Medical Record", "Insurance Provider", "Policy", "Submission Date", "Status", "Amount", "Comments");
+        System.out.printf("%-10s %-14s %-19s %-14s %-14s %-11s %-12.2f %-14s%n",
+                claimId, medicalRecord, insuranceProvider, insurancePolicy, submissionDate, claimStatus, claimAmount, comments);
 
+//        System.out.printf("%n%n");
+//        System.out.println("=====================================================================");
+//        System.out.printf("                       INSURANCE CLAIM RECORD%n");
+//        System.out.println("=====================================================================");
+//        System.out.println("PATIENT INFORMATION");
+//        System.out.println("---------------------------------------------------------------------");
+//        System.out.printf("Patient ID: " + patient.getPatientId());
+//        System.out.printf("\t\tMedical Record ID: " + medicalRecordId);
+//        System.out.println("\n\nVISIT INFORMATION");
+//        System.out.println("---------------------------------------------------------------------");
     }
 
 

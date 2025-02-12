@@ -48,14 +48,14 @@ public class PatientTest {
                     .companyName("Test Company")
                     .companyAddress("789 Test Street")
                     .build();
-            patient1.displayPatientInfo();
+            patient1.displayHuman();
 
             // Test 2: Create a patient using builder with random data
             System.out.println("\nTest 2 - Creating patient using builder with random data:");
             Patient patient2 = Patient.builder()
                     .withRandomData("P1002")
                     .build();
-            patient2.displayPatientInfo();
+            patient2.displayHuman();
 
             // Test 3: Generate multiple random patients
             System.out.println("\nTest 3 - Generating multiple random patients:");
@@ -74,7 +74,7 @@ public class PatientTest {
 
             // Test 4: Verify patient data access
             System.out.println("\nTest 4 - Verifying patient data access:");
-            patients.forEach(Patient::displayPatientInfo);
+            patients.forEach(Patient::displayHuman);
 
         } catch (Exception e) {
             System.err.println("Unexpected error: " + e.getMessage());

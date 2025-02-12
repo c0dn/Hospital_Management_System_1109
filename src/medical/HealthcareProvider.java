@@ -21,9 +21,9 @@ public class HealthcareProvider {
      * Constructs a HealthcareProvider with the specified details.
      *
      * @param healthcareProviderName The name of the healthcare provider.
-     * @param hciCode The hospital code.
+     * @param hospitalCode The hospital code.
      */
-    public HealthcareProvider(String healthcareProviderName, String hciCode) {
+    public HealthcareProvider(String healthcareProviderName, String hospitalCode) {
         this.healthcareProviderName = healthcareProviderName;
         this.hospitalCode = hospitalCode;
     }

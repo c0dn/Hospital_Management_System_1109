@@ -87,19 +87,23 @@ public class Patient extends Human {
     }
 
 
-    /**
-     * Displays the patient's personal details, including medical and NOK information.
-     * <p>
-     * This method prints formatted information about the patient such as name,
-     * ID, date of birth, height, weight, drug allergies, and next of kin details.
-     * </p>
-     */
-    public void displayPatientInfo() {
-        System.out.printf("\n\n%-20s%-15s%-20s%-15s%-15s%-25s%-20s%-20s%-60s%n",
-                "Name", "Patient ID", "Date of Birth", "Height", "Weight", "Drug Allergies", "NOK Name", "NOK Relation", "NOK Address");
+    public void displayHuman() {
 
-        System.out.printf("%-20s%-15s%-20s%-15.2f%-15.2f%-25s%-20s%-20s%-60s%n",
-                name, patientId, dateOfBirth, height, weight, String.join(", ", drugAllergies), nokName, nokRelation, nokAddress);
+        super.displayHuman();
+        System.out.printf("%n%n");
+        System.out.println("PATIENT DETAILS");
+        System.out.println("---------------------------------------------------------------------");
+
+//        System.out.printf("%nName: " + name);
+        System.out.printf("Patient ID: " + patientId);
+        System.out.printf("\t\tHeight: %3.2f", height);
+        System.out.printf("\t\tWeight: %3.2f", weight);
+        System.out.println("\nDrug Allergies: " + drugAllergies);
+        System.out.println("\nNEXT OF KIN (NOK) DETAILS");
+        System.out.println("---------------------------------------------------------------------");
+        System.out.printf("Name: " + nokName);
+        System.out.printf("\t   Relationship: " + nokRelation);
+        System.out.printf("\n\nAddress: " + nokAddress);
     }
 
     /**
@@ -115,6 +119,7 @@ public class Patient extends Human {
                 "Patient ID", "Name of Insured", "NRIC/FIN", "Contact", "Mailing Address", "Occupation", "Company Name", "Company Address");
         System.out.printf("%-13s %-30s %-11s %-18s %-24s %-14s %-18s %-30s%n",
                 patientId, name, nricFin, contact, address, occupation, companyName, companyAddress);
+
     }
 
     /**
