@@ -135,6 +135,13 @@ public class DataGenerator {
         return String.format("RN%05dB", generateRandomInt(100000));
     }
 
+    public String generatePatientId() {
+        int year = java.time.LocalDate.now().getYear();
+        int randomDigits = generateRandomInt(10000, 99999);
+        return String.format("P-%d%05d", year, randomDigits);
+    }
+
+
     public String generateNRICNumber() {
         String prefix = generateRandomInt(2) == 0 ? "S" : "T";
         String numbers = String.format("%07d", generateRandomInt(10000000));

@@ -1,11 +1,10 @@
 package medical;
 
-import utils.CSVHelper;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.*;
 import java.util.stream.Collectors;
+import utils.CSVHelper;
 
 /**
  * Represents a medication with associated details loaded from a CSV file.
@@ -192,6 +191,16 @@ public class Medication {
                 drugCode, name, standardDosage, unitForm,
                 category, manufacturer,
                 pricePerUnit, unitDescription);
+    }
+
+    /**
+     * Gets a random medication from the registry
+     * @return A randomly selected Medication
+     */
+    public static Medication getRandomMedication() {
+        String[] codes = DRUG_REGISTRY.keySet().toArray(new String[0]);
+        int randomIndex = (int) (Math.random() * codes.length);
+        return createFromCode(codes[randomIndex]);
     }
 
 }
