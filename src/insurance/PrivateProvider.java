@@ -100,4 +100,9 @@ public class PrivateProvider extends InsuranceProvider {
     public boolean hasActiveCoverage(Patient patient) {
         return false;
     }
+
+    @Override
+    public String getProviderName() {
+        return "Private Provider";
+    }
 }
