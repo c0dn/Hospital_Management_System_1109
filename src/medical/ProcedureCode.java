@@ -13,8 +13,11 @@ import java.util.Map;
 /**
  * Represents a medical procedure code with associated description and price.
  * Procedure codes can be loaded from a CSV file and used for billing purposes.
+ * This class implements {@link BillableItem} and {@link ClaimableItem} interfaces to handle the
+ * billing and claims of the procedure.
  */
 public class ProcedureCode implements BillableItem, ClaimableItem {
+
     private String code;
     private String description;
     private BigDecimal price;
@@ -25,12 +28,22 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
         loadCodesFromCsv();
     }
 
+    /**
+     * Constructor for ProcedureCode
+     *
+     * @param code The unique procedure code.
+     * @param description The description of the procedure.
+     */
     private ProcedureCode(String code, String description) {
         this.code = code;
         this.description = description;
         this.price = DEFAULT_PRICE;
     }
 
+    /**
+     * Loads the procedure codes and their descriptions from a CSV file.
+     * The codes are stored in a registry for quick lookup.
+     */
     private static void loadCodesFromCsv() {
         CSVHelper csvHelper = CSVHelper.getInstance();
         List<String[]> records = csvHelper.readCSV("icd-10-pcs.csv");
@@ -45,6 +58,13 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
         }
     }
 
+    /**
+     * Creates a ProcedureCode from the provided procedure code string.
+     *
+     * @param code The procedure code to retrieve from the registry.
+     * @return A {@link ProcedureCode} corresponding to the provided code.
+     * @throws IllegalArgumentException If the procedure code is invalid.
+     */
     public static ProcedureCode createFromCode(String code) {
         ProcedureCode procedureCode = CODE_REGISTRY.get(code);
         if (procedureCode == null) {
@@ -56,36 +76,73 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
         );
     }
 
+    /**
+     * Returns the billing item code for the procedure, prefixed with "PROC-".
+     *
+     * @return A string representing the billing item code.
+     */
     @Override
     public String getBillingItemCode() {
         return String.format("PROC-%s", code);
     }
 
+    /**
+     * Returns the unsubsidised charges for the procedure, which is the price of the procedure.
+     *
+     * @return The unsubsidised charges for the procedure.
+     */
     @Override
     public BigDecimal getUnsubsidisedCharges() {
         return price;
     }
 
+    /**
+     * Returns the description of the procedure.
+     *
+     * @return The procedure description.
+     */
     @Override
     public String getBillItemDescription() {
         return description;
     }
 
+    /**
+     * Returns the category of the bill item, which is "PROCEDURE".
+     *
+     * @return The category of the bill item.
+     */
     @Override
     public String getBillItemCategory() {
         return "PROCEDURE";
     }
 
+    /**
+     * Returns a string representation of the procedure code, description, and price.
+     *
+     * @return A string representing the procedure code, description, and price.
+     */
     @Override
     public String toString() {
         return String.format("%s: %s [%s]", code, description, price);
     }
 
+    /**
+     * Returns the charges for the procedure.
+     *
+     * @return The charges for the procedure.
+     */
     @Override
     public BigDecimal getCharges() {
         return price;
     }
 
+    /**
+     * Resolves the appropriate benefit type based on the procedure code and whether the patient is an inpatient.
+     * The benefit type is determined based on the procedure code's section and body system.
+     *
+     * @param isInpatient A boolean value indicating whether the patient is an inpatient.
+     * @return A {@link BenefitType} representing the type of benefit for the procedure.
+     */
     @Override
     public BenefitType resolveBenefitType(boolean isInpatient) {
         if (code == null || code.length() < 2) return defaultFallback(isInpatient);
@@ -115,13 +172,24 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
         return defaultFallback(isInpatient);
     }
 
+    /**
+     * Fallback method for determining the benefit type in case of an invalid or unsupported procedure code.
+     *
+     * @param isInpatient A boolean value indicating whether the patient is an inpatient.
+     * @return The fallback {@link BenefitType}, either HOSPITALIZATION or OUTPATIENT_TREATMENTS.
+     */
     private BenefitType defaultFallback(boolean isInpatient) {
         return isInpatient ? BenefitType.HOSPITALIZATION
                 : BenefitType.OUTPATIENT_TREATMENTS;
     }
 
-
-
+    /**
+     * Returns a description of the benefit for the procedure, indicating whether it is inpatient or outpatient,
+     * and providing additional details like the body system if applicable.
+     *
+     * @param isInpatient A boolean value indicating whether the patient is an inpatient.
+     * @return A string representing a description of the procedure benefit.
+     */
     @Override
     public String getBenefitDescription(boolean isInpatient) {
         StringBuilder description = new StringBuilder();
@@ -140,6 +208,12 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
         return description.toString();
     }
 
+    /**
+     * Returns the body system related to the procedure based on the second character of the procedure code.
+     *
+     * @param secondChar The second character in the procedure code.
+     * @return The body system description, or null if not applicable.
+     */
     private String getBodySystem(char secondChar) {
         return switch (secondChar) {
             case '0' -> "Central Nervous System";
@@ -170,8 +244,11 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
         };
     }
 
-
-
+    /**
+     * Returns the section of the procedure code, which represents the category of the procedure.
+     *
+     * @return A string representing the procedure section.
+     */
     public String getProcedureSection() {
         char firstDigit = code.charAt(0);
         return switch (firstDigit) {
@@ -189,7 +266,11 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
         };
     }
 
-
+    /**
+     * Returns the procedure code.
+     *
+     * @return The procedure code.
+     */
     @Override
     public String getProcedureCode() {
         return code;
