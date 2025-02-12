@@ -1,7 +1,7 @@
 package claims;
 
 import billing.Bill;
-import humans.Patient;
+import people.Patient;
 import insurance.InsuranceProvider;
 import policy.InsurancePolicy;
 import utils.DataGenerator;

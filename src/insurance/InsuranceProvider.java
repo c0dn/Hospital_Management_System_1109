@@ -1,7 +1,7 @@
 package insurance;
 
 import billing.Bill;
-import humans.Patient;
+import people.Patient;
 import policy.InsurancePolicy;
 
 import java.util.Optional;

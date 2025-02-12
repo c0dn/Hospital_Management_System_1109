@@ -1,6 +1,6 @@
 package billing;
 
-import humans.Patient;
+import people.Patient;
 import medical.Consultation;
 import medical.Visit;
 import policy.InsurancePolicy;

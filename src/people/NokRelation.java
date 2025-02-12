@@ -1,4 +1,4 @@
-package humans;
+package people;
 
 /**
  * Represents the relationship between a patient and their next of kin.

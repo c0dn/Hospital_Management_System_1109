@@ -1,6 +1,6 @@
 package wards;
 
-import humans.Patient;
+import people.Patient;
 
 /**
  * Represents a hospital bed that can be assigned to a patient.

@@ -1,4 +1,4 @@
-package humans;
+package people;
 
 import java.time.LocalDate;
 
@@ -6,7 +6,7 @@ import java.time.LocalDate;
  * Represents a general human entity in the insurance system.
  * This serves as a base class for patients, doctors and other human-related roles.
  */
-public abstract class Human {
+public abstract class Person {
 
     /**
      * The name of the person.
@@ -75,7 +75,7 @@ public abstract class Human {
      *                nationality, address, contact, sex, bloodType, and vaccination
      *                status to properly construct a Human object.
      */
-    Human(HumanBuilder<?> builder) {
+    Person(PersonBuilder<?> builder) {
         this.name = builder.name;
         this.dateOfBirth = builder.dateOfBirth;
         this.nricFin = builder.nricFin;

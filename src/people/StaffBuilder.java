@@ -1,13 +1,13 @@
-package humans;
+package people;
 
 /**
  * An abstract builder class for creating Staff objects.
- * This class extends {@link HumanBuilder} and provides methods for setting attributes
+ * This class extends {@link PersonBuilder} and provides methods for setting attributes
  * related to staff members, such as staff ID, title, and department.
  *
  * @param <T> The type of the concrete builder extending this class
  */
-public abstract class StaffBuilder<T extends StaffBuilder<T>> extends HumanBuilder<T> {
+public abstract class StaffBuilder<T extends StaffBuilder<T>> extends PersonBuilder<T> {
     /** The unique identifier for a staff member. */
     String staffId;
     /** The title or designation of the staff member. */

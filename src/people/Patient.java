@@ -1,4 +1,4 @@
-package humans;
+package people;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
  * </p>
  */
 
-public class Patient extends Human {
+public class Patient extends Person {
     /** The unique identifier for the patient. */
     private final String patientId;
     /** A list of the patient's drug allergies. */

@@ -1,6 +1,4 @@
-package humans;
-
-import java.time.LocalDate;
+package people;
 
 /**
  * Represents staff in the insurance system.
@@ -14,7 +12,7 @@ import java.time.LocalDate;
  * </ul>
  */
 
-public class Staff extends Human {
+public class Staff extends Person {
     /** The unique identifier for the staff. */
     private String staffId;
     /** The title of the staff. */
