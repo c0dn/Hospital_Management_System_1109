@@ -1,7 +1,7 @@
 package insurance;
 
 import billing.Bill;
-import people.Patient;
+import humans.Patient;
 import policy.*;
 import utils.DataGenerator;
 import wards.WardClassType;
@@ -99,5 +99,10 @@ public class PrivateProvider extends InsuranceProvider {
     @Override
     public boolean hasActiveCoverage(Patient patient) {
         return false;
+    }
+
+    @Override
+    public String getProviderName() {
+        return "Private Provider";
     }
 }

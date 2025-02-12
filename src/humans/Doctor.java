@@ -1,4 +1,4 @@
-package people;
+package humans;
 
 /**
  * Represents a doctor in the insurance system.
@@ -18,7 +18,7 @@ public class Doctor extends Staff {
      * Constructs a Doctor object using the provided DoctorBuilder.
      * This constructor initializes the doctor-specific details,
      * including the Medical Council Registration (MCR) number,
-     * as well as all inherited attributes from the {@link Staff} and {@link Person} classes.
+     * as well as all inherited attributes from the {@link Staff} and {@link Human} classes.
      *
      * @param builder The {@code DoctorBuilder} instance used to initialize the Doctor object.
      *                Contains the data required to populate both doctor-specific fields such as the MCR number,

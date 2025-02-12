@@ -1,4 +1,4 @@
-package people;
+package humans;
 
 /**
  * Defines the sex of a person.

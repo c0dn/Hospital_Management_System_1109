@@ -1,4 +1,4 @@
-package people;
+package humans;
 
 /**
  * Defines the residential status of a person.

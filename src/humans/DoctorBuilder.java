@@ -1,4 +1,4 @@
-package people;
+package humans;
 
 /**
  * Builder class for creating instances of {@link Doctor}.

@@ -1,4 +1,4 @@
-package people;
+package humans;
 
 /**
  * Builder class for constructing instances of {@link Nurse}.
