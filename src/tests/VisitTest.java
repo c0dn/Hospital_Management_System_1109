@@ -41,9 +41,9 @@ public class VisitTest {
                     .withRandomBaseData()
                     .build();
             Visit visit1 = Visit.createNew(LocalDateTime.now(), patient);
-            System.out.println("Visit created with status: " + visit1.getStatus());
-            System.out.println("Is newly admitted: " + visit1.isNewlyAdmitted());
-            System.out.println("Is modifiable: " + visit1.isModifiable());
+            System.out.println("Patient Visited Status: " + visit1.getStatus());
+            System.out.println("Newly Admitted? :  " + visit1.isNewlyAdmitted());
+            System.out.println("Modifiable? : " + visit1.isModifiable());
 
             // Test 2: Test state transitions
             System.out.println("\nTest 2 - Testing state transitions:");
@@ -53,8 +53,8 @@ public class VisitTest {
             System.out.println("Is in progress: " + visit1.isInProgress());
             visit1.updateStatus(VisitStatus.DISCHARGED);
             System.out.println("After updating to DISCHARGED: " + visit1.getStatus());
-            System.out.println("Is discharged: " + visit1.isDischarged());
-            System.out.println("Is finalized: " + visit1.isFinalized());
+            System.out.println("Is patient discharged? : " + visit1.isDischarged());
+            System.out.println("Is the visit finalized: " + visit1.isFinalized());
 
             // Test 3: Create a visit with random data
             System.out.println("\nTest 3 - Creating visit with random data:");
@@ -68,11 +68,11 @@ public class VisitTest {
             // Assign medical staff
             Doctor doctor = Doctor.builder().withRandomBaseData().build();
             visit3.assignDoctor(doctor);
-            System.out.println("Doctor assigned");
+            System.out.println("Doctor Assigned");
 
             Nurse nurse = Nurse.builder().withRandomBaseData().build();
             visit3.assignNurse(nurse);
-            System.out.println("Nurse assigned");
+            System.out.println("Nurse Assigned");
 
             // Add ward stay
             Ward generalWard = WardFactory.getWard("General Ward A", WardClassType.GENERAL_CLASS_A);
@@ -80,17 +80,17 @@ public class VisitTest {
             LocalDateTime now = LocalDateTime.now();
             WardStay wardStay = new WardStay(generalWard, now, now.plusDays(3), false);
             visit3.addWardStay(wardStay);
-            System.out.println("Ward stay added");
+            System.out.println("Ward stay is added");
 
             // Add procedure
             ProcedureCode procedure = ProcedureCode.getRandomCode();
             visit3.procedure(procedure);
-            System.out.println("Procedure added");
+            System.out.println("Procedure is added");
 
             // Add diagnostic code
             DiagnosticCode diagnostic = DiagnosticCode.getRandomCode();
             visit3.diagnose(diagnostic);
-            System.out.println("Diagnostic code added");
+            System.out.println("Diagnostic code is added");
 
             // Prescribe random medicines
             System.out.println("\nPrescribing random medications:");
