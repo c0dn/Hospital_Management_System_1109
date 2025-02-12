@@ -1,6 +1,4 @@
-package humans;
-
-import java.util.Random;
+package people;
 
 /**
  * Builder class for creating instances of {@link Doctor}.

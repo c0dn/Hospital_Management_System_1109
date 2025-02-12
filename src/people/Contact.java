@@ -1,4 +1,4 @@
-package humans;
+package people;
 
 /**
  * Stores contact details of a person, such as phone number and email.

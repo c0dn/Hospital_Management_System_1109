@@ -1,7 +1,7 @@
 package tests;
 
 import wards.*;
-import humans.Patient;
+import people.Patient;
 
 /**
  * A test class for the Ward system.

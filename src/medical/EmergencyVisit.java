@@ -1,15 +1,10 @@
 package medical;
 
-import humans.Doctor;
-import humans.Nurse;
-import humans.Patient;
+import people.Patient;
 import policy.AccidentType;
-import policy.BenefitType;
-import billing.BillableItem;
 import utils.DataGenerator;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 public class EmergencyVisit extends Visit {
     private AccidentType accidentType;

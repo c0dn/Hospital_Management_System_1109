@@ -1,7 +1,7 @@
 package tests;
 
-import humans.*;
-import humans.NurseBuilder;
+import people.*;
+
 import java.time.LocalDate;
 
 /**

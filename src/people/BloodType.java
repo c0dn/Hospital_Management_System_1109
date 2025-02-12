@@ -1,4 +1,4 @@
-package humans;
+package people;
 
 /**
  * Defines the blood type of a person.

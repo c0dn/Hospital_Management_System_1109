@@ -1,6 +1,4 @@
-package humans;
-
-import java.time.LocalDate;
+package people;
 
 /**
  * Represents the details of a nurse in the insurance system.
