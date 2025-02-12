@@ -69,9 +69,13 @@ public class EmergencyVisit extends Visit {
         );
     }
 
+    /**
+     * Gets the accident type associated with this emergency visit.
+     *
+     * @return The type of accident that caused the emergency visit.
+     */
     // Specific accident-related methods
     public AccidentType getAccidentType() {
         return accidentType;
     }
-
 }

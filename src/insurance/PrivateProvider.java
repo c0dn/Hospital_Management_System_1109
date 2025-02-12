@@ -13,16 +13,47 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+/**
+ * Represents a private insurance provider.
+ * <p>
+ * The {@link PrivateProvider} class extends {@link InsuranceProvider} and represents an insurance
+ * provider offering private insurance policies. It includes functionality for processing claims,
+ * retrieving a patient's policy, and checking if a patient has active coverage.
+ * </p>
+ */
 public class PrivateProvider extends InsuranceProvider {
 
+    /** Instance of the DataGenerator used to generate random data. */
     private final DataGenerator dataGen = DataGenerator.getInstance();
 
-
+    /**
+     * Processes a claim for a patient.
+     * <p>
+     * Define how claims for medical
+     * bills incurred by a patient are processed. In the {@code PrivateProvider} class, this
+     * implementation currently returns {@code false}.
+     * </p>
+     *
+     * @param patient The patient who is making the claim.
+     * @param bill The bill for which the claim is being made.
+     * @return A boolean value indicating whether the claim was successfully processed.
+     */
     @Override
     public boolean processClaim(Patient patient, Bill bill) {
         return false;
     }
 
+    /**
+     * Retrieves the insurance policy for a given patient.
+     * <p>
+     * This method generates a random insurance policy for the patient, using random values
+     * for various coverage limits, deductibles, exclusions, and covered benefits. The generated
+     * policy is returned wrapped in an {@code Optional}.
+     * </p>
+     *
+     * @param patient The patient whose insurance policy is to be retrieved.
+     * @return An {@code Optional} containing the patient's generated insurance policy if it exists.
+     */
     @Override
     public Optional<InsurancePolicy> getPatientPolicy(Patient patient) {
         // In the real world it should retrieve actual policy
@@ -48,7 +79,6 @@ public class PrivateProvider extends InsuranceProvider {
                 .addWardLimit(WardClassType.GENERAL_CLASS_C, dataGen.generateRandomInt(100_000, 200_000))
                 .build();
 
-
         Set<String> diagnosisCodes = new HashSet<>(Arrays.asList(
                 "Z41\\.1", "Z34\\.*", "Z51\\.*", "Z52\\.*"
         ));
@@ -65,7 +95,6 @@ public class PrivateProvider extends InsuranceProvider {
                 AccidentType.TEMPORARY_DISABILITY,
                 AccidentType.PERMANENT_DISABILITY
         ));
-
 
         BaseCoverage coverage = new BaseCoverage.Builder()
                 .withCoinsurance(BigDecimal.valueOf(dataGen.generateRandomInt(10, 30) / 100.0)) // 10-30%
@@ -93,9 +122,19 @@ public class PrivateProvider extends InsuranceProvider {
                 dataGen.getRandomInsuranceName())
                 .withExpirationDate(expirationDate)
                 .build());
-
     }
 
+    /**
+     * Checks if the patient has active coverage under the private insurance provider.
+     * <p>
+     * Check if a given patient has active coverage with the private provider.
+     * In the {@code PrivateProvider} class, this implementation currently
+     * returns {@code false}.
+     * </p>
+     *
+     * @param patient The patient whose coverage status is to be checked.
+     * @return A boolean value indicating whether the patient has active coverage.
+     */
     @Override
     public boolean hasActiveCoverage(Patient patient) {
         return false;
