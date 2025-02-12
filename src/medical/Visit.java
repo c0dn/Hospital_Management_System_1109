@@ -136,6 +136,20 @@ public class Visit {
                     gen.generateRandomInt(1, 10));
         }
 
+
+        // Add Procedures
+        int procedureCount = gen.generateRandomInt(1, 5);
+        for (int i = 0; i < procedureCount; i++) {
+            visit.procedure(ProcedureCode.getRandomCode());
+        }
+
+        // Add Diagnose
+        int diagnoseCount = gen.generateRandomInt(1, 5);
+        for (int i = 0; i < diagnoseCount; i++) {
+            visit.diagnose(DiagnosticCode.getRandomCode());
+        }
+
+
         return visit;
     }
 

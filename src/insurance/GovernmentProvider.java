@@ -1,17 +1,17 @@
 package insurance;
 
-import billing.Bill;
+import claims.ClaimStatus;
+import claims.InsuranceClaim;
 import humans.Patient;
-import policy.*;
-import utils.DataGenerator;
-import wards.WardClassType;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import policy.*;
+import utils.DataGenerator;
+import wards.WardClassType;
 
 /**
  * Represents an insurance provider that is a government entity.
@@ -138,8 +138,11 @@ public class GovernmentProvider extends InsuranceProvider {
 
 
     @Override
-    public boolean processClaim(Patient patient, Bill bill) {
-        return false;
+    public boolean processClaim(Patient patient, InsuranceClaim claim) {
+        // Always approve fully for testing purposes
+        claim.updateStatus(ClaimStatus.IN_REVIEW);
+        claim.updateStatus(ClaimStatus.APPROVED);
+        return true;
     }
 
     @Override
@@ -172,7 +175,13 @@ public class GovernmentProvider extends InsuranceProvider {
 
     @Override
     public boolean hasActiveCoverage(Patient patient) {
-        return false;
+        return true;
+    }
+
+
+    @Override
+    public String getProviderName() {
+        return "Gov Provider";
     }
 
 }

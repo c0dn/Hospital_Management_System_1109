@@ -1,6 +1,7 @@
 package insurance;
 
 import billing.Bill;
+import claims.InsuranceClaim;
 import humans.Patient;
 import policy.InsurancePolicy;
 
@@ -14,7 +15,7 @@ public abstract class InsuranceProvider {
 
     protected String providerName;
 
-    public abstract boolean processClaim(Patient patient, Bill bill);
+    public abstract boolean processClaim(Patient patient, InsuranceClaim claim);
 
 
     public abstract Optional<InsurancePolicy> getPatientPolicy(Patient patient);
