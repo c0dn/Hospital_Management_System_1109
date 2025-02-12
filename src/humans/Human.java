@@ -187,19 +187,19 @@ public abstract class Human {
         System.out.println("PERSONAL INFORMATION");
         System.out.println("---------------------------------------------------------------------");
         System.out.printf("Name: " + name);
-        System.out.printf("\t\tNRIF/FIN: " + nricFin);
-        System.out.printf("%n%nDate of Birth: " + dateOfBirth);
-        System.out.printf("\t\tNationality: " + nationality);
+        System.out.printf("\nNRIF/FIN: " + nricFin);
+        System.out.printf("%nDate of Birth: " + dateOfBirth);
+        System.out.printf("\nNationality: " + nationality);
         System.out.println("\n\nDEMOGRAPHIC & RESIDENTIAL INFORMATION");
         System.out.println("---------------------------------------------------------------------");
         System.out.printf("Contact: " + contact);
-        System.out.printf("\t\tMarital Status: " + maritalStatus);
+        System.out.printf("\ntMarital Status: " + maritalStatus);
         System.out.printf("%n%nResidential Status: " + residentialStatus);
-        System.out.printf("\n\nAddress: " + address);
+        System.out.printf("\nAddress: " + address);
         System.out.println("\n\nMEDICAL INFORMATION");
         System.out.println("---------------------------------------------------------------------");
         System.out.printf("Sex: " + sex);
-        System.out.printf("\t\tBlood Type: " + bloodType);
-        System.out.printf("\t\tVaccinated: " + isVaccinated);
+        System.out.printf("\nBlood Type: " + bloodType);
+        System.out.printf("\nVaccinated: " + isVaccinated);
     }
 }
