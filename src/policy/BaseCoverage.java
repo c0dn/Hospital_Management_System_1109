@@ -52,25 +52,64 @@ public class BaseCoverage implements Coverage {
      * The builder pattern is used to ensure that all required fields are set before creating an instance of
      * {@link BaseCoverage}.
      * </p>
+     * <p>
+     * This builder ensures that all fields necessary for creating a valid coverage plan are configured,
+     * and it validates the required fields before constructing the {@link BaseCoverage} instance.
+     * </p>
      */
     public static class Builder {
 
-        /** The coverage limits for this coverage plan. */
+        /**
+         * The coverage limits for this coverage plan.
+         * <p>
+         * This defines the maximum amount of coverage that can be provided by the plan
+         * for various types of claims such as annual, lifetime, and accident-based limits.
+         * </p>
+         */
         private CoverageLimit limits;
 
-        /** The deductible amount for this coverage plan. Defaults to {@code 0.00}. */
+        /**
+         * The deductible amount for this coverage plan.
+         * <p>
+         * This is the amount that the policyholder must pay out-of-pocket before the insurance coverage kicks in.
+         * Defaults to {@code 0.00}.
+         * </p>
+         */
         private BigDecimal deductible = BigDecimal.ZERO;
 
-        /** The coinsurance percentage for this coverage plan. Defaults to {@code 0.00}. */
+        /**
+         * The coinsurance percentage for this coverage plan.
+         * <p>
+         * This represents the percentage of the claim amount that the policyholder must pay after the deductible is met.
+         * Defaults to {@code 0.00}.
+         * </p>
+         */
         private BigDecimal coinsurance = BigDecimal.ZERO;
 
-        /** The death benefit amount for this coverage plan. Defaults to {@code 0.00}. */
+        /**
+         * The death benefit amount for this coverage plan.
+         * <p>
+         * This defines the amount paid out to beneficiaries in the event of the policyholder's death.
+         * Defaults to {@code 0.00}.
+         * </p>
+         */
         private BigDecimal deathBenefitAmount = BigDecimal.ZERO;
 
-        /** The set of benefits covered by this coverage plan. */
+        /**
+         * The set of benefits covered by this coverage plan.
+         * <p>
+         * This defines the types of benefits that are included in the coverage, such as hospitalization, surgeries, etc.
+         * </p>
+         */
         private Set<BenefitType> coveredBenefits;
 
-        /** The exclusion criteria for this coverage plan. */
+        /**
+         * The exclusion criteria for this coverage plan.
+         * <p>
+         * This defines conditions or items that are excluded from the coverage, such as specific diagnoses, procedures,
+         * or accident types.
+         * </p>
+         */
         private ExclusionCriteria exclusions;
 
         /**

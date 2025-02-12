@@ -165,7 +165,8 @@ public class CoverageLimit {
     /**
      * Builder class for constructing {@link CoverageLimit} instances with specified limits.
      * <p>
-     * The builder pattern allows for setting coverage limits for annual, lifetime, benefits, ward classes, and accidents.
+     * The builder pattern allows for setting coverage limits for annual, lifetime,
+     * benefits, ward classes, and accidents.
      * </p>
      */
     public static class Builder {
