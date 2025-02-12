@@ -28,7 +28,7 @@ public class EmergencyVisit extends Visit {
         DataGenerator gen = DataGenerator.getInstance();
         LocalDateTime admissionTime = LocalDateTime.now()
                 .minusDays(gen.generateRandomInt(1, 30));
-        Patient randomPatient = Patient.builder().withRandomBaseData().build();
+        Patient randomPatient = Patient.builder().withRandomBaseData().patientId(gen.generatePatientId()).build();
         AccidentType accidentType = gen.getRandomElement(AccidentType.values());
 
         EmergencyVisit visit = new EmergencyVisit(accidentType,

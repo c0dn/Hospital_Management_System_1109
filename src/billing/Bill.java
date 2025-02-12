@@ -16,8 +16,11 @@ import java.util.*;
 public class Bill {
     /** Unique identifier for the bill. */
     private String billId;
-    /** Unique identifier of the patient associated with the bill. */
-    private Patient patient;
+    /**
+     * Unique identifier of the patient associated with the bill.
+     */
+    private final Patient patient;
+
     /** Date and time when the bill was created. */
     private LocalDateTime billDate;
     /** List of billing line items included in the bill. */
@@ -152,5 +155,10 @@ public class Bill {
             categorizedCharges.put(category,
                     categorizedCharges.getOrDefault(category, BigDecimal.ZERO).add(totalPrice));
         }
+    }
+
+
+    public Patient getPatient() {
+        return patient;
     }
 }
