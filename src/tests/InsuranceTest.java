@@ -16,6 +16,7 @@ public class InsuranceTest {
             DataGenerator gen = DataGenerator.getInstance();
             Patient patient = Patient.builder().withRandomData(gen.generatePatientId()).build();
             Optional<InsurancePolicy> policy = provider.getPatientPolicy(patient);
+            policy.ifPresent(p -> System.out.println("Insurance Policy: " + p));
 
         } catch (Exception e) {
             System.err.println("Unexpected error: " + e.getMessage());
