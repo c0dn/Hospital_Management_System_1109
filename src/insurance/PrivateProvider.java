@@ -1,4 +1,5 @@
 package insurance;
 
-public class PrivateProvider {
+public class PrivateProvider extends InsuranceProvider {
+
 }

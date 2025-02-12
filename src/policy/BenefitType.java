@@ -12,6 +12,9 @@ public enum BenefitType {
     MEDICATION_ADMIN,     // Section 3 (drug infusions)
     MINOR_SURGERY,
     MAJOR_SURGERY,
+    PREVENTIVE_CARE,
+    CHRONIC_CONDITIONS,
+    ACUTE_CONDITIONS,
     ACCIDENT,
 
 }

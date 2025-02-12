@@ -1,7 +1,6 @@
 package tests;
 
 import humans.*;
-import medical.HealthcareProvider;
 import medical.MedicalRecord;
 import medical.TypeOfVisit;
 import wards.Ward;

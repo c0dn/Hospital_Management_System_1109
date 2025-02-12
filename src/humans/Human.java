@@ -8,37 +8,59 @@ import java.time.LocalDate;
  */
 public abstract class Human {
 
-    /** The name of the person. */
+    /**
+     * The name of the person.
+     */
     protected String name;
 
-    /** The date of birth of the person. */
+    /**
+     * The date of birth of the person.
+     */
     protected LocalDate dateOfBirth;
 
-    /** The NRIC/FIN (identification number) of the person. */
+    /**
+     * The NRIC/FIN (identification number) of the person.
+     */
     protected String nricFin;
 
-    /** The marital status of the person. */
+    /**
+     * The marital status of the person.
+     */
     protected MaritalStatus maritalStatus;
 
-    /** The residential status of the person. */
+    /**
+     * The residential status of the person.
+     */
     protected ResidentialStatus residentialStatus;
 
-    /** The nationality of the person. */
+    /**
+     * The nationality of the person.
+     */
     protected String nationality;
 
-    /** The residential address of the person. */
+    /**
+     * The residential address of the person.
+     */
     protected String address;
 
-    /** The contact details of the person. */
+    /**
+     * The contact details of the person.
+     */
     protected Contact contact;
 
-    /** The sex of the person. */
+    /**
+     * The sex of the person.
+     */
     protected Sex sex;
 
-    /** The blood type of the person. */
+    /**
+     * The blood type of the person.
+     */
     protected BloodType bloodType;
 
-    /** The vaccination status of the person. */
+    /**
+     * The vaccination status of the person.
+     */
     protected boolean isVaccinated;
 
     /**
@@ -75,6 +97,80 @@ public abstract class Human {
      */
     public String getNricFin() {
         return nricFin;
+    }
+
+    /**
+     * Checks if the person is a Singapore citizen.
+     *
+     * @return true if the person is a citizen, false otherwise
+     */
+    public boolean isSingaporean() {
+        return residentialStatus == ResidentialStatus.CITIZEN;
+    }
+
+    /**
+     * Checks if the person is a permanent resident.
+     *
+     * @return true if the person is a permanent resident, false otherwise
+     */
+    public boolean isPermanentResident() {
+        return residentialStatus == ResidentialStatus.PERMANENT_RESIDENT;
+    }
+
+    /**
+     * Checks if the person is on a work pass.
+     *
+     * @return true if the person holds a work pass, false otherwise
+     */
+    public boolean isWorkPassHolder() {
+        return residentialStatus == ResidentialStatus.WORK_PASS;
+    }
+
+    /**
+     * Checks if the person is on a dependent pass.
+     *
+     * @return true if the person is on a dependent pass, false otherwise
+     */
+    public boolean isDependentPassHolder() {
+        return residentialStatus == ResidentialStatus.DEPENDENT_PASS;
+    }
+
+    /**
+     * Checks if the person is a visitor.
+     *
+     * @return true if the person is a visitor, false otherwise
+     */
+    public boolean isVisitor() {
+        return residentialStatus == ResidentialStatus.VISITOR;
+    }
+
+    /**
+     * Checks if the person is a resident (either citizen or permanent resident).
+     *
+     * @return true if the person is either a citizen or permanent resident, false otherwise
+     */
+    public boolean isResident() {
+        return residentialStatus == ResidentialStatus.CITIZEN ||
+                residentialStatus == ResidentialStatus.PERMANENT_RESIDENT;
+    }
+
+    /**
+     * Calculates the current age of the person based on their date of birth.
+     *
+     * @return the person's current age in years
+     */
+    public int getAge() {
+        return LocalDate.now().getYear() - dateOfBirth.getYear();
+    }
+
+
+    /**
+     * Retrieves the date of birth of the person.
+     *
+     * @return The date of birth as a {@code LocalDate} object.
+     */
+    public LocalDate getDOB() {
+        return dateOfBirth;
     }
 
     /**

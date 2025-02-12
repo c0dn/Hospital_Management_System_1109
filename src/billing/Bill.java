@@ -1,6 +1,9 @@
 package billing;
 
 
+import humans.Patient;
+import policy.InsurancePolicy;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -16,7 +19,7 @@ public class Bill {
     /** Unique identifier for the bill. */
     private String billId;
     /** Unique identifier of the patient associated with the bill. */
-    private String patientId;
+    private Patient patient;
     /** Date and time when the bill was created. */
     private LocalDateTime billDate;
     /** List of billing line items included in the bill. */
@@ -38,7 +41,7 @@ public class Bill {
      */
     Bill(BillBuilder builder) {
         this.billId = builder.billId;
-        this.patientId = builder.patientId;
+        this.patient = builder.patient;
         this.billDate = builder.billDate;
         this.lineItems = new ArrayList<>();
         this.categorizedCharges = new HashMap<>();
@@ -69,28 +72,6 @@ public class Bill {
      * @return The total charge for the given category, or {@code BigDecimal.ZERO} if not found.
      */
     public void calculateInsuranceCoverage() {
-        if (insurancePolicy == null ||
-                insurancePolicy.getStatus() != InsuranceStatus.ACTIVE) {
-            patientResponsibility = getTotalAmount();
-            insuranceCoverage = BigDecimal.ZERO;
-            return;
-        }
-
-        BigDecimal totalAmount = getTotalAmount();
-        BigDecimal deductible = BigDecimal.valueOf(insurancePolicy.getDeductible());
-
-        // Apply deductible
-        BigDecimal afterDeductible = totalAmount.subtract(deductible);
-        if (afterDeductible.compareTo(BigDecimal.ZERO) <= 0) {
-            insuranceCoverage = BigDecimal.ZERO;
-            patientResponsibility = totalAmount;
-            return;
-        }
-
-        // Calculate insurance portion
-        BigDecimal coInsuranceRate = BigDecimal.valueOf(insurancePolicy.getCoInsuranceRate());
-        insuranceCoverage = afterDeductible.multiply(coInsuranceRate);
-        patientResponsibility = totalAmount.subtract(insuranceCoverage);
 
         // Update status
         status = BillingStatus.INSURANCE_PENDING;

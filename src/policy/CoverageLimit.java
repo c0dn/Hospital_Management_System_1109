@@ -68,6 +68,15 @@ public class CoverageLimit {
                 .orElse(true);
     }
 
+
+    public BigDecimal getAnnualLimit() {
+        return annualLimit;
+    }
+
+    public BigDecimal getLifetimeLimit() {
+        return lifetimeLimit;
+    }
+
     public static class Builder {
         private BigDecimal annualLimit;
         private BigDecimal lifetimeLimit;
@@ -75,13 +84,13 @@ public class CoverageLimit {
         private Map<WardClassType, BigDecimal> wardLimits = new HashMap<>();
         private Map<AccidentType, BigDecimal> accidentSubLimits = new HashMap<>();
 
-        public Builder withAnnualLimit(double limit) {
-            this.annualLimit = BigDecimal.valueOf(limit);
+        public Builder withAnnualLimit(BigDecimal limit) {
+            this.annualLimit = limit;
             return this;
         }
 
-        public Builder withLifetimeLimit(double limit) {
-            this.lifetimeLimit = BigDecimal.valueOf(limit);
+        public Builder withLifetimeLimit(BigDecimal limit) {
+            this.lifetimeLimit = limit;
             return this;
         }
 
