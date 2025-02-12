@@ -13,7 +13,14 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-
+/**
+ * Represents an insurance provider that is a government entity.
+ * <p>
+ * The {@link GovernmentProvider} class extends {@link InsuranceProvider} and represents a provider
+ * for government-issued insurance policies. It includes functionality for handling claims and checking
+ * whether a patient has active coverage
+ * </p>
+ */
 public class GovernmentProvider extends InsuranceProvider {
 
     private final Map<String, BaseCoverage> coverageDatabase;
