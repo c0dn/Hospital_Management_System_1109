@@ -19,14 +19,5 @@ public class Main {
      */
     public static void main(String[] args) {
 
-        Medication med = Medication.createFromCode("D0001");
-        if (Objects.equals(med.getCategory(), "Antibiotics")) {
-            System.out.println("Yes");
-        }
-        med.printDrugInformation();
-
-
-        List<Medication> antibiotics = Medication.getMedicationsByCategory("Antibiotics", 5, true);
-
     }
 }

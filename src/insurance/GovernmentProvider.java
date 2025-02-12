@@ -2,81 +2,177 @@ package insurance;
 
 import billing.Bill;
 import humans.Patient;
-import policy.InsurancePolicy;
+import policy.*;
+import utils.DataGenerator;
+import wards.WardClassType;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * Represents an insurance provider that is a government entity.
  * <p>
  * The {@link GovernmentProvider} class extends {@link InsuranceProvider} and represents a provider
  * for government-issued insurance policies. It includes functionality for handling claims and checking
- * whether a patient has active coverage.
+ * whether a patient has active coverage
  * </p>
  */
 public class GovernmentProvider extends InsuranceProvider {
 
-    // Database to store insurance policies, using policy identifiers as keys
-    private final Map<String, InsurancePolicy> policyDatabase;
+    private final Map<String, BaseCoverage> coverageDatabase;
 
-    /**
-     * Constructor for creating a new GovernmentProvider.
-     * <p>
-     * Initializes the provider with an empty policy database.
-     * </p>
-     */
     public GovernmentProvider() {
-        this.policyDatabase = new HashMap<>();
+        this.coverageDatabase = new HashMap<>();
+
+        Set<String> excludedDiagnosis = Set.of(
+                "Z41\\.1",     // Exact match
+                "Z00.*",       // Any code starting with Z00
+                "E66\\..*"     // Any E66 code with any suffix
+        );
+
+        Set<String> excludedProcedures = Set.of(
+                "0B[HJQ]",     // Match 0BH, 0BJ, or 0BQ
+                "3E0.*"        // Any procedure starting with 3E0
+        );
+
+        // MediShield Life
+        CoverageLimit mediShieldLimit = new CoverageLimit.Builder()
+                .withAnnualLimit(BigDecimal.valueOf(150000))
+                .withLifetimeLimit(BigDecimal.valueOf(2000000))
+                .addBenefitLimit(BenefitType.HOSPITALIZATION, 1200)
+                .addBenefitLimit(BenefitType.SURGERY, 4500)
+                .addBenefitLimit(BenefitType.ONCOLOGY_TREATMENTS, 3000)
+                .addBenefitLimit(BenefitType.ACCIDENT, 150000)
+                .addWardLimit(WardClassType.GENERAL_CLASS_B2, 150000)
+                .addWardLimit(WardClassType.GENERAL_CLASS_C, 150000)
+                .build();
+
+        BaseCoverage mediShieldCoverage = new BaseCoverage.Builder()
+                .withCoinsurance(BigDecimal.valueOf(0.10))
+                .withDeductible(BigDecimal.valueOf(1500))
+                .withDeathBenefitAmount(BigDecimal.valueOf(100000))
+                .withLimits(mediShieldLimit)
+                .withCoveredBenefits(Set.of(
+                        BenefitType.HOSPITALIZATION,
+                        BenefitType.SURGERY,
+                        BenefitType.OUTPATIENT_TREATMENTS,
+                        BenefitType.ONCOLOGY_TREATMENTS,
+                        BenefitType.DIAGNOSTIC_IMAGING
+                ))
+                .withExclusions(new ExclusionCriteria(
+                        excludedDiagnosis,
+                        excludedProcedures,
+                        Set.of(BenefitType.DENTAL, BenefitType.MATERNITY),
+                        Set.of(AccidentType.TEMPORARY_DISABILITY)
+                ))
+                .build();
+
+        // CareShield Life
+        CoverageLimit careShieldLimit = new CoverageLimit.Builder()
+                .withAnnualLimit(BigDecimal.valueOf(50000))
+                .addAccidentLimit(AccidentType.PERMANENT_DISABILITY, 600)
+                .addBenefitLimit(BenefitType.CRITICAL_ILLNESS, 120000)
+                .build();
+
+        BaseCoverage careShieldCoverage = new BaseCoverage.Builder()
+                .withCoinsurance(BigDecimal.valueOf(0.05))
+                .withDeductible(BigDecimal.ZERO)
+                .withDeathBenefitAmount(BigDecimal.valueOf(50000))
+                .withLimits(careShieldLimit)
+                .withCoveredBenefits(Set.of(
+                        BenefitType.CRITICAL_ILLNESS,
+                        BenefitType.PREVENTIVE_CARE
+                ))
+                // Pre-existing Conditions
+                .withExclusions(new ExclusionCriteria(
+                        Set.of(
+                                "^E1[0-4]\\..*",          // Diabetes mellitus (E10-E14)
+                                "^I1[0-5]\\..*",          // Hypertensive diseases (I10-I15)
+                                "^C3[0-4]\\..*",          // Respiratory/intrathoracic cancers
+                                "^F2[0-9]\\..*",          // Schizophrenia/schizotypal/delusional
+                                "^M1[5-9]\\..*",          // Osteoarthritis family
+                                "^J4[0-5]\\..*",          // Chronic lower respiratory diseases
+                                "^K7[0-4]\\..*",          // Liver diseases
+                                "^N18\\..*",              // All chronic kidney disease stages
+                                "^B20\\..*"               // HIV with any subcodes
+                        ),
+                        Set.of(),
+                        Set.of(BenefitType.MINOR_SURGERY),
+                        Set.of(AccidentType.TEMPORARY_DISABILITY)
+                ))
+                .build();
+
+        // ElderShield Supplement
+        CoverageLimit elderShieldLimit = new CoverageLimit.Builder()
+                .withAnnualLimit(BigDecimal.valueOf(75000))
+                .addAccidentLimit(AccidentType.PERMANENT_DISABILITY, 400)
+                .build();
+
+        BaseCoverage elderShieldCoverage = new BaseCoverage.Builder()
+                .withCoinsurance(BigDecimal.valueOf(0.15))
+                .withDeductible(BigDecimal.valueOf(500))
+                .withLimits(elderShieldLimit)
+                .withCoveredBenefits(Set.of(
+                        BenefitType.PREVENTIVE_CARE,
+                        BenefitType.CHRONIC_CONDITIONS
+                ))
+                // Occupational Exclusions (Z codes)
+                .withExclusions(new ExclusionCriteria(
+                        Set.of(
+                                "^Z5[6-7]\\..*"         // All occupational exposure codes (Z56-Z57)
+                        ),
+                        Set.of(),
+                        Set.of(BenefitType.ACUTE_CONDITIONS),
+                        Set.of(AccidentType.TEMPORARY_DISABILITY)
+                ))
+                .build();
+
+        coverageDatabase.put("mediShieldCoverage", mediShieldCoverage);
+        coverageDatabase.put("careShieldCoverage", careShieldCoverage);
+        coverageDatabase.put("elderShieldCoverage", elderShieldCoverage);
     }
 
-    /**
-     * Processes a claim for a patient.
-     * <p>
-     * This implementation always returns {@code false}, indicating that the claim
-     * cannot be processed. In a real-world application, this could be replaced
-     * with logic that integrates with government insurance policies.
-     * </p>
-     *
-     * @param patient The patient for whom the claim is being processed.
-     * @param bill The bill associated with the claim.
-     * @return {@code false} indicating that the claim cannot be processed.
-     */
+
     @Override
     public boolean processClaim(Patient patient, Bill bill) {
-
         return false;
     }
 
-    /**
-     * Retrieves the insurance policy associated with a patient.
-     * <p>
-     * this method returns an empty {@link Optional}, indicating
-     * that no policy is found for the patient.
-     * </p>
-     *
-     * @param patient The patient for whom the policy is being retrieved.
-     * @return An empty {@link Optional}, as government providers may not have direct access to policies.
-     */
     @Override
     public Optional<InsurancePolicy> getPatientPolicy(Patient patient) {
-        return Optional.empty();
+        // In the real world, the actual policy will be retrieved from gov services
+        if (!patient.isPermanentResident() && !patient.isSingaporean()) {
+            return Optional.empty();
+        }
+
+        Coverage mediShield = coverageDatabase.get("mediShieldCoverage");
+
+        Coverage careShield = null;
+        if (patient.getDOB().getYear() >= 1980) {
+            careShield = coverageDatabase.get("careShieldCoverage");
+        }
+
+        Coverage finalCoverage = careShield != null
+                ? new CompositeCoverage(mediShield, careShield)
+                : mediShield;
+
+        HeldInsurancePolicy policy = new HeldInsurancePolicy.Builder(String.format("GOVT-%010d-%s",
+                DataGenerator.getInstance().generateRandomInt(1_000_000_000),
+                patient.getPatientId()), patient, finalCoverage, this, "Government base policy")
+                .withExpirationDate(LocalDateTime.now().plusYears(1))
+                .build();
+
+
+        return Optional.of(policy);
     }
 
-    /**
-     * Checks if the patient has active coverage with the government provider.
-     * <p>
-     * This implementation always returns {@code false}, indicating that the patient
-     * does not have active coverage.
-     * </p>
-     *
-     * @param patient The patient whose coverage status is being checked.
-     * @return {@code false}, indicating that the patient has no active coverage.
-     */
     @Override
     public boolean hasActiveCoverage(Patient patient) {
-
         return false;
     }
+
 }

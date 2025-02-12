@@ -1,14 +1,14 @@
 package medical;
 
 import billing.BillableItem;
-import policy.BenefitType;
-import policy.ClaimableItem;
-import utils.CSVHelper;
-
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
+import policy.BenefitType;
+import policy.ClaimableItem;
+import utils.CSVHelper;
 
 /**
  * Represents a diagnostic code, typically used for medical diagnosis.
@@ -142,34 +142,33 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
         return cost;
     }
 
+
     @Override
     public BenefitType resolveBenefitType(boolean isInpatient) {
-        if (categoryCode == null || categoryCode.length() < 3) {
+        if (categoryCode == null || categoryCode.isEmpty()) {
             return defaultFallback(isInpatient);
         }
 
-        char firstChar = categoryCode.charAt(0);
-        String prefix = categoryCode.substring(0,3);
+        // Ordered list of benefit mappings (higher priority first)
+        List<BenefitMapping> benefitMappings = List.of(
+                new BenefitMapping("^O.*", BenefitType.MATERNITY),  // Pregnancy/childbirth
+                new BenefitMapping("^C\\d{2}.*", BenefitType.CRITICAL_ILLNESS),  // Neoplasms
+                new BenefitMapping("^I(2[0-5]|3|4[0-1]).*", BenefitType.CRITICAL_ILLNESS),  // Heart diseases
+                new BenefitMapping("^(G30|E10|E11).*", BenefitType.CRITICAL_ILLNESS),  // Neuro/Diabetes
+                new BenefitMapping("^[ST].*", BenefitType.ACCIDENT),  // Injury/poisoning
+                new BenefitMapping("^K0[0-5].*", BenefitType.DENTAL),  // Dental disorders
+                new BenefitMapping("^Z74.*", BenefitType.PREVENTIVE_CARE),  // Need for assistance
+                new BenefitMapping("^(E66|I10|J45|N18).*", BenefitType.CHRONIC_CONDITIONS), // Chronic
+                new BenefitMapping("^(J06|N30|R05).*", BenefitType.ACUTE_CONDITIONS),  // Acute
+                new BenefitMapping("^Z5[1-3].*", BenefitType.PREVENTIVE_CARE) // Health screenings
+        );
 
-        // 1. Critical Illness (Expanded list)
-        if (firstChar == 'C' || // Neoplasms
-                (firstChar == 'I' && prefix.compareTo("I20") >= 0) || // Heart diseases
-                prefix.equals("G30") || // Alzheimer's
-                prefix.equals("E10")) { // Diabetes Type 1
-            return BenefitType.CRITICAL_ILLNESS;
+        for (BenefitMapping mapping : benefitMappings) {
+            if (mapping.matches(categoryCode)) {
+                return mapping.benefitType();
+            }
         }
 
-        // 2. Maternity
-        if (firstChar == 'O') {
-            return BenefitType.MATERNITY;
-        }
-
-        // 3. Dental
-        if (categoryCode.startsWith("K0")) {
-            return BenefitType.DENTAL;
-        }
-
-        // 4. Hospitalization vs Outpatient
         return isInpatient ? BenefitType.HOSPITALIZATION
                 : BenefitType.OUTPATIENT_TREATMENTS;
     }
@@ -188,5 +187,21 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
     @Override
     public String getDiagnosisCode() {
         return this.fullCode;
+    }
+
+    /**
+     * Gets a random diagnostic code from the registry
+     * @return A randomly selected DiagnosticCode
+     */
+    public static DiagnosticCode getRandomCode() {
+        String[] codes = CODE_REGISTRY.keySet().toArray(new String[0]);
+        int randomIndex = (int) (Math.random() * codes.length);
+        return createFromCode(codes[randomIndex]);
+    }
+}
+
+record BenefitMapping(String pattern, BenefitType benefitType) {
+    public boolean matches(String code) {
+        return Pattern.matches(pattern, code);
     }
 }

@@ -1,5 +1,6 @@
 package billing;
 
+import humans.Patient;
 import medical.Consultation;
 import medical.Visit;
 import policy.InsurancePolicy;
@@ -17,16 +18,23 @@ import java.util.UUID;
  * @param <T> The type of {@link Visit} associated with the bill.
  */
 public class BillBuilder<T extends Visit> {
-    /** A unique identifier for the bill, generated automatically. */
+    /**
+     * A unique identifier for the bill, generated automatically.
+     */
     String billId;
-    /** The unique identifier of the patient associated with the bill. */
-    String patientId;
-    /** The date and time when the bill was created, set to the current timestamp by default. */
+    /**
+     * The patient object associated with the bill
+     */
+    Patient patient;
+    /**
+     * The date and time when the bill was created, set to the current timestamp by default.
+     */
     LocalDateTime billDate;
-    private InsurancePolicy insurancePolicy;
+    InsurancePolicy insurancePolicy;
     private T visit;
     private List<Consultation> consultations;
     private List<BillingItem> billingItems;
+    boolean isInpatient;
 
     /**
      * Constructs a new {@code BillBuilder} instance.
@@ -38,6 +46,8 @@ public class BillBuilder<T extends Visit> {
         this.billDate = LocalDateTime.now();
         this.consultations = new ArrayList<>();
         this.billingItems = new ArrayList<>();
+        this.insurancePolicy = null;
+        this.isInpatient = false;
     }
 
     /**
@@ -47,7 +57,10 @@ public class BillBuilder<T extends Visit> {
      * @return The current instance of {@code BillBuilder} for method chaining.
      */
     public BillBuilder<T> withPatientId(String patientId) {
-        this.patientId = patientId;
+        // logic to get patient from id
+        this.patient = Patient.builder()
+                .withRandomData(patientId)
+                .build();
         return this;
     }
 
@@ -69,7 +82,17 @@ public class BillBuilder<T extends Visit> {
      * @return The current instance of {@code BillBuilder} for method chaining.
      */
     public BillBuilder<T> withVisit(T visit) {
+
+        if (visit == null) {
+            throw new IllegalArgumentException("Visit cannot be null");
+        }
+        if (!visit.isFinalized()) {
+            throw new IllegalArgumentException("Cannot create bill for non-finalized visit");
+        }
+
+
         this.visit = visit;
+        this.isInpatient = true;
         return this;
     }
 
@@ -80,6 +103,7 @@ public class BillBuilder<T extends Visit> {
      * @return The current instance of {@code BillBuilder} for method chaining.
      */
     public BillBuilder<T> withConsultation(Consultation consultation) {
+        this.isInpatient = false;
         this.consultations.add(consultation);
         return this;
     }
@@ -143,7 +167,7 @@ public class BillBuilder<T extends Visit> {
      * @throws IllegalStateException if any of the required fields are not set (e.g., patientId, visit, or consultations).
      */
     private void validateBuildRequirements() {
-        if (patientId == null) {
+        if (patient == null) {
             throw new IllegalStateException("Patient ID is required");
         }
 

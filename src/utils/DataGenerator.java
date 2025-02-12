@@ -4,7 +4,6 @@ import humans.Contact;
 import medical.Medication;
 import policy.AccidentType;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Random;
 
@@ -42,19 +41,9 @@ public class DataGenerator {
             "CapitaLand", "Keppel Corporation", "ST Engineering", "ComfortDelGro"
     };
 
-    private final String[] SG_INDUSTRIAL_AREAS = {
-            "Jurong Industrial Estate", "Tuas South", "Woodlands Industrial Park",
-            "Changi Business Park", "One-North", "Alexandra Business Park"
-    };
-
-    // Insurance-related constants
-    private final String[] INSURANCE_COMPANIES = {
-            "AIA", "Great Eastern", "NTUC Income", "Prudential", "Aviva",
-            "Singlife", "HSBC Insurance", "Manulife"
-    };
 
     private final String[] HEALTH_INSURANCE_NAMES = {
-            "HealthShield Gold Max", "Enhanced IncomeShield", "PRUShield", 
+            "HealthShield Gold Max", "Enhanced IncomeShield", "PRUShield",
             "MyShield", "Great Eastern Supreme Health", "Elite Health Plus"
     };
 
@@ -71,7 +60,8 @@ public class DataGenerator {
     private final AccidentType[] ACCIDENT_TYPES = AccidentType.values();
 
 
-    private DataGenerator() {}
+    private DataGenerator() {
+    }
 
     /**
      * Gets the singleton instance of DataGenerator
@@ -152,83 +142,6 @@ public class DataGenerator {
         return prefix + numbers + checksum[generateRandomInt(checksum.length)];
     }
 
-    public String generateHealthPolicyId() {
-        return String.format("H%08d", generateRandomInt(100000000));
-    }
-
-    public String generateAccidentPolicyId() {
-        return String.format("A%08d", generateRandomInt(100000000));
-    }
-
-    public String generateCriticalIllnessPolicyId() {
-        return String.format("C%08d", generateRandomInt(100000000));
-    }
-
-    // Insurance-related Generators
-    public double generateDeductible() {
-        // Most policies have deductibles between 1,500-3,750
-        return 1500 + random.nextDouble() * 2250;
-    }
-
-    public double generateHospitalCharges() {
-        // Based on actual bill sizes from Income Shield data
-        // Basic treatments: 5k-15k
-        // Major treatments: 15k-50k
-        // Critical conditions: 50k-200k
-        double[] tiers = {15000, 50000, 200000};
-        int tier = generateRandomInt(3);
-        return 5000 + random.nextDouble() * tiers[tier];
-    }
-
-    public double generatePremium() {
-        // Basic plans: 500-1000
-        // Enhanced plans: 1000-2500
-        // Premium plans: 2500-5000
-        return 500 + random.nextDouble() * 4500;
-    }
-
-    public double generateCoInsuranceRate() {
-        // Typical rates are 5%, 10%, or 20%
-        double[] rates = {0.05, 0.10, 0.20};
-        return rates[generateRandomInt(rates.length)];
-    }
-
-    public double generateAccidentAllowance() {
-        // Daily allowances typically range from 50-300
-        return 50 + random.nextDouble() * 250;
-    }
-
-    public String generateHealthInsuranceDescription() {
-        String[] templates = {
-            "Comprehensive medical coverage including pre and post hospitalization care with coverage up to %d per year",
-            "Protection against medical bills arising from hospitalization with coverage up to %d per policy year",
-            "All-rounded health protection plan covering hospital stays and surgical expenses up to %d annually",
-            "Premium healthcare coverage with as-charged benefits for hospitalization up to %d yearly"
-        };
-        int coverage = 100000 * (1 + generateRandomInt(15)); // 100k to 1.5M coverage
-        return String.format(templates[generateRandomInt(templates.length)], coverage);
-    }
-
-    public String generateAccidentInsuranceDescription() {
-        String[] templates = {
-            "24/7 worldwide personal accident coverage up to %d with daily hospital income benefit",
-            "Comprehensive accident protection with coverage up to %d and medical expense reimbursement",
-            "Total accident coverage up to %d with optional riders for enhanced protection"
-        };
-        int coverage = 10000 * (1 + generateRandomInt(20)); // 10k to 200k coverage
-        return String.format(templates[generateRandomInt(templates.length)], coverage);
-    }
-
-    public String generateCriticalIllnessDescription() {
-        String[] templates = {
-            "Protection against critical illnesses with coverage up to %d for early to advanced stages",
-            "Comprehensive critical illness coverage up to %d with multiple claim feature",
-            "Financial protection against critical illnesses with sum assured up to %d"
-        };
-        int coverage = 50000 * (1 + generateRandomInt(30)); // 50k to 1.5M coverage
-        return String.format(templates[generateRandomInt(templates.length)], coverage);
-    }
-
     /**
      * Generates a random Singapore address.
      *
@@ -241,19 +154,6 @@ public class DataGenerator {
                 generateRandomInt(1, 50), generateRandomInt(1, 999));
         return String.format("%s %s %d, %s, Singapore %d",
                 block, street, generateRandomInt(1, 12), unit,
-                generateRandomInt(460000, 569999));
-    }
-
-    /**
-     * Generates a random company address.
-     *
-     * @return A randomly generated company address string
-     */
-    public String generateCompanyAddress() {
-        String building = SG_BUILDINGS[generateRandomInt(SG_BUILDINGS.length)];
-        String area = SG_INDUSTRIAL_AREAS[generateRandomInt(SG_INDUSTRIAL_AREAS.length)];
-        return String.format("%d %s %s, Singapore %d",
-                generateRandomInt(1, 100), area, building,
                 generateRandomInt(460000, 569999));
     }
 
@@ -276,40 +176,54 @@ public class DataGenerator {
     }
 
     /**
-     * Gets a random insurance company name.
+     * Gets all insurance policy names (combined from all types)
      *
-     * @return A randomly selected insurance company name
+     * @return Array of all insurance policy names
      */
-    public String getRandomInsuranceCompany() {
-        return getRandomElement(INSURANCE_COMPANIES);
+    private String[] getInsuranceNames() {
+        int totalLength = HEALTH_INSURANCE_NAMES.length +
+                ACCIDENT_INSURANCE_NAMES.length +
+                CRITICAL_ILLNESS_NAMES.length;
+
+        String[] allNames = new String[totalLength];
+
+        System.arraycopy(HEALTH_INSURANCE_NAMES, 0, allNames, 0,
+                HEALTH_INSURANCE_NAMES.length);
+        System.arraycopy(ACCIDENT_INSURANCE_NAMES, 0, allNames,
+                HEALTH_INSURANCE_NAMES.length,
+                ACCIDENT_INSURANCE_NAMES.length);
+        System.arraycopy(CRITICAL_ILLNESS_NAMES, 0, allNames,
+                HEALTH_INSURANCE_NAMES.length + ACCIDENT_INSURANCE_NAMES.length,
+                CRITICAL_ILLNESS_NAMES.length);
+
+        return allNames;
     }
 
-    /**
-     * Gets a random health insurance product name.
-     *
-     * @return A randomly selected health insurance name
-     */
-    public String getRandomHealthInsuranceName() {
-        return getRandomElement(HEALTH_INSURANCE_NAMES);
-    }
 
     /**
-     * Gets a random accident insurance product name.
+     * Gets a random insurance policy name
      *
-     * @return A randomly selected accident insurance name
+     * @return Random insurance policy name
      */
-    public String getRandomAccidentInsuranceName() {
-        return getRandomElement(ACCIDENT_INSURANCE_NAMES);
+    public String getRandomInsuranceName() {
+        String[] allNames = getInsuranceNames();
+        return allNames[random.nextInt(allNames.length)];
     }
 
-    /**
-     * Gets a random critical illness insurance product name.
-     *
-     * @return A randomly selected critical illness insurance name
-     */
-    public String getRandomCriticalIllnessName() {
-        return getRandomElement(CRITICAL_ILLNESS_NAMES);
+    public String generateRandomString(int length) {
+        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        StringBuilder sb = new StringBuilder();
+        Random random = new Random();
+
+        for (int i = 0; i < length; i++) {
+            int index = random.nextInt(chars.length());
+            sb.append(chars.charAt(index));
+        }
+
+        return sb.toString();
     }
+
+
 
     /**
      * Generates random contact information.

@@ -1,12 +1,13 @@
 package billing;
 
 
+import claims.InsuranceClaim;
+import humans.Patient;
+import policy.*;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Represents a bill for a patient, containing billing items, categorized charges,
@@ -16,7 +17,7 @@ public class Bill {
     /** Unique identifier for the bill. */
     private String billId;
     /** Unique identifier of the patient associated with the bill. */
-    private String patientId;
+    private Patient patient;
     /** Date and time when the bill was created. */
     private LocalDateTime billDate;
     /** List of billing line items included in the bill. */
@@ -26,8 +27,8 @@ public class Bill {
     /** Current status of the bill, such as DRAFT. */
     private BillingStatus status;
     private InsurancePolicy insurancePolicy;
-    private BigDecimal insuranceCoverage;
-    private BigDecimal patientResponsibility;
+    private boolean isInpatient;
+    private boolean isEmergency;
 
     /**
      * Constructs a {@code Bill} object using the {@link BillBuilder}.
@@ -37,11 +38,13 @@ public class Bill {
      */
     Bill(BillBuilder builder) {
         this.billId = builder.billId;
-        this.patientId = builder.patientId;
+        this.patient = builder.patient;
         this.billDate = builder.billDate;
         this.lineItems = new ArrayList<>();
+        this.insurancePolicy = builder.insurancePolicy;
         this.categorizedCharges = new HashMap<>();
         this.status = BillingStatus.DRAFT;
+        this.isInpatient = builder.isInpatient;
     }
 
     /**
@@ -69,32 +72,60 @@ public class Bill {
      * Updates the {@code insuranceCoverage} and {@code patientResponsibility} values.
      * The billing status is also updated to {@code BillingStatus.INSURANCE_PENDING} if insurance is active.
      */
-    public void calculateInsuranceCoverage() {
-        if (insurancePolicy == null ||
-                insurancePolicy.getStatus() != InsuranceStatus.ACTIVE) {
-            patientResponsibility = getTotalAmount();
-            insuranceCoverage = BigDecimal.ZERO;
-            return;
+    public Optional<InsuranceClaim> calculateInsuranceCoverage() {
+        if (lineItems.isEmpty()) {
+            return Optional.empty();
         }
+        if (insurancePolicy.isActive()) {
+            Coverage coverage = insurancePolicy.getCoverage();
+            BigDecimal deductibleAmount = coverage.getDeductibleAmount();
+            BigDecimal claimableAmount = BigDecimal.ZERO;
+            BigDecimal accidentCoverage = BigDecimal.ZERO;
+            BigDecimal totalCoverage = BigDecimal.ZERO;
+            for (BillingItem item : lineItems) {
 
-        BigDecimal totalAmount = getTotalAmount();
-        BigDecimal deductible = BigDecimal.valueOf(insurancePolicy.getDeductible());
+                if (item instanceof ClaimableItem claimableItem) {
+                    if (coverage.isItemCovered(claimableItem, isInpatient)) {
+                        BigDecimal itemAmount = item.getTotalPrice();
+                        claimableAmount = claimableAmount.add(itemAmount);
 
-        // Apply deductible
-        BigDecimal afterDeductible = totalAmount.subtract(deductible);
-        if (afterDeductible.compareTo(BigDecimal.ZERO) <= 0) {
-            insuranceCoverage = BigDecimal.ZERO;
-            patientResponsibility = totalAmount;
-            return;
+                        if (isEmergency && claimableItem.getAccidentSubType() != null) {
+                            AccidentType accidentType = claimableItem.getAccidentSubType();
+                            BigDecimal accidentPayout = coverage.calculateAccidentPayout(accidentType);
+
+                            CoverageLimit limits = coverage.getLimits();
+                            if (limits.isWithinAccidentLimit(accidentType, accidentPayout)) {
+                                accidentCoverage = accidentCoverage.add(accidentPayout);
+                            }
+                        }
+                    }
+
+                }
+
+            }
+            BigDecimal claimAmount = claimableAmount.subtract(deductibleAmount);
+            CoverageLimit limits = coverage.getLimits();
+            if (limits.isWithinAnnualLimit(claimAmount)) {
+                totalCoverage = totalCoverage.add(claimableAmount);
+            }
+            totalCoverage = totalCoverage.add(accidentCoverage);
+            status = BillingStatus.INSURANCE_PENDING;
+
+            if (totalCoverage.compareTo(BigDecimal.ZERO) > 0) {
+
+                InsuranceClaim claim = InsuranceClaim.createNew(
+                        this,
+                        insurancePolicy.getInsuranceProvider(),
+                        insurancePolicy,
+                        this.patient,
+                        totalCoverage
+                );
+                return Optional.of(claim);
+            }
+
         }
+        return Optional.empty();
 
-        // Calculate insurance portion
-        BigDecimal coInsuranceRate = BigDecimal.valueOf(insurancePolicy.getCoInsuranceRate());
-        insuranceCoverage = afterDeductible.multiply(coInsuranceRate);
-        patientResponsibility = totalAmount.subtract(insuranceCoverage);
-
-        // Update status
-        status = BillingStatus.INSURANCE_PENDING;
     }
 
     /**

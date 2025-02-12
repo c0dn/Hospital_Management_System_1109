@@ -11,14 +11,14 @@ import java.util.Map;
  * This class loads hospital codes from a CSV file and provides
  * functionality to retrieve hospital codes by their unique identifier.
  */
-public class HospitalCode {
+public class HealthcareProvider {
     /** The unique hospital code. */
     private String code;
     /** The name of the hospital. */
     private String Name;
 
     /** A registry mapping hospital codes to their corresponding HospitalCode instances. */
-    private static final Map<String, HospitalCode> HCODE_REGISTRY = new HashMap<>();
+    private static final Map<String, HealthcareProvider> HCODE_REGISTRY = new HashMap<>();
 
     // Static block to initialize the registry with data from a CSV file
     static {
@@ -31,7 +31,7 @@ public class HospitalCode {
      * @param code The unique hospital code
      * @param Name The name of the hospital
      */
-    private HospitalCode(String code, String Name) {
+    private HealthcareProvider(String code, String Name) {
         this.code = code;
         this.Name = Name;
     }
@@ -52,7 +52,7 @@ public class HospitalCode {
                 String code = record[0];
                 String Name = record[1];
 
-                HCODE_REGISTRY.put(code, new HospitalCode(code, Name));
+                HCODE_REGISTRY.put(code, new HealthcareProvider(code, Name));
             }
         }
     }
@@ -65,8 +65,8 @@ public class HospitalCode {
      * @return The corresponding HospitalCode instance
      * @throws IllegalArgumentException If the hospital code is not found
      */
-    public static HospitalCode createFromCode(String code) {
-        HospitalCode hospitalCode = HCODE_REGISTRY.get(code);
+    public static HealthcareProvider createFromCode(String code) {
+        HealthcareProvider hospitalCode = HCODE_REGISTRY.get(code);
         if (hospitalCode == null) {
             throw new IllegalArgumentException(("Invalid hospital code: " + code));
         }

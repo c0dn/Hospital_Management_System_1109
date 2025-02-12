@@ -19,6 +19,9 @@ package claims;
  */
 
 public enum ClaimStatus {
+
+    DRAFT("Claim is draft"),
+
     /**
      * Claim has been submitted.
      */

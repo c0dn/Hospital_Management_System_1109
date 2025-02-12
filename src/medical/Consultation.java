@@ -1,18 +1,14 @@
 package medical;
 
 import billing.BillableItem;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import utils.DataGenerator;
 
-/**
- * Represents a consultation in the healthcare system.
- * This includes details about the consultation type, doctor, diagnostic codes,
- * procedures, prescriptions, and associated fees.
- */
 public class Consultation {
     private String consultationId;
     private ConsultationType type;
@@ -25,171 +21,68 @@ public class Consultation {
     private String notes;
 
     /**
-     * Constructor to initialize a Consultation object.
-     *
-     * @param consultationId   The unique ID of the consultation.
-     * @param type             The type of the consultation (e.g., emergency, regular).
-     * @param doctorId         The ID of the doctor conducting the consultation.
-     * @param consultationTime The timestamp when the consultation took place.
-     * @param consultationFee  The fee for the consultation.
-     * @param diagnosticCodes  The list of diagnostic codes associated with the consultation.
-     * @param procedureCodes   The list of procedure codes associated with the consultation.
-     * @param prescriptions    The map of medications and their quantities prescribed.
-     * @param notes            Any additional notes from the doctor.
+     * Creates a consultation with random data for testing purposes
+     * @return A randomly populated Consultation instance
      */
-    public Consultation(String consultationId, ConsultationType type, String doctorId, LocalDateTime consultationTime,
-                        BigDecimal consultationFee, List<DiagnosticCode> diagnosticCodes,
-                        List<ProcedureCode> procedureCodes, Map<Medication, Integer> prescriptions, String notes) {
-        this.consultationId = consultationId;
-        this.type = type;
-        this.doctorId = doctorId;
-        this.consultationTime = consultationTime;
-        this.consultationFee = consultationFee;
-        this.diagnosticCodes = diagnosticCodes != null ? diagnosticCodes : new ArrayList<>();
-        this.procedureCodes = procedureCodes != null ? procedureCodes : new ArrayList<>();
-        this.prescriptions = prescriptions != null ? prescriptions : new HashMap<>();
-        this.notes = notes;
-    }
-
-    // Getters and Setters
-
-    /**
-     * Returns the consultation ID.
-     *
-     * @return The consultation ID.
-     */
-    public String getConsultationId() {
-        return consultationId;
-    }
-
-    public void setConsultationId(String consultationId) {
-        this.consultationId = consultationId;
-    }
-
-    /**
-     * Returns the consultation type.
-     *
-     * @return The consultation type.
-     */
-    public ConsultationType getType() {
-        return type;
-    }
-
-    public void setType(ConsultationType type) {
-        this.type = type;
+    public static Consultation withRandomData() {
+        DataGenerator gen = DataGenerator.getInstance();
+        Consultation consultation = new Consultation();
+        
+        // Set basic fields
+        consultation.consultationId = "C" + System.currentTimeMillis() + 
+            String.format("%04d", gen.generateRandomInt(10000));
+        consultation.type = gen.getRandomEnum(ConsultationType.class);
+        consultation.doctorId = "D" + gen.generateRandomInt(1000, 9999);
+        consultation.consultationTime = LocalDateTime.now()
+            .minusDays(gen.generateRandomInt(1, 30));
+        consultation.consultationFee = new BigDecimal(gen.generateRandomInt(50, 300));
+        consultation.notes = "Consultation notes for patient visit #" + gen.generateRandomInt(1000, 9999);
+        
+        // Add random diagnostic codes
+        consultation.diagnosticCodes = new ArrayList<>();
+        int diagCount = gen.generateRandomInt(1, 3);
+        for (int i = 0; i < diagCount; i++) {
+            consultation.diagnosticCodes.add(DiagnosticCode.getRandomCode());
+        }
+        
+        // Add random procedure codes
+        consultation.procedureCodes = new ArrayList<>();
+        int procCount = gen.generateRandomInt(0, 2);
+        for (int i = 0; i < procCount; i++) {
+            consultation.procedureCodes.add(ProcedureCode.getRandomCode());
+        }
+        
+        // Add random prescriptions
+        consultation.prescriptions = new HashMap<>();
+        int medCount = gen.generateRandomInt(1, 4);
+        for (int i = 0; i < medCount; i++) {
+            consultation.prescriptions.put(
+                gen.getRandomMedication(),
+                gen.generateRandomInt(1, 10)
+            );
+        }
+        
+        return consultation;
     }
 
     /**
-     * Returns the doctor ID conducting the consultation.
-     *
-     * @return The doctor ID.
-     */
-    public String getDoctorId() {
-        return doctorId;
-    }
-
-    public void setDoctorId(String doctorId) {
-        this.doctorId = doctorId;
-    }
-
-    /**
-     * Returns the timestamp of the consultation.
-     *
-     * @return The consultation timestamp.
-     */
-    public LocalDateTime getConsultationTime() {
-        return consultationTime;
-    }
-
-    public void setConsultationTime(LocalDateTime consultationTime) {
-        this.consultationTime = consultationTime;
-    }
-
-    /**
-     * Returns the consultation fee.
-     *
-     * @return The consultation fee.
-     */
-    public BigDecimal getConsultationFee() {
-        return consultationFee;
-    }
-
-    public void setConsultationFee(BigDecimal consultationFee) {
-        this.consultationFee = consultationFee;
-    }
-
-    /**
-     * Returns the list of diagnostic codes associated with the consultation.
-     *
-     * @return The list of diagnostic codes.
-     */
-    public List<DiagnosticCode> getDiagnosticCodes() {
-        return diagnosticCodes;
-    }
-
-    public void setDiagnosticCodes(List<DiagnosticCode> diagnosticCodes) {
-        this.diagnosticCodes = diagnosticCodes;
-    }
-
-    /**
-     * Returns the list of procedure codes associated with the consultation.
-     *
-     * @return The list of procedure codes.
-     */
-    public List<ProcedureCode> getProcedureCodes() {
-        return procedureCodes;
-    }
-
-    public void setProcedureCodes(List<ProcedureCode> procedureCodes) {
-        this.procedureCodes = procedureCodes;
-    }
-
-    /**
-     * Returns the map of prescriptions with their quantities.
-     *
-     * @return The map of prescriptions and their quantities.
-     */
-    public Map<Medication, Integer> getPrescriptions() {
-        return prescriptions;
-    }
-
-    public void setPrescriptions(Map<Medication, Integer> prescriptions) {
-        this.prescriptions = prescriptions;
-    }
-
-    /**
-     * Returns additional notes from the doctor regarding the consultation.
-     *
-     * @return The consultation notes.
-     */
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
-    /**
-     * Returns all related billable items for this consultation.
-     * This includes diagnostics, procedures, and medications with their quantities.
-     *
-     * @return A list of billable items.
+     * Returns all related charges as separate BillableItems
+     * This includes diagnostics, procedures, and medications with their quantities
      */
     public List<BillableItem> getRelatedBillableItems() {
         List<BillableItem> items = new ArrayList<>();
 
-        // Add diagnostics (if any)
+        // Add diagnostics
         if (diagnosticCodes != null) {
-            diagnosticCodes.forEach(code -> items.add(code));
+            items.addAll(diagnosticCodes);
         }
 
-        // Add procedures (if any)
+        // Add procedures
         if (procedureCodes != null) {
-            procedureCodes.forEach(code -> items.add(code));
+            items.addAll(procedureCodes);
         }
 
-        // Add medications with their quantities (if any)
+        // Add medications with their quantities as MedicationBillableItem
         if (prescriptions != null) {
             prescriptions.forEach((medication, quantity) ->
                     items.add(new MedicationBillableItem(medication, quantity, true)));
@@ -198,33 +91,21 @@ public class Consultation {
         return items;
     }
 
-    /**
-     * Calculates the total charges for the consultation, including:
-     * - Consultation fee
-     * - Diagnostic codes charges
-     * - Procedure codes charges
-     * - Prescription charges based on medication and quantity
-     *
-     * @return The total charges for the consultation.
-     */
     public BigDecimal calculateCharges() {
         BigDecimal total = consultationFee;
 
-        // Add diagnostic charges
         if (diagnosticCodes != null) {
             total = total.add(diagnosticCodes.stream()
                     .map(DiagnosticCode::getUnsubsidisedCharges)
                     .reduce(BigDecimal.ZERO, BigDecimal::add));
         }
 
-        // Add procedure charges
         if (procedureCodes != null) {
             total = total.add(procedureCodes.stream()
                     .map(ProcedureCode::getUnsubsidisedCharges)
                     .reduce(BigDecimal.ZERO, BigDecimal::add));
         }
 
-        // Add prescription charges (medications and their quantities)
         if (prescriptions != null) {
             total = total.add(prescriptions.entrySet().stream()
                     .map(entry -> entry.getKey().calculateCost(entry.getValue()))
@@ -234,11 +115,6 @@ public class Consultation {
         return total;
     }
 
-    /**
-     * Returns the category of the consultation based on its type.
-     *
-     * @return The category of the consultation as a string.
-     */
     public String getCategory() {
         return switch (type) {
             case EMERGENCY -> "EMERGENCY_CONSULTATION";
@@ -246,16 +122,5 @@ public class Consultation {
             case SPECIALIZED_CONSULTATION -> "SPECIALIZED_CONSULTATION";
             case FOLLOW_UP -> "FOLLOW_UP_CONSULTATION";
         };
-    }
-
-    /**
-     * Returns a string representation of the consultation details.
-     *
-     * @return A string describing the consultation.
-     */
-    @Override
-    public String toString() {
-        return String.format("Consultation ID: %s, Type: %s, Doctor: %s, Time: %s, Fee: %s, Notes: %s",
-                consultationId, type, doctorId, consultationTime, consultationFee, notes);
     }
 }

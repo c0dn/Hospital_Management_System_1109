@@ -1,14 +1,13 @@
 package medical;
 
 import billing.BillableItem;
-import policy.BenefitType;
-import policy.ClaimableItem;
-import utils.CSVHelper;
-
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import policy.BenefitType;
+import policy.ClaimableItem;
+import utils.CSVHelper;
 
 /**
  * Represents a medical procedure code with associated description and price.
@@ -274,5 +273,15 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
     @Override
     public String getProcedureCode() {
         return code;
+    }
+
+    /**
+     * Gets a random procedure code from the registry
+     * @return A randomly selected ProcedureCode
+     */
+    public static ProcedureCode getRandomCode() {
+        String[] codes = CODE_REGISTRY.keySet().toArray(new String[0]);
+        int randomIndex = (int) (Math.random() * codes.length);
+        return createFromCode(codes[randomIndex]);
     }
 }

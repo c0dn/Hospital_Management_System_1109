@@ -1,92 +1,132 @@
 package policy;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Set;
 
-/**
- * Abstract class representing the coverage details of an insurance policy.
- * <p>
- *     This class defines the general rules for checking if a claimable item is covered,
- *     calculating the coverage limits for specific accident types, and handling exclusions.
- * </p>
- * <ul>
- *     <li>{@link #isItemCovered(ClaimableItem, boolean)} - Determines if an item is covered by this coverage.</li>
- *     <li>{@link #coversAccidentType(AccidentType)} - Determines if a given accident type is covered.</li>
- *     <li>{@link #getAccidentCoverageLimit(AccidentType)} - Retrieves the coverage limit for a given accident type.</li>
- *     <li>{@link #getLimits()} - Retrieves the coverage limits for this insurance coverage.</li>
- * </ul>
- */
-public abstract class BaseCoverage implements Coverage {
-
-    /** Coverage limits associated with this coverage. */
+public class BaseCoverage implements Coverage {
     protected CoverageLimit limits;
-
-    /** Deductible amount for claims under this coverage. */
     protected BigDecimal deductible;
-
-    /** Coinsurance percentage for claims under this coverage. */
     protected BigDecimal coinsurance;
-
-    /** Set of benefits covered by this insurance coverage. */
+    protected BigDecimal deathBenefitAmount;
     protected Set<BenefitType> coveredBenefits;
-
-    /** Exclusion criteria that defines conditions under which items are excluded. */
     protected ExclusionCriteria exclusions;
 
-    /**
-     * Determines if the given claimable item is covered under this coverage.
-     * This is based on whether the item is eligible based on the policy's criteria and if the patient
-     * is inpatient or outpatient.
-     *
-     * @param item The claimable item to check for coverage.
-     * @param isInpatient A flag indicating whether the patient is inpatient.
-     * @return {@code true} if the item is covered, {@code false} otherwise.
-     */
+    protected BaseCoverage(Builder builder) {
+        this.limits = builder.limits;
+        this.deductible = builder.deductible;
+        this.coinsurance = builder.coinsurance;
+        this.deathBenefitAmount = builder.deathBenefitAmount;
+        this.coveredBenefits = builder.coveredBenefits;
+        this.exclusions = builder.exclusions;
+    }
+
+    public static class Builder {
+        private CoverageLimit limits;
+        private BigDecimal deductible = BigDecimal.ZERO;
+        private BigDecimal coinsurance = BigDecimal.ZERO;
+        private BigDecimal deathBenefitAmount = BigDecimal.ZERO;
+        private Set<BenefitType> coveredBenefits;
+        private ExclusionCriteria exclusions;
+
+        public Builder withLimits(CoverageLimit limits) {
+            this.limits = limits;
+            return this;
+        }
+
+        public Builder withDeductible(BigDecimal deductible) {
+            this.deductible = deductible;
+            return this;
+        }
+
+        public Builder withCoinsurance(BigDecimal coinsurance) {
+            this.coinsurance = coinsurance;
+            return this;
+        }
+
+        public Builder withDeathBenefitAmount(BigDecimal deathBenefitAmount) {
+            this.deathBenefitAmount = deathBenefitAmount;
+            return this;
+        }
+
+        public Builder withCoveredBenefits(Set<BenefitType> coveredBenefits) {
+            this.coveredBenefits = coveredBenefits;
+            return this;
+        }
+
+        public Builder withExclusions(ExclusionCriteria exclusions) {
+            this.exclusions = exclusions;
+            return this;
+        }
+
+
+        public BaseCoverage build() {
+            // Validate required fields
+            if (limits == null) {
+                throw new IllegalStateException("CoverageLimit must be set");
+            }
+            if (coveredBenefits == null || coveredBenefits.isEmpty()) {
+                throw new IllegalStateException("CoveredBenefits must be set and non-empty");
+            }
+            if (exclusions == null) {
+                throw new IllegalStateException("ExclusionCriteria must be set");
+            }
+
+            return new BaseCoverage(this);
+        }
+    }
+
+
     @Override
     public boolean isItemCovered(ClaimableItem item, boolean isInpatient) {
         return coveredBenefits.contains(item.resolveBenefitType(isInpatient)) &&
                 !isExcluded(item, isInpatient);
     }
 
-    /**
-     * Determines if the given accident type is covered by this insurance coverage.
-     *
-     * @param type The type of the accident to check.
-     * @return {@code true} if the accident type is covered, {@code false} otherwise.
-     */
-    public boolean coversAccidentType(AccidentType type) {
+    private boolean coversAccidentType(AccidentType type) {
         return !exclusions.isExcludedAccident(type);
     }
 
-    /**
-     * Retrieves the coverage limit for a given accident type.
-     *
-     * @param type The type of the accident.
-     * @return The coverage limit for the specified accident type.
-     */
-    public double getAccidentCoverageLimit(AccidentType type) {
-        return limits.getAccidentLimit(type).orElse(0.0);
+    public BigDecimal getAccidentCoverageLimit(AccidentType type) {
+        return limits.getAccidentLimit(type).orElse(BigDecimal.ZERO);
     }
 
-    /**
-     * Checks whether the given claimable item is excluded from coverage based on the exclusion criteria.
-     *
-     * @param item The claimable item to check.
-     * @param isInpatient A flag indicating whether the patient is inpatient.
-     * @return {@code true} if the item is excluded, {@code false} otherwise.
-     */
     protected boolean isExcluded(ClaimableItem item, boolean isInpatient) {
         return exclusions.applies(item, isInpatient);
     }
 
-    /**
-     * Retrieves the coverage limits associated with this insurance coverage.
-     *
-     * @return The {@link CoverageLimit} object containing the limits of this coverage.
-     */
+    @Override
+    public BigDecimal calculateAccidentPayout(AccidentType accidentType) {
+        if (!coversAccidentType(accidentType)) {
+            return BigDecimal.ZERO;
+        }
+
+        BigDecimal coverageAmount = getAccidentCoverageLimit(accidentType);
+        if (coverageAmount.compareTo(BigDecimal.ZERO) <= 0) {
+            return BigDecimal.ZERO;
+        }
+
+        if (accidentType == AccidentType.DEATH) {
+            return this.deathBenefitAmount;
+        }
+
+        return coverageAmount;
+    }
+
+
     @Override
     public CoverageLimit getLimits() {
         return limits;
+    }
+
+    @Override
+    public BigDecimal getDeductibleAmount() {
+        return deductible;
+    }
+
+    @Override
+    public BigDecimal calculateCoinsurance(BigDecimal claimAmount) {
+        return claimAmount.multiply(coinsurance).setScale(2, RoundingMode.HALF_UP);
     }
 }
 
