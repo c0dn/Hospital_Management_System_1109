@@ -1,9 +1,11 @@
 package policy;
 
-import claims.InsuranceClaim;
+import java.math.BigDecimal;
 
 public interface Coverage {
     boolean isItemCovered(ClaimableItem item, boolean isInpatient);
-    double calculatePayout(InsuranceClaim claim);
+    BigDecimal calculateAccidentPayout(AccidentType accidentType);
+    BigDecimal getDeductibleAmount();
+    BigDecimal calculateCoinsurance(BigDecimal claimAmount);
     CoverageLimit getLimits();
 }

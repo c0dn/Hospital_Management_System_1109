@@ -2,16 +2,17 @@ package policy;
 
 import wards.WardClassType;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
 public class CoverageLimit {
-    private double annualLimit;
-    private double lifetimeLimit;
-    private Map<BenefitType, Double> benefitLimits;
-    private Map<WardClassType, Double> wardLimits;
-    private Map<AccidentType, Double> accidentSubLimits;
+    private BigDecimal annualLimit;
+    private BigDecimal lifetimeLimit;
+    private Map<BenefitType, BigDecimal> benefitLimits;
+    private Map<WardClassType, BigDecimal> wardLimits;
+    private Map<AccidentType, BigDecimal> accidentSubLimits;
 
     private CoverageLimit(Builder builder) {
         this.annualLimit = builder.annualLimit;
@@ -21,85 +22,81 @@ public class CoverageLimit {
         this.accidentSubLimits = builder.accidentSubLimits;
     }
 
-
     public boolean hasAnnualLimit() {
-        return annualLimit > 0;
+        return annualLimit != null && annualLimit.compareTo(BigDecimal.ZERO) > 0;
     }
 
     public boolean hasLifetimeLimit() {
-        return lifetimeLimit > 0;
+        return lifetimeLimit != null && lifetimeLimit.compareTo(BigDecimal.ZERO) > 0;
     }
 
-
-    public Optional<Double> getBenefitLimit(BenefitType type) {
+    public Optional<BigDecimal> getBenefitLimit(BenefitType type) {
         return Optional.ofNullable(benefitLimits.get(type));
     }
 
-    public Optional<Double> getWardLimit(WardClassType wardClass) {
+    public Optional<BigDecimal> getWardLimit(WardClassType wardClass) {
         return Optional.ofNullable(wardLimits.get(wardClass));
     }
 
-    public Optional<Double> getAccidentLimit(AccidentType type) {
+    public Optional<BigDecimal> getAccidentLimit(AccidentType type) {
         return Optional.ofNullable(accidentSubLimits.get(type));
     }
 
-    public boolean isWithinAnnualLimit(double amount) {
-        return !hasAnnualLimit() || amount <= annualLimit;
+    public boolean isWithinAnnualLimit(BigDecimal amount) {
+        return !hasAnnualLimit() || amount.compareTo(annualLimit) <= 0;
     }
 
-    public boolean isWithinLifetimeLimit(double amount) {
-        return !hasLifetimeLimit() || amount <= lifetimeLimit;
+    public boolean isWithinLifetimeLimit(BigDecimal amount) {
+        return !hasLifetimeLimit() || amount.compareTo(lifetimeLimit) <= 0;
     }
 
-    public boolean isWithinBenefitLimit(BenefitType type, double amount) {
+    public boolean isWithinBenefitLimit(BenefitType type, BigDecimal amount) {
         return getBenefitLimit(type)
-                .map(limit -> amount <= limit)
+                .map(limit -> amount.compareTo(limit) <= 0)
                 .orElse(true);
     }
 
-    public boolean isWithinWardLimit(WardClassType wardClass, double amount) {
+    public boolean isWithinWardLimit(WardClassType wardClass, BigDecimal amount) {
         return getWardLimit(wardClass)
-                .map(limit -> amount <= limit)
+                .map(limit -> amount.compareTo(limit) <= 0)
                 .orElse(true);
     }
 
-    public boolean isWithinAccidentLimit(AccidentType type, double amount) {
+    public boolean isWithinAccidentLimit(AccidentType type, BigDecimal amount) {
         return getAccidentLimit(type)
-                .map(limit -> amount <= limit)
+                .map(limit -> amount.compareTo(limit) <= 0)
                 .orElse(true);
     }
-
-
 
     public static class Builder {
-        private double annualLimit;
-        private double lifetimeLimit;
-        private Map<BenefitType, Double> benefitLimits = new HashMap<>();
-        private Map<WardClassType, Double> wardLimits = new HashMap<>();
-        private Map<AccidentType, Double> accidentSubLimits = new HashMap<>();
+        private BigDecimal annualLimit;
+        private BigDecimal lifetimeLimit;
+        private Map<BenefitType, BigDecimal> benefitLimits = new HashMap<>();
+        private Map<WardClassType, BigDecimal> wardLimits = new HashMap<>();
+        private Map<AccidentType, BigDecimal> accidentSubLimits = new HashMap<>();
 
         public Builder withAnnualLimit(double limit) {
-            this.annualLimit = limit;
+            this.annualLimit = BigDecimal.valueOf(limit);
             return this;
         }
 
         public Builder withLifetimeLimit(double limit) {
-            this.lifetimeLimit = limit;
+            this.lifetimeLimit = BigDecimal.valueOf(limit);
             return this;
         }
 
         public Builder addAccidentLimit(AccidentType type, double limit) {
-            this.accidentSubLimits.put(type, limit);
+            this.accidentSubLimits.put(type, BigDecimal.valueOf(limit));
             return this;
         }
 
         public Builder addBenefitLimit(BenefitType type, double limit) {
-            this.benefitLimits.put(type, limit);
+            this.benefitLimits.put(type, BigDecimal.valueOf(limit));
             return this;
         }
 
         public Builder addWardLimit(WardClassType wardClass, double limit) {
-            this.wardLimits.put(wardClass, limit);
+            this.wardLimits.put(wardClass, BigDecimal.valueOf(limit));
             return this;
         }
 
