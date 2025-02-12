@@ -96,14 +96,15 @@ public class Patient extends Human {
 
 //        System.out.printf("%nName: " + name);
         System.out.printf("Patient ID: " + patientId);
-        System.out.printf("\t\tHeight: %3.2f", height);
-        System.out.printf("\t\tWeight: %3.2f", weight);
+        System.out.printf("\nHeight: %3.2f", height);
+        System.out.printf("\ntWeight: %3.2f", weight);
         System.out.println("\nDrug Allergies: " + drugAllergies);
         System.out.println("\nNEXT OF KIN (NOK) DETAILS");
         System.out.println("---------------------------------------------------------------------");
         System.out.printf("Name: " + nokName);
-        System.out.printf("\t   Relationship: " + nokRelation);
-        System.out.printf("\n\nAddress: " + nokAddress);
+        System.out.printf("\nRelationship: " + nokRelation);
+        System.out.printf("\nAddress: " + nokAddress);
+        System.out.println("");
     }
 
     /**

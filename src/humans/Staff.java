@@ -58,7 +58,7 @@ public class Staff extends Human {
 
 //        System.out.printf("%nName: " + name);
         System.out.printf("Staff ID: " + staffId);
-        System.out.printf("\t   Department: " + department);
-        System.out.printf("\t Title: " + title);
+        System.out.printf("\nDepartment: " + department);
+        System.out.printf("\nTitle: " + title);
     }
 }

@@ -176,15 +176,6 @@ public abstract class Human {
     }
 
     /**
-     * Displays the contact information of the person.
-     * This method delegates the actual display functionality
-     * to the {@code displayContactInfo} method of the {@code Contact} class.
-     */
-    public void displayContactInformation() {
-        contact.displayContactInfo();
-    }
-
-    /**
      * Displays the full details of the person including personal, demographic, residential,
      * and medical information.
      */

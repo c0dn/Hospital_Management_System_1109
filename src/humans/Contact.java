@@ -41,15 +41,4 @@ public class Contact {
         this.email = email;
     }
 
-    /**
-     * Displays the contact information, including personal phone, home phone,
-     * company phone, and email. The information is formatted and printed to the console.
-     */
-    public void displayContactInfo() {
-        System.out.format("Personal Phone: %s%n", personalPhone);
-        System.out.format("Home Phone: %s%n", homePhone);
-        System.out.format("Company Phone: %s%n", companyPhone);
-        System.out.format("Email: %s%n", email);
-    }
-
 }
