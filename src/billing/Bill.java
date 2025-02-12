@@ -1,6 +1,9 @@
 package billing;
 
 
+import policy.InsurancePolicy;
+import policy.InsuranceStatus;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;

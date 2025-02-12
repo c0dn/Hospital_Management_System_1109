@@ -33,7 +33,7 @@ public class ProcedureCodeTest {
 
             // Test 3: Calculate total cost
             System.out.println("\nTest 3 - Calculating total cost:");
-            BigDecimal totalCost = proc1.getPrice().add(proc2.getPrice());
+            BigDecimal totalCost = proc1.getCharges().add(proc2.getCharges());
             System.out.printf("Total cost for both procedures: $%s%n",
                     totalCost.setScale(2, RoundingMode.HALF_UP));
 
@@ -51,7 +51,7 @@ public class ProcedureCodeTest {
             ProcedureCode proc3 = ProcedureCode.createFromCode("0011M");
             System.out.println("First instance: " + proc1);
             System.out.println("Second instance: " + proc3);
-            System.out.println("Are they the same code? " + proc1.getCode().equals(proc3.getCode()));
+            System.out.println("Are they the same code? " + proc1.getBillingItemCode().equals(proc3.getBillingItemCode()));
 
         } catch (Exception e) {
             System.err.println("Unexpected error: " + e.getMessage());

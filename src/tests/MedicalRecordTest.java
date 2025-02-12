@@ -3,7 +3,6 @@ package tests;
 import humans.*;
 import medical.HealthcareProvider;
 import medical.MedicalRecord;
-import medical.TypeOfVisit;
 import wards.Ward;
 import wards.WardClassType;
 import wards.WardFactory;
@@ -18,7 +17,7 @@ public class MedicalRecordTest {
         Ward generalWard = WardFactory.getWard("General Ward", WardClassType.GENERAL_CLASS_C);
         HealthcareProvider healthcareProvider = new HealthcareProvider("SGH", "0M");
         Bed bed = generalWard.getBeds().get(1);
-        MedicalRecord medicalRecord = new MedicalRecord("0011M", LocalDate.of(2025, 2, 15), TypeOfVisit.INPATIENT, Arrays.asList("Aspirin"),
+        MedicalRecord medicalRecord = new MedicalRecord("0011M", LocalDate.of(2025, 2, 15), Arrays.asList("Aspirin"),
                 Arrays.asList("Penicillin"), Arrays.asList("None"), Patient.builder().withRandomData("P1002").build(), "Doc", "2", generalWard, healthcareProvider,
                 Arrays.asList("Nurse1"));
         medicalRecord.displayMedicalRecord();

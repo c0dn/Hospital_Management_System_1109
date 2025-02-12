@@ -183,7 +183,6 @@ public class MedicalRecord {
         System.out.printf("Hospital Name: " + healthcareProvider.healthcareProviderName);
         System.out.printf("\t\tHospital Code: " + healthcareProvider.hospitalCode);
         System.out.printf("%n%nDate of Visit: " + dateOfVisit);
-        System.out.printf("\t\tType of Visit: " + typeOfVisit);
         System.out.printf("\n\nWard: " + ward.getWardName());
         System.out.println("\n\nMEDICAL INFORMATION");
         System.out.println("---------------------------------------------------------------------");

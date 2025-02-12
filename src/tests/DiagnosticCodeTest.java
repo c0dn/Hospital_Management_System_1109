@@ -1,6 +1,7 @@
 package tests;
 
 import medical.DiagnosticCode;
+import policy.BenefitType;
 
 /**
  * A test class for the {@link DiagnosticCode} class.
@@ -21,13 +22,13 @@ public class DiagnosticCodeTest {
             System.out.println("Test 1 - Creating code A000 (should be NONE):");
             DiagnosticCode code1 = DiagnosticCode.createFromCode("A000");
             System.out.println(code1);
-            System.out.println("Critical Illness Classification: " + code1.getCriticalIllnessClassification());
+            System.out.println("Critical Illness Classification: " + code1.resolveBenefitType(true));
 
             // Test 2: Create code with BACTERIAL_MENINGITIS classification
             System.out.println("\nTest 2 - Creating code A0101 (should be BACTERIAL_MENINGITIS):");
             DiagnosticCode code2 = DiagnosticCode.createFromCode("A0101");
             System.out.println(code2);
-            System.out.println("Critical Illness Classification: " + code2.getCriticalIllnessClassification());
+            System.out.println("Critical Illness Classification: " + code2.resolveBenefitType(false));
 
             // Test 3: Create code with MAJOR_CANCERS classification
             System.out.println("\nTest 3 - Creating code A1781 (should be MAJOR_CANCERS):");
@@ -42,7 +43,7 @@ public class DiagnosticCodeTest {
             // Test 5: Verify critical illness classification type
             System.out.println("\nTest 5 - Verifying classification type:");
             DiagnosticCode meningitisCode = DiagnosticCode.createFromCode("A0101");
-            if (meningitisCode.getCriticalIllnessClassification() == CriticalIllnessType.BACTERIAL_MENINGITIS) {
+            if (meningitisCode.resolveBenefitType(true) == BenefitType.CRITICAL_ILLNESS) {
                 System.out.println("Classification verification passed!");
             } else {
                 System.out.println("Classification verification failed!");
