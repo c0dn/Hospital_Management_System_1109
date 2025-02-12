@@ -158,7 +158,11 @@ public class Visit {
         DataGenerator gen = DataGenerator.getInstance();
         LocalDateTime admissionTime = LocalDateTime.now()
                 .minusDays(gen.generateRandomInt(1, 30));
-        Patient randomPatient = Patient.builder().withRandomBaseData().build();
+        Patient randomPatient = Patient
+                .builder()
+                .patientId(gen.generatePatientId()).
+                withRandomBaseData()
+                .build();
 
         return populateWithRandomData(new Visit(admissionTime, randomPatient));
     }

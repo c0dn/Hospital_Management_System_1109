@@ -34,7 +34,7 @@ public class WardTest {
 
             // Test 3: Create a Day Surgery Ward
             System.out.println("\nTest 3 - Creating Day Surgery Seater Ward:");
-            Ward daySurgeryWard = WardFactory.getWard("Day Surgery", WardClassType.DAYSURGERY_CLASS_SINGLE);
+            Ward daySurgeryWard = WardFactory.getWard("Day Surgery", WardClassType.DAYSURGERY_CLASS_SEATER);
             System.out.println("Ward Name: " + daySurgeryWard.getWardName());
             System.out.println("Daily Rate: $" + daySurgeryWard.getDailyRate());
             System.out.println("Number of Beds: " + daySurgeryWard.getBeds().size());

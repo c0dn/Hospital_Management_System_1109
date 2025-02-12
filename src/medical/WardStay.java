@@ -82,9 +82,9 @@ public class WardStay implements ClaimableItem {
     @Override
     public BenefitType resolveBenefitType(boolean isInpatient) {
         return switch (ward) {
-            case LabourWard _ -> BenefitType.MATERNITY;
-            case ICUWard _ -> BenefitType.HOSPITALIZATION;
-            case DaySurgeryWard _ -> isInpatient ? BenefitType.SURGERY : BenefitType.OUTPATIENT_TREATMENTS;
+            case LabourWard _d -> BenefitType.MATERNITY;
+            case ICUWard _d -> BenefitType.HOSPITALIZATION;
+            case DaySurgeryWard _d -> isInpatient ? BenefitType.SURGERY : BenefitType.OUTPATIENT_TREATMENTS;
             case null, default -> isInpatient ? BenefitType.HOSPITALIZATION : BenefitType.OUTPATIENT_TREATMENTS;
         };
     }
