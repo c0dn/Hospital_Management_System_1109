@@ -21,16 +21,14 @@ public abstract class InsuranceProvider {
     protected String providerName;
 
     /**
-     * Processes a claim for a patient.
-     * <p>
-     * Define how an insurance provider processes claims for medical bills incurred by a patient.
-     * </p>
+     * Processes an insurance claim for a given patient.
+     * This method determines whether the insurance claim filed by the specified patient
+     * is valid and processes it accordingly.
      *
-     * @param patient The patient who is making the claim.
-     * @param bill The bill for which the claim is being made.
-     * @return A boolean value indicating whether the claim was successfully processed.
+     * @param patient The patient associated with the insurance claim.
+     * @param claim The insurance claim to be processed.
+     * @return {@code true} if the claim is successfully processed, {@code false} otherwise.
      */
-    public abstract boolean processClaim(Patient patient, Bill bill);
     public abstract boolean processClaim(Patient patient, InsuranceClaim claim);
 
     /**

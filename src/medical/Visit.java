@@ -4,11 +4,10 @@ import billing.BillableItem;
 import humans.Doctor;
 import humans.Nurse;
 import humans.Patient;
-import utils.DataGenerator;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
+import utils.DataGenerator;
 
 /**
  * Represents an inpatient hospital visit.
@@ -56,14 +55,7 @@ public class Visit {
      * documentation, and other healthcare-related purposes.
      */
     private List<DiagnosticCode> diagnosticCodes;
-
-    /**
-     * Represents the primary attending doctor supervising the inpatient's care
-     */
-    private Doctor AttendingDoctor;
-    /**
-     * Represents the collection of nurses who are assigned to attend to the patient
-     */
+    private Doctor attendingDoc;
     private List<Nurse> AttendingNurses;
     /**
      * A map representing the prescriptions associated with a visit.
@@ -128,7 +120,6 @@ public class Visit {
         return new Visit(admissionDateTime, patient);
     }
 
-
     protected static <T extends Visit> T populateWithRandomData(T visit) {
         DataGenerator gen = DataGenerator.getInstance();
 
@@ -146,7 +137,6 @@ public class Visit {
                     gen.generateRandomInt(1, 10));
         }
 
-
         // Add Procedures
         int procedureCount = gen.generateRandomInt(1, 5);
         for (int i = 0; i < procedureCount; i++) {
@@ -158,7 +148,6 @@ public class Visit {
         for (int i = 0; i < diagnoseCount; i++) {
             visit.diagnose(DiagnosticCode.getRandomCode());
         }
-
 
         return visit;
     }
@@ -215,7 +204,6 @@ public class Visit {
             diagnosticCodes = new ArrayList<>();
         }
         diagnosticCodes.add(diagnosticCode);
-
     }
 
     /**
@@ -263,7 +251,7 @@ public class Visit {
             throw new IllegalStateException("Cannot assign doctor for a non-active visit");
         }
 
-        this.AttendingDoctor = doctor;
+        this.attendingDoc = doctor;
     }
 
 
@@ -446,17 +434,14 @@ public class Visit {
     public List<BillableItem> getRelatedBillableItems() {
         List<BillableItem> items = new ArrayList<>();
 
-        // Add diagnostics
         if (diagnosticCodes != null) {
             items.addAll(diagnosticCodes);
         }
 
-        // Add procedures
         if (inpatientProcedures != null) {
             items.addAll(inpatientProcedures);
         }
 
-        // Add medications with their quantities as MedicationBillableItem
         if (prescriptions != null) {
             prescriptions.forEach((medication, quantity) ->
                     items.add(new MedicationBillableItem(medication, quantity, true)));
@@ -465,6 +450,100 @@ public class Visit {
         return items;
     }
 
+    /**
+     * Displays detailed information about the hospital visit in a formatted manner.
+     */
+    public void displayVisitInfo() {
+        printHeader();
+        printBasicInfo();
+        printMedicalStaff();
+        printProceduresAndDiagnoses();
+        printMedications();
+        printWardStays();
+        printFooter();
+    }
 
+    private void printHeader() {
+        System.out.println("\n====================================================");
+        System.out.println("                HOSPITAL VISIT RECORD                ");
+        System.out.println("====================================================");
+    }
+
+    private void printBasicInfo() {
+        System.out.printf("%-20s: %s%n", "Visit ID", visitId);
+        System.out.printf("%-20s: %s%n", "Status", status);
+        System.out.printf("%-20s: %s%n", "Patient ID", patient.getPatientId());
+        System.out.printf("%-20s: %s%n", "Patient Name", patient.getName());
+        System.out.printf("%-20s: %s%n", "Admission Date", admissionDateTime);
+        if (dischargeDateTime != null) {
+            System.out.printf("%-20s: %s%n", "Discharge Date", dischargeDateTime);
+        }
+        getVisitDuration().ifPresent(duration -> 
+            System.out.printf("%-20s: %d hours%n", "Duration", duration));
+    }
+
+    private void printMedicalStaff() {
+        System.out.println("\nMEDICAL STAFF");
+        System.out.println("----------------------------------------------------");
+        if (attendingDoc != null) {
+            System.out.printf("%-20s: Present%n", "Attending Doctor");
+            attendingDoc.printAsAttending();
+        }
+        
+        if (!AttendingNurses.isEmpty()) {
+            System.out.println("\nAttending Nurses:");
+            for (Nurse nurse : AttendingNurses) {
+                nurse.printAsAttending();
+            }
+        }
+    }
+
+    private void printProceduresAndDiagnoses() {
+        System.out.println("\nPROCEDURES AND DIAGNOSES");
+
+        if (!inpatientProcedures.isEmpty()) {
+            System.out.println("\nProcedures:");
+            for (ProcedureCode proc : inpatientProcedures) {
+                System.out.printf("  - [%s] %s%n", 
+                    proc.getProcedureCode(),
+                    proc.getBillItemDescription());
+            }
+        }
+
+        if (!diagnosticCodes.isEmpty()) {
+            System.out.println("\nDiagnoses:");
+            for (DiagnosticCode diag : diagnosticCodes) {
+                System.out.printf("  - [%s] %s%n", 
+                    diag.getBillingItemCode(),
+                    diag.getBillItemDescription());
+            }
+        }
+    }
+
+    private void printMedications() {
+        if (!prescriptions.isEmpty()) {
+            System.out.println("\nPRESCRIPTIONS");
+            System.out.println("----------------------------------------------------");
+            for (Map.Entry<Medication, Integer> entry : prescriptions.entrySet()) {
+                System.out.printf("  - Medication (Qty: %d)%n",
+                    entry.getValue());
+            }
+        }
+    }
+
+    private void printWardStays() {
+        if (!wardStays.isEmpty()) {
+            System.out.println("\nWARD STAYS");
+            System.out.println("----------------------------------------------------");
+            for (WardStay stay : wardStays) {
+                System.out.printf("  - Ward Stay%n");
+            }
+        }
+    }
+
+    private void printFooter() {
+        System.out.println("\n----------------------------------------------------");
+        System.out.printf("Total Charges: $%.2f%n", calculateCharges());
+        System.out.println("====================================================\n");
+    }
 }
-

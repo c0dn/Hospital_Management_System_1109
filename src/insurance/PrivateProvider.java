@@ -27,16 +27,13 @@ public class PrivateProvider extends InsuranceProvider {
     private final DataGenerator dataGen = DataGenerator.getInstance();
 
     /**
-     * Processes a claim for a patient.
-     * <p>
-     * Define how claims for medical
-     * bills incurred by a patient are processed. In the {@code PrivateProvider} class, this
-     * implementation currently returns {@code false}.
-     * </p>
+     * Processes an insurance claim for the given patient.
+     * This method updates the status of the insurance claim to "IN_REVIEW" and then "APPROVED".
+     * It always approves the claim for testing purposes.
      *
-     * @param patient The patient who is making the claim.
-     * @param bill The bill for which the claim is being made.
-     * @return A boolean value indicating whether the claim was successfully processed.
+     * @param patient The patient for whom the insurance claim is being processed.
+     * @param claim The insurance claim to be processed.
+     * @return A boolean value indicating the success of the claim processing. Always returns true.
      */
     @Override
     public boolean processClaim(Patient patient, InsuranceClaim claim) {

@@ -1,5 +1,6 @@
 package insurance;
 
+import billing.Bill;
 import claims.ClaimStatus;
 import claims.InsuranceClaim;
 import humans.Patient;
@@ -144,16 +145,15 @@ public class GovernmentProvider extends InsuranceProvider {
         coverageDatabase.put("elderShieldCoverage", elderShieldCoverage);
     }
 
+
     /**
-     * Processes a claim for a patient.
-     * <p>
-     * This method processes the insurance claim for the given patient and bill.
-     * However, in this implementation, it returns false since processing is not yet implemented.
-     * </p>
+     * Processes an insurance claim for a given patient.
+     * Updates the claim status to "IN_REVIEW" and subsequently to "APPROVED".
+     * This method always approves the claim during testing.
      *
-     * @param patient The patient who is making the claim.
-     * @param bill The bill for which the claim is being made.
-     * @return {@code false} indicating that the claim processing is not implemented.
+     * @param patient The patient for whom the claim is being processed.
+     * @param claim The insurance claim to be reviewed and updated.
+     * @return {@code true} indicating that the claim has been successfully processed.
      */
     @Override
     public boolean processClaim(Patient patient, InsuranceClaim claim) {

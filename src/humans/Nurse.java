@@ -68,4 +68,8 @@ public class Nurse extends Staff{
         System.out.format("RNID: %s%n", rnid);
         System.out.println("=====================================================================");
     }
+
+    public void printAsAttending() {
+        System.out.printf("  - Attending Nurse: %s (RNID: %s)%n", name, rnid);
+    };
 }

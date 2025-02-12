@@ -50,6 +50,14 @@ public class Doctor extends Staff {
         return mcr;
     }
 
+    public void printAsAttending() {
+        System.out.format("%-20s: %s (ID: %s)%n",
+                "Attending Doctor",
+                name,
+                mcr);
+    }
+
+
     /**
      * Displays doctor's Medical Council Registration (MCR) number, including the inherited staff details.
      */
