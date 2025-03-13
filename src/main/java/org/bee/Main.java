@@ -1,6 +1,6 @@
 package org.bee;
 
-import org.bee.tests.InsuranceClaimTest;
+import org.bee.hms.tests.InsuranceClaimTest;
 
 /**
  * The main entry point for the insurance system.
