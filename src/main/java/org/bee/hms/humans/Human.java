@@ -2,13 +2,16 @@ package org.bee.hms.humans;
 
 import java.time.LocalDate;
 
+import org.bee.utils.JSONReadable;
+import org.bee.utils.JSONWritable;
+
 /**
  * Represents a general human entity in the insurance system.
  * This serves as a base class for patients, doctors and other human-related roles.
  * Attributes include general information (like name, date of birth, NRIC/FIN), which are commonly found in SingPass,
  * HealthHub and staff onboarding procedures and patient-provided information.
  */
-public abstract class Human {
+public abstract class Human implements JSONWritable, JSONReadable {
 
     /**
      * The name of the person.

@@ -13,13 +13,15 @@ import org.bee.hms.humans.Doctor;
 import org.bee.hms.humans.Nurse;
 import org.bee.hms.humans.Patient;
 import org.bee.utils.DataGenerator;
+import org.bee.utils.JSONReadable;
+import org.bee.utils.JSONWritable;
 
 /**
  * Represents an inpatient hospital visit.
  * The class encapsulates information related to the visit, including ward stays,
  * procedures performed, attending medical personnel, and the status of the visit.
  */
-public class Visit {
+public class Visit implements JSONWritable, JSONReadable {
     /**
      * A unique identifier for the visit.
      * This identifier is used to distinguish each hospital visit
@@ -83,6 +85,13 @@ public class Visit {
      */
     private VisitStatus status;
     private Patient patient;
+
+    /**
+     * Default constructor for JSON deserialization.
+     */
+    public Visit() {
+        // Default constructor for JSON deserialization
+    }
 
     /**
      * Constructs a new Visit instance with the provided admission date and patient details.

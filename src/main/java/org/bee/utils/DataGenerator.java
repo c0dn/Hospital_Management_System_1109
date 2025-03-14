@@ -6,6 +6,7 @@ import org.bee.hms.policy.AccidentType;
 
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 /**
  * Utility class for generating common data used across different entities.
@@ -266,5 +267,9 @@ public class DataGenerator {
     public <T extends Enum<?>> T getRandomEnum(Class<T> enumClass) {
         T[] values = enumClass.getEnumConstants();
         return values[generateRandomInt(values.length)];
+    }
+
+    public static String generateUUID() {
+        return UUID.randomUUID().toString();
     }
 }

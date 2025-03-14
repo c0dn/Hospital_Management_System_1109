@@ -208,4 +208,12 @@ public class Medication {
         return createFromCode(codes[randomIndex]);
     }
 
+    /**
+     * Gets the unique drug code for this medication.
+     * 
+     * @return The drug code
+     */
+    public String getDrugCode() {
+        return drugCode;
+    }
 }
