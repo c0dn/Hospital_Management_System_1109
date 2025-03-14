@@ -1,4 +1,4 @@
-package org.bee.hms.utils;
+package org.bee.utils;
 
 /**
  * An interface defining the contract for objects that can be serialized to CSV format.

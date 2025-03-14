@@ -12,7 +12,7 @@ import org.bee.hms.billing.BillableItem;
 import org.bee.hms.humans.Doctor;
 import org.bee.hms.humans.Nurse;
 import org.bee.hms.humans.Patient;
-import org.bee.hms.utils.DataGenerator;
+import org.bee.utils.DataGenerator;
 
 /**
  * Represents an inpatient hospital visit.

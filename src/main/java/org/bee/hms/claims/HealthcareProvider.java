@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.bee.hms.utils.CSVHelper;
+import org.bee.utils.CSVHelper;
 
 /**
  * Represents a hospital code with a unique identifier (hospital codes) and name.

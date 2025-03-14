@@ -70,7 +70,7 @@ testClasses.forEach { className ->
         }
         
         classpath = sourceSets["main"].runtimeClasspath
-        mainClass.set("org.bee.hms.tests.${className}")
+        mainClass.set("org.bee.tests.${className}")
         workingDir = projectDir // Set working directory to project root
     }
 }

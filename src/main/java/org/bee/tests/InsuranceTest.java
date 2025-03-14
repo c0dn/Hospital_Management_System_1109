@@ -1,11 +1,11 @@
-package org.bee.hms.tests;
+package org.bee.tests;
 
 import java.util.Optional;
 
 import org.bee.hms.humans.Patient;
 import org.bee.hms.insurance.PrivateProvider;
 import org.bee.hms.policy.InsurancePolicy;
-import org.bee.hms.utils.DataGenerator;
+import org.bee.utils.DataGenerator;
 
 public class InsuranceTest {
     public static void main(String[] args) {

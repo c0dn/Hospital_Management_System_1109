@@ -1,4 +1,4 @@
-package org.bee.hms.tests;
+package org.bee.tests;
 
 import org.bee.hms.billing.BillableItem;
 import org.bee.hms.humans.Doctor;
@@ -13,7 +13,7 @@ import org.bee.hms.medical.ProcedureCode;
 import org.bee.hms.medical.Visit;
 import org.bee.hms.medical.VisitStatus;
 import org.bee.hms.medical.WardStay;
-import org.bee.hms.utils.DataGenerator;
+import org.bee.utils.DataGenerator;
 import org.bee.hms.wards.Ward;
 import org.bee.hms.wards.WardClassType;
 import org.bee.hms.wards.WardFactory;

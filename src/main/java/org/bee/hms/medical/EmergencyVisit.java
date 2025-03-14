@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import org.bee.hms.humans.Patient;
 import org.bee.hms.policy.AccidentType;
-import org.bee.hms.utils.DataGenerator;
+import org.bee.utils.DataGenerator;
 
 
 /**

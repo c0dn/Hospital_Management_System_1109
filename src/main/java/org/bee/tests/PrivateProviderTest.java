@@ -1,4 +1,4 @@
-package org.bee.hms.tests;
+package org.bee.tests;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -10,7 +10,7 @@ import org.bee.hms.insurance.PrivateProvider;
 import org.bee.hms.policy.BaseCoverage;
 import org.bee.hms.policy.CoverageLimit;
 import org.bee.hms.policy.InsurancePolicy;
-import org.bee.hms.utils.DataGenerator;
+import org.bee.utils.DataGenerator;
 
 /**
  * A test class for the {@link PrivateProvider} class.

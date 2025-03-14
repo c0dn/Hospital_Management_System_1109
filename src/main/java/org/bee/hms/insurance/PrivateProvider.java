@@ -17,7 +17,7 @@ import org.bee.hms.policy.CoverageLimit;
 import org.bee.hms.policy.ExclusionCriteria;
 import org.bee.hms.policy.HeldInsurancePolicy;
 import org.bee.hms.policy.InsurancePolicy;
-import org.bee.hms.utils.DataGenerator;
+import org.bee.utils.DataGenerator;
 import org.bee.hms.wards.WardClassType;
 
 /**

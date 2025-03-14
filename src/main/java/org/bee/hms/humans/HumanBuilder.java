@@ -2,7 +2,7 @@ package org.bee.hms.humans;
 
 import java.time.LocalDate;
 
-import org.bee.hms.utils.DataGenerator;
+import org.bee.utils.DataGenerator;
 
 /**
  * Abstract builder class for constructing instances of {@link Human} or its subclasses.

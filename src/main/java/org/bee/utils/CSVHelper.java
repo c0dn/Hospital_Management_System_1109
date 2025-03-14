@@ -1,4 +1,4 @@
-package org.bee.hms.utils;
+package org.bee.utils;
 
 import java.util.ArrayList;
 import java.util.List;

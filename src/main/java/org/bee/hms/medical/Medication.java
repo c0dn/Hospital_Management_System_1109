@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.bee.hms.utils.CSVHelper;
+import org.bee.utils.CSVHelper;
 
 /**
  * Represents a medication with associated details loaded from a CSV file.

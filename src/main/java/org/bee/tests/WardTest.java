@@ -1,4 +1,4 @@
-package org.bee.hms.tests;
+package org.bee.tests;
 
 import org.bee.hms.humans.Patient;
 import org.bee.hms.wards.Bed;

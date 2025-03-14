@@ -1,6 +1,7 @@
 package org.bee;
 
-import org.bee.hms.tests.InsuranceClaimTest;
+import org.bee.ui.ApplicationContext;
+import org.bee.ui.Canvas;
 
 /**
  * The main entry point for the insurance system.
@@ -15,6 +16,8 @@ public class Main {
      * @param args
      */
     public static void main(String[] args) {
-        InsuranceClaimTest.main(args);
+        var canvas = new Canvas();
+        ApplicationContext applicationContext = new ApplicationContext(canvas);
+//        applicationContext.startApplication();
     }
 }

@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 import org.bee.hms.billing.BillableItem;
 import org.bee.hms.policy.BenefitType;
 import org.bee.hms.policy.ClaimableItem;
-import org.bee.hms.utils.CSVHelper;
+import org.bee.utils.CSVHelper;
 
 /**
  * Represents a diagnostic code, typically used for medical diagnosis.

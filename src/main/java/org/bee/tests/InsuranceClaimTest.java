@@ -1,4 +1,4 @@
-package org.bee.hms.tests;
+package org.bee.tests;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -17,7 +17,7 @@ import org.bee.hms.medical.EmergencyVisit;
 import org.bee.hms.medical.Visit;
 import org.bee.hms.medical.VisitStatus;
 import org.bee.hms.policy.InsurancePolicy;
-import org.bee.hms.utils.DataGenerator;
+import org.bee.utils.DataGenerator;
 
 /**
  * A test class for the {@link InsuranceClaim} class.

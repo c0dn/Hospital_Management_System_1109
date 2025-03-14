@@ -1,4 +1,4 @@
-package org.bee.hms.tests;
+package org.bee.tests;
 
 import java.math.BigDecimal;
 import java.util.List;

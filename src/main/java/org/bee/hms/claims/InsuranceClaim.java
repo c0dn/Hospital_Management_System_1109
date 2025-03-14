@@ -3,7 +3,7 @@ package org.bee.hms.claims;
 import org.bee.hms.billing.Bill;
 import org.bee.hms.insurance.InsuranceProvider;
 import org.bee.hms.policy.InsurancePolicy;
-import org.bee.hms.utils.DataGenerator;
+import org.bee.utils.DataGenerator;
 import org.bee.hms.humans.Patient;
 
 import java.math.BigDecimal;

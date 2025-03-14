@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.bee.hms.billing.BillableItem;
-import org.bee.hms.utils.DataGenerator;
+import org.bee.utils.DataGenerator;
 
 /**
  * Represents a medical consultation.

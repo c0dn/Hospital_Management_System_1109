@@ -1,4 +1,4 @@
-package org.bee.hms.utils;
+package org.bee.utils;
 
 import org.bee.hms.humans.Contact;
 import org.bee.hms.medical.Medication;

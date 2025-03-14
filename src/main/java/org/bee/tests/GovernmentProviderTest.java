@@ -1,4 +1,4 @@
-package org.bee.hms.tests;
+package org.bee.tests;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -8,7 +8,7 @@ import org.bee.hms.humans.PatientBuilder;
 import org.bee.hms.humans.ResidentialStatus;
 import org.bee.hms.insurance.GovernmentProvider;
 import org.bee.hms.policy.InsurancePolicy;
-import org.bee.hms.utils.DataGenerator;
+import org.bee.utils.DataGenerator;
 
 /**
  * A test class for the {@link GovernmentProvider} class.

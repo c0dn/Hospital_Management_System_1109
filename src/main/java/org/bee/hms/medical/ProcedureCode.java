@@ -8,7 +8,7 @@ import java.util.Map;
 import org.bee.hms.billing.BillableItem;
 import org.bee.hms.policy.BenefitType;
 import org.bee.hms.policy.ClaimableItem;
-import org.bee.hms.utils.CSVHelper;
+import org.bee.utils.CSVHelper;
 
 /**
  * Represents a medical procedure code with associated description and price.
