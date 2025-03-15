@@ -1,5 +1,6 @@
 package org.bee;
 
+import org.bee.pages.LoginPage;
 import org.bee.ui.ApplicationContext;
 import org.bee.ui.Canvas;
 
@@ -18,6 +19,6 @@ public class Main {
     public static void main(String[] args) {
         var canvas = new Canvas();
         ApplicationContext applicationContext = new ApplicationContext(canvas);
-//        applicationContext.startApplication();
+        applicationContext.startApplication(new LoginPage());
     }
 }

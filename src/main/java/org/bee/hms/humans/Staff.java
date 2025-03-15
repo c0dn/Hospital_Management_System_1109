@@ -1,5 +1,7 @@
 package org.bee.hms.humans;
 
+import org.bee.hms.auth.SystemUser;
+
 /**
  * Represents staff in the insurance system.
  * <p>
@@ -12,7 +14,7 @@ package org.bee.hms.humans;
  * </ul>
  */
 
-public class Staff extends Human {
+public class Staff extends Human implements SystemUser {
     /** The unique identifier for the staff. */
     private String staffId;
     /** The title of the staff. */
@@ -60,5 +62,10 @@ public class Staff extends Human {
         System.out.printf("Staff ID: " + staffId);
         System.out.printf("\nDepartment: " + department);
         System.out.printf("\nTitle: " + title);
+    }
+
+    @Override
+    public String getUsername() {
+        return staffId;
     }
 }

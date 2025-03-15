@@ -39,6 +39,7 @@ public class DoctorBuilder extends StaffBuilder<DoctorBuilder> {
     @Override
     public DoctorBuilder withRandomBaseData() {
         super.withRandomBaseData();
+        this.type = "doctor";
         this.mcr = dataGenerator.generateMCRNumber();
         this.title = "Doctor";
         this.department = "Medical";

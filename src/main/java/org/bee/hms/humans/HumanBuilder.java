@@ -35,6 +35,9 @@ abstract class HumanBuilder<T extends HumanBuilder<T>> {
     BloodType bloodType;
     /** Indicates whether the individual is vaccinated. */
     boolean isVaccinated;
+    
+    /** The type of human, used for JSON serialization/deserialization. */
+    String type;
 
     /**
      * Default constructor for {@code HumanBuilder}.
@@ -171,6 +174,17 @@ abstract class HumanBuilder<T extends HumanBuilder<T>> {
      */
     public T isVaccinated(boolean isVaccinated) {
         this.isVaccinated = isVaccinated;
+        return self();
+    }
+    
+    /**
+     * Sets the type of human for JSON serialization/deserialization.
+     *
+     * @param type The type identifier for the human.
+     * @return The current builder instance.
+     */
+    public T type(String type) {
+        this.type = type;
         return self();
     }
 

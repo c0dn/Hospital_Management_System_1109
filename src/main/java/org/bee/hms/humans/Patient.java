@@ -1,5 +1,7 @@
 package org.bee.hms.humans;
 
+import org.bee.hms.auth.SystemUser;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +13,7 @@ import java.util.List;
  * </p>
  */
 
-public class Patient extends Human {
+public class Patient extends Human implements SystemUser {
     /** The unique identifier for the patient. */
     private final String patientId;
     /** A list of the patient's drug allergies. */
@@ -132,5 +134,10 @@ public class Patient extends Human {
     @Override
     public String toString() {
         return "Patient Name: " + name + ", Patient ID: " + patientId;
+    }
+
+    @Override
+    public String getUsername() {
+        return nricFin;
     }
 }

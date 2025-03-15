@@ -182,6 +182,8 @@ public class PatientBuilder extends HumanBuilder<PatientBuilder> {
     @Override
     public PatientBuilder withRandomBaseData() {
         super.withRandomBaseData();
+        
+        this.type = "patient";
 
         // Generate height between 1.5m and 2m
         this.height = 1.5 + random.nextDouble() * 0.5;

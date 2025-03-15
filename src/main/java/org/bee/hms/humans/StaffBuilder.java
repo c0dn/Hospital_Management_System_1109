@@ -59,6 +59,8 @@ public abstract class StaffBuilder<T extends StaffBuilder<T>> extends HumanBuild
     @Override
     public T withRandomBaseData() {
         super.withRandomBaseData();
+        
+        this.type = "staff";
 
         this.staffId = dataGenerator.generateStaffId();
         this.title = "Staff Member";

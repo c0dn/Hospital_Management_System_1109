@@ -14,6 +14,11 @@ import org.bee.utils.JSONWritable;
 public abstract class Human implements JSONWritable, JSONReadable {
 
     /**
+     * The type of human, used for JSON serialization/deserialization.
+     */
+    protected String type;
+
+    /**
      * The name of the person.
      */
     protected String name;
@@ -81,6 +86,7 @@ public abstract class Human implements JSONWritable, JSONReadable {
      *                status to properly construct a Human object.
      */
     Human(HumanBuilder<?> builder) {
+        this.type = builder.type;
         this.name = builder.name;
         this.dateOfBirth = builder.dateOfBirth;
         this.nricFin = builder.nricFin;

@@ -48,6 +48,7 @@ public class NurseBuilder extends StaffBuilder<NurseBuilder> {
     @Override
     public NurseBuilder withRandomBaseData() {
         super.withRandomBaseData();
+        this.type = "nurse";
         this.rnid = dataGenerator.generateRNIDNumber();
         this.title = "Nurse";
         this.department = "Nursing";

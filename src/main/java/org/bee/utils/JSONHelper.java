@@ -30,7 +30,7 @@ public class JSONHelper {
     private static JSONHelper instance;
     private final Gson gson;
 
-    private JSONHelper() {
+    public JSONHelper() {
         RuntimeTypeAdapterFactory<Human> humanTypeFactory = RuntimeTypeAdapterFactory
                 .of(Human.class, "type")
                 .registerSubtype(Patient.class, "patient")
