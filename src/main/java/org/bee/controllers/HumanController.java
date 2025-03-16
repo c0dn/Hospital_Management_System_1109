@@ -26,7 +26,7 @@ public class HumanController {
     private static HumanController instance;
 
     private List<Human> humans = new ArrayList<>();
-    private JSONHelper jsonHelper = new JSONHelper();
+    private final JSONHelper jsonHelper = JSONHelper.getInstance();
 
     private HumanController() {
         init();
