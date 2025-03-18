@@ -8,11 +8,14 @@ import org.bee.hms.auth.SystemUser;
 import org.bee.hms.humans.Doctor;
 import org.bee.hms.humans.Nurse;
 import org.bee.hms.humans.Patient;
+import org.bee.pages.clerk.ClerkMainPage;
 import org.bee.ui.Color;
 import org.bee.ui.UiBase;
 import org.bee.ui.View;
 import org.bee.ui.views.ListView;
 import org.bee.ui.views.TextView;
+import java.util.List;
+
 
 /**
  * Represents the login page of the Hospital Management System.
@@ -66,11 +69,28 @@ public class LoginPage extends UiBase {
                     case Doctor doctor -> System.out.println("Welcome, Doctor!");
 
                     // ToPage(new DoctorMainPage());
-                    case Nurse nurse -> System.out.println("Welcome, Nurse!");
+                    case Nurse nurse -> {
+                        System.out.println("Welcome, Nurse!" );
+                        ToPage(new ClerkMainPage());
+                         //ToPage(new NurseMainPage());
+                        // Fetch the list of nurses from HumanController
+                        /*List<Nurse> nurses = humanController.getAllNurses();
 
-                    // ToPage(new NurseMainPage());
+                        // Use rnid to find the logged-in nurse
+                        Nurse loggedInNurse = nurses.stream()
+                                .filter(n -> n.getUsername().equals(nurse.getUsername()))
+                                .findFirst()
+                                .orElse(null);
+
+                        if (loggedInNurse != null) {
+                            // Pass the nurse object to the ClerkMainPage
+                            ToPage(new ClerkMainPage()); // Pass the nurse object to the page
+                        } else {
+                            System.out.println("Nurse not found in the system.");
+                        }*/
+                    }
+
                     case Patient patient -> System.out.println("Welcome, Patient " + patient.getName());
-
                     // ToPage(new PatientMainPage());
                     default -> {
                     }
