@@ -165,6 +165,11 @@ public abstract class Human implements JSONWritable, JSONReadable {
                 residentialStatus == ResidentialStatus.PERMANENT_RESIDENT;
     }
 
+
+    public String getName() {
+        return name;
+    }
+
     /**
      * Calculates the current age of the person based on their date of birth.
      *

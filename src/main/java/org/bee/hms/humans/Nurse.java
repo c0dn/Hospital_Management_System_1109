@@ -49,7 +49,7 @@ public class Nurse extends Staff{
      *
      * @return The RNID.
      */
-    private String getRnid() { return rnid; }
+    public String getRnid() { return rnid; }
 
      /**
      * Displays the nurse's Registered Nurse ID (RNID) along with the inherited staff details.

@@ -13,6 +13,8 @@ import org.bee.hms.humans.Nurse;
 import org.bee.hms.humans.Patient;
 import org.bee.utils.JSONHelper;
 
+import javax.print.Doc;
+
 /**
  * Controller class that manages all human entities in the system.
  * Handles loading, saving, and searching of doctors, nurses, and patients.
@@ -27,6 +29,8 @@ public class HumanController {
 
     private List<Human> humans = new ArrayList<>();
     private final JSONHelper jsonHelper = JSONHelper.getInstance();
+
+    private SystemUser authenticatedUser;
 
     private HumanController() {
         init();
@@ -61,6 +65,20 @@ public class HumanController {
             generateInitialData();
             saveHumans();
         }
+    }
+
+
+    public void authenticate(SystemUser user) {
+        this.authenticatedUser = user;
+    }
+
+    public String getUserGreeting() {
+        return switch (authenticatedUser) {
+            case Doctor doc -> String.format("Welcome back %s MCR No. %s", doc.getName(), doc.getMcr());
+            case Patient patient -> String.format("Welcome back %s (%s)", patient.getName(), patient.getPatientId());
+            case Nurse nurse -> String.format("Welcome back %s RNID No. %s", nurse.getName(), nurse.getRnid());
+            case null, default -> throw new IllegalStateException("There is no logged in user");
+        };
     }
 
     /**

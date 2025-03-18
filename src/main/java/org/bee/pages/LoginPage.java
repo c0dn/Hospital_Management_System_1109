@@ -64,6 +64,7 @@ public class LoginPage extends UiBase {
                 SystemUser user = userOpt.get();
 
                 System.out.println("Login successful!");
+                humanController.authenticate(user);
 
                 switch (user) {
                     case Doctor doctor -> System.out.println("Welcome, Doctor!");
