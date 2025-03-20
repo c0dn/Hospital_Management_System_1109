@@ -44,7 +44,7 @@ public class ViewAppointmentPage extends UiBase {
                 .filter(x->x.getAppointmentStatus() != AppointmentStatus.COMPLETED)
                 .toList();
 
-        listView.attachUserInput("Select Patient index", _ -> selectAppointmentPrompt(appointments));
+        listView.attachUserInput("Select Patient index", str -> selectAppointmentPrompt(appointments));
         refreshUi();
     }
 
