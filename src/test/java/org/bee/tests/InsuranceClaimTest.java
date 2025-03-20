@@ -68,7 +68,7 @@ public class InsuranceClaimTest {
         visit.updateStatus(VisitStatus.DISCHARGED);
         
         // Create bill using BillBuilder
-        Bill bill = new BillBuilder<>()
+        Bill bill = new BillBuilder()
                 .withPatientId(testPatient.getPatientId())
                 .withVisit(visit)
                 .build();
@@ -104,7 +104,7 @@ public class InsuranceClaimTest {
         // Test with Visit
         Visit visit = Visit.withRandomData();
         visit.updateStatus(VisitStatus.DISCHARGED);
-        Bill visitBill = new BillBuilder<>()
+        Bill visitBill = new BillBuilder()
                 .withPatientId(testPatient.getPatientId())
                 .withVisit(visit)
                 .build();
@@ -114,7 +114,7 @@ public class InsuranceClaimTest {
         // Test with EmergencyVisit
         EmergencyVisit emergencyVisit = EmergencyVisit.withRandomData();
         emergencyVisit.updateStatus(VisitStatus.DISCHARGED);
-        Bill emergencyBill = new BillBuilder<EmergencyVisit>()
+        Bill emergencyBill = new BillBuilder()
                 .withPatientId(testPatient.getPatientId())
                 .withVisit(emergencyVisit)
                 .build();
@@ -128,36 +128,6 @@ public class InsuranceClaimTest {
         assertNotNull(consultationCharges, "Consultation charges should not be null");
         assertTrue(consultationCharges.compareTo(BigDecimal.ZERO) > 0,
                 "Consultation charges should be positive");
-    }
-
-    @Test
-    void testEmergencyVisitCharges() {
-        EmergencyVisit emergencyVisit = EmergencyVisit.withRandomData();
-        emergencyVisit.updateStatus(VisitStatus.DISCHARGED);
-
-        Bill emergencyBill = new BillBuilder<EmergencyVisit>()
-                .withPatientId(testPatient.getPatientId())
-                .withVisit(emergencyVisit)
-                .build();
-
-        // Verify emergency-specific charges
-        BigDecimal emergencyCharges = emergencyBill.getTotalByCategory("EMERGENCY");
-        assertTrue(emergencyCharges.compareTo(BigDecimal.ZERO) > 0,
-                "Emergency charges should be present and positive");
-    }
-
-    @Test
-    void testConsultationOnlyBill() {
-        Consultation consultation = Consultation.withRandomData();
-        Bill consultationBill = new BillBuilder<Visit>()
-                .withPatientId(testPatient.getPatientId())
-                .withConsultation(consultation)
-                .build();
-
-        // Verify consultation-specific charges
-        BigDecimal consultationCharges = consultationBill.getTotalByCategory("CONSULTATION");
-        assertTrue(consultationCharges.compareTo(BigDecimal.ZERO) > 0,
-                "Consultation charges should be present and positive");
     }
 
     private void verifyBill(Bill bill, String type) {

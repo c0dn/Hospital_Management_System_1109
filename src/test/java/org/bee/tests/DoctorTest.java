@@ -155,7 +155,23 @@ public class DoctorTest {
      * @throws Exception If reflection fails
      */
     private <T> T getPrivateField(Object object, String fieldName, Class<T> fieldType) throws Exception {
-        Field field = object.getClass().getDeclaredField(fieldName);
+        Class<?> currentClass = object.getClass();
+        Field field = null;
+        
+        // Search through the class hierarchy
+        while (currentClass != null) {
+            try {
+                field = currentClass.getDeclaredField(fieldName);
+                break;
+            } catch (NoSuchFieldException e) {
+                currentClass = currentClass.getSuperclass();
+            }
+        }
+        
+        if (field == null) {
+            throw new NoSuchFieldException(fieldName);
+        }
+        
         field.setAccessible(true);
         return fieldType.cast(field.get(object));
     }

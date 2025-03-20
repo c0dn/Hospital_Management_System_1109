@@ -32,7 +32,6 @@ import org.junit.jupiter.api.Test;
  * This class verifies the functionality of visit creation, state transitions, and various operations.
  */
 public class VisitTest {
-    private DataGenerator gen;
     private Patient testPatient;
     private Visit testVisit;
     private Doctor testDoctor;
@@ -40,7 +39,7 @@ public class VisitTest {
 
     @BeforeEach
     void setUp() {
-        gen = DataGenerator.getInstance();
+        DataGenerator gen = DataGenerator.getInstance();
         testPatient = Patient.builder()
                 .patientId(gen.generatePatientId())
                 .withRandomBaseData()
@@ -87,7 +86,7 @@ public class VisitTest {
         // Test ward stay
         Ward generalWard = WardFactory.getWard("General Ward A", WardClassType.GENERAL_CLASS_A);
         LocalDateTime now = LocalDateTime.now();
-        WardStay wardStay = new WardStay(generalWard, now, now.plusDays(3), false);
+        WardStay wardStay = new WardStay(generalWard, now, now.plusDays(3));
         testVisit.addWardStay(wardStay);
         
         // Test procedure and diagnosis
@@ -180,15 +179,15 @@ public class VisitTest {
         LocalDateTime now = LocalDateTime.now();
         
         // Add multiple ward stays
-        WardStay stay1 = new WardStay(generalWard, now, now.plusDays(2), false);
-        WardStay stay2 = new WardStay(generalWard, now.plusDays(2), now.plusDays(4), false);
+        WardStay stay1 = new WardStay(generalWard, now, now.plusDays(2));
+        WardStay stay2 = new WardStay(generalWard, now.plusDays(2), now.plusDays(4));
         
         testVisit.addWardStay(stay1);
         testVisit.addWardStay(stay2);
         
         List<BillableItem> items = testVisit.getRelatedBillableItems();
         long wardStayCount = items.stream()
-                .filter(item -> item.getBillItemCategory().equals("WARD_STAY"))
+                .filter(item -> item.getBillItemCategory().equals("WARD"))
                 .count();
         
         assertEquals(2, wardStayCount, "Should have two ward stay billable items");
@@ -205,7 +204,23 @@ public class VisitTest {
      * @throws Exception If reflection fails
      */
     private <T> T getPrivateField(Object object, String fieldName, Class<T> fieldType) throws Exception {
-        Field field = object.getClass().getDeclaredField(fieldName);
+        Class<?> currentClass = object.getClass();
+        Field field = null;
+        
+        // Search through the class hierarchy
+        while (currentClass != null) {
+            try {
+                field = currentClass.getDeclaredField(fieldName);
+                break;
+            } catch (NoSuchFieldException e) {
+                currentClass = currentClass.getSuperclass();
+            }
+        }
+        
+        if (field == null) {
+            throw new NoSuchFieldException(fieldName);
+        }
+        
         field.setAccessible(true);
         return fieldType.cast(field.get(object));
     }

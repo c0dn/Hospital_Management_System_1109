@@ -13,6 +13,10 @@ repositories {
 dependencies {
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+    
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.10.0")
+    
     implementation("com.google.code.gson:gson:2.12.1")
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
 }
@@ -21,21 +25,22 @@ application {
     mainClass.set("org.bee.Main")
 }
 
+val databaseDir = layout.projectDirectory.dir("database")
+
 tasks.test {
     useJUnitPlatform()
     
     // Copy database files before running tests
     doFirst {
-        // Create temp directory for database files
-        file("build/database").mkdirs()
-        // Copy database files to temp location
+        // Create and copy database files using modern API
+        val testDbDir = layout.buildDirectory.dir("database")
         copy {
-            from("database")
-            into("build/database")
+            from(databaseDir)
+            into(testDbDir)
         }
         
         // Set system property for database location
-        systemProperty("database.dir", file("build/database").absolutePath)
+        systemProperty("database.dir", testDbDir.get().asFile.absolutePath)
     }
     
     // Configure test execution
@@ -43,11 +48,7 @@ tasks.test {
         events("passed", "skipped", "failed")
         showStandardStreams = true  // Show stdout/stderr from tests
     }
-    
-    // Enable parallel test execution if desired
-    // maxParallelForks = (Runtime.getRuntime().availableProcessors() / 2).takeIf { it > 0 } ?: 1
-    
-    // Report aggregation
+
     reports {
         html.required.set(true)
         junitXml.required.set(true)
@@ -58,7 +59,13 @@ tasks.jar {
     manifest {
         attributes["Main-Class"] = "org.bee.Main"
     }
-    from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
+    
+    archiveBaseName.set(project.name)
+    
+    from(configurations.runtimeClasspath.get().map {
+        if (it.isDirectory) it else project.zipTree(it) 
+    })
+    
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
@@ -67,14 +74,15 @@ tasks.register<JavaExec>("runJar") {
     
     doFirst {
         // Copy database folder to execution directory
+        val libsDir = layout.buildDirectory.dir("libs")
         copy {
-            from("database")
-            into("build/libs/database")
+            from(databaseDir)
+            into(libsDir.get().dir("database"))
         }
     }
     
     classpath = files(tasks.jar.get().outputs.files)
     mainClass.set("org.bee.Main")
     standardInput = System.`in`
-    workingDir = file("build/libs")
+    workingDir = layout.buildDirectory.dir("libs").get().asFile
 }

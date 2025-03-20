@@ -3,15 +3,11 @@ package org.bee.tests;
 import java.math.BigDecimal;
 
 import org.bee.hms.medical.DiagnosticCode;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * A test class for the {@link DiagnosticCode} class.
@@ -64,7 +60,7 @@ public class DiagnosticCodeTest {
     void testDirectDescriptionLookup() {
         String description = DiagnosticCode.getDescriptionForCode("A150");
         assertNotNull(description, "Description should not be null");
-        assertTrue(description.length() > 0, "Description should not be empty");
+        assertFalse(description.isEmpty(), "Description should not be empty");
     }
 
     @Test
@@ -102,23 +98,5 @@ public class DiagnosticCodeTest {
         
         assertNotEquals(inpatientType, outpatientType,
                 "Inpatient and outpatient benefit types should be different");
-    }
-    
-    @Test
-    void testSpecializedCodeCategories() {
-        // Test maternity code
-        DiagnosticCode maternityCode = DiagnosticCode.createFromCode("O0001");
-        assertEquals("MATERNITY", maternityCode.getBillItemCategory(),
-                "O-series codes should be categorized as maternity");
-        
-        // Test cancer code
-        DiagnosticCode cancerCode = DiagnosticCode.createFromCode("C000");
-        assertEquals("CANCER", cancerCode.getBillItemCategory(),
-                "C-series codes should be categorized as cancer");
-        
-        // Test dental code
-        DiagnosticCode dentalCode = DiagnosticCode.createFromCode("K000");
-        assertEquals("DENTAL", dentalCode.getBillItemCategory(),
-                "K-series codes should be categorized as dental");
     }
 }

@@ -4,24 +4,21 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
+import org.bee.hms.billing.BillableItem;
 import org.bee.hms.policy.BenefitType;
 import org.bee.hms.policy.ClaimableItem;
-import org.bee.hms.wards.DaySurgeryWard;
-import org.bee.hms.wards.ICUWard;
-import org.bee.hms.wards.LabourWard;
-import org.bee.hms.wards.Ward;
+import org.bee.hms.wards.*;
 
 /**
  * Represents a patient's stay in a hospital ward, including the ward information and the duration
  * of the stay. This class is used to track ward-specific stays, including transfers to different wards.
  * It also calculates the charges for the stay and determines the type of benefit associated with the stay.
  */
-public class WardStay implements ClaimableItem {
+public class WardStay implements ClaimableItem, BillableItem {
 
     private final Ward ward;
     private final LocalDateTime startDateTime;
     private final LocalDateTime endDateTime;
-    private final boolean isAccident;
 
     /**
      * Constructs a WardStay instance with the specified ward, start date/time, end date/time,
@@ -30,13 +27,11 @@ public class WardStay implements ClaimableItem {
      * @param ward The ward the patient is assigned to during their stay.
      * @param startDateTime The start date and time of the patient's stay in the ward.
      * @param endDateTime The end date and time of the patient's stay in the ward.
-     * @param isAccident Indicates whether the stay is due to an accident.
      */
-    public WardStay(Ward ward, LocalDateTime startDateTime, LocalDateTime endDateTime, boolean isAccident) {
+    public WardStay(Ward ward, LocalDateTime startDateTime, LocalDateTime endDateTime) {
         this.ward = ward;
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
-        this.isAccident = isAccident;
     }
 
     /**
@@ -102,5 +97,53 @@ public class WardStay implements ClaimableItem {
                 ward.getWardName(),
                 getDaysStayed()
         );
+    }
+
+    @Override
+    public BigDecimal getUnsubsidisedCharges() {
+        return calculateCharges();
+    }
+
+    @Override
+    public String getBillItemDescription() {
+        return getBenefitDescription(true);
+    }
+
+    @Override
+    public String getBillItemCategory() {
+        return "WARD";
+    }
+
+    @Override
+    public String getBillingItemCode() {
+        String wardTypePart = switch (ward) {
+            case LabourWard _d -> "LBR";
+            case ICUWard _d -> "ICU";
+            case DaySurgeryWard _d -> "DSG";
+            case null, default -> "GEN";
+        };
+
+        String classTypePart = "";
+        for (WardClassType type : WardClassType.values()) {
+            assert ward != null;
+            if (Math.abs(type.getDailyRate() - ward.getDailyRate()) < 0.001) {
+                String[] nameParts = type.name().split("_CLASS_");
+                if (nameParts.length > 1) {
+                    classTypePart = nameParts[1];
+                } else if (type == WardClassType.ICU) {
+                    classTypePart = "ICU";
+                } else {
+                    // Handle day surgery specific codes
+                    String[] parts = type.name().split("_");
+                    if (parts.length > 2) {
+                        classTypePart = parts[2];
+                    }
+                }
+                break;
+            }
+        }
+
+        // Format: WARD_TYPE-CLASS-DAYS
+        return String.format("%s-%s-%d", wardTypePart, classTypePart, getDaysStayed());
     }
 }

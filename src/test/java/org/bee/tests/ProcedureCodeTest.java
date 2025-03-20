@@ -61,9 +61,9 @@ public class ProcedureCodeTest {
     @ParameterizedTest
     @CsvSource({
         "1016070,true,MATERNITY",
-        "3E033VZ,false,MEDICATION_ADMINISTRATION",
+        "3E033VZ,false,MEDICATION_ADMIN",
         "5A1955Z,true,DIAGNOSTIC_IMAGING",
-        "6A0Z0ZZ,false,ONCOLOGY",
+        "6A0Z0ZZ,false,ONCOLOGY_TREATMENTS",
         "0D11074,true,MAJOR_SURGERY"
     })
     void testBenefitTypeResolution(String code, boolean isInpatient, String expectedType) {

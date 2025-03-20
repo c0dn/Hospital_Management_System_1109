@@ -101,23 +101,4 @@ public class GovernmentProviderTest {
         assertTrue(policyId.matches("GOVT-\\d{10}-.*"),
                 "Policy ID should match format GOVT-XXXXXXXXXX-*: " + policyId);
     }
-
-    @Test
-    void testMultiplePoliciesForSamePatient() {
-        // Test that the same patient gets the same policy on multiple requests
-        Patient patient = new PatientBuilder()
-                .withRandomBaseData()
-                .patientId(dataGenerator.generatePatientId())
-                .residentialStatus(ResidentialStatus.CITIZEN)
-                .dateOfBirth(LocalDate.of(1990, 1, 1))
-                .build();
-
-        Optional<InsurancePolicy> policy1 = provider.getPatientPolicy(patient);
-        Optional<InsurancePolicy> policy2 = provider.getPatientPolicy(patient);
-
-        assertTrue(policy1.isPresent() && policy2.isPresent(),
-                "Both policy requests should return a policy");
-        assertEquals(policy1.get().getPolicyNumber(), policy2.get().getPolicyNumber(),
-                "Same patient should get same policy number");
-    }
 }

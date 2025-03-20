@@ -31,7 +31,7 @@ public class WardTest {
         assertTrue(generalWard.getDailyRate() > 0, 
                 "Daily rate should be positive");
         assertNotNull(generalWard.getBeds(), "Beds map should not be null");
-        assertTrue(generalWard.getBeds().size() > 0, "Ward should have beds");
+        assertFalse(generalWard.getBeds().isEmpty(), "Ward should have beds");
     }
 
     @Test
@@ -43,7 +43,7 @@ public class WardTest {
         assertTrue(icuWard.getDailyRate() > 0, 
                 "Daily rate should be positive");
         assertNotNull(icuWard.getBeds(), "Beds map should not be null");
-        assertTrue(icuWard.getBeds().size() > 0, "Ward should have beds");
+        assertFalse(icuWard.getBeds().isEmpty(), "Ward should have beds");
     }
 
     @Test
