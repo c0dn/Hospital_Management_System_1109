@@ -23,7 +23,7 @@ public class DoctorMainPage extends UiBase {
         lv.addItem(new TextView(this.canvas, "1. View List of Patient - To view patient information ", Color.GREEN));
         lv.addItem(new TextView(this.canvas, "2. View Appointment - To view new / scheduled appointments for teleconsultation ", Color.GREEN));
 
-//        lv.attachUserInput("View List of Patient", str -> ToPage(new PatientInfoPage()));
+        lv.attachUserInput("View List of Patient", str -> ToPage(new PatientInfoPage()));
 //        lv.attachUserInput("View Appointment", str -> ToPage(new ViewAppointmentsPage()));
 
     }

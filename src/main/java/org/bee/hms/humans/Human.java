@@ -110,6 +110,13 @@ public abstract class Human implements JSONWritable, JSONReadable {
         return nricFin;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public Sex getSex() { return sex; }
+
+
     /**
      * Checks if the person is a Singapore citizen.
      *

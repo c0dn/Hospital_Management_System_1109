@@ -81,6 +81,15 @@ public class HumanController {
         };
     }
 
+    public String getLoginInUser(){
+        return switch (authenticatedUser) {
+            case Doctor doc -> String.format(doc.getName(), doc.getMcr());
+            case Patient patient -> String.format(patient.getName(), patient.getPatientId());
+            case Nurse nurse -> String.format(nurse.getName(), nurse.getRnid());
+            case null, default -> throw new IllegalStateException("There is no logged in user");
+        };
+    }
+
     /**
      * Loads humans from the JSON file.
      */
