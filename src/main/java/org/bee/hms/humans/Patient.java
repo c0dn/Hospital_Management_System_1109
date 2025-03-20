@@ -1,9 +1,9 @@
 package org.bee.hms.humans;
 
-import org.bee.hms.auth.SystemUser;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import org.bee.hms.auth.SystemUser;
 
 /**
  * Represents a patient in the insurance system.

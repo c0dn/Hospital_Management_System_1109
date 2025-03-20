@@ -19,8 +19,8 @@ import org.bee.hms.policy.CoverageLimit;
 import org.bee.hms.policy.ExclusionCriteria;
 import org.bee.hms.policy.HeldInsurancePolicy;
 import org.bee.hms.policy.InsurancePolicy;
-import org.bee.utils.DataGenerator;
 import org.bee.hms.wards.WardClassType;
+import org.bee.utils.DataGenerator;
 
 /**
  * Represents an insurance provider that is a government entity.
@@ -33,17 +33,10 @@ import org.bee.hms.wards.WardClassType;
 public class GovernmentProvider extends InsuranceProvider {
 
     /** The coverage database that stores different types of insurance coverage. */
-    private final Map<String, BaseCoverage> coverageDatabase;
+    private static final Map<String, BaseCoverage> coverageDatabase = new HashMap<>();
 
-    /**
-     * Constructs a new {@code GovernmentProvider} instance.
-     * <p>
-     * Initializes the coverage database with predefined government insurance plans
-     * such as MediShield Life, CareShield Life, and ElderShield Supplement.
-     * </p>
-     */
-    public GovernmentProvider() {
-        this.coverageDatabase = new HashMap<>();
+    // Static initializer block to populate the coverage database
+    static {
 
         Set<String> excludedDiagnosis = Set.of(
                 "Z41\\.1",     // Exact match
@@ -151,6 +144,17 @@ public class GovernmentProvider extends InsuranceProvider {
         coverageDatabase.put("mediShieldCoverage", mediShieldCoverage);
         coverageDatabase.put("careShieldCoverage", careShieldCoverage);
         coverageDatabase.put("elderShieldCoverage", elderShieldCoverage);
+    }
+    
+    /**
+     * Constructs a new {@code GovernmentProvider} instance.
+     * <p>
+     * The coverage database is initialized statically with predefined government insurance plans
+     * such as MediShield Life, CareShield Life, and ElderShield Supplement.
+     * </p>
+     */
+    public GovernmentProvider() {
+        // Coverage database is now initialized in the static block
     }
 
 

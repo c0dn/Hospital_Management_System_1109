@@ -31,7 +31,7 @@ import org.bee.hms.wards.WardClassType;
 public class PrivateProvider extends InsuranceProvider {
 
     /** Instance of the DataGenerator used to generate random data. */
-    private final DataGenerator dataGen = DataGenerator.getInstance();
+    private static final DataGenerator dataGen = DataGenerator.getInstance();
 
     /**
      * Processes an insurance claim for the given patient.
@@ -122,7 +122,7 @@ public class PrivateProvider extends InsuranceProvider {
                 .plusDays(dataGen.generateRandomInt(0, 30));
 
         return Optional.of(new HeldInsurancePolicy.Builder(
-                String.format("P%06d", dataGen.generateRandomInt(100_000, 999_999)),
+                String.format("PRIV-%06d", dataGen.generateRandomInt(100_000, 999_999)),
                 patient,
                 coverage,
                 this,

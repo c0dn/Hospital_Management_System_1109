@@ -10,14 +10,20 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
+import org.bee.hms.billing.BillableItem;
+import org.bee.hms.claims.ClaimStatus;
 import org.bee.hms.humans.Doctor;
 import org.bee.hms.humans.Human;
 import org.bee.hms.humans.Nurse;
 import org.bee.hms.humans.Patient;
 import org.bee.hms.humans.Staff;
-import org.bee.hms.medical.Medication;
-import org.bee.hms.medical.VisitStatus;
+import org.bee.hms.insurance.GovernmentProvider;
+import org.bee.hms.insurance.InsuranceProvider;
+import org.bee.hms.insurance.PrivateProvider;
+import org.bee.hms.medical.*;
+import org.bee.hms.policy.*;
 import org.bee.hms.telemed.AppointmentStatus;
 import org.bee.hms.telemed.SessionStatus;
 import org.bee.hms.wards.DaySurgeryWard;
@@ -25,14 +31,7 @@ import org.bee.hms.wards.GeneralWard;
 import org.bee.hms.wards.ICUWard;
 import org.bee.hms.wards.LabourWard;
 import org.bee.hms.wards.Ward;
-import org.bee.utils.typeAdapters.AppointmentStatusAdapter;
-import org.bee.utils.typeAdapters.BigDecimalAdapter;
-import org.bee.utils.typeAdapters.LocalDateAdapter;
-import org.bee.utils.typeAdapters.LocalDateTimeAdapter;
-import org.bee.utils.typeAdapters.MedicationMapAdapter;
-import org.bee.utils.typeAdapters.RuntimeTypeAdapterFactory;
-import org.bee.utils.typeAdapters.SessionStatusAdapter;
-import org.bee.utils.typeAdapters.VisitStatusAdapter;
+import org.bee.utils.typeAdapters.*;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -59,8 +58,32 @@ public class JSONHelper {
                 .registerSubtype(DaySurgeryWard.class, "daySurgery")
                 .registerSubtype(GeneralWard.class, "general");
 
+        RuntimeTypeAdapterFactory<BillableItem> billableItemFactory = RuntimeTypeAdapterFactory
+                .of(BillableItem.class, "type")
+                .registerSubtype(MedicationBillableItem.class, "medication")
+                .registerSubtype(ProcedureCode.class, "procedure")
+                .registerSubtype(DiagnosticCode.class, "diagnostic");
 
-        Type medicationMapType = new TypeToken<Map<Medication, Integer>>(){}.getType();
+
+        RuntimeTypeAdapterFactory<InsuranceProvider> insuranceProviderFactory = RuntimeTypeAdapterFactory
+                .of(InsuranceProvider.class, "type")
+                .registerSubtype(GovernmentProvider.class, "government")
+                .registerSubtype(PrivateProvider.class, "private");
+
+
+        RuntimeTypeAdapterFactory<InsurancePolicy> insurancePolicyFactory = RuntimeTypeAdapterFactory
+                .of(InsurancePolicy.class, "type")
+                .registerSubtype(HeldInsurancePolicy.class, "held");
+
+
+        RuntimeTypeAdapterFactory<Coverage> coverageFactory = RuntimeTypeAdapterFactory
+                .of(Coverage.class, "type")
+                .registerSubtype(BaseCoverage.class, "base")
+                .registerSubtype(CompositeCoverage.class, "composite");
+
+
+        Type medicationMapType = new TypeToken<Map<Medication, Integer>>() {}.getType();
+        Type supportingDocumentsType = new TypeToken<Map<LocalDateTime, String>>() {}.getType();
 
         gson = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
@@ -68,11 +91,18 @@ public class JSONHelper {
                 .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
                 .registerTypeAdapter(BigDecimal.class, new BigDecimalAdapter())
                 .registerTypeAdapter(medicationMapType, new MedicationMapAdapter())
+                .registerTypeAdapter(supportingDocumentsType, new SupportingDocumentsAdapter())
                 .registerTypeAdapter(VisitStatus.class, new VisitStatusAdapter())
                 .registerTypeAdapter(AppointmentStatus.class, new AppointmentStatusAdapter())
                 .registerTypeAdapter(SessionStatus.class, new SessionStatusAdapter())
+                .registerTypeAdapter(ClaimStatus.class, new ClaimStatusAdapter())
+                .registerTypeAdapter(Pattern.class, new PatternTypeAdapter())
                 .registerTypeAdapterFactory(wardTypeFactory)
                 .registerTypeAdapterFactory(humanTypeFactory)
+                .registerTypeAdapterFactory(billableItemFactory)
+                .registerTypeAdapterFactory(insuranceProviderFactory)
+                .registerTypeAdapterFactory(insurancePolicyFactory)
+                .registerTypeAdapterFactory(coverageFactory)
                 .setPrettyPrinting()
                 .create();
     }

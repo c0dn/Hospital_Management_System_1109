@@ -60,16 +60,21 @@ public class HealthcareProvider {
 
     /**
      * Retrieves a HospitalCode instance based on the provided hospital code.
-     * If the code does not exist in the registry, an exception is thrown.
+     * If the code does not exist in the registry or the code is null, an exception is thrown.
      *
      * @param code The unique hospital code
      * @return The corresponding HospitalCode instance
      * @throws IllegalArgumentException If the hospital code is not found
+     * @throws NullPointerException If the hospital code is null
      */
     public static HealthcareProvider createFromCode(String code) {
-        HealthcareProvider hospitalCode = HCODE_REGISTRY.get(code);
+        if (code == null) {
+            throw new NullPointerException("Hospital code cannot be null");
+        }
+
+        HealthcareProvider hospitalCode = HCODE_REGISTRY.get(code.toUpperCase());
         if (hospitalCode == null) {
-            throw new IllegalArgumentException(("Invalid hospital code: " + code));
+            throw new IllegalArgumentException("Invalid hospital code: " + code);
         }
         return hospitalCode;
     }

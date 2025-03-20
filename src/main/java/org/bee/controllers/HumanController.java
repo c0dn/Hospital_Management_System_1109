@@ -13,8 +13,6 @@ import org.bee.hms.humans.Nurse;
 import org.bee.hms.humans.Patient;
 import org.bee.utils.JSONHelper;
 
-import javax.print.Doc;
-
 /**
  * Controller class that manages all human entities in the system.
  * Handles loading, saving, and searching of doctors, nurses, and patients.
