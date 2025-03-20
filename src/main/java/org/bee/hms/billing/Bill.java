@@ -48,6 +48,7 @@ public class Bill {
         this.categorizedCharges = new HashMap<>();
         this.status = BillingStatus.DRAFT;
         this.isInpatient = builder.isInpatient;
+        this.isEmergency = builder.isEmergency;
     }
 
     /**

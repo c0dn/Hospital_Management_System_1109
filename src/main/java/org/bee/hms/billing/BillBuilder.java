@@ -1,24 +1,26 @@
 package org.bee.hms.billing;
 
 
-import org.bee.hms.medical.Consultation;
-import org.bee.hms.medical.Visit;
-import org.bee.hms.policy.InsurancePolicy;
-import org.bee.hms.humans.Patient;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
+
+import org.bee.hms.humans.Patient;
+import org.bee.hms.medical.Consultation;
+import org.bee.hms.medical.EmergencyVisit;
+import org.bee.hms.medical.Visit;
+import org.bee.hms.policy.InsurancePolicy;
 
 /**
  * A builder class for creating instances of {@link org.bee.hms.billing.Bill}.
  * This class follows the Builder design pattern to allow
  * step-by-step construction of a {@link Bill} object.
- *
- * @param <T> The type of {@link org.bee.hms.medical.Visit} associated with the bill.
+ * The builder supports creating bills from either a {@link org.bee.hms.medical.Visit},
+ * {@link org.bee.hms.medical.Consultation}, or both.
  */
-public class BillBuilder<T extends Visit> {
+public class BillBuilder {
     /**
      * A unique identifier for the bill, generated automatically.
      */
@@ -32,10 +34,11 @@ public class BillBuilder<T extends Visit> {
      */
     LocalDateTime billDate;
     InsurancePolicy insurancePolicy;
-    private T visit;
+    private Visit visit;
     private List<Consultation> consultations;
     private List<BillingItem> billingItems;
     boolean isInpatient;
+    boolean isEmergency;
 
     /**
      * Constructs a new {@code BillBuilder} instance.
@@ -49,6 +52,7 @@ public class BillBuilder<T extends Visit> {
         this.billingItems = new ArrayList<>();
         this.insurancePolicy = null;
         this.isInpatient = false;
+        this.isEmergency = false;
     }
 
     /**
@@ -57,7 +61,7 @@ public class BillBuilder<T extends Visit> {
      * @param patientId The unique identifier of the patient.
      * @return The current instance of {@code BillBuilder} for method chaining.
      */
-    public BillBuilder<T> withPatientId(String patientId) {
+    public BillBuilder withPatientId(String patientId) {
         // logic to get patient from id
         this.patient = Patient.builder()
                 .withRandomData(patientId)
@@ -71,7 +75,7 @@ public class BillBuilder<T extends Visit> {
      * @param policy the {@link InsurancePolicy} to be linked to the bill.
      * @return The current instance of {@code BillBuilder} for method chaining.
      */
-    public BillBuilder<T> withInsurancePolicy(InsurancePolicy policy) {
+    public BillBuilder withInsurancePolicy(InsurancePolicy policy) {
         this.insurancePolicy = policy;
         return this;
     }
@@ -81,16 +85,18 @@ public class BillBuilder<T extends Visit> {
      *
      * @param visit the visit to be linked to the bill.
      * @return The current instance of {@code BillBuilder} for method chaining.
+     * @throws NullPointerException if visit is null
+     * @throws IllegalArgumentException if visit is not finalized
      */
-    public BillBuilder<T> withVisit(T visit) {
-
-        if (visit == null) {
-            throw new IllegalArgumentException("Visit cannot be null");
-        }
+    public BillBuilder withVisit(Visit visit) {
+        Objects.requireNonNull(visit, "Visit cannot be null");
         if (!visit.isFinalized()) {
             throw new IllegalArgumentException("Cannot create bill for non-finalized visit");
         }
 
+        if (visit instanceof EmergencyVisit) {
+            this.isEmergency = true;
+        }
 
         this.visit = visit;
         this.isInpatient = true;
@@ -102,8 +108,10 @@ public class BillBuilder<T extends Visit> {
      *
      * @param consultation the consultation to be added to the bill.
      * @return The current instance of {@code BillBuilder} for method chaining.
+     * @throws NullPointerException if consultation is null
      */
-    public BillBuilder<T> withConsultation(Consultation consultation) {
+    public BillBuilder withConsultation(Consultation consultation) {
+        Objects.requireNonNull(consultation, "Consultation cannot be null");
         this.isInpatient = false;
         this.consultations.add(consultation);
         return this;

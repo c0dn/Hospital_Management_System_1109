@@ -63,7 +63,7 @@ public class Visit implements JSONWritable, JSONReadable {
      */
     private List<DiagnosticCode> diagnosticCodes;
     private Doctor attendingDoc;
-    private List<Nurse> AttendingNurses;
+    private List<Nurse> attendingNurses;
     /**
      * A map representing the prescriptions associated with a visit.
      * Each entry maps a specific medication to its prescribed quantity.
@@ -108,7 +108,7 @@ public class Visit implements JSONWritable, JSONReadable {
         this.wardStays = new ArrayList<>();
         this.inpatientProcedures = new ArrayList<>();
         this.diagnosticCodes = new ArrayList<>();
-        this.AttendingNurses = new ArrayList<>();
+        this.attendingNurses = new ArrayList<>();
         this.prescriptions = new HashMap<>();
     }
 
@@ -249,8 +249,8 @@ public class Visit implements JSONWritable, JSONReadable {
             throw new IllegalStateException("Cannot assign nurse for a non-active visit");
         }
 
-        if (!AttendingNurses.contains(nurse)) {
-            AttendingNurses.add(nurse);
+        if (!attendingNurses.contains(nurse)) {
+            attendingNurses.add(nurse);
         }
     }
 
@@ -437,13 +437,19 @@ public class Visit implements JSONWritable, JSONReadable {
                     .reduce(BigDecimal.ZERO, BigDecimal::add));
         }
 
+        if (diagnosticCodes != null) {
+            total = total.add(diagnosticCodes.stream()
+                    .map(DiagnosticCode::getUnsubsidisedCharges)
+                    .reduce(BigDecimal.ZERO, BigDecimal::add));
+        }
+
         return total;
     }
 
 
     /**
      * Returns all related charges as separate BillableItems
-     * This includes diagnostics, procedures, and medications with their quantities
+     * This includes diagnostics, procedures, medications with their quantities, and ward stays
      */
     public List<BillableItem> getRelatedBillableItems() {
         List<BillableItem> items = new ArrayList<>();
@@ -459,6 +465,10 @@ public class Visit implements JSONWritable, JSONReadable {
         if (prescriptions != null) {
             prescriptions.forEach((medication, quantity) ->
                     items.add(new MedicationBillableItem(medication, quantity, true)));
+        }
+        
+        if (wardStays != null) {
+            items.addAll(wardStays);
         }
 
         return items;
@@ -504,9 +514,9 @@ public class Visit implements JSONWritable, JSONReadable {
             attendingDoc.printAsAttending();
         }
         
-        if (!AttendingNurses.isEmpty()) {
+        if (!attendingNurses.isEmpty()) {
             System.out.println("\nAttending Nurses:");
-            for (Nurse nurse : AttendingNurses) {
+            for (Nurse nurse : attendingNurses) {
                 nurse.printAsAttending();
             }
         }
@@ -539,7 +549,9 @@ public class Visit implements JSONWritable, JSONReadable {
             System.out.println("\nPRESCRIPTIONS");
             System.out.println("----------------------------------------------------");
             for (Map.Entry<Medication, Integer> entry : prescriptions.entrySet()) {
-                System.out.printf("  - Medication (Qty: %d)%n",
+                // Using the medication's drugCode since there's no getName() method
+                System.out.printf("  - %s (Qty: %d)%n",
+                    entry.getKey().getDrugCode(),
                     entry.getValue());
             }
         }
@@ -550,7 +562,8 @@ public class Visit implements JSONWritable, JSONReadable {
             System.out.println("\nWARD STAYS");
             System.out.println("----------------------------------------------------");
             for (WardStay stay : wardStays) {
-                System.out.printf("  - Ward Stay%n");
+                // Using the benefit description which includes ward name and duration
+                System.out.printf("  - %s%n", stay.getBenefitDescription(true));
             }
         }
     }
