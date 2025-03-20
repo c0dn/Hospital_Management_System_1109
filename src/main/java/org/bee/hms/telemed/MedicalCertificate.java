@@ -1,13 +1,16 @@
-package org.bee.telemed;
+package org.bee.hms.telemed;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
+
+import org.bee.utils.JSONReadable;
+import org.bee.utils.JSONWritable;
 
 /**
  * Represents a medical certificate. Medical certificates in Singapore are usually simple.
  * Consisting of startDate, endDate, id and any additional remarks from the doctor.
  */
-public class MedicalCertificate {
+public class MedicalCertificate implements JSONWritable, JSONReadable {
     private String id;
     private LocalDateTime startDate;
     private LocalDateTime endDate;

@@ -1,12 +1,17 @@
 package org.bee.utils;
 
-import org.bee.hms.humans.Contact;
-import org.bee.hms.medical.Medication;
-import org.bee.hms.policy.AccidentType;
-
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
+
+import org.bee.hms.humans.Contact;
+import org.bee.hms.humans.Doctor;
+import org.bee.hms.humans.Patient;
+import org.bee.hms.medical.Medication;
+import org.bee.hms.policy.AccidentType;
+import org.bee.hms.telemed.Appointment;
+import org.bee.hms.telemed.AppointmentStatus;
 
 /**
  * Utility class for generating common data used across different entities.
@@ -271,5 +276,103 @@ public class DataGenerator {
 
     public static String generateUUID() {
         return UUID.randomUUID().toString();
+    }
+    
+    /**
+     * Generates a random appointment with a patient, reason, time, and status.
+     * 
+     * @return A randomly generated Appointment object
+     */
+    public Appointment generateRandomAppointment() {
+        Patient patient = Patient.builder()
+                .patientId(generatePatientId())
+                .withRandomBaseData()
+                .build();
+        
+        return generateRandomAppointment(patient, null);
+    }
+    
+    /**
+     * Generates a random appointment with a specific patient, reason, time, and status.
+     * 
+     * @param patient The patient for the appointment
+     * @param doctor The doctor for the appointment (can be null)
+     * @return A randomly generated Appointment object
+     */
+    public Appointment generateRandomAppointment(Patient patient, Doctor doctor) {
+        String[] reasons = {
+            "Regular check-up", 
+            "Flu symptoms", 
+            "Headache", 
+            "Skin rash", 
+            "Fever", 
+            "Stomach pain",
+            "Follow-up consultation", 
+            "Medication review", 
+            "Chronic condition management",
+            "Mental health consultation"
+        };
+        
+        String reason = reasons[random.nextInt(reasons.length)];
+        
+        // Generate a random appointment time between now and 30 days in the future
+        LocalDateTime now = LocalDateTime.now();
+        int daysToAdd = random.nextInt(30) + 1;
+        int hoursToAdd = random.nextInt(8) + 9; // 9 AM to 5 PM
+        LocalDateTime appointmentTime = now.plusDays(daysToAdd).withHour(hoursToAdd).withMinute(0).withSecond(0);
+        
+        // Randomly select an appointment status
+        AppointmentStatus[] statuses = AppointmentStatus.values();
+        AppointmentStatus status = statuses[random.nextInt(statuses.length)];
+        
+        Appointment appointment = new Appointment(patient, reason, appointmentTime, status);
+        
+        // If doctor is provided, assign it to the appointment
+        if (doctor != null) {
+            appointment.setDoctor(doctor);
+            
+            // If the appointment has a doctor and is ACCEPTED, create a session
+            if (status == AppointmentStatus.ACCEPTED) {
+                String zoomLink = "https://zoom.us/j/" + (10000000 + random.nextInt(90000000));
+                appointment.approveAppointment(doctor, zoomLink);
+            }
+            
+            // If the appointment is COMPLETED, add doctor notes
+            if (status == AppointmentStatus.COMPLETED) {
+                String[] notes = {
+                    "Patient is recovering well.",
+                    "Prescribed medication for symptoms.",
+                    "Recommended follow-up in 2 weeks.",
+                    "Referred to specialist for further evaluation.",
+                    "No significant concerns at this time."
+                };
+                appointment.setDoctorNotes(notes[random.nextInt(notes.length)]);
+            }
+        } 
+        // If no doctor is provided, randomly decide if a doctor should be assigned (50% chance)
+        else if (random.nextBoolean()) {
+            Doctor randomDoctor = Doctor.builder().withRandomBaseData().build();
+            appointment.setDoctor(randomDoctor);
+            
+            // If the appointment has a doctor and is ACCEPTED, create a session
+            if (status == AppointmentStatus.ACCEPTED) {
+                String zoomLink = "https://zoom.us/j/" + (10000000 + random.nextInt(90000000));
+                appointment.approveAppointment(randomDoctor, zoomLink);
+            }
+            
+            // If the appointment is COMPLETED, add doctor notes
+            if (status == AppointmentStatus.COMPLETED) {
+                String[] notes = {
+                    "Patient is recovering well.",
+                    "Prescribed medication for symptoms.",
+                    "Recommended follow-up in 2 weeks.",
+                    "Referred to specialist for further evaluation.",
+                    "No significant concerns at this time."
+                };
+                appointment.setDoctorNotes(notes[random.nextInt(notes.length)]);
+            }
+        }
+        
+        return appointment;
     }
 }

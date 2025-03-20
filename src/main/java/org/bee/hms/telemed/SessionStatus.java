@@ -1,4 +1,4 @@
-package org.bee.telemed;
+package org.bee.hms.telemed;
 
 /**
  * Enumerates the possible states of a session in the healthcare or service delivery context.

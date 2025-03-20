@@ -1,14 +1,18 @@
-package org.bee.telemed;
+package org.bee.hms.telemed;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.Objects;
+import java.util.UUID;
+
+import org.bee.utils.JSONReadable;
+import org.bee.utils.JSONWritable;
 
 /**
  * Represents a session for a virtual meeting via Zoom in the context of medical or professional interactions.
  * This class handles session details such as start and end times, connectivity issues, and session statuses,
  * providing methods to manage and record session activities effectively.
  */
-public class Session  {
+public class Session implements JSONWritable, JSONReadable {
     private String id;
     private LocalDateTime startTime;
     private LocalDateTime endTime;

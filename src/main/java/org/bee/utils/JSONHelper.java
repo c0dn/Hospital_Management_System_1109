@@ -18,8 +18,21 @@ import org.bee.hms.humans.Patient;
 import org.bee.hms.humans.Staff;
 import org.bee.hms.medical.Medication;
 import org.bee.hms.medical.VisitStatus;
-import org.bee.hms.wards.*;
-import org.bee.utils.typeAdapters.*;
+import org.bee.hms.telemed.AppointmentStatus;
+import org.bee.hms.telemed.SessionStatus;
+import org.bee.hms.wards.DaySurgeryWard;
+import org.bee.hms.wards.GeneralWard;
+import org.bee.hms.wards.ICUWard;
+import org.bee.hms.wards.LabourWard;
+import org.bee.hms.wards.Ward;
+import org.bee.utils.typeAdapters.AppointmentStatusAdapter;
+import org.bee.utils.typeAdapters.BigDecimalAdapter;
+import org.bee.utils.typeAdapters.LocalDateAdapter;
+import org.bee.utils.typeAdapters.LocalDateTimeAdapter;
+import org.bee.utils.typeAdapters.MedicationMapAdapter;
+import org.bee.utils.typeAdapters.RuntimeTypeAdapterFactory;
+import org.bee.utils.typeAdapters.SessionStatusAdapter;
+import org.bee.utils.typeAdapters.VisitStatusAdapter;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -56,6 +69,8 @@ public class JSONHelper {
                 .registerTypeAdapter(BigDecimal.class, new BigDecimalAdapter())
                 .registerTypeAdapter(medicationMapType, new MedicationMapAdapter())
                 .registerTypeAdapter(VisitStatus.class, new VisitStatusAdapter())
+                .registerTypeAdapter(AppointmentStatus.class, new AppointmentStatusAdapter())
+                .registerTypeAdapter(SessionStatus.class, new SessionStatusAdapter())
                 .registerTypeAdapterFactory(wardTypeFactory)
                 .registerTypeAdapterFactory(humanTypeFactory)
                 .setPrettyPrinting()

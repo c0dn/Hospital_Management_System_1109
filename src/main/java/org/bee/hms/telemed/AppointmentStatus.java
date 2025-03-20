@@ -1,4 +1,4 @@
-package org.bee.telemed;
+package org.bee.hms.telemed;
 
 /**
  * Enumerates the possible statuses of an appointment within the system.
