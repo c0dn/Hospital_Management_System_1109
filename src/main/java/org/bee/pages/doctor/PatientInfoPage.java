@@ -12,11 +12,30 @@ import org.bee.ui.views.TextView;
 import java.util.List;
 
 /**
- * Dual purpose page, can ask user to select multiple patients, or display a single patient
+ * Dual-purpose page can ask user to select multiple patients, or display a single patient
  */
 public class PatientInfoPage extends UiBase {
-    public static HumanController humanController = HumanController.getInstance();
-    public static Patient patient;
+    private static final HumanController humanController = HumanController.getInstance();
+    private Patient patient;
+
+
+    /**
+     * Default constructor for selecting a patient from a list
+     */
+    public PatientInfoPage() {
+        this.patient = null;
+    }
+
+    /**
+     * Constructor to display information for a specific patient
+     *
+     * @param patient The patient whose information will be displayed
+     */
+    public PatientInfoPage(Patient patient) {
+        this.patient = patient;
+    }
+
+
     @Override
     public View OnCreateView() {
         return new ListView(this.canvas, Color.GREEN);
@@ -74,7 +93,6 @@ public class PatientInfoPage extends UiBase {
     @Override
     public void OnBackPressed(){
         super.OnBackPressed();
-        PatientInfoPage.patient = null;
     }
 
 }

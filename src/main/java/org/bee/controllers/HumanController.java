@@ -23,7 +23,7 @@ import javax.print.Doc;
 public class HumanController {
 
     private static final String DATABASE_DIR = System.getProperty("database.dir", "database");
-    private static final String HUMANS_FILE = DATABASE_DIR + "/humans.json";
+    private static final String HUMANS_FILE = DATABASE_DIR + "/humans.txt";
 
     private static HumanController instance;
 

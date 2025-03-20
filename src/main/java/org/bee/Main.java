@@ -1,5 +1,7 @@
 package org.bee;
 
+import org.bee.controllers.AppointmentController;
+import org.bee.controllers.HumanController;
 import org.bee.pages.LoginPage;
 import org.bee.ui.ApplicationContext;
 import org.bee.ui.Canvas;
@@ -17,6 +19,9 @@ public class Main {
      * @param args
      */
     public static void main(String[] args) {
+        // Init controllers first by getting instance
+        HumanController.getInstance();
+        AppointmentController.getInstance();
         var canvas = new Canvas();
         ApplicationContext applicationContext = new ApplicationContext(canvas);
         applicationContext.startApplication(new LoginPage());
