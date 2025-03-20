@@ -35,6 +35,8 @@ public class Patient extends Human implements SystemUser {
     /** Represents the business address of the company associated with the patient. */
     private final String companyAddress;
 
+    private boolean patientConsent;
+
 
     /**
      * Constructs a new {@code Patient} instance using the given {@code PatientBuilder}.
@@ -59,6 +61,7 @@ public class Patient extends Human implements SystemUser {
         this.occupation = builder.occupation;
         this.companyName = builder.companyName;
         this.companyAddress = builder.companyAddress;
+        this.patientConsent = builder.patientConsent;
     }
 
     /**
@@ -88,6 +91,9 @@ public class Patient extends Human implements SystemUser {
         return name;
     }
 
+    public boolean getPatientConsent() { return patientConsent; }
+
+    public void setPatientConsent(boolean patientConsent) { this.patientConsent = patientConsent; }
 
     public void displayHuman() {
 

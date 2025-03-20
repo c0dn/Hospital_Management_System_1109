@@ -72,6 +72,13 @@ public class HumanController {
         this.authenticatedUser = user;
     }
 
+    public SystemUser getLoggedInUser() {
+        if (authenticatedUser == null) {
+            throw new IllegalStateException("There is no logged in user");
+        }
+        return authenticatedUser;
+    }
+
     public String getUserGreeting() {
         return switch (authenticatedUser) {
             case Doctor doc -> String.format("Welcome back %s MCR No. %s", doc.getName(), doc.getMcr());

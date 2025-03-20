@@ -3,6 +3,7 @@ package org.bee.hms.telemed;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import org.bee.hms.humans.Contact;
 import org.bee.hms.humans.Doctor;
 import org.bee.hms.humans.Patient;
 import org.bee.utils.DataGenerator;
@@ -32,6 +33,7 @@ public class Appointment implements JSONWritable, JSONReadable {
     private String doctorNotes;
     //private Billing billing;
     private MedicalCertificate mc;
+    private Contact contact;
 
     /**
      * Constructs a new Appointment with the specified details.
@@ -111,6 +113,8 @@ public class Appointment implements JSONWritable, JSONReadable {
     public void setHistory(String history) {
         this.history = history;
     }
+
+    public Contact getContact() { return contact; }
 
     public String getHistory() {
         return history;

@@ -9,6 +9,7 @@ import org.bee.hms.humans.Doctor;
 import org.bee.hms.humans.Nurse;
 import org.bee.hms.humans.Patient;
 import org.bee.pages.doctor.DoctorMainPage;
+import org.bee.pages.patient.PatientMainPage;
 import org.bee.ui.Color;
 import org.bee.ui.UiBase;
 import org.bee.ui.View;
@@ -69,7 +70,7 @@ public class LoginPage extends UiBase {
                     case Nurse nurse -> System.out.println("Welcome, Nurse!");
 
                     // ToPage(new NurseMainPage());
-                    case Patient patient -> System.out.println("Welcome, Patient " + patient.getName());
+                    case Patient patient -> ToPage(new PatientMainPage());
 
                     // ToPage(new PatientMainPage());
                     default -> {

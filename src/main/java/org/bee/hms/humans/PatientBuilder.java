@@ -48,6 +48,8 @@ public class PatientBuilder extends HumanBuilder<PatientBuilder> {
     /** The business address of the patient's company. */
     String companyAddress;
 
+    Boolean patientConsent;
+
     /**
      * Constructs a new {@code PatientBuilder} instance.
      */
@@ -174,6 +176,11 @@ public class PatientBuilder extends HumanBuilder<PatientBuilder> {
         return self();
     }
 
+    public PatientBuilder patientConsent(Boolean patientConsent) {
+        this.patientConsent = patientConsent;
+        return self();
+    }
+
     /**
      * Populates the builder with randomized data.
      *
@@ -200,6 +207,9 @@ public class PatientBuilder extends HumanBuilder<PatientBuilder> {
         this.occupation = dataGenerator.getRandomOccupation();
         this.companyName = dataGenerator.getRandomCompanyName();
         this.companyAddress = dataGenerator.generateSGAddress();
+
+        // Generate patient consent
+        this.patientConsent = dataGenerator.generateRandomInt(2)==1;
 
         // Generate drug allergies (0-2 allergies)
         this.drugAllergies.clear();

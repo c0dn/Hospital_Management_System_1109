@@ -41,4 +41,8 @@ public class Contact {
         this.email = email;
     }
 
+    public String getPersonalPhone() {
+        return personalPhone;
+    }
+
 }
