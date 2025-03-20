@@ -1,24 +1,29 @@
 package org.bee.pages.doctor;
 
-import org.bee.Globals;
-import org.bee.controllers.HumanController;
-import org.bee.telemed.Appointment;
-import org.bee.telemed.AppointmentStatus;
-import org.bee.telemed.UserType;
-import org.bee.ui.*;
-import org.bee.ui.views.ListView;
-import org.bee.ui.views.ListViewOrientation;
-import org.bee.ui.views.TextView;
-import org.bee.util.ZoomCreator;
-import org.bee.util.ZoomOAuth;
-import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-public class ViewAppointmentsPage extends UiBase {
-    ListView listView;
-    List<Appointment> appointments;
-    HumanController controller = HumanController.getInstance();
+import org.bee.controllers.AppointmentController;
+import org.bee.controllers.HumanController;
+import org.bee.execeptions.ZoomApiException;
+import org.bee.hms.humans.Doctor;
+import org.bee.hms.telemed.Appointment;
+import org.bee.hms.telemed.AppointmentStatus;
+import org.bee.ui.Color;
+import org.bee.ui.InputHelper;
+import org.bee.ui.TextStyle;
+import org.bee.ui.UiBase;
+import org.bee.ui.View;
+import org.bee.ui.views.ListView;
+import org.bee.ui.views.ListViewOrientation;
+import org.bee.ui.views.TextView;
+
+public class ViewAppointmentPage extends UiBase {
+    private ListView listView;
+    private List<Appointment> appointments;
+    private static final HumanController humanController = HumanController.getInstance();
+    private static final AppointmentController appointmentController = AppointmentController.getInstance();
+
     @Override
     public View OnCreateView() {
         ListView lv = new ListView(
@@ -26,27 +31,24 @@ public class ViewAppointmentsPage extends UiBase {
                 Color.GREEN
         );
 
-        lv.setTitleHeader(" View Appointments | " + controller.getLoginInUser());
+        lv.setTitleHeader(" View Appointments | " + humanController.getLoginInUser());
         this.listView = lv;
         return lv;
     }
 
     @Override
     public void OnViewCreated(View parentView) {
-        HumanController controller = HumanController.getInstance();
         ListView listView = (ListView) parentView;
-        appointments = Globals.appointmentController.getAppointments()
+        appointments = appointmentController.getAllAppointments()
                 .stream()
                 .filter(x->x.getAppointmentStatus() != AppointmentStatus.COMPLETED)
                 .toList();
 
-        // filter the appointments list and only show the appointments that are completed.
-        listView.attachUserInput("Select Patient index", str-> selectAppointmentPrompt(appointments));
+        listView.attachUserInput("Select Patient index", _ -> selectAppointmentPrompt(appointments));
         refreshUi();
     }
 
     private void selectAppointmentPrompt(List<Appointment> appointments) {
-        HumanController controller = HumanController.getInstance();
         int selectedIndex = InputHelper.getValidIndex("Select Patient index", appointments);
         Appointment selectedAppointment = appointments.get(selectedIndex);
 
@@ -59,38 +61,40 @@ public class ViewAppointmentsPage extends UiBase {
             selectedIndex1 = InputHelper.getValidIndex("Select An Option", 1, 3);
         }
 
+
         switch (selectedIndex1){
             case 1:
                 selectedAppointment.setAppointmentStatus(AppointmentStatus.ACCEPTED);
-                System.out.println("Accepted, generating zoomlink...");
+                System.out.println("Accepted, generating zoom link...");
                 try {
-                    // Get the OAuth access token
-                    String accessToken = ZoomOAuth.getAccessToken();
-
-                    // Call the method to create a Zoom meeting
-                    String joinUrl = ZoomCreator.createZoomMeeting(
-                            accessToken,
-                            "Zoom Meeting",
-                            1, // Duration in minutes
-                            "UTC" // Timezone
+                    String joinUrl = appointmentController.generateZoomLink(
+                            "Appointment with " + selectedAppointment.getPatient().getName(),
+                            30
                     );
-                    selectedAppointment.approveAppointment(controller.getLoginInUser(), joinUrl);
-                    Globals.appointmentController.saveAppointmentsToFile();
-                }catch (IOException e){
-                    System.out.println("Error generating zoom link");
+                    Doctor assignedDoctor = selectedAppointment.getDoctor();
+                    if (assignedDoctor == null) {
+                        System.out.println("Error: No doctor assigned to this appointment");
+                        System.out.println("Please assign a doctor to this appointment first");
+                        break;
+                    }
+                    selectedAppointment.approveAppointment(assignedDoctor, joinUrl);
+                    appointmentController.saveAppointments();
+                } catch (ZoomApiException e) {
+                    System.out.println("Error generating zoom link: " + e.getMessage());
                 }
                 break;
             case 2:
                 selectedAppointment.setAppointmentStatus(AppointmentStatus.DECLINED);
-                Globals.appointmentController.saveAppointmentsToFile();
+                appointmentController.saveAppointments();
                 break;
             case 3:
-                PatientInfoPage.patient = selectedAppointment.getPatient();
-                ToPage(Globals.patientInfoPage);
+                ToPage(new PatientInfoPage(selectedAppointment.getPatient()));
                 break;
             case 4:
-                TeleconsultPage.setAppointment(selectedAppointment);
-                ToPage(Globals.teleconsultPage);
+                // Comment out for now as TeleconsultPage is not available
+                // TeleconsultPage.setAppointment(selectedAppointment);
+                // ToPage(Globals.teleconsultPage);
+                System.out.println("Starting teleconsultation for appointment: " + selectedAppointment.toString());
                 break;
         }
 
