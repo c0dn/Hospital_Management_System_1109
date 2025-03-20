@@ -14,7 +14,7 @@ dependencies {
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     implementation("com.google.code.gson:gson:2.12.1")
-    implementation ("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
 }
 
 application {
@@ -23,6 +23,35 @@ application {
 
 tasks.test {
     useJUnitPlatform()
+    
+    // Copy database files before running tests
+    doFirst {
+        // Create temp directory for database files
+        file("build/database").mkdirs()
+        // Copy database files to temp location
+        copy {
+            from("database")
+            into("build/database")
+        }
+        
+        // Set system property for database location
+        systemProperty("database.dir", file("build/database").absolutePath)
+    }
+    
+    // Configure test execution
+    testLogging {
+        events("passed", "skipped", "failed")
+        showStandardStreams = true  // Show stdout/stderr from tests
+    }
+    
+    // Enable parallel test execution if desired
+    // maxParallelForks = (Runtime.getRuntime().availableProcessors() / 2).takeIf { it > 0 } ?: 1
+    
+    // Report aggregation
+    reports {
+        html.required.set(true)
+        junitXml.required.set(true)
+    }
 }
 
 tasks.jar {
@@ -31,54 +60,6 @@ tasks.jar {
     }
     from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-}
-
-// Create tasks for running test classes
-val testClasses = listOf(
-    "BillBuilderTest",
-    "ConsultationTest",
-    "DiagnosticCodeTest",
-    "DoctorTest",
-    "GovernmentProviderTest",
-    "HospitalCodeTest",
-    "InsuranceClaimTest",
-    "InsuranceTest",
-    "NurseTest",
-    "PatientTest",
-    "PrivateProviderTest",
-    "ProcedureCodeTest",
-    "VisitTest",
-    "WardTest"
-)
-
-testClasses.forEach { className ->
-    tasks.register<JavaExec>("run${className}") {
-        group = "verification"
-        description = "Run $className"
-        
-        doFirst {
-            // Create temp directory for database files
-            file("build/database").mkdirs()
-            // Copy database files to temp location
-            copy {
-                from("database")
-                into("build/database")
-            }
-            
-            // Set system property for database location
-            systemProperty("database.dir", file("build/database").absolutePath)
-        }
-        
-        classpath = sourceSets["main"].runtimeClasspath
-        mainClass.set("org.bee.tests.${className}")
-        workingDir = projectDir // Set working directory to project root
-    }
-}
-
-tasks.register("runAllTests") {
-    group = "verification"
-    description = "Run all test classes"
-    dependsOn(testClasses.map { "run${it}" })
 }
 
 tasks.register<JavaExec>("runJar") {
