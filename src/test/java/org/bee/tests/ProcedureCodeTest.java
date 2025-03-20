@@ -5,15 +5,12 @@ import java.math.RoundingMode;
 
 import org.bee.hms.medical.ProcedureCode;
 import org.bee.hms.policy.BenefitType;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * A test class for the {@link ProcedureCode} class.
@@ -60,8 +57,8 @@ public class ProcedureCodeTest {
 
     @ParameterizedTest
     @CsvSource({
-        "1016070,true,MATERNITY",
-        "3E033VZ,false,MEDICATION_ADMIN",
+        "10E0XZZ,true,MATERNITY",
+        "3E00XTZ,false,MEDICATION_ADMIN",
         "5A1955Z,true,DIAGNOSTIC_IMAGING",
         "6A0Z0ZZ,false,ONCOLOGY_TREATMENTS",
         "0D11074,true,MAJOR_SURGERY"
@@ -80,11 +77,11 @@ public class ProcedureCodeTest {
         
         String inpatientDesc = surgicalProc.getBenefitDescription(true);
         assertNotNull(inpatientDesc, "Inpatient description should not be null");
-        assertTrue(inpatientDesc.length() > 0, "Inpatient description should not be empty");
+        assertFalse(inpatientDesc.isEmpty(), "Inpatient description should not be empty");
         
         String outpatientDesc = surgicalProc.getBenefitDescription(false);
         assertNotNull(outpatientDesc, "Outpatient description should not be null");
-        assertTrue(outpatientDesc.length() > 0, "Outpatient description should not be empty");
+        assertFalse(outpatientDesc.isEmpty(), "Outpatient description should not be empty");
     }
 
     @ParameterizedTest

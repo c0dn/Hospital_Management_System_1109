@@ -150,11 +150,11 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
 
         char section = code.charAt(0);
         char bodySystem = code.charAt(1);
-        String fullCode = code.substring(0, 3);
+        String fullCode = code.substring(0, Math.min(3, code.length()));
 
         // Handle special procedure categories
         if (section == '1') return BenefitType.MATERNITY;
-        if (section == '3' && fullCode.equals("3E0")) return BenefitType.MEDICATION_ADMIN; // Chemo infusions
+        if (section == '3' && fullCode.equals("3E0")) return BenefitType.MEDICATION_ADMIN;
         if (section == '5') return BenefitType.DIAGNOSTIC_IMAGING;
         if (section == '6' || section == '7') return BenefitType.ONCOLOGY_TREATMENTS;
 
