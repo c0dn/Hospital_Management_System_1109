@@ -155,16 +155,16 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
         // Handle special procedure categories
         if (section == '1') return BenefitType.MATERNITY;
         if (section == '3' && fullCode.equals("3E0")) return BenefitType.MEDICATION_ADMIN;
-        if (section == '5') return BenefitType.DIAGNOSTIC_IMAGING;
-        if (section == '6' || section == '7') return BenefitType.ONCOLOGY_TREATMENTS;
+        if (section == 'B') return BenefitType.DIAGNOSTIC_IMAGING;
+        if (section == 'C' || section == 'D') return BenefitType.ONCOLOGY_TREATMENTS;
 
         // Enhanced surgical categorization
         if (section == '0') {
             return switch(bodySystem) {
-                case 'D' -> BenefitType.MAJOR_SURGERY;       // Cardiovascular
-                case 'F' -> BenefitType.MAJOR_SURGERY;       // Neurological
-                case 'G' -> BenefitType.MINOR_SURGERY;       // Skin/Muscle
-                case 'H' -> BenefitType.MINOR_SURGERY;       // Orthopedic
+                case '2' -> BenefitType.MAJOR_SURGERY;       // Heart and Great Vessels
+                case '0' -> BenefitType.MAJOR_SURGERY;       // Central Nervous System
+                case 'H' -> BenefitType.MINOR_SURGERY;       // Skin and Breast
+                case 'P', 'Q', 'R', 'S' -> BenefitType.MINOR_SURGERY;  // Bones and Joints
                 default -> isInpatient ? BenefitType.HOSPITALIZATION
                         : BenefitType.MINOR_SURGERY;
             };
@@ -216,8 +216,10 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
      * @return The body system description, or null if not applicable.
      */
     private String getBodySystem(char secondChar) {
+        // This method appears to be for the Medical and Surgical section (0)
+        // Body systems vary by section, so ideally this would check the first character too
         return switch (secondChar) {
-            case '0' -> "Central Nervous System";
+            case '0' -> "Central Nervous System and Cranial Nerves";
             case '1' -> "Peripheral Nervous System";
             case '2' -> "Heart and Great Vessels";
             case '3' -> "Upper Arteries";
@@ -233,14 +235,21 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
             case 'F' -> "Hepatobiliary System and Pancreas";
             case 'G' -> "Endocrine System";
             case 'H' -> "Skin and Breast";
-            case 'J' -> "Musculoskeletal System";
-            case 'K' -> "Urinary System";
-            case 'L' -> "Female Reproductive System";
-            case 'M' -> "Male Reproductive System";
-            case 'N' -> "Obstetrics";
-            case 'P' -> "Bones and Joints";
-            case 'Q' -> "Upper Extremities";
-            case 'R' -> "Lower Extremities";
+            case 'J' -> "Subcutaneous Tissue and Fascia";
+            case 'K' -> "Muscles";
+            case 'L' -> "Tendons";
+            case 'M' -> "Bursae and Ligaments";
+            case 'N' -> "Head and Facial Bones";
+            case 'P' -> "Upper Bones";
+            case 'Q' -> "Lower Bones";
+            case 'R' -> "Upper Joints";
+            case 'S' -> "Lower Joints";
+            case 'T' -> "Urinary System";
+            case 'U' -> "Female Reproductive System";
+            case 'V' -> "Male Reproductive System";
+            case 'W' -> "Anatomical Regions, General";
+            case 'X' -> "Anatomical Regions, Upper Extremities";
+            case 'Y' -> "Anatomical Regions, Lower Extremities";
             default -> null;
         };
     }
@@ -258,11 +267,18 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
             case '2' -> "Placement";
             case '3' -> "Administration";
             case '4' -> "Measurement and Monitoring";
-            case '5' -> "Imaging";
-            case '6' -> "Nuclear Medicine";
-            case '7' -> "Radiation Oncology";
+            case '5' -> "Extracorporeal or Systemic Assistance and Performance";
+            case '6' -> "Extracorporeal or Systemic Therapies";
+            case '7' -> "Osteopathic";
             case '8' -> "Other Procedures";
             case '9' -> "Chiropractic";
+            case 'B' -> "Imaging";
+            case 'C' -> "Nuclear Medicine";
+            case 'D' -> "Radiation Therapy";
+            case 'F' -> "Physical Rehabilitation and Diagnostic Audiology";
+            case 'G' -> "Mental Health";
+            case 'H' -> "Substance Abuse Treatment";
+            case 'X' -> "New Technology";
             default -> null;
         };
     }
@@ -285,5 +301,38 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
         String[] codes = CODE_REGISTRY.keySet().toArray(new String[0]);
         int randomIndex = (int) (Math.random() * codes.length);
         return createFromCode(codes[randomIndex]);
+    }
+    
+    /**
+     * Gets a random procedure code that matches the specified benefit type
+     * 
+     * @param benefitType The benefit type to match
+     * @return A randomly selected ProcedureCode that matches the specified benefit type
+     * @throws IllegalArgumentException if no procedure codes match the specified benefit type
+     */
+    public static ProcedureCode getRandomCodeForBenefitType(BenefitType benefitType) {
+        // Create a list to store matching codes
+        java.util.List<String> matchingCodes = new java.util.ArrayList<>();
+        
+        // Iterate through all codes in the registry
+        for (Map.Entry<String, ProcedureCode> entry : CODE_REGISTRY.entrySet()) {
+            ProcedureCode code = entry.getValue();
+            
+            // Check if this code matches the specified benefit type
+            // We'll check for both inpatient and outpatient scenarios
+            if (code.resolveBenefitType(true) == benefitType || 
+                code.resolveBenefitType(false) == benefitType) {
+                matchingCodes.add(entry.getKey());
+            }
+        }
+        
+        // If no matching codes were found, throw an exception
+        if (matchingCodes.isEmpty()) {
+            throw new IllegalArgumentException("No procedure codes found for benefit type: " + benefitType);
+        }
+        
+        // Select a random code from the matching codes
+        int randomIndex = (int) (Math.random() * matchingCodes.size());
+        return createFromCode(matchingCodes.get(randomIndex));
     }
 }

@@ -301,6 +301,39 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
         int randomIndex = (int) (Math.random() * codes.length);
         return createFromCode(codes[randomIndex]);
     }
+    
+    /**
+     * Gets a random diagnostic code that matches the specified benefit type
+     * 
+     * @param benefitType The benefit type to match
+     * @return A randomly selected DiagnosticCode that matches the specified benefit type
+     * @throws IllegalArgumentException if no diagnostic codes match the specified benefit type
+     */
+    public static DiagnosticCode getRandomCodeForBenefitType(BenefitType benefitType) {
+        // Create a list to store matching codes
+        java.util.List<String> matchingCodes = new java.util.ArrayList<>();
+        
+        // Iterate through all codes in the registry
+        for (Map.Entry<String, DiagnosticCode> entry : CODE_REGISTRY.entrySet()) {
+            DiagnosticCode code = entry.getValue();
+            
+            // Check if this code matches the specified benefit type
+            // We'll check for both inpatient and outpatient scenarios
+            if (code.resolveBenefitType(true) == benefitType || 
+                code.resolveBenefitType(false) == benefitType) {
+                matchingCodes.add(entry.getKey());
+            }
+        }
+        
+        // If no matching codes were found, throw an exception
+        if (matchingCodes.isEmpty()) {
+            throw new IllegalArgumentException("No diagnostic codes found for benefit type: " + benefitType);
+        }
+        
+        // Select a random code from the matching codes
+        int randomIndex = (int) (Math.random() * matchingCodes.size());
+        return createFromCode(matchingCodes.get(randomIndex));
+    }
 }
 
 /**
