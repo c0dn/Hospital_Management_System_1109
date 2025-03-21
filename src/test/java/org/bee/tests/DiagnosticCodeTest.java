@@ -85,7 +85,7 @@ public class DiagnosticCodeTest {
     @ValueSource(strings = {"DENTAL", "MATERNITY", "CRITICAL_ILLNESS", "ACCIDENT", "PREVENTIVE_CARE"})
     void testRandomCodeForBenefitType(String benefitTypeStr) {
         BenefitType benefitType = BenefitType.valueOf(benefitTypeStr);
-        DiagnosticCode code = DiagnosticCode.getRandomCodeForBenefitType(benefitType);
+        DiagnosticCode code = DiagnosticCode.getRandomCodeForBenefitType(benefitType, true);
         
         assertNotNull(code, "Random code for benefit type should not be null");
         
@@ -102,9 +102,9 @@ public class DiagnosticCodeTest {
         // Test that multiple calls return different codes
         BenefitType benefitType = BenefitType.DENTAL;
         
-        DiagnosticCode code1 = DiagnosticCode.getRandomCodeForBenefitType(benefitType);
-        DiagnosticCode code2 = DiagnosticCode.getRandomCodeForBenefitType(benefitType);
-        DiagnosticCode code3 = DiagnosticCode.getRandomCodeForBenefitType(benefitType);
+        DiagnosticCode code1 = DiagnosticCode.getRandomCodeForBenefitType(benefitType, false);
+        DiagnosticCode code2 = DiagnosticCode.getRandomCodeForBenefitType(benefitType, false);
+        DiagnosticCode code3 = DiagnosticCode.getRandomCodeForBenefitType(benefitType, false);
         
         // With repeated tests, at least one pair should be different
         // (There's a small chance they could all be the same by random chance,
@@ -124,7 +124,7 @@ public class DiagnosticCodeTest {
         // If this test fails in the future, it might be because codes were added for this type
         // In that case, choose a different benefit type that doesn't have matching codes
         assertThrows(IllegalArgumentException.class, 
-                () -> DiagnosticCode.getRandomCodeForBenefitType(BenefitType.SURGERY),
+                () -> DiagnosticCode.getRandomCodeForBenefitType(BenefitType.SURGERY, false),
                 "Should throw exception when no codes match the benefit type");
     }
 

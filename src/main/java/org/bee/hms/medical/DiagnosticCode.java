@@ -246,7 +246,9 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
                 new BenefitMapping("^Z74.*", BenefitType.PREVENTIVE_CARE),  // Need for assistance
                 new BenefitMapping("^(E66|I10|J45|N18).*", BenefitType.CHRONIC_CONDITIONS), // Chronic
                 new BenefitMapping("^(J06|N30|R05).*", BenefitType.ACUTE_CONDITIONS),  // Acute
-                new BenefitMapping("^Z5[1-3].*", BenefitType.PREVENTIVE_CARE) // Health screenings
+                new BenefitMapping("^Z5[1-3].*", BenefitType.PREVENTIVE_CARE), // Health screenings
+                new BenefitMapping("^Z[0-9]{2}.*", isInpatient ? BenefitType.HOSPITALIZATION : BenefitType.OUTPATIENT_TREATMENTS)
+
         );
 
         for (BenefitMapping mapping : benefitMappings) {
@@ -309,7 +311,7 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
      * @return A randomly selected DiagnosticCode that matches the specified benefit type
      * @throws IllegalArgumentException if no diagnostic codes match the specified benefit type
      */
-    public static DiagnosticCode getRandomCodeForBenefitType(BenefitType benefitType) {
+    public static DiagnosticCode getRandomCodeForBenefitType(BenefitType benefitType, boolean isInPatient) {
         // Create a list to store matching codes
         java.util.List<String> matchingCodes = new java.util.ArrayList<>();
         
@@ -319,18 +321,15 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
             
             // Check if this code matches the specified benefit type
             // We'll check for both inpatient and outpatient scenarios
-            if (code.resolveBenefitType(true) == benefitType || 
-                code.resolveBenefitType(false) == benefitType) {
+            if (code.resolveBenefitType(isInPatient) == benefitType) {
                 matchingCodes.add(entry.getKey());
             }
         }
         
-        // If no matching codes were found, throw an exception
         if (matchingCodes.isEmpty()) {
             throw new IllegalArgumentException("No diagnostic codes found for benefit type: " + benefitType);
         }
         
-        // Select a random code from the matching codes
         int randomIndex = (int) (Math.random() * matchingCodes.size());
         return createFromCode(matchingCodes.get(randomIndex));
     }

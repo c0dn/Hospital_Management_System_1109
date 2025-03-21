@@ -310,18 +310,15 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
      * @return A randomly selected ProcedureCode that matches the specified benefit type
      * @throws IllegalArgumentException if no procedure codes match the specified benefit type
      */
-    public static ProcedureCode getRandomCodeForBenefitType(BenefitType benefitType) {
+    public static ProcedureCode getRandomCodeForBenefitType(BenefitType benefitType, boolean isInPatient) {
         // Create a list to store matching codes
         java.util.List<String> matchingCodes = new java.util.ArrayList<>();
         
         // Iterate through all codes in the registry
         for (Map.Entry<String, ProcedureCode> entry : CODE_REGISTRY.entrySet()) {
             ProcedureCode code = entry.getValue();
-            
-            // Check if this code matches the specified benefit type
-            // We'll check for both inpatient and outpatient scenarios
-            if (code.resolveBenefitType(true) == benefitType || 
-                code.resolveBenefitType(false) == benefitType) {
+
+            if (code.resolveBenefitType(isInPatient) == benefitType) {
                 matchingCodes.add(entry.getKey());
             }
         }

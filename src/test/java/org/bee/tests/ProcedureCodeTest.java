@@ -117,13 +117,14 @@ public class ProcedureCodeTest {
     @ValueSource(strings = {"MATERNITY", "DIAGNOSTIC_IMAGING", "ONCOLOGY_TREATMENTS", "MAJOR_SURGERY", "MINOR_SURGERY"})
     void testRandomCodeForBenefitType(String benefitTypeStr) {
         BenefitType benefitType = BenefitType.valueOf(benefitTypeStr);
-        ProcedureCode code = ProcedureCode.getRandomCodeForBenefitType(benefitType);
-        
+        ProcedureCode code = ProcedureCode.getRandomCodeForBenefitType(benefitType, true);
+        ProcedureCode codeOut = ProcedureCode.getRandomCodeForBenefitType(benefitType, false);
+
         assertNotNull(code, "Random code for benefit type should not be null");
         
         // Verify the code matches the requested benefit type (check both inpatient and outpatient)
         boolean matchesInpatient = code.resolveBenefitType(true) == benefitType;
-        boolean matchesOutpatient = code.resolveBenefitType(false) == benefitType;
+        boolean matchesOutpatient = codeOut.resolveBenefitType(false) == benefitType;
         
         assertTrue(matchesInpatient || matchesOutpatient, 
                 "Code should match the requested benefit type: " + benefitType);
@@ -134,9 +135,9 @@ public class ProcedureCodeTest {
         // Test that multiple calls return different codes
         BenefitType benefitType = BenefitType.MATERNITY;
         
-        ProcedureCode code1 = ProcedureCode.getRandomCodeForBenefitType(benefitType);
-        ProcedureCode code2 = ProcedureCode.getRandomCodeForBenefitType(benefitType);
-        ProcedureCode code3 = ProcedureCode.getRandomCodeForBenefitType(benefitType);
+        ProcedureCode code1 = ProcedureCode.getRandomCodeForBenefitType(benefitType, true);
+        ProcedureCode code2 = ProcedureCode.getRandomCodeForBenefitType(benefitType, true);
+        ProcedureCode code3 = ProcedureCode.getRandomCodeForBenefitType(benefitType, true);
         
         // With repeated tests, at least one pair should be different
         // (There's a small chance they could all be the same by random chance,
@@ -156,7 +157,7 @@ public class ProcedureCodeTest {
         // If this test fails in the future, it might be because codes were added for this type
         // In that case, choose a different benefit type that doesn't have matching codes
         assertThrows(IllegalArgumentException.class, 
-                () -> ProcedureCode.getRandomCodeForBenefitType(BenefitType.SURGERY),
+                () -> ProcedureCode.getRandomCodeForBenefitType(BenefitType.SURGERY, false),
                 "Should throw exception when no codes match the benefit type");
     }
 
