@@ -1,5 +1,6 @@
 package org.bee.pages.doctor;
 
+import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -78,14 +79,16 @@ public class ViewAppointmentPage extends UiBase {
                         break;
                     }
                     selectedAppointment.approveAppointment(assignedDoctor, joinUrl);
-                    appointmentController.saveAppointments();
+                    appointmentController.saveData();
                 } catch (ZoomApiException e) {
                     System.out.println("Error generating zoom link: " + e.getMessage());
+                } catch (IOException e) {
+                    System.out.println("Error saving data: " + e.getMessage());
                 }
                 break;
             case 2:
                 selectedAppointment.setAppointmentStatus(AppointmentStatus.DECLINED);
-                appointmentController.saveAppointments();
+                appointmentController.saveData();
                 break;
             case 3:
                 ToPage(new PatientInfoPage(selectedAppointment.getPatient()));

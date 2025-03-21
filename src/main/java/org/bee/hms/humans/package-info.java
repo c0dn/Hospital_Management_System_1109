@@ -5,4 +5,4 @@
  * <p> These classes store personal details like name, date of birth and address.</p>
  */
 
-package com.healthcare.humans;
+package org.bee.hms.humans;

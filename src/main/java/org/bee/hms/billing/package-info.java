@@ -7,4 +7,4 @@
  * <br><br>The Bill and Billing classes work together to track financial transactions.
  */
 
-package com.healthcare.billing;
+package org.bee.hms.billing;

@@ -5,4 +5,4 @@
  * <p>The classes in this package help manage insurance policies linked to patients.</p>
  */
 
-package policy;
+package org.bee.hms.policy;

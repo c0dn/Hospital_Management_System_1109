@@ -5,4 +5,4 @@
  * <p>The classes in this package help manage ward details linked to patients.</p>
  */
 
-package wards;
+package org.bee.hms.wards;

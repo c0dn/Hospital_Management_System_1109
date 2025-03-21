@@ -4,4 +4,4 @@
  *
  * <p>The classes in this package help to provide insurance provider linked to patients.</p>
  */
-package insurance;
+package org.bee.hms.insurance;

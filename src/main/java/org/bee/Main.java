@@ -1,6 +1,7 @@
 package org.bee;
 
 import org.bee.controllers.AppointmentController;
+import org.bee.controllers.ClaimController;
 import org.bee.controllers.HumanController;
 import org.bee.pages.LoginPage;
 import org.bee.ui.ApplicationContext;
@@ -22,6 +23,7 @@ public class Main {
         // Init controllers first by getting instance
         HumanController.getInstance();
         AppointmentController.getInstance();
+        ClaimController.getInstance();
         var canvas = new Canvas();
         ApplicationContext applicationContext = new ApplicationContext(canvas);
         applicationContext.startApplication(new LoginPage());

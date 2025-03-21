@@ -5,4 +5,4 @@
  * <p>The classes in this package help manage medical data linked to patients.</p>
  */
 
-package medical;
+package org.bee.hms.medical;
