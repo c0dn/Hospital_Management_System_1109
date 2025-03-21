@@ -1,9 +1,7 @@
 package org.bee.controllers;
 
-import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
@@ -15,7 +13,6 @@ import org.bee.hms.humans.Patient;
 import org.bee.hms.telemed.Appointment;
 import org.bee.hms.telemed.AppointmentStatus;
 import org.bee.utils.DataGenerator;
-import org.bee.utils.JSONHelper;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -29,32 +26,18 @@ import okhttp3.Response;
 
 /**
  * Manages the storage and retrieval of {@link Appointment} objects.
- * This class provides centralized management of appointments through a static list and supports operations such as adding, removing, and searching for appointments. It also handles persistence by reading from and writing to a file.
- * The appointments are stored in a static list, allowing for easy access and manipulation across different parts of the application without instantiating the controller.
+ * This class provides centralized management of appointments through a list and supports operations such as adding, removing, and searching for appointments.
+ * It extends BaseController to handle JSON persistence.
  */
-public class AppointmentController {
-    private static final String DATABASE_DIR = System.getProperty("database.dir", "database");
-    private static final String APPOINTMENT_FILE = DATABASE_DIR + "/appointments.txt";
-
+public class AppointmentController extends BaseController<Appointment> {
     private static AppointmentController instance;
-
-    private List<Appointment> appointments = new ArrayList<>();
-    private final JSONHelper jsonHelper = JSONHelper.getInstance();
     private final DataGenerator dataGenerator = DataGenerator.getInstance();
     private final HumanController humanController = HumanController.getInstance();
 
-    /**
-     * Private constructor to enforce a singleton pattern
-     */
     private AppointmentController() {
-        init();
+        super();
     }
 
-    /**
-     * Gets the singleton instance of AppointmentController
-     *
-     * @return The AppointmentController instance
-     */
     public static synchronized AppointmentController getInstance() {
         if (instance == null) {
             instance = new AppointmentController();
@@ -62,29 +45,18 @@ public class AppointmentController {
         return instance;
     }
 
-    /**
-     * Initializes the database by either loading existing data or generating new data
-     */
-    private void init() {
-        File directory = new File(DATABASE_DIR);
-        if (!directory.exists()) {
-            directory.mkdirs();
-        }
+    @Override
+    protected String getDataFilePath() {
+        return DATABASE_DIR + "/appointments.txt";
+    }
 
-        File appointmentsFile = new File(APPOINTMENT_FILE);
-        if (appointmentsFile.exists()) {
-            loadAppointments();
-        } else {
-            generateInitialData();
-            saveAppointments();
-        }
+    @Override
+    protected Class<Appointment> getEntityClass() {
+        return Appointment.class;
     }
     
-    /**
-     * Generates initial data with 10 random appointments.
-     * This method is called when the appointments file doesn't exist.
-     */
-    private void generateInitialData() {
+    @Override
+    protected void generateInitialData() {
         System.out.println("Generating initial appointment data...");
         
         List<Patient> patients = humanController.getAllPatients();
@@ -107,79 +79,23 @@ public class AppointmentController {
             
             // Generate the appointment
             Appointment appointment = dataGenerator.generateRandomAppointment(patient, doctor);
-            appointments.add(appointment);
+            items.add(appointment);
         }
         
-        System.out.println("Generated " + appointments.size() + " appointments.");
+        System.out.println("Generated " + items.size() + " appointments.");
     }
 
-    /**
-     * Loads appointments from the JSON file
-     */
-    public void loadAppointments() {
-        try {
-            appointments = jsonHelper.loadListFromJsonFile(APPOINTMENT_FILE, Appointment.class);
-            System.out.println("Loaded " + appointments.size() + " appointments from " + APPOINTMENT_FILE);
-        } catch (Exception e) {
-            System.err.println("Error loading appointments from file: " + e.getMessage());
-            appointments = new ArrayList<>();
-        }
-    }
 
-    /**
-     * Saves appointments to the JSON file
-     */
-    public void saveAppointments() {
-        try {
-            jsonHelper.saveToJsonFile(appointments, APPOINTMENT_FILE);
-            System.out.println("Saved " + appointments.size() + " appointments to " + APPOINTMENT_FILE);
-        } catch (Exception e) {
-            System.err.println("Error saving appointments to file: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Adds an appointment to the controller and saves to the JSON file
-     *
-     * @param appointment The appointment to add
-     */
-    public void addAppointment(Appointment appointment) {
-        appointments.add(appointment);
-        saveAppointments();
-    }
-
-    /**
-     * Removes an appointment from the controller and saves to the JSON file
-     *
-     * @param appointment The appointment to remove
-     * @return true if the appointment was removed, false otherwise
-     */
     public boolean removeAppointment(Appointment appointment) {
-        boolean removed = appointments.remove(appointment);
+        boolean removed = items.remove(appointment);
         if (removed) {
-            saveAppointments();
+            saveData();
         }
         return removed;
     }
 
-    /**
-     * Gets all appointments in the system
-     *
-     * @return List of all appointments
-     */
-    public List<Appointment> getAllAppointments() {
-        return new ArrayList<>(appointments);
-    }
-
-    /**
-     * Gets appointments for a specific patient
-     *
-     * @param patient The patient to get appointments for
-     * @return List of appointments for the patient
-     */
     public List<Appointment> getAppointmentsForPatient(Patient patient) {
-        return appointments.stream()
+        return items.stream()
                 .filter(appointment -> appointment.getPatient().equals(patient))
                 .collect(Collectors.toList());
     }
@@ -191,7 +107,7 @@ public class AppointmentController {
      * @return List of appointments for the doctor
      */
     public List<Appointment> getAppointmentsForDoctor(Doctor doctor) {
-        return appointments.stream()
+        return items.stream()
                 .filter(appointment -> {
                     Doctor appointmentDoctor = appointment.getDoctor();
                     return appointmentDoctor != null && appointmentDoctor.equals(doctor);
@@ -206,9 +122,17 @@ public class AppointmentController {
      * @return List of appointments with the specified status
      */
     public List<Appointment> getAppointmentsByStatus(AppointmentStatus status) {
-        return appointments.stream()
+        return items.stream()
                 .filter(appointment -> appointment.getAppointmentStatus() == status)
                 .collect(Collectors.toList());
+    }
+
+    public void addAppointment(Appointment appointment) {
+        addItem(appointment);
+    }
+
+    public List<Appointment> getAllAppointments() {
+        return getAllItems();
     }
 
     /**
@@ -250,7 +174,7 @@ public class AppointmentController {
         Appointment appointment = dataGenerator.generateRandomAppointment(patient, doctor);
         
         // Add to the list and save
-        addAppointment(appointment);
+            addItem(appointment);
         
         return appointment;
     }
@@ -278,7 +202,7 @@ public class AppointmentController {
         
         Appointment appointment = dataGenerator.generateRandomAppointment(patient, doctor);
         
-        addAppointment(appointment);
+        addItem(appointment);
         
         return appointment;
     }
@@ -291,10 +215,10 @@ public class AppointmentController {
      * @return true if the appointment was updated, false if it was not found
      */
     public boolean updateAppointment(Appointment oldAppointment, Appointment newAppointment) {
-        int index = appointments.indexOf(oldAppointment);
+        int index = items.indexOf(oldAppointment);
         if (index != -1) {
-            appointments.set(index, newAppointment);
-            saveAppointments();
+            items.set(index, newAppointment);
+            saveData();
             return true;
         }
         return false;
@@ -308,7 +232,7 @@ public class AppointmentController {
      * @return Optional containing the appointment if found, empty otherwise
      */
     public Optional<Appointment> findAppointment(Patient patient, LocalDateTime appointmentTime) {
-        return appointments.stream()
+        return items.stream()
                 .filter(appointment -> 
                     appointment.getPatient().equals(patient) && 
                     appointment.getAppointmentTime().equals(appointmentTime))
@@ -325,7 +249,7 @@ public class AppointmentController {
      * @throws ZoomApiException If there's an error communicating with the Zoom API
      */
     public String generateZoomLink(String appointmentTitle, int durationMinutes)
-            throws IllegalArgumentException, ZoomApiException {
+            throws IllegalArgumentException, ZoomApiException, IOException {
 
         if (appointmentTitle == null || appointmentTitle.trim().isEmpty()) {
             throw new IllegalArgumentException("Appointment title cannot be null or empty");
