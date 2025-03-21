@@ -2,12 +2,11 @@ package org.bee.hms.medical;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.bee.hms.billing.BillableItem;
+import org.bee.hms.humans.Doctor;
+import org.bee.hms.humans.Patient;
 import org.bee.utils.DataGenerator;
 
 /**
@@ -46,6 +45,56 @@ public class Consultation {
 
     /** Additional notes regarding the consultation */
     private String notes;
+
+    /** Date of the outpatient appointment. */
+    private Date appointmentDate;
+
+    /** Medical history of the patient. */
+    private String medicalHistory;
+
+    /** Current status of the outpatient case. */
+    private STATUS status;
+
+    /** Department handling the outpatient case. */
+    private DEPARTMENT department;
+
+    /** Diagnosis given for the outpatient case. */
+    private String diagnosis;
+
+    /** Reason for the patient's visit. */
+    private String visitReason;
+
+    /** List of current medications prescribed to the patient. */
+    private ArrayList<Drug> currentMedications;
+
+    /** List of prescriptions assigned to the patient. */
+    private ArrayList<Drug> prescriptions;
+
+    /** Follow-up date for the patient. */
+    private Date followUpDate;
+
+    /** Instructions given for the outpatient case. */
+    private String instructions;
+
+    /** Patient associated with this outpatient case. */
+    private Patient patient;
+
+    /** Doctor handling the outpatient case. */
+    private Doctor doctor;
+
+    /** List of treatments assigned to the patient. */
+    private ArrayList<Treatment> treatments;
+
+    /** List of lab tests ordered for the patient. */
+    private ArrayList<LabTest> labtests;
+
+    /** List of all outpatient case instances. */
+    private static List<Consultation> instances = new ArrayList<>();
+
+    public static List<Consultation> getAllConsultationCases() {
+        return instances;
+    }
+
 
     /**
      * Creates a consultation with random data for testing purposes.
