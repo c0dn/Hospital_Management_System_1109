@@ -301,4 +301,14 @@ public class BaseCoverage implements Coverage {
     public BigDecimal calculateCoinsurance(BigDecimal claimAmount) {
         return claimAmount.multiply(coinsurance).setScale(2, RoundingMode.HALF_UP);
     }
+    
+    /**
+     * Returns the set of benefit types covered by this coverage plan.
+     *
+     * @return The set of covered benefit types.
+     */
+    @Override
+    public Set<BenefitType> getCoveredBenefits() {
+        return coveredBenefits;
+    }
 }

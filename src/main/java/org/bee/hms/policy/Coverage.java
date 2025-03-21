@@ -1,6 +1,7 @@
 package org.bee.hms.policy;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 /**
  * Represents an insurance coverage that defines the methods for checking coverage, calculating payouts,
@@ -70,4 +71,15 @@ public interface Coverage {
      * @return The coverage limits associated with this coverage.
      */
     CoverageLimit getLimits();
+    
+    /**
+     * Returns the set of benefit types covered by this coverage.
+     * <p>
+     * This method provides access to the benefit types that are included in this coverage plan,
+     * such as hospitalization, surgeries, medications, etc.
+     * </p>
+     *
+     * @return The set of benefit types covered by this coverage.
+     */
+    Set<BenefitType> getCoveredBenefits();
 }

@@ -3,6 +3,8 @@ package org.bee.hms.policy;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Represents a composite coverage that combines multiple insurance coverages.
@@ -113,5 +115,22 @@ public class CompositeCoverage implements Coverage {
                                 .withAnnualLimit(limit1.getAnnualLimit().add(limit2.getAnnualLimit()))
                                 .withLifetimeLimit(limit1.getLifetimeLimit().add(limit2.getLifetimeLimit()))
                                 .build());
+    }
+    
+    /**
+     * Returns the combined set of benefit types from all coverages in the composite.
+     * <p>
+     * This method collects all benefit types from each individual coverage and returns
+     * the union of these sets, representing all benefit types covered by any of the
+     * component coverages.
+     * </p>
+     *
+     * @return The combined set of benefit types from all coverages.
+     */
+    @Override
+    public Set<BenefitType> getCoveredBenefits() {
+        return coverages.stream()
+                .flatMap(coverage -> coverage.getCoveredBenefits().stream())
+                .collect(Collectors.toSet());
     }
 }
