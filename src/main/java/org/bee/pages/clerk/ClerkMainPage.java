@@ -1,6 +1,7 @@
 package org.bee.pages.clerk;
 
-import org.bee.controllers.HumanController;
+import org.bee.controllers.AppointmentController;
+
 import org.bee.ui.Color;
 import org.bee.ui.UiBase;
 import org.bee.ui.View;
@@ -42,7 +43,7 @@ public class ClerkMainPage extends UiBase {
         //lv.addItem(new TextView(this.canvas, "", Color.GREEN)); // Another empty line
         //lv.addItem(new TextView(this.canvas, "Telemedicine Services", Color.GREEN));
 
-        //lv.addItem(new TextView(this.canvas, "1. View All Telemedicine cases- To view all telemed cases ", Color.GREEN));
+        lv.addItem(new TextView(this.canvas, "1. View All Telemedicine cases- To view all telemed cases ", Color.GREEN));
         //lv.addItem(new TextView(this.canvas, "2. View Billing For Telemedicine Service - To view billing for teleconsultation ", Color.GREEN));
 
         //lv.addItem(new TextView(this.canvas, "", Color.GREEN)); // Another empty line
@@ -60,11 +61,18 @@ public class ClerkMainPage extends UiBase {
         lv.addItem(new TextView(this.canvas, "9. Change Claim Status - Update existing claim status", Color.GREEN));
 
         // Attach user input handlers for navigation
+        lv.attachUserInput("View All Telemedicine cases", str -> viewAllAppointments());
         lv.attachUserInput("New Claim", str -> ToPage(new NewClaimPage()));
         lv.attachUserInput("Manage Claim", str -> ToPage(new ManageClaimPage()));
         lv.attachUserInput("Claim Status", str -> ToPage(new ClaimStatusPage()));
         lv.attachUserInput("Change Claim Status", str -> ToPage(new ChangeClaimStatusPage()));
 
         canvas.setRequireRedraw(true);
+    }
+
+    private AppointmentController appointmentController = AppointmentController.getInstance();
+
+    private void viewAllAppointments() {
+        appointmentController.viewAllAppointments();
     }
 }
