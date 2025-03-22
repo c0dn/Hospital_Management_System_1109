@@ -7,7 +7,7 @@ import java.math.BigDecimal;
  * Each billing item is associated with a {@link BillableItem}, has a quantity,
  * and maintains its unit price and total price.
  */
-public class BillingItem {
+public class BillingItemLine {
     /** The billable item associated with this billing entry. */
     private BillableItem item;
     /** The quantity of the item being billed. */
@@ -24,7 +24,7 @@ public class BillingItem {
      * @param item The billable item being added to the bill
      * @param quantity The number of units of the item being billed
      */
-    public BillingItem(BillableItem item, int quantity) {
+    public BillingItemLine(BillableItem item, int quantity) {
         this.item = item;
         this.quantity = quantity;
         this.unitPrice = item.getUnsubsidisedCharges();
@@ -39,6 +39,10 @@ public class BillingItem {
      */
     public String getBillEntry() {
         return String.format("%s %s - %s %s%n%s", item.getBillingItemCode(), item.getBillItemDescription(), quantity, unitPrice, item.getBillItemCategory());
+    }
+
+    public BillableItem getItem() {
+        return item;
     }
 
     /**

@@ -24,7 +24,7 @@ public class Bill {
     /** Date and time when the bill was created. */
     private LocalDateTime billDate;
     /** List of billing line items included in the bill. */
-    private List<BillingItem> lineItems;
+    private List<BillingItemLine> lineItems;
     /** A mapping of categorized charges, where the key is the category name and the value is the total amount for that category. */
     private Map<String, BigDecimal> categorizedCharges;
     /** Current status of the bill, such as DRAFT. */
@@ -67,7 +67,7 @@ public class Bill {
             throw new IllegalArgumentException("Quantity must be positive");
         }
 
-        lineItems.add(new BillingItem(item, quantity));
+        lineItems.add(new BillingItemLine(item, quantity));
         recalculateTotals();
     }
 
@@ -95,10 +95,10 @@ public class Bill {
         BigDecimal accidentCoverage = BigDecimal.ZERO;
 
         // Calculate total claimable amount
-        for (BillingItem item : lineItems) {
-            if (item instanceof ClaimableItem claimableItem) {
+        for (BillingItemLine itemLine : lineItems) {
+            if (itemLine.getItem() instanceof ClaimableItem claimableItem) {
                 if (coverage.isItemCovered(claimableItem, isInpatient)) {
-                    BigDecimal itemAmount = item.getTotalPrice();
+                    BigDecimal itemAmount = itemLine.getTotalPrice();
                     claimableAmount = claimableAmount.add(itemAmount);
 
                     if (isEmergency && claimableItem.getAccidentSubType() != null) {
@@ -115,7 +115,8 @@ public class Bill {
         }
 
         // If it does not exceed deductible, patient will be paying so...
-        if (claimableAmount.compareTo(deductibleAmount) <= 0) {
+        if (deductibleAmount.compareTo(BigDecimal.ZERO) > 0 &&
+                claimableAmount.compareTo(deductibleAmount) <= 0) {
             return InsuranceCoverageResult.denied("Bill amount does not exceed deductible");
         }
 
@@ -177,7 +178,7 @@ public class Bill {
     private void recalculateTotals() {
         categorizedCharges.clear();
 
-        for (BillingItem item : lineItems) {
+        for (BillingItemLine item : lineItems) {
             String category = item.getCategory();
             BigDecimal totalPrice = item.getTotalPrice();
             categorizedCharges.put(category,

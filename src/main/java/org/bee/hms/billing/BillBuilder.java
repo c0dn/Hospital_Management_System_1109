@@ -36,7 +36,7 @@ public class BillBuilder {
     InsurancePolicy insurancePolicy;
     private Visit visit;
     private List<Consultation> consultations;
-    private List<BillingItem> billingItems;
+    private List<BillingItemLine> billingItems;
     boolean isInpatient;
     boolean isEmergency;
 
@@ -123,7 +123,7 @@ public class BillBuilder {
     private void processVisit() {
         if (visit != null) {
             visit.getRelatedBillableItems().forEach(item ->
-                    billingItems.add(new BillingItem(item, 1)));
+                    billingItems.add(new BillingItemLine(item, 1)));
         }
     }
 
@@ -133,7 +133,7 @@ public class BillBuilder {
     private void processConsultations() {
         for (Consultation consultation : consultations) {
             consultation.getRelatedBillableItems().forEach(item ->
-                    billingItems.add(new BillingItem(item, 1)));
+                    billingItems.add(new BillingItemLine(item, 1)));
         }
     }
 
@@ -160,11 +160,6 @@ public class BillBuilder {
         for (Consultation consultation : consultations) {
             consultation.getRelatedBillableItems().forEach(item ->
                     bill.addLineItem(item, 1));
-        }
-
-        // If insurance policy is set, calculate insurance coverage
-        if (insurancePolicy != null) {
-            bill.calculateInsuranceCoverage();
         }
 
         return bill;
