@@ -24,7 +24,7 @@ public class Main {
         // Init controllers first by getting instance
         HumanController.getInstance();
         AppointmentController.getInstance();
-//        ClaimController.getInstance();
+        ClaimController.getInstance();
         ConsultationController.getInstance();
         var canvas = new Canvas();
         ApplicationContext applicationContext = new ApplicationContext(canvas);

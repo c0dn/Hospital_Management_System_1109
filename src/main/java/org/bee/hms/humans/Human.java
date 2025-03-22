@@ -2,6 +2,7 @@ package org.bee.hms.humans;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.bee.utils.JSONReadable;
 import org.bee.utils.JSONWritable;
 
@@ -11,7 +12,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
-    property = "type")
+    property = "humanType",
+    visible = true)
 @JsonSubTypes({
     @JsonSubTypes.Type(value = Patient.class, name = "patient"),
     @JsonSubTypes.Type(value = Staff.class, name = "staff"),
@@ -19,12 +21,18 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
     @JsonSubTypes.Type(value = Doctor.class, name = "doctor"),
     @JsonSubTypes.Type(value = Nurse.class, name = "nurse")
 })
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public abstract class Human implements JSONWritable, JSONReadable {
 
     /**
      * The name of the person.
      */
     protected String name;
+
+    /**
+     * JSON serialization
+     */
+    protected String humanType;
 
     /**
      * The date of birth of the person.
@@ -100,6 +108,7 @@ public abstract class Human implements JSONWritable, JSONReadable {
         this.sex = builder.sex;
         this.bloodType = builder.bloodType;
         this.isVaccinated = builder.isVaccinated;
+        this.humanType = builder.humanType;
     }
 
     /**
@@ -133,7 +142,8 @@ public abstract class Human implements JSONWritable, JSONReadable {
             Contact contact,
             Sex sex,
             BloodType bloodType,
-            boolean isVaccinated
+            boolean isVaccinated,
+            String humanType
     ) {
         builder.name(name);
         builder.dateOfBirth(dob);
@@ -146,6 +156,7 @@ public abstract class Human implements JSONWritable, JSONReadable {
         builder.sex(sex);
         builder.bloodType(bloodType);
         builder.isVaccinated(isVaccinated);
+        builder.humanType(humanType);
 
         return builder;
     }

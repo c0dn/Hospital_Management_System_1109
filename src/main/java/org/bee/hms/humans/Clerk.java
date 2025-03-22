@@ -34,6 +34,7 @@ public class Clerk extends Staff implements JSONReadable, JSONWritable{
      */
     Clerk(StaffBuilder<?> builder) {
         super(builder);
+        this.humanType = "clerk";
     }
 
 
@@ -76,12 +77,13 @@ public class Clerk extends Staff implements JSONReadable, JSONWritable{
             @JsonProperty("is_vaccinated") boolean isVaccinated,
             @JsonProperty("staff_id") String staffId,
             @JsonProperty("title") String title,
-            @JsonProperty("department") String department
+            @JsonProperty("department") String department,
+            @JsonProperty("humanType") String humanType
     ) {
         ClerkBuilder builder = ClerkBuilder.builder();
 
         setHumanFields(builder, name, dob, nricFin, maritalStatus, residentialStatus,
-                nationality, address, contact, sex, bloodType, isVaccinated);
+                nationality, address, contact, sex, bloodType, isVaccinated, humanType);
 
         setStaffFields(builder, staffId, title, department);
 

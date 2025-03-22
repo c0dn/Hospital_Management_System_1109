@@ -44,6 +44,7 @@ public class Staff extends Human implements SystemUser {
         this.staffId = builder.staffId;
         this.title = builder.title;
         this.department = builder.department;
+        this.humanType = "staff";
     }
 
 

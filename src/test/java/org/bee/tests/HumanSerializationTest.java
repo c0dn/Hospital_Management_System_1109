@@ -4,26 +4,18 @@ import java.io.File;
 import java.lang.reflect.Field;
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
-import org.bee.hms.humans.BloodType;
-import org.bee.hms.humans.Clerk;
-import org.bee.hms.humans.Contact;
-import org.bee.hms.humans.Doctor;
-import org.bee.hms.humans.MaritalStatus;
-import org.bee.hms.humans.NokRelation;
-import org.bee.hms.humans.Nurse;
-import org.bee.hms.humans.Patient;
-import org.bee.hms.humans.ResidentialStatus;
-import org.bee.hms.humans.Sex;
+import org.bee.hms.humans.*;
 import org.bee.utils.DataGenerator;
 import org.bee.utils.JSONHelper;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class HumanSerializationTest {
     private JSONHelper jsonHelper;
@@ -32,15 +24,23 @@ public class HumanSerializationTest {
     private Nurse nurse;
     private Clerk clerk;
 
+    private List<Human> humanList;
+
     @BeforeEach
     void setUp() {
         jsonHelper = JSONHelper.getInstance();
+        humanList = new ArrayList<>();
 
         // Create test objects
         patient = createTestPatient();
         doctor = createTestDoctor();
         nurse = createTestNurse();
         clerk = createTestClerk();
+        humanList.add(patient);
+        humanList.add(doctor);
+        humanList.add(nurse);
+        humanList.add(clerk);
+        humanList.add(createTestPatient());
     }
 
     /**
@@ -66,6 +66,92 @@ public class HumanSerializationTest {
         }
 
         throw new NoSuchFieldException("Field '" + fieldName + "' not found in class hierarchy of " + obj.getClass().getName());
+    }
+
+
+    @Test
+    @DisplayName("Test polymorphic deserialization of a mixed Human list")
+    void testHumanListDeserialization(@TempDir Path tempDir) throws Exception {
+        String jsonFilePath = tempDir.resolve("human_list_test.json").toString();
+
+        // Save the list to a JSON file
+        jsonHelper.saveToJsonFile(humanList, jsonFilePath);
+
+        // Verify the file exists
+        File jsonFile = new File(jsonFilePath);
+        assertTrue(jsonFile.exists(), "JSON file should exist");
+        assertTrue(jsonFile.length() > 0, "JSON file should not be empty");
+
+        // Load the list back from the JSON file as a list of Human objects
+        List<Human> deserializedHumans = jsonHelper.loadListFromJsonFile(jsonFilePath, Human.class);
+
+        // Verify the list was deserialized correctly
+        assertNotNull(deserializedHumans, "Deserialized list should not be null");
+        assertEquals(humanList.size(), deserializedHumans.size(),
+                "Deserialized list should have the same number of elements");
+
+        // Count the instances of each subtype in the deserialized list
+        int patientCount = 0;
+        int doctorCount = 0;
+        int nurseCount = 0;
+        int clerkCount = 0;
+
+        for (Human human : deserializedHumans) {
+            if (human instanceof Patient) {
+                patientCount++;
+            } else if (human instanceof Doctor) {
+                doctorCount++;
+            } else if (human instanceof Nurse) {
+                nurseCount++;
+            } else if (human instanceof Clerk) {
+                clerkCount++;
+            }
+        }
+
+        // Verify we have the correct number of each type
+        assertEquals(2, patientCount, "Should have 2 patients");
+        assertEquals(1, doctorCount, "Should have 1 doctor");
+        assertEquals(1, nurseCount, "Should have 1 nurse");
+        assertEquals(1, clerkCount, "Should have 1 clerk");
+
+        // Verify each object was deserialized to the correct type with fields intact
+        for (int i = 0; i < humanList.size(); i++) {
+            Human original = humanList.get(i);
+            Human deserialized = deserializedHumans.get(i);
+
+            // Verify the objects have the same class
+            assertEquals(original.getClass(), deserialized.getClass(),
+                    "Object at index " + i + " should have same class");
+
+            // Verify some key properties are preserved
+            assertEquals(original.getName(), deserialized.getName(),
+                    "Name should match for object at index " + i);
+            assertEquals(original.getNricFin(), deserialized.getNricFin(),
+                    "NRIC/FIN should match for object at index " + i);
+
+            // Verify subtype-specific fields
+            if (original instanceof Patient) {
+                Patient originalPatient = (Patient) original;
+                Patient deserializedPatient = (Patient) deserialized;
+                assertEquals(originalPatient.getPatientId(), deserializedPatient.getPatientId(),
+                        "Patient ID should match");
+            } else if (original instanceof Doctor) {
+                Doctor originalDoctor = (Doctor) original;
+                Doctor deserializedDoctor = (Doctor) deserialized;
+                assertEquals(originalDoctor.getMcr(), deserializedDoctor.getMcr(),
+                        "Medical Council Registration should match");
+            } else if (original instanceof Nurse) {
+                Nurse originalNurse = (Nurse) original;
+                Nurse deserializedNurse = (Nurse) deserialized;
+                assertEquals(originalNurse.getRnid(), deserializedNurse.getRnid(),
+                        "Registered Nurse ID should match");
+            } else if (original instanceof Clerk) {
+                Clerk originalClerk = (Clerk) original;
+                Clerk deserializedClerk = (Clerk) deserialized;
+                assertEquals(getPrivateField(originalClerk, "staffId", String.class),
+                        getPrivateField(deserializedClerk, "staffId", String.class));
+            }
+        }
     }
 
     @Test

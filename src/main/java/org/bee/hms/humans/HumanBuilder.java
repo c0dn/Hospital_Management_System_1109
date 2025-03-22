@@ -37,7 +37,7 @@ abstract class HumanBuilder<T extends HumanBuilder<T>> {
     boolean isVaccinated;
     
     /** The type of human, used for JSON serialization/deserialization. */
-    String type;
+    String humanType;
 
     /**
      * Default constructor for {@code HumanBuilder}.
@@ -90,6 +90,17 @@ abstract class HumanBuilder<T extends HumanBuilder<T>> {
     }
 
     /**
+     * Set Human type JSOn
+     *
+     * @param humanType The marital status.
+     * @return The current builder instance.
+     */
+    public T humanType(String humanType) {
+        this.humanType = humanType;
+        return self();
+    }
+
+    /**
      * Sets the marital status of the individual.
      *
      * @param maritalStatus The marital status.
@@ -99,6 +110,7 @@ abstract class HumanBuilder<T extends HumanBuilder<T>> {
         this.maritalStatus = maritalStatus;
         return self();
     }
+
 
     /**
      * Sets the residential status of the individual.

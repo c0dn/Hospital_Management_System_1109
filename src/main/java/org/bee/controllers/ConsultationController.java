@@ -140,10 +140,9 @@ public class ConsultationController extends BaseController<Consultation> {
                     "Doctor Name");
             System.out.println("-".repeat(180));
 
-            for (int i = 0; i < currentPageConsultations.size(); i++) {
-                Consultation consultation = currentPageConsultations.get(i);
+            for (Consultation consultation : currentPageConsultations) {
                 System.out.printf("%-8s %-32s %-10s %-15s %-20s %-15s %-20s %-15s \n",
-                        consultation.getConsultationId(), consultation.getAppointmentDate(),
+                        consultation.getConsultationId(), consultation.getConsultationTime(),
                         consultation.getPatient() != null ? consultation.getPatient().getPatientId() : "N/A",
                         consultation.getPatient() != null ? consultation.getPatient().getName() : "N/A",
                         consultation.getConsultationType(), consultation.getStatus(),

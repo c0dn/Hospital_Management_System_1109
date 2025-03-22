@@ -36,6 +36,8 @@ public class Doctor extends Staff {
     Doctor(DoctorBuilder builder) {
         super(builder);
         this.mcr = builder.mcr;
+        this.humanType = "doctor";
+
     }
 
 
@@ -91,12 +93,13 @@ public class Doctor extends Staff {
             @JsonProperty("staff_id") String staffId,
             @JsonProperty("title") String title,
             @JsonProperty("department") String department,
-            @JsonProperty("mcr") String mcr
+            @JsonProperty("mcr") String mcr,
+            @JsonProperty("humanType") String humanType
     ) {
         DoctorBuilder builder = new DoctorBuilder();
 
         setHumanFields(builder, name, dob, nricFin, maritalStatus, residentialStatus,
-                nationality, address, contact, sex, bloodType, isVaccinated);
+                nationality, address, contact, sex, bloodType, isVaccinated, humanType);
 
         setStaffFields(builder, staffId, title, department);
 

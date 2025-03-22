@@ -244,28 +244,6 @@ public class Consultation implements JSONReadable, JSONWritable {
             );
         }
 
-
-        // Add treatments - 80% chance (using generateRandomInt with a range of 0-9, where 0-7 = true)
-        if (gen.generateRandomInt(10) < 8) {
-            int treatmentCount = gen.generateRandomInt(1, 3);
-            // Uncomment if Treatment class is available
-            // for (int i = 0; i < treatmentCount; i++) {
-            //     Treatment treatment = Treatment.withRandomData();
-            //     consultation.addTreatment(treatment);
-            // }
-        }
-
-        // Add lab tests - 60% chance (using generateRandomInt with a range of 0-9, where 0-5 = true)
-        if (gen.generateRandomInt(10) < 6) {
-            int labTestCount = gen.generateRandomInt(1, 2);
-            // Uncomment if LabTest class is available
-            // for (int i = 0; i < labTestCount; i++) {
-            //     LabTest labTest = LabTest.withRandomData();
-            //     consultation.addLabTest(labTest);
-            // }
-        }
-
-
         return consultation;
     }
 
@@ -310,6 +288,9 @@ public class Consultation implements JSONReadable, JSONWritable {
         return items;
     }
 
+    public Doctor getDoctor() {
+        return doctor;
+    }
     /**
      * Calculates the total charges for the consultation.
      * <p>
@@ -368,24 +349,12 @@ public class Consultation implements JSONReadable, JSONWritable {
         };
     }
 
-    public String getConsultationId() {
-        return consultationId;
-    }
+    public String getConsultationId() { return consultationId; }
 
-    public Patient getPatient() {
-        return patient;
-    }
-
-    public ConsultationStatus getStatus() {
-        return status;
-    }
+    public Patient getPatient() { return patient; }
 
     public String getDiagnosis() {
         return diagnosis;
-    }
-
-    public Doctor getDoctor() {
-        return doctor;
     }
 
     @JsonIgnore
@@ -412,6 +381,14 @@ public class Consultation implements JSONReadable, JSONWritable {
         System.out.println("\nDiagnosis: " + diagnosis);
         System.out.printf("\nDoctor Name: " + doctor.getName());
         System.out.println();
+    }
+
+    public LocalDateTime getConsultationTime() {
+        return consultationTime;
+    }
+
+    public ConsultationStatus getStatus() {
+        return status;
     }
 
     public void setDiagnosticCodes(List<DiagnosticCode> diagnosticCodes) {
@@ -457,4 +434,41 @@ public class Consultation implements JSONReadable, JSONWritable {
     public void setLabtests(ArrayList<LabTest> labTests) {
         this.labTests = labTests;
     }
+
+    public void setConsultationId(String consultationId) {
+        this.consultationId = consultationId;
+    }
+
+    public void setType(ConsultationType type) {
+        this.type = type;
+    }
+
+    public void setConsultationTime(LocalDateTime consultationTime) {
+        this.consultationTime = consultationTime;
+    }
+
+    public void setConsultationFee(BigDecimal consultationFee) {
+        this.consultationFee = consultationFee;
+    }
+
+    public void setAppointmentDate(LocalDateTime appointmentDate) {
+        this.appointmentDate = appointmentDate;
+    }
+
+    public void setStatus(ConsultationStatus status) {
+        this.status = status;
+    }
+
+    public void setDepartment(HospitalDepartment department) {
+        this.department = department;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
+    }
+
 }

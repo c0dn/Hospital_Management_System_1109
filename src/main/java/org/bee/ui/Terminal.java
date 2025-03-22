@@ -38,7 +38,7 @@ public class Terminal {
         System.out.flush();
     }
 
-    protected String getUserInput() {
+    public String getUserInput() {
         try {
             return scanner.nextLine();
         }catch(Exception e) {

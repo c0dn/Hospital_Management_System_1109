@@ -183,7 +183,7 @@ public class ConsultationSerializationTest {
         verifyList(original, deserialized, "procedureCodes", ProcedureCode.class, "Procedure codes");
         verifyList(original, deserialized, "treatments", Treatment.class, "Treatments");
 
-        verifyList(original, deserialized, "labtests", LabTest.class, "Lab tests");
+        verifyList(original, deserialized, "labTests", LabTest.class, "Lab tests");
 
         verifyPrescriptionsMap(original, deserialized);
     }

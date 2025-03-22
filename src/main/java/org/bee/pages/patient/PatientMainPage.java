@@ -8,10 +8,7 @@ import org.bee.hms.humans.Patient;
 
 import org.bee.hms.telemed.Appointment;
 import org.bee.hms.telemed.AppointmentStatus;
-import org.bee.ui.Color;
-import org.bee.ui.InputHelper;
-import org.bee.ui.UiBase;
-import org.bee.ui.View;
+import org.bee.ui.*;
 import org.bee.ui.views.ListView;
 import org.bee.ui.views.TextView;
 import org.bee.utils.InfoUpdaters.PatientUpdater;
@@ -83,14 +80,12 @@ public class PatientMainPage extends UiBase {
     private void viewUpdateParticularsPrompt() {
         SystemUser systemUser = humanController.getLoggedInUser();
         if (systemUser instanceof Patient patient) {
-            Scanner scanner = null;
+            Terminal term = canvas.getTerminal();
             try {
                 // Display current particulars
                 System.out.println("\nCurrent Particulars:");
                 patient.displayHuman(); // This will show all patient details
 
-                // Prompt for updates
-                scanner = new Scanner(System.in);
                 System.out.println("\nWhat would you like to update?");
                 System.out.println("1. Contact Information");
                 System.out.println("2. Address");
@@ -110,28 +105,28 @@ public class PatientMainPage extends UiBase {
 
                 switch (choice) {
                     case 1:
-                        updater = updateContactWithValidation(scanner, updater);
+                        updater = updateContactWithValidation(term, updater);
                         break;
                     case 2:
-                        updater = updateAddressWithValidation(scanner, updater);
+                        updater = updateAddressWithValidation(term, updater);
                         break;
                     case 3:
-                        updater = updateHeightWithValidation(scanner, updater);
+                        updater = updateHeightWithValidation(term, updater);
                         break;
                     case 4:
-                        updater = updateWeightWithValidation(scanner, updater);
+                        updater = updateWeightWithValidation(term, updater);
                         break;
                     case 5:
-                        updater = updateDrugAllergiesWithValidation(scanner, updater);
+                        updater = updateDrugAllergiesWithValidation(term, updater);
                         break;
                     case 6:
-                        updater = updateNokNameWithValidation(scanner, updater);
+                        updater = updateNokNameWithValidation(term, updater);
                         break;
                     case 7:
-                        updater = updateNokRelationWithValidation(scanner, updater);
+                        updater = updateNokRelationWithValidation(term, updater);
                         break;
                     case 8:
-                        updater = updateNokAddressWithValidation(scanner, updater);
+                        updater = updateNokAddressWithValidation(term, updater);
                         break;
                     case 9:
                         updateNeeded = false;
@@ -145,33 +140,29 @@ public class PatientMainPage extends UiBase {
                     System.out.println("\nNo changes were made.");
                 }
             } finally {
-                if (scanner != null) {
-                    scanner.close();
-                }
+                canvas.setRequireRedraw(true);
             }
-
-            canvas.setRequireRedraw(true);
         }
     }
 
     /**
      * Updates contact information with validation.
      *
-     * @param scanner The scanner for user input
+     * @param terminal The terminal for user input
      * @param updater The patient updater
      */
-    private PatientUpdater updateContactWithValidation(Scanner scanner, PatientUpdater updater) {
+    private PatientUpdater updateContactWithValidation(Terminal terminal, PatientUpdater updater) {
         boolean isValid = false;
 
         while (!isValid) {
             System.out.println("Enter new contact number:");
-            String contact = scanner.nextLine();
+            String contact = terminal.getUserInput();
             updater = updater.contact(contact);
 
             if (updater.getValidationError("contact") != null) {
                 System.out.println("Error: " + updater.getValidationError("contact"));
                 System.out.println("Would you like to try again? (Y/N)");
-                String response = scanner.nextLine().trim().toUpperCase();
+                String response = terminal.getUserInput().trim().toUpperCase();
                 if (!response.equals("Y")) {
                     break;
                 }
@@ -187,21 +178,21 @@ public class PatientMainPage extends UiBase {
     /**
      * Updates address with validation.
      *
-     * @param scanner The scanner for user input
+     * @param terminal The terminal for user input
      * @param updater The patient updater
      */
-    private PatientUpdater updateAddressWithValidation(Scanner scanner, PatientUpdater updater) {
+    private PatientUpdater updateAddressWithValidation(Terminal terminal, PatientUpdater updater) {
         boolean isValid = false;
 
         while (!isValid) {
             System.out.println("Enter new address:");
-            String address = scanner.nextLine();
+            String address = terminal.getUserInput();
             updater = updater.address(address);
 
             if (updater.getValidationError("address") != null) {
                 System.out.println("Error: " + updater.getValidationError("address"));
                 System.out.println("Would you like to try again? (Y/N)");
-                String response = scanner.nextLine().trim().toUpperCase();
+                String response = terminal.getUserInput().trim().toUpperCase();
                 if (!response.equals("Y")) {
                     break;
                 }
@@ -217,24 +208,24 @@ public class PatientMainPage extends UiBase {
     /**
      * Updates height with validation.
      *
-     * @param scanner The scanner for user input
+     * @param terminal The terminal for user input
      * @param updater The patient updater
      */
-    private PatientUpdater updateHeightWithValidation(Scanner scanner, PatientUpdater updater) {
+    private PatientUpdater updateHeightWithValidation(Terminal terminal, PatientUpdater updater) {
         boolean isValid = false;
 
         while (!isValid) {
             System.out.println("Enter new height (in meters):");
             try {
-                double height = scanner.nextDouble();
-                scanner.nextLine(); // Consume newline
+                String heightInput = terminal.getUserInput();
+                double height = Double.parseDouble(heightInput);
 
                 updater = updater.height(height);
 
                 if (updater.getValidationError("height") != null) {
                     System.out.println("Error: " + updater.getValidationError("height"));
                     System.out.println("Would you like to try again? (Y/N)");
-                    String response = scanner.nextLine().trim().toUpperCase();
+                    String response = terminal.getUserInput().trim().toUpperCase();
                     if (!response.equals("Y")) {
                         break;
                     }
@@ -242,11 +233,10 @@ public class PatientMainPage extends UiBase {
                     System.out.println("Height updated successfully!");
                     isValid = true;
                 }
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
                 System.out.println("Error: Invalid number format");
-                scanner.nextLine(); // Clear the scanner
                 System.out.println("Would you like to try again? (Y/N)");
-                String response = scanner.nextLine().trim().toUpperCase();
+                String response = terminal.getUserInput().trim().toUpperCase();
                 if (!response.equals("Y")) {
                     break;
                 }
@@ -255,28 +245,27 @@ public class PatientMainPage extends UiBase {
 
         return updater;
     }
-
     /**
      * Updates weight with validation.
      *
-     * @param scanner The scanner for user input
+     * @param terminal The terminal for user input
      * @param updater The patient updater
      */
-    private PatientUpdater updateWeightWithValidation(Scanner scanner, PatientUpdater updater) {
+    private PatientUpdater updateWeightWithValidation(Terminal terminal, PatientUpdater updater) {
         boolean isValid = false;
 
         while (!isValid) {
             System.out.println("Enter new weight (in kg):");
             try {
-                double weight = scanner.nextDouble();
-                scanner.nextLine(); // Consume newline
+                String weightInput = terminal.getUserInput();
+                double weight = Double.parseDouble(weightInput);
 
                 updater = updater.weight(weight);
 
                 if (updater.getValidationError("weight") != null) {
                     System.out.println("Error: " + updater.getValidationError("weight"));
                     System.out.println("Would you like to try again? (Y/N)");
-                    String response = scanner.nextLine().trim().toUpperCase();
+                    String response = terminal.getUserInput().trim().toUpperCase();
                     if (!response.equals("Y")) {
                         break;
                     }
@@ -284,11 +273,10 @@ public class PatientMainPage extends UiBase {
                     System.out.println("Weight updated successfully!");
                     isValid = true;
                 }
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
                 System.out.println("Error: Invalid number format");
-                scanner.nextLine(); // Clear the scanner
                 System.out.println("Would you like to try again? (Y/N)");
-                String response = scanner.nextLine().trim().toUpperCase();
+                String response = terminal.getUserInput().trim().toUpperCase();
                 if (!response.equals("Y")) {
                     break;
                 }
@@ -301,15 +289,15 @@ public class PatientMainPage extends UiBase {
     /**
      * Updates drug allergies with validation.
      *
-     * @param scanner The scanner for user input
+     * @param terminal The terminal for user input
      * @param updater The patient updater
      */
-    private PatientUpdater updateDrugAllergiesWithValidation(Scanner scanner, PatientUpdater updater) {
+    private PatientUpdater updateDrugAllergiesWithValidation(Terminal terminal, PatientUpdater updater) {
         boolean isValid = false;
 
         while (!isValid) {
             System.out.println("Enter drug allergies (comma-separated):");
-            String allergiesInput = scanner.nextLine();
+            String allergiesInput = terminal.getUserInput();
 
             String[] allergiesArray = allergiesInput.split(",");
             List<String> drugAllergies = new ArrayList<>();
@@ -322,7 +310,7 @@ public class PatientMainPage extends UiBase {
             if (updater.getValidationError("drugAllergies") != null) {
                 System.out.println("Error: " + updater.getValidationError("drugAllergies"));
                 System.out.println("Would you like to try again? (Y/N)");
-                String response = scanner.nextLine().trim().toUpperCase();
+                String response = terminal.getUserInput().trim().toUpperCase();
                 if (!response.equals("Y")) {
                     break;
                 }
@@ -338,22 +326,22 @@ public class PatientMainPage extends UiBase {
     /**
      * Updates next of kin name with validation.
      *
-     * @param scanner The scanner for user input
+     * @param terminal The terminal for user input
      * @param updater The patient updater
      */
-    private PatientUpdater updateNokNameWithValidation(Scanner scanner, PatientUpdater updater) {
+    private PatientUpdater updateNokNameWithValidation(Terminal terminal, PatientUpdater updater) {
         boolean isValid = false;
 
         while (!isValid) {
             System.out.println("Enter next of kin name:");
-            String nokName = scanner.nextLine();
+            String nokName = terminal.getUserInput();
 
             updater = updater.nokName(nokName);
 
             if (updater.getValidationError("nokName") != null) {
                 System.out.println("Error: " + updater.getValidationError("nokName"));
                 System.out.println("Would you like to try again? (Y/N)");
-                String response = scanner.nextLine().trim().toUpperCase();
+                String response = terminal.getUserInput().trim().toUpperCase();
                 if (!response.equals("Y")) {
                     break;
                 }
@@ -369,15 +357,15 @@ public class PatientMainPage extends UiBase {
     /**
      * Updates next of kin relationship with validation.
      *
-     * @param scanner The scanner for user input
+     * @param terminal The terminal for user input
      * @param updater The patient updater
      */
-    private PatientUpdater updateNokRelationWithValidation(Scanner scanner, PatientUpdater updater) {
+    private PatientUpdater updateNokRelationWithValidation(Terminal terminal, PatientUpdater updater) {
         boolean isValid = false;
 
         while (!isValid) {
             System.out.println("Enter next of kin relationship (SPOUSE, PARENT, CHILD, SIBLING, OTHER):");
-            String relationInput = scanner.nextLine().toUpperCase();
+            String relationInput = terminal.getUserInput().toUpperCase();
 
             try {
                 NokRelation nokRelation = NokRelation.valueOf(relationInput);
@@ -386,7 +374,7 @@ public class PatientMainPage extends UiBase {
                 if (updater.getValidationError("nokRelation") != null) {
                     System.out.println("Error: " + updater.getValidationError("nokRelation"));
                     System.out.println("Would you like to try again? (Y/N)");
-                    String response = scanner.nextLine().trim().toUpperCase();
+                    String response = terminal.getUserInput().trim().toUpperCase();
                     if (!response.equals("Y")) {
                         break;
                     }
@@ -397,7 +385,7 @@ public class PatientMainPage extends UiBase {
             } catch (IllegalArgumentException e) {
                 System.out.println("Error: Invalid relationship type");
                 System.out.println("Would you like to try again? (Y/N)");
-                String response = scanner.nextLine().trim().toUpperCase();
+                String response = terminal.getUserInput().trim().toUpperCase();
                 if (!response.equals("Y")) {
                     break;
                 }
@@ -410,22 +398,22 @@ public class PatientMainPage extends UiBase {
     /**
      * Updates next of kin address with validation.
      *
-     * @param scanner The scanner for user input
+     * @param terminal The terminal for user input
      * @param updater The patient updater
      */
-    private PatientUpdater updateNokAddressWithValidation(Scanner scanner, PatientUpdater updater) {
+    private PatientUpdater updateNokAddressWithValidation(Terminal terminal, PatientUpdater updater) {
         boolean isValid = false;
 
         while (!isValid) {
             System.out.println("Enter next of kin address:");
-            String nokAddress = scanner.nextLine();
+            String nokAddress = terminal.getUserInput();
 
             updater = updater.nokAddress(nokAddress);
 
             if (updater.getValidationError("nokAddress") != null) {
                 System.out.println("Error: " + updater.getValidationError("nokAddress"));
                 System.out.println("Would you like to try again? (Y/N)");
-                String response = scanner.nextLine().trim().toUpperCase();
+                String response = terminal.getUserInput().trim().toUpperCase();
                 if (!response.equals("Y")) {
                     break;
                 }
@@ -437,7 +425,6 @@ public class PatientMainPage extends UiBase {
 
         return updater;
     }
-
 
     private void bookAppointmentPrompt() {
         appointmentController.getAllAppointments();

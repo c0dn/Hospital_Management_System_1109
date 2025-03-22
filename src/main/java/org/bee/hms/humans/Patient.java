@@ -67,6 +67,8 @@ public class Patient extends Human implements SystemUser {
         this.companyName = builder.companyName;
         this.companyAddress = builder.companyAddress;
         this.patientConsent = builder.patientConsent;
+
+        this.humanType = "patient";
     }
 
     /**
@@ -124,12 +126,13 @@ public class Patient extends Human implements SystemUser {
             @JsonProperty("occupation") String occupation,
             @JsonProperty("companyName") String companyName,
             @JsonProperty("companyAddress") String companyAddress,
-            @JsonProperty("patientConsent") boolean patientConsent
+            @JsonProperty("patientConsent") boolean patientConsent,
+            @JsonProperty("humanType") String humanType
     ) {
         PatientBuilder builder = new PatientBuilder();
 
         setHumanFields(builder, name, dob, nricFin, maritalStatus, residentialStatus,
-                nationality, address, contact, sex, bloodType, isVaccinated);
+                nationality, address, contact, sex, bloodType, isVaccinated, humanType);
 
         if (drugAllergies != null) {
             builder = builder.drugAllergies(drugAllergies);
