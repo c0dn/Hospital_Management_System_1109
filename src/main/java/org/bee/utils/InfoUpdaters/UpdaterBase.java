@@ -55,6 +55,12 @@ import java.util.function.Consumer;
 public abstract class UpdaterBase<T, S extends UpdaterBase<T, S>> {
 
     /**
+     * Map to store validation errors for fields.
+     * Keys are field names, values are error messages.
+     */
+    protected Map<String, String> validationErrors = new HashMap<>();
+
+    /**
      * Applies all the specified updates to the given entity.
      * Only non-null values will be applied, preserving existing
      * values for fields that were not explicitly set in this updater.
@@ -102,4 +108,36 @@ public abstract class UpdaterBase<T, S extends UpdaterBase<T, S>> {
      * @param entity The entity to update
      */
     protected abstract void applySpecificUpdates(T entity);
+
+    /**
+     * Checks if there are any validation errors.
+     * @return true if all fields are valid, false otherwise
+     */
+    public boolean isValid() {
+        return validationErrors.isEmpty();
+    }
+
+    /**
+     * Gets the validation error for a specific field.
+     * @param fieldName The name of the field
+     * @return The error message, or null if the field is valid
+     */
+    public String getValidationError(String fieldName) {
+        return validationErrors.get(fieldName);
+    }
+
+    /**
+     * Gets all validation errors.
+     * @return A map of field names to error messages
+     */
+    public Map<String, String> getValidationErrors() {
+        return new HashMap<>(validationErrors);
+    }
+
+    /**
+     * Clears all validation errors.
+     */
+    public void clearValidationErrors() {
+        validationErrors.clear();
+    }
 }
