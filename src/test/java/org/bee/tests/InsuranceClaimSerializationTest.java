@@ -4,17 +4,18 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.bee.hms.billing.Bill;
 import org.bee.hms.billing.BillBuilder;
 import org.bee.hms.claims.InsuranceClaim;
-import org.bee.hms.humans.Patient;
-import org.bee.hms.humans.PatientBuilder;
-import org.bee.hms.humans.ResidentialStatus;
+import org.bee.hms.humans.*;
 import org.bee.hms.insurance.GovernmentProvider;
 import org.bee.hms.insurance.InsuranceProvider;
 import org.bee.hms.medical.Visit;
 import org.bee.hms.medical.VisitStatus;
+import org.bee.hms.policy.InsuranceCoverageResult;
 import org.bee.hms.policy.InsurancePolicy;
 import org.bee.utils.DataGenerator;
 import org.bee.utils.JSONHelper;
@@ -108,43 +109,54 @@ public class InsuranceClaimSerializationTest {
                 .residentialStatus(ResidentialStatus.CITIZEN)
                 .dateOfBirth(LocalDate.of(1970, 1, 1))
                 .build();
+
+
+        List<Doctor> doctorList = new ArrayList<>();
+
+        for (int i = 0; i < 2; i++) {
+            Doctor doctor = Doctor.builder().withRandomBaseData().build();
+            doctorList.add(doctor);
+        }
+
+        List<Nurse> nurseList = new ArrayList<>();
+
+        for (int i = 0; i < 2; i++) {
+            Nurse nurse = Nurse.builder().withRandomBaseData().build();
+            nurseList.add(nurse);
+        }
+
         
-        // Create an insurance provider
         InsuranceProvider provider = new GovernmentProvider();
         
-        // Get policy for patient
         InsurancePolicy policy = provider.getPatientPolicy(patient)
                 .orElseThrow(() -> new AssertionError("Failed to get policy for patient"));
         
-        // Create a visit for testing
-        Visit visit = Visit.withRandomData();
+        Visit visit = Visit.createCompatibleVisit(policy.getCoverage(), patient, doctorList, nurseList);
         visit.updateStatus(VisitStatus.DISCHARGED);
         
-        // Create bill using BillBuilder
         Bill bill = new BillBuilder()
                 .withPatientId(patient.getPatientId())
                 .withVisit(visit)
+                .withInsurancePolicy(policy)
                 .build();
-        
-        // Create claim
-        InsuranceClaim claim = InsuranceClaim.createNew(
-                bill,
-                provider,
-                policy,
-                patient,
-                bill.getTotalAmount()
-        );
-        
+
+
+        InsuranceCoverageResult coverageResult = bill.calculateInsuranceCoverage();
+
+        InsuranceClaim claim = coverageResult.claim()
+                .orElseThrow(() -> new AssertionError("Failed to get claim from coverage result"));
+
+
         // Add some supporting documents
         claim.addSupportingDocument("Medical report from Dr. Smith");
         claim.addSupportingDocument("X-ray results from Radiology Department");
-        
+
         // Add comments
         claim.updateComments("Patient has a history of similar conditions");
-        
+
         // Submit the claim to change its status
         claim.submit();
-        
+
         return claim;
     }
 }

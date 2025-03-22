@@ -22,8 +22,17 @@ import org.bee.hms.humans.Staff;
 import org.bee.hms.insurance.GovernmentProvider;
 import org.bee.hms.insurance.InsuranceProvider;
 import org.bee.hms.insurance.PrivateProvider;
-import org.bee.hms.medical.*;
-import org.bee.hms.policy.*;
+import org.bee.hms.medical.DiagnosticCode;
+import org.bee.hms.medical.Medication;
+import org.bee.hms.medical.MedicationBillableItem;
+import org.bee.hms.medical.ProcedureCode;
+import org.bee.hms.medical.VisitStatus;
+import org.bee.hms.medical.WardStay;
+import org.bee.hms.policy.BaseCoverage;
+import org.bee.hms.policy.CompositeCoverage;
+import org.bee.hms.policy.Coverage;
+import org.bee.hms.policy.HeldInsurancePolicy;
+import org.bee.hms.policy.InsurancePolicy;
 import org.bee.hms.telemed.AppointmentStatus;
 import org.bee.hms.telemed.SessionStatus;
 import org.bee.hms.wards.DaySurgeryWard;
@@ -31,7 +40,18 @@ import org.bee.hms.wards.GeneralWard;
 import org.bee.hms.wards.ICUWard;
 import org.bee.hms.wards.LabourWard;
 import org.bee.hms.wards.Ward;
-import org.bee.utils.typeAdapters.*;
+import org.bee.utils.typeAdapters.AppointmentStatusAdapter;
+import org.bee.utils.typeAdapters.BigDecimalAdapter;
+import org.bee.utils.typeAdapters.ClaimStatusAdapter;
+import org.bee.utils.typeAdapters.LocalDateAdapter;
+import org.bee.utils.typeAdapters.LocalDateTimeAdapter;
+import org.bee.utils.typeAdapters.MedicationMapAdapter;
+import org.bee.utils.typeAdapters.PatternTypeAdapter;
+import org.bee.utils.typeAdapters.RuntimeTypeAdapterFactory;
+import org.bee.utils.typeAdapters.SessionStatusAdapter;
+import org.bee.utils.typeAdapters.SupportingDocumentsAdapter;
+import org.bee.utils.typeAdapters.VisitStatusAdapter;
+import org.bee.utils.typeAdapters.WardStayTypeAdapter;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -62,7 +82,8 @@ public class JSONHelper {
                 .of(BillableItem.class, "type")
                 .registerSubtype(MedicationBillableItem.class, "medication")
                 .registerSubtype(ProcedureCode.class, "procedure")
-                .registerSubtype(DiagnosticCode.class, "diagnostic");
+                .registerSubtype(DiagnosticCode.class, "diagnostic")
+                .registerSubtype(WardStay.class, "wardStay");
 
 
         RuntimeTypeAdapterFactory<InsuranceProvider> insuranceProviderFactory = RuntimeTypeAdapterFactory
@@ -97,6 +118,7 @@ public class JSONHelper {
                 .registerTypeAdapter(SessionStatus.class, new SessionStatusAdapter())
                 .registerTypeAdapter(ClaimStatus.class, new ClaimStatusAdapter())
                 .registerTypeAdapter(Pattern.class, new PatternTypeAdapter())
+                .registerTypeAdapter(WardStay.class, new WardStayTypeAdapter())
                 .registerTypeAdapterFactory(wardTypeFactory)
                 .registerTypeAdapterFactory(humanTypeFactory)
                 .registerTypeAdapterFactory(billableItemFactory)
