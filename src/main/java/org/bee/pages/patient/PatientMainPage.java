@@ -62,10 +62,13 @@ public class PatientMainPage extends UiBase {
         lv.setTitleHeader(" Teleconsultation | Welcome back! " + controller.getUserGreeting());
         lv.addItem(new TextView(this.canvas, "1. View/Update Particulars- To update user particular ", Color.GREEN));
         lv.addItem(new TextView(this.canvas, "2. Book Appointment - To schedule teleconsult appointment to see doctors ", Color.GREEN));
-        lv.addItem(new TextView(this.canvas, "3. View Billing - To view due teleconsult bills ", Color.GREEN));
+        lv.addItem(new TextView(this.canvas, "3. Change Appointment - To reschedule an existing appointment", Color.GREEN));
+        lv.addItem(new TextView(this.canvas, "4. View Billing - To view unpaid bills ", Color.GREEN));
+
 
         lv.attachUserInput("View/Update Particulars ", str -> viewUpdateParticularsPrompt());
         lv.attachUserInput("Book Appointment ", str -> bookAppointmentPrompt());
+        lv.attachUserInput("Change Appointment ", str -> changeAppointmentPrompt());
 
 
 //        lv.attachUserInput("View Billing", str -> {
@@ -497,7 +500,6 @@ public class PatientMainPage extends UiBase {
         sb.append("]");
         System.out.println(sb); // Convert StringBuilder to String and print
 
-
         System.out.print("Select your appointment timeslot (1-" + dateTimeDictionary.size() + "): ");
 
         int selectedSlot = InputHelper.getValidIndex("Select your appointment timeslot", 1, dateTimeDictionary.size());
@@ -540,13 +542,87 @@ public class PatientMainPage extends UiBase {
 
                 // set the consent.
                 appointment.getPatient().setPatientConsent(true);
-
-
             }
+
             appointment.setHistory(history);
             appointmentController.addAppointment(appointment);
             canvas.setRequireRedraw(true);
         }
     }
+
+    private void changeAppointmentPrompt() {
+        // Get all appointments for the logged-in patient
+        SystemUser systemUser = humanController.getLoggedInUser();
+        if (systemUser instanceof Patient patient) {
+            List<Appointment> appointments = appointmentController.getAppointmentsForPatient(patient);
+
+            if (appointments.isEmpty()) {
+                System.out.println("No appointments found.");
+                return;
+            }
+
+            // Display appointments
+            System.out.println("Your Appointments:");
+            for (int i = 0; i < appointments.size(); i++) {
+                Appointment appointment = appointments.get(i);
+                System.out.println((i + 1) + ". " + appointment.getAppointmentTime() + " - " + appointment.getReason());
+            }
+
+            // Prompt user to select an appointment
+            int choice = InputHelper.getValidIndex("Enter the number of the appointment to change", 1, appointments.size());
+            Appointment selectedAppointment = appointments.get(choice - 1);
+
+            // Prompt for new appointment time
+            Scanner scanner = new Scanner(System.in);
+            LocalDate newDate = null; // Initialize newDate as null
+            boolean validDate = false;
+            while (!validDate) {
+                System.out.println("Enter new appointment date (DD-MM-YYYY):");
+                String newDateStr = scanner.nextLine();
+                try {
+                    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                    newDate = LocalDate.parse(newDateStr, dateFormatter);
+                    if (newDate.isBefore(LocalDate.now())) {
+                        System.out.println("The appointment date must be in the future.");
+                        continue;
+                    }
+                    validDate = true;
+                } catch (DateTimeParseException e) {
+                    System.out.println("Invalid date format. Please use DD-MM-YYYY.");
+                }
+            }
+
+            // Now newDate is guaranteed to be valid
+            Dictionary<Integer, LocalDateTime> timeSlots = new Hashtable<>();
+            LocalDateTime startDate = newDate.atStartOfDay().withHour(8).withMinute(0).withSecond(0).withNano(0);
+            for (int i = 1; i <= 9; i++) {
+                timeSlots.put(i, startDate.plusHours(i - 1));
+            }
+
+            System.out.println("Available timeslots:");
+            StringBuilder sb = new StringBuilder("[");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+            for (int i = 1; i <= timeSlots.size(); i++) {
+                sb.append(i).append(". ").append(formatter.format(timeSlots.get(i)));
+                if (i < timeSlots.size()) {
+                    sb.append(", ");
+                }
+            }
+            sb.append("]");
+            System.out.println(sb);
+
+            int selectedSlot = InputHelper.getValidIndex("Select your new appointment timeslot", 1, timeSlots.size());
+            LocalDateTime newTime = timeSlots.get(selectedSlot);
+
+            // Update the appointment time
+            selectedAppointment.setAppointmentTime(newTime);
+
+            // Save the changes
+            appointmentController.updateAppointment(selectedAppointment, selectedAppointment);
+
+            System.out.println("Appointment time updated successfully.");
+        }
+    }
+
 }
 
