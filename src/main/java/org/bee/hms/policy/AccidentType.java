@@ -1,5 +1,8 @@
 package org.bee.hms.policy;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * Defines the different types of accidents covered under an insurance policy.
  * <br><br>An accident can be classified into the following types:
@@ -13,6 +16,7 @@ package org.bee.hms.policy;
  *     <li>{@link #MEDICAL_EXPENSES} - Accident requiring medical expenses.</li>
  * </ul>
  */
+@JsonFormat(shape = JsonFormat.Shape.STRING)
 public enum AccidentType {
     /**
      * Accident resulting in death.
@@ -47,5 +51,21 @@ public enum AccidentType {
     /**
      * Accident requiring medical expenses.
      */
-    MEDICAL_EXPENSES
+    MEDICAL_EXPENSES;
+
+    /**
+     * Creates an AccidentType from a string value.
+     *
+     * @param value The string value to convert to an AccidentType enum.
+     * @return The corresponding AccidentType enum value.
+     * @throws IllegalArgumentException if the string value cannot be converted.
+     */
+    @JsonCreator
+    public static AccidentType fromString(String value) {
+        try {
+            return AccidentType.valueOf(value.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Unknown AccidentType: " + value);
+        }
+    }
 }

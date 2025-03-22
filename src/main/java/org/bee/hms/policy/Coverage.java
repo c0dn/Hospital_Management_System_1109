@@ -3,16 +3,22 @@ package org.bee.hms.policy;
 import java.math.BigDecimal;
 import java.util.Set;
 
-/**
- * Represents an insurance coverage that defines the methods for checking coverage, calculating payouts,
- * and determining limits and costs associated with coverage.
- * <p>
- * Implementing classes should provide the logic for various coverage-related operations such as determining
- * if an item is covered, calculating the accident payout, computing the deductible and coinsurance, and managing
- * the coverage limits.
- * </p>
- */
-public interface Coverage {
+import org.bee.hms.billing.BillableItem;
+import org.bee.utils.JSONReadable;
+import org.bee.utils.JSONWritable;
+
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    include = JsonTypeInfo.As.PROPERTY,
+    property = "type")
+@JsonSubTypes({
+    @JsonSubTypes.Type(value = BaseCoverage.class, name = "base"),
+    @JsonSubTypes.Type(value = CompositeCoverage.class, name = "composite")
+})
+public interface Coverage extends JSONWritable, JSONReadable {
 
     /**
      * Checks if a given item is covered by this coverage.

@@ -1,8 +1,12 @@
 package org.bee.hms.telemed;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.bee.utils.JSONReadable;
 import org.bee.utils.JSONWritable;
 
@@ -10,6 +14,7 @@ import org.bee.utils.JSONWritable;
  * Represents a medical certificate. Medical certificates in Singapore are usually simple.
  * Consisting of startDate, endDate, id and any additional remarks from the doctor.
  */
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class MedicalCertificate implements JSONWritable, JSONReadable {
     private String id;
     private LocalDateTime startDate;
@@ -18,13 +23,19 @@ public class MedicalCertificate implements JSONWritable, JSONReadable {
 
     /**
      * Simple medical certificate object that contains all the fields required to generate an MC
-     * @param startDate start date of the MC
-     * @param endDate end date of the MC
-     * @param remarks any doctor's remarks for MC
+     *
+     * @param startDate start date of the MC (must not be null)
+     * @param endDate end date of the MC (must not be null)
+     * @param remarks any doctor's remarks for MC (can be null)
+     * @throws NullPointerException if startDate or endDate is null
      */
-    public MedicalCertificate(LocalDateTime startDate, LocalDateTime endDate, String remarks){
-        this.startDate = startDate;
-        this.endDate = endDate;
+    @JsonCreator
+    public MedicalCertificate(
+            @JsonProperty("startDate") LocalDateTime startDate,
+            @JsonProperty("endDate") LocalDateTime endDate,
+            @JsonProperty("remarks") String remarks) {
+        this.startDate = Objects.requireNonNull(startDate, "Start date cannot be null");
+        this.endDate = Objects.requireNonNull(endDate, "End date cannot be null");
         this.remarks = remarks;
         this.id = UUID.randomUUID().toString();
     }

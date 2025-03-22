@@ -1,5 +1,8 @@
 package org.bee.hms.policy;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * Enum representing the various types of benefits available under an insurance policy.
  * <p>
@@ -7,6 +10,7 @@ package org.bee.hms.policy;
  * These types are used to classify various medical expenses that may be reimbursed or paid for by an insurance provider.
  * </p>
  */
+@JsonFormat(shape = JsonFormat.Shape.STRING)
 public enum BenefitType {
     /** Coverage for inpatient admissions to a hospital. */
     HOSPITALIZATION,      // Inpatient admissions
@@ -51,6 +55,21 @@ public enum BenefitType {
     ACUTE_CONDITIONS,
 
     /** Coverage for accidents, including injuries resulting from unexpected events. */
-    ACCIDENT
+    ACCIDENT;
 
+    /**
+     * Creates a BenefitType from a string value.
+     *
+     * @param value The string value to convert to a BenefitType enum.
+     * @return The corresponding BenefitType enum value.
+     * @throws IllegalArgumentException if the string value cannot be converted.
+     */
+    @JsonCreator
+    public static BenefitType fromString(String value) {
+        try {
+            return BenefitType.valueOf(value.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Unknown BenefitType: " + value);
+        }
+    }
 }

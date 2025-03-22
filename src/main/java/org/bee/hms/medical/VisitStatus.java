@@ -1,5 +1,8 @@
 package org.bee.hms.medical;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * Defines the status of a patient's visit.
  * <p>
@@ -12,6 +15,7 @@ package org.bee.hms.medical;
  *     <li>{@link #CANCELLED} - The visit has been cancelled and will not proceed.</li>
  * </ul>
  */
+@JsonFormat(shape = JsonFormat.Shape.STRING)
 public enum VisitStatus {
     /**
      * The patient has been admitted
@@ -33,7 +37,29 @@ public enum VisitStatus {
      */
     CANCELLED,
 
+    /**
+     * The visit is planned for a future date/time.
+     */
     SCHEDULED,
 
-    COMPLETED
+    /**
+     * The visit has been completed.
+     */
+    COMPLETED;
+
+    /**
+     * Creates a VisitStatus from a string value.
+     *
+     * @param value The string value to convert to a VisitStatus enum.
+     * @return The corresponding VisitStatus enum value.
+     * @throws IllegalArgumentException if the string value cannot be converted.
+     */
+    @JsonCreator
+    public static VisitStatus fromString(String value) {
+        try {
+            return VisitStatus.valueOf(value.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Unknown VisitStatus: " + value);
+        }
+    }
 }

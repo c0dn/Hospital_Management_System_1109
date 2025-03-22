@@ -3,17 +3,22 @@ package org.bee.hms.insurance;
 import org.bee.hms.claims.InsuranceClaim;
 import org.bee.hms.humans.Patient;
 import org.bee.hms.policy.InsurancePolicy;
+import org.bee.utils.JSONReadable;
+import org.bee.utils.JSONWritable;
+
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import java.util.Optional;
 
-/**
- * Represents the abstract class for an insurance provider.
- * <p>
- * This class serves as the base for different types of insurance providers. It provides
- * abstract methods for processing claims, retrieving patient insurance policies, and checking
- * whether a patient has active coverage.
- * </p>
- */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    include = JsonTypeInfo.As.PROPERTY,
+    property = "type")
+@JsonSubTypes({
+    @JsonSubTypes.Type(value = GovernmentProvider.class, name = "government"),
+    @JsonSubTypes.Type(value = PrivateProvider.class, name = "private")
+})
 public abstract class InsuranceProvider {
 
     /** The name of the insurance provider. */

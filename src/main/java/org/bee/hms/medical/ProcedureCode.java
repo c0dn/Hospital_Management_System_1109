@@ -4,11 +4,17 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.bee.hms.billing.BillableItem;
 import org.bee.hms.policy.BenefitType;
 import org.bee.hms.policy.ClaimableItem;
 import org.bee.utils.CSVHelper;
+import org.bee.utils.DataGenerator;
 
 /**
  * Represents a medical procedure code with associated description and price.
@@ -16,11 +22,17 @@ import org.bee.utils.CSVHelper;
  * This class implements {@link BillableItem} and {@link ClaimableItem} interfaces to handle the
  * billing and claims of the procedure.
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProcedureCode implements BillableItem, ClaimableItem {
 
+    @JsonProperty("code")
     private String code;
+    @JsonIgnore
     private String description;
+    @JsonProperty("cost")
     private BigDecimal price;
+
+    private static final DataGenerator gen = DataGenerator.getInstance();
     private static final Map<String, ProcedureCode> CODE_REGISTRY = new HashMap<>();
     private static final BigDecimal DEFAULT_PRICE = new BigDecimal("1000.00");
 
@@ -77,12 +89,27 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
         );
     }
 
+
+    /**
+     * Creates a {@link ProcedureCode} from the given code and sets its cost.
+     * This is used for deserialization.
+     */
+    @JsonCreator
+    public static ProcedureCode createFromCodeAndCost(
+            @JsonProperty("code") String code,
+            @JsonProperty("cost") BigDecimal cost) {
+        ProcedureCode procedureCode = createFromCode(code);
+        procedureCode.price = cost;
+        return procedureCode;
+    }
+
     /**
      * Returns the billing item code for the procedure, prefixed with "PROC-".
      *
      * @return A string representing the billing item code.
      */
     @Override
+    @JsonIgnore
     public String getBillingItemCode() {
         return String.format("PROC-%s", code);
     }
@@ -93,6 +120,7 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
      * @return The unsubsidised charges for the procedure.
      */
     @Override
+    @JsonIgnore
     public BigDecimal getUnsubsidisedCharges() {
         return price;
     }
@@ -103,6 +131,7 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
      * @return The procedure description.
      */
     @Override
+    @JsonIgnore
     public String getBillItemDescription() {
         return description;
     }
@@ -113,6 +142,7 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
      * @return The category of the bill item.
      */
     @Override
+    @JsonIgnore
     public String getBillItemCategory() {
         return "PROCEDURE";
     }
@@ -133,6 +163,7 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
      * @return The charges for the procedure.
      */
     @Override
+    @JsonIgnore
     public BigDecimal getCharges() {
         return price;
     }
@@ -145,6 +176,7 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
      * @return A {@link BenefitType} representing the type of benefit for the procedure.
      */
     @Override
+    @JsonIgnore
     public BenefitType resolveBenefitType(boolean isInpatient) {
         if (code == null || code.length() < 2) return defaultFallback(isInpatient);
 
@@ -192,6 +224,7 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
      * @return A string representing a description of the procedure benefit.
      */
     @Override
+    @JsonIgnore
     public String getBenefitDescription(boolean isInpatient) {
         StringBuilder description = new StringBuilder();
         description.append(isInpatient ? "Inpatient" : "Outpatient")
@@ -215,6 +248,7 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
      * @param secondChar The second character in the procedure code.
      * @return The body system description, or null if not applicable.
      */
+    @JsonIgnore
     private String getBodySystem(char secondChar) {
         // This method appears to be for the Medical and Surgical section (0)
         // Body systems vary by section, so ideally this would check the first character too
@@ -259,6 +293,7 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
      *
      * @return A string representing the procedure section.
      */
+    @JsonIgnore
     public String getProcedureSection() {
         char firstDigit = code.charAt(0);
         return switch (firstDigit) {
@@ -289,6 +324,7 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
      * @return The procedure code.
      */
     @Override
+    @JsonIgnore
     public String getProcedureCode() {
         return code;
     }
@@ -298,41 +334,32 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
      * @return A randomly selected ProcedureCode
      */
     public static ProcedureCode getRandomCode() {
-        String[] codes = CODE_REGISTRY.keySet().toArray(new String[0]);
-        int randomIndex = (int) (Math.random() * codes.length);
-        return createFromCode(codes[randomIndex]);
+        Set<String> codes = CODE_REGISTRY.keySet();
+        return createFromCode(gen.getRandomElement(codes));
     }
-
+    
     /**
      * Gets a random procedure code that matches the specified benefit type
-     *
+     * 
      * @param benefitType The benefit type to match
      * @return A randomly selected ProcedureCode that matches the specified benefit type
      * @throws IllegalArgumentException if no procedure codes match the specified benefit type
      */
-    public static ProcedureCode getRandomCodeForBenefitType(BenefitType benefitType) {
-        // Create a list to store matching codes
-        java.util.List<String> matchingCodes = new java.util.ArrayList<>();
+    public static ProcedureCode getRandomCodeForBenefitType(BenefitType benefitType, boolean isInPatient) {
+        List<String> matchingCodes = new java.util.ArrayList<>();
 
-        // Iterate through all codes in the registry
         for (Map.Entry<String, ProcedureCode> entry : CODE_REGISTRY.entrySet()) {
             ProcedureCode code = entry.getValue();
 
-            // Check if this code matches the specified benefit type
-            // We'll check for both inpatient and outpatient scenarios
-            if (code.resolveBenefitType(true) == benefitType ||
-                code.resolveBenefitType(false) == benefitType) {
+            if (code.resolveBenefitType(isInPatient) == benefitType) {
                 matchingCodes.add(entry.getKey());
             }
         }
 
-        // If no matching codes were found, throw an exception
         if (matchingCodes.isEmpty()) {
             throw new IllegalArgumentException("No procedure codes found for benefit type: " + benefitType);
         }
-
-        // Select a random code from the matching codes
-        int randomIndex = (int) (Math.random() * matchingCodes.size());
-        return createFromCode(matchingCodes.get(randomIndex));
+        
+        return createFromCode(gen.getRandomElement(matchingCodes));
     }
 }

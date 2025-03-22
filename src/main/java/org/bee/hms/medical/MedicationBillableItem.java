@@ -2,6 +2,8 @@ package org.bee.hms.medical;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.bee.hms.billing.BillableItem;
 import org.bee.hms.policy.BenefitType;
 import org.bee.hms.policy.ClaimableItem;
@@ -23,11 +25,17 @@ public class MedicationBillableItem implements BillableItem, ClaimableItem {
      *
      * @param medication The {@link Medication} being billed.
      * @param quantity   The quantity of the medication.
-     * @param isInpatient Flag indicating whether the medication is for inpatient or outpatient.
      */
-    public MedicationBillableItem(Medication medication, int quantity, boolean isInpatient) {
+    public MedicationBillableItem(Medication medication, int quantity) {
         this.medication = medication;
         this.quantity = quantity;
+    }
+
+    @JsonCreator
+    public static MedicationBillableItem create(
+            @JsonProperty("medication") Medication medication,
+            @JsonProperty("quantity") int quantity) {
+        return new MedicationBillableItem(medication, quantity);
     }
 
     /**

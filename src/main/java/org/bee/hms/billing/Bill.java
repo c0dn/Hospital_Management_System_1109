@@ -1,6 +1,8 @@
 package org.bee.hms.billing;
 
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.bee.hms.claims.InsuranceClaim;
 import org.bee.hms.humans.Patient;
 import org.bee.hms.policy.*;
@@ -49,6 +51,60 @@ public class Bill {
         this.status = BillingStatus.DRAFT;
         this.isInpatient = builder.isInpatient;
         this.isEmergency = builder.isEmergency;
+    }
+
+    /**
+     * Factory method for deserializing Bill objects from JSON using Jackson.
+     * <p>
+     * This method provides a way for Jackson to reconstruct Bill objects during
+     * deserialization without requiring a default constructor. It preserves the
+     * Bill class's builder-based construction pattern while enabling JSON serialization.
+     *
+     * @param billId              The unique identifier for the bill
+     * @param patient             The patient associated with the bill
+     * @param billDate            The date and time when the bill was created
+     * @param lineItems           The list of billing line items included in the bill
+     * @param categorizedCharges  The mapping of charges categorized by category name
+     * @param status              The current status of the bill
+     * @param insurancePolicy     The insurance policy associated with the bill
+     * @param isInpatient         Flag indicating if this is for an inpatient service
+     * @param isEmergency         Flag indicating if this is for an emergency service
+     *
+     * @return A fully constructed Bill object with all properties set from JSON data
+     */
+    @JsonCreator
+    public static Bill fromJson(
+            @JsonProperty("bill_id") String billId,
+            @JsonProperty("patient") Patient patient,
+            @JsonProperty("bill_date") LocalDateTime billDate,
+            @JsonProperty("line_items") List<BillingItemLine> lineItems,
+            @JsonProperty("categorized_charges") Map<String, BigDecimal> categorizedCharges,
+            @JsonProperty("status") BillingStatus status,
+            @JsonProperty("insurance_policy") InsurancePolicy insurancePolicy,
+            @JsonProperty("is_inpatient") boolean isInpatient,
+            @JsonProperty("is_emergency") boolean isEmergency
+    ) {
+        BillBuilder builder = new BillBuilder();
+        builder.billId = billId;
+        builder.patient = patient;
+        builder.billDate = billDate;
+        builder.insurancePolicy = insurancePolicy;
+        builder.isInpatient = isInpatient;
+        builder.isEmergency = isEmergency;
+
+        Bill bill = new Bill(builder);
+
+        if (lineItems != null) {
+            bill.lineItems = lineItems;
+        }
+        if (categorizedCharges != null) {
+            bill.categorizedCharges = categorizedCharges;
+        }
+        if (status != null) {
+            bill.status = status;
+        }
+
+        return bill;
     }
 
     /**

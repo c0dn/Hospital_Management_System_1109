@@ -1,5 +1,8 @@
 package org.bee.hms.humans;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * Defines the blood type of a person.
  * <p>
@@ -16,7 +19,7 @@ package org.bee.hms.humans;
  *     <li>{@link #AB_NEGATIVE} - AB- blood type.</li>
  * </ul>
  */
-
+@JsonFormat(shape = JsonFormat.Shape.STRING)
 public enum BloodType {
 
     /** A+ blood type. */
@@ -61,5 +64,29 @@ public enum BloodType {
      */
     public String getValue() {
         return value;
+    }
+
+    /**
+     * Creates a BloodType enum from a string value.
+     *
+     * @param value The string value to convert to a BloodType enum.
+     * @return The corresponding BloodType enum value.
+     * @throws IllegalArgumentException if the string value cannot be converted.
+     */
+    @JsonCreator
+    public static BloodType fromString(String value) {
+        // Try to match by the display value (A+, B-, etc.)
+        for (BloodType bloodType : values()) {
+            if (bloodType.getValue().equalsIgnoreCase(value)) {
+                return bloodType;
+            }
+        }
+
+        // Try to match by enum name (A_POSITIVE, B_NEGATIVE, etc.)
+        try {
+            return BloodType.valueOf(value.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Unknown BloodType: " + value);
+        }
     }
 }

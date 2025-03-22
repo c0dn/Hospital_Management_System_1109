@@ -7,6 +7,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.bee.hms.billing.Bill;
 import org.bee.hms.humans.Patient;
 import org.bee.hms.insurance.InsuranceProvider;
@@ -146,9 +148,17 @@ public class InsuranceClaim implements JSONWritable, JSONReadable {
      * @param comments          Additional comments
      * @return An InsuranceClaim instance with the specified claim ID
      */
-    public static InsuranceClaim fromExisting(String claimId, Bill bill, InsuranceProvider insuranceProvider,
-                                              InsurancePolicy insurancePolicy, Patient patient, LocalDate submissionDate,
-                                              ClaimStatus claimStatus, BigDecimal claimAmount, String comments) {
+    @JsonCreator
+    public static InsuranceClaim fromExisting(
+            @JsonProperty("claim_id") String claimId,
+            @JsonProperty("bill") Bill bill,
+            @JsonProperty("insurance_provider") InsuranceProvider insuranceProvider,
+            @JsonProperty("insurance_policy") InsurancePolicy insurancePolicy,
+            @JsonProperty("patient") Patient patient,
+            @JsonProperty("submission_date") LocalDate submissionDate,
+            @JsonProperty("claim_status") ClaimStatus claimStatus,
+            @JsonProperty("claim_amount") BigDecimal claimAmount,
+            @JsonProperty("comments") String comments) {
         return new InsuranceClaim(
                 claimId,
                 bill,
@@ -474,42 +484,6 @@ public class InsuranceClaim implements JSONWritable, JSONReadable {
 
         return String.format("CLM-%s-%s", datePart, randomPart);
     }
-
-    public void displayClaimInfo() {
-        printHeader();
-
-        printBasicClaimInfo();
-
-        printFooter();
-    }
-
-    private void printHeader() {
-        System.out.println("\n====================================================");
-        System.out.println("                INSURANCE CLAIM RECORD               ");
-        System.out.println("====================================================");
-    }
-
-    private void printBasicClaimInfo() {
-        System.out.printf("%-15s: %s%n", "Claim ID", claimId);
-        System.out.printf("%-15s: %s%n", "Status", claimStatus);
-        System.out.printf("%-15s: %s%n", "Submitted On", submissionDate);
-        System.out.printf("%-15s: %.2f%n", "Amount", claimAmount);
-        System.out.printf("%-15s: %s%n", "Provider", insuranceProvider.getProviderName());
-        System.out.printf("%-15s: %s%n", "Policy Number", insurancePolicy.getPolicyNumber());
-    }
-
-
-
-    private void printFooter() {
-        System.out.println("\n====================================================");
-        System.out.printf("Last Updated: %s%n", lastUpdatedDate);
-        if (comments != null && !comments.isEmpty()) {
-            System.out.println("\nComments:");
-            System.out.println(comments);
-        }
-        System.out.println("====================================================\n");
-    }
-
 
 
 }

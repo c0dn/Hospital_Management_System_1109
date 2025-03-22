@@ -1,5 +1,7 @@
 package org.bee.hms.claims;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * Defines the current status of an insurance claim.
  * <br><br>A claim can have one of the following statuses:
@@ -17,7 +19,7 @@ package org.bee.hms.claims;
  * </ul>
  *
  */
-
+@JsonFormat(shape = JsonFormat.Shape.STRING)
 public enum ClaimStatus {
 
     DRAFT("Claim is draft"),

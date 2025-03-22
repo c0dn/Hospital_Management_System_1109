@@ -1,5 +1,8 @@
 package org.bee.hms.humans;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * Defines the residential status of a person.
  * <p>
@@ -14,8 +17,8 @@ package org.bee.hms.humans;
  * </ul>
  */
 
+@JsonFormat(shape = JsonFormat.Shape.STRING)
 public enum ResidentialStatus {
-
     /** A full citizen of the country. */
     CITIZEN,
     /** A person with permanent residency status. */
@@ -25,5 +28,21 @@ public enum ResidentialStatus {
     /** A dependent of a resident or worker. */
     DEPENDENT_PASS,
     /** A temporary visitor. */
-    VISITOR
+    VISITOR;
+
+    /**
+     * Creates a ResidentialStatus from a string value.
+     *
+     * @param value The string value to convert to a ResidentialStatus enum.
+     * @return The corresponding ResidentialStatus enum value.
+     * @throws IllegalArgumentException if the string value cannot be converted.
+     */
+    @JsonCreator
+    public static ResidentialStatus fromString(String value) {
+        try {
+            return ResidentialStatus.valueOf(value.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Unknown ResidentialStatus: " + value);
+        }
+    }
 }

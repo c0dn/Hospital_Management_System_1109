@@ -3,6 +3,9 @@ package org.bee.hms.telemed;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.bee.hms.humans.Contact;
 import org.bee.hms.humans.Doctor;
 import org.bee.hms.humans.Patient;
@@ -22,6 +25,7 @@ import org.bee.utils.JSONWritable;
  * appointment.approve(doctor, "zoomLinkExample");
  */
 
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Appointment implements JSONWritable, JSONReadable {
     private Patient patient;
     private String reason;
@@ -44,7 +48,12 @@ public class Appointment implements JSONWritable, JSONReadable {
      * @param appointmentStatus the initial status of the appointment (must not be null)
      * @throws NullPointerException if any of the parameters are null
      */
-    public Appointment(Patient patient, String reason, LocalDateTime appointmentTime, AppointmentStatus appointmentStatus) {
+    @JsonCreator
+    public Appointment(
+            @JsonProperty("patient") Patient patient,
+            @JsonProperty("reason") String reason,
+            @JsonProperty("appointmentTime") LocalDateTime appointmentTime,
+            @JsonProperty("appointmentStatus") AppointmentStatus appointmentStatus) {
         this.patient = Objects.requireNonNull(patient, "Patient cannot be null");
         this.reason = Objects.requireNonNull(reason, "Reason cannot be null");
         this.appointmentTime = Objects.requireNonNull(appointmentTime, "Appointment time cannot be null");

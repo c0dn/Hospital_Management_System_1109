@@ -1,9 +1,13 @@
 package org.bee.hms.wards;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * Defines different classifications of hospital wards and their respective daily rates.
  * Each ward class has a specific cost per day and a description.
  */
+@JsonFormat(shape = JsonFormat.Shape.STRING)
 public enum WardClassType {
     /** Labour Ward Class A - Cost: $1500 per day. */
     LABOUR_CLASS_A(1500, "Labour Class A"),
@@ -65,5 +69,29 @@ public enum WardClassType {
      */
     public String getDescription() {
         return description;
+    }
+
+    /**
+     * Creates a WardClassType from a string value.
+     *
+     * @param value The string value to convert to a WardClassType enum.
+     * @return The corresponding WardClassType enum value.
+     * @throws IllegalArgumentException if the string value cannot be converted.
+     */
+    @JsonCreator
+    public static WardClassType fromString(String value) {
+        // Try to match by enum name
+        try {
+            return WardClassType.valueOf(value.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            // Try to match by description
+            for (WardClassType type : values()) {
+                if (type.getDescription().equalsIgnoreCase(value)) {
+                    return type;
+                }
+            }
+
+            throw new IllegalArgumentException("Unknown WardClassType: " + value);
+        }
     }
 }

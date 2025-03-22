@@ -5,18 +5,21 @@ import java.time.LocalDate;
 import org.bee.utils.JSONReadable;
 import org.bee.utils.JSONWritable;
 
-/**
- * Represents a general human entity in the insurance system.
- * This serves as a base class for patients, doctors and other human-related roles.
- * Attributes include general information (like name, date of birth, NRIC/FIN), which are commonly found in SingPass,
- * HealthHub and staff onboarding procedures and patient-provided information.
- */
-public abstract class Human implements JSONWritable, JSONReadable {
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-    /**
-     * The type of human, used for JSON serialization/deserialization.
-     */
-    protected String type;
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    include = JsonTypeInfo.As.PROPERTY,
+    property = "type")
+@JsonSubTypes({
+    @JsonSubTypes.Type(value = Patient.class, name = "patient"),
+    @JsonSubTypes.Type(value = Staff.class, name = "staff"),
+    @JsonSubTypes.Type(value = Clerk.class, name = "clerk"),
+    @JsonSubTypes.Type(value = Doctor.class, name = "doctor"),
+    @JsonSubTypes.Type(value = Nurse.class, name = "nurse")
+})
+public abstract class Human implements JSONWritable, JSONReadable {
 
     /**
      * The name of the person.
@@ -86,7 +89,6 @@ public abstract class Human implements JSONWritable, JSONReadable {
      *                status to properly construct a Human object.
      */
     Human(HumanBuilder<?> builder) {
-        this.type = builder.type;
         this.name = builder.name;
         this.dateOfBirth = builder.dateOfBirth;
         this.nricFin = builder.nricFin;
@@ -98,6 +100,54 @@ public abstract class Human implements JSONWritable, JSONReadable {
         this.sex = builder.sex;
         this.bloodType = builder.bloodType;
         this.isVaccinated = builder.isVaccinated;
+    }
+
+    /**
+     * Utility method to set common Human fields on any builder that extends HumanBuilder.
+     * This helps avoid repetition in factory methods for Human subclasses.
+     *
+     * @param <T> The type of builder extending HumanBuilder
+     * @param builder The builder instance
+     * @param name The name of the human
+     * @param dob The date of birth
+     * @param nricFin The NRIC/FIN number
+     * @param maritalStatus The marital status
+     * @param residentialStatus The residential status
+     * @param nationality The nationality
+     * @param address The address
+     * @param contact The contact information
+     * @param sex The sex
+     * @param bloodType The blood type
+     * @param isVaccinated The vaccination status
+     * @return The same builder instance with human fields set
+     */
+    protected static <T extends HumanBuilder<?>> T setHumanFields(
+            T builder,
+            String name,
+            LocalDate dob,
+            String nricFin,
+            MaritalStatus maritalStatus,
+            ResidentialStatus residentialStatus,
+            String nationality,
+            String address,
+            Contact contact,
+            Sex sex,
+            BloodType bloodType,
+            boolean isVaccinated
+    ) {
+        builder.name(name);
+        builder.dateOfBirth(dob);
+        builder.nricFin(nricFin);
+        builder.maritalStatus(maritalStatus);
+        builder.residentialStatus(residentialStatus);
+        builder.nationality(nationality);
+        builder.address(address);
+        builder.contact(contact);
+        builder.sex(sex);
+        builder.bloodType(bloodType);
+        builder.isVaccinated(isVaccinated);
+
+        return builder;
     }
 
 

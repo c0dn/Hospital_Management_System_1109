@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.bee.utils.JSONReadable;
 import org.bee.utils.JSONWritable;
 
@@ -12,6 +15,7 @@ import org.bee.utils.JSONWritable;
  * This class handles session details such as start and end times, connectivity issues, and session statuses,
  * providing methods to manage and record session activities effectively.
  */
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Session implements JSONWritable, JSONReadable {
     private String id;
     private LocalDateTime startTime;
@@ -31,9 +35,23 @@ public class Session implements JSONWritable, JSONReadable {
      */
     public Session(String zoomLink) {
         this.id = UUID.randomUUID().toString();
-        this.startTime =   LocalDateTime.now();
-        this.zoomLink = zoomLink;
+        this.startTime = LocalDateTime.now();
+        this.zoomLink = Objects.requireNonNull(zoomLink);
         this.sessionStatus = SessionStatus.ONGOING;
+    }
+
+    // Jackson deserialization constructor
+    @JsonCreator
+    public Session(
+            @JsonProperty("id") String id,
+            @JsonProperty("startTime") LocalDateTime startTime,
+            @JsonProperty("zoomLink") String zoomLink,
+            @JsonProperty("sessionStatus") SessionStatus sessionStatus) {
+
+        this.id = (id != null) ? id : UUID.randomUUID().toString();
+        this.startTime = (startTime != null) ? startTime : LocalDateTime.now();
+        this.zoomLink = zoomLink;
+        this.sessionStatus = (sessionStatus != null) ? sessionStatus : SessionStatus.ONGOING;
     }
 
     public String getId() {

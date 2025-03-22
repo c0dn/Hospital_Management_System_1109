@@ -9,6 +9,12 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.bee.utils.CSVHelper;
+import org.bee.utils.JSONReadable;
+import org.bee.utils.JSONWritable;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Represents a medication with associated details loaded from a CSV file.
@@ -21,22 +27,30 @@ import org.bee.utils.CSVHelper;
  *     <li>Price per unit and manufacturer details</li>
  * </ul>
  */
-public class Medication {
+public class Medication implements JSONWritable, JSONReadable {
     /** The unique drug code identifying this medication. */
+    @JsonProperty("code")
     protected String drugCode;
     /** The name of the medication. */
+    @JsonIgnore
     protected String name;
     /** The category to which this medication belongs (eg. Antibiotics, Painkillers). */
+    @JsonIgnore
     protected String category;
     /** The standard dosage for this medication. */
+    @JsonIgnore
     protected String standardDosage;
     /** The unit form of the medication (eg. tablet, capsule, injection). */
+    @JsonIgnore
     protected String unitForm;
     /** The price per unit of the medication. */
+    @JsonIgnore
     protected BigDecimal pricePerUnit;
     /** A description of the unit of measurement (eg. per table, per bottle). */
+    @JsonIgnore
     protected String unitDescription;
     /** The manufacturer of the medication. */
+    @JsonIgnore
     protected String manufacturer;
 
     /**
@@ -104,7 +118,6 @@ public class Medication {
         }
     }
 
-
     /**
      * Creates a new Medication instance from an existing drug code.
      *
@@ -120,6 +133,15 @@ public class Medication {
         return medication;
     }
 
+    /**
+     * Creates a {@link Medication} from the given code and sets its cost.
+     * This is used for deserialization.
+     */
+    @JsonCreator
+    public static Medication createFromCodeAndCost(
+            @JsonProperty("code") String code) {
+        return createFromCode(code);
+    }
 
     /**
      * Retrieves a list of medications for a specific category.
@@ -158,7 +180,6 @@ public class Medication {
                 .collect(Collectors.toList());
     }
 
-
     /**
      * Calculates the total cost for a specific quantity of medication.
      *
@@ -179,13 +200,13 @@ public class Medication {
         System.out.format("Price: $%s / %s%n",
                 pricePerUnit.setScale(2, RoundingMode.HALF_UP), unitForm);
     }
-    
 
     /**
      * Returns a string representation of the medication.
      *
      * @return A formatted string with the medication details.
      */
+    @JsonIgnore
     @Override
     public String toString() {
         return String.format("""
@@ -213,6 +234,7 @@ public class Medication {
      * 
      * @return The drug code
      */
+    @JsonIgnore
     public String getDrugCode() {
         return drugCode;
     }

@@ -1,5 +1,11 @@
 package org.bee.hms.humans;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.time.LocalDate;
+
 /**
  * Represents the details of a nurse in the insurance system.
  * <p>
@@ -8,6 +14,7 @@ package org.bee.hms.humans;
  * {@link NurseBuilder} to ensure proper initialization of required fields.
  * </p>
  */
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Nurse extends Staff{
 
     /** The Registered Nurse ID (RNID) of a nurse. */
@@ -27,7 +34,61 @@ public class Nurse extends Staff{
     Nurse(NurseBuilder builder) {
         super(builder);
         this.rnid = builder.rnid;
-        this.type = "nurse";
+    }
+
+    /**
+     * Factory method for deserializing Nurse objects from JSON using Jackson.
+     * <p>
+     * This method provides a way for Jackson to reconstruct Nurse objects during
+     * deserialization without requiring a default constructor. It preserves the
+     * Nurse class's builder-based construction pattern while enabling JSON serialization.
+     *
+     * @param name                The name of the nurse
+     * @param dob                 The date of birth of the nurse
+     * @param nricFin             The NRIC/FIN number of the nurse
+     * @param maritalStatus       The marital status of the nurse
+     * @param residentialStatus   The residential status of the nurse
+     * @param nationality         The nationality of the nurse
+     * @param address             The address of the nurse
+     * @param contact             The contact information of the nurse
+     * @param sex                 The sex of the nurse
+     * @param bloodType           The blood type of the nurse
+     * @param isVaccinated        Vaccination status of the nurse
+     * @param staffId             The staff identifier of the nurse
+     * @param title               The professional title of the nurse
+     * @param department          The department the nurse belongs to
+     * @param rnid                The Registered Nurse ID (RNID) of the nurse
+     *
+     * @return A fully constructed Nurse object with all properties set from JSON data
+     */
+    @JsonCreator
+    public static Nurse fromJson(
+            @JsonProperty("name") String name,
+            @JsonProperty("dob") LocalDate dob,
+            @JsonProperty("nric_fin") String nricFin,
+            @JsonProperty("marital_status") MaritalStatus maritalStatus,
+            @JsonProperty("residential_status") ResidentialStatus residentialStatus,
+            @JsonProperty("nationality") String nationality,
+            @JsonProperty("address") String address,
+            @JsonProperty("contact") Contact contact,
+            @JsonProperty("sex") Sex sex,
+            @JsonProperty("blood_type") BloodType bloodType,
+            @JsonProperty("is_vaccinated") boolean isVaccinated,
+            @JsonProperty("staff_id") String staffId,
+            @JsonProperty("title") String title,
+            @JsonProperty("department") String department,
+            @JsonProperty("rnid") String rnid
+    ) {
+        NurseBuilder builder = new NurseBuilder();
+
+        setHumanFields(builder, name, dob, nricFin, maritalStatus, residentialStatus,
+                nationality, address, contact, sex, bloodType, isVaccinated);
+
+        setStaffFields(builder, staffId, title, department);
+
+        builder.rnid(rnid);
+
+        return new Nurse(builder);
     }
 
     /**

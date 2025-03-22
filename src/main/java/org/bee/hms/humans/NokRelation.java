@@ -1,8 +1,12 @@
 package org.bee.hms.humans;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * Represents the relationship between a patient and their next of kin.
  */
+@JsonFormat(shape = JsonFormat.Shape.STRING)
 public enum NokRelation {
     /** Spouse of the patient. */
     SPOUSE("Spouse"),
@@ -40,5 +44,20 @@ public enum NokRelation {
     @Override
     public String toString() {
         return displayName;
+    }
+
+    @JsonCreator
+    public static NokRelation fromString(String value) {
+        for (NokRelation relation : values()) {
+            if (relation.toString().equalsIgnoreCase(value)) {
+                return relation;
+            }
+        }
+
+        try {
+            return NokRelation.valueOf(value.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Unknown NokRelation: " + value);
+        }
     }
 }

@@ -7,15 +7,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.bee.hms.billing.BillableItem;
 import org.bee.hms.humans.Doctor;
-import org.bee.hms.humans.Nurse;
 import org.bee.hms.humans.Patient;
 import org.bee.utils.DataGenerator;
 import org.bee.utils.JSONReadable;
 import org.bee.utils.JSONWritable;
-
-import javax.print.Doc;
+import org.bee.utils.jackson.PrescriptionMapDeserializer;
+import org.bee.utils.jackson.PrescriptionMapSerializer;
 
 /**
  * Represents a medical consultation.
@@ -25,6 +29,7 @@ import javax.print.Doc;
  * charges. It also provides methods to generate random consultations, calculate charges, and retrieve related billable items.
  * </p>
  */
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Consultation implements JSONReadable, JSONWritable {
 
     /**
@@ -35,31 +40,39 @@ public class Consultation implements JSONReadable, JSONWritable {
     /**
      * The type of the consultation (e.g., emergency, regular, specialized)
      */
+    @JsonProperty("consult_type")
     private ConsultationType type;
 
     /**
      * The date and time the consultation took place
      */
+    @JsonProperty("time")
     private LocalDateTime consultationTime;
 
     /**
      * The fee for the consultation
      */
+    @JsonProperty("fee")
     private BigDecimal consultationFee;
 
     /**
      * The list of diagnostic codes associated with the consultation
      */
+    @JsonProperty("diagnostic_codes")
     private List<DiagnosticCode> diagnosticCodes;
 
     /**
      * The list of procedure codes associated with the consultation
      */
+    @JsonProperty("procedure_codes")
     private List<ProcedureCode> procedureCodes;
 
     /**
      * The list of medications prescribed during the consultation with their quantities
      */
+    @JsonSerialize(using = PrescriptionMapSerializer.class)
+    @JsonDeserialize(using = PrescriptionMapDeserializer.class)
+    @JsonProperty("prescriptions")
     private Map<Medication, Integer> prescriptions;
 
     /**
@@ -85,7 +98,7 @@ public class Consultation implements JSONReadable, JSONWritable {
     /**
      * Department handling the outpatient case.
      */
-    private DEPARTMENT department;
+    private HospitalDepartment department;
 
     /**
      * Diagnosis given for the outpatient case.
@@ -274,6 +287,7 @@ public class Consultation implements JSONReadable, JSONWritable {
      *
      * @return A list of related {@link BillableItem} instances.
      */
+    @JsonIgnore
     public List<BillableItem> getRelatedBillableItems() {
         List<BillableItem> items = new ArrayList<>();
 
@@ -290,7 +304,7 @@ public class Consultation implements JSONReadable, JSONWritable {
         // Add medications with their quantities as MedicationBillableItem
         if (prescriptions != null) {
             prescriptions.forEach((medication, quantity) ->
-                    items.add(new MedicationBillableItem(medication, quantity, true)));
+                    items.add(new MedicationBillableItem(medication, quantity)));
         }
 
         return items;
@@ -305,6 +319,7 @@ public class Consultation implements JSONReadable, JSONWritable {
      *
      * @return The total charges for the consultation.
      */
+    @JsonIgnore
     public BigDecimal calculateCharges() {
         BigDecimal total = consultationFee;
 
@@ -341,6 +356,7 @@ public class Consultation implements JSONReadable, JSONWritable {
      *
      * @return A string representing the category of the consultation.
      */
+    @JsonIgnore
     public String getCategory() {
         return switch (type) {
             case EMERGENCY -> "EMERGENCY_CONSULTATION";
@@ -372,6 +388,7 @@ public class Consultation implements JSONReadable, JSONWritable {
         return doctor;
     }
 
+    @JsonIgnore
     public ConsultationType getConsultationType() {
         return type;
     }

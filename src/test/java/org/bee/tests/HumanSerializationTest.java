@@ -3,12 +3,19 @@ package org.bee.tests;
 import java.io.File;
 import java.lang.reflect.Field;
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.List;
 
+import org.bee.hms.humans.BloodType;
 import org.bee.hms.humans.Clerk;
+import org.bee.hms.humans.Contact;
 import org.bee.hms.humans.Doctor;
+import org.bee.hms.humans.MaritalStatus;
+import org.bee.hms.humans.NokRelation;
 import org.bee.hms.humans.Nurse;
 import org.bee.hms.humans.Patient;
+import org.bee.hms.humans.ResidentialStatus;
+import org.bee.hms.humans.Sex;
 import org.bee.utils.DataGenerator;
 import org.bee.utils.JSONHelper;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -77,19 +84,61 @@ public class HumanSerializationTest {
         // Load from JSON file
         Patient deserializedPatient = jsonHelper.loadFromJsonFile(jsonFilePath, Patient.class);
 
-        // Verify fields
-        assertEquals(getPrivateField(patient, "patientId", String.class),
-                    getPrivateField(deserializedPatient, "patientId", String.class));
+        // Verify fields from Human superclass
         assertEquals(getPrivateField(patient, "name", String.class),
                     getPrivateField(deserializedPatient, "name", String.class));
+        assertEquals(getPrivateField(patient, "dateOfBirth", LocalDate.class),
+                    getPrivateField(deserializedPatient, "dateOfBirth", LocalDate.class));
         assertEquals(getPrivateField(patient, "nricFin", String.class),
                     getPrivateField(deserializedPatient, "nricFin", String.class));
+        assertEquals(getPrivateField(patient, "maritalStatus", MaritalStatus.class),
+                    getPrivateField(deserializedPatient, "maritalStatus", MaritalStatus.class));
+        assertEquals(getPrivateField(patient, "residentialStatus", ResidentialStatus.class),
+                    getPrivateField(deserializedPatient, "residentialStatus", ResidentialStatus.class));
+        assertEquals(getPrivateField(patient, "nationality", String.class),
+                    getPrivateField(deserializedPatient, "nationality", String.class));
+        assertEquals(getPrivateField(patient, "address", String.class),
+                    getPrivateField(deserializedPatient, "address", String.class));
+        // Verify Contact fields individually
+        Contact originalContact = getPrivateField(patient, "contact", Contact.class);
+        Contact deserializedContact = getPrivateField(deserializedPatient, "contact", Contact.class);
+        verifyContactFields(originalContact, deserializedContact);
+        assertEquals(getPrivateField(patient, "sex", Sex.class),
+                    getPrivateField(deserializedPatient, "sex", Sex.class));
+        assertEquals(getPrivateField(patient, "bloodType", BloodType.class),
+                    getPrivateField(deserializedPatient, "bloodType", BloodType.class));
+        assertEquals(getPrivateField(patient, "isVaccinated", Boolean.class),
+                    getPrivateField(deserializedPatient, "isVaccinated", Boolean.class));
+
+        // Verify Patient-specific fields
+        assertEquals(getPrivateField(patient, "patientId", String.class),
+                    getPrivateField(deserializedPatient, "patientId", String.class));
+        // Verify drugAllergies list contents individually
+        List<?> originalAllergies = getPrivateField(patient, "drugAllergies", List.class);
+        List<?> deserializedAllergies = getPrivateField(deserializedPatient, "drugAllergies", List.class);
+        assertEquals(originalAllergies.size(), deserializedAllergies.size(), "Drug allergies list size should match");
+        for (int i = 0; i < originalAllergies.size(); i++) {
+            assertEquals(originalAllergies.get(i), deserializedAllergies.get(i), 
+                        "Drug allergy at index " + i + " should match");
+        }
+        assertEquals(getPrivateField(patient, "nokName", String.class),
+                    getPrivateField(deserializedPatient, "nokName", String.class));
+        assertEquals(getPrivateField(patient, "nokAddress", String.class),
+                    getPrivateField(deserializedPatient, "nokAddress", String.class));
+        assertEquals(getPrivateField(patient, "nokRelation", NokRelation.class),
+                    getPrivateField(deserializedPatient, "nokRelation", NokRelation.class));
         assertEquals(getPrivateField(patient, "height", Double.class),
                     getPrivateField(deserializedPatient, "height", Double.class));
         assertEquals(getPrivateField(patient, "weight", Double.class),
                     getPrivateField(deserializedPatient, "weight", Double.class));
-        assertEquals(getPrivateField(patient, "drugAllergies", List.class),
-                    getPrivateField(deserializedPatient, "drugAllergies", List.class));
+        assertEquals(getPrivateField(patient, "occupation", String.class),
+                    getPrivateField(deserializedPatient, "occupation", String.class));
+        assertEquals(getPrivateField(patient, "companyName", String.class),
+                    getPrivateField(deserializedPatient, "companyName", String.class));
+        assertEquals(getPrivateField(patient, "companyAddress", String.class),
+                    getPrivateField(deserializedPatient, "companyAddress", String.class));
+        assertEquals(getPrivateField(patient, "patientConsent", Boolean.class),
+                    getPrivateField(deserializedPatient, "patientConsent", Boolean.class));
     }
 
     @Test
@@ -108,13 +157,43 @@ public class HumanSerializationTest {
         // Load from JSON file
         Doctor deserializedDoctor = jsonHelper.loadFromJsonFile(jsonFilePath, Doctor.class);
 
-        // Verify fields
-        assertEquals(getPrivateField(doctor, "mcr", String.class),
-                    getPrivateField(deserializedDoctor, "mcr", String.class));
+        // Verify fields from Human superclass
         assertEquals(getPrivateField(doctor, "name", String.class),
                     getPrivateField(deserializedDoctor, "name", String.class));
+        assertEquals(getPrivateField(doctor, "dateOfBirth", LocalDate.class),
+                    getPrivateField(deserializedDoctor, "dateOfBirth", LocalDate.class));
         assertEquals(getPrivateField(doctor, "nricFin", String.class),
                     getPrivateField(deserializedDoctor, "nricFin", String.class));
+        assertEquals(getPrivateField(doctor, "maritalStatus", MaritalStatus.class),
+                    getPrivateField(deserializedDoctor, "maritalStatus", MaritalStatus.class));
+        assertEquals(getPrivateField(doctor, "residentialStatus", ResidentialStatus.class),
+                    getPrivateField(deserializedDoctor, "residentialStatus", ResidentialStatus.class));
+        assertEquals(getPrivateField(doctor, "nationality", String.class),
+                    getPrivateField(deserializedDoctor, "nationality", String.class));
+        assertEquals(getPrivateField(doctor, "address", String.class),
+                    getPrivateField(deserializedDoctor, "address", String.class));
+        // Verify Contact fields individually
+        Contact originalContact = getPrivateField(doctor, "contact", Contact.class);
+        Contact deserializedContact = getPrivateField(deserializedDoctor, "contact", Contact.class);
+        verifyContactFields(originalContact, deserializedContact);
+        assertEquals(getPrivateField(doctor, "sex", Sex.class),
+                    getPrivateField(deserializedDoctor, "sex", Sex.class));
+        assertEquals(getPrivateField(doctor, "bloodType", BloodType.class),
+                    getPrivateField(deserializedDoctor, "bloodType", BloodType.class));
+        assertEquals(getPrivateField(doctor, "isVaccinated", Boolean.class),
+                    getPrivateField(deserializedDoctor, "isVaccinated", Boolean.class));
+
+        // Verify Staff superclass fields
+        assertEquals(getPrivateField(doctor, "staffId", String.class),
+                    getPrivateField(deserializedDoctor, "staffId", String.class));
+        assertEquals(getPrivateField(doctor, "title", String.class),
+                    getPrivateField(deserializedDoctor, "title", String.class));
+        assertEquals(getPrivateField(doctor, "department", String.class),
+                    getPrivateField(deserializedDoctor, "department", String.class));
+
+        // Verify Doctor-specific fields
+        assertEquals(getPrivateField(doctor, "mcr", String.class),
+                    getPrivateField(deserializedDoctor, "mcr", String.class));
     }
 
     @Test
@@ -133,13 +212,43 @@ public class HumanSerializationTest {
         // Load from JSON file
         Nurse deserializedNurse = jsonHelper.loadFromJsonFile(jsonFilePath, Nurse.class);
 
-        // Verify fields
-        assertEquals(getPrivateField(nurse, "rnid", String.class),
-                    getPrivateField(deserializedNurse, "rnid", String.class));
+        // Verify fields from Human superclass
         assertEquals(getPrivateField(nurse, "name", String.class),
                     getPrivateField(deserializedNurse, "name", String.class));
+        assertEquals(getPrivateField(nurse, "dateOfBirth", LocalDate.class),
+                    getPrivateField(deserializedNurse, "dateOfBirth", LocalDate.class));
         assertEquals(getPrivateField(nurse, "nricFin", String.class),
                     getPrivateField(deserializedNurse, "nricFin", String.class));
+        assertEquals(getPrivateField(nurse, "maritalStatus", MaritalStatus.class),
+                    getPrivateField(deserializedNurse, "maritalStatus", MaritalStatus.class));
+        assertEquals(getPrivateField(nurse, "residentialStatus", ResidentialStatus.class),
+                    getPrivateField(deserializedNurse, "residentialStatus", ResidentialStatus.class));
+        assertEquals(getPrivateField(nurse, "nationality", String.class),
+                    getPrivateField(deserializedNurse, "nationality", String.class));
+        assertEquals(getPrivateField(nurse, "address", String.class),
+                    getPrivateField(deserializedNurse, "address", String.class));
+        // Verify Contact fields individually
+        Contact originalContact = getPrivateField(nurse, "contact", Contact.class);
+        Contact deserializedContact = getPrivateField(deserializedNurse, "contact", Contact.class);
+        verifyContactFields(originalContact, deserializedContact);
+        assertEquals(getPrivateField(nurse, "sex", Sex.class),
+                    getPrivateField(deserializedNurse, "sex", Sex.class));
+        assertEquals(getPrivateField(nurse, "bloodType", BloodType.class),
+                    getPrivateField(deserializedNurse, "bloodType", BloodType.class));
+        assertEquals(getPrivateField(nurse, "isVaccinated", Boolean.class),
+                    getPrivateField(deserializedNurse, "isVaccinated", Boolean.class));
+
+        // Verify Staff superclass fields
+        assertEquals(getPrivateField(nurse, "staffId", String.class),
+                    getPrivateField(deserializedNurse, "staffId", String.class));
+        assertEquals(getPrivateField(nurse, "title", String.class),
+                    getPrivateField(deserializedNurse, "title", String.class));
+        assertEquals(getPrivateField(nurse, "department", String.class),
+                    getPrivateField(deserializedNurse, "department", String.class));
+
+        // Verify Nurse-specific fields
+        assertEquals(getPrivateField(nurse, "rnid", String.class),
+                    getPrivateField(deserializedNurse, "rnid", String.class));
     }
 
     @Test
@@ -158,11 +267,39 @@ public class HumanSerializationTest {
         // Load from JSON file
         Clerk deserializedClerk = jsonHelper.loadFromJsonFile(jsonFilePath, Clerk.class);
 
-        // Verify basic human fields since Clerk doesn't have additional fields
+        // Verify fields from Human superclass
         assertEquals(getPrivateField(clerk, "name", String.class),
                     getPrivateField(deserializedClerk, "name", String.class));
+        assertEquals(getPrivateField(clerk, "dateOfBirth", LocalDate.class),
+                    getPrivateField(deserializedClerk, "dateOfBirth", LocalDate.class));
         assertEquals(getPrivateField(clerk, "nricFin", String.class),
                     getPrivateField(deserializedClerk, "nricFin", String.class));
+        assertEquals(getPrivateField(clerk, "maritalStatus", MaritalStatus.class),
+                    getPrivateField(deserializedClerk, "maritalStatus", MaritalStatus.class));
+        assertEquals(getPrivateField(clerk, "residentialStatus", ResidentialStatus.class),
+                    getPrivateField(deserializedClerk, "residentialStatus", ResidentialStatus.class));
+        assertEquals(getPrivateField(clerk, "nationality", String.class),
+                    getPrivateField(deserializedClerk, "nationality", String.class));
+        assertEquals(getPrivateField(clerk, "address", String.class),
+                    getPrivateField(deserializedClerk, "address", String.class));
+        // Verify Contact fields individually
+        Contact originalContact = getPrivateField(clerk, "contact", Contact.class);
+        Contact deserializedContact = getPrivateField(deserializedClerk, "contact", Contact.class);
+        verifyContactFields(originalContact, deserializedContact);
+        assertEquals(getPrivateField(clerk, "sex", Sex.class),
+                    getPrivateField(deserializedClerk, "sex", Sex.class));
+        assertEquals(getPrivateField(clerk, "bloodType", BloodType.class),
+                    getPrivateField(deserializedClerk, "bloodType", BloodType.class));
+        assertEquals(getPrivateField(clerk, "isVaccinated", Boolean.class),
+                    getPrivateField(deserializedClerk, "isVaccinated", Boolean.class));
+
+        // Verify Staff superclass fields
+        assertEquals(getPrivateField(clerk, "staffId", String.class),
+                    getPrivateField(deserializedClerk, "staffId", String.class));
+        assertEquals(getPrivateField(clerk, "title", String.class),
+                    getPrivateField(deserializedClerk, "title", String.class));
+        assertEquals(getPrivateField(clerk, "department", String.class),
+                    getPrivateField(deserializedClerk, "department", String.class));
     }
 
     private Patient createTestPatient() {
@@ -181,6 +318,20 @@ public class HumanSerializationTest {
         return Nurse.builder()
                 .withRandomBaseData()
                 .build();
+    }
+
+    /**
+     * Helper method to verify Contact fields individually
+     */
+    private void verifyContactFields(Contact original, Contact deserialized) throws Exception {
+        assertEquals(getPrivateField(original, "personalPhone", String.class),
+                    getPrivateField(deserialized, "personalPhone", String.class));
+        assertEquals(getPrivateField(original, "homePhone", String.class),
+                    getPrivateField(deserialized, "homePhone", String.class));
+        assertEquals(getPrivateField(original, "companyPhone", String.class),
+                    getPrivateField(deserialized, "companyPhone", String.class));
+        assertEquals(getPrivateField(original, "email", String.class),
+                    getPrivateField(deserialized, "email", String.class));
     }
 
     private Clerk createTestClerk() {

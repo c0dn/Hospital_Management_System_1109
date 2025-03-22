@@ -9,6 +9,10 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.bee.hms.billing.BillableItem;
 import org.bee.hms.humans.Doctor;
 import org.bee.hms.humans.Nurse;
@@ -21,12 +25,15 @@ import org.bee.hms.wards.WardFactory;
 import org.bee.utils.DataGenerator;
 import org.bee.utils.JSONReadable;
 import org.bee.utils.JSONWritable;
+import org.bee.utils.jackson.PrescriptionMapDeserializer;
+import org.bee.utils.jackson.PrescriptionMapSerializer;
 
 /**
  * Represents an inpatient hospital visit.
  * The class encapsulates information related to the visit, including ward stays,
  * procedures performed, attending medical personnel, and the status of the visit.
  */
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Visit implements JSONWritable, JSONReadable {
     /**
      * A unique identifier for the visit.
@@ -77,6 +84,9 @@ public class Visit implements JSONWritable, JSONReadable {
      * Key: {@link Medication} instance representing the prescribed medication.
      * Value: An {@code Integer} indicating the quantity prescribed.
      */
+    @JsonSerialize(using = PrescriptionMapSerializer.class)
+    @JsonDeserialize(using = PrescriptionMapDeserializer.class)
+    @JsonProperty("prescriptions")
     private Map<Medication, Integer> prescriptions;
     /**
      * Represents the current status of a hospital visit.
@@ -207,8 +217,8 @@ public class Visit implements JSONWritable, JSONReadable {
         LocalDateTime admissionTime = LocalDateTime.now().minusDays(dataGenerator.generateRandomInt(30, 90));
         Visit visit = Visit.createNew(admissionTime, patient);
 
-        Doctor randomDoctor = availableDoctors.get(dataGenerator.generateRandomInt(0, availableDoctors.size() - 1));
-        Nurse randomNurse = availableNurses.get(dataGenerator.generateRandomInt(0, availableNurses.size() - 1));
+        Doctor randomDoctor = dataGenerator.getRandomElement(availableDoctors);
+        Nurse randomNurse = dataGenerator.getRandomElement(availableNurses);
 
         // Assign medical staff
         visit.assignDoctor(randomDoctor);
@@ -218,6 +228,8 @@ public class Visit implements JSONWritable, JSONReadable {
         BigDecimal deductible = coverage.getDeductibleAmount();
         BigDecimal minTarget = deductible.multiply(new BigDecimal("1.5"));
         BigDecimal maxTarget = deductible.multiply(new BigDecimal("3.0"));
+        // Add a tolerance of 5% to the max target to prevent unnecessary adjustments
+        BigDecimal maxTargetWithTolerance = maxTarget.multiply(new BigDecimal("1.05"));
 
         // Continue adding items until we reach the target
         BigDecimal totalCharges = BigDecimal.ZERO;
@@ -253,11 +265,71 @@ public class Visit implements JSONWritable, JSONReadable {
             totalCharges = visit.calculateCharges();
         }
 
-        if (totalCharges.compareTo(maxTarget) > 0) {
+        // Continue adding items until we reach the minimum target
+        int attemptCount = 0;
+        final int MAX_ATTEMPTS = 50; // Prevent infinite loops
+
+        while (totalCharges.compareTo(minTarget) < 0 && attemptCount < MAX_ATTEMPTS) {
+            attemptCount++;
+            try {
+                // Get a random covered benefit type
+                BenefitType selectedBenefitType = dataGenerator.getRandomElement(coveredBenefits);
+
+                // Add diagnostic code for the selected benefit type
+                try {
+                    DiagnosticCode diagnosticCode = DiagnosticCode.getRandomCodeForBenefitType(selectedBenefitType, true);
+                    visit.diagnose(diagnosticCode);
+                } catch (Exception e) {
+                    try {
+                        DiagnosticCode diagnosticCode = DiagnosticCode.getRandomCode();
+                        visit.diagnose(diagnosticCode);
+                    } catch (Exception ex) {
+                        continue;
+                    }
+                }
+
+                // Add procedure code for the selected benefit type
+                try {
+                    ProcedureCode procedureCode = ProcedureCode.getRandomCodeForBenefitType(selectedBenefitType, true);
+                    visit.procedure(procedureCode);
+                } catch (Exception e) {
+                    try {
+                        ProcedureCode procedureCode = ProcedureCode.getRandomCode();
+                        visit.procedure(procedureCode);
+                    } catch (Exception ex) {
+                        continue;
+                    }
+                }
+
+                // Add medication
+                try {
+                    Medication medication = dataGenerator.getRandomMedication();
+                    visit.prescribeMedicine(medication, 1);
+                } catch (Exception e) {
+                    continue;
+                }
+
+                try {
+                    visit.addRandomWardStay(selectedBenefitType);
+                } catch (Exception e) {
+                    continue;
+                }
+
+                totalCharges = visit.calculateCharges();
+            } catch (Exception e) {
+                System.err.println("Error adding items to visit: " + e.getMessage());
+            }
+        }
+
+        // Only adjust if we're significantly over the max target (using the tolerance)
+        if (totalCharges.compareTo(maxTargetWithTolerance) > 0) {
             List<BillableItem> items = visit.getRelatedBillableItems();
 
-            // Remove most expensive items until we're under the max target
-            while (totalCharges.compareTo(maxTarget) > 0 && !items.isEmpty()) {
+            // Remove most expensive items until we're under the max target with tolerance
+            attemptCount = 0;
+            while (totalCharges.compareTo(maxTargetWithTolerance) > 0 && !items.isEmpty() && attemptCount < MAX_ATTEMPTS) {
+                attemptCount++;
+
                 int mostExpensiveIndex = getMostExpensiveIndex(items, totalCharges, minTarget);
 
                 if (mostExpensiveIndex >= 0) {
@@ -271,10 +343,21 @@ public class Visit implements JSONWritable, JSONReadable {
                         if (visit.inpatientProcedures.size() > 1) {
                             visit.inpatientProcedures.remove(itemToRemove);
                         }
+                    } else if (itemToRemove instanceof WardStay) {
+                        try {
+                            visit.wardStays.remove((WardStay) itemToRemove);
+                        } catch (Exception e) {
+                            continue;
+                        }
                     }
 
                     totalCharges = visit.calculateCharges();
+
+                    if (totalCharges.compareTo(minTarget) < 0) {
+                        break;
+                    }
                 } else {
+                    // Can't find an item to remove without going below min
                     break;
                 }
             }
@@ -450,9 +533,6 @@ public class Visit implements JSONWritable, JSONReadable {
 
         WardStay wardStay = new WardStay(ward, this.admissionDateTime, endDateTime);
         this.addWardStay(wardStay);
-
-        System.out.println("Added random ward stay: " + selectedWardType.getDescription() +
-                " for " + daysStayed + " days at $" + ward.getDailyRate() + "/day");
     }
 
     /**
@@ -617,7 +697,7 @@ public class Visit implements JSONWritable, JSONReadable {
 
         if (prescriptions != null) {
             prescriptions.forEach((medication, quantity) ->
-                    items.add(new MedicationBillableItem(medication, quantity, true)));
+                    items.add(new MedicationBillableItem(medication, quantity)));
         }
         
         if (wardStays != null) {

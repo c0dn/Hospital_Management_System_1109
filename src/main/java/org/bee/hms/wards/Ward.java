@@ -2,11 +2,16 @@ package org.bee.hms.wards;
 
 import java.util.Map;
 
-/**
- * Represents a general hospital ward.
- * This interface defines the essential methods that all ward types must implement.
- */
-public interface Ward {
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.bee.utils.JSONReadable;
+import org.bee.utils.JSONWritable;
+import org.bee.utils.jackson.WardDeserializer;
+import org.bee.utils.jackson.WardSerializer;
+
+@JsonSerialize(using = WardSerializer.class)
+@JsonDeserialize(using = WardDeserializer.class)
+public interface Ward extends JSONWritable, JSONReadable {
     /**
      * Retrieves the name of the ward.
      *

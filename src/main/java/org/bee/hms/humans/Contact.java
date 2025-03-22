@@ -1,9 +1,13 @@
 package org.bee.hms.humans;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Stores contact details of a person, such as phone number and email.
  */
-
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Contact {
 
     /**
@@ -39,6 +43,15 @@ public class Contact {
         this.homePhone = homePhone;
         this.companyPhone = companyPhone;
         this.email = email;
+    }
+
+    @JsonCreator
+    public static Contact create(
+            @JsonProperty("personalPhone") String personalPhone,
+            @JsonProperty("homePhone") String homePhone,
+            @JsonProperty("companyPhone") String companyPhone,
+            @JsonProperty("email") String email) {
+        return new Contact(personalPhone, homePhone, companyPhone, email);
     }
 
     public String getPersonalPhone() {

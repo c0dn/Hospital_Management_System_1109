@@ -19,7 +19,7 @@ public class LabTest {
     private int labTestID;
 
     /** The type of lab test. */
-    private LABTYPE type;
+    private LabTestType type;
 
     /** The date when the lab test was performed or recorded. */
     private Date dateStamp;
@@ -55,7 +55,7 @@ public class LabTest {
      * @param remarks remarks or comments regarding the lab test.
      * @param cost the cost of the lab test.
      */
-    public LabTest(LABTYPE type, Date dateStamp, ConsultationStatus status, Consultation consultation,
+    public LabTest(LabTestType type, Date dateStamp, ConsultationStatus status, Consultation consultation,
                    Doctor doctor, String remarks, Double cost) {
         setLabTestID(count++);
         this.type = type;
@@ -138,7 +138,7 @@ public class LabTest {
      *
      * @return the lab test type.
      */
-    public LABTYPE getType() {
+    public LabTestType getType() {
         return type;
     }
 
@@ -147,7 +147,7 @@ public class LabTest {
      *
      * @param type the lab test type to set.
      */
-    public void setType(LABTYPE type) {
+    public void setType(LabTestType type) {
         this.type = type;
     }
 

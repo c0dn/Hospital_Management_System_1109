@@ -1,5 +1,7 @@
 package org.bee.hms.humans;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.bee.hms.auth.SystemUser;
 
 /**
@@ -14,6 +16,7 @@ import org.bee.hms.auth.SystemUser;
  * </ul>
  */
 
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Staff extends Human implements SystemUser {
     /** The unique identifier for the staff. */
     private String staffId;
@@ -41,7 +44,31 @@ public class Staff extends Human implements SystemUser {
         this.staffId = builder.staffId;
         this.title = builder.title;
         this.department = builder.department;
-        this.type = "staff";
+    }
+
+
+    /**
+     * Utility method to set common Staff fields on any builder that extends StaffBuilder.
+     * This helps avoid repetition in factory methods for Staff subclasses.
+     *
+     * @param <T> The type of builder extending StaffBuilder
+     * @param builder The builder instance with human fields already set
+     * @param staffId The staff identifier
+     * @param title The professional title
+     * @param department The department
+     * @return The same builder instance with staff fields set
+     */
+    protected static <T extends StaffBuilder<?>> T setStaffFields(
+            T builder,
+            String staffId,
+            String title,
+            String department
+    ) {
+        builder.staffId(staffId);
+        builder.title(title);
+        builder.department(department);
+
+        return builder;
     }
 
 
@@ -65,6 +92,7 @@ public class Staff extends Human implements SystemUser {
         System.out.printf("\nTitle: " + title);
     }
 
+    @JsonIgnore
     @Override
     public String getUsername() {
         return staffId;
