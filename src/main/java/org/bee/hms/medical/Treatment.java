@@ -1,7 +1,5 @@
 package org.bee.hms.medical;
 
-import org.bee.utils.DataGenerator;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,7 +23,7 @@ public class Treatment {
     private String treatmentName;
 
     /** The current status of the treatment. */
-    private STATUS status;
+    private ConsultationStatus status;
 
     /** The start date of the treatment. */
     private Date startDate;
@@ -60,7 +58,7 @@ public class Treatment {
      * @param procedures     a list of procedures associated with the treatment; if null,
      *                       an empty list is initialized.
      */
-    public Treatment(Consultation consultation, String treatmentName, STATUS status,
+    public Treatment(Consultation consultation, String treatmentName, ConsultationStatus status,
                      Date startDate, Date endDate,
                      String notes, Double cost, List<ProcedureCode> procedures) {
         setTreatmentID(count++);
@@ -179,9 +177,9 @@ public class Treatment {
     /**
      * Gets the current status of the treatment.
      *
-     * @return the treatment status a {@link STATUS} enum.
+     * @return the treatment status a {@link ConsultationStatus} enum.
      */
-    public STATUS getStatus() {
+    public ConsultationStatus getStatus() {
         return status;
     }
 
@@ -190,7 +188,7 @@ public class Treatment {
      *
      * @param status the treatment status to set.
      */
-    public void setStatus(STATUS status) {
+    public void setStatus(ConsultationStatus status) {
         this.status = status;
     }
 

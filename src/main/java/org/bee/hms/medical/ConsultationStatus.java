@@ -2,7 +2,7 @@ package org.bee.hms.medical;
 /**
  * Enums for status types
  */
-public enum STATUS {
+public enum ConsultationStatus {
     SCHEDULED,
     IN_PROGRESS,
     CANCELLED,

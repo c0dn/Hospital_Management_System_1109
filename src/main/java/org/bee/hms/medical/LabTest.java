@@ -1,8 +1,6 @@
 package org.bee.hms.medical;
 
 import org.bee.hms.humans.Doctor;
-import org.bee.hms.telemed.Appointment;
-import org.bee.utils.DataGenerator;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,7 +25,7 @@ public class LabTest {
     private Date dateStamp;
 
     /** The current status of the lab test. */
-    private STATUS status;
+    private ConsultationStatus status;
 
     /** The outpatient case associated with this lab test. */
     private Consultation consultation;
@@ -57,7 +55,7 @@ public class LabTest {
      * @param remarks remarks or comments regarding the lab test.
      * @param cost the cost of the lab test.
      */
-    public LabTest(LABTYPE type, Date dateStamp, STATUS status, Consultation consultation,
+    public LabTest(LABTYPE type, Date dateStamp, ConsultationStatus status, Consultation consultation,
                    Doctor doctor, String remarks, Double cost) {
         setLabTestID(count++);
         this.type = type;
@@ -174,9 +172,9 @@ public class LabTest {
     /**
      * Gets the current status of the lab test.
      *
-     * @return the lab test status a {@link STATUS} enum.
+     * @return the lab test status a {@link ConsultationStatus} enum.
      */
-    public STATUS getStatus() {
+    public ConsultationStatus getStatus() {
         return status;
     }
 
@@ -185,7 +183,7 @@ public class LabTest {
      *
      * @param status the lab test status to set.
      */
-    public void setStatus(STATUS status) {
+    public void setStatus(ConsultationStatus status) {
         this.status = status;
     }
 

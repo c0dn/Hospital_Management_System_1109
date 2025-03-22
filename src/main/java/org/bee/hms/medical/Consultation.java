@@ -1,7 +1,6 @@
 package org.bee.hms.medical;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,10 +9,13 @@ import java.util.Map;
 
 import org.bee.hms.billing.BillableItem;
 import org.bee.hms.humans.Doctor;
+import org.bee.hms.humans.Nurse;
 import org.bee.hms.humans.Patient;
 import org.bee.utils.DataGenerator;
 import org.bee.utils.JSONReadable;
 import org.bee.utils.JSONWritable;
+
+import javax.print.Doc;
 
 /**
  * Represents a medical consultation.
@@ -23,81 +25,115 @@ import org.bee.utils.JSONWritable;
  * charges. It also provides methods to generate random consultations, calculate charges, and retrieve related billable items.
  * </p>
  */
-public class Consultation implements JSONWritable, JSONReadable {
+public class Consultation implements JSONReadable, JSONWritable {
 
-    /** The unique consultation ID */
+    /**
+     * The unique consultation ID
+     */
     private String consultationId;
 
-    /** The type of the consultation (e.g., emergency, regular, specialized) */
+    /**
+     * The type of the consultation (e.g., emergency, regular, specialized)
+     */
     private ConsultationType type;
 
-    /** The ID of the doctor who performed the consultation */
-    private String doctorId;
-
-    /** The date and time the consultation took place */
+    /**
+     * The date and time the consultation took place
+     */
     private LocalDateTime consultationTime;
 
-    /** The fee for the consultation */
+    /**
+     * The fee for the consultation
+     */
     private BigDecimal consultationFee;
 
-    /** The list of diagnostic codes associated with the consultation */
+    /**
+     * The list of diagnostic codes associated with the consultation
+     */
     private List<DiagnosticCode> diagnosticCodes;
 
-    /** The list of procedure codes associated with the consultation */
+    /**
+     * The list of procedure codes associated with the consultation
+     */
     private List<ProcedureCode> procedureCodes;
 
-    /** The list of medications prescribed during the consultation with their quantities */
+    /**
+     * The list of medications prescribed during the consultation with their quantities
+     */
     private Map<Medication, Integer> prescriptions;
 
-    /** Additional notes regarding the consultation */
+    /**
+     * Additional notes regarding the consultation
+     */
     private String notes;
 
-    /** Medical history of the patient. */
+    /**
+     * Date of the outpatient appointment.
+     */
+    private LocalDateTime appointmentDate;
+
+    /**
+     * Medical history of the patient.
+     */
     private String medicalHistory;
 
-    /** Current status of the outpatient case. */
-    private STATUS status;
+    /**
+     * Current status of the outpatient case.
+     */
+    private ConsultationStatus status;
 
-    /** Department handling the outpatient case. */
+    /**
+     * Department handling the outpatient case.
+     */
     private DEPARTMENT department;
 
-    /** Diagnosis given for the outpatient case. */
+    /**
+     * Diagnosis given for the outpatient case.
+     */
     private String diagnosis;
 
-    /** Reason for the patient's visit. */
+    /**
+     * Reason for the patient's visit.
+     */
     private String visitReason;
 
-    /** Follow-up date for the patient. */
+    /**
+     * Follow-up date for the patient.
+     */
     private LocalDateTime followUpDate;
 
-    /** Instructions given for the outpatient case. */
+    /**
+     * Instructions given for the outpatient case.
+     */
     private String instructions;
 
-    /** Patient associated with this outpatient case. */
+    /**
+     * Patient associated with this outpatient case.
+     */
     private Patient patient;
 
-    /** Doctor handling the outpatient case. */
+    /**
+     * Doctor handling the outpatient case.
+     */
     private Doctor doctor;
 
-    /** List of treatments assigned to the patient. */
+    /**
+     * List of treatments assigned to the patient.
+     */
     private ArrayList<Treatment> treatments;
 
-    /** List of lab tests ordered for the patient. */
+    /**
+     * List of lab tests ordered for the patient.
+     */
     private ArrayList<LabTest> labtests;
-
-    /** List of all outpatient case instances. */
-    private static List<Consultation> instances = new ArrayList<>();
-
-    public static List<Consultation> getAllConsultationCases() {
-        return instances;
-    }
 
 
     /**
      * Creates a consultation with random data for testing purposes.
      * <p>
      * This method generates a {@link Consultation} instance with random values for various fields, including
-     * consultation ID, type, doctor ID, consultation time, diagnostic codes, procedure codes, prescriptions, and notes.
+     * consultation ID, type, doctor ID, consultation time, diagnostic codes, procedure codes, prescriptions, notes,
+     * visit reason, diagnosis, instructions, and medical history.
      * </p>
      *
      * @return A randomly populated {@link Consultation} instance.
@@ -106,31 +142,86 @@ public class Consultation implements JSONWritable, JSONReadable {
         DataGenerator gen = DataGenerator.getInstance();
         Consultation consultation = new Consultation();
 
-        // Set basic fields
+        Doctor doc = Doctor.builder().withRandomBaseData().build();
+        Patient patient = Patient.builder()
+                .withRandomData(gen.generatePatientId())
+                .build();
         consultation.consultationId = "C" + System.currentTimeMillis() +
                 String.format("%04d", gen.generateRandomInt(10000));
         consultation.type = gen.getRandomEnum(ConsultationType.class);
-        consultation.doctorId = "D" + gen.generateRandomInt(1000, 9999);
         consultation.consultationTime = LocalDateTime.now()
                 .minusDays(gen.generateRandomInt(1, 30));
         consultation.consultationFee = new BigDecimal(gen.generateRandomInt(50, 300));
-        consultation.notes = "Consultation notes for patient visit #" + gen.generateRandomInt(1000, 9999);
 
-        // Add random diagnostic codes
+        consultation.doctor = doc;
+        consultation.patient = patient;
+
+        String[] reasons = {
+                "Regular check-up",
+                "Flu symptoms",
+                "Headache",
+                "Skin rash",
+                "Fever",
+                "Stomach pain",
+                "Follow-up consultation",
+                "Medication review",
+                "Chronic condition management",
+                "Mental health consultation"
+        };
+        consultation.visitReason = gen.getRandomElement(reasons);
+
+        String[] diagnoses = {
+                "Common cold",
+                "Seasonal allergies",
+                "Hypertension",
+                "Type 2 Diabetes",
+                "Migraine",
+                "Anxiety disorder",
+                "Gastritis",
+                "Dermatitis",
+                "Respiratory infection",
+                "Vitamin D deficiency"
+        };
+        consultation.diagnosis = gen.getRandomElement(diagnoses);
+
+        String[] instructionOptions = {
+                "Take medication as prescribed. Rest for 2-3 days.",
+                "Increase fluid intake. Monitor symptoms.",
+                "Avoid strenuous activity for one week.",
+                "Follow the diet plan provided. Schedule follow-up in 2 weeks.",
+                "Apply cream twice daily. Return if symptoms worsen.",
+                "Take blood pressure readings daily and log them.",
+                "Continue with current treatment plan. No changes needed."
+        };
+        consultation.instructions = gen.getRandomElement(instructionOptions);
+
+        String[] histories = {
+                "No significant medical history.",
+                "History of hypertension.",
+                "Type 2 diabetes diagnosed 5 years ago.",
+                "Previous appendectomy in 2018.",
+                "Chronic asthma since childhood.",
+                "Family history of cardiovascular disease.",
+                "Previous allergic reaction to penicillin."
+        };
+        consultation.medicalHistory = gen.getRandomElement(histories);
+
+        consultation.notes = "Consultation for " + consultation.visitReason.toLowerCase() +
+                ". Diagnosed with " + consultation.diagnosis.toLowerCase() +
+                ". " + gen.getRandomElement(instructionOptions);
+
         consultation.diagnosticCodes = new ArrayList<>();
         int diagCount = gen.generateRandomInt(1, 3);
         for (int i = 0; i < diagCount; i++) {
             consultation.diagnosticCodes.add(DiagnosticCode.getRandomCode());
         }
 
-        // Add random procedure codes
         consultation.procedureCodes = new ArrayList<>();
         int procCount = gen.generateRandomInt(0, 2);
         for (int i = 0; i < procCount; i++) {
             consultation.procedureCodes.add(ProcedureCode.getRandomCode());
         }
 
-        // Add random prescriptions
         consultation.prescriptions = new HashMap<>();
         int medCount = gen.generateRandomInt(1, 4);
         for (int i = 0; i < medCount; i++) {
@@ -140,8 +231,39 @@ public class Consultation implements JSONWritable, JSONReadable {
             );
         }
 
+
+        // Add treatments - 80% chance (using generateRandomInt with a range of 0-9, where 0-7 = true)
+        if (gen.generateRandomInt(10) < 8) {
+            int treatmentCount = gen.generateRandomInt(1, 3);
+            // Uncomment if Treatment class is available
+            // for (int i = 0; i < treatmentCount; i++) {
+            //     Treatment treatment = Treatment.withRandomData();
+            //     consultation.addTreatment(treatment);
+            // }
+        }
+
+        // Add lab tests - 60% chance (using generateRandomInt with a range of 0-9, where 0-5 = true)
+        if (gen.generateRandomInt(10) < 6) {
+            int labTestCount = gen.generateRandomInt(1, 2);
+            // Uncomment if LabTest class is available
+            // for (int i = 0; i < labTestCount; i++) {
+            //     LabTest labTest = LabTest.withRandomData();
+            //     consultation.addLabTest(labTest);
+            // }
+        }
+
+
         return consultation;
     }
+
+
+    public static Consultation withRandomData(Patient patient, Doctor doctor) {
+        Consultation consultation = withRandomData();
+        consultation.doctor = doctor;
+        consultation.patient = patient;
+        return consultation;
+    }
+
 
     /**
      * Returns all related charges as separate {@link BillableItem} instances.
@@ -230,16 +352,32 @@ public class Consultation implements JSONWritable, JSONReadable {
         };
     }
 
-    public String getConsultationId() { return consultationId; }
+    public String getConsultationId() {
+        return consultationId;
+    }
 
-    public Patient getPatient() { return patient; }
+    public Patient getPatient() {
+        return patient;
+    }
 
-    public STATUS getStatus() { return status; }
+    public ConsultationStatus getStatus() {
+        return status;
+    }
 
-    public String getDiagnosis() { return diagnosis; }
+    public String getDiagnosis() {
+        return diagnosis;
+    }
 
-    public Doctor getDoctor() { return doctor; }
+    public Doctor getDoctor() {
+        return doctor;
+    }
 
-    public ConsultationType getConsultationType() { return type; }
+    public ConsultationType getConsultationType() {
+        return type;
+    }
 
+
+    public LocalDateTime getAppointmentDate() {
+        return appointmentDate;
+    }
 }
