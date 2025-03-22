@@ -12,13 +12,12 @@ import org.bee.hms.telemed.AppointmentStatus;
 import org.bee.hms.telemed.MedicalCertificate;
 import org.bee.utils.DataGenerator;
 import org.bee.utils.JSONHelper;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Tests for serialization and deserialization of Appointment objects using JSONHelper.
@@ -46,7 +45,7 @@ public class AppointmentSerializationTest {
         
         // Verify JSON string is not empty
         assertNotNull(json);
-        assertTrue(json.length() > 0);
+        assertFalse(json.isEmpty());
     }
     
     @Test

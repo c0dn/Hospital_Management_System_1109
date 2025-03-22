@@ -284,8 +284,6 @@ public class Visit implements JSONWritable, JSONReadable {
                 }
             }
         }
-
-        visit.updateStatus(VisitStatus.DISCHARGED);
         return visit;
     }
 

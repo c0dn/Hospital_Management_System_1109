@@ -319,7 +319,17 @@ public class InsuranceClaim implements JSONWritable, JSONReadable {
      * @return The approved amount, or null if not yet approved
      */
     public BigDecimal getApprovedAmount() {
-        return approvedAmount;
+        return approvedAmount == null ? BigDecimal.ZERO : approvedAmount;
+    }
+
+
+    /**
+     * Gets the claim amount for the claim.
+     *
+     * @return The claim Amount
+     */
+    public BigDecimal getClaimAmount() {
+        return claimAmount;
     }
 
 
