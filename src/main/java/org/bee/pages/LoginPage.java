@@ -5,9 +5,11 @@ import java.util.Scanner;
 
 import org.bee.controllers.HumanController;
 import org.bee.hms.auth.SystemUser;
+import org.bee.hms.humans.Clerk;
 import org.bee.hms.humans.Doctor;
 import org.bee.hms.humans.Nurse;
 import org.bee.hms.humans.Patient;
+import org.bee.pages.clerk.ClerkMainPage;
 import org.bee.pages.doctor.DoctorMainPage;
 import org.bee.pages.patient.PatientMainPage;
 import org.bee.ui.Color;
@@ -71,6 +73,9 @@ public class LoginPage extends UiBase {
 
                     // ToPage(new NurseMainPage());
                     case Patient patient -> ToPage(new PatientMainPage());
+
+                    case Clerk clerk -> ToPage(new ClerkMainPage());
+
 
                     // ToPage(new PatientMainPage());
                     default -> {

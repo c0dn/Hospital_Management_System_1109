@@ -169,4 +169,5 @@ public class HumanController extends BaseController<Human> {
                 .map(human -> (Clerk) human)
                 .collect(Collectors.toList());
     }
+
 }

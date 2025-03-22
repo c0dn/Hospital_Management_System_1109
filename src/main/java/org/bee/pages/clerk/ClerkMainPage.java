@@ -39,10 +39,25 @@ public class ClerkMainPage extends UiBase {
         lv.setTitleHeader("Welcome to Clerk portal | Welcome Back " ); // Set the title header of the list view
 
         // Menu options
-        lv.addItem(new TextView(this.canvas, "1. New Claim - Submit new claim", Color.GREEN));
-        lv.addItem(new TextView(this.canvas, "2. Manage Claim - Manage existing claims", Color.GREEN));
-        lv.addItem(new TextView(this.canvas, "3. Claim Status - Check existing claim status", Color.GREEN));
-        lv.addItem(new TextView(this.canvas, "4. Change Claim Status - Update existing claim status", Color.GREEN));
+        //lv.addItem(new TextView(this.canvas, "", Color.GREEN)); // Another empty line
+        //lv.addItem(new TextView(this.canvas, "Telemedicine Services", Color.GREEN));
+
+        //lv.addItem(new TextView(this.canvas, "1. View All Telemedicine cases- To view all telemed cases ", Color.GREEN));
+        //lv.addItem(new TextView(this.canvas, "2. View Billing For Telemedicine Service - To view billing for teleconsultation ", Color.GREEN));
+
+        //lv.addItem(new TextView(this.canvas, "", Color.GREEN)); // Another empty line
+        //lv.addItem(new TextView(this.canvas, "Outpatient Management Services", Color.GREEN));
+
+        //lv.addItem(new TextView(this.canvas, "3. View All Outpatient Cases - To view all outpatient cases", Color.GREEN));
+        //lv.addItem(new TextView(this.canvas, "4. Update Fields For Outpatient cases - To update outpatient cases", Color.GREEN));
+        //lv.addItem(new TextView(this.canvas, "5. View Billing For Telemedicine Service - To view billing outpatient ", Color.GREEN));
+
+        lv.addItem(new TextView(this.canvas, "", Color.GREEN)); // Another empty line
+        lv.addItem(new TextView(this.canvas, "Insurance Claim Management", Color.GREEN));
+        lv.addItem(new TextView(this.canvas, "6. New Claim - Submit new claim", Color.GREEN));
+        lv.addItem(new TextView(this.canvas, "7. Manage Claim - Manage existing claims", Color.GREEN));
+        lv.addItem(new TextView(this.canvas, "8. Claim Status - Check existing claim status", Color.GREEN));
+        lv.addItem(new TextView(this.canvas, "9. Change Claim Status - Update existing claim status", Color.GREEN));
 
         // Attach user input handlers for navigation
         lv.attachUserInput("New Claim", str -> ToPage(new NewClaimPage()));
