@@ -7,6 +7,7 @@ import org.bee.utils.DataGenerator;
 import org.bee.utils.InfoUpdaters.ConsultationUpdater;
 
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Manages the storage and retrieval of {@link Consultation} objects.
@@ -111,5 +112,75 @@ public class ConsultationController extends BaseController<Consultation> {
                 .filter(c -> c.getConsultationId().equals(consultationId))
                 .findFirst()
                 .orElse(null);
+    }
+
+    public void viewAllOutpatientCases() {
+        ConsultationController consultationController = ConsultationController.getInstance();
+        List<Consultation> consultations = consultationController.getAllOutpatientCases();
+
+        if (consultations.isEmpty()) {
+            System.out.println("No outpatient cases found.");
+            System.out.println("\nPress Enter to continue...");
+            new Scanner(System.in).nextLine();
+            return;
+        }
+
+        final int PAGE_SIZE = 7;
+        int currentPage = 1;
+        int totalPages = (int) Math.ceil((double) consultations.size() / PAGE_SIZE);
+
+        boolean exit = false;
+        while (!exit) {
+            int startIndex = (currentPage - 1) * PAGE_SIZE;
+            int endIndex = Math.min(startIndex + PAGE_SIZE, consultations.size());
+
+            List<Consultation> currentPageConsultations = consultations.subList(startIndex, endIndex);
+            System.out.printf("%-8s | %-32s | %-10s | %-15s | %-20s | %-15s | %-20s | %-15s | %-10s | %-10s \n",
+                    "Case ID", "Appointment Date", "Patient ID", "Patient Name", "Type", "Status", "Diagnosis",
+                    "Doctor Name");
+            System.out.println("-".repeat(180));
+
+            for (int i = 0; i < currentPageConsultations.size(); i++) {
+                Consultation consultation = currentPageConsultations.get(i);
+                System.out.printf("%-8s %-32s %-10s %-15s %-20s %-15s %-20s %-15s \n",
+                        consultation.getConsultationId(), consultation.getAppointmentDate(),
+                        consultation.getPatient() != null ? consultation.getPatient().getPatientId() : "N/A",
+                        consultation.getPatient() != null ? consultation.getPatient().getName() : "N/A",
+                        consultation.getConsultationType(), consultation.getStatus(),
+                        consultation.getDiagnosis(),
+                        consultation.getDoctor() != null ? consultation.getDoctor().getName() : "N/A");
+            }
+
+            System.out.println("\nNavigation:");
+            if (currentPage > 1) {
+                System.out.println("P - Previous Page");
+            }
+            if (currentPage < totalPages) {
+                System.out.println("N - Next Page");
+            }
+            System.out.println("E - Exit to Main Menu");
+
+            System.out.println("\nEnter your choice: ");
+            String choice = new Scanner(System.in).nextLine().toUpperCase();
+
+            switch (choice) {
+                case "P":
+                    if (currentPage > 1) {
+                        currentPage--;
+                    }
+                    break;
+                case "N":
+                    if (currentPage < totalPages) {
+                        currentPage++;
+                    }
+                    break;
+                case "E":
+                    exit = true;
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+                    break;
+            }
+        }
     }
 }
