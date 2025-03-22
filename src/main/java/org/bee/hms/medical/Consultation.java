@@ -64,12 +64,6 @@ public class Consultation {
     /** Reason for the patient's visit. */
     private String visitReason;
 
-    /** List of current medications prescribed to the patient. */
-    private ArrayList<Drug> currentMedications;
-
-    /** List of prescriptions assigned to the patient. */
-    private ArrayList<Drug> prescriptions;
-
     /** Follow-up date for the patient. */
     private Date followUpDate;
 
@@ -230,4 +224,50 @@ public class Consultation {
             case FOLLOW_UP -> "FOLLOW_UP_CONSULTATION";
         };
     }
+
+    /**
+     * Prints all outpatient case for clerk to view
+     */
+    public static void viewAllOutpatientCasesClerk() {
+        List<Consultation> cases = getAllConsultationCases();
+
+        if (cases.isEmpty()) {
+            System.out.println("No outpatient cases found.");
+            return;
+        }
+
+        System.out.printf("%-10s | %-30s | %-10s | %-15s | %-15s | %-30s | %-15s | %-15s | %-10s | %-10s\n",
+                "Case ID", "Appointment Date", "Patient ID", "Patient Name", "Status", "Diagnosis",
+                "Physician ID", "Physician Name", "Billing ID", "Total Cost");
+        System.out.println("-".repeat(190));
+
+        for (Consultation consultation : cases) {
+            System.out.printf("%-10s | %-30s | %-10s | %-15s | %-15s | %-30s | %-15s | %-15s | %-10s | $%-10.2f\n",
+                    consultation.getConsultationId(),
+                    consultation.getAppointmentDate(),
+                    consultation.getPatient() != null ? consultation.getPatient().getPatientId() : "N/A",
+                    consultation.getPatient() != null ? consultation.getPatient().getName() : "N/A",
+                    consultation.getStatus(),
+                    consultation.getDiagnosis(),
+                    consultation.getDoctor() != null ? consultation.getDoctor().getMcr() : "N/A",
+                    consultation.getDoctor() != null ? consultation.getDoctor().getName() : "N/A");
+//                    consultation.getBilling() != null ? oc.getBilling().getBillingID() : "N/A",
+//                    consultation.getBilling() != null ? oc.getBilling().getFinalCost() : 0.0);
+        }
+    }
+
+    public String getConsultationId() { return consultationId; }
+
+    public Date getAppointmentDate() { return appointmentDate; }
+
+    public Patient getPatient() { return patient; }
+
+    public STATUS getStatus() { return status; }
+
+    public String getDiagnosis() { return diagnosis; }
+
+    public Doctor getDoctor() { return doctor; }
+
+    // BILL
+    // public
 }
