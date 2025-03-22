@@ -12,7 +12,6 @@ public class DoctorBuilder extends StaffBuilder<DoctorBuilder> {
     /** The Medical Council Registration (MCR) number of the doctor. */
     String mcr;
 
-    ArrayList<Consultation> patientCases = new ArrayList<>();
 
     /**
      * Default constructor for {@code DoctorBuilder}.
@@ -30,12 +29,6 @@ public class DoctorBuilder extends StaffBuilder<DoctorBuilder> {
         this.mcr = mcr;
         return this;
     }
-
-    public DoctorBuilder patientCases(ArrayList<Consultation> patientCases) {
-        this.patientCases = patientCases;
-        return this;
-    }
-
 
     /**
      * Populates the builder with randomly generated base data, including a random MCR number.
@@ -85,6 +78,6 @@ public class DoctorBuilder extends StaffBuilder<DoctorBuilder> {
     @Override
     public Doctor build() {
         validateRequiredFields();
-        return new Doctor(this, patientCases);
+        return new Doctor(this);
     }
 }

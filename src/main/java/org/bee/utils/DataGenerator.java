@@ -1,12 +1,13 @@
 package org.bee.utils;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
 
 import org.bee.hms.humans.Contact;
 import org.bee.hms.humans.Doctor;
 import org.bee.hms.humans.Patient;
-import org.bee.hms.medical.Medication;
+import org.bee.hms.medical.*;
 import org.bee.hms.policy.AccidentType;
 import org.bee.hms.telemed.Appointment;
 import org.bee.hms.telemed.AppointmentStatus;
@@ -410,6 +411,134 @@ public class DataGenerator {
         }
         
         return appointment;
+    }
+
+    public Consultation generateRandomConsultation() {
+        Patient patient = Patient.builder()
+                .patientId(generatePatientId())
+                .withRandomBaseData()
+                .build();
+
+        return generateRandomConsultation(patient, null);
+    }
+
+    public Consultation generateRandomConsultation(Patient patient, Doctor doctor) {
+        DataGenerator gen = DataGenerator.getInstance();
+        Random random = new Random();
+
+        // Start with the existing withRandomData method
+        Consultation consultation = Consultation.withRandomData();
+
+        // Set patient and doctor (these would need setter methods in Consultation class)
+        // We assume these setters exist based on other methods in the class
+        consultation.setPatient(patient);
+        consultation.setDoctor(doctor);
+
+        // Set appointment date (matching the consultationTime that was already set)
+        // Assuming there's a setter method
+        LocalDateTime consultTime = consultation.getConsultationTime();  // Assuming this getter exists
+        consultation.setAppointmentDate(java.sql.Date.valueOf(consultTime.toLocalDate()));
+
+        // Set visit reason
+        String[] reasons = {
+                "Regular check-up",
+                "Flu symptoms",
+                "Headache",
+                "Skin rash",
+                "Fever",
+                "Stomach pain",
+                "Follow-up consultation",
+                "Medication review",
+                "Chronic condition management",
+                "Mental health consultation"
+        };
+        consultation.setVisitReason(reasons[random.nextInt(reasons.length)]);
+
+        // Set diagnosis
+        String[] diagnoses = {
+                "Common cold",
+                "Seasonal allergies",
+                "Hypertension",
+                "Type 2 Diabetes",
+                "Migraine",
+                "Anxiety disorder",
+                "Gastritis",
+                "Dermatitis",
+                "Respiratory infection",
+                "Vitamin D deficiency"
+        };
+        consultation.setDiagnosis(diagnoses[random.nextInt(diagnoses.length)]);
+
+        // Set status
+        STATUS[] statuses = STATUS.values();
+        consultation.setStatus(statuses[random.nextInt(statuses.length)]);
+
+        // Set department
+        DEPARTMENT[] departments = DEPARTMENT.values();
+        consultation.setDepartment(departments[random.nextInt(departments.length)]);
+
+        // Set follow-up date (if needed) - 70% chance to have a follow-up
+        if (random.nextDouble() < 0.7) {
+            LocalDateTime followUpTime = consultTime.plusDays(random.nextInt(24) + 7); // 7-30 days later
+            consultation.setFollowUpDate(java.sql.Date.valueOf(followUpTime.toLocalDate()));
+        }
+
+        // Set instructions
+        String[] instructionOptions = {
+                "Take medication as prescribed. Rest for 2-3 days.",
+                "Increase fluid intake. Monitor symptoms.",
+                "Avoid strenuous activity for one week.",
+                "Follow the diet plan provided. Schedule follow-up in 2 weeks.",
+                "Apply cream twice daily. Return if symptoms worsen.",
+                "Take blood pressure readings daily and log them.",
+                "Continue with current treatment plan. No changes needed."
+        };
+        consultation.setInstructions(instructionOptions[random.nextInt(instructionOptions.length)]);
+
+        // Set medical history
+        String[] histories = {
+                "No significant medical history.",
+                "History of hypertension.",
+                "Type 2 diabetes diagnosed 5 years ago.",
+                "Previous appendectomy in 2018.",
+                "Chronic asthma since childhood.",
+                "Family history of cardiovascular disease.",
+                "Previous allergic reaction to penicillin."
+        };
+        consultation.setMedicalHistory(histories[random.nextInt(histories.length)]);
+
+        // Add some random treatments - 80% chance
+        if (random.nextDouble() < 0.8) {
+            int treatmentCount = random.nextInt(3) + 1;
+//            for (int i = 0; i < treatmentCount; i++) {
+//                // Create a new treatment with random data
+//                // We assume there's a Treatment class with a withRandomData method
+//                Treatment treatment = Treatment.withRandomData();
+//                consultation.addTreatment(treatment);
+//            }
+        }
+
+        // Add some random lab tests - 60% chance
+        if (random.nextDouble() < 0.6) {
+            int labTestCount = random.nextInt(2) + 1;
+//            for (int i = 0; i < labTestCount; i++) {
+//                // Create a new lab test with random data
+//                // We assume there's a LabTest class with a withRandomData method
+//                LabTest labTest = LabTest.withRandomData();
+//                consultation.addLabTest(labTest);
+//            }
+        }
+
+        // If using a static instances list in the Consultation class
+        // This line would only be needed if not handled in withRandomData()
+        Consultation.getAllConsultationCases().add(consultation);
+
+        // If doctor is provided, add this consultation to doctor's cases
+//        if (doctor != null) {
+//            consultation.addCase(consultation);
+//        }
+
+        return consultation;
     }
 
 }

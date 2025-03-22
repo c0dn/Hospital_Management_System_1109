@@ -1,6 +1,8 @@
 package org.bee.hms.medical;
 
 import org.bee.hms.humans.Doctor;
+import org.bee.hms.telemed.Appointment;
+import org.bee.utils.DataGenerator;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -261,4 +263,5 @@ public class LabTest {
         }
         return null;
     }
+
 }

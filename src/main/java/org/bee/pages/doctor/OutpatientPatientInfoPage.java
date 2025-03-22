@@ -1,5 +1,6 @@
 package org.bee.pages.doctor;
 
+import org.bee.controllers.ConsultationController;
 import org.bee.controllers.HumanController;
 import org.bee.hms.auth.SystemUser;
 import org.bee.hms.humans.Doctor;
@@ -19,6 +20,7 @@ import java.util.List;
 public class OutpatientPatientInfoPage extends UiBase {
 
     private static final HumanController humanController = HumanController.getInstance();
+    private static final ConsultationController consultationController = ConsultationController.getInstance();
     private Patient patient;
     private Consultation consultation;
 
@@ -49,7 +51,7 @@ public class OutpatientPatientInfoPage extends UiBase {
                 return;
             }
             lv.setTitleHeader("List of Outpatient Cases");
-            List<Consultation> cases = humanController.getPatientCases();
+            List<Consultation> cases = consultationController.getAllOutpatientCases();
             int index = 0;
 
             // Show list of patient

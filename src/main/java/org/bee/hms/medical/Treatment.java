@@ -1,5 +1,7 @@
 package org.bee.hms.medical;
 
+import org.bee.utils.DataGenerator;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
