@@ -1,9 +1,7 @@
 package org.bee.utils;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 import org.bee.hms.humans.Contact;
 import org.bee.hms.humans.Doctor;
@@ -257,10 +255,48 @@ public class DataGenerator {
      * Gets a random element from an array.
      *
      * @param array The array to pick from
-     * @return A random element from the array
+     * @return A random element from the array, or null if the array is empty
+     * @throws NullPointerException if the array is null
      */
     public <T> T getRandomElement(T[] array) {
+        Objects.requireNonNull(array, "Array cannot be null");
+        if (array.length == 0) {
+            return null;
+        }
         return array[generateRandomInt(array.length)];
+    }
+
+
+    /**
+     * Gets a random element from a list.
+     *
+     * @param list The list to pick from
+     * @return A random element from the list, or null if the list is empty
+     * @throws NullPointerException if the list is null
+     */
+    public <T> T getRandomElement(List<T> list) {
+        Objects.requireNonNull(list, "List cannot be null");
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(generateRandomInt(list.size()));
+    }
+
+    /**
+     * Gets a random element from a set.
+     *
+     * @param set The set to pick from
+     * @return A random element from the set, or null if the set is empty
+     * @throws NullPointerException if the set is null
+     */
+    public <T> T getRandomElement(Set<T> set) {
+        Objects.requireNonNull(set, "Set cannot be null");
+        if (set.isEmpty()) {
+            return null;
+        }
+
+        List<T> list = new ArrayList<>(set);
+        return list.get(generateRandomInt(list.size()));
     }
 
     /**

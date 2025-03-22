@@ -4,12 +4,14 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 import org.bee.hms.billing.BillableItem;
 import org.bee.hms.policy.BenefitType;
 import org.bee.hms.policy.ClaimableItem;
 import org.bee.utils.CSVHelper;
+import org.bee.utils.DataGenerator;
 
 /**
  * Represents a diagnostic code, typically used for medical diagnosis.
@@ -40,6 +42,8 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
 
     /** The cost of the diagnostic code, used for billing purposes */
     private BigDecimal cost;// keep this for billing purpose
+
+    private static final DataGenerator gen = DataGenerator.getInstance();
 
     /** A registry to store diagnostic codes loaded from a CSV file */
     private static final Map<String, DiagnosticCode> CODE_REGISTRY = new HashMap<>();
@@ -299,9 +303,8 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
      * @return A randomly selected DiagnosticCode
      */
     public static DiagnosticCode getRandomCode() {
-        String[] codes = CODE_REGISTRY.keySet().toArray(new String[0]);
-        int randomIndex = (int) (Math.random() * codes.length);
-        return createFromCode(codes[randomIndex]);
+        Set<String> codes = CODE_REGISTRY.keySet();
+        return createFromCode(gen.getRandomElement(codes));
     }
     
     /**
@@ -313,7 +316,7 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
      */
     public static DiagnosticCode getRandomCodeForBenefitType(BenefitType benefitType, boolean isInPatient) {
         // Create a list to store matching codes
-        java.util.List<String> matchingCodes = new java.util.ArrayList<>();
+        List<String> matchingCodes = new java.util.ArrayList<>();
         
         // Iterate through all codes in the registry
         for (Map.Entry<String, DiagnosticCode> entry : CODE_REGISTRY.entrySet()) {
@@ -330,8 +333,7 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
             throw new IllegalArgumentException("No diagnostic codes found for benefit type: " + benefitType);
         }
         
-        int randomIndex = (int) (Math.random() * matchingCodes.size());
-        return createFromCode(matchingCodes.get(randomIndex));
+        return createFromCode(gen.getRandomElement(matchingCodes));
     }
 }
 
