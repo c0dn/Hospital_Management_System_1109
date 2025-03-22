@@ -91,6 +91,12 @@ public class MedicationBillableItem implements BillableItem, ClaimableItem {
         return isInpatient ? BenefitType.HOSPITALIZATION : BenefitType.OUTPATIENT_TREATMENTS;
     }
 
+
+    @Override
+    public Medication getMedication() {
+        return medication;
+    }
+
     /**
      * Retrieves a description of the benefit for the medication.
      *

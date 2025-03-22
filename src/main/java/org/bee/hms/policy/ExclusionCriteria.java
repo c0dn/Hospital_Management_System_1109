@@ -1,5 +1,8 @@
 package org.bee.hms.policy;
 
+import org.bee.hms.medical.DiagnosticCode;
+import org.bee.hms.medical.ProcedureCode;
+
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -23,9 +26,9 @@ public class ExclusionCriteria {
     /**
      * Creates an ExclusionCriteria object with specified exclusion patterns and types.
      *
-     * @param excludedDiagnosis A set of diagnosis codes (as regular expressions) to be excluded from coverage.
-     * @param excludedProcedures A set of procedure codes (as regular expressions) to be excluded from coverage.
-     * @param excludedBenefits A set of benefit types that are excluded from coverage.
+     * @param excludedDiagnosis     A set of diagnosis codes (as regular expressions) to be excluded from coverage.
+     * @param excludedProcedures    A set of procedure codes (as regular expressions) to be excluded from coverage.
+     * @param excludedBenefits      A set of benefit types that are excluded from coverage.
      * @param excludedAccidentTypes A set of accident types that are excluded from coverage.
      */
     public ExclusionCriteria(Set<String> excludedDiagnosis, Set<String> excludedProcedures,
@@ -51,20 +54,25 @@ public class ExclusionCriteria {
     /**
      * Determines if a claim item applies exclusion criteria, meaning the item is excluded from coverage.
      *
-     * @param item The claimable item (such as a procedure or diagnosis) to check.
+     * @param item        The claimable item (such as a procedure or diagnosis) to check.
      * @param isInpatient Flag indicating whether the item is for an inpatient or outpatient.
      * @return true if the item matches any exclusion criteria; false otherwise.
      */
     public boolean applies(ClaimableItem item, boolean isInpatient) {
-        return matchesAnyPattern(item.getDiagnosisCode(), excludedDiagnosisPatterns) ||
-                matchesAnyPattern(item.getProcedureCode(), excludedProcedurePatterns) ||
-                excludedBenefits.contains(item.resolveBenefitType(isInpatient));
+        if (item instanceof DiagnosticCode diagnosticCode) {
+            return matchesAnyPattern(diagnosticCode.getDiagnosisCode(), excludedDiagnosisPatterns)
+                    || excludedBenefits.contains(diagnosticCode.resolveBenefitType(isInpatient));
+        } else if (item instanceof ProcedureCode procedureCode) {
+            return matchesAnyPattern(procedureCode.getProcedureCode(), excludedProcedurePatterns)
+                    || excludedBenefits.contains(procedureCode.resolveBenefitType(isInpatient));
+        }
+        return excludedBenefits.contains(item.resolveBenefitType(isInpatient));
     }
 
     /**
      * Checks if a given code (diagnosis or procedure) matches any of the exclusion patterns.
      *
-     * @param code The code to check.
+     * @param code     The code to check.
      * @param patterns A list of exclusion patterns to match against.
      * @return true if any of the patterns match the code; false otherwise.
      */

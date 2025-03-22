@@ -108,7 +108,7 @@ public class CoverageLimit {
     /**
      * Checks if the specified amount is within the benefit limit for a specific benefit type.
      *
-     * @param type The benefit type to check the limit for.
+     * @param type   The benefit type to check the limit for.
      * @param amount The amount to check against the benefit limit.
      * @return true if the amount is within the benefit limit, false if it exceeds it.
      */
@@ -122,7 +122,7 @@ public class CoverageLimit {
      * Checks if the specified amount is within the ward class limit for a specific ward class type.
      *
      * @param wardClass The ward class type to check the limit for.
-     * @param amount The amount to check against the ward class limit.
+     * @param amount    The amount to check against the ward class limit.
      * @return true if the amount is within the ward limit, false if it exceeds it.
      */
     public boolean isWithinWardLimit(WardClassType wardClass, BigDecimal amount) {
@@ -134,7 +134,7 @@ public class CoverageLimit {
     /**
      * Checks if the specified amount is within the accident limit for a specific accident type.
      *
-     * @param type The accident type to check the limit for.
+     * @param type   The accident type to check the limit for.
      * @param amount The amount to check against the accident limit.
      * @return true if the amount is within the accident limit, false if it exceeds it.
      */
@@ -147,19 +147,19 @@ public class CoverageLimit {
     /**
      * Returns the annual coverage limit.
      *
-     * @return The annual coverage limit.
+     * @return The annual coverage limit, or BigDecimal.ZERO if not set
      */
     public BigDecimal getAnnualLimit() {
-        return annualLimit;
+        return annualLimit == null ? BigDecimal.ZERO : annualLimit;
     }
 
     /**
      * Returns the lifetime coverage limit.
      *
-     * @return The lifetime coverage limit.
+     * @return The lifetime coverage limit, or BigDecimal.ZERO if not set
      */
     public BigDecimal getLifetimeLimit() {
-        return lifetimeLimit;
+        return lifetimeLimit == null ? BigDecimal.ZERO : lifetimeLimit;
     }
 
     /**
@@ -201,7 +201,7 @@ public class CoverageLimit {
         /**
          * Adds a limit for a specific accident type.
          *
-         * @param type The accident type to set the limit for.
+         * @param type  The accident type to set the limit for.
          * @param limit The coverage limit for the accident type.
          * @return The builder instance for method chaining.
          */
@@ -213,7 +213,7 @@ public class CoverageLimit {
         /**
          * Adds a limit for a specific benefit type.
          *
-         * @param type The benefit type to set the limit for.
+         * @param type  The benefit type to set the limit for.
          * @param limit The coverage limit for the benefit type.
          * @return The builder instance for method chaining.
          */
@@ -226,7 +226,7 @@ public class CoverageLimit {
          * Adds a limit for a specific ward class type.
          *
          * @param wardClass The ward class type to set the limit for.
-         * @param limit The coverage limit for the ward class type.
+         * @param limit     The coverage limit for the ward class type.
          * @return The builder instance for method chaining.
          */
         public Builder addWardLimit(WardClassType wardClass, double limit) {

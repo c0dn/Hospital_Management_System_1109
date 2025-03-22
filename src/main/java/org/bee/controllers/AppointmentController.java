@@ -31,8 +31,8 @@ import okhttp3.Response;
  */
 public class AppointmentController extends BaseController<Appointment> {
     private static AppointmentController instance;
-    private final DataGenerator dataGenerator = DataGenerator.getInstance();
-    private final HumanController humanController = HumanController.getInstance();
+    private static final DataGenerator dataGenerator = DataGenerator.getInstance();
+    private static final HumanController humanController = HumanController.getInstance();
 
     private AppointmentController() {
         super();

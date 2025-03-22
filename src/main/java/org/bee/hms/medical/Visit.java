@@ -223,18 +223,14 @@ public class Visit implements JSONWritable, JSONReadable {
         BigDecimal totalCharges = BigDecimal.ZERO;
 
         while (totalCharges.compareTo(minTarget) < 0) {
-            // Select random benefit type from covered benefits so that it will match when doing insurance claim
-            BenefitType selectedBenefitType = coveredBenefits.stream()
-                    .skip(dataGenerator.generateRandomInt(0, coveredBenefits.size() - 1))
-                    .findFirst()
-                    .orElse(BenefitType.HOSPITALIZATION);
+            // We are attempting to create a visit that will have items that is covered
+            BenefitType selectedBenefitType = dataGenerator.getRandomElement(coveredBenefits);
 
             // Add diagnostic code for the selected benefit type
             try {
                 DiagnosticCode diagnosticCode = DiagnosticCode.getRandomCodeForBenefitType(selectedBenefitType, true);
                 visit.diagnose(diagnosticCode);
             } catch (IllegalArgumentException e) {
-                System.out.println("Warning: " + e.getMessage() + " - Using random diagnostic code instead.");
                 DiagnosticCode diagnosticCode = DiagnosticCode.getRandomCode();
                 visit.diagnose(diagnosticCode);
             }
@@ -244,7 +240,6 @@ public class Visit implements JSONWritable, JSONReadable {
                 ProcedureCode procedureCode = ProcedureCode.getRandomCodeForBenefitType(selectedBenefitType, true);
                 visit.procedure(procedureCode);
             } catch (IllegalArgumentException e) {
-                System.out.println("Warning: " + e.getMessage() + " - Using random procedure code instead.");
                 ProcedureCode procedureCode = ProcedureCode.getRandomCode();
                 visit.procedure(procedureCode);
             }

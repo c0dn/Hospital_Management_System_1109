@@ -9,9 +9,15 @@ import org.bee.hms.billing.Bill;
 import org.bee.hms.billing.BillBuilder;
 import org.bee.hms.claims.ClaimStatus;
 import org.bee.hms.claims.InsuranceClaim;
+import org.bee.hms.humans.Doctor;
+import org.bee.hms.humans.Nurse;
 import org.bee.hms.humans.Patient;
+import org.bee.hms.insurance.GovernmentProvider;
+import org.bee.hms.insurance.InsuranceProvider;
 import org.bee.hms.insurance.PrivateProvider;
 import org.bee.hms.medical.Visit;
+import org.bee.hms.medical.VisitStatus;
+import org.bee.hms.policy.Coverage;
 import org.bee.utils.DataGenerator;
 
 /**
@@ -22,8 +28,8 @@ import org.bee.utils.DataGenerator;
  */
 public class ClaimController extends BaseController<InsuranceClaim> {
     private static ClaimController instance;
-    private final DataGenerator dataGenerator = DataGenerator.getInstance();
-    private final HumanController humanController = HumanController.getInstance();
+    private static final DataGenerator dataGenerator = DataGenerator.getInstance();
+    private static final HumanController humanController = HumanController.getInstance();
 
     protected ClaimController() {
         super();
@@ -58,34 +64,57 @@ public class ClaimController extends BaseController<InsuranceClaim> {
 
         // Generate sample claims for each patient
         for (Patient patient : patients) {
-            // Create a private provider which will generate a random policy
-            PrivateProvider provider = new PrivateProvider();
+            PrivateProvider privateProvider = new PrivateProvider();
+            GovernmentProvider governmentProvider = new GovernmentProvider();
 
-            // Get a random policy for the patient
-            provider.getPatientPolicy(patient).ifPresent(policy -> {
-                for (int i = 0; i < 3; i++) {
-                    // Create a random visit
-                    Visit visit = Visit.withRandomData();
+            generateValidClaimsForPatient(patient, privateProvider, 2);
 
-                    // Create a bill for the patient
-                    Bill bill = new BillBuilder()
-                            .withPatientId(patient.getPatientId())
-                            .withVisit(visit)
-                            .withInsurancePolicy(policy)
-                            .build();
-
-                    // Calculate insurance coverage and add claim if approved
-                    var coverageResult = bill.calculateInsuranceCoverage();
-                    if (coverageResult.isApproved()) {
-                        coverageResult.claim().ifPresent(claim -> {
-                            items.add(claim);
-                        });
-                    }
-                }
-            });
+            generateValidClaimsForPatient(patient, governmentProvider, 2);
         }
 
         System.out.println("Generated " + items.size() + " claims.");
+    }
+
+    /**
+     * Generates valid insurance claims for a patient with a specific provider.
+     * This method ensures that the generated claims will be approved by creating
+     * appropriate visits and bills that match the policy coverage.
+     *
+     * @param patient  The patient to generate claims for
+     * @param provider The insurance provider to use
+     * @param count    The number of claims to generate
+     */
+    private void generateValidClaimsForPatient(Patient patient, InsuranceProvider provider, int count) {
+        // Get a policy for the patient
+        provider.getPatientPolicy(patient).ifPresent(policy -> {
+            Coverage coverage = policy.getCoverage();
+
+            // Create multiple claims
+            for (int i = 0; i < count; i++) {
+                List<Doctor> availableDoctors = humanController.getAllDoctors();
+                List<Nurse> availableNurses = humanController.getAllNurses();
+                
+                Visit visit = Visit.createCompatibleVisit(coverage, patient, availableDoctors, availableNurses);
+
+                visit.updateStatus(VisitStatus.DISCHARGED);
+
+                // Create a bill for the patient
+                Bill bill = new BillBuilder()
+                        .withPatientId(patient.getPatientId())
+                        .withVisit(visit)
+                        .withInsurancePolicy(policy)
+                        .build();
+
+
+                var coverageResult = bill.calculateInsuranceCoverage();
+                if (coverageResult.isApproved()) {
+                    coverageResult.claim().ifPresent(items::add);
+                } else {
+                    System.err.println("Failed to generate approved claim: " +
+                            coverageResult.getDenialReason().orElse("Unknown reason"));
+                }
+            }
+        });
     }
 
     public void addClaim(InsuranceClaim claim) {
