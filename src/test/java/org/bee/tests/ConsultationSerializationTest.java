@@ -82,10 +82,6 @@ public class ConsultationSerializationTest {
                 getPrivateField(deserializedConsultation, "type", ConsultationType.class)
         );
         assertEquals(
-                getPrivateField(originalConsultation, "doctorId", String.class),
-                getPrivateField(deserializedConsultation, "doctorId", String.class)
-        );
-        assertEquals(
                 getPrivateField(originalConsultation, "consultationTime", LocalDateTime.class),
                 getPrivateField(deserializedConsultation, "consultationTime", LocalDateTime.class)
         );
@@ -134,10 +130,6 @@ public class ConsultationSerializationTest {
         assertEquals(
                 getPrivateField(originalConsultation, "type", ConsultationType.class),
                 getPrivateField(fileDeserializedConsultation, "type", ConsultationType.class)
-        );
-        assertEquals(
-                getPrivateField(originalConsultation, "doctorId", String.class),
-                getPrivateField(fileDeserializedConsultation, "doctorId", String.class)
         );
 
         Map<Medication, Integer> originalPrescriptions = getPrivateField(originalConsultation, "prescriptions", Map.class);

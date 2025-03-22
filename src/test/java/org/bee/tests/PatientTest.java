@@ -53,6 +53,7 @@ public class PatientTest {
                 .occupation("Engineer")
                 .companyName("Test Company")
                 .companyAddress("789 Test Street")
+                .patientConsent(true)
                 .build();
 
         // Create a patient using builder with random data
