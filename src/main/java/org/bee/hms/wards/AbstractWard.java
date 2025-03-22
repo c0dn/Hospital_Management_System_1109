@@ -16,6 +16,11 @@ public class AbstractWard implements Ward {
     private Map<Integer, Bed> beds;
 
     /**
+     * The type of ward, used for JSON serialization/deserialization.
+     */
+    protected String type;
+
+    /**
      * Constructs an AbstractWard with the given name, type, and number of beds.
      *
      * @param wardName      The name of the ward.
