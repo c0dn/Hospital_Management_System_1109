@@ -17,8 +17,12 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.10.0")
     
-    implementation("com.google.code.gson:gson:2.12.1")
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
+
+    implementation("com.fasterxml.jackson.core:jackson-core:2.15.2")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.15.2")
+    implementation("com.fasterxml.jackson.core:jackson-annotations:2.15.2")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.2")
 }
 
 application {
