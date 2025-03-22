@@ -1,50 +1,27 @@
 package org.bee.controllers;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.bee.hms.auth.SystemUser;
-import org.bee.hms.humans.Doctor;
-import org.bee.hms.humans.Human;
-import org.bee.hms.humans.NokRelation;
-import org.bee.hms.humans.Nurse;
-import org.bee.hms.humans.Patient;
-import org.bee.hms.medical.Consultation;
-import org.bee.utils.JSONHelper;
-
-import javax.print.Doc;
+import org.bee.hms.humans.*;
+import org.bee.utils.InfoUpdaters.PatientUpdater;
 
 /**
  * Controller class that manages all human entities in the system.
  * Handles loading, saving, and searching of doctors, nurses, and patients.
  * Implemented as a singleton.
+ * Extends BaseController to handle JSON persistence.
  */
-public class HumanController {
-
-    private static final String DATABASE_DIR = System.getProperty("database.dir", "database");
-    private static final String HUMANS_FILE = DATABASE_DIR + "/humans.txt";
-
+public class HumanController extends BaseController<Human> {
     private static HumanController instance;
-
-    private List<Human> humans = new ArrayList<>();
-    private List<Consultation> consultation = new ArrayList<>();
-    private final JSONHelper jsonHelper = JSONHelper.getInstance();
-
     private SystemUser authenticatedUser;
 
-    private HumanController() {
-        init();
+    protected HumanController() {
+        super();
     }
 
-    /**
-     * Gets the singleton instance of HumanController.
-     * Creates the instance if it doesn't exist yet.
-     *
-     * @return The singleton instance
-     */
     public static synchronized HumanController getInstance() {
         if (instance == null) {
             instance = new HumanController();
@@ -52,46 +29,59 @@ public class HumanController {
         return instance;
     }
 
-    /**
-     * Initializes the database by either loading existing data or generating new data.
-     */
-    private void init() {
-        File directory = new File(DATABASE_DIR);
-        if (!directory.exists()) {
-            directory.mkdirs();
-        }
-
-        File humansFile = new File(HUMANS_FILE);
-        if (humansFile.exists()) {
-            loadHumans();
-        } else {
-            generateInitialData();
-            saveHumans();
-        }
+    @Override
+    protected String getDataFilePath() {
+        return DATABASE_DIR + "/humans.txt";
     }
 
+    @Override
+    protected Class<Human> getEntityClass() {
+        return Human.class;
+    }
+
+    @Override
+    protected void generateInitialData() {
+        System.out.println("Generating initial human data...");
+
+        for (int i = 0; i < 20; i++) {
+            Doctor doctor = Doctor.builder()
+                    .withRandomBaseData()
+                    .build();
+            items.add(doctor);
+        }
+
+        for (int i = 0; i < 20; i++) {
+            Nurse nurse = Nurse.builder()
+                    .withRandomBaseData()
+                    .build();
+            items.add(nurse);
+        }
+
+        for (int i = 0; i < 10; i++) {
+            String patientId = String.format("P%04d", 1001 + i);
+            Patient patient = Patient.builder()
+                    .withRandomData(patientId)
+                    .build();
+            items.add(patient);
+        }
+
+        System.out.println("Generated " + items.size() + " humans.");
+    }
 
     public void authenticate(SystemUser user) {
         this.authenticatedUser = user;
     }
 
-    public SystemUser getLoggedInUser() {
-        if (authenticatedUser == null) {
-            throw new IllegalStateException("There is no logged in user");
-        }
-        return authenticatedUser;
-    }
-
     public String getUserGreeting() {
         return switch (authenticatedUser) {
-            case Doctor doc -> String.format("Welcome back!\nName: %s, MCR No.: %s", doc.getName(), doc.getMcr());
-            case Patient patient -> String.format("Welcome back!\n Name: %s, ID:(%s)", patient.getName(), patient.getPatientId());
-            case Nurse nurse -> String.format("Welcome back!\n Name: %s, RNID No.: %s", nurse.getName(), nurse.getRnid());
+            case Doctor doc -> String.format("Welcome back %s MCR No. %s", doc.getName(), doc.getMcr());
+            case Patient patient -> String.format("Welcome back %s (%s)", patient.getName(), patient.getPatientId());
+            case Nurse nurse -> String.format("Welcome back %s RNID No. %s", nurse.getName(), nurse.getRnid());
             case null, default -> throw new IllegalStateException("There is no logged in user");
         };
     }
 
-    public String getLoginInUser(){
+    public String getLoginInUser() {
         return switch (authenticatedUser) {
             case Doctor doc -> String.format(doc.getName(), doc.getMcr());
             case Patient patient -> String.format(patient.getName(), patient.getPatientId());
@@ -100,159 +90,26 @@ public class HumanController {
         };
     }
 
-    /**
-     * Loads humans from the JSON file.
-     */
-    public void loadHumans() {
-        try {
-            humans = jsonHelper.loadListFromJsonFile(HUMANS_FILE, Human.class);
-            System.out.println("Loaded " + humans.size() + " humans from " + HUMANS_FILE);
-        } catch (Exception e) {
-            System.err.println("Error loading humans from file: " + e.getMessage());
-            humans = new ArrayList<>();
-        }
+
+    public SystemUser getLoggedInUser() {
+        return authenticatedUser;
     }
 
-    /**
-     * Saves humans to the JSON file.
-     */
-    public void saveHumans() {
-        try {
-            jsonHelper.saveToJsonFile(humans, HUMANS_FILE);
-            System.out.println("Saved " + humans.size() + " humans to " + HUMANS_FILE);
-        } catch (Exception e) {
-            System.err.println("Error saving humans to file: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Generates initial data with 20 doctors, 20 nurses, and 10 patients.
-     */
-    private void generateInitialData() {
-        System.out.println("Generating initial human data...");
-
-        for (int i = 0; i < 20; i++) {
-            Doctor doctor = Doctor.builder()
-                    .withRandomBaseData()
-                    .build();
-            humans.add(doctor);
-        }
-
-        for (int i = 0; i < 20; i++) {
-            Nurse nurse = Nurse.builder()
-                    .withRandomBaseData()
-                    .build();
-            humans.add(nurse);
-        }
-
-        for (int i = 0; i < 10; i++) {
-            String patientId = String.format("P%04d", 1001 + i);
-            Patient patient = Patient.builder()
-                    .withRandomData(patientId)
-                    .build();
-            humans.add(patient);
-        }
-
-        System.out.println("Generated " + humans.size() + " humans.");
-    }
-
-    /**
-     * Adds a human to the controller and saves to the JSON file.
-     *
-     * @param human The human to add
-     */
     public void addHuman(Human human) {
-        humans.add(human);
-        saveHumans();
+        addItem(human);
     }
 
     /**
-     * Finds a user by username.
+     * Updates a patient using the PatientUpdater.
      *
-     * @param username The username to search for
-     * @return Optional containing the user if found, empty otherwise
+     * @param patientId ID of the patient to update
+     * @param updater   PatientUpdater with the fields to update
      */
-    public Optional<SystemUser> findUserByUsername(String username) {
-        if (username == null || username.isEmpty()) {
-            return Optional.empty();
-        }
-
-        return humans.stream()
-                .filter(human -> human instanceof SystemUser)
-                .map(human -> (SystemUser) human)
-                .filter(user -> username.equals(user.getUsername()))
-                .findFirst();
-    }
-
-    /**
-     * Gets all humans in the system.
-     *
-     * @return List of all humans
-     */
-    public List<Human> getAllHumans() {
-        return new ArrayList<>(humans);
-    }
-
-    /**
-     * Gets all doctors in the system.
-     *
-     * @return List of all doctors
-     */
-    public List<Doctor> getAllDoctors() {
-        return humans.stream()
-                .filter(human -> human instanceof Doctor)
-                .map(human -> (Doctor) human)
-                .collect(Collectors.toList());
-    }
-
-    /**
-     * Gets all nurses in the system.
-     *
-     * @return List of all nurses
-     */
-    public List<Nurse> getAllNurses() {
-        return humans.stream()
-                .filter(human -> human instanceof Nurse)
-                .map(human -> (Nurse) human)
-                .collect(Collectors.toList());
-    }
-
-    /**
-     * Gets all patients in the system.
-     *
-     * @return List of all patients
-     */
-    public List<Patient> getAllPatients() {
-        return humans.stream()
-                .filter(human -> human instanceof Patient)
-                .map(human -> (Patient) human)
-                .collect(Collectors.toList());
-    }
-
-    public ArrayList<Consultation> getPatientCases() {
-        return new ArrayList<>(consultation);
-    }
-
-    public List<Consultation> getConsultationsByDoctor(Doctor doctor) {
-        return consultation.stream()
-                .filter(c -> c.getDoctor().equals(doctor))
-                .collect(Collectors.toList());
-    }
-    public void updatePatientParticulars(String patientId, double height, double weight,
-                                         List<String> drugAllergies, String nokName,
-                                         NokRelation nokRelation, String nokAddress) {
+    public void updatePatient(String patientId, PatientUpdater updater) {
         Patient patient = findPatientById(patientId);
-        if (patient != null) {
-            patient.setHeight(height);
-            patient.setWeight(weight);
-            patient.setDrugAllergies(drugAllergies);
-            patient.setNokName(nokName);
-            patient.setNokRelation(nokRelation);
-            patient.setNokAddress(nokAddress);
-            saveHumans(); // Save the updated information
-        }
+        updateEntity(patient, updater);
     }
+
 
     private Patient findPatientById(String patientId) {
         return getAllPatients().stream()
@@ -261,5 +118,40 @@ public class HumanController {
                 .orElse(null);
     }
 
+    public Optional<SystemUser> findUserByUsername(String username) {
+        if (username == null || username.isEmpty()) {
+            return Optional.empty();
+        }
 
+        return items.stream()
+                .filter(human -> human instanceof SystemUser)
+                .map(human -> (SystemUser) human)
+                .filter(user -> username.equals(user.getUsername()))
+                .findFirst();
+    }
+
+    public List<Human> getAllHumans() {
+        return getAllItems();
+    }
+
+    public List<Doctor> getAllDoctors() {
+        return items.stream()
+                .filter(human -> human instanceof Doctor)
+                .map(human -> (Doctor) human)
+                .collect(Collectors.toList());
+    }
+
+    public List<Nurse> getAllNurses() {
+        return items.stream()
+                .filter(human -> human instanceof Nurse)
+                .map(human -> (Nurse) human)
+                .collect(Collectors.toList());
+    }
+
+    public List<Patient> getAllPatients() {
+        return items.stream()
+                .filter(human -> human instanceof Patient)
+                .map(human -> (Patient) human)
+                .collect(Collectors.toList());
+    }
 }

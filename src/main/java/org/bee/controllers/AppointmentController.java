@@ -129,6 +129,7 @@ public class AppointmentController extends BaseController<Appointment> {
 
     public void addAppointment(Appointment appointment) {
         addItem(appointment);
+        saveData();
     }
 
     public List<Appointment> getAllAppointments() {

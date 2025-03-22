@@ -144,23 +144,6 @@ public class Patient extends Human implements SystemUser {
     }
 
     /**
-     * Displays the patient's insurance-related information.
-     * <p>
-     * This method prints formatted details relevant to insurance,
-     * including patient ID, insured name, NRIC/FIN, contact information,
-     * mailing address, occupation, and company details.
-     * </p>
-     */
-
-    public void displayInsrPatient() {
-        System.out.printf("\n\n%-13s %-30s %-11s %-18s %-24s %-14s %-18s %-30s%n",
-                "Patient ID", "Name of Insured", "NRIC/FIN", "Contact", "Mailing Address", "Occupation", "Company Name", "Company Address");
-        System.out.printf("%-13s %-30s %-11s %-18s %-24s %-14s %-18s %-30s%n",
-                patientId, name, nricFin, contact, address, occupation, companyName, companyAddress);
-
-    }
-
-    /**
      * Returns a string representation of the patient.
      *
      * @return A formatted string containing the patient's name and ID.
