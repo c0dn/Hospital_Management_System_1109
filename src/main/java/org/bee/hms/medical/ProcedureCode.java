@@ -37,7 +37,7 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
      * @param code The unique procedure code.
      * @param description The description of the procedure.
      */
-    private ProcedureCode(String code, String description) {
+    public ProcedureCode(String code, String description) {
         this.code = code;
         this.description = description;
         this.price = DEFAULT_PRICE;

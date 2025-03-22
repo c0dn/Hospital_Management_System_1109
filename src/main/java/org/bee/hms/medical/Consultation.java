@@ -2,12 +2,15 @@ package org.bee.hms.medical;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.bee.hms.billing.BillableItem;
-import org.bee.hms.humans.Doctor;
-import org.bee.hms.humans.Patient;
 import org.bee.utils.DataGenerator;
+import org.bee.utils.JSONReadable;
+import org.bee.utils.JSONWritable;
 
 /**
  * Represents a medical consultation.
@@ -17,78 +20,52 @@ import org.bee.utils.DataGenerator;
  * charges. It also provides methods to generate random consultations, calculate charges, and retrieve related billable items.
  * </p>
  */
-public class Consultation {
+public class Consultation implements JSONWritable, JSONReadable {
 
-    /** The unique consultation ID */
+    /**
+     * The unique consultation ID
+     */
     private String consultationId;
 
-    /** The type of the consultation (e.g., emergency, regular, specialized) */
+    /**
+     * The type of the consultation (e.g., emergency, regular, specialized)
+     */
     private ConsultationType type;
 
-    /** The ID of the doctor who performed the consultation */
+    /**
+     * The ID of the doctor who performed the consultation
+     */
     private String doctorId;
 
-    /** The date and time the consultation took place */
+    /**
+     * The date and time the consultation took place
+     */
     private LocalDateTime consultationTime;
 
-    /** The fee for the consultation */
+    /**
+     * The fee for the consultation
+     */
     private BigDecimal consultationFee;
 
-    /** The list of diagnostic codes associated with the consultation */
+    /**
+     * The list of diagnostic codes associated with the consultation
+     */
     private List<DiagnosticCode> diagnosticCodes;
 
-    /** The list of procedure codes associated with the consultation */
+    /**
+     * The list of procedure codes associated with the consultation
+     */
     private List<ProcedureCode> procedureCodes;
 
-    /** The list of medications prescribed during the consultation with their quantities */
+    /**
+     * The list of medications prescribed during the consultation with their quantities
+     */
     private Map<Medication, Integer> prescriptions;
 
-    /** Additional notes regarding the consultation */
+    /**
+     * Additional notes regarding the consultation
+     */
     private String notes;
-
-    /** Date of the outpatient appointment. */
-    private Date appointmentDate;
-
-    /** Medical history of the patient. */
-    private String medicalHistory;
-
-    /** Current status of the outpatient case. */
-    private STATUS status;
-
-    /** Department handling the outpatient case. */
-    private DEPARTMENT department;
-
-    /** Diagnosis given for the outpatient case. */
-    private String diagnosis;
-
-    /** Reason for the patient's visit. */
-    private String visitReason;
-
-    /** Follow-up date for the patient. */
-    private Date followUpDate;
-
-    /** Instructions given for the outpatient case. */
-    private String instructions;
-
-    /** Patient associated with this outpatient case. */
-    private Patient patient;
-
-    /** Doctor handling the outpatient case. */
-    private Doctor doctor;
-
-    /** List of treatments assigned to the patient. */
-    private ArrayList<Treatment> treatments;
-
-    /** List of lab tests ordered for the patient. */
-    private ArrayList<LabTest> labtests;
-
-    /** List of all outpatient case instances. */
-    private static List<Consultation> instances = new ArrayList<>();
-
-    public static List<Consultation> getAllConsultationCases() {
-        return instances;
-    }
-
 
     /**
      * Creates a consultation with random data for testing purposes.
@@ -222,100 +199,78 @@ public class Consultation {
             case REGULAR_CONSULTATION -> "REGULAR_CONSULTATION";
             case SPECIALIZED_CONSULTATION -> "SPECIALIZED_CONSULTATION";
             case FOLLOW_UP -> "FOLLOW_UP_CONSULTATION";
-            case NEW_CONSULTATION -> "NEW_CONSULTATION";
-            case ROUTINE_CHECKUP -> "ROUTINE_CHECKUP_CONSULTATION";
         };
     }
 
-    /**
-     * Prints all outpatient case for clerk to view
-     */
-    public static void viewAllOutpatientCasesClerk() {
-        List<Consultation> cases = getAllConsultationCases();
-
-        if (cases.isEmpty()) {
-            System.out.println("No outpatient cases found.");
-            return;
-        }
-
-        System.out.printf("%-10s | %-30s | %-10s | %-15s | %-15s | %-30s | %-15s | %-15s | %-10s | %-10s\n",
-                "Case ID", "Appointment Date", "Patient ID", "Patient Name", "Status", "Diagnosis",
-                "Physician ID", "Physician Name");
-        System.out.println("-".repeat(190));
-
-        for (Consultation consultation : cases) {
-            System.out.printf("%-10s | %-30s | %-10s | %-15s | %-15s | %-30s | %-15s | %-15s\n",
-                    consultation.getConsultationId(),
-                    consultation.getAppointmentDate(),
-                    consultation.getPatient() != null ? consultation.getPatient().getPatientId() : "N/A",
-                    consultation.getPatient() != null ? consultation.getPatient().getName() : "N/A",
-                    consultation.getStatus(),
-                    consultation.getDiagnosis(),
-                    consultation.getDoctor() != null ? consultation.getDoctor().getMcr() : "N/A",
-                    consultation.getDoctor() != null ? consultation.getDoctor().getName() : "N/A");
-//                    consultation.getBilling() != null ? oc.getBilling().getBillingID() : "N/A",
-//                    consultation.getBilling() != null ? oc.getBilling().getFinalCost() : 0.0);
-        }
+    public String getConsultationId() {
+        return consultationId;
     }
 
-    public String getConsultationId() { return consultationId; }
-
-    public Date getAppointmentDate() { return appointmentDate; }
-
-    public Patient getPatient() { return patient; }
-
-    public STATUS getStatus() { return status; }
-
-    public String getDiagnosis() { return diagnosis; }
-
-    public Doctor getDoctor() { return doctor; }
-
-    public ConsultationType getConsultationType() { return type; }
-
-    // BILL
-    // public
-
-    public void addTreatment(Treatment treatment) {
-        if (!treatments.contains(treatment)) {
-            treatments.add(treatment);
-        }
+    public ConsultationType getType() {
+        return type;
     }
 
-    public void removeTreatment(Treatment treatment) {
-        treatments.remove(treatment);
+    public String getDoctorId() {
+        return doctorId;
     }
 
-    public void addLabTest(LabTest labTest) {
-        if (!labtests.contains(labTest)) {
-            labtests.add(labTest);
-        }
+    public LocalDateTime getConsultationTime() {
+        return consultationTime;
     }
 
-    public void removeLabTest(LabTest labTest) {
-        labtests.remove(labTest);
+    public BigDecimal getConsultationFee() {
+        return consultationFee;
     }
 
-    public static void viewAllOutpatientCases(Doctor doctor) {
-        List<Consultation> cases = doctor.getPatientCases();
+    public List<DiagnosticCode> getDiagnosticCodes() {
+        return diagnosticCodes;
+    }
 
-        System.out.printf("%-8s | %-32s | %-10s | %-15s | %-20s | %-15s | %-20s | %-15s | %-10s | %-10s \n",
-                "Case ID", "Appointment Date", "Patient ID", "Patient Name", "Type", "Status", "Diagnosis",
-                "Physician Name");
-        System.out.println("-".repeat(190));
+    public List<ProcedureCode> getProcedureCodes() {
+        return procedureCodes;
+    }
 
-        for (Consultation consultation : cases) {
-            System.out.printf("%-8s | %-32s | %-10s | %-15s | %-20s | %-15s | %-20s | %-15s\n",
-                    consultation.getConsultationId(),
-                    consultation.getAppointmentDate(),
-                    consultation.getPatient() != null ? consultation.getPatient().getPatientId() : "N/A",
-                    consultation.getPatient() != null ? consultation.getPatient().getName() : "N/A",
-                    consultation.getConsultationType(),
-                    consultation.getStatus(),
-                    consultation.getDiagnosis(),
-                    consultation.getDoctor() != null ? consultation.getDoctor().getName() : "N/A");
-//                    consultation.getBilling() != null ? oc.getBilling().getBillingID() : "N/A",
-//                    consultation.getBilling() != null ? oc.getBilling().getFinalCost() : 0.0);
-        }
+    public Map<Medication, Integer> getPrescriptions() {
+        return prescriptions;
+    }
 
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setConsultationId(String consultationId) {
+        this.consultationId = consultationId;
+    }
+
+    public void setType(ConsultationType type) {
+        this.type = type;
+    }
+
+    public void setDoctorId(String doctorId) {
+        this.doctorId = doctorId;
+    }
+
+    public void setConsultationTime(LocalDateTime consultationTime) {
+        this.consultationTime = consultationTime;
+    }
+
+    public void setConsultationFee(BigDecimal consultationFee) {
+        this.consultationFee = consultationFee;
+    }
+
+    public void setDiagnosticCodes(List<DiagnosticCode> diagnosticCodes) {
+        this.diagnosticCodes = diagnosticCodes;
+    }
+
+    public void setProcedureCodes(List<ProcedureCode> procedureCodes) {
+        this.procedureCodes = procedureCodes;
+    }
+
+    public void setPrescriptions(Map<Medication, Integer> prescriptions) {
+        this.prescriptions = prescriptions;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 }

@@ -1,0 +1,153 @@
+package org.bee.tests;
+
+import org.bee.hms.medical.*;
+import org.bee.utils.DataGenerator;
+import org.bee.utils.JSONHelper;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import java.io.File;
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.nio.file.Path;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Tests for serialization and deserialization of Consultation objects using Gson.
+ * This test class verifies that Consultation objects can be properly converted to JSON and back.
+ */
+public class ConsultationSerializationTest {
+
+    private JSONHelper jsonHelper;
+    private Consultation originalConsultation;
+
+    @BeforeEach
+    void setUp() {
+        // Initialize Gson with necessary type adapters
+        jsonHelper = JSONHelper.getInstance();
+
+        // Create a Consultation object
+        originalConsultation = createTestConsultation();
+    }
+
+
+    @Test
+    @DisplayName("Test serializing Consultation to JSON string")
+    void testSerializeToJsonString() {
+        // Serialize to JSON string
+        String json = jsonHelper.toJson(originalConsultation);
+
+        // Verify JSON string is not empty
+        assertNotNull(json, "Serialized JSON should not be null");
+        assertTrue(json.length() > 0, "Serialized JSON should not be empty");
+
+        // Optionally print the JSON for debugging purposes
+        System.out.println("Serialized Consultation JSON: " + json);
+    }
+
+    @Test
+    @DisplayName("Test deserializing Consultation from JSON string")
+    void testDeserializeFromJsonString() {
+        // Serialize to JSON string
+        String json = jsonHelper.toJson(originalConsultation);
+
+        // Deserialize from JSON string
+        Consultation deserializedConsultation = jsonHelper.fromJson(json, Consultation.class);
+
+        // Verify key properties match between original and deserialized objects
+        assertEquals(originalConsultation.getConsultationId(), deserializedConsultation.getConsultationId());
+        assertEquals(originalConsultation.getType(), deserializedConsultation.getType());
+        assertEquals(originalConsultation.getDoctorId(), deserializedConsultation.getDoctorId());
+        assertEquals(originalConsultation.getConsultationTime(), deserializedConsultation.getConsultationTime());
+        assertEquals(originalConsultation.getConsultationFee(), deserializedConsultation.getConsultationFee());
+
+        // Verify nested objects
+        assertEquals(originalConsultation.getDiagnosticCodes().size(),
+                deserializedConsultation.getDiagnosticCodes().size());
+        assertEquals(originalConsultation.getProcedureCodes().size(),
+                deserializedConsultation.getProcedureCodes().size());
+
+        // Verify prescriptions map
+        assertEquals(originalConsultation.getPrescriptions().size(),
+                deserializedConsultation.getPrescriptions().size());
+    }
+
+    @Test
+    @DisplayName("Test serializing Consultation to file and deserializing")
+    void testSerializeToFileAndDeserialize(@TempDir Path tempDir) throws IOException {
+        // Create a temporary file path
+        String jsonFilePath = tempDir.resolve("consultation_test.json").toString();
+
+        // Save Consultation to JSON file
+        jsonHelper.saveToJsonFile(originalConsultation, jsonFilePath);
+
+        // Verify file exists
+        File jsonFile = new File(jsonFilePath);
+        assertTrue(jsonFile.exists(), "JSON file should exist");
+        assertTrue(jsonFile.length() > 0, "JSON file should not be empty");
+
+        // Load Consultation from JSON file
+        Consultation fileDeserializedConsultation = jsonHelper.loadFromJsonFile(jsonFilePath, Consultation.class);
+
+            // Verify key properties match between original and file-deserialized objects
+            assertEquals(originalConsultation.getConsultationId(), fileDeserializedConsultation.getConsultationId());
+            assertEquals(originalConsultation.getType(), fileDeserializedConsultation.getType());
+            assertEquals(originalConsultation.getDoctorId(), fileDeserializedConsultation.getDoctorId());
+            assertEquals(originalConsultation.getPrescriptions().size(),
+                    fileDeserializedConsultation.getPrescriptions().size());
+    }
+
+    /**
+     * Creates a test Consultation object with various properties set.
+     */
+    private Consultation createTestConsultation() {
+        DataGenerator gen = DataGenerator.getInstance();
+
+        // Create a Consultation object
+        Consultation consultation = new Consultation();
+
+        // Set basic fields
+        consultation.setConsultationId("C" + System.currentTimeMillis() +
+                String.format("%04d", gen.generateRandomInt(10000)));
+        consultation.setType(gen.getRandomEnum(ConsultationType.class));
+        consultation.setDoctorId("D" + gen.generateRandomInt(1000, 9999));
+        consultation.setConsultationTime(LocalDateTime.now().minusDays(gen.generateRandomInt(1, 30)));
+        consultation.setConsultationFee(new BigDecimal(gen.generateRandomInt(50, 300)));
+        consultation.setNotes("Consultation notes for patient visit #" + gen.generateRandomInt(1000, 9999));
+
+        // Add random diagnostic codes
+        List<DiagnosticCode> diagnosticCodes = new ArrayList<>();
+        int diagCount = gen.generateRandomInt(1, 3);
+        for (int i = 0; i < diagCount; i++) {
+            diagnosticCodes.add(DiagnosticCode.getRandomCode());
+        }
+        consultation.setDiagnosticCodes(diagnosticCodes);
+
+        // Add random procedure codes
+        List<ProcedureCode> procedureCodes = new ArrayList<>();
+        int procCount = gen.generateRandomInt(0, 2);
+        for (int i = 0; i < procCount; i++) {
+            procedureCodes.add(ProcedureCode.getRandomCode());
+        }
+        consultation.setProcedureCodes(procedureCodes);
+
+        // Add random prescriptions
+        Map<Medication, Integer> prescriptions = new HashMap<>();
+        int medCount = gen.generateRandomInt(1, 4);
+        for (int i = 0; i < medCount; i++) {
+            prescriptions.put(gen.getRandomMedication(), gen.generateRandomInt(1, 10));
+        }
+        consultation.setPrescriptions(prescriptions);
+
+        return consultation;
+    }
+
+}
