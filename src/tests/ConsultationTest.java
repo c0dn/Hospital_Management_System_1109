@@ -51,6 +51,8 @@ public class ConsultationTest {
                     case REGULAR_CONSULTATION -> "REGULAR_CONSULTATION";
                     case SPECIALIZED_CONSULTATION -> "SPECIALIZED_CONSULTATION";
                     case FOLLOW_UP -> "FOLLOW_UP_CONSULTATION";
+                    case NEW_CONSULTATION -> "NEW_CONSULTATION";
+                    case ROUTINE_CHECKUP -> "ROUTINE_CHECKUP_CONSULTATION";
                 };
                 
                 // Force the consultation type

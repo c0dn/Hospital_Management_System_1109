@@ -53,7 +53,7 @@ public class LoginPage extends UiBase {
 
         lv.attachUserInput("Login ", x -> {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter your username: ");
+            System.out.println("Enter your StaffID or NRIC (patients): ");
             String username = scanner.nextLine();
 
             // Authenticate user

@@ -38,7 +38,7 @@ public class Treatment {
     private Double cost;
 
     /** The list of procedures performed as part of the treatment. */
-    private List<Procedure> procedures;
+    private List<ProcedureCode> procedures;
 
     /**
      * A static list to keep track of all Treatment instances.
@@ -48,7 +48,7 @@ public class Treatment {
     /**
      * Constructs a new Treatment instance with the specified details.
      *
-     * @param outpatientCase the outpatient case associated with the treatment.
+     * @param consultation the outpatient case associated with the treatment.
      * @param treatmentName  the name of the treatment.
      * @param status         the current status of the treatment.
      * @param startDate      the start date of the treatment.
@@ -60,7 +60,7 @@ public class Treatment {
      */
     public Treatment(Consultation consultation, String treatmentName, STATUS status,
                      Date startDate, Date endDate,
-                     String notes, Double cost, List<Procedure> procedures) {
+                     String notes, Double cost, List<ProcedureCode> procedures) {
         setTreatmentID(count++);
         this.consultation= consultation;
         this.treatmentName = treatmentName;
@@ -116,7 +116,7 @@ public class Treatment {
      *
      * @return a list of procedures.
      */
-    public List<Procedure> getProcedures() {
+    public List<ProcedureCode> getProcedures() {
         return procedures;
     }
 
@@ -125,7 +125,7 @@ public class Treatment {
      *
      * @param procedures a list of procedures to be associated with the treatment.
      */
-    public void setProcedures(List<Procedure> procedures) {
+    public void setProcedures(List<ProcedureCode> procedures) {
         this.procedures = procedures;
     }
 
@@ -142,13 +142,13 @@ public class Treatment {
      * Attach the outpatient case for this treatment. If the treatment is already associated with an
      * outpatient case, it is removed from that case before being added to the new one.
      *
-     * @param outpatientCase the outpatient case to be associated with the treatment.
+     * @param consultation the outpatient case to be associated with the treatment.
      */
     public void setOutpatientCase(Consultation consultation) {
         if (this.consultation != null) {
             this.consultation.removeTreatment(this);
         }
-        this.consultation = Consultation;
+        this.consultation = consultation;
         consultation.addTreatment(this);
     }
 
@@ -281,11 +281,11 @@ public class Treatment {
     /**
      * Adds a procedure to the treatment's list of procedures if it is not already present.
      *
-     * @param procedure the procedure to add.
+     * @param procedureCode the procedure to add.
      */
-    public void addProcedure(Procedure procedure) {
-        if (!procedures.contains(procedure)) {
-            procedures.add(procedure);
+    public void addProcedure(ProcedureCode procedureCode) {
+        if (!procedures.contains(procedureCode)) {
+            procedures.add(procedureCode);
         }
     }
 

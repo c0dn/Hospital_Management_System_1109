@@ -61,7 +61,7 @@ public class PatientInfoPage extends UiBase {
         }
 
         // When selecting "Select Patient Index"
-        lv.attachUserInput("Select Patient Index", str -> {
+        lv.attachUserInput("Select Patient Index ", str -> {
             int selectedIndex = InputHelper.getValidIndex("Select Patient index", patients);
             patient = patients.get(selectedIndex);
 

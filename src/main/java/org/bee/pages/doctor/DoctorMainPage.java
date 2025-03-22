@@ -19,11 +19,25 @@ public class DoctorMainPage extends UiBase {
     public void OnViewCreated(View parentView) {
         ListView lv = (ListView) parentView;
         HumanController controller = HumanController.getInstance();
-        lv.setTitleHeader("Welcome to Telemedicine Integration System |  " + controller.getUserGreeting());
-        lv.addItem(new TextView(this.canvas, "1. View List of Patient - To view patient information ", Color.GREEN));
+        lv.setTitleHeader(controller.getUserGreeting());
+        lv.addItem(new TextView(this.canvas, "", Color.GREEN)); // Another empty line
+        lv.addItem(new TextView(this.canvas, "Telemedicine Services", Color.GREEN));
+        lv.addItem(new TextView(this.canvas, "1. View List of Patients - To view patient information ", Color.GREEN));
         lv.addItem(new TextView(this.canvas, "2. View Appointment - To view new / scheduled appointments for teleconsultation ", Color.GREEN));
 
-        lv.attachUserInput("View List of Patient", str -> ToPage(new PatientInfoPage()));
+        lv.addItem(new TextView(this.canvas, "", Color.GREEN)); // Another empty line
+        lv.addItem(new TextView(this.canvas, "Outpatient Management Services", Color.GREEN));
+//        lv.setTitleHeader("Welcome to Outpatient Integration System |  " + controller.getUserGreeting());
+        lv.addItem(new TextView(this.canvas, "3. Create New Outpatient Case ", Color.GREEN));
+        lv.addItem(new TextView(this.canvas, "4. View List of Outpatient Cases ", Color.GREEN));
+        lv.addItem(new TextView(this.canvas, "5. Update Outpatient Records ", Color.GREEN));
+
+        lv.attachUserInput("View List of Patients ", str -> ToPage(new PatientInfoPage()));
+        lv.attachUserInput("View Appointment ", str -> ToPage(new ViewAppointmentPage()));
+        lv.attachUserInput("Create New Outpatient Case ", str -> ToPage(new CreateOutpatientCase()));
+        lv.attachUserInput("View List of Outpatient Cases ", str -> ToPage(new OutpatientPatientInfoPage()));
+        lv.attachUserInput("Update Outpatient Records ", str -> ToPage(new OutpatientPatientInfoPage()));
+
 //        lv.attachUserInput("View Appointment", str -> ToPage(new ViewAppointmentsPage()));
 
     }

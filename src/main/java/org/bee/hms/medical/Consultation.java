@@ -222,6 +222,8 @@ public class Consultation {
             case REGULAR_CONSULTATION -> "REGULAR_CONSULTATION";
             case SPECIALIZED_CONSULTATION -> "SPECIALIZED_CONSULTATION";
             case FOLLOW_UP -> "FOLLOW_UP_CONSULTATION";
+            case NEW_CONSULTATION -> "NEW_CONSULTATION";
+            case ROUTINE_CHECKUP -> "ROUTINE_CHECKUP_CONSULTATION";
         };
     }
 
@@ -238,11 +240,11 @@ public class Consultation {
 
         System.out.printf("%-10s | %-30s | %-10s | %-15s | %-15s | %-30s | %-15s | %-15s | %-10s | %-10s\n",
                 "Case ID", "Appointment Date", "Patient ID", "Patient Name", "Status", "Diagnosis",
-                "Physician ID", "Physician Name", "Billing ID", "Total Cost");
+                "Physician ID", "Physician Name");
         System.out.println("-".repeat(190));
 
         for (Consultation consultation : cases) {
-            System.out.printf("%-10s | %-30s | %-10s | %-15s | %-15s | %-30s | %-15s | %-15s | %-10s | $%-10.2f\n",
+            System.out.printf("%-10s | %-30s | %-10s | %-15s | %-15s | %-30s | %-15s | %-15s\n",
                     consultation.getConsultationId(),
                     consultation.getAppointmentDate(),
                     consultation.getPatient() != null ? consultation.getPatient().getPatientId() : "N/A",
@@ -268,6 +270,52 @@ public class Consultation {
 
     public Doctor getDoctor() { return doctor; }
 
+    public ConsultationType getConsultationType() { return type; }
+
     // BILL
     // public
+
+    public void addTreatment(Treatment treatment) {
+        if (!treatments.contains(treatment)) {
+            treatments.add(treatment);
+        }
+    }
+
+    public void removeTreatment(Treatment treatment) {
+        treatments.remove(treatment);
+    }
+
+    public void addLabTest(LabTest labTest) {
+        if (!labtests.contains(labTest)) {
+            labtests.add(labTest);
+        }
+    }
+
+    public void removeLabTest(LabTest labTest) {
+        labtests.remove(labTest);
+    }
+
+    public static void viewAllOutpatientCases(Doctor doctor) {
+        List<Consultation> cases = doctor.getPatientCases();
+
+        System.out.printf("%-8s | %-32s | %-10s | %-15s | %-20s | %-15s | %-20s | %-15s | %-10s | %-10s \n",
+                "Case ID", "Appointment Date", "Patient ID", "Patient Name", "Type", "Status", "Diagnosis",
+                "Physician Name");
+        System.out.println("-".repeat(190));
+
+        for (Consultation consultation : cases) {
+            System.out.printf("%-8s | %-32s | %-10s | %-15s | %-20s | %-15s | %-20s | %-15s\n",
+                    consultation.getConsultationId(),
+                    consultation.getAppointmentDate(),
+                    consultation.getPatient() != null ? consultation.getPatient().getPatientId() : "N/A",
+                    consultation.getPatient() != null ? consultation.getPatient().getName() : "N/A",
+                    consultation.getConsultationType(),
+                    consultation.getStatus(),
+                    consultation.getDiagnosis(),
+                    consultation.getDoctor() != null ? consultation.getDoctor().getName() : "N/A");
+//                    consultation.getBilling() != null ? oc.getBilling().getBillingID() : "N/A",
+//                    consultation.getBilling() != null ? oc.getBilling().getFinalCost() : 0.0);
+        }
+
+    }
 }

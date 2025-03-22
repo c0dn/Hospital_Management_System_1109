@@ -55,7 +55,7 @@ public class PatientMainPage extends UiBase {
         lv.addItem(new TextView(this.canvas, "1. Book Appointment - To schedule appointment to see doctors ", Color.GREEN));
         lv.addItem(new TextView(this.canvas, "2. View Billing - To view due teleconsult bills ", Color.GREEN));
 
-        lv.attachUserInput("Book Appointment", str -> bookAppointmentPrompt());
+        lv.attachUserInput("Book Appointment ", str -> bookAppointmentPrompt());
 
 //        lv.attachUserInput("View Billing", str -> {
 //            BillingPage.appointments = appointmentController.getAppointments();

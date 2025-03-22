@@ -1,5 +1,9 @@
 package org.bee.hms.humans;
 
+import org.bee.hms.medical.Consultation;
+
+import java.util.ArrayList;
+
 /**
  * Represents a doctor in the insurance system.
  * <p>
@@ -12,6 +16,7 @@ public class Doctor extends Staff {
      * The Medical Council Registration (MCR) number of the doctor.
      */
     private final String mcr;
+    private ArrayList<Consultation> patientCases;
 
 
     /**
@@ -24,9 +29,10 @@ public class Doctor extends Staff {
      *                Contains the data required to populate both doctor-specific fields such as the MCR number,
      *                and inherited attributes of the Doctor class.
      */
-    Doctor(DoctorBuilder builder) {
+    Doctor(DoctorBuilder builder, ArrayList<Consultation> patientCases) {
         super(builder);
         this.mcr = builder.mcr;
+        this.patientCases = patientCases;
     }
 
 
@@ -68,5 +74,9 @@ public class Doctor extends Staff {
         System.out.println("---------------------------------------------------------------------");
         System.out.format("MCR: %s%n", mcr);
         System.out.println("=====================================================================");
+    }
+
+    public ArrayList<Consultation> getPatientCases() {
+        return patientCases;
     }
 }

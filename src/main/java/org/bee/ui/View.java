@@ -13,6 +13,7 @@ public abstract class View {
     protected Color color;
     protected String text;
     protected Dictionary<Integer, UserInput> inputOptions = new Hashtable<>();
+    protected Dictionary<Integer, UserInput> hiddenInputOptions = new Hashtable<>();
 
     /**
      * Constructor overload that specifies a header and content.

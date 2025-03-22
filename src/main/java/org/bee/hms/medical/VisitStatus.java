@@ -31,5 +31,9 @@ public enum VisitStatus {
     /**
      * The visit has been cancelled and will not proceed.
      */
-    CANCELLED
+    CANCELLED,
+
+    SCHEDULED,
+
+    COMPLETED
 }
