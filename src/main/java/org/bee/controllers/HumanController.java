@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import org.bee.hms.auth.SystemUser;
 import org.bee.hms.humans.Doctor;
 import org.bee.hms.humans.Human;
+import org.bee.hms.humans.NokRelation;
 import org.bee.hms.humans.Nurse;
 import org.bee.hms.humans.Patient;
 import org.bee.hms.medical.Consultation;
@@ -238,4 +239,27 @@ public class HumanController {
                 .filter(c -> c.getDoctor().equals(doctor))
                 .collect(Collectors.toList());
     }
+    public void updatePatientParticulars(String patientId, double height, double weight,
+                                         List<String> drugAllergies, String nokName,
+                                         NokRelation nokRelation, String nokAddress) {
+        Patient patient = findPatientById(patientId);
+        if (patient != null) {
+            patient.setHeight(height);
+            patient.setWeight(weight);
+            patient.setDrugAllergies(drugAllergies);
+            patient.setNokName(nokName);
+            patient.setNokRelation(nokRelation);
+            patient.setNokAddress(nokAddress);
+            saveHumans(); // Save the updated information
+        }
+    }
+
+    private Patient findPatientById(String patientId) {
+        return getAllPatients().stream()
+                .filter(p -> p.getPatientId().equals(patientId))
+                .findFirst()
+                .orElse(null);
+    }
+
+
 }

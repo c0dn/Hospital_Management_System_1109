@@ -3,7 +3,9 @@ package org.bee.pages.patient;
 import org.bee.controllers.AppointmentController;
 import org.bee.controllers.HumanController;
 import org.bee.hms.auth.SystemUser;
+import org.bee.hms.humans.NokRelation;
 import org.bee.hms.humans.Patient;
+
 import org.bee.hms.telemed.Appointment;
 import org.bee.hms.telemed.AppointmentStatus;
 import org.bee.ui.Color;
@@ -17,9 +19,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Dictionary;
-import java.util.Hashtable;
-import java.util.Scanner;
+import java.util.*;
+
 
 /** Represents the main page of the Telemedicine Integration System.
  * This page displays a menu of options for the user to navigate to different sections of the application.
@@ -52,10 +53,13 @@ public class PatientMainPage extends UiBase {
         ListView lv = (ListView) parentView; // Cast the parent view to a list view
         HumanController controller = HumanController.getInstance();
         lv.setTitleHeader(" Teleconsultation | Welcome back! " + controller.getUserGreeting());
-        lv.addItem(new TextView(this.canvas, "1. Book Appointment - To schedule appointment to see doctors ", Color.GREEN));
-        lv.addItem(new TextView(this.canvas, "2. View Billing - To view due teleconsult bills ", Color.GREEN));
+        lv.addItem(new TextView(this.canvas, "1. View/Update Particulars- To update user particular ", Color.GREEN));
+        lv.addItem(new TextView(this.canvas, "2. Book Appointment - To schedule teleconsult appointment to see doctors ", Color.GREEN));
+        lv.addItem(new TextView(this.canvas, "3. View Billing - To view due teleconsult bills ", Color.GREEN));
 
+        lv.attachUserInput("View/Update Particulars ", str -> viewUpdateParticularsPrompt());
         lv.attachUserInput("Book Appointment ", str -> bookAppointmentPrompt());
+
 
 //        lv.attachUserInput("View Billing", str -> {
 //            BillingPage.appointments = appointmentController.getAppointments();
@@ -66,7 +70,103 @@ public class PatientMainPage extends UiBase {
         canvas.setRequireRedraw(true);
     }
 
-    private void bookAppointmentPrompt(){
+    private void viewUpdateParticularsPrompt() {
+        SystemUser systemUser = humanController.getLoggedInUser();
+        if (systemUser instanceof Patient) {
+            Patient patient = (Patient) systemUser;
+
+            // Display current particulars
+            System.out.println("\nCurrent Particulars:");
+            patient.displayHuman(); // This will show all patient details
+
+            // Prompt for updates
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("\nWhat would you like to update?");
+            System.out.println("1. Contact Information");
+            System.out.println("2. Address");
+            System.out.println("3. Height");
+            System.out.println("4. Weight");
+            System.out.println("5. Drug Allergies");
+            System.out.println("6. Next of Kin Information");
+            System.out.println("7. Return to Main Menu");
+            System.out.println("7. Next of Kin Relationship");
+            System.out.println("8. Next of Kin Address");
+            System.out.println("9. Return to Main Menu");
+
+            int choice = InputHelper.getValidIndex("Enter your choice", 1, 7);
+
+            switch(choice) {
+                case 1:
+                    System.out.println("Enter new contact number:");
+                    String contact = scanner.nextLine();
+                    patient.setContact(contact);
+                    System.out.println("Contact information updated successfully!");
+                    break;
+                case 2:
+                    System.out.println("Enter new address:");
+                    String address = scanner.nextLine();
+                    patient.setAddress(address);
+                    System.out.println("Address updated successfully!");
+                    break;
+                case 3:
+                    System.out.println("Enter new height (in meters):");
+                    double height = scanner.nextDouble();
+                    patient.setHeight(height);
+                    System.out.println("Height updated successfully!");
+                    break;
+                case 4:
+                    System.out.println("Enter new weight (in kg):");
+                    double weight = scanner.nextDouble();
+                    patient.setWeight(weight);
+                    System.out.println("Weight updated successfully!");
+                    break;
+                case 5:
+                    System.out.println("Enter drug allergies (comma-separated):");
+                    String allergiesInput = scanner.nextLine();
+                    String[] allergiesArray = allergiesInput.split(",");
+                    List<String> drugAllergies = new ArrayList<>();
+                    for (String allergy : allergiesArray) {
+                        drugAllergies.add(allergy.trim());
+                    }
+                    patient.setDrugAllergies(drugAllergies);
+                    System.out.println("Drug allergies updated successfully!");
+                    break;
+                case 6:
+                    System.out.println("Enter next of kin name:");
+                    String nokName = scanner.nextLine();
+                    patient.setNokName(nokName);
+                    System.out.println("Next of kin name updated successfully!");
+                    break;
+                case 7:
+                    System.out.println("Enter next of kin relationship (SPOUSE, PARENT, CHILD, SIBLING, OTHER):");
+                    String relationInput = scanner.nextLine().toUpperCase();
+                    try {
+                        org.bee.hms.humans.NokRelation nokRelation = org.bee.hms.humans.NokRelation.valueOf(relationInput);
+                        patient.setNokRelation(nokRelation);
+                        System.out.println("Next of kin relationship updated successfully!");
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Invalid relationship type. Please try again.");
+                    }
+                    break;
+                case 8:
+                    System.out.println("Enter next of kin address:");
+                    String nokAddress = scanner.nextLine();
+                    patient.setNokAddress(nokAddress);
+                    System.out.println("Next of kin address updated successfully!");
+                    break;
+                case 9:
+                    // Return to main menu
+                    break;
+            }
+
+            // Save the updated patient information
+            humanController.saveHumans();
+        }
+
+        canvas.setRequireRedraw(true);
+    }
+
+    private void bookAppointmentPrompt() {
         appointmentController.getAllAppointments();
         Scanner scanner = new Scanner(System.in); // Create a new scanner object
         System.out.println("Enter reason to consult: ");
@@ -142,40 +242,42 @@ public class PatientMainPage extends UiBase {
             Appointment appointment = new Appointment(patient, reason, selectedDateTime, AppointmentStatus.PENDING);
 
 
-        // check if consent is already given before asking.
-        if(!patient.getPatientConsent()) {
-            String consentString = "Telemedicine Consent Form\n\n" +
-                    "Purpose: This telemedicine session is for a general checkup.\n\n" +
-                    "Procedure:  This session will use live video and audio to connect you with the provider.  You may be asked to share information about your health, and the provider may provide advice or recommendations.\n\n" +
-                    "Recording: This session will not be recorded. If this session is recorded for any purpose, it will be made known to you and separate verbal consent will be required during the call.\n\n" +
-                    "Confidentiality: Your personal health information is protected by Singapore privacy laws.  We will take reasonable steps to protect your privacy.\n\n" +
-                    "Risks and Limitations: Telemedicine is not a substitute for in-person care.  Some conditions cannot be diagnosed or treated remotely.  Technical issues (e.g., poor internet connection) may affect the quality of the session.  In case of an emergency, please call 911 or go to the nearest emergency room.\n\n" +
-                    "Alternatives: You have the option to schedule an in-person appointment instead of using telemedicine.\n\n" +
-                    "Rights: You have the right to refuse or withdraw consent at any time. You have the right to ask questions about this session and your health information.\n\n" +
-                    "By Agreeing, you confirm that you have read, understood, and agree to the terms of this telemedicine consent (Y/N). \n\n" +
-                    "Technical requirements: A laptop or mobile device (such as phone or tablet) with Zoom Meetings app installed";
-            System.out.println(consentString);
-            boolean validInput = false;
-            while (!validInput) {
-                System.out.println("Do you wish to proceed with this appointment? (Y/N)");
-                String s = scanner.nextLine();
-                if (s.equalsIgnoreCase("Y")) {
-                    validInput = true;
-                } else if (s.equalsIgnoreCase("N")) {
-                    System.out.println("Consent not recieved, terminating session. Your information will not be saved.");
-                    canvas.setRequireRedraw(true);
-                    return;
+            // check if consent is already given before asking.
+            if (!patient.getPatientConsent()) {
+                String consentString = "Telemedicine Consent Form\n\n" +
+                        "Purpose: This telemedicine session is for a general checkup.\n\n" +
+                        "Procedure:  This session will use live video and audio to connect you with the provider.  You may be asked to share information about your health, and the provider may provide advice or recommendations.\n\n" +
+                        "Recording: This session will not be recorded. If this session is recorded for any purpose, it will be made known to you and separate verbal consent will be required during the call.\n\n" +
+                        "Confidentiality: Your personal health information is protected by Singapore privacy laws.  We will take reasonable steps to protect your privacy.\n\n" +
+                        "Risks and Limitations: Telemedicine is not a substitute for in-person care.  Some conditions cannot be diagnosed or treated remotely.  Technical issues (e.g., poor internet connection) may affect the quality of the session.  In case of an emergency, please call 911 or go to the nearest emergency room.\n\n" +
+                        "Alternatives: You have the option to schedule an in-person appointment instead of using telemedicine.\n\n" +
+                        "Rights: You have the right to refuse or withdraw consent at any time. You have the right to ask questions about this session and your health information.\n\n" +
+                        "By Agreeing, you confirm that you have read, understood, and agree to the terms of this telemedicine consent (Y/N). \n\n" +
+                        "Technical requirements: A laptop or mobile device (such as phone or tablet) with Zoom Meetings app installed";
+                System.out.println(consentString);
+                boolean validInput = false;
+                while (!validInput) {
+                    System.out.println("Do you wish to proceed with this appointment? (Y/N)");
+                    String s = scanner.nextLine();
+                    if (s.equalsIgnoreCase("Y")) {
+                        validInput = true;
+                    } else if (s.equalsIgnoreCase("N")) {
+                        System.out.println("Consent not recieved, terminating session. Your information will not be saved.");
+                        canvas.setRequireRedraw(true);
+                        return;
+                    }
                 }
-            }
 
-            // set the consent.
-            appointment.getPatient().setPatientConsent(true);
+                // set the consent.
+                appointment.getPatient().setPatientConsent(true);
+
+
+            }
+            appointment.setHistory(history);
+            appointmentController.addAppointment(appointment);
+            appointmentController.saveAppointments();
+            canvas.setRequireRedraw(true);
         }
-        appointment.setHistory(history);
-        appointmentController.addAppointment(appointment);
-        appointmentController.saveAppointments();
-        canvas.setRequireRedraw(true);
-    }
     }
 }
 

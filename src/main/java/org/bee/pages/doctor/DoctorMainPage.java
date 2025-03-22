@@ -38,7 +38,7 @@ public class DoctorMainPage extends UiBase {
         lv.attachUserInput("View List of Outpatient Cases ", str -> ToPage(new OutpatientPatientInfoPage()));
         lv.attachUserInput("Update Outpatient Records ", str -> ToPage(new OutpatientPatientInfoPage()));
 
-//        lv.attachUserInput("View Appointment", str -> ToPage(new ViewAppointmentsPage()));
+        lv.attachUserInput("View Appointment", str -> ToPage(new ViewAppointmentPage()));
 
     }
 }

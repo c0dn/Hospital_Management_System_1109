@@ -1,9 +1,10 @@
 package org.bee.hms.humans;
 
+import org.bee.hms.auth.SystemUser;
+import org.bee.controllers.HumanController;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import org.bee.hms.auth.SystemUser;
 
 /**
  * Represents a patient in the insurance system.
@@ -63,6 +64,29 @@ public class Patient extends Human implements SystemUser {
         this.companyAddress = builder.companyAddress;
         this.patientConsent = builder.patientConsent;
     }
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public void setDrugAllergies(List<String> drugAllergies) {
+        this.drugAllergies = new ArrayList<>(drugAllergies);
+    }
+
+    public void setNokName(String nokName) {
+        this.nokName = nokName;
+    }
+
+    public void setNokRelation(NokRelation nokRelation) {
+        this.nokRelation = nokRelation;
+    }
+
+    public void setNokAddress(String nokAddress) {
+        this.nokAddress = nokAddress;
+    }
 
     /**
      * Creates and returns a new {@link PatientBuilder} instance.
@@ -94,6 +118,10 @@ public class Patient extends Human implements SystemUser {
     public boolean getPatientConsent() { return patientConsent; }
 
     public void setPatientConsent(boolean patientConsent) { this.patientConsent = patientConsent; }
+
+    public void setContact(String contact) {}
+
+    public void setAddress(String address) {}
 
     public void displayHuman() {
 
@@ -146,4 +174,5 @@ public class Patient extends Human implements SystemUser {
     public String getUsername() {
         return nricFin;
     }
+
 }
