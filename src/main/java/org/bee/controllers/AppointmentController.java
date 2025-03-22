@@ -11,6 +11,9 @@ import java.util.stream.Collectors;
 import java.time.format.DateTimeFormatter;
 
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.bee.execeptions.ZoomApiException;
 import org.bee.hms.humans.Doctor;
 import org.bee.hms.humans.Patient;
@@ -18,9 +21,6 @@ import org.bee.hms.telemed.Appointment;
 import org.bee.hms.telemed.AppointmentStatus;
 import org.bee.utils.DataGenerator;
 import java.util.Scanner;
-
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 import okhttp3.FormBody;
 import okhttp3.MediaType;
@@ -388,23 +388,23 @@ public class AppointmentController extends BaseController<Appointment> {
             }
 
             String tokenResponseBody = tokenResponse.body().string();
-            JsonObject jsonTokenResponse = JsonParser.parseString(tokenResponseBody).getAsJsonObject();
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode jsonTokenResponse = mapper.readTree(tokenResponseBody);
 
             if (!jsonTokenResponse.has("access_token")) {
                 throw new ZoomApiException("Access token not found in response: " + tokenResponseBody);
             }
 
-            String accessToken = jsonTokenResponse.get("access_token").getAsString();
+            String accessToken = jsonTokenResponse.get("access_token").asText();
 
-            // create meeting
-            JsonObject jsonBody = new JsonObject();
-            jsonBody.addProperty("topic", appointmentTitle);
-            jsonBody.addProperty("type", 1); // 1 for instant meeting
-            jsonBody.addProperty("duration", durationMinutes);
-            jsonBody.addProperty("timezone", "UTC");
+            ObjectNode jsonBody = mapper.createObjectNode();
+            jsonBody.put("topic", appointmentTitle);
+            jsonBody.put("type", 1); // 1 for instant meeting
+            jsonBody.put("duration", durationMinutes);
+            jsonBody.put("timezone", "UTC");
 
             RequestBody meetingBody = RequestBody.create(
-                    jsonBody.toString(),
+                    mapper.writeValueAsString(jsonBody),
                     MediaType.parse("application/json")
             );
 
@@ -427,13 +427,13 @@ public class AppointmentController extends BaseController<Appointment> {
             }
 
             String meetingResponseBody = meetingResponse.body().string();
-            JsonObject jsonMeetingResponse = JsonParser.parseString(meetingResponseBody).getAsJsonObject();
+            JsonNode jsonMeetingResponse = mapper.readTree(meetingResponseBody);
 
             if (!jsonMeetingResponse.has("join_url")) {
                 throw new ZoomApiException("Join URL not found in response: " + meetingResponseBody);
             }
 
-            return jsonMeetingResponse.get("join_url").getAsString();
+            return jsonMeetingResponse.get("join_url").asText();
 
         } catch (IOException e) {
             throw new ZoomApiException("Error communicating with Zoom API: " + e.getMessage(), e);
