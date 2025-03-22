@@ -81,9 +81,9 @@ public class HumanController extends BaseController<Human> {
 
     public String getUserGreeting() {
         return switch (authenticatedUser) {
-            case Doctor doc -> String.format("Welcome back %s MCR No. %s", doc.getName(), doc.getMcr());
-            case Patient patient -> String.format("Welcome back %s (%s)", patient.getName(), patient.getPatientId());
-            case Nurse nurse -> String.format("Welcome back %s RNID No. %s", nurse.getName(), nurse.getRnid());
+            case Doctor doc -> String.format("Welcome back!\nName: %s, MCR No.: %s", doc.getName(), doc.getMcr());
+            case Patient patient -> String.format("Welcome back!\nName: %s, ID: %s", patient.getName(), patient.getPatientId());
+            case Nurse nurse -> String.format("Welcome back!\nName: %s, RNID No.: %s", nurse.getName(), nurse.getRnid());
             case null, default -> throw new IllegalStateException("There is no logged in user");
         };
     }

@@ -4,6 +4,7 @@ import org.bee.hms.humans.Doctor;
 import org.bee.hms.humans.Patient;
 import org.bee.hms.medical.Consultation;
 import org.bee.utils.DataGenerator;
+import org.bee.utils.InfoUpdaters.ConsultationUpdater;
 
 import java.util.List;
 
@@ -91,13 +92,24 @@ public class ConsultationController extends BaseController<Consultation> {
      * @param newConsultation The updated consultation data
      * @return true if the consultation was updated, false if it was not found
      */
-    public boolean updateConsultation(Consultation oldConsultation, Consultation newConsultation) {
-        int index = items.indexOf(oldConsultation);
-        if (index != -1) {
-            items.set(index, newConsultation);
-            saveData();
-            return true;
-        }
-        return false;
+//    public boolean updateConsultation(Consultation oldConsultation, Consultation newConsultation) {
+//        int index = items.indexOf(oldConsultation);
+//        if (index != -1) {
+//            items.set(index, newConsultation);
+//            saveData();
+//            return true;
+//        }
+//        return false;
+//    }
+    public void updateConsultation(String consultationId, ConsultationUpdater updater) {
+        Consultation consultation = findConsultationById(consultationId);
+        updateEntity(consultation, updater);
+    }
+
+    private Consultation findConsultationById(String consultationId) {
+        return getAllOutpatientCases().stream()
+                .filter(c -> c.getConsultationId().equals(consultationId))
+                .findFirst()
+                .orElse(null);
     }
 }

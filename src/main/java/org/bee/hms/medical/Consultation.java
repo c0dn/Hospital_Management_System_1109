@@ -125,7 +125,7 @@ public class Consultation implements JSONReadable, JSONWritable {
     /**
      * List of lab tests ordered for the patient.
      */
-    private ArrayList<LabTest> labtests;
+    private ArrayList<LabTest> labTests;
 
 
     /**
@@ -379,5 +379,65 @@ public class Consultation implements JSONReadable, JSONWritable {
 
     public LocalDateTime getAppointmentDate() {
         return appointmentDate;
+    }
+
+    public void displayConsultation() {
+        patient.displayHuman();
+        System.out.printf("%n%n");
+        System.out.println("CONSULTATION DETAILS");
+        System.out.println("---------------------------------------------------------------------");
+
+//        System.out.printf("%nName: " + name);
+        System.out.println("Case ID: " + consultationId);
+        System.out.println("\nAppointment Date: " + appointmentDate);
+        System.out.println("\nType: " + type);
+        System.out.println("\nStatus: " + status);
+        System.out.println("\nDiagnosis: " + diagnosis);
+        System.out.printf("\nDoctor Name: " + doctor.getName());
+        System.out.println();
+    }
+
+    public void setDiagnosticCodes(List<DiagnosticCode> diagnosticCodes) {
+        this.diagnosticCodes = diagnosticCodes;
+    }
+
+    public void setProcedureCodes(List<ProcedureCode> procedureCodes) {
+        this.procedureCodes = procedureCodes;
+    }
+
+    public void setPrescriptions(Map<Medication, Integer> prescriptions) {
+        this.prescriptions = prescriptions;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public void setMedicalHistory(String medicalHistory) {
+        this.medicalHistory = medicalHistory;
+    }
+
+    public void setDiagnosis(String diagnosis) {
+        this.diagnosis = diagnosis;
+    }
+
+    public void setVisitReason(String visitReason) {
+        this.visitReason = visitReason;
+    }
+
+    public void setFollowUpDate(LocalDateTime followUpDate) {
+        this.followUpDate = followUpDate;
+    }
+
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
+    }
+
+    public void setTreatments(ArrayList<Treatment> treatments) {
+        this.treatments = treatments;
+    }
+
+    public void setLabtests(ArrayList<LabTest> labTests) {
+        this.labTests = labTests;
     }
 }
