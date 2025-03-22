@@ -390,4 +390,7 @@ public class Consultation implements JSONReadable, JSONWritable {
     }
 
 
+    public LocalDateTime getAppointmentDate() {
+        return appointmentDate;
+    }
 }

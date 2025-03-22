@@ -198,20 +198,20 @@ public class LabTest {
         return consultation;
     }
 
-    /**
-     * Sets the consultation case for this lab test. If the lab test is already associated with an
-     * consultation case, it is removed from that case before being added to the new one.
-     *
-     * @param consultation the outpatient case to set.
-     */
-    public void setConsultation(Consultation consultation) {
-        this.consultation = consultation;
-        if (this.consultation != null) {
-            this.consultation.removeLabTest(this);
-        }
-        this.consultation = consultation;
-        consultation.addLabTest(this);
-    }
+//    /**
+//     * Sets the consultation case for this lab test. If the lab test is already associated with an
+//     * consultation case, it is removed from that case before being added to the new one.
+//     *
+//     * @param consultation the outpatient case to set.
+//     */
+//    public void setConsultation(Consultation consultation) {
+//        this.consultation = consultation;
+//        if (this.consultation != null) {
+//            this.consultation.removeLabTest(this);
+//        }
+//        this.consultation = consultation;
+//        consultation.addLabTest(this);
+//    }
 
     /**
      * Gets the remarks associated with the lab test.

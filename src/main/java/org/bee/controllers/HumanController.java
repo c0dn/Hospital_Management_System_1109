@@ -58,6 +58,13 @@ public class HumanController extends BaseController<Human> {
         }
 
         for (int i = 0; i < 10; i++) {
+            Clerk clerk = Clerk.builder()
+                    .withRandomBaseData()
+                    .build();
+            items.add(clerk);
+        }
+
+        for (int i = 0; i < 10; i++) {
             String patientId = String.format("P%04d", 1001 + i);
             Patient patient = Patient.builder()
                     .withRandomData(patientId)
@@ -152,6 +159,14 @@ public class HumanController extends BaseController<Human> {
         return items.stream()
                 .filter(human -> human instanceof Patient)
                 .map(human -> (Patient) human)
+                .collect(Collectors.toList());
+    }
+
+
+    public List<Clerk> getAllClerks() {
+        return items.stream()
+                .filter(human -> human instanceof Clerk)
+                .map(human -> (Clerk) human)
                 .collect(Collectors.toList());
     }
 }

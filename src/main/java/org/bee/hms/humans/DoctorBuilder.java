@@ -1,8 +1,5 @@
 package org.bee.hms.humans;
 
-import org.bee.hms.medical.Consultation;
-
-import java.util.ArrayList;
 
 /**
  * Builder class for creating instances of {@link Doctor}.
@@ -29,6 +26,7 @@ public class DoctorBuilder extends StaffBuilder<DoctorBuilder> {
         this.mcr = mcr;
         return this;
     }
+
 
     /**
      * Populates the builder with randomly generated base data, including a random MCR number.

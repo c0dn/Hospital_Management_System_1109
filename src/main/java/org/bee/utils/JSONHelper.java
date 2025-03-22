@@ -14,11 +14,7 @@ import java.util.regex.Pattern;
 
 import org.bee.hms.billing.BillableItem;
 import org.bee.hms.claims.ClaimStatus;
-import org.bee.hms.humans.Doctor;
-import org.bee.hms.humans.Human;
-import org.bee.hms.humans.Nurse;
-import org.bee.hms.humans.Patient;
-import org.bee.hms.humans.Staff;
+import org.bee.hms.humans.*;
 import org.bee.hms.insurance.GovernmentProvider;
 import org.bee.hms.insurance.InsuranceProvider;
 import org.bee.hms.insurance.PrivateProvider;
@@ -40,18 +36,7 @@ import org.bee.hms.wards.GeneralWard;
 import org.bee.hms.wards.ICUWard;
 import org.bee.hms.wards.LabourWard;
 import org.bee.hms.wards.Ward;
-import org.bee.utils.typeAdapters.AppointmentStatusAdapter;
-import org.bee.utils.typeAdapters.BigDecimalAdapter;
-import org.bee.utils.typeAdapters.ClaimStatusAdapter;
-import org.bee.utils.typeAdapters.LocalDateAdapter;
-import org.bee.utils.typeAdapters.LocalDateTimeAdapter;
-import org.bee.utils.typeAdapters.MedicationMapAdapter;
-import org.bee.utils.typeAdapters.PatternTypeAdapter;
-import org.bee.utils.typeAdapters.RuntimeTypeAdapterFactory;
-import org.bee.utils.typeAdapters.SessionStatusAdapter;
-import org.bee.utils.typeAdapters.SupportingDocumentsAdapter;
-import org.bee.utils.typeAdapters.VisitStatusAdapter;
-import org.bee.utils.typeAdapters.WardStayTypeAdapter;
+import org.bee.utils.typeAdapters.*;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -67,6 +52,7 @@ public class JSONHelper {
                 .of(Human.class, "type")
                 .registerSubtype(Patient.class, "patient")
                 .registerSubtype(Staff.class, "staff")
+                .registerSubtype(Clerk.class, "clerk")
                 .registerSubtype(Doctor.class, "doctor")
                 .registerSubtype(Nurse.class, "nurse");
 

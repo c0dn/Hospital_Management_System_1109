@@ -27,6 +27,7 @@ public class Nurse extends Staff{
     Nurse(NurseBuilder builder) {
         super(builder);
         this.rnid = builder.rnid;
+        this.type = "nurse";
     }
 
     /**

@@ -31,6 +31,7 @@ public class Doctor extends Staff {
     Doctor(DoctorBuilder builder) {
         super(builder);
         this.mcr = builder.mcr;
+        this.type = "doctor";
     }
 
 
@@ -73,6 +74,5 @@ public class Doctor extends Staff {
         System.out.format("MCR: %s%n", mcr);
         System.out.println("=====================================================================");
     }
-
 
 }

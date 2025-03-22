@@ -10,6 +10,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
@@ -23,6 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Tests for serialization and deserialization of Consultation objects using Gson.
  * This test class verifies that Consultation objects can be properly converted to JSON and back.
+ * Uses reflection to access private fields since many getters are missing.
  */
 public class ConsultationSerializationTest {
 
@@ -38,6 +40,14 @@ public class ConsultationSerializationTest {
         originalConsultation = createTestConsultation();
     }
 
+    /**
+     * Helper method to access private fields using reflection
+     */
+    private <T> T getPrivateField(Object obj, String fieldName, Class<T> fieldType) throws Exception {
+        Field field = obj.getClass().getDeclaredField(fieldName);
+        field.setAccessible(true);
+        return fieldType.cast(field.get(obj));
+    }
 
     @Test
     @DisplayName("Test serializing Consultation to JSON string")
@@ -55,34 +65,53 @@ public class ConsultationSerializationTest {
 
     @Test
     @DisplayName("Test deserializing Consultation from JSON string")
-    void testDeserializeFromJsonString() {
+    void testDeserializeFromJsonString() throws Exception {
         // Serialize to JSON string
         String json = jsonHelper.toJson(originalConsultation);
 
         // Deserialize from JSON string
         Consultation deserializedConsultation = jsonHelper.fromJson(json, Consultation.class);
 
-        // Verify key properties match between original and deserialized objects
-        assertEquals(originalConsultation.getConsultationId(), deserializedConsultation.getConsultationId());
-        assertEquals(originalConsultation.getType(), deserializedConsultation.getType());
-        assertEquals(originalConsultation.getDoctorId(), deserializedConsultation.getDoctorId());
-        assertEquals(originalConsultation.getConsultationTime(), deserializedConsultation.getConsultationTime());
-        assertEquals(originalConsultation.getConsultationFee(), deserializedConsultation.getConsultationFee());
+        // Verify key properties match between original and deserialized objects using reflection
+        assertEquals(
+                getPrivateField(originalConsultation, "consultationId", String.class),
+                getPrivateField(deserializedConsultation, "consultationId", String.class)
+        );
+        assertEquals(
+                getPrivateField(originalConsultation, "type", ConsultationType.class),
+                getPrivateField(deserializedConsultation, "type", ConsultationType.class)
+        );
+        assertEquals(
+                getPrivateField(originalConsultation, "doctorId", String.class),
+                getPrivateField(deserializedConsultation, "doctorId", String.class)
+        );
+        assertEquals(
+                getPrivateField(originalConsultation, "consultationTime", LocalDateTime.class),
+                getPrivateField(deserializedConsultation, "consultationTime", LocalDateTime.class)
+        );
+        assertEquals(
+                getPrivateField(originalConsultation, "consultationFee", BigDecimal.class),
+                getPrivateField(deserializedConsultation, "consultationFee", BigDecimal.class)
+        );
 
         // Verify nested objects
-        assertEquals(originalConsultation.getDiagnosticCodes().size(),
-                deserializedConsultation.getDiagnosticCodes().size());
-        assertEquals(originalConsultation.getProcedureCodes().size(),
-                deserializedConsultation.getProcedureCodes().size());
+        List<DiagnosticCode> originalDiagnosticCodes = getPrivateField(originalConsultation, "diagnosticCodes", List.class);
+        List<DiagnosticCode> deserializedDiagnosticCodes = getPrivateField(deserializedConsultation, "diagnosticCodes", List.class);
+        assertEquals(originalDiagnosticCodes.size(), deserializedDiagnosticCodes.size());
+
+        List<ProcedureCode> originalProcedureCodes = getPrivateField(originalConsultation, "procedureCodes", List.class);
+        List<ProcedureCode> deserializedProcedureCodes = getPrivateField(deserializedConsultation, "procedureCodes", List.class);
+        assertEquals(originalProcedureCodes.size(), deserializedProcedureCodes.size());
 
         // Verify prescriptions map
-        assertEquals(originalConsultation.getPrescriptions().size(),
-                deserializedConsultation.getPrescriptions().size());
+        Map<Medication, Integer> originalPrescriptions = getPrivateField(originalConsultation, "prescriptions", Map.class);
+        Map<Medication, Integer> deserializedPrescriptions = getPrivateField(deserializedConsultation, "prescriptions", Map.class);
+        assertEquals(originalPrescriptions.size(), deserializedPrescriptions.size());
     }
 
     @Test
     @DisplayName("Test serializing Consultation to file and deserializing")
-    void testSerializeToFileAndDeserialize(@TempDir Path tempDir) throws IOException {
+    void testSerializeToFileAndDeserialize(@TempDir Path tempDir) throws Exception {
         // Create a temporary file path
         String jsonFilePath = tempDir.resolve("consultation_test.json").toString();
 
@@ -97,20 +126,29 @@ public class ConsultationSerializationTest {
         // Load Consultation from JSON file
         Consultation fileDeserializedConsultation = jsonHelper.loadFromJsonFile(jsonFilePath, Consultation.class);
 
-            // Verify key properties match between original and file-deserialized objects
-            assertEquals(originalConsultation.getConsultationId(), fileDeserializedConsultation.getConsultationId());
-            assertEquals(originalConsultation.getType(), fileDeserializedConsultation.getType());
-            assertEquals(originalConsultation.getDoctorId(), fileDeserializedConsultation.getDoctorId());
-            assertEquals(originalConsultation.getPrescriptions().size(),
-                    fileDeserializedConsultation.getPrescriptions().size());
+        // Verify key properties match between original and file-deserialized objects using reflection
+        assertEquals(
+                getPrivateField(originalConsultation, "consultationId", String.class),
+                getPrivateField(fileDeserializedConsultation, "consultationId", String.class)
+        );
+        assertEquals(
+                getPrivateField(originalConsultation, "type", ConsultationType.class),
+                getPrivateField(fileDeserializedConsultation, "type", ConsultationType.class)
+        );
+        assertEquals(
+                getPrivateField(originalConsultation, "doctorId", String.class),
+                getPrivateField(fileDeserializedConsultation, "doctorId", String.class)
+        );
+
+        Map<Medication, Integer> originalPrescriptions = getPrivateField(originalConsultation, "prescriptions", Map.class);
+        Map<Medication, Integer> deserializedPrescriptions = getPrivateField(fileDeserializedConsultation, "prescriptions", Map.class);
+        assertEquals(originalPrescriptions.size(), deserializedPrescriptions.size());
     }
 
     /**
      * Creates a test Consultation object with various properties set.
      */
     private Consultation createTestConsultation() {
-
         return Consultation.withRandomData();
     }
-
 }

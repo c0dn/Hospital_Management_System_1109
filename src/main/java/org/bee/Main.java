@@ -2,6 +2,7 @@ package org.bee;
 
 import org.bee.controllers.AppointmentController;
 import org.bee.controllers.ClaimController;
+import org.bee.controllers.ConsultationController;
 import org.bee.controllers.HumanController;
 import org.bee.pages.LoginPage;
 import org.bee.ui.ApplicationContext;
@@ -24,6 +25,7 @@ public class Main {
         HumanController.getInstance();
         AppointmentController.getInstance();
         ClaimController.getInstance();
+        ConsultationController.getInstance();
         var canvas = new Canvas();
         ApplicationContext applicationContext = new ApplicationContext(canvas);
         applicationContext.startApplication(new LoginPage());

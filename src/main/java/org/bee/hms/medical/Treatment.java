@@ -141,20 +141,6 @@ public class Treatment {
     }
 
     /**
-     * Attach the outpatient case for this treatment. If the treatment is already associated with an
-     * outpatient case, it is removed from that case before being added to the new one.
-     *
-     * @param consultation the outpatient case to be associated with the treatment.
-     */
-    public void setOutpatientCase(Consultation consultation) {
-        if (this.consultation != null) {
-            this.consultation.removeTreatment(this);
-        }
-        this.consultation = consultation;
-        consultation.addTreatment(this);
-    }
-
-    /**
      * Gets the unique identifier for this treatment.
      *
      * @return the treatment ID.

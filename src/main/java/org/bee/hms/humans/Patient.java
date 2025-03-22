@@ -63,6 +63,7 @@ public class Patient extends Human implements SystemUser {
         this.companyName = builder.companyName;
         this.companyAddress = builder.companyAddress;
         this.patientConsent = builder.patientConsent;
+        this.type = "patient";
     }
     public void setHeight(double height) {
         this.height = height;

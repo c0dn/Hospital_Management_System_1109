@@ -176,17 +176,7 @@ abstract class HumanBuilder<T extends HumanBuilder<T>> {
         this.isVaccinated = isVaccinated;
         return self();
     }
-    
-    /**
-     * Sets the type of human for JSON serialization/deserialization.
-     *
-     * @param type The type identifier for the human.
-     * @return The current builder instance.
-     */
-    public T type(String type) {
-        this.type = type;
-        return self();
-    }
+
 
     /**
      * Fills the builder with random data using a data generator.
