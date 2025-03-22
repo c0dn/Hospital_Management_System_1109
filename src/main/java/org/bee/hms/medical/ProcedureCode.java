@@ -4,13 +4,11 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.bee.hms.billing.BillableItem;
 import org.bee.hms.policy.BenefitType;
 import org.bee.hms.policy.ClaimableItem;
 import org.bee.utils.CSVHelper;
-import org.bee.utils.DataGenerator;
 
 /**
  * Represents a medical procedure code with associated description and price.
@@ -23,7 +21,6 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
     private String code;
     private String description;
     private BigDecimal price;
-    private static final DataGenerator gen = DataGenerator.getInstance();
     private static final Map<String, ProcedureCode> CODE_REGISTRY = new HashMap<>();
     private static final BigDecimal DEFAULT_PRICE = new BigDecimal("1000.00");
 
@@ -37,7 +34,7 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
      * @param code The unique procedure code.
      * @param description The description of the procedure.
      */
-    public ProcedureCode(String code, String description) {
+    private ProcedureCode(String code, String description) {
         this.code = code;
         this.description = description;
         this.price = DEFAULT_PRICE;
@@ -301,32 +298,41 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
      * @return A randomly selected ProcedureCode
      */
     public static ProcedureCode getRandomCode() {
-        Set<String> codes = CODE_REGISTRY.keySet();
-        return createFromCode(gen.getRandomElement(codes));
+        String[] codes = CODE_REGISTRY.keySet().toArray(new String[0]);
+        int randomIndex = (int) (Math.random() * codes.length);
+        return createFromCode(codes[randomIndex]);
     }
-    
+
     /**
      * Gets a random procedure code that matches the specified benefit type
-     * 
+     *
      * @param benefitType The benefit type to match
      * @return A randomly selected ProcedureCode that matches the specified benefit type
      * @throws IllegalArgumentException if no procedure codes match the specified benefit type
      */
-    public static ProcedureCode getRandomCodeForBenefitType(BenefitType benefitType, boolean isInPatient) {
-        List<String> matchingCodes = new java.util.ArrayList<>();
-        
+    public static ProcedureCode getRandomCodeForBenefitType(BenefitType benefitType) {
+        // Create a list to store matching codes
+        java.util.List<String> matchingCodes = new java.util.ArrayList<>();
+
+        // Iterate through all codes in the registry
         for (Map.Entry<String, ProcedureCode> entry : CODE_REGISTRY.entrySet()) {
             ProcedureCode code = entry.getValue();
 
-            if (code.resolveBenefitType(isInPatient) == benefitType) {
+            // Check if this code matches the specified benefit type
+            // We'll check for both inpatient and outpatient scenarios
+            if (code.resolveBenefitType(true) == benefitType ||
+                code.resolveBenefitType(false) == benefitType) {
                 matchingCodes.add(entry.getKey());
             }
         }
-        
+
+        // If no matching codes were found, throw an exception
         if (matchingCodes.isEmpty()) {
             throw new IllegalArgumentException("No procedure codes found for benefit type: " + benefitType);
         }
-        
-        return createFromCode(gen.getRandomElement(matchingCodes));
+
+        // Select a random code from the matching codes
+        int randomIndex = (int) (Math.random() * matchingCodes.size());
+        return createFromCode(matchingCodes.get(randomIndex));
     }
 }

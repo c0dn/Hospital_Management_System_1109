@@ -9,6 +9,7 @@ import org.bee.hms.medical.ProcedureCode;
 import java.io.IOException;
 import java.math.BigDecimal;
 
+
 public class ProcedureCodeAdapter extends TypeAdapter<ProcedureCode> {
 
     @Override
@@ -17,11 +18,8 @@ public class ProcedureCodeAdapter extends TypeAdapter<ProcedureCode> {
             out.nullValue();
             return;
         }
-        out.beginObject();
-        out.name("code").value(value.getProcedureCode());
-        out.name("description").value(value.getBillItemDescription());
-        out.name("price").value(value.getCharges().toString());
-        out.endObject();
+
+        out.value(value.getProcedureCode());
     }
 
     @Override
@@ -31,30 +29,12 @@ public class ProcedureCodeAdapter extends TypeAdapter<ProcedureCode> {
             return null;
         }
 
-        String code = null;
-        String description = null;
-        BigDecimal price = null;
-
-        in.beginObject();
-        while (in.hasNext()) {
-            switch (in.nextName()) {
-                case "code":
-                    code = in.nextString();
-                    break;
-                case "description":
-                    description = in.nextString();
-                    break;
-                case "price":
-                    price = new BigDecimal(in.nextString());
-                    break;
-            }
+        if (in.peek() == JsonToken.STRING) {
+            String code = in.nextString();
+            return ProcedureCode.createFromCode(code);
         }
-        in.endObject();
 
-        // Create a new ProcedureCode object using the parsed values
-        ProcedureCode procedureCode = new ProcedureCode(code, description);
 
-        return procedureCode;
+        throw new IOException("Expected STRING or OBJECT for ProcedureCode, but was " + in.peek());
     }
-
 }

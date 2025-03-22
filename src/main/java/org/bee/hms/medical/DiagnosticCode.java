@@ -65,7 +65,7 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
      * @param fullDescription       Full description of the diagnosis.
      * @param categoryTitle         The category title for the diagnosis.
      */
-    public DiagnosticCode(String categoryCode, String diagnosisCode, String fullCode,
+    private DiagnosticCode(String categoryCode, String diagnosisCode, String fullCode,
                           String abbreviatedDescription, String fullDescription,
                           String categoryTitle) {
         this.categoryCode = categoryCode;

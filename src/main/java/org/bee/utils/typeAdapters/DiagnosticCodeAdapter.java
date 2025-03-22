@@ -7,7 +7,6 @@ import com.google.gson.stream.JsonWriter;
 import org.bee.hms.medical.DiagnosticCode;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 
 public class DiagnosticCodeAdapter extends TypeAdapter<DiagnosticCode> {
 
@@ -17,11 +16,7 @@ public class DiagnosticCodeAdapter extends TypeAdapter<DiagnosticCode> {
             out.nullValue();
             return;
         }
-        out.beginObject();
-        out.name("fullCode").value(value.getDiagnosisCode());
-        out.name("abbreviatedDescription").value(value.getBillItemDescription());
-        out.name("cost").value(value.getCharges().toString());
-        out.endObject();
+        out.value(value.getDiagnosisCode());
     }
 
     @Override
@@ -31,43 +26,11 @@ public class DiagnosticCodeAdapter extends TypeAdapter<DiagnosticCode> {
             return null;
         }
 
-        String categoryCode = null;
-        String diagnosisCode = null;
-        String fullCode = null;
-        String abbreviatedDescription = null;
-        String fullDescription = null;
-        String categoryTitle = null;
-        BigDecimal cost = null;
-
-        in.beginObject();
-        while (in.hasNext()) {
-            switch (in.nextName()) {
-                case "categoryCode":
-                    categoryCode = in.nextString();
-                    break;
-                case "diagnosisCode":
-                    diagnosisCode = in.nextString();
-                    break;
-                case "fullCode":
-                    fullCode = in.nextString();
-                    break;
-                case "abbreviatedDescription":
-                    abbreviatedDescription = in.nextString();
-                    break;
-                case "fullDescription":
-                    fullDescription = in.nextString();
-                    break;
-                case "categoryTitle":
-                    categoryTitle = in.nextString();
-                    break;
-                case "cost":
-                    cost = new BigDecimal(in.nextString());
-                    break;
-            }
+        if (in.peek() == JsonToken.STRING) {
+            String code = in.nextString();
+            return DiagnosticCode.createFromCode(code);
         }
-        in.endObject();
 
-        return new DiagnosticCode(categoryCode, diagnosisCode, fullCode, abbreviatedDescription, fullDescription, categoryTitle);
+        throw new IOException("Expected STRING or OBJECT for DiagnosticCode, but was " + in.peek());
     }
-
 }

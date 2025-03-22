@@ -47,7 +47,7 @@ public class ConsultationSerializationTest {
 
         // Verify JSON string is not empty
         assertNotNull(json, "Serialized JSON should not be null");
-        assertTrue(json.length() > 0, "Serialized JSON should not be empty");
+        assertFalse(json.isEmpty(), "Serialized JSON should not be empty");
 
         // Optionally print the JSON for debugging purposes
         System.out.println("Serialized Consultation JSON: " + json);
@@ -109,45 +109,8 @@ public class ConsultationSerializationTest {
      * Creates a test Consultation object with various properties set.
      */
     private Consultation createTestConsultation() {
-        DataGenerator gen = DataGenerator.getInstance();
 
-        // Create a Consultation object
-        Consultation consultation = new Consultation();
-
-        // Set basic fields
-        consultation.setConsultationId("C" + System.currentTimeMillis() +
-                String.format("%04d", gen.generateRandomInt(10000)));
-        consultation.setType(gen.getRandomEnum(ConsultationType.class));
-        consultation.setDoctorId("D" + gen.generateRandomInt(1000, 9999));
-        consultation.setConsultationTime(LocalDateTime.now().minusDays(gen.generateRandomInt(1, 30)));
-        consultation.setConsultationFee(new BigDecimal(gen.generateRandomInt(50, 300)));
-        consultation.setNotes("Consultation notes for patient visit #" + gen.generateRandomInt(1000, 9999));
-
-        // Add random diagnostic codes
-        List<DiagnosticCode> diagnosticCodes = new ArrayList<>();
-        int diagCount = gen.generateRandomInt(1, 3);
-        for (int i = 0; i < diagCount; i++) {
-            diagnosticCodes.add(DiagnosticCode.getRandomCode());
-        }
-        consultation.setDiagnosticCodes(diagnosticCodes);
-
-        // Add random procedure codes
-        List<ProcedureCode> procedureCodes = new ArrayList<>();
-        int procCount = gen.generateRandomInt(0, 2);
-        for (int i = 0; i < procCount; i++) {
-            procedureCodes.add(ProcedureCode.getRandomCode());
-        }
-        consultation.setProcedureCodes(procedureCodes);
-
-        // Add random prescriptions
-        Map<Medication, Integer> prescriptions = new HashMap<>();
-        int medCount = gen.generateRandomInt(1, 4);
-        for (int i = 0; i < medCount; i++) {
-            prescriptions.put(gen.getRandomMedication(), gen.generateRandomInt(1, 10));
-        }
-        consultation.setPrescriptions(prescriptions);
-
-        return consultation;
+        return Consultation.withRandomData();
     }
 
 }
