@@ -48,8 +48,8 @@ public class ClerkMainPage extends UiBase {
     @Override
     public void OnViewCreated(View parentView) {
         ListView lv = (ListView) parentView; // Cast the parent view to a list view
-        lv.setTitleHeader("Welcome to Clerk portal | Welcome Back " ); // Set the title header of the list view
-
+        HumanController controller = HumanController.getInstance();
+        lv.setTitleHeader(controller.getUserGreeting());
         // Menu options
         //lv.addItem(new TextView(this.canvas, "", Color.GREEN)); // Another empty line
         //lv.addItem(new TextView(this.canvas, "Telemedicine Services", Color.GREEN, TextStyle.BOLD));

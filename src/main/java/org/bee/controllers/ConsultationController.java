@@ -6,6 +6,7 @@ import org.bee.hms.medical.Consultation;
 import org.bee.utils.DataGenerator;
 import org.bee.utils.InfoUpdaters.ConsultationUpdater;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 
@@ -53,7 +54,7 @@ public class ConsultationController extends BaseController<Consultation> {
         for (int i = 0; i < 10; i++) {
             Patient patient = dataGenerator.getRandomElement(patients);
 
-            Doctor doctor = dataGenerator.getRandomElement(doctors);;
+            Doctor doctor = dataGenerator.getRandomElement(doctors);
 
             Consultation consultation = Consultation.withRandomData(patient, doctor);
             items.add(consultation);
@@ -135,10 +136,12 @@ public class ConsultationController extends BaseController<Consultation> {
             int endIndex = Math.min(startIndex + PAGE_SIZE, consultations.size());
 
             List<Consultation> currentPageConsultations = consultations.subList(startIndex, endIndex);
-            System.out.printf("%-8s | %-32s | %-10s | %-15s | %-20s | %-15s | %-20s | %-15s | %-10s | %-10s \n",
+            System.out.printf("%-8s | %-32s | %-10s | %-15s | %-20s | %-15s | %-20s | %-15s \n",
                     "Case ID", "Appointment Date", "Patient ID", "Patient Name", "Type", "Status", "Diagnosis",
                     "Doctor Name");
             System.out.println("-".repeat(180));
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
             for (Consultation consultation : currentPageConsultations) {
                 System.out.printf("%-8s %-32s %-10s %-15s %-20s %-15s %-20s %-15s \n",

@@ -98,4 +98,6 @@ public class Staff extends Human implements SystemUser {
     public String getUsername() {
         return staffId;
     }
+    public Object getStaffId() { return staffId; }
+
 }
