@@ -43,14 +43,14 @@ public class HumanController extends BaseController<Human> {
     protected void generateInitialData() {
         System.out.println("Generating initial human data...");
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 10; i++) {
             Doctor doctor = Doctor.builder()
                     .withRandomBaseData()
                     .build();
             items.add(doctor);
         }
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 15; i++) {
             Nurse nurse = Nurse.builder()
                     .withRandomBaseData()
                     .build();
@@ -64,7 +64,7 @@ public class HumanController extends BaseController<Human> {
             items.add(clerk);
         }
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 30; i++) {
             String patientId = String.format("P%04d", 1001 + i);
             Patient patient = Patient.builder()
                     .withRandomData(patientId)
