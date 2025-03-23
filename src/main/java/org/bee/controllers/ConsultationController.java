@@ -141,8 +141,6 @@ public class ConsultationController extends BaseController<Consultation> {
                     "Doctor Name");
             System.out.println("-".repeat(180));
 
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-
             for (Consultation consultation : currentPageConsultations) {
                 System.out.printf("%-8s %-32s %-10s %-15s %-20s %-15s %-20s %-15s \n",
                         consultation.getConsultationId(), consultation.getConsultationTime(),
