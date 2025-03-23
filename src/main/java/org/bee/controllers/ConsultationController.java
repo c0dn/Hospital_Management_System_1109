@@ -9,6 +9,7 @@ import org.bee.utils.InfoUpdaters.ConsultationUpdater;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 /**
  * Manages the storage and retrieval of {@link Consultation} objects.
@@ -117,7 +118,14 @@ public class ConsultationController extends BaseController<Consultation> {
 
     public void viewAllOutpatientCases() {
         ConsultationController consultationController = ConsultationController.getInstance();
-        List<Consultation> consultations = consultationController.getAllOutpatientCases();
+        List<Consultation> allConsultations = consultationController.getAllOutpatientCases();
+
+        // Filter consultations to only show those matching the logged-in doctor
+        List<Consultation> consultations = allConsultations.stream()
+                .filter(consultation -> consultation.getDoctor() != null &&
+                        consultation.getDoctor().getStaffId().equals(humanController.getLoggedInUser()))
+                .collect(Collectors.toList());
+
 
         if (consultations.isEmpty()) {
             System.out.println("No outpatient cases found.");
@@ -144,11 +152,11 @@ public class ConsultationController extends BaseController<Consultation> {
             for (Consultation consultation : currentPageConsultations) {
                 System.out.printf("%-8s %-32s %-10s %-15s %-20s %-15s %-20s %-15s \n",
                         consultation.getConsultationId(), consultation.getConsultationTime(),
-                        consultation.getPatient() != null ? consultation.getPatient().getPatientId() : "N/A",
-                        consultation.getPatient() != null ? consultation.getPatient().getName() : "N/A",
+                        consultation.getPatient().getPatientId(),
+                        consultation.getPatient().getName(),
                         consultation.getConsultationType(), consultation.getStatus(),
                         consultation.getDiagnosis(),
-                        consultation.getDoctor() != null ? consultation.getDoctor().getName() : "N/A");
+                        consultation.getDoctor().getName());
             }
 
             System.out.println("\nNavigation:");

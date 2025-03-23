@@ -4,9 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
 
-import org.bee.hms.humans.Contact;
-import org.bee.hms.humans.Doctor;
-import org.bee.hms.humans.Patient;
+import org.bee.hms.humans.*;
 import org.bee.hms.medical.*;
 import org.bee.hms.policy.AccidentType;
 import org.bee.hms.telemed.Appointment;
@@ -21,9 +19,21 @@ public class DataGenerator {
     private final Random random = new Random();
 
     // Personal Information
-    private final String[] SG_NAMES = {
+    private final String[] STAFF_NAMES = {
             "Tan Wei Ming", "Lim Mei Ling", "Muhammad Ibrahim", "Siti Nurhaliza",
             "Zhang Wei", "Kumar Ravi", "Abdullah Malik", "Lee Hui Ling"
+    };
+
+    private final String[] PATIENT_NAMES = {
+            "Lim Boon Teck", "Wee Jun Kiat", "Muhammad Danial", "Aisha Fatimah",
+            "Ben Tan", "Rohan Aand", "Divya Singh", "Ong Li Ting"
+    };
+
+    private final String[] SG_NAMES = {
+            "Tan Wei Ming", "Lim Mei Ling", "Muhammad Ibrahim", "Siti Nurhaliza",
+            "Zhang Wei", "Kumar Ravi", "Abdullah Malik", "Lee Hui Ling",
+            "Lim Boon Teck", "Wee Jun Kiat", "Muhammad Danial", "Aisha Fatimah",
+            "Ben Tan", "Rohan Aand", "Divya Singh", "Ong Li Ting"
     };
 
     private final String[] OCCUPATIONS = {
@@ -123,8 +133,20 @@ public class DataGenerator {
      *
      * @return Array of Singapore names
      */
-    public String[] getSgNames() {
-        return SG_NAMES;
+    public String[] getStaffNames() {
+        return STAFF_NAMES;
+    }
+
+    public String[] getPatientNames() {
+        return PATIENT_NAMES;
+    }
+
+    public String[] getAllNames(NameType nameType) {
+        return switch (nameType) {
+            case STAFF -> STAFF_NAMES;
+            case PATIENT -> PATIENT_NAMES;
+            case ALL -> SG_NAMES;
+        };
     }
 
     // ID Generation Methods

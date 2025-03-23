@@ -16,6 +16,8 @@ import org.bee.ui.views.ListView;
 import org.bee.ui.views.TextView;
 
 import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class OutpatientPatientInfoPage extends UiBase {
 
@@ -43,36 +45,42 @@ public class OutpatientPatientInfoPage extends UiBase {
         ListView lv = (ListView) parentView;
 
         SystemUser systemUser = humanController.getLoggedInUser();
-        if (systemUser instanceof Doctor) {
-            Doctor doctor = (Doctor) systemUser;
+        List<Consultation> allCases = consultationController.getAllOutpatientCases();
+
+        if (systemUser instanceof Doctor doctor) {
+            String staffId = (String) doctor.getStaffId();
 
             if (patient != null) {
                 displayOutpatientCase(consultation, lv);
                 return;
             }
-            lv.setTitleHeader("List of Outpatient Cases");
-            List<Consultation> allCases = consultationController.getAllOutpatientCases();
-            List<Consultation> doctorCases = allCases.stream()
-                    .filter(c -> c.getDoctor() != null && c.getDoctor().equals(doctor))
-                    .toList();
 
-            if (doctorCases.isEmpty()) {
-                lv.addItem(new TextView(this.canvas, "You have no outpatient cases.", Color.YELLOW));
-                canvas.setRequireRedraw(true);
+            lv.setTitleHeader("List of Outpatient Cases");
+
+            List<Consultation> cases = allCases.stream()
+                    .filter(c -> c.getDoctor() != null &&
+                            c.getDoctor().getStaffId().equals(staffId))
+                    .collect(Collectors.toList());
+
+            if (cases.isEmpty()) {
+                System.out.println("No outpatient cases found.");
+                System.out.println("\nPress Enter to continue...");
+                new Scanner(System.in).nextLine();
                 return;
             }
+
             int index = 0;
 
             // Show list of patient
-            for (Consultation consultation : doctorCases) {
+            for (Consultation consultation : cases) {
                 lv.addItem(new TextView(this.canvas, index + ". " + consultation.getPatient().getName(), Color.GREEN));
                 index += 1;
             }
 
             // When selecting "Select Patient Index"
             lv.attachUserInput("Select Patient Index ", str -> {
-                int selectedIndex = InputHelper.getValidIndex("Select Patient index", doctorCases);
-                consultation = doctorCases.get(selectedIndex);
+                int selectedIndex = InputHelper.getValidIndex("Select Patient index", cases);
+                consultation = cases.get(selectedIndex);
 
                 try {
                     displayOutpatientCase(consultation, lv);
@@ -85,16 +93,17 @@ public class OutpatientPatientInfoPage extends UiBase {
     }
 
     private void displayOutpatientCase(Consultation consultation, ListView lv) {
+
         lv.clear();
         lv.setTitleHeader("Patient Information");
         lv.addItem(new TextView(this.canvas, "Case ID: " + consultation.getConsultationId(), Color.GREEN));
         lv.addItem(new TextView(this.canvas, "Appointment Date: " + consultation.getAppointmentDate(), Color.GREEN));
-        lv.addItem(new TextView(this.canvas, "Patient ID: " + consultation.getPatient() != null ? consultation.getPatient().getPatientId() : "N/A", Color.GREEN));
-        lv.addItem(new TextView(this.canvas, "Patient Name: " + consultation.getPatient() != null ? consultation.getPatient().getName() : "N/A", Color.GREEN));
+        lv.addItem(new TextView(this.canvas, "Patient ID: " + consultation.getPatient().getPatientId(), Color.GREEN));
+        lv.addItem(new TextView(this.canvas, "Patient Name: " + consultation.getPatient().getName(), Color.GREEN));
         lv.addItem(new TextView(this.canvas, "Type: " + consultation.getConsultationType(), Color.GREEN));
         lv.addItem(new TextView(this.canvas, "Status: " + consultation.getStatus(), Color.GREEN));
         lv.addItem(new TextView(this.canvas, "Diagnosis: " + consultation.getDiagnosis(), Color.GREEN));
-        lv.addItem(new TextView(this.canvas, "Doctor Name: " + consultation.getDoctor() != null ? consultation.getDoctor().getName() : "N/A", Color.GREEN));
+        lv.addItem(new TextView(this.canvas, "Doctor Name: " + consultation.getDoctor().getName(), Color.GREEN));
         //lv.addItem(new TextView(this.canvas, "Next of Kin: " + patient.get(), Color.GREEN));
 
         // Request UI redraw

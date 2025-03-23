@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import org.bee.utils.DataGenerator;
 
+import javax.naming.Name;
+
 /**
  * Abstract builder class for constructing instances of {@link Human} or its subclasses.
  * Implements a fluent builder pattern to allow method chaining.
@@ -197,7 +199,15 @@ abstract class HumanBuilder<T extends HumanBuilder<T>> {
      * @return The current builder instance with random data.
      */
     public T withRandomBaseData() {
-        this.name = dataGenerator.getRandomElement(dataGenerator.getSgNames());
+        NameType nameType;
+        if (this instanceof StaffBuilder) {
+            nameType = NameType.STAFF;
+        } else if (this instanceof PatientBuilder) {
+            nameType = NameType.PATIENT;
+        } else {
+            nameType = NameType.ALL; // Default fallback
+        }
+        this.name = dataGenerator.getRandomElement(dataGenerator.getAllNames(nameType));
         this.dateOfBirth = LocalDate.now().minusYears(dataGenerator.generateRandomInt(20, 60)); // Age between 20-60
         this.nricFin = dataGenerator.generateNRICNumber();
         this.maritalStatus = dataGenerator.getRandomEnum(MaritalStatus.class);

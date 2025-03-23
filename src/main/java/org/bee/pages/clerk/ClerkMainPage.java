@@ -60,9 +60,9 @@
             //lv.addItem(new TextView(this.canvas, "2. View Billing For Telemedicine Service - To view billing for teleconsultation ", Color.GREEN));
 
             lv.addItem(new TextView(this.canvas, "", Color.GREEN)); // Another empty line
-            lv.addItem(new TextView(this.canvas, "Outpatient Management Services", Color.GREEN));
+            lv.addItem(new TextView(this.canvas, "Outpatient Management Services", Color.GREEN, TextStyle.BOLD));
 
-            lv.addItem(new TextView(this.canvas, "3. View All Outpatient Cases - To view all outpatient cases", Color.GREEN, TextStyle.BOLD));
+            lv.addItem(new TextView(this.canvas, "3. View All Outpatient Cases - To view all outpatient cases", Color.GREEN));
             lv.addItem(new TextView(this.canvas, "4. Update Fields For Outpatient cases - To update outpatient cases", Color.GREEN));
             //lv.addItem(new TextView(this.canvas, "5. View Billing For Telemedicine Service - To view billing outpatient ", Color.GREEN));
 

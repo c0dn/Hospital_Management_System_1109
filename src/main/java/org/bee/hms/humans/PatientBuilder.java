@@ -235,24 +235,24 @@ public class PatientBuilder extends HumanBuilder<PatientBuilder> {
         switch (relation) {
             case SPOUSE, SIBLING, PARENT -> {
                 // Keep the same family name
-                String[] nokNameParts = dataGenerator.getRandomElement(dataGenerator.getSgNames()).split(" ");
+                String[] nokNameParts = dataGenerator.getRandomElement(dataGenerator.getPatientNames()).split(" ");
                 return nokNameParts[0] + " " + familyName;
             }
             case CHILD, GRANDCHILD -> {
                 // Child/Grandchild should have patient's family name
-                String[] nokNameParts = dataGenerator.getRandomElement(dataGenerator.getSgNames()).split(" ");
+                String[] nokNameParts = dataGenerator.getRandomElement(dataGenerator.getPatientNames()).split(" ");
                 return nokNameParts[0] + " " + familyName;
             }
             case GRANDPARENT -> {
                 // Grandparent might have different family name
-                return dataGenerator.getRandomElement(dataGenerator.getSgNames());
+                return dataGenerator.getRandomElement(dataGenerator.getPatientNames());
             }
             case GUARDIAN, OTHER -> {
                 // Different family name for non-blood relations
-                return dataGenerator.getRandomElement(dataGenerator.getSgNames());
+                return dataGenerator.getRandomElement(dataGenerator.getPatientNames());
             }
             default -> {
-                return dataGenerator.getRandomElement(dataGenerator.getSgNames());
+                return dataGenerator.getRandomElement(dataGenerator.getPatientNames());
             }
         }
     }

@@ -572,8 +572,9 @@ public class PatientMainPage extends UiBase {
                 System.out.println("1. Change Appointment");
                 System.out.println("2. Cancel Appointment");
                 System.out.println("3. Back");
+                System.out.println("4. Return to Main Page");
 
-                int optionChoice = InputHelper.getValidIndex("Enter your option", 1, 3);
+                int optionChoice = InputHelper.getValidIndex("Enter your option", 1, 4);
 
                 if (optionChoice == 1) {
                     // Change appointment logic
@@ -642,6 +643,10 @@ public class PatientMainPage extends UiBase {
                     } else {
                         System.out.println("Cancellation canceled.");
                     }
+                } else if (optionChoice == 4) {
+                    // Return to main page
+                    viewingAppointments = false;
+                    canvas.setRequireRedraw(true);
                 }
             }
         }

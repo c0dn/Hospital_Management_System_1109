@@ -4,6 +4,7 @@ import org.bee.controllers.ConsultationController;
 import org.bee.controllers.HumanController;
 import org.bee.hms.auth.SystemUser;
 import org.bee.hms.humans.Doctor;
+import org.bee.hms.humans.Patient;
 import org.bee.hms.medical.*;
 import org.bee.ui.*;
 import org.bee.ui.views.ListView;
@@ -54,84 +55,84 @@ public class DoctorMainPage extends UiBase {
 
     private void updateOutpatientCase() {
 
-            Scanner scanner = null;
-            try {
-                System.out.println("\nCurrent Particulars:");
-                consultation.displayConsultation();
+        Scanner scanner = null;
+        try {
+            System.out.println("\nCurrent Particulars:");
+            consultation.displayConsultation();
 
-                scanner = new Scanner(System.in);
-                System.out.println("\nWhat would you like to update?");
-                System.out.println("1. Diagnostic Code");
-                System.out.println("2. Procedure Code");
-                System.out.println("3. Prescription");
-                System.out.println("4. Notes");
-                System.out.println("5. Medical History");
-                System.out.println("6. Diagnosis");
-                System.out.println("7. Visit Reason");
-                System.out.println("8. Follow Up Date");
-                System.out.println("9. Instructions");
-                System.out.println("10. Treatment");
-                System.out.println("11. Lab Test");
-                System.out.println("12. Return to Main Menu");
+            scanner = new Scanner(System.in);
+            System.out.println("\nWhat would you like to update?");
+            System.out.println("1. Diagnostic Code");
+            System.out.println("2. Procedure Code");
+            System.out.println("3. Prescription");
+            System.out.println("4. Notes");
+            System.out.println("5. Medical History");
+            System.out.println("6. Diagnosis");
+            System.out.println("7. Visit Reason");
+            System.out.println("8. Follow Up Date");
+            System.out.println("9. Instructions");
+            System.out.println("10. Treatment");
+            System.out.println("11. Lab Test");
+            System.out.println("12. Return to Main Menu");
 
-                int choice = InputHelper.getValidIndex("Enter your choice", 1, 12);
+            int choice = InputHelper.getValidIndex("Enter your choice", 1, 12);
 
-                String consultationId = consultation.getConsultationId();
-                ConsultationUpdater updater = ConsultationUpdater.builder();
-                boolean updateNeeded = true;
+            String consultationId = consultation.getConsultationId();
+            ConsultationUpdater updater = ConsultationUpdater.builder();
+            boolean updateNeeded = true;
 
-                switch(choice) {
-                    case 1:
-                        updater = updateDiagnosticCodeWithValidation(scanner, updater);
-                        break;
-                    case 2:
-                        updater = updateProcedureCodeWithValidation(scanner, updater);
-                        break;
-                    case 3:
-                        updater = updatePrescriptionWithValidation(scanner, updater);
-                        break;
-                    case 4:
-                        updater = updateNotesWithValidation(scanner, updater);
-                        break;
-                    case 5:
-                        updater = updateMedicalHistoryWithValidation(scanner, updater);
-                        break;
-                    case 6:
-                        updater = updateDiagnosisWithValidation(scanner, updater);
-                        break;
-                    case 7:
-                        updater = updateVisitReasonWithValidation(scanner, updater);
-                        break;
-                    case 8:
-                        updater = updateFollowUpDateWithValidation(scanner, updater);
-                        break;
-                    case 9:
-                        updater = updateInstructionsWithValidation(scanner, updater);
-                        break;
-                    case 10:
-                        updater = updateTreatmentWithValidation(scanner, updater);
-                        break;
-                    case 11:
-                        updater = updateLabTestWithValidation(scanner, updater);
-                        break;
-                    case 12:
-                        updateNeeded = false;
-                        break;
-                }
-
-                if (updateNeeded && updater.isValid()) {
-                    consultationController.updateConsultation(consultationId, updater);
-                    System.out.println("\nConsultation information updated successfully!");
-                } else if (choice != 12) {
-                    System.out.println("\nNo changes were made.");
-                }
-
-            } finally {
-                if (scanner != null) {
-                    scanner.close();
-                }
+            switch (choice) {
+                case 1:
+                    updater = updateDiagnosticCodeWithValidation(scanner, updater);
+                    break;
+                case 2:
+                    updater = updateProcedureCodeWithValidation(scanner, updater);
+                    break;
+                case 3:
+                    updater = updatePrescriptionWithValidation(scanner, updater);
+                    break;
+                case 4:
+                    updater = updateNotesWithValidation(scanner, updater);
+                    break;
+                case 5:
+                    updater = updateMedicalHistoryWithValidation(scanner, updater);
+                    break;
+                case 6:
+                    updater = updateDiagnosisWithValidation(scanner, updater);
+                    break;
+                case 7:
+                    updater = updateVisitReasonWithValidation(scanner, updater);
+                    break;
+                case 8:
+                    updater = updateFollowUpDateWithValidation(scanner, updater);
+                    break;
+                case 9:
+                    updater = updateInstructionsWithValidation(scanner, updater);
+                    break;
+                case 10:
+                    updater = updateTreatmentWithValidation(scanner, updater);
+                    break;
+                case 11:
+                    updater = updateLabTestWithValidation(scanner, updater);
+                    break;
+                case 12:
+                    updateNeeded = false;
+                    break;
             }
-            canvas.setRequireRedraw(true);
+
+            if (updateNeeded && updater.isValid()) {
+                consultationController.updateConsultation(consultationId, updater);
+                System.out.println("\nConsultation information updated successfully!");
+            } else if (choice != 12) {
+                System.out.println("\nNo changes were made.");
+            }
+
+        } finally {
+            if (scanner != null) {
+                scanner.close();
+            }
+        }
+        canvas.setRequireRedraw(true);
 
     }
 
@@ -498,5 +499,4 @@ public class DoctorMainPage extends UiBase {
 
         return updater; // Return the updated ConsultationUpdater
     }
-
 }
