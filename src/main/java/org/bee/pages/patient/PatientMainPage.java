@@ -149,7 +149,7 @@ public class PatientMainPage extends UiBase {
      * Updates contact information with validation.
      *
      * @param terminal The terminal for user input
-     * @param updater The patient updater
+     * @param updater  The patient updater
      */
     private PatientUpdater updateContactWithValidation(Terminal terminal, PatientUpdater updater) {
         boolean isValid = false;
@@ -179,7 +179,7 @@ public class PatientMainPage extends UiBase {
      * Updates address with validation.
      *
      * @param terminal The terminal for user input
-     * @param updater The patient updater
+     * @param updater  The patient updater
      */
     private PatientUpdater updateAddressWithValidation(Terminal terminal, PatientUpdater updater) {
         boolean isValid = false;
@@ -209,7 +209,7 @@ public class PatientMainPage extends UiBase {
      * Updates height with validation.
      *
      * @param terminal The terminal for user input
-     * @param updater The patient updater
+     * @param updater  The patient updater
      */
     private PatientUpdater updateHeightWithValidation(Terminal terminal, PatientUpdater updater) {
         boolean isValid = false;
@@ -245,11 +245,12 @@ public class PatientMainPage extends UiBase {
 
         return updater;
     }
+
     /**
      * Updates weight with validation.
      *
      * @param terminal The terminal for user input
-     * @param updater The patient updater
+     * @param updater  The patient updater
      */
     private PatientUpdater updateWeightWithValidation(Terminal terminal, PatientUpdater updater) {
         boolean isValid = false;
@@ -290,7 +291,7 @@ public class PatientMainPage extends UiBase {
      * Updates drug allergies with validation.
      *
      * @param terminal The terminal for user input
-     * @param updater The patient updater
+     * @param updater  The patient updater
      */
     private PatientUpdater updateDrugAllergiesWithValidation(Terminal terminal, PatientUpdater updater) {
         boolean isValid = false;
@@ -327,7 +328,7 @@ public class PatientMainPage extends UiBase {
      * Updates next of kin name with validation.
      *
      * @param terminal The terminal for user input
-     * @param updater The patient updater
+     * @param updater  The patient updater
      */
     private PatientUpdater updateNokNameWithValidation(Terminal terminal, PatientUpdater updater) {
         boolean isValid = false;
@@ -358,7 +359,7 @@ public class PatientMainPage extends UiBase {
      * Updates next of kin relationship with validation.
      *
      * @param terminal The terminal for user input
-     * @param updater The patient updater
+     * @param updater  The patient updater
      */
     private PatientUpdater updateNokRelationWithValidation(Terminal terminal, PatientUpdater updater) {
         boolean isValid = false;
@@ -399,7 +400,7 @@ public class PatientMainPage extends UiBase {
      * Updates next of kin address with validation.
      *
      * @param terminal The terminal for user input
-     * @param updater The patient updater
+     * @param updater  The patient updater
      */
     private PatientUpdater updateNokAddressWithValidation(Terminal terminal, PatientUpdater updater) {
         boolean isValid = false;
@@ -557,7 +558,7 @@ public class PatientMainPage extends UiBase {
                     System.out.println((i + 1) + ". " + appointment.getAppointmentTime() + " - " + appointment.getReason());
                 }
 
-                System.out.println("Select appointment to view details or change (1-" + appointments.size() + "):");
+                System.out.println("Select appointment to view details or change:");
                 int choice = InputHelper.getValidIndex("Enter your choice", 1, appointments.size());
 
                 Appointment selectedAppointment = appointments.get(choice - 1);
@@ -569,9 +570,10 @@ public class PatientMainPage extends UiBase {
 
                 System.out.println("Options:");
                 System.out.println("1. Change Appointment");
-                System.out.println("2. Back");
+                System.out.println("2. Cancel Appointment");
+                System.out.println("3. Back");
 
-                int optionChoice = InputHelper.getValidIndex("Enter your option", 1, 2);
+                int optionChoice = InputHelper.getValidIndex("Enter your option", 1, 3);
 
                 if (optionChoice == 1) {
                     // Change appointment logic
@@ -623,13 +625,25 @@ public class PatientMainPage extends UiBase {
 
                     System.out.println("Appointment time updated successfully.");
                 } else if (optionChoice == 2) {
-                    // Go back to main menu
-                    viewingAppointments = false;
+                    // Cancel appointment logic
+                    System.out.println("Are you sure you want to cancel this appointment? (Y/N)");
+                    Scanner scanner = new Scanner(System.in);
+                    String confirm = scanner.nextLine().trim().toUpperCase();
+                    if (confirm.equals("Y")) {
+                        // Update appointment status to CANCELED
+                        selectedAppointment.setAppointmentStatus(AppointmentStatus.CANCELED);
+                        appointmentController.updateAppointment(selectedAppointment, selectedAppointment);
+                        appointmentController.removeAppointment(selectedAppointment);
+
+                        // Update the appointments list in PatientMainPage
+                        appointments.remove(selectedAppointment);
+
+                        System.out.println("Appointment canceled successfully.");
+                    } else {
+                        System.out.println("Cancellation canceled.");
+                    }
                 }
             }
         }
     }
 }
-
-
-

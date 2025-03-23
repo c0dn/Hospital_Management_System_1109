@@ -36,7 +36,10 @@ public enum AppointmentStatus {
      * Indicates that the appointment has concluded.
      * This status is used when the appointment has been manually concluded by the doctor.
      */
-    COMPLETED;
+    COMPLETED,
+
+    /** On patient end where they cancel the appointment */
+    CANCELED;
 
     /**
      * Creates an AppointmentStatus from a string value.
