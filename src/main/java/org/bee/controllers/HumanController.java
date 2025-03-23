@@ -100,6 +100,9 @@ public class HumanController extends BaseController<Human> {
 
 
     public SystemUser getLoggedInUser() {
+        if (authenticatedUser == null) {
+            throw new IllegalStateException("There is no logged in user");
+        }
         return authenticatedUser;
     }
 

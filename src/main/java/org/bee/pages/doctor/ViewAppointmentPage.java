@@ -42,7 +42,7 @@ public class ViewAppointmentPage extends UiBase {
         ListView listView = (ListView) parentView;
         appointments = appointmentController.getAllAppointments()
                 .stream()
-                .filter(x->x.getAppointmentStatus() != AppointmentStatus.COMPLETED)
+                .filter(x -> x.getAppointmentStatus() != AppointmentStatus.COMPLETED)
                 .toList();
 
         listView.attachUserInput("Select Patient index", str -> selectAppointmentPrompt(appointments));
@@ -50,6 +50,10 @@ public class ViewAppointmentPage extends UiBase {
     }
 
     private void selectAppointmentPrompt(List<Appointment> appointments) {
+        if (appointments.isEmpty()) {
+            System.out.println("No appointments available.");
+            return;
+        }
         int selectedIndex = InputHelper.getValidIndex("Select Patient index", appointments);
         Appointment selectedAppointment = appointments.get(selectedIndex);
 
@@ -62,16 +66,25 @@ public class ViewAppointmentPage extends UiBase {
             selectedIndex1 = InputHelper.getValidIndex("Select An Option", 1, 3);
         }
 
-
         switch (selectedIndex1){
             case 1:
                 selectedAppointment.setAppointmentStatus(AppointmentStatus.ACCEPTED);
                 System.out.println("Accepted, generating zoom link...");
                 try {
+
                     String joinUrl = appointmentController.generateZoomLink(
                             "Appointment with " + selectedAppointment.getPatient().getName(),
                             30
                     );
+                    // Get the currently logged-in doctor
+                    Doctor currentDoctor = (Doctor) humanController.getLoggedInUser();
+
+                    // Assign the current doctor to the appointment if no doctor is assigned
+                    if (selectedAppointment.getDoctor() == null) {
+                        selectedAppointment.setDoctor(currentDoctor);
+                    }
+
+                    // Now get the assigned doctor (which should be the current doctor)
                     Doctor assignedDoctor = selectedAppointment.getDoctor();
                     if (assignedDoctor == null) {
                         System.out.println("Error: No doctor assigned to this appointment");
@@ -106,6 +119,11 @@ public class ViewAppointmentPage extends UiBase {
 
     private void refreshUi() {
         listView.clear();
+        if (appointments.isEmpty()) {
+            listView.addItem(new TextView(this.canvas, "You have no pending appointments.", Color.YELLOW));
+            this.canvas.setRequireRedraw(true);
+            return;}
+
         // loop through the appointments and display them
         for (int i = 0; i < appointments.size(); i++) {
             Appointment appointment = appointments.get(i);

@@ -56,7 +56,7 @@ public class PatientMainPage extends UiBase {
     public void OnViewCreated(View parentView) {
         ListView lv = (ListView) parentView; // Cast the parent view to a list view
         HumanController controller = HumanController.getInstance();
-        lv.setTitleHeader(" Teleconsultation | Welcome back! " + controller.getUserGreeting());
+        lv.setTitleHeader(controller.getUserGreeting());
         lv.addItem(new TextView(this.canvas, "1. View/Update Particulars - To update user particular ", Color.GREEN));
         lv.addItem(new TextView(this.canvas, "2. Book Appointment - To schedule teleconsult appointment", Color.GREEN));
         lv.addItem(new TextView(this.canvas, "3. View/Change Appointment - To view or reschedule an existing teleconsult appointment", Color.GREEN));
