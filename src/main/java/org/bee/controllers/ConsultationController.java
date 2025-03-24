@@ -120,12 +120,15 @@ public class ConsultationController extends BaseController<Consultation> {
         ConsultationController consultationController = ConsultationController.getInstance();
         List<Consultation> allConsultations = consultationController.getAllOutpatientCases();
 
-        // Filter consultations to only show those matching the logged-in doctor
-        List<Consultation> consultations = allConsultations.stream()
-                .filter(consultation -> consultation.getDoctor() != null &&
-                        consultation.getDoctor().getStaffId().equals(humanController.getLoggedInUser()))
-                .collect(Collectors.toList());
-
+        List<Consultation> consultations = allConsultations;
+        if (humanController.getLoggedInUser() instanceof Doctor) {
+            // If user is a doctor, filter to only show their consultations
+            consultations = allConsultations.stream()
+                    .filter(consultation -> consultation.getDoctor() != null &&
+                            consultation.getDoctor().getStaffId().equals(
+                                    ((Doctor) humanController.getLoggedInUser()).getStaffId()))
+                    .collect(Collectors.toList());
+        }
 
         if (consultations.isEmpty()) {
             System.out.println("No outpatient cases found.");

@@ -3,6 +3,7 @@ package org.bee.hms.humans;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -246,5 +247,19 @@ public class Patient extends Human implements SystemUser {
     public String getUsername() {
         return nricFin;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Patient other = (Patient) obj;
+        return Objects.equals(patientId, other.patientId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(patientId);
+    }
+
 
 }
