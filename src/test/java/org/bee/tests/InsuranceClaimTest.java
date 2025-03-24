@@ -139,7 +139,7 @@ public class InsuranceClaimTest {
         visit.updateStatus(VisitStatus.DISCHARGED);
 
         BillBuilder builder = new BillBuilder()
-                .withPatientId(testPatient.getPatientId()).withVisit(visit);
+                .withPatient(testPatient).withVisit(visit);
 
         builder.withInsurancePolicy(policy);
 
@@ -215,7 +215,7 @@ public class InsuranceClaimTest {
         visit.updateStatus(VisitStatus.DISCHARGED);
 
         // Create bill using BillBuilder
-        Bill bill = new BillBuilder().withPatientId(testPatient.getPatientId()).withVisit(visit).build();
+        Bill bill = new BillBuilder().withPatient(testPatient).withVisit(visit).build();
         assertNotNull(bill, "Bill should not be null");
 
         // Create claim
@@ -242,14 +242,14 @@ public class InsuranceClaimTest {
         // Test with Visit
         Visit visit = Visit.withRandomData();
         visit.updateStatus(VisitStatus.DISCHARGED);
-        Bill visitBill = new BillBuilder().withPatientId(testPatient.getPatientId()).withVisit(visit).build();
+        Bill visitBill = new BillBuilder().withPatient(testPatient).withVisit(visit).build();
 
         verifyBill(visitBill, "Visit");
 
         // Test with EmergencyVisit
         EmergencyVisit emergencyVisit = EmergencyVisit.withRandomData();
         emergencyVisit.updateStatus(VisitStatus.DISCHARGED);
-        Bill emergencyBill = new BillBuilder().withPatientId(testPatient.getPatientId()).withVisit(emergencyVisit).build();
+        Bill emergencyBill = new BillBuilder().withPatient(testPatient).withVisit(emergencyVisit).build();
 
         verifyBill(emergencyBill, "Emergency Visit");
 
@@ -357,7 +357,7 @@ public class InsuranceClaimTest {
         Visit visit = Visit.createCompatibleVisit(coverage, testPatient, doctors, nurses);
         visit.updateStatus(VisitStatus.DISCHARGED);
         Bill bill = new BillBuilder()
-                .withPatientId(testPatient.getPatientId())
+                .withPatient(testPatient)
                 .withVisit(visit)
                 .withInsurancePolicy(policy)
                 .build();

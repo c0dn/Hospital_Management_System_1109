@@ -29,7 +29,7 @@ public class BillBuilderTest {
         visit.updateStatus(VisitStatus.DISCHARGED);
 
         Bill bill = new BillBuilder()
-                .withPatientId(patient.getPatientId())
+                .withPatient(patient)
                 .withVisit(visit)
                 .build();
 
@@ -45,7 +45,7 @@ public class BillBuilderTest {
         Consultation consultation = Consultation.withRandomData();
 
         Bill bill = new BillBuilder()
-                .withPatientId(patient.getPatientId())
+                .withPatient(patient)
                 .withConsultation(consultation)
                 .build();
 
@@ -64,7 +64,7 @@ public class BillBuilderTest {
         Consultation consultation = Consultation.withRandomData();
 
         Bill bill = new BillBuilder()
-                .withPatientId(patient.getPatientId())
+                .withPatient(patient)
                 .withVisit(visit)
                 .withConsultation(consultation)
                 .build();
@@ -78,7 +78,7 @@ public class BillBuilderTest {
                 .withRandomData("P1004")
                 .build();
 
-        BillBuilder builder = new BillBuilder().withPatientId(patient.getPatientId());
+        BillBuilder builder = new BillBuilder().withPatient(patient);
 
         // Test null visit
         assertThrows(NullPointerException.class, () -> builder.withVisit(null),

@@ -100,7 +100,7 @@ public class ClaimController extends BaseController<InsuranceClaim> {
 
                 // Create a bill for the patient
                 Bill bill = new BillBuilder()
-                        .withPatientId(patient.getPatientId())
+                        .withPatient(patient)
                         .withVisit(visit)
                         .withInsurancePolicy(policy)
                         .build();

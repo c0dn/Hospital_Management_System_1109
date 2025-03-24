@@ -135,7 +135,7 @@ public class InsuranceClaimSerializationTest {
         visit.updateStatus(VisitStatus.DISCHARGED);
         
         Bill bill = new BillBuilder()
-                .withPatientId(patient.getPatientId())
+                .withPatient(patient)
                 .withVisit(visit)
                 .withInsurancePolicy(policy)
                 .build();

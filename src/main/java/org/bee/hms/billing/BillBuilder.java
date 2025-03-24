@@ -56,16 +56,13 @@ public class BillBuilder {
     }
 
     /**
-     * Sets the patient ID for the bill.
+     * Sets patient for this bill
      *
-     * @param patientId The unique identifier of the patient.
+     * @param patient The patient associated with the bill.
      * @return The current instance of {@code BillBuilder} for method chaining.
      */
-    public BillBuilder withPatientId(String patientId) {
-        // logic to get patient from id
-        this.patient = Patient.builder()
-                .withRandomData(patientId)
-                .build();
+    public BillBuilder withPatient(Patient patient) {
+        this.patient = patient;
         return this;
     }
 
