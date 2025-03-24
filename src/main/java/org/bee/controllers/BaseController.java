@@ -41,6 +41,7 @@ public abstract class BaseController<T extends JSONReadable & JSONWritable> {
         if (dataFile.exists()) {
             loadData();
         } else {
+            System.out.println("First run detected, data file not found");
             generateInitialData();
             saveData();
         }

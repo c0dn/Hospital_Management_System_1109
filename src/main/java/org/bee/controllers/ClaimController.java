@@ -28,7 +28,6 @@ import org.bee.utils.DataGenerator;
  */
 public class ClaimController extends BaseController<InsuranceClaim> {
     private static ClaimController instance;
-    private static final DataGenerator dataGenerator = DataGenerator.getInstance();
     private static final HumanController humanController = HumanController.getInstance();
 
     protected ClaimController() {
@@ -55,6 +54,7 @@ public class ClaimController extends BaseController<InsuranceClaim> {
     @Override
     protected void generateInitialData() {
         System.out.println("Generating initial claim data...");
+        System.out.println("This could take a while");
 
         List<Patient> patients = humanController.getAllPatients();
         if (patients.isEmpty()) {
@@ -62,7 +62,6 @@ public class ClaimController extends BaseController<InsuranceClaim> {
             return;
         }
 
-        // Generate sample claims for each patient
         for (Patient patient : patients) {
             PrivateProvider privateProvider = new PrivateProvider();
             GovernmentProvider governmentProvider = new GovernmentProvider();
@@ -98,7 +97,6 @@ public class ClaimController extends BaseController<InsuranceClaim> {
 
                 visit.updateStatus(VisitStatus.DISCHARGED);
 
-                // Create a bill for the patient
                 Bill bill = new BillBuilder()
                         .withPatient(patient)
                         .withVisit(visit)
@@ -109,9 +107,6 @@ public class ClaimController extends BaseController<InsuranceClaim> {
                 var coverageResult = bill.calculateInsuranceCoverage();
                 if (coverageResult.isApproved()) {
                     coverageResult.claim().ifPresent(items::add);
-                } else {
-                    System.err.println("Failed to generate approved claim: " +
-                            coverageResult.getDenialReason().orElse("Unknown reason"));
                 }
             }
         });
