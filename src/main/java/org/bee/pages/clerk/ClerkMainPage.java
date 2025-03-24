@@ -41,11 +41,19 @@
         }
 
         /**
-         * Called after the view has been created and attached to the UI.
-         * Populates the view with the main menu options, such as "New Claim", "Manage Claim", "Claim Status", "Change Claim Status".
-         * Attaches user input handlers to each menu option to navigate to the corresponding pages.
+         * This method is called after the view has been created and attached to the UI.
+         * It populates the `ListView` with the main menu options and attaches user input
+         * handlers to navigate to the corresponding pages or perform actions.
          *
-         * @param parentView The parent {@link View} to which the main page's UI elements are added. This should be a ListView.
+         * The main menu includes options for viewing and managing telemedicine cases,
+         * outpatient services, and insurance claims.
+         *
+         * Each menu option is associated with a specific user action, such as viewing
+         * existing cases, submitting a new claim, or changing the status of a claim.
+         *
+         * @param parentView The parent {@link View} that represents the main screen
+         *                   of the UI. This should be a {@link ListView} that will
+         *                   contain the menu items and allow the user to interact with them.
          */
         @Override
         public void OnViewCreated(View parentView) {

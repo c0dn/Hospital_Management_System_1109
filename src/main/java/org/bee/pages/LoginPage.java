@@ -70,24 +70,16 @@ public class LoginPage extends UiBase {
                 switch (user) {
                     case Doctor doctor -> ToPage(new DoctorMainPage());
                     case Nurse nurse -> System.out.println("Welcome, Nurse!");
-
-                    // ToPage(new NurseMainPage());
                     case Patient patient -> ToPage(new PatientMainPage());
-
                     case Clerk clerk -> ToPage(new ClerkMainPage());
-
-
-                    // ToPage(new PatientMainPage());
                     default -> {
                     }
                 }
             } else {
                 System.out.println("User not found!");
             }
-            
             canvas.setRequireRedraw(true);
         });
-        
         canvas.setRequireRedraw(true);
     }
 }

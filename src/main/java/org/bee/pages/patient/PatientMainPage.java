@@ -46,11 +46,14 @@ public class PatientMainPage extends UiBase {
     }
 
     /**
-     * Called after the view has been created and attached to the UI.
-     * Populates the view with the main menu options, such as "View List of Patient", and "View Appointment".
-     * Attaches user input handlers to each menu option to navigate to the corresponding pages.
+     * This method is called after the view has been created and attached to the UI.
+     * It populates the main view with a list of menu options, such as viewing/updating
+     * user particulars, booking appointments, and viewing or changing existing appointments.
+     * It also attaches input handlers to each menu option to navigate to the corresponding
+     * actions or pages when selected by the user.
      *
-     * @param parentView The parent {@link View} to which the main page's UI elements are added. This should be a ListView.
+     * @param parentView The parent {@link View} to which the main page's UI elements are added.
+     *                   This should be a {@link ListView}, which will display the available menu items.
      */
     @Override
     public void OnViewCreated(View parentView) {
@@ -77,6 +80,13 @@ public class PatientMainPage extends UiBase {
         canvas.setRequireRedraw(true);
     }
 
+    /**
+     * Prompts the user to update their personal particulars, such as contact information, address, height, weight, etc.
+     * Displays the current particulars and provides options for the user to choose what they want to update.
+     * Validates the input and applies the changes if necessary.
+     *
+     * @throws IllegalStateException if the current user is not a patient or if an invalid option is selected.
+     */
     private void viewUpdateParticularsPrompt() {
         SystemUser systemUser = humanController.getLoggedInUser();
         if (systemUser instanceof Patient patient) {
@@ -146,10 +156,11 @@ public class PatientMainPage extends UiBase {
     }
 
     /**
-     * Updates contact information with validation.
+     * Updates the contact of the patient with input validation.
      *
      * @param terminal The terminal for user input
-     * @param updater  The patient updater
+     * @param updater  The patient updater object to apply the update
+     * @return The updated {@link PatientUpdater} object
      */
     private PatientUpdater updateContactWithValidation(Terminal terminal, PatientUpdater updater) {
         boolean isValid = false;
@@ -176,10 +187,11 @@ public class PatientMainPage extends UiBase {
     }
 
     /**
-     * Updates address with validation.
+     * Updates the address of the patient with input validation.
      *
      * @param terminal The terminal for user input
-     * @param updater  The patient updater
+     * @param updater  The patient updater object to apply the update
+     * @return The updated {@link PatientUpdater} object
      */
     private PatientUpdater updateAddressWithValidation(Terminal terminal, PatientUpdater updater) {
         boolean isValid = false;
@@ -210,6 +222,7 @@ public class PatientMainPage extends UiBase {
      *
      * @param terminal The terminal for user input
      * @param updater  The patient updater
+     * @return The updated {@link PatientUpdater} object
      */
     private PatientUpdater updateHeightWithValidation(Terminal terminal, PatientUpdater updater) {
         boolean isValid = false;
@@ -251,6 +264,7 @@ public class PatientMainPage extends UiBase {
      *
      * @param terminal The terminal for user input
      * @param updater  The patient updater
+     * @return The updated {@link PatientUpdater} object
      */
     private PatientUpdater updateWeightWithValidation(Terminal terminal, PatientUpdater updater) {
         boolean isValid = false;
@@ -292,6 +306,7 @@ public class PatientMainPage extends UiBase {
      *
      * @param terminal The terminal for user input
      * @param updater  The patient updater
+     * @return The updated {@link PatientUpdater} object
      */
     private PatientUpdater updateDrugAllergiesWithValidation(Terminal terminal, PatientUpdater updater) {
         boolean isValid = false;
@@ -329,6 +344,7 @@ public class PatientMainPage extends UiBase {
      *
      * @param terminal The terminal for user input
      * @param updater  The patient updater
+     * @return The updated {@link PatientUpdater} object
      */
     private PatientUpdater updateNokNameWithValidation(Terminal terminal, PatientUpdater updater) {
         boolean isValid = false;
@@ -360,6 +376,7 @@ public class PatientMainPage extends UiBase {
      *
      * @param terminal The terminal for user input
      * @param updater  The patient updater
+     * @return The updated {@link PatientUpdater} object
      */
     private PatientUpdater updateNokRelationWithValidation(Terminal terminal, PatientUpdater updater) {
         boolean isValid = false;
@@ -401,6 +418,7 @@ public class PatientMainPage extends UiBase {
      *
      * @param terminal The terminal for user input
      * @param updater  The patient updater
+     * @return The updated {@link PatientUpdater} object
      */
     private PatientUpdater updateNokAddressWithValidation(Terminal terminal, PatientUpdater updater) {
         boolean isValid = false;
@@ -427,6 +445,14 @@ public class PatientMainPage extends UiBase {
         return updater;
     }
 
+    /**
+     * Prompts the user to book a new teleconsultation appointment.
+     * The user is asked to provide a reason for the consultation, medical history,
+     * and select an appointment date and time slot. The method validates the input and
+     * adds the appointment to the system if all details are provided correctly.
+     *
+     * @throws IllegalStateException if the current user is not a patient.
+     */
     private void bookAppointmentPrompt() {
         appointmentController.getAllAppointments();
         Scanner scanner = new Scanner(System.in); // Create a new scanner object
@@ -538,6 +564,17 @@ public class PatientMainPage extends UiBase {
         }
     }
 
+    /**
+     * Allows the user (patient) to view, change, or cancel an existing appointment.
+     * This method displays a list of the patient's current appointments and allows the user to select one to view or modify.
+     * The user can choose to change the appointment date and time, cancel the appointment, or return to the main menu.
+     * If changing the appointment, the user is prompted to select a new date and time slot. The new appointment time
+     * must be in the future. If the user decides to cancel the appointment, the appointment is removed from the system.
+     *
+     * The available time slots for appointment changes start at 8:00 AM and are incremented hourly, with 9 available slots.
+     *
+     * @throws IllegalStateException if the logged-in user is not a patient.
+     */
     private void changeAppointmentPrompt() {
         // Get all appointments for the logged-in patient
         SystemUser systemUser = humanController.getLoggedInUser();
