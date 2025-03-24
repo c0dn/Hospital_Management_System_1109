@@ -238,4 +238,6 @@ public class Medication implements JSONWritable, JSONReadable {
     public String getDrugCode() {
         return drugCode;
     }
+
+
 }

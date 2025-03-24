@@ -262,4 +262,6 @@ public class LabTest {
         return null;
     }
 
+    public String getLabTestInfo() { return labTestID + ", " + type; }
+
 }

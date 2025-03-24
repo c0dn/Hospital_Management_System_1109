@@ -90,6 +90,8 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
         this.cost = DEFAULT_COST; // Setting default cost
     }
 
+
+
     /**
      * Loads diagnostic codes from a CSV file and stores them in the code registry.
      */
@@ -333,6 +335,8 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
         return this.fullCode;
     }
 
+    public String getDCode() { return this.fullCode + ": " + abbreviatedDescription; }
+
     /**
      * Gets a random diagnostic code from the registry
      * @return A randomly selected DiagnosticCode
@@ -393,4 +397,5 @@ record BenefitMapping(String pattern, BenefitType benefitType) {
     public boolean matches(String code) {
         return Pattern.matches(pattern, code);
     }
+
 }

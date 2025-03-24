@@ -262,7 +262,7 @@ public abstract class Human implements JSONWritable, JSONReadable {
      * and medical information.
      */
     public void displayHuman() {
-        System.out.printf("%n%n");
+        System.out.printf("%n");
         System.out.println("=====================================================================");
         System.out.printf("                           PERSON DETAILS%n");
         System.out.println("=====================================================================");

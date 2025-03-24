@@ -362,4 +362,6 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
         
         return createFromCode(gen.getRandomElement(matchingCodes));
     }
+
+    public String getPCode() { return code + ": " + description; }
 }

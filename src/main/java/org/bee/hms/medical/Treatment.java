@@ -306,4 +306,6 @@ public class Treatment {
         return allTreatments;
     }
 
+    public String getTreatmentInfo() { return treatmentID + ", " + treatmentName; }
+
 }

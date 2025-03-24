@@ -2,10 +2,7 @@ package org.bee.hms.medical;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -369,17 +366,91 @@ public class Consultation implements JSONReadable, JSONWritable {
 
     public void displayConsultation() {
         patient.displayHuman();
-        System.out.printf("%n%n");
+        System.out.printf("%n");
         System.out.println("CONSULTATION DETAILS");
         System.out.println("---------------------------------------------------------------------");
 
 //        System.out.printf("%nName: " + name);
         System.out.println("Case ID: " + consultationId);
-        System.out.println("\nAppointment Date: " + appointmentDate);
-        System.out.println("\nType: " + type);
-        System.out.println("\nStatus: " + status);
-        System.out.println("\nDiagnosis: " + diagnosis);
-        System.out.printf("\nDoctor Name: " + doctor.getName());
+        System.out.println("Appointment Date: " + (appointmentDate != null ? appointmentDate : "-"));
+        System.out.println("Type: " + type);
+        System.out.println("Status: " + (status != null ? status : "-"));
+        System.out.println("Medical History: " + (medicalHistory != null ? medicalHistory : "-"));
+        System.out.println("Visit Reason: " + (visitReason != null ? visitReason : "-"));
+
+        System.out.print("Diagnostic Code: ");
+        if (diagnosticCodes != null && !diagnosticCodes.isEmpty()) {
+            System.out.println();
+            for (int i = 0; i < diagnosticCodes.size(); i++) {
+                System.out.print("    ");
+                System.out.print(i + 1);
+                System.out.print(". ");
+                System.out.println(diagnosticCodes.get(i).getDCode());
+            }
+        } else {
+            System.out.println("-");
+        }
+
+        System.out.println("Diagnosis: " + (diagnosis != null ? diagnosis : "-"));
+
+        System.out.print("Procedure Code: ");
+        if (procedureCodes != null && !procedureCodes.isEmpty()) {
+            System.out.println();
+            for (int i = 0; i < procedureCodes.size(); i++) {
+                System.out.print("    ");
+                System.out.print(i + 1);
+                System.out.print(". ");
+                System.out.println(procedureCodes.get(i).getPCode());
+            }
+        } else {
+            System.out.println("-");
+        }
+
+        System.out.print("Lab Test: ");
+        if (labTests != null && !labTests.isEmpty()) {
+            System.out.println();
+            for (int i = 0; i < labTests.size(); i++) {
+                System.out.print("    ");
+                System.out.print(i + 1);
+                System.out.print(". ");
+                System.out.println(labTests.get(i).getLabTestInfo());
+            }
+        } else {
+            System.out.println("-");
+        }
+
+        System.out.print("Treatment: ");
+        if (treatments != null && !treatments.isEmpty()) {
+            System.out.println();
+            for (int i = 0; i < treatments.size(); i++) {
+                System.out.print("    ");
+                System.out.print(i + 1);
+                System.out.print(". ");
+                System.out.println(treatments.get(i).getTreatmentInfo());
+            }
+        } else {
+            System.out.println("-");
+        }
+
+        System.out.println("Prescription: ");
+        int i = 1;
+        if (prescriptions != null && !prescriptions.isEmpty()) {
+            System.out.println();
+            for (Medication drugCode : prescriptions.keySet()) {
+                System.out.print("    ");
+                System.out.print(i);
+                System.out.print(". ");
+                System.out.println(drugCode.getDrugCode() + ", " + drugCode.name);
+                i++;
+            }
+        } else {
+            System.out.println("-");
+        }
+
+        System.out.println("Follow Up Date: " + (followUpDate != null ? followUpDate : "-"));
+        System.out.println("Doctor's Notes: " + (notes != null ? notes : "-"));
+        System.out.println("Instructions: " + (instructions != null ? instructions : "-"));
+        System.out.printf("Doctor Name: " + doctor.getName());
         System.out.println();
     }
 
