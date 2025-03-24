@@ -35,12 +35,22 @@ public class PatientInfoPage extends UiBase {
         this.patient = patient;
     }
 
-
+    /**
+     * Creates and returns the view for the patient information page.
+     *
+     * @return A ListView object initialized with a green background color.
+     */
     @Override
     public View OnCreateView() {
         return new ListView(this.canvas, Color.GREEN);
     }
 
+    /**
+     * Called when the view is created. Displays either a specific patient's information
+     * or a list of all patients, depending on whether a patient has been pre-selected.
+     *
+     * @param parentView The parent view, expected to be a ListView.
+     */
     @Override
     public void OnViewCreated(View parentView) {
 
@@ -74,6 +84,12 @@ public class PatientInfoPage extends UiBase {
         });
     }
 
+    /**
+     * Displays detailed information about a specific patient .
+     *
+     * @param patient The Patient details to be displayed.
+     * @param lv patient's information will be shown.
+     */
     private void displayPatient(Patient patient, ListView lv) {
         lv.clear();
         lv.setTitleHeader("Patient Information");
@@ -90,6 +106,9 @@ public class PatientInfoPage extends UiBase {
         canvas.setRequireRedraw(true);
     }
 
+    /**
+     * Handles the back button press by calling the superclass implementation.
+     */
     @Override
     public void OnBackPressed(){
         super.OnBackPressed();

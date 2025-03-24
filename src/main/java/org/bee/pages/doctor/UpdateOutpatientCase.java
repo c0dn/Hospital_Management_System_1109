@@ -19,19 +19,51 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * A UI class that extends UiBase to handle updating outpatient case information.
+ * This class allows doctors to view and update their assigned outpatient cases.
+ */
 public class UpdateOutpatientCase extends UiBase {
 
+    /**
+     * Singleton instance of the HumanController to manage user-related data.
+     */
     private static final HumanController humanController = HumanController.getInstance();
+
+    /**
+     * Singleton instance of the ConsultationController to manage consultation-related data
+    */
     private static final ConsultationController consultationController = ConsultationController.getInstance();
+
+    /**
+     * The patient associated with the current consultation.
+     */
     private Patient patient;
+
+    /**
+     * The consultation updated.
+     */
     private Consultation consultation;
+
+
     private static final Scanner scanner = new Scanner(System.in);
 
+    /**
+     * Creates and returns the view for the update outpatient case page.
+     *
+     * @return A ListView object initialized with a green background color.
+     */
     @Override
     public View OnCreateView() {
         return new ListView(this.canvas, Color.GREEN);
     }
 
+    /**
+     * Called when the view is created. Displays a list of outpatient cases for the logged-in doctor
+     * or initiates the update process for a specific consultation if already selected.
+     *
+     * @param parentView The parent view, a ListView.
+     */
     @Override
     public void OnViewCreated(View parentView) {
         ListView lv = (ListView) parentView;
@@ -84,6 +116,12 @@ public class UpdateOutpatientCase extends UiBase {
         }
     }
 
+    /**
+     * Displays detailed information about a specific outpatient case .
+     *
+     * @param consultation The Consultation details about the case.
+     * @param lv           consultation details will be displayed.
+     */
     private void displayOutpatientCase(Consultation consultation, ListView lv) {
 
         lv.clear();
@@ -102,6 +140,11 @@ public class UpdateOutpatientCase extends UiBase {
         canvas.setRequireRedraw(true);
     }
 
+    /**
+     * Allows the logged-in doctor to select a consultation from their assigned outpatient cases.
+     *
+     * @return The selected Consultation object, or null if no cases are found or selected.
+     */
     private Consultation selectConsultation() {
         SystemUser systemUser = humanController.getLoggedInUser();
         if (systemUser instanceof Doctor doctor) {
@@ -129,6 +172,10 @@ public class UpdateOutpatientCase extends UiBase {
         return null;
     }
 
+    /**
+     * Initiates the process of updating an outpatient case.
+     * Prompts the user to select specific fields to update and validates input before applying changes.
+     */
     private void updateOutpatientCase() {
 
         if (consultation == null) {
@@ -227,6 +274,14 @@ public class UpdateOutpatientCase extends UiBase {
 
     }
 
+    /**
+     * Updates the diagnostic codes for a consultation with user input validation.
+     * Prompts the user to enter diagnostic codes and validates them before updating.
+     *
+     * @param scanner The Scanner object used to read user input.
+     * @param updater The ConsultationUpdater object to apply updates to the consultation.
+     * @return The updated ConsultationUpdater object with diagnostic codes applied.
+     */
     private ConsultationUpdater updateDiagnosticCodeWithValidation(Scanner scanner, ConsultationUpdater updater) {
         boolean isValid = false;
 
@@ -258,6 +313,14 @@ public class UpdateOutpatientCase extends UiBase {
         return updater;
     }
 
+    /**
+     * Updates the procedure codes for a consultation with user input validation.
+     * Prompts the user to enter procedure codes and validates them before updating.
+     *
+     * @param scanner The Scanner object used to read user input.
+     * @param updater The ConsultationUpdater object used to apply updates to the consultation.
+     * @return The updated ConsultationUpdater object with procedure codes applied.
+     */
     private ConsultationUpdater updateProcedureCodeWithValidation(Scanner scanner, ConsultationUpdater updater) {
         boolean isValid = false;
 
@@ -289,6 +352,14 @@ public class UpdateOutpatientCase extends UiBase {
         return updater;
     }
 
+    /**
+     * Updates the prescription details for a consultation with user input validation.
+     * Prompts the user to enter medications and their quantities in a specific format and validates them before updating.
+     *
+     * @param scanner The Scanner object used to read user input.
+     * @param updater The ConsultationUpdater object used to apply updates to the consultation.
+     * @return The updated ConsultationUpdater object with prescription details applied.
+     */
     private ConsultationUpdater updatePrescriptionWithValidation(Scanner scanner, ConsultationUpdater updater) {
         boolean isValid = false;
 
@@ -344,6 +415,14 @@ public class UpdateOutpatientCase extends UiBase {
         return updater;
     }
 
+    /**
+     * Updates the notes for a consultation with user input validation.
+     * Prompts the user to enter new notes and validates them before updating.
+     *
+     * @param scanner The Scanner object used to read user input.
+     * @param updater The ConsultationUpdater object used to apply updates to the consultation.
+     * @return The updated ConsultationUpdater object with new notes applied.
+     */
     private ConsultationUpdater updateNotesWithValidation(Scanner scanner, ConsultationUpdater updater) {
         boolean isValid = false;
 
@@ -368,6 +447,14 @@ public class UpdateOutpatientCase extends UiBase {
         return updater;
     }
 
+    /**
+     * Updates the medical history for a consultation with user input validation.
+     * Prompts the user to enter medical history and validates it before updating.
+     *
+     * @param scanner The Scanner object used to read user input.
+     * @param updater The ConsultationUpdater object used to apply updates to the consultation.
+     * @return The updated ConsultationUpdater object with new medical history applied.
+     */
     private ConsultationUpdater updateMedicalHistoryWithValidation(Scanner scanner, ConsultationUpdater updater) {
         boolean isValid = false;
 
@@ -392,6 +479,14 @@ public class UpdateOutpatientCase extends UiBase {
         return updater;
     }
 
+    /**
+     * Updates the diagnosis for a consultation with user input validation.
+     * Prompts the user to enter a diagnosis and validates it before updating.
+     *
+     * @param scanner The Scanner object used to read user input.
+     * @param updater The ConsultationUpdater object used to apply updates to the consultation.
+     * @return The updated ConsultationUpdater object with new diagnosis applied.
+     */
     private ConsultationUpdater updateDiagnosisWithValidation(Scanner scanner, ConsultationUpdater updater) {
         boolean isValid = false;
 
@@ -416,6 +511,16 @@ public class UpdateOutpatientCase extends UiBase {
         return updater;
     }
 
+    /**
+     * Updates the visit reason for a consultation.
+     *
+     * This method prompts the user to enter a new visit reason and validates the input.
+     * It continues to ask for input until a valid reason is provided or the user chooses to cancel.
+     *
+     * @param scanner Used for reading user input
+     * @param updater The consultation updater object
+     * @return The updated ConsultationUpdater
+     */
     private ConsultationUpdater updateVisitReasonWithValidation(Scanner scanner, ConsultationUpdater updater) {
         boolean isValid = false;
 
@@ -440,6 +545,16 @@ public class UpdateOutpatientCase extends UiBase {
         return updater;
     }
 
+    /**
+     * Sets a new follow-up date for the consultation.
+     *
+     * Asks the user to input a date and time in the format "yyyy-MM-dd HH:mm".
+     * The method validates the input and updates the consultation if the format is correct.
+     *
+     * @param scanner For reading user input
+     * @param updater The consultation updater
+     * @return Updated ConsultationUpdater with the new follow-up date
+     */
     private ConsultationUpdater updateFollowUpDateWithValidation(Scanner scanner, ConsultationUpdater updater) {
         boolean isValid = false;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"); // Define the desired format for the input
@@ -483,6 +598,16 @@ public class UpdateOutpatientCase extends UiBase {
         return updater; // Return the updated ConsultationUpdater
     }
 
+    /**
+     * Updates the instructions for a consultation.
+     *
+     * Prompts for new instructions and validates the input.
+     * Continues to ask until valid instructions are provided or the user cancels.
+     *
+     * @param scanner Used to read user input
+     * @param updater The consultation updater
+     * @return Updated ConsultationUpdater with new instructions
+     */
     private ConsultationUpdater updateInstructionsWithValidation(Scanner scanner, ConsultationUpdater updater) {
         boolean isValid = false;
 
@@ -507,6 +632,16 @@ public class UpdateOutpatientCase extends UiBase {
         return updater;
     }
 
+    /**
+     * Updates the treatments for a consultation.
+     *
+     * Asks the user to enter treatment IDs, separated by commas.
+     * Validates each ID and adds corresponding treatments to the consultation.
+     *
+     * @param scanner For reading user input
+     * @param updater The consultation updater
+     * @return Updated ConsultationUpdater with new treatments
+     */
     private ConsultationUpdater updateTreatmentWithValidation(Scanner scanner, ConsultationUpdater updater) {
         boolean isValid = false;
 
@@ -549,6 +684,16 @@ public class UpdateOutpatientCase extends UiBase {
         return updater; // Return the updated ConsultationUpdater
     }
 
+    /**
+     * Updates the lab tests for a consultation.
+     *
+     * Prompts for lab test IDs (comma-separated) and validates each one.
+     * Adds valid lab tests to the consultation update.
+     *
+     * @param scanner Used to read user input
+     * @param updater The consultation updater
+     * @return Updated ConsultationUpdater with new lab tests
+     */
     private ConsultationUpdater updateLabTestWithValidation(Scanner scanner, ConsultationUpdater updater) {
         boolean isValid = false;
 
@@ -591,6 +736,10 @@ public class UpdateOutpatientCase extends UiBase {
         return updater; // Return the updated ConsultationUpdater
     }
 
+    /**
+     * This method is called when the user presses the back button.
+     * It simply calls the superclass implementation.
+     */
     @Override
     public void OnBackPressed(){
         super.OnBackPressed();

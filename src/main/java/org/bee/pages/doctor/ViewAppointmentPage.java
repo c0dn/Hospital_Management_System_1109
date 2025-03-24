@@ -19,12 +19,25 @@ import org.bee.ui.views.ListView;
 import org.bee.ui.views.ListViewOrientation;
 import org.bee.ui.views.TextView;
 
+/**
+ * Manages the UI for viewing and interacting with appointments.
+ *
+ * This page displays a list of pending appointments and allows doctors to
+ * approve, reject, or start consultations.
+ */
 public class ViewAppointmentPage extends UiBase {
     private ListView listView;
     private List<Appointment> appointments;
     private static final HumanController humanController = HumanController.getInstance();
     private static final AppointmentController appointmentController = AppointmentController.getInstance();
 
+    /**
+     * Sets up the initial view for the appointment list.
+     *
+     * Creates a green ListView with a title showing the logged-in user.
+     *
+     * @return The configured ListView with appointments
+     */
     @Override
     public View OnCreateView() {
         ListView lv = new ListView(
@@ -37,6 +50,13 @@ public class ViewAppointmentPage extends UiBase {
         return lv;
     }
 
+    /**
+     * Populates the view with appointment data and sets up user interactions.
+     *
+     * Filters out completed appointments and adds a prompt for selecting appointments.
+     *
+     * @param parentView The parent view to populate
+     */
     @Override
     public void OnViewCreated(View parentView) {
         ListView listView = (ListView) parentView;
@@ -49,6 +69,14 @@ public class ViewAppointmentPage extends UiBase {
         refreshUi();
     }
 
+    /**
+     * Handles the appointment selection process.
+     *
+     * Allows the user to approve, reject, view patient info, or start an appointment.
+     * Also handles Zoom link generation for approved appointments.
+     *
+     * @param appointments List of available appointments
+     */
     private void selectAppointmentPrompt(List<Appointment> appointments) {
         if (appointments.isEmpty()) {
             System.out.println("No appointments available.");
@@ -117,6 +145,12 @@ public class ViewAppointmentPage extends UiBase {
         refreshUi();
     }
 
+    /**
+     * Updates the UI with the current list of appointments.
+     *
+     * Clears the existing view and adds each appointment with color-coding based on status.
+     * Displays a message if no appointments are available.
+     */
     private void refreshUi() {
         listView.clear();
         if (appointments.isEmpty()) {
@@ -153,6 +187,12 @@ public class ViewAppointmentPage extends UiBase {
         this.canvas.setRequireRedraw(true);
     }
 
+    /**
+     * Determines the color for an appointment based on its status.
+     *
+     * @param status The appointment status
+     * @return The corresponding color (RED for declined, CYAN for pending, GREEN for others)
+     */
     private Color getItemColor(AppointmentStatus status) {
         switch (status) {
             case DECLINED:

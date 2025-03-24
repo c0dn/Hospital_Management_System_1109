@@ -12,17 +12,42 @@ import org.bee.ui.views.TextView;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+/**
+ * A UI class that extends UiBase to display a summary of an appointment.
+ * This class creates a view with details of a specific appointment, including
+ * doctor and patient information, appointment time, reason, medical certificate,
+ * and doctor's notes.
+ */
 public class ViewAppointmentSummaryPage extends UiBase {
+    /**
+     * The appointment to be displayed in the summary.
+     */
     private static Appointment appointment;
+
+    /**
+     * The ListView used to display the appointment details.
+     */
     private ListView listView;
 
-
+    /**
+     * The HumanController instance used to get the logged-in user information.
+     */
     private static final HumanController humanController = HumanController.getInstance();
 
+    /**
+     * Sets the appointment to be displayed in the summary.
+     *
+     * @param appointment The Appointment object to be displayed.
+     */
     public static void setAppointment(Appointment appointment) {
         ViewAppointmentSummaryPage.appointment = appointment;
     }
 
+    /**
+     * Creates and returns the view for the appointment summary.
+     *
+     * @return A ListView object containing the appointment summary.
+     */
     @Override
     public View OnCreateView() {
         listView = new ListView(
@@ -33,12 +58,22 @@ public class ViewAppointmentSummaryPage extends UiBase {
         return listView;
     }
 
+    /**
+     * Called when the view is created. Refreshes the UI to display appointment details.
+     *
+     * @param parentView The parent view, expected to be a ListView.
+     */
     @Override
     public void OnViewCreated(View parentView) {
         ListView lv = (ListView) parentView;
         refreshUi();
     }
 
+    /**
+     * Refreshes the UI by clearing the existing items and adding new items
+     * with the appointment details. This includes doctor and patient information,
+     * appointment time, reason, medical certificate details, and doctor's notes.
+     */
     private void refreshUi () {
         listView.clear();
         listView.addItem(new TextView(this.canvas, "Attending Doctor Name: " + appointment.getDoctor().getName(), Color.BLUE, TextStyle.BOLD));
