@@ -75,16 +75,80 @@ tasks.jar {
 
 tasks.register<JavaExec>("runJar") {
     dependsOn(tasks.jar)
-    
+
     doFirst {
         // Copy database folder to execution directory
         val libsDir = layout.buildDirectory.dir("libs")
-        copy {
-            from(databaseDir)
-            into(libsDir.get().dir("database"))
+        val destDir = libsDir.get().dir("database").asFile
+
+        if (!destDir.exists() || destDir.list()?.isEmpty() == true) {
+            copy {
+                from(databaseDir)
+                into(destDir)
+            }
         }
     }
-    
+
+
+    doLast {
+        // Copy files back from destination to source after program execution
+        val libsDir = layout.buildDirectory.dir("libs")
+        val destDir = libsDir.get().dir("database").asFile
+
+        if (destDir.exists() && destDir.list()?.isNotEmpty() == true) {
+            copy {
+                from(destDir)
+                into(databaseDir)
+                include("**/*.txt")
+            }
+        }
+    }
+
+    classpath = files(tasks.jar.get().outputs.files)
+    mainClass.set("org.bee.Main")
+    standardInput = System.`in`
+    workingDir = layout.buildDirectory.dir("libs").get().asFile
+}
+
+tasks.register<JavaExec>("runJarCleanSlate") {
+    dependsOn(tasks.jar)
+
+    doFirst {
+        val libsDir = layout.buildDirectory.dir("libs")
+        val destDir = libsDir.get().dir("database").asFile
+
+        if (!destDir.exists()) {
+            destDir.mkdirs()
+        } else {
+            destDir.listFiles()?.forEach { file ->
+                if (file.isFile && file.name.endsWith(".txt")) {
+                    file.delete()
+                }
+            }
+        }
+
+        copy {
+            from(databaseDir)
+            into(destDir)
+            exclude("**/*.txt") // Exclude all .txt files
+        }
+    }
+
+
+    doLast {
+        // Copy files back from destination to source after program execution
+        val libsDir = layout.buildDirectory.dir("libs")
+        val destDir = libsDir.get().dir("database").asFile
+
+        if (destDir.exists() && destDir.list()?.isNotEmpty() == true) {
+            copy {
+                from(destDir)
+                into(databaseDir)
+                include("**/*.txt")
+            }
+        }
+    }
+
     classpath = files(tasks.jar.get().outputs.files)
     mainClass.set("org.bee.Main")
     standardInput = System.`in`
