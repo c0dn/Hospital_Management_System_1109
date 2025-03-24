@@ -36,7 +36,6 @@ public class BillBuilder {
     InsurancePolicy insurancePolicy;
     private Visit visit;
     private List<Consultation> consultations;
-    private List<BillingItemLine> billingItems;
     boolean isInpatient;
     boolean isEmergency;
 
@@ -49,7 +48,6 @@ public class BillBuilder {
         this.billId = UUID.randomUUID().toString();
         this.billDate = LocalDateTime.now();
         this.consultations = new ArrayList<>();
-        this.billingItems = new ArrayList<>();
         this.insurancePolicy = null;
         this.isInpatient = false;
         this.isEmergency = false;
@@ -114,25 +112,6 @@ public class BillBuilder {
         return this;
     }
 
-    /**
-     * Processes the visit and adds related billable items to the bill.
-     */
-    private void processVisit() {
-        if (visit != null) {
-            visit.getRelatedBillableItems().forEach(item ->
-                    billingItems.add(new BillingItemLine(item, 1)));
-        }
-    }
-
-    /**
-     * Processes the consultations and adds related billable items to the bill.
-     */
-    private void processConsultations() {
-        for (Consultation consultation : consultations) {
-            consultation.getRelatedBillableItems().forEach(item ->
-                    billingItems.add(new BillingItemLine(item, 1)));
-        }
-    }
 
     /**
      * Builds the {@link Bill} object based on the data in the {@code BillBuilder}.
@@ -143,12 +122,8 @@ public class BillBuilder {
     public Bill build() {
         validateBuildRequirements();
 
-        processVisit();
-        processConsultations();
-
         Bill bill = new Bill(this);
 
-        // Add related line items from visit and consultations
         if (visit != null) {
             visit.getRelatedBillableItems().forEach(item ->
                     bill.addLineItem(item, 1));
