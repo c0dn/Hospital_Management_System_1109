@@ -89,21 +89,6 @@ tasks.register<JavaExec>("runJar") {
         }
     }
 
-
-    doLast {
-        // Copy files back from destination to source after program execution
-        val libsDir = layout.buildDirectory.dir("libs")
-        val destDir = libsDir.get().dir("database").asFile
-
-        if (destDir.exists() && destDir.list()?.isNotEmpty() == true) {
-            copy {
-                from(destDir)
-                into(databaseDir)
-                include("**/*.txt")
-            }
-        }
-    }
-
     classpath = files(tasks.jar.get().outputs.files)
     mainClass.set("org.bee.Main")
     standardInput = System.`in`
@@ -134,20 +119,6 @@ tasks.register<JavaExec>("runJarCleanSlate") {
         }
     }
 
-
-    doLast {
-        // Copy files back from destination to source after program execution
-        val libsDir = layout.buildDirectory.dir("libs")
-        val destDir = libsDir.get().dir("database").asFile
-
-        if (destDir.exists() && destDir.list()?.isNotEmpty() == true) {
-            copy {
-                from(destDir)
-                into(databaseDir)
-                include("**/*.txt")
-            }
-        }
-    }
 
     classpath = files(tasks.jar.get().outputs.files)
     mainClass.set("org.bee.Main")
