@@ -6,29 +6,24 @@ import org.bee.ui.views.UserInput;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
+import java.util.Optional;
 
 /** handles page rendering, lifecycle, and callbacks (application exit and onbackpressed callbacks).
  * Also handles view backstack, but backstack management will be removed from canvas in the near future.
  */
 public class Canvas {
-    private Terminal terminal;
-    private Stack<View> canvasBackstack;
+    private final Terminal terminal;
     private String systemMessage = "";
+    private View currentView;
     private boolean requireRedraw = false;
+    private IGenericCallbackInterface backNavigationCallback = null;
     protected List<IGenericCallbackInterface> backPressedCallback = new ArrayList<>();
     protected List<IGenericCallbackInterface> applicationStopCallback = new ArrayList<>();
     protected boolean stopCanvas = false;
 
     public Canvas() {
         this.terminal = new Terminal(); // Handles terminal interaction (see notes below)
-        this.canvasBackstack = new Stack<>();
-        // null object pattern, avoid null object reference when hitting the root null page.
-        canvasBackstack.push(new NullView(this));
-    }
-
-    public int getBackstackSize() {
-        return canvasBackstack.size();
+        this.currentView = new NullView(this);
     }
 
     /**
@@ -60,9 +55,14 @@ public class Canvas {
      * Gets the current page from the Stack.
      * @return the current page.
      */
-    public View getCurrentPage() {
-        return this.canvasBackstack.peek();
+    public View getCurrentView() {
+        return this.currentView;
     }
+
+    public void setBackNavigationCallback(IGenericCallbackInterface callback) {
+        this.backNavigationCallback = callback;
+    }
+
 
     /**
      * Adds an on back press callback for the current page
@@ -80,6 +80,11 @@ public class Canvas {
         this.applicationStopCallback.add(callback);
     }
 
+
+    public void setSystemMessage(String message) {
+        this.systemMessage = message;
+    }
+
     /**
      * clears all the callbacks for the current page.
      */
@@ -89,24 +94,46 @@ public class Canvas {
     }
 
     /**
-     * Pushes a new page onto the stack and tells the canvas to render it.
-     * @param page the page to push.
+     * Ensures the back button is present for the view
+     * @param view the view to ensure has a back button
      */
-    public void pushPage(View page){
-        this.canvasBackstack.push(page);
-        View v = canvasBackstack.peek();
-        if(v.getInputOptions().get(0) == null){
-            // manually add input 0 to always be the back button
-            v.inputOptions.put(0, new UserInput("Go Back", str->{
-                v.OnBackPressed();
-                this.previousPage();
+    private void ensureBackButton(View view) {
+        if(view.getInputOptions().get(0) == null) {
+            view.inputOptions.put(0, new UserInput("Go Back", str -> {
+//                System.out.println("[DEBUG] Back button pressed. Executing callbacks.");
+
+                view.OnBackPressed();
+
+                for (IGenericCallbackInterface callback : backPressedCallback) {
+                    callback.callback();
+                }
+
+                if (backNavigationCallback != null) {
+//                    System.out.println("[DEBUG] Executing back navigation callback");
+                    backNavigationCallback.callback();
+                }
             }));
         }
-        // clear the back pressed callbacks when changing pages
+    }
+
+    /**
+     * Sets up callbacks and prepares the view for rendering
+     * @param view the view to setup callbacks for
+     */
+    private void setupViewCallbacks(View view) {
         this.clearCallbacks();
-        this.addOnBackPressedCallback(page::OnBackPressed);
-        this.addApplicationStopCallback(page::OnApplicationExit);
+
+        this.addOnBackPressedCallback(view::OnBackPressed);
+        this.addApplicationStopCallback(view::OnApplicationExit);
+
         this.setRequireRedraw(true);
+    }
+
+
+    public void setCurrentView(View view) {
+        this.currentView = view;
+        ensureBackButton(view);
+        setupViewCallbacks(view);
     }
 
     /**
@@ -118,63 +145,19 @@ public class Canvas {
         this.requireRedraw = requireRedraw;
     }
 
-    public void previousPage() {
-        View curPage = canvasBackstack.pop();
-
-        // NEVER allow the initial NullView to be shown
-        boolean clearCallbacks = true;
-        if(canvasBackstack.peek() instanceof NullView){
-            clearCallbacks = false;
-            canvasBackstack.push(curPage);
-        }
-        // call all the callbacks
-        for (IGenericCallbackInterface callback : backPressedCallback) {
-            callback.callback();
-        }
-        if(clearCallbacks){
-            View page = canvasBackstack.peek();
-            this.clearCallbacks();
-            this.addOnBackPressedCallback(page::OnBackPressed);
-            this.addApplicationStopCallback(page::OnApplicationExit);
-        }
-        setRequireRedraw(true);
-    }
-
-    /**
-     * Utility function to force an update of the current View in the canvas.
-     * Contains logic from previousPage and pushPage but without calling the callbacks.
-     */
-    public void newInPlacePage(View v){
-        canvasBackstack.pop();
-        canvasBackstack.push(v);
-        if(v.getInputOptions().get(0) == null){
-            // manually add input 0 to always be the back button
-            v.inputOptions.put(0, new UserInput("Go Back", str->{
-                v.OnBackPressed();
-                this.previousPage();
-            }));
-        }
-        this.clearCallbacks();
-        this.addOnBackPressedCallback(v::OnBackPressed);
-        this.addApplicationStopCallback(v::OnApplicationExit);
-        this.setRequireRedraw(true);
-    }
-
     /**
      * The program's main loop, handles logic for the user interface, including inputs, rudimentary error handling and input validation
      * As well as gracefully stopping the application.
      */
     public void mainLoop(){
         while(!stopCanvas) {
-            View currentPage = this.canvasBackstack.peek();
-            if (currentPage instanceof NullView) {
+            if (currentView instanceof NullView) {
                 continue;
             }
-            if(requireRedraw){
-                renderView(currentPage);
+            if(requireRedraw || !systemMessage.isBlank()){
+                renderView();
             }
             terminal.flush();
-            // start the scanner
             String response = terminal.getUserInput();
             int responseInt = -1;
             try{
@@ -184,23 +167,23 @@ public class Canvas {
                     stopCanvas = true;
                     break;
                 }
-                // invalid response
             }
-            if (currentPage.getInputOptions() != null
-                    && (responseInt == -1 || currentPage.getInputOptions().get(responseInt) == null)) {
+            if (currentView.getInputOptions() != null
+                    && (responseInt == -1 || currentView.getInputOptions().get(responseInt) == null)) {
                 systemMessage = "Invalid input, please try again.";
                 setRequireRedraw(true);
                 continue;
             }
-            // if the input was valid, it should pass through here, so clear the system message
+
             systemMessage = "";
 
-            // call the lambda method
             try {
-                UserInput inputOptions = currentPage.getInputOptions().get(responseInt);
+                UserInput inputOptions = currentView.getInputOptions().get(responseInt);
+//                System.out.println("[DEBUG] Processing input option: " + responseInt + " - " + inputOptions.promptText());
                 inputOptions.lambda().onInput(response);
             }catch (Exception e){
-                // TODO handle logging with log4j to file
+//                System.out.println("[DEBUG] Exception in input handler: " + e.getMessage());
+                e.printStackTrace();
             }
         }
 
@@ -210,41 +193,28 @@ public class Canvas {
         System.out.println("Bye! Have a Nice Day!");
     }
 
-    /**
-     * Renders the view into the terminal
-     * @param v the view to render
-     */
-    public void renderView(View v) {
-        if(v instanceof NullView){
-            //drawText("The end of the backstack has been reached, this should NOT happen.", Color.WHITE);
+    public void renderView() {
+        if(currentView instanceof NullView){
             return;
         }
 
-        Color pageColor = this.canvasBackstack.peek().color;
+        Color pageColor = currentView.color;
         terminal.clearScreen();
 
-        // draw the header first
-        if(v.getTitleHeader() != null){
-            drawText(v.getTitleHeader()+"\n", pageColor);
-        }
+        Optional.ofNullable(currentView.getTitleHeader())
+                .ifPresent(header -> drawText(header + "\n", pageColor));
 
-        String text = v.getText();
-        if(text != null){
-            drawText(text, pageColor);
-        }
+        Optional.ofNullable(currentView.getText())
+                .ifPresent(text -> drawText(text, pageColor));
 
-        // draw the footer last
-        String footer = v.getFooter();
-        if(footer != null){
-            footer = footer + "| q: Quit App\nYour input: ";
-            drawText(footer, pageColor);
-        }
-
-        // system messages
-        if(!systemMessage.isBlank()){
+        if (!systemMessage.isBlank()) {
             System.out.println();
             drawText(systemMessage, Color.RED);
         }
+
+        Optional.ofNullable(currentView.getFooter())
+                .ifPresent(footer -> drawText(footer + " | q: Quit App\nYour input: ", pageColor));
+
         terminal.flush();
         this.setRequireRedraw(false);
     }

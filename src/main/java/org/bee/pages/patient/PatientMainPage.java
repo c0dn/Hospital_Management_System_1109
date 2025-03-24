@@ -39,7 +39,7 @@ public class PatientMainPage extends UiBase {
      */
 
     @Override
-    public View OnCreateView() {
+    public View createView() {
         ListView lv = new ListView(this.canvas, Color.GREEN);
         listView = lv;
         return lv;
@@ -107,7 +107,7 @@ public class PatientMainPage extends UiBase {
                 System.out.println("8. Next of Kin Address");
                 System.out.println("9. Return to Main Menu");
 
-                int choice = InputHelper.getValidIndex("Enter your choice", 1, 9);
+                int choice = InputHelper.getValidIndex(term, "Enter your choice", 1, 9);
 
                 String patientId = patient.getPatientId();
                 PatientUpdater updater = PatientUpdater.builder();
@@ -455,18 +455,18 @@ public class PatientMainPage extends UiBase {
      */
     private void bookAppointmentPrompt() {
         appointmentController.getAllAppointments();
-        Scanner scanner = new Scanner(System.in); // Create a new scanner object
+        Terminal terminal = canvas.getTerminal();
         System.out.println("Enter reason to consult: ");
-        String reason = scanner.nextLine(); //
+        String reason = terminal.getUserInput();
         System.out.println("Do you have any Medical History?: ");
-        String history = scanner.nextLine(); //
+        String history = terminal.getUserInput();
 
         System.out.println("Select your appointment date in this format (DD-MM-YYYY): ");
         LocalDate date = null; // safe to initialise as null, as it will never be null after the prompt.
         boolean validDate = false;
         String appointmentDate;
         while (!validDate) {
-            appointmentDate = scanner.nextLine();
+            appointmentDate = terminal.getUserInput();
             try {
                 DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                 date = LocalDate.parse(appointmentDate, dateFormatter);
@@ -516,7 +516,7 @@ public class PatientMainPage extends UiBase {
 
         System.out.print("Select your appointment timeslot (1-" + dateTimeDictionary.size() + "): ");
 
-        int selectedSlot = InputHelper.getValidIndex("Select your appointment timeslot", 1, dateTimeDictionary.size());
+        int selectedSlot = InputHelper.getValidIndex(terminal, "Select your appointment timeslot", 1, dateTimeDictionary.size());
 
         LocalDateTime selectedDateTime = dateTimeDictionary.get(selectedSlot);
 
@@ -544,7 +544,7 @@ public class PatientMainPage extends UiBase {
                 boolean validInput = false;
                 while (!validInput) {
                     System.out.println("Do you wish to proceed with this appointment? (Y/N)");
-                    String s = scanner.nextLine();
+                    String s = terminal.getUserInput();
                     if (s.equalsIgnoreCase("Y")) {
                         validInput = true;
                     } else if (s.equalsIgnoreCase("N")) {
@@ -596,7 +596,7 @@ public class PatientMainPage extends UiBase {
                 }
 
                 System.out.println("Select appointment to view details or change:");
-                int choice = InputHelper.getValidIndex("Enter your choice", 1, appointments.size());
+                int choice = InputHelper.getValidIndex(canvas.getTerminal(), "Enter your choice", 1, appointments.size());
 
                 Appointment selectedAppointment = appointments.get(choice - 1);
 
@@ -611,7 +611,7 @@ public class PatientMainPage extends UiBase {
                 System.out.println("3. Back");
                 System.out.println("4. Return to Main Page");
 
-                int optionChoice = InputHelper.getValidIndex("Enter your option", 1, 4);
+                int optionChoice = InputHelper.getValidIndex(canvas.getTerminal(), "Enter your option", 1, 4);
 
                 if (optionChoice == 1) {
                     // Change appointment logic
@@ -652,7 +652,7 @@ public class PatientMainPage extends UiBase {
                     sb.append("]");
                     System.out.println(sb);
 
-                    int selectedSlot = InputHelper.getValidIndex("Select your new appointment timeslot", 1, timeSlots.size());
+                    int selectedSlot = InputHelper.getValidIndex(canvas.getTerminal(), "Select your new appointment timeslot", 1, timeSlots.size());
                     LocalDateTime newTime = timeSlots.get(selectedSlot);
 
                     // Update the appointment time

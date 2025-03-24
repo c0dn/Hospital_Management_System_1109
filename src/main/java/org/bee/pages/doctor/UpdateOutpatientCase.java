@@ -54,7 +54,7 @@ public class UpdateOutpatientCase extends UiBase {
      * @return A ListView object initialized with a green background color.
      */
     @Override
-    public View OnCreateView() {
+    public View createView() {
         return new ListView(this.canvas, Color.GREEN);
     }
 
@@ -103,7 +103,7 @@ public class UpdateOutpatientCase extends UiBase {
 
             // When selecting "Select Patient Index"
             lv.attachUserInput("Select Patient Index ", str -> {
-                int selectedIndex = InputHelper.getValidIndex("Select Patient index", cases);
+                int selectedIndex = InputHelper.getValidIndex(canvas.getTerminal(), "Select Patient index", cases);
                 consultation = cases.get(selectedIndex);
 
                 try {
@@ -166,7 +166,7 @@ public class UpdateOutpatientCase extends UiBase {
                 System.out.printf("%d. %s - %s\n", i + 1, c.getConsultationId(), c.getPatient().getName());
             }
 
-            int choice = InputHelper.getValidIndex("Enter your choice", 1, consultations.size());
+            int choice = InputHelper.getValidIndex(canvas.getTerminal(), "Enter your choice", 1, consultations.size());
             return consultations.get(choice - 1);
         }
         return null;
@@ -203,7 +203,7 @@ public class UpdateOutpatientCase extends UiBase {
                 System.out.println("11. Lab Test");
                 System.out.println("12. Return to Main Menu\n");
 
-                int choice = InputHelper.getValidIndex("Enter your choice", 1, 12);
+                int choice = InputHelper.getValidIndex(canvas.getTerminal(), "Enter your choice", 1, 12);
 
                 String consultationId = consultation.getConsultationId();
                 ConsultationUpdater updater = ConsultationUpdater.builder();

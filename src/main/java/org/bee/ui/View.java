@@ -4,8 +4,7 @@ package org.bee.ui;
 import org.bee.ui.views.UserInput;
 import org.bee.ui.views.UserInputResult;
 
-import java.util.Dictionary;
-import java.util.Hashtable;
+import java.util.*;
 
 public abstract class View {
     protected String titleHeader;
@@ -59,9 +58,9 @@ public abstract class View {
      * @return getText or null, please handle the null case correctly.
      */
     public String getText() {
-        if(text == null) return null;
-        // canvas handles the colouring
-        return Color.ESCAPE.getAnsiCode() + color.getAnsiCode() + text + Color.ESCAPE.getAnsiCode(); // Add color codes
+        if (text == null) return null;
+
+        return Color.ESCAPE.getAnsiCode() + color.getAnsiCode() + text + Color.ESCAPE.getAnsiCode();
     }
 
     /**
@@ -91,13 +90,24 @@ public abstract class View {
     public String getFooter() {
         StringBuilder sb = new StringBuilder();
         sb.append("\nOptions:\n");
-        // it is far more efficient to use string builder compared to concatenating strings
-        for (int i = 0; i < inputOptions.size(); i++){
-            sb.append(" | ");
-            sb.append(i);
-            sb.append(": ");
-            sb.append(inputOptions.get(i).promptText());
+
+        List<Integer> keys = new ArrayList<>();
+        for (Enumeration<Integer> e = inputOptions.keys(); e.hasMoreElements();) {
+            keys.add(e.nextElement());
         }
+
+        Collections.sort(keys);
+
+        for (Integer key : keys) {
+            UserInput input = inputOptions.get(key);
+            if (input != null) {
+                sb.append(" | ");
+                sb.append(key);
+                sb.append(": ");
+                sb.append(input.promptText());
+            }
+        }
+
         return sb.toString();
     }
 
@@ -114,19 +124,23 @@ public abstract class View {
      * @param option User-friendly name of the input, this will be presented to the user.
      * @param lambda Lambda method, can be defined in-place or a method call provided.
      */
-    public void attachUserInput(String option, UserInputResult lambda){
-        // input option 0 is reserved for the back button
-        inputOptions.put(inputOptions.size() + 1, new UserInput(option, lambda));
+    public void attachUserInput(String option, UserInputResult lambda) {
+        int nextIndex = 1;
+        while (inputOptions.get(nextIndex) != null) {
+            nextIndex++;
+        }
+        inputOptions.put(nextIndex, new UserInput(option, lambda));
     }
 
     /**
      * Clears all user inputs from the view/page
      */
     public void clearUserInputs(){
-        var back = inputOptions.get(0);
-        // just re-create the hash table
+        UserInput back = inputOptions.get(0);
         inputOptions = new Hashtable<>();
-        inputOptions.put(0, back);
+        if (back != null) {
+            inputOptions.put(0, back);
+        }
     }
 
     /**

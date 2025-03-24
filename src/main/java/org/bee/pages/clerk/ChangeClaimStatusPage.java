@@ -9,7 +9,7 @@ import org.bee.ui.views.TextView;
 
 public class ChangeClaimStatusPage extends UiBase {
 
-    public View OnCreateView() {
+    public View createView() {
         return new ListView(this.canvas, Color.GREEN);
     }
     /**

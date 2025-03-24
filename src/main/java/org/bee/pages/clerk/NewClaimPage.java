@@ -17,9 +17,8 @@ import java.util.Scanner;
 public class NewClaimPage extends UiBase {
 
     @Override
-    public View OnCreateView() {
-        ListView lv = new ListView(this.canvas, Color.GREEN);
-        return lv;
+    public View createView() {
+        return new ListView(this.canvas, Color.GREEN);
     }
 
     /**

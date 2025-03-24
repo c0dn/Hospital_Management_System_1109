@@ -41,7 +41,7 @@ public class PatientInfoPage extends UiBase {
      * @return A ListView object initialized with a green background color.
      */
     @Override
-    public View OnCreateView() {
+    public View createView() {
         return new ListView(this.canvas, Color.GREEN);
     }
 
@@ -72,7 +72,7 @@ public class PatientInfoPage extends UiBase {
 
         // When selecting "Select Patient Index"
         lv.attachUserInput("Select Patient Index ", str -> {
-            int selectedIndex = InputHelper.getValidIndex("Select Patient index", patients);
+            int selectedIndex = InputHelper.getValidIndex(canvas.getTerminal(), "Select Patient index", patients);
             patient = patients.get(selectedIndex);
 
             try {

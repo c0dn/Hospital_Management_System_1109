@@ -19,9 +19,8 @@ public class ManageClaimPage extends UiBase {
      * @return A new {@link ListView} instance representing the main page's view.
      */
     @Override
-    public View OnCreateView() {
-        ListView lv = new ListView(this.canvas, Color.GREEN);
-        return lv;
+    public View createView() {
+        return new ListView(this.canvas, Color.GREEN);
     }
 
     /**

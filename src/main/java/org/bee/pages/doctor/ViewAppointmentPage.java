@@ -39,7 +39,7 @@ public class ViewAppointmentPage extends UiBase {
      * @return The configured ListView with appointments
      */
     @Override
-    public View OnCreateView() {
+    public View createView() {
         ListView lv = new ListView(
                 this.canvas,
                 Color.GREEN
@@ -82,16 +82,16 @@ public class ViewAppointmentPage extends UiBase {
             System.out.println("No appointments available.");
             return;
         }
-        int selectedIndex = InputHelper.getValidIndex("Select Patient index", appointments);
+        int selectedIndex = InputHelper.getValidIndex(canvas.getTerminal(), "Select Patient index", appointments);
         Appointment selectedAppointment = appointments.get(selectedIndex);
 
         int selectedIndex1;
         if(selectedAppointment.getAppointmentStatus() == AppointmentStatus.ACCEPTED){
             System.out.println("1. Approve appointment | 2. Reject appointment | 3. View Patient Info | 4. Start Appointment");
-            selectedIndex1 = InputHelper.getValidIndex("Select An Option", 1, 4);
+            selectedIndex1 = InputHelper.getValidIndex(canvas.getTerminal(), "Select An Option", 1, 4);
         }else{
             System.out.println("1. Approve appointment | 2. Reject appointment | 3. View Patient Info");
-            selectedIndex1 = InputHelper.getValidIndex("Select An Option", 1, 3);
+            selectedIndex1 = InputHelper.getValidIndex(canvas.getTerminal(), "Select An Option", 1, 3);
         }
 
         switch (selectedIndex1){

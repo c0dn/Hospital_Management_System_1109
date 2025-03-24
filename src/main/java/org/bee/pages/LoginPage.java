@@ -37,7 +37,7 @@ public class LoginPage extends UiBase {
      * @return A new {@link ListView} instance representing the login page's view.
      */
     @Override
-    public View OnCreateView() {
+    public View createView() {
         return new ListView(this.canvas, Color.GREEN);
     }
 
@@ -69,7 +69,7 @@ public class LoginPage extends UiBase {
 
                 switch (user) {
                     case Doctor doctor -> ToPage(new DoctorMainPage());
-                    case Nurse nurse -> System.out.println("Welcome, Nurse!");
+                    case Nurse nurse -> ToPage(new TestPage());
                     case Patient patient -> ToPage(new PatientMainPage());
                     case Clerk clerk -> ToPage(new ClerkMainPage());
                     default -> {

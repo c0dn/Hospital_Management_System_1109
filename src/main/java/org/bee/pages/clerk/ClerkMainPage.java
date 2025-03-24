@@ -34,7 +34,7 @@
          * @return A new {@link ListView} instance representing the main page's view.
          */
         @Override
-        public View OnCreateView() {
+        public View createView() {
             ListView lv = new ListView(this.canvas, Color.GREEN);
             lv.setTitleHeader("Main");
             return lv;
@@ -115,7 +115,7 @@
                 System.out.printf("%d. %s - %s\n", i + 1, c.getConsultationId(), c.getPatient().getName());
             }
 
-            int choice = InputHelper.getValidIndex("Enter your choice", 1, consultations.size());
+            int choice = InputHelper.getValidIndex(canvas.getTerminal(), "Enter your choice", 1, consultations.size());
             return consultations.get(choice - 1);
         }
 
@@ -134,7 +134,7 @@
                     consultation.displayConsultation();
 
                     displayUpdateMenu();
-                    int choice = InputHelper.getValidIndex("Enter your choice", 1, 12);
+                    int choice = InputHelper.getValidIndex(canvas.getTerminal(), "Enter your choice", 1, 12);
 
                     String consultationId = consultation.getConsultationId();
                     ConsultationUpdater updater = ConsultationUpdater.builder();

@@ -10,7 +10,7 @@ import org.bee.ui.views.TextView;
 public class NullPage extends UiBase {
 
     @Override
-    public View OnCreateView() {
+    public View createView() {
         return new TextView(this.canvas, "If you see this screen, this should not happen, exit the app immediately", Color.RED);
     }
 

@@ -49,7 +49,7 @@ public class ViewAppointmentSummaryPage extends UiBase {
      * @return A ListView object containing the appointment summary.
      */
     @Override
-    public View OnCreateView() {
+    public View createView() {
         listView = new ListView(
                 this.canvas,
                 Color.CYAN

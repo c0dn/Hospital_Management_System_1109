@@ -36,7 +36,7 @@ public class DoctorMainPage extends UiBase {
      * @return A new {@link ListView} instance representing the main page's view.
      */
     @Override
-    public View OnCreateView() {
+    public View createView() {
         ListView lv = new ListView(this.canvas, Color.GREEN);
         lv.setTitleHeader("Main");
         return lv;
