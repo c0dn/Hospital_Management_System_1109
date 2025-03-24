@@ -432,7 +432,7 @@ public class Consultation implements JSONReadable, JSONWritable {
             System.out.println("-");
         }
 
-        System.out.println("Prescription: ");
+        System.out.print("Prescription: ");
         int i = 1;
         if (prescriptions != null && !prescriptions.isEmpty()) {
             System.out.println();
