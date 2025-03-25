@@ -3,6 +3,7 @@ package org.bee.hms.humans;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.bee.hms.auth.SystemUser;
 
 import java.time.LocalDate;
 
@@ -15,7 +16,7 @@ import java.time.LocalDate;
  * </p>
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class Nurse extends Staff{
+public class Nurse extends Staff implements SystemUser {
 
     /** The Registered Nurse ID (RNID) of a nurse. */
     private String rnid;
@@ -136,4 +137,9 @@ public class Nurse extends Staff{
     public void printAsAttending() {
         System.out.printf("  - Attending Nurse: %s (RNID: %s)%n", name, rnid);
     };
+
+    @Override
+    public String getUsername() {
+        return staffId;
+    }
 }

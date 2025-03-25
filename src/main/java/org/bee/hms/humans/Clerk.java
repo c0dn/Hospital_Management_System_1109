@@ -3,6 +3,7 @@ package org.bee.hms.humans;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.bee.hms.auth.SystemUser;
 import org.bee.utils.JSONReadable;
 import org.bee.utils.JSONWritable;
 
@@ -14,7 +15,7 @@ import java.time.LocalDate;
  * paperwork, appointments, and other administrative tasks.
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class Clerk extends Staff implements JSONReadable, JSONWritable{
+public class Clerk extends Staff implements JSONReadable, JSONWritable, SystemUser {
     /**
      * Creates a new instance of ClerkBuilder to construct a Clerk object.
      *
@@ -88,5 +89,10 @@ public class Clerk extends Staff implements JSONReadable, JSONWritable{
         setStaffFields(builder, staffId, title, department);
 
         return new Clerk(builder);
+    }
+
+    @Override
+    public String getUsername() {
+        return staffId;
     }
 }

@@ -3,6 +3,7 @@ package org.bee.hms.humans;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.bee.hms.auth.SystemUser;
 import org.bee.hms.medical.Consultation;
 
 import java.time.LocalDate;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
  * </p>
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class Doctor extends Staff {
+public class Doctor extends Staff implements SystemUser {
 
     /**
      * The Medical Council Registration (MCR) number of the doctor.
@@ -138,4 +139,8 @@ public class Doctor extends Staff {
         System.out.println("=====================================================================");
     }
 
+    @Override
+    public String getUsername() {
+        return staffId;
+    }
 }

@@ -17,13 +17,13 @@ import org.bee.hms.auth.SystemUser;
  */
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class Staff extends Human implements SystemUser {
+public class Staff extends Human {
     /** The unique identifier for the staff. */
-    private String staffId;
+    protected String staffId;
     /** The title of the staff. */
-    private String title;
+    protected String title;
     /** The department of the staff. */
-    private String department;
+    protected String department;
 
 
     /**
@@ -93,11 +93,7 @@ public class Staff extends Human implements SystemUser {
         System.out.printf("\nTitle: " + title);
     }
 
-    @JsonIgnore
-    @Override
-    public String getUsername() {
+    public String getStaffId() {
         return staffId;
     }
-    public Object getStaffId() { return staffId; }
-
 }
