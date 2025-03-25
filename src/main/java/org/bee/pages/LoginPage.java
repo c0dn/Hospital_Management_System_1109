@@ -16,6 +16,7 @@ import org.bee.ui.Color;
 import org.bee.ui.UiBase;
 import org.bee.ui.View;
 import org.bee.ui.views.ListView;
+import org.bee.ui.views.MenuView;
 import org.bee.ui.views.TextView;
 
 /**
@@ -38,7 +39,7 @@ public class LoginPage extends UiBase {
      */
     @Override
     public View createView() {
-        return new ListView(this.canvas, Color.GREEN);
+        return new MenuView(this.canvas, "Welcome to Hospital Management System", Color.GREEN, false, true);
     }
 
     /**
@@ -49,37 +50,38 @@ public class LoginPage extends UiBase {
      */
     @Override
     public void OnViewCreated(View parentView) {
-        ListView lv = (ListView) parentView;
-        lv.setTitleHeader("Welcome to Hospital Management System");
-        lv.addItem(new TextView(this.canvas, "To use our system, please kindly login by pressing 1", Color.GREEN));
+        MenuView menuView = (MenuView) parentView;
+        MenuView.MenuSection authSection = menuView.addSection("Authentication");
+        authSection.addOption(1, "Login to the system");
+        menuView.attachMenuOptionInput(1, "Login", x -> performLogin());
+        canvas.setRequireRedraw(true);
+    }
 
-        lv.attachUserInput("Login ", x -> {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter your StaffID or NRIC (patients): ");
-            String username = scanner.nextLine();
 
-            // Authenticate user
-            Optional<SystemUser> userOpt = humanController.findUserByUsername(username);
-            
-            if (userOpt.isPresent()) {
-                SystemUser user = userOpt.get();
+    private void performLogin() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter your StaffID or NRIC (patients): ");
+        String username = scanner.nextLine();
 
-                System.out.println("Login successful!");
-                humanController.authenticate(user);
+        Optional<SystemUser> userOpt = humanController.findUserByUsername(username);
 
-                switch (user) {
-                    case Doctor doctor -> ToPage(new DoctorMainPage());
-                    case Nurse nurse -> ToPage(new TestPage());
-                    case Patient patient -> ToPage(new PatientMainPage());
-                    case Clerk clerk -> ToPage(new ClerkMainPage());
-                    default -> {
-                    }
+        if (userOpt.isPresent()) {
+            SystemUser user = userOpt.get();
+
+            System.out.println("Login successful!");
+            humanController.authenticate(user);
+
+            switch (user) {
+                case Doctor doctor -> ToPage(new DoctorMainPage());
+                case Nurse nurse -> ToPage(new TestPage());
+                case Patient patient -> ToPage(new PatientMainPage());
+                case Clerk clerk -> ToPage(new ClerkMainPage());
+                default -> {
                 }
-            } else {
-                System.out.println("User not found!");
             }
-            canvas.setRequireRedraw(true);
-        });
+        } else {
+            System.out.println("User not found!");
+        }
         canvas.setRequireRedraw(true);
     }
 }

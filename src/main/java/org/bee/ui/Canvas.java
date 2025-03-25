@@ -179,17 +179,30 @@ public class Canvas {
             }
             terminal.flush();
             String response = terminal.getUserInput();
-            int responseInt = -1;
-            try{
-                responseInt = Integer.parseInt(response);
-            }catch (Exception e){
-                if(response != null && !response.isEmpty() && response.toLowerCase().charAt(0) == 'q'){
-                    stopCanvas = true;
-                    break;
+
+            if(response != null && !response.isEmpty() && response.toLowerCase().charAt(0) == 'q'){
+                stopCanvas = true;
+                break;
+            }
+
+            if(response != null && !response.isEmpty() && response.toLowerCase().charAt(0) == 'e'){
+                if (backNavigationCallback != null) {
+                    backNavigationCallback.callback();
+                    continue;
                 }
             }
-            if (currentView.getInputOptions() != null
-                    && (responseInt == -1 || currentView.getInputOptions().get(responseInt) == null)) {
+
+            int responseInt;
+            try {
+                responseInt = Integer.parseInt(response);
+            } catch (Exception e) {
+                systemMessage = "Invalid input, please try again.";
+                setRequireRedraw(true);
+                continue;
+            }
+
+
+            if (currentView.getInputOptions() != null && currentView.getInputOptions().get(responseInt) == null) {
                 systemMessage = "Invalid input, please try again.";
                 setRequireRedraw(true);
                 continue;
@@ -233,7 +246,7 @@ public class Canvas {
         }
 
         Optional.ofNullable(currentView.getFooter())
-                .ifPresent(footer -> drawText(footer + " | q: Quit App\nYour input: ", pageColor));
+                .ifPresent(footer -> drawText(footer, pageColor));
 
         terminal.flush();
         this.setRequireRedraw(false);
