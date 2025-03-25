@@ -135,9 +135,8 @@ public class ViewAppointmentPage extends UiBase {
                 ToPage(new PatientInfoPage(selectedAppointment.getPatient()));
                 break;
             case 4:
-                // Comment out for now as TeleconsultPage is not available
-                // TeleconsultPage.setAppointment(selectedAppointment);
-                // ToPage(Globals.teleconsultPage);
+                TeleconsultPage.setAppointment(selectedAppointment);
+                ToPage(new TeleconsultPage());
                 System.out.println("Starting teleconsultation for appointment: " + selectedAppointment.toString());
                 break;
         }
