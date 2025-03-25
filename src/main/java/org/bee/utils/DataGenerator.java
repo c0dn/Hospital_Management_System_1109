@@ -149,9 +149,9 @@ public class DataGenerator {
         };
     }
 
-    // ID Generation Methods
     public String generateStaffId() {
-        return String.format("S%05d", generateRandomInt(100000));
+        String uuid = UUID.randomUUID().toString();
+        return "S" + uuid.substring(0, 8).toUpperCase();
     }
 
     public String generateMCRNumber() {
@@ -164,17 +164,56 @@ public class DataGenerator {
 
     public String generatePatientId() {
         int year = java.time.LocalDate.now().getYear();
-        int randomDigits = generateRandomInt(10000, 99999);
-        return String.format("P-%d%05d", year, randomDigits);
+        String uuid = UUID.randomUUID().toString();
+
+        return String.format("P-%d%s", year, uuid.substring(0, 8).toUpperCase());
     }
 
 
     public String generateNRICNumber() {
-        String prefix = generateRandomInt(2) == 0 ? "S" : "T";
+        String[] prefixes = {"S", "T", "F", "G"};
+        String prefix = prefixes[generateRandomInt(prefixes.length)];
         String numbers = String.format("%07d", generateRandomInt(10000000));
-        char[] checksum = {'J', 'Z', 'I', 'H', 'G', 'F', 'E', 'D', 'C', 'B', 'A'};
-        return prefix + numbers + checksum[generateRandomInt(checksum.length)];
+        return prefix + numbers + calculateChecksum(prefix, numbers);
     }
+
+    private char calculateChecksum(String prefix, String numbers) {
+        int[] weights = {2, 7, 6, 5, 4, 3, 2};
+
+        int sum = 0;
+        for (int i = 0; i < 7; i++) {
+            sum += Character.getNumericValue(numbers.charAt(i)) * weights[i];
+        }
+
+        if (prefix.equals("G") || prefix.equals("T")) {
+            sum += 4;
+        } else if (prefix.equals("M")) {
+            sum += 3;
+        }
+
+        int remainder = sum % 11;
+
+        int checkDigit = 11 - (remainder + 1);
+        if (checkDigit == 11) checkDigit = 0;
+
+        switch (prefix) {
+            case "S", "T" -> {
+                char[] checksumMap = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'Z', 'J'};
+                return checksumMap[checkDigit];
+            }
+            case "F", "G" -> {
+                char[] checksumMap = {'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'T', 'U', 'W', 'X'};
+                return checksumMap[checkDigit];
+            }
+            case "M" -> {
+                char[] checksumMap = {'K', 'L', 'J', 'N', 'P', 'Q', 'R', 'T', 'U', 'W', 'X'};
+                return checksumMap[checkDigit];
+            }
+        }
+
+        return '?';
+    }
+
 
     /**
      * Generates a random Singapore address.
