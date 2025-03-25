@@ -222,7 +222,7 @@ public class Patient extends Human implements SystemUser {
 //        System.out.printf("%nName: " + name);
         System.out.printf("Patient ID: " + patientId);
         System.out.printf("\nHeight: %3.2f", height);
-        System.out.printf("\ntWeight: %3.2f", weight);
+        System.out.printf("\nWeight: %3.2f", weight);
         System.out.println("\nDrug Allergies: " + drugAllergies);
         System.out.println("\nNEXT OF KIN (NOK) DETAILS");
         System.out.println("---------------------------------------------------------------------");
