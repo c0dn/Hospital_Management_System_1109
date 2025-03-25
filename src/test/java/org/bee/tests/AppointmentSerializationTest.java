@@ -29,15 +29,10 @@ import org.junit.jupiter.api.io.TempDir;
  */
 public class AppointmentSerializationTest {
 
-    private JSONHelper jsonHelper;
     private Appointment originalAppointment;
     
     @BeforeEach
     void setUp() {
-        // Initialize JSONHelper
-        jsonHelper = JSONHelper.getInstance();
-        
-        // Create a test Appointment object
         originalAppointment = createTestAppointment();
     }
     
@@ -45,7 +40,7 @@ public class AppointmentSerializationTest {
     @DisplayName("Test serializing Appointment to JSON string")
     void testSerializeToJsonString() {
         // Serialize to JSON string
-        String json = jsonHelper.toJson(originalAppointment);
+        String json = JSONHelper.toJson(originalAppointment);
         
         // Verify JSON string is not empty
         assertNotNull(json);
@@ -56,10 +51,10 @@ public class AppointmentSerializationTest {
     @DisplayName("Test deserializing Appointment from JSON string")
     void testDeserializeFromJsonString() throws Exception {
         // Serialize to JSON string
-        String json = jsonHelper.toJson(originalAppointment);
+        String json = JSONHelper.toJson(originalAppointment);
         
         // Deserialize from JSON string
-        Appointment deserializedAppointment = jsonHelper.fromJson(json, Appointment.class);
+        Appointment deserializedAppointment = JSONHelper.fromJson(json, Appointment.class);
         
         // Verify all fields match
         verifyFields(originalAppointment, deserializedAppointment);
@@ -72,7 +67,7 @@ public class AppointmentSerializationTest {
         String jsonFilePath = tempDir.resolve("appointment_test.json").toString();
         
         // Save Appointment to JSON file
-        jsonHelper.saveToJsonFile(originalAppointment, jsonFilePath);
+        JSONHelper.saveToJsonFile(originalAppointment, jsonFilePath);
         
         // Verify file exists
         File jsonFile = new File(jsonFilePath);
@@ -80,7 +75,7 @@ public class AppointmentSerializationTest {
         assertTrue(jsonFile.length() > 0);
         
         // Load Appointment from JSON file
-        Appointment fileDeserializedAppointment = jsonHelper.loadFromJsonFile(jsonFilePath, Appointment.class);
+        Appointment fileDeserializedAppointment = JSONHelper.loadFromJsonFile(jsonFilePath, Appointment.class);
         
         // Verify all fields match
         verifyFields(originalAppointment, fileDeserializedAppointment);
@@ -177,11 +172,10 @@ public class AppointmentSerializationTest {
      * Creates a test Appointment object with various properties set.
      */
     private Appointment createTestAppointment() {
-        DataGenerator gen = DataGenerator.getInstance();
-        
+
         // Create a patient
         Patient patient = Patient.builder()
-                .patientId(gen.generatePatientId())
+                .patientId(DataGenerator.generatePatientId())
                 .withRandomBaseData()
                 .build();
         
@@ -196,7 +190,7 @@ public class AppointmentSerializationTest {
         
         // Assign doctor and approve appointment
         appointment.setDoctor(doctor);
-        appointment.approveAppointment(doctor, "https://zoom.us/j/" + gen.generateRandomInt(10000000, 99999999));
+        appointment.approveAppointment(doctor, "https://zoom.us/j/" + DataGenerator.generateRandomInt(10000000, 99999999));
         
         // Set history
         appointment.setHistory("Patient has a history of hypertension and diabetes");

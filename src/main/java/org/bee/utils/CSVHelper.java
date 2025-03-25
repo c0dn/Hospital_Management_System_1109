@@ -18,48 +18,14 @@ import java.io.IOException;
  * <br><br>This helps in exporting and importing medical records and billing details.
  */
 
-public class CSVHelper {
-    /** Singleton instance of {@code CSVHelper}. */
-    private static volatile CSVHelper instance;
+public final class CSVHelper {
 
     /**
      * Private constructor to prevent instantiation.
-     * Uses the Singleton pattern to ensure a single instance of the class.
-     *
-     * @throws RuntimeException if an instance already exists.
+     * This is a utility class with only static methods.
      */
     private CSVHelper() {
-        if (instance != null) {
-            throw new RuntimeException("Use getInstance() method to get the singleton instance");
-        }
-    }
-
-    /**
-     * Returns the singleton instance of {@code CSVHelper}.
-     * Uses double-checked locking for thread-safe initialization.
-     *
-     * @return The singleton instance of {@code CSVHelper}
-     */
-    public static CSVHelper getInstance() {
-        // Double-checked locking
-        if (instance == null) {
-            synchronized (CSVHelper.class) {
-                if (instance == null) {
-                    instance = new CSVHelper();
-                }
-            }
-        }
-        return instance;
-    }
-
-    /**
-     * Prevents cloning of the singleton instance.
-     *
-     * @throws CloneNotSupportedException Always thrown to prevent cloning
-     */
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        throw new CloneNotSupportedException("Cloning of singleton CSVHelper is not allowed");
+        throw new AssertionError("Utility class should not be instantiated");
     }
 
     /**
@@ -69,7 +35,7 @@ public class CSVHelper {
      * @param fileName The name of the CSV file
      * @param <T>      The type of the object, which must implement {@link CsvSerializable}
      */
-    public <T extends CsvSerializable<T>> void saveObject(T object, String fileName) {
+    public static <T extends CsvSerializable<T>> void saveObject(T object, String fileName) {
         String csvLine = object.toCsvFormat() + "\n";
         writeToFile(fileName, csvLine);
     }
@@ -81,7 +47,7 @@ public class CSVHelper {
      * @param fileName The name of the CSV file to read
      * @return A list of string arrays representing rows in the file
      */
-    public List<String[]> readCSV(String fileName) {
+    public static List<String[]> readCSV(String fileName) {
         List<String[]> records = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
@@ -100,7 +66,7 @@ public class CSVHelper {
      * @param fileName The name of the file to write to
      * @param content  The content to write
      */
-    private void writeToFile(String fileName, String content) {
+    private static void writeToFile(String fileName, String content) {
         try (FileWriter fw = new FileWriter(fileName, true);
              BufferedWriter bw = new BufferedWriter(fw)) {
             bw.write(content);

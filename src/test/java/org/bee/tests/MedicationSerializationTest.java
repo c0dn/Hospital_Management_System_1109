@@ -21,15 +21,11 @@ import org.junit.jupiter.api.io.TempDir;
  */
 public class MedicationSerializationTest {
 
-    private JSONHelper jsonHelper;
     private Medication originalMedication;
 
     @BeforeEach
     void setUp() {
-        // Initialize JSONHelper
-        jsonHelper = JSONHelper.getInstance();
-        
-        // Create a test Medication object
+
         originalMedication = Medication.getRandomMedication();
     }
 
@@ -37,7 +33,7 @@ public class MedicationSerializationTest {
     @DisplayName("Test serializing Medication to JSON string")
     void testSerializeToJsonString() throws IOException {
         // Serialize to JSON string
-        String json = jsonHelper.toJson(originalMedication);
+        String json = JSONHelper.toJson(originalMedication);
         
         // Verify JSON string is not empty
         assertNotNull(json);
@@ -47,36 +43,26 @@ public class MedicationSerializationTest {
     @Test
     @DisplayName("Test deserializing Medication from JSON string")
     void testDeserializeFromJsonString() throws IOException {
-        // Serialize to JSON string
-        String json = jsonHelper.toJson(originalMedication);
+        String json = JSONHelper.toJson(originalMedication);
         
-        // Deserialize from JSON string
-        Medication deserializedMedication = jsonHelper.fromJson(json, Medication.class);
+        Medication deserializedMedication = JSONHelper.fromJson(json, Medication.class);
         
-        // Verify properties match
         assertEquals(originalMedication.getDrugCode(), deserializedMedication.getDrugCode());
-        
-        // Also verify that the deserialized object can calculate costs correctly
-        // This implicitly tests that the lookup in DRUG_REGISTRY worked correctly
         assertEquals(originalMedication.calculateCost(5), deserializedMedication.calculateCost(5));
     }
 
     @Test
     @DisplayName("Test serializing Medication to file and deserializing")
     void testSerializeToFileAndDeserialize(@TempDir Path tempDir) throws IOException {
-        // Create a temporary file path
         String jsonFilePath = tempDir.resolve("medication_test.json").toString();
         
-        // Save Medication to JSON file
-        jsonHelper.saveToJsonFile(originalMedication, jsonFilePath);
+        JSONHelper.saveToJsonFile(originalMedication, jsonFilePath);
         
-        // Verify file exists
         File jsonFile = new File(jsonFilePath);
         assertTrue(jsonFile.exists());
         assertTrue(jsonFile.length() > 0);
         
-        // Load Medication from JSON file
-        Medication fileDeserializedMedication = jsonHelper.loadFromJsonFile(jsonFilePath, Medication.class);
+        Medication fileDeserializedMedication = JSONHelper.loadFromJsonFile(jsonFilePath, Medication.class);
         
         // Verify properties match
         assertEquals(originalMedication.getDrugCode(), fileDeserializedMedication.getDrugCode());

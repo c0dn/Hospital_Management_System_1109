@@ -55,7 +55,7 @@ public class WardTest {
         assertTrue(daySurgeryWard.getDailyRate() > 0, 
                 "Daily rate should be positive");
         assertNotNull(daySurgeryWard.getBeds(), "Beds map should not be null");
-        assertTrue(daySurgeryWard.getBeds().size() > 0, "Ward should have beds");
+        assertFalse(daySurgeryWard.getBeds().isEmpty(), "Ward should have beds");
     }
 
     @Test
@@ -86,8 +86,7 @@ public class WardTest {
         assertNotNull(ward, "Ward should not be null for type: " + wardType);
         assertTrue(ward.getDailyRate() > 0,
                 "Daily rate should be positive for type: " + wardType);
-        assertTrue(ward.getBeds().size() > 0,
-                "Ward should have beds for type: " + wardType);
+        assertFalse(ward.getBeds().isEmpty(), "Ward should have beds for type: " + wardType);
     }
 
     @Test
@@ -104,7 +103,7 @@ public class WardTest {
         
         // Test initial state
         assertNotNull(beds, "Beds map should not be null");
-        assertTrue(beds.size() > 0, "Ward should have beds");
+        assertFalse(beds.isEmpty(), "Ward should have beds");
         
         // Test bed properties
         Bed firstBed = beds.values().iterator().next();

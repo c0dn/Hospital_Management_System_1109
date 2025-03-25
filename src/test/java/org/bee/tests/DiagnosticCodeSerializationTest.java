@@ -21,23 +21,17 @@ import org.junit.jupiter.api.io.TempDir;
  * This test class verifies that DiagnosticCode objects can be properly converted to JSON and back.
  */
 public class DiagnosticCodeSerializationTest {
-
-    private JSONHelper jsonHelper;
     private DiagnosticCode originalDiagnosticCode;
 
     @BeforeEach
     void setUp() {
-        // Initialize JSONHelper
-        jsonHelper = JSONHelper.getInstance();
-        
-        // Create a test DiagnosticCode object
         originalDiagnosticCode = DiagnosticCode.getRandomCode();
     }
 
     @Test
     @DisplayName("Test serializing DiagnosticCode to JSON string")
     void testSerializeToJsonString() {
-        String json = jsonHelper.toJson(originalDiagnosticCode);
+        String json = JSONHelper.toJson(originalDiagnosticCode);
         
         assertNotNull(json);
         assertFalse(json.isEmpty());
@@ -46,9 +40,9 @@ public class DiagnosticCodeSerializationTest {
     @Test
     @DisplayName("Test deserializing DiagnosticCode from JSON string")
     void testDeserializeFromJsonString() {
-        String json = jsonHelper.toJson(originalDiagnosticCode);
+        String json = JSONHelper.toJson(originalDiagnosticCode);
         
-        DiagnosticCode deserializedDiagnosticCode = jsonHelper.fromJson(json, DiagnosticCode.class);
+        DiagnosticCode deserializedDiagnosticCode = JSONHelper.fromJson(json, DiagnosticCode.class);
         
         // Verify properties match using available getters
         assertEquals(originalDiagnosticCode.getDiagnosisCode(), deserializedDiagnosticCode.getDiagnosisCode());
@@ -60,14 +54,14 @@ public class DiagnosticCodeSerializationTest {
     @DisplayName("Test serializing DiagnosticCode to file and deserializing")
     void testSerializeToFileAndDeserialize(@TempDir Path tempDir) throws IOException {
         String jsonFilePath = tempDir.resolve("diagnostic_code_test.json").toString();
-        
-        jsonHelper.saveToJsonFile(originalDiagnosticCode, jsonFilePath);
+
+        JSONHelper.saveToJsonFile(originalDiagnosticCode, jsonFilePath);
         
         File jsonFile = new File(jsonFilePath);
         assertTrue(jsonFile.exists());
         assertTrue(jsonFile.length() > 0);
         
-        DiagnosticCode fileDeserializedDiagnosticCode = jsonHelper.loadFromJsonFile(jsonFilePath, DiagnosticCode.class);
+        DiagnosticCode fileDeserializedDiagnosticCode = JSONHelper.loadFromJsonFile(jsonFilePath, DiagnosticCode.class);
         
         assertEquals(originalDiagnosticCode.getDiagnosisCode(), fileDeserializedDiagnosticCode.getDiagnosisCode());
         assertEquals(originalDiagnosticCode.getBillItemDescription(), fileDeserializedDiagnosticCode.getBillItemDescription());

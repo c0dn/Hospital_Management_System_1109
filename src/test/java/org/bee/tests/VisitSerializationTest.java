@@ -42,8 +42,7 @@ public class VisitSerializationTest {
     @BeforeEach
     void setUp() {
         // Initialize JSONHelper
-        jsonHelper = JSONHelper.getInstance();
-        
+
         // Create a test Visit object
         originalVisit = createTestVisit();
     }
@@ -52,11 +51,11 @@ public class VisitSerializationTest {
     @DisplayName("Test serializing Visit to JSON string")
     void testSerializeToJsonString() {
         // Serialize to JSON string
-        String json = jsonHelper.toJson(originalVisit);
+        String json = JSONHelper.toJson(originalVisit);
         
         // Verify JSON string is not empty
         assertNotNull(json);
-        assertTrue(json.length() > 0);
+        assertTrue(!json.isEmpty());
     }
     
     /**
@@ -80,10 +79,10 @@ public class VisitSerializationTest {
     @DisplayName("Test deserializing Visit from JSON string")
     void testDeserializeFromJsonString() throws Exception {
         // Serialize to JSON string
-        String json = jsonHelper.toJson(originalVisit);
+        String json = JSONHelper.toJson(originalVisit);
         
         // Deserialize from JSON string
-        Visit deserializedVisit = jsonHelper.fromJson(json, Visit.class);
+        Visit deserializedVisit = JSONHelper.fromJson(json, Visit.class);
         
         // Verify all fields
         verifyFields(originalVisit, deserializedVisit);
@@ -96,7 +95,7 @@ public class VisitSerializationTest {
         String jsonFilePath = tempDir.resolve("visit_test.json").toString();
         
         // Save Visit to JSON file
-        jsonHelper.saveToJsonFile(originalVisit, jsonFilePath);
+        JSONHelper.saveToJsonFile(originalVisit, jsonFilePath);
         
         // Verify file exists
         File jsonFile = new File(jsonFilePath);
@@ -104,7 +103,7 @@ public class VisitSerializationTest {
         assertTrue(jsonFile.length() > 0);
         
         // Load Visit from JSON file
-        Visit fileDeserializedVisit = jsonHelper.loadFromJsonFile(jsonFilePath, Visit.class);
+        Visit fileDeserializedVisit = JSONHelper.loadFromJsonFile(jsonFilePath, Visit.class);
         
         // Verify all fields match
         verifyFields(originalVisit, fileDeserializedVisit);
@@ -224,11 +223,10 @@ public class VisitSerializationTest {
      * Creates a test Visit object with various properties set.
      */
     private Visit createTestVisit() {
-        DataGenerator gen = DataGenerator.getInstance();
-        
+
         // Create a patient
         Patient patient = Patient.builder()
-                .patientId(gen.generatePatientId())
+                .patientId(DataGenerator.generatePatientId())
                 .withRandomBaseData()
                 .build();
         
@@ -260,7 +258,7 @@ public class VisitSerializationTest {
         // Add medications
         for (int i = 0; i < 3; i++) {
             Medication medication = Medication.getRandomMedication();
-            int quantity = gen.generateRandomInt(1, 5);
+            int quantity = DataGenerator.generateRandomInt(1, 5);
             visit.prescribeMedicine(medication, quantity);
         }
         

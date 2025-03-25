@@ -24,7 +24,6 @@ import org.junit.jupiter.api.io.TempDir;
  */
 public class WardSerializationTest {
     
-    private JSONHelper jsonHelper;
     private Ward generalWard;
     private Ward icuWard;
     private Ward labourWard;
@@ -32,7 +31,6 @@ public class WardSerializationTest {
 
     @BeforeEach
     void setUp() {
-        jsonHelper = JSONHelper.getInstance();
 
         // Create test ward objects
         generalWard = WardFactory.getWard("General Ward A", WardClassType.GENERAL_CLASS_A);
@@ -92,12 +90,12 @@ public class WardSerializationTest {
      */
     private void testWardSerialization(Ward ward, String jsonFilePath, String expectedType) throws Exception {
         // Serialize to JSON string first
-        String json = jsonHelper.toJson(ward);
+        String json = JSONHelper.toJson(ward);
         assertNotNull(json, "JSON string should not be null");
         assertTrue(json.contains(expectedType), "JSON should contain the correct ward type");
 
         // Save to JSON file
-        jsonHelper.saveToJsonFile(ward, jsonFilePath);
+        JSONHelper.saveToJsonFile(ward, jsonFilePath);
 
         // Verify file exists
         File jsonFile = new File(jsonFilePath);
@@ -105,7 +103,7 @@ public class WardSerializationTest {
         assertTrue(jsonFile.length() > 0, "JSON file should not be empty");
 
         // Load from JSON file
-        Ward deserializedWard = jsonHelper.loadFromJsonFile(jsonFilePath, Ward.class);
+        Ward deserializedWard = JSONHelper.loadFromJsonFile(jsonFilePath, Ward.class);
 
         // Verify fields
         assertEquals(ward.getWardName(), deserializedWard.getWardName(), "Ward name should match");
@@ -141,7 +139,7 @@ public class WardSerializationTest {
             String expectedType = wardTypes[i];
 
             // Serialize to JSON string
-            String json = jsonHelper.toJson(ward);
+            String json = JSONHelper.toJson(ward);
             
             // Basic JSON string checks
             assertNotNull(json, "JSON string should not be null");
@@ -151,7 +149,7 @@ public class WardSerializationTest {
                 "JSON should contain the ward name: " + ward.getWardName());
 
             // Deserialize back to object
-            Ward deserializedWard = jsonHelper.fromJson(json, Ward.class);
+            Ward deserializedWard = JSONHelper.fromJson(json, Ward.class);
             
             // Verify key properties
             assertEquals(ward.getWardName(), deserializedWard.getWardName(), 

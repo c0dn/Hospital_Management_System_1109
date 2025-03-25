@@ -24,19 +24,17 @@ import org.junit.jupiter.api.Test;
  */
 public class AppointmentTest {
     
-    private DataGenerator gen;
     private DateTimeFormatter formatter;
     private Patient patient;
     private Doctor doctor;
     
     @BeforeEach
     void setUp() {
-        gen = DataGenerator.getInstance();
         formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         
         // Create a patient and doctor for tests
         patient = Patient.builder()
-                .patientId(gen.generatePatientId())
+                .patientId(DataGenerator.generatePatientId())
                 .withRandomBaseData()
                 .build();
         

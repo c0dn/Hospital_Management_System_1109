@@ -94,9 +94,8 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
      * Loads diagnostic codes from a CSV file and stores them in the code registry.
      */
     private static void loadCodesFromCsv() {
-        CSVHelper csvHelper = CSVHelper.getInstance();
         String databaseDir = System.getProperty("database.dir", "database");
-        List<String[]> records = csvHelper.readCSV(databaseDir + "/icd-10-cm.csv");
+        List<String[]> records = CSVHelper.readCSV(databaseDir + "/icd-10-cm.csv");
 
         for (int i = 1; i < records.size(); i++) { // Skip header row
             String[] record = records.get(i);

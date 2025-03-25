@@ -43,9 +43,8 @@ public class HealthcareProvider {
      * - Column 1: Hospital Name
      */
     private static void loadCodesFromCsv() {
-        CSVHelper csvHelper = CSVHelper.getInstance();
         String databaseDir = System.getProperty("database.dir", "database");
-        List<String[]> records = csvHelper.readCSV(databaseDir + "/HospitalCodes.csv");
+        List<String[]> records = CSVHelper.readCSV(databaseDir + "/HospitalCodes.csv");
 
         for (int i = 1; i < records.size(); i++) {
             String[] record = records.get(i);

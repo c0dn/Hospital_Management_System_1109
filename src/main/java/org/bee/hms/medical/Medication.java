@@ -58,9 +58,6 @@ public class Medication implements JSONWritable, JSONReadable {
      */
     private static final Map<String, Medication> DRUG_REGISTRY = new HashMap<>();
 
-    /**
-     * Static initializer to load medications from a CSV file when the class is first loaded.
-     */
     static {
         loadDrugsFromCsv();
     }
@@ -94,9 +91,8 @@ public class Medication implements JSONWritable, JSONReadable {
      * Loads medications and their details from a CSV file into the registry.
      */
     private static void loadDrugsFromCsv() {
-        CSVHelper csvHelper = CSVHelper.getInstance();
         String databaseDir = System.getProperty("database.dir", "database");
-        List<String[]> records = csvHelper.readCSV(databaseDir + "/drugs.csv");
+        List<String[]> records = CSVHelper.readCSV(databaseDir + "/drugs.csv");
 
         // Skip header row
         for (int i = 1; i < records.size(); i++) {

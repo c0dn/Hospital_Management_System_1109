@@ -18,7 +18,6 @@ import org.junit.jupiter.api.io.TempDir;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class HumanSerializationTest {
-    private JSONHelper jsonHelper;
     private Patient patient;
     private Doctor doctor;
     private Nurse nurse;
@@ -28,7 +27,6 @@ public class HumanSerializationTest {
 
     @BeforeEach
     void setUp() {
-        jsonHelper = JSONHelper.getInstance();
         humanList = new ArrayList<>();
 
         // Create test objects
@@ -75,7 +73,7 @@ public class HumanSerializationTest {
         String jsonFilePath = tempDir.resolve("human_list_test.json").toString();
 
         // Save the list to a JSON file
-        jsonHelper.saveToJsonFile(humanList, jsonFilePath);
+        JSONHelper.saveToJsonFile(humanList, jsonFilePath);
 
         // Verify the file exists
         File jsonFile = new File(jsonFilePath);
@@ -83,7 +81,7 @@ public class HumanSerializationTest {
         assertTrue(jsonFile.length() > 0, "JSON file should not be empty");
 
         // Load the list back from the JSON file as a list of Human objects
-        List<Human> deserializedHumans = jsonHelper.loadListFromJsonFile(jsonFilePath, Human.class);
+        List<Human> deserializedHumans = JSONHelper.loadListFromJsonFile(jsonFilePath, Human.class);
 
         // Verify the list was deserialized correctly
         assertNotNull(deserializedHumans, "Deserialized list should not be null");
@@ -130,26 +128,29 @@ public class HumanSerializationTest {
                     "NRIC/FIN should match for object at index " + i);
 
             // Verify subtype-specific fields
-            if (original instanceof Patient) {
-                Patient originalPatient = (Patient) original;
-                Patient deserializedPatient = (Patient) deserialized;
-                assertEquals(originalPatient.getPatientId(), deserializedPatient.getPatientId(),
-                        "Patient ID should match");
-            } else if (original instanceof Doctor) {
-                Doctor originalDoctor = (Doctor) original;
-                Doctor deserializedDoctor = (Doctor) deserialized;
-                assertEquals(originalDoctor.getMcr(), deserializedDoctor.getMcr(),
-                        "Medical Council Registration should match");
-            } else if (original instanceof Nurse) {
-                Nurse originalNurse = (Nurse) original;
-                Nurse deserializedNurse = (Nurse) deserialized;
-                assertEquals(originalNurse.getRnid(), deserializedNurse.getRnid(),
-                        "Registered Nurse ID should match");
-            } else if (original instanceof Clerk) {
-                Clerk originalClerk = (Clerk) original;
-                Clerk deserializedClerk = (Clerk) deserialized;
-                assertEquals(getPrivateField(originalClerk, "staffId", String.class),
-                        getPrivateField(deserializedClerk, "staffId", String.class));
+            switch (original) {
+                case Patient originalPatient -> {
+                    Patient deserializedPatient = (Patient) deserialized;
+                    assertEquals(originalPatient.getPatientId(), deserializedPatient.getPatientId(),
+                            "Patient ID should match");
+                }
+                case Doctor originalDoctor -> {
+                    Doctor deserializedDoctor = (Doctor) deserialized;
+                    assertEquals(originalDoctor.getMcr(), deserializedDoctor.getMcr(),
+                            "Medical Council Registration should match");
+                }
+                case Nurse originalNurse -> {
+                    Nurse deserializedNurse = (Nurse) deserialized;
+                    assertEquals(originalNurse.getRnid(), deserializedNurse.getRnid(),
+                            "Registered Nurse ID should match");
+                }
+                case Clerk originalClerk -> {
+                    Clerk deserializedClerk = (Clerk) deserialized;
+                    assertEquals(getPrivateField(originalClerk, "staffId", String.class),
+                            getPrivateField(deserializedClerk, "staffId", String.class));
+                }
+                default -> {
+                }
             }
         }
     }
@@ -160,7 +161,7 @@ public class HumanSerializationTest {
         String jsonFilePath = tempDir.resolve("patient_test.json").toString();
 
         // Save to JSON file
-        jsonHelper.saveToJsonFile(patient, jsonFilePath);
+        JSONHelper.saveToJsonFile(patient, jsonFilePath);
 
         // Verify file exists
         File jsonFile = new File(jsonFilePath);
@@ -168,7 +169,7 @@ public class HumanSerializationTest {
         assertTrue(jsonFile.length() > 0, "JSON file should not be empty");
 
         // Load from JSON file
-        Patient deserializedPatient = jsonHelper.loadFromJsonFile(jsonFilePath, Patient.class);
+        Patient deserializedPatient = JSONHelper.loadFromJsonFile(jsonFilePath, Patient.class);
 
         // Verify fields from Human superclass
         assertEquals(getPrivateField(patient, "name", String.class),
@@ -233,7 +234,7 @@ public class HumanSerializationTest {
         String jsonFilePath = tempDir.resolve("doctor_test.json").toString();
 
         // Save to JSON file
-        jsonHelper.saveToJsonFile(doctor, jsonFilePath);
+        JSONHelper.saveToJsonFile(doctor, jsonFilePath);
 
         // Verify file exists
         File jsonFile = new File(jsonFilePath);
@@ -241,7 +242,7 @@ public class HumanSerializationTest {
         assertTrue(jsonFile.length() > 0, "JSON file should not be empty");
 
         // Load from JSON file
-        Doctor deserializedDoctor = jsonHelper.loadFromJsonFile(jsonFilePath, Doctor.class);
+        Doctor deserializedDoctor = JSONHelper.loadFromJsonFile(jsonFilePath, Doctor.class);
 
         // Verify fields from Human superclass
         assertEquals(getPrivateField(doctor, "name", String.class),
@@ -288,7 +289,7 @@ public class HumanSerializationTest {
         String jsonFilePath = tempDir.resolve("nurse_test.json").toString();
 
         // Save to JSON file
-        jsonHelper.saveToJsonFile(nurse, jsonFilePath);
+        JSONHelper.saveToJsonFile(nurse, jsonFilePath);
 
         // Verify file exists
         File jsonFile = new File(jsonFilePath);
@@ -296,7 +297,7 @@ public class HumanSerializationTest {
         assertTrue(jsonFile.length() > 0, "JSON file should not be empty");
 
         // Load from JSON file
-        Nurse deserializedNurse = jsonHelper.loadFromJsonFile(jsonFilePath, Nurse.class);
+        Nurse deserializedNurse = JSONHelper.loadFromJsonFile(jsonFilePath, Nurse.class);
 
         // Verify fields from Human superclass
         assertEquals(getPrivateField(nurse, "name", String.class),
@@ -343,7 +344,7 @@ public class HumanSerializationTest {
         String jsonFilePath = tempDir.resolve("clerk_test.json").toString();
 
         // Save to JSON file
-        jsonHelper.saveToJsonFile(clerk, jsonFilePath);
+        JSONHelper.saveToJsonFile(clerk, jsonFilePath);
 
         // Verify file exists
         File jsonFile = new File(jsonFilePath);
@@ -351,7 +352,7 @@ public class HumanSerializationTest {
         assertTrue(jsonFile.length() > 0, "JSON file should not be empty");
 
         // Load from JSON file
-        Clerk deserializedClerk = jsonHelper.loadFromJsonFile(jsonFilePath, Clerk.class);
+        Clerk deserializedClerk = JSONHelper.loadFromJsonFile(jsonFilePath, Clerk.class);
 
         // Verify fields from Human superclass
         assertEquals(getPrivateField(clerk, "name", String.class),
@@ -391,7 +392,7 @@ public class HumanSerializationTest {
     private Patient createTestPatient() {
         return Patient.builder()
                 .withRandomBaseData()
-                .patientId(DataGenerator.getInstance().generatePatientId())
+                .patientId(DataGenerator.generatePatientId())
                 .build();
     }
 

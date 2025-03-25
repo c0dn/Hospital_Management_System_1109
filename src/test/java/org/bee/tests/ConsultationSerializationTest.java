@@ -26,14 +26,10 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class ConsultationSerializationTest {
 
-    private JSONHelper jsonHelper;
     private Consultation originalConsultation;
 
     @BeforeEach
     void setUp() {
-        // Initialize Gson with necessary type adapters
-        jsonHelper = JSONHelper.getInstance();
-
         // Create a Consultation object
         originalConsultation = createTestConsultation();
     }
@@ -68,7 +64,7 @@ public class ConsultationSerializationTest {
     @DisplayName("Test serializing Consultation to JSON string")
     void testSerializeToJsonString() {
         // Serialize to JSON string
-        String json = jsonHelper.toJson(originalConsultation);
+        String json = JSONHelper.toJson(originalConsultation);
 
         // Verify JSON string is not empty
         assertNotNull(json, "Serialized JSON should not be null");
@@ -82,10 +78,10 @@ public class ConsultationSerializationTest {
     @DisplayName("Test deserializing Consultation from JSON string")
     void testDeserializeFromJsonString() throws Exception {
         // Serialize to JSON string
-        String json = jsonHelper.toJson(originalConsultation);
+        String json = JSONHelper.toJson(originalConsultation);
 
         // Deserialize from JSON string
-        Consultation deserializedConsultation = jsonHelper.fromJson(json, Consultation.class);
+        Consultation deserializedConsultation = JSONHelper.fromJson(json, Consultation.class);
 
         verifyFields(originalConsultation, deserializedConsultation);
     }
@@ -97,7 +93,7 @@ public class ConsultationSerializationTest {
         String jsonFilePath = tempDir.resolve("consultation_test.json").toString();
 
         // Save Consultation to JSON file
-        jsonHelper.saveToJsonFile(originalConsultation, jsonFilePath);
+        JSONHelper.saveToJsonFile(originalConsultation, jsonFilePath);
 
         // Verify file exists
         File jsonFile = new File(jsonFilePath);
@@ -105,7 +101,7 @@ public class ConsultationSerializationTest {
         assertTrue(jsonFile.length() > 0, "JSON file should not be empty");
 
         // Load Consultation from JSON file
-        Consultation fileDeserializedConsultation = jsonHelper.loadFromJsonFile(jsonFilePath, Consultation.class);
+        Consultation fileDeserializedConsultation = JSONHelper.loadFromJsonFile(jsonFilePath, Consultation.class);
 
         verifyFields(originalConsultation, fileDeserializedConsultation);
     }

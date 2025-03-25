@@ -22,22 +22,17 @@ import org.junit.jupiter.api.io.TempDir;
  */
 public class ProcedureCodeSerializationTest {
 
-    private JSONHelper jsonHelper;
     private ProcedureCode originalProcedureCode;
 
     @BeforeEach
     void setUp() {
-        // Initialize JSONHelper
-        jsonHelper = JSONHelper.getInstance();
-        
-        // Create a test ProcedureCode object
         originalProcedureCode = ProcedureCode.getRandomCode();
     }
 
     @Test
     @DisplayName("Test serializing ProcedureCode to JSON string")
     void testSerializeToJsonString() {
-        String json = jsonHelper.toJson(originalProcedureCode);
+        String json = JSONHelper.toJson(originalProcedureCode);
         
         assertNotNull(json);
         assertFalse(json.isEmpty());
@@ -47,10 +42,10 @@ public class ProcedureCodeSerializationTest {
     @DisplayName("Test deserializing ProcedureCode from JSON string")
     void testDeserializeFromJsonString() {
         // Serialize to JSON string
-        String json = jsonHelper.toJson(originalProcedureCode);
+        String json = JSONHelper.toJson(originalProcedureCode);
         
         // Deserialize from JSON string
-        ProcedureCode deserializedProcedureCode = jsonHelper.fromJson(json, ProcedureCode.class);
+        ProcedureCode deserializedProcedureCode = JSONHelper.fromJson(json, ProcedureCode.class);
         
         // Verify properties match
         assertEquals(originalProcedureCode.getProcedureCode(), deserializedProcedureCode.getProcedureCode());
@@ -65,7 +60,7 @@ public class ProcedureCodeSerializationTest {
         String jsonFilePath = tempDir.resolve("procedure_code_test.json").toString();
         
         // Save ProcedureCode to JSON file
-        jsonHelper.saveToJsonFile(originalProcedureCode, jsonFilePath);
+        JSONHelper.saveToJsonFile(originalProcedureCode, jsonFilePath);
         
         // Verify file exists
         File jsonFile = new File(jsonFilePath);
@@ -73,7 +68,7 @@ public class ProcedureCodeSerializationTest {
         assertTrue(jsonFile.length() > 0);
         
         // Load ProcedureCode from JSON file
-        ProcedureCode fileDeserializedProcedureCode = jsonHelper.loadFromJsonFile(jsonFilePath, ProcedureCode.class);
+        ProcedureCode fileDeserializedProcedureCode = JSONHelper.loadFromJsonFile(jsonFilePath, ProcedureCode.class);
         
         // Verify properties match
         assertEquals(originalProcedureCode.getProcedureCode(), fileDeserializedProcedureCode.getProcedureCode());

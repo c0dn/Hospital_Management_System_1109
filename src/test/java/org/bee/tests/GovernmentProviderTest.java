@@ -27,7 +27,6 @@ public class GovernmentProviderTest {
     @BeforeEach
     void setUp() {
         provider = new GovernmentProvider();
-        dataGenerator = DataGenerator.getInstance();
     }
 
     @Test
@@ -35,7 +34,7 @@ public class GovernmentProviderTest {
         // Test non-eligible patient (foreigner)
         Patient foreigner = Patient.builder()
                 .withRandomBaseData()
-                .patientId(dataGenerator.generatePatientId())
+                .patientId(DataGenerator.generatePatientId())
                 .residentialStatus(ResidentialStatus.VISITOR)
                 .dateOfBirth(LocalDate.of(1990, 1, 1))
                 .build();
@@ -50,7 +49,7 @@ public class GovernmentProviderTest {
         // Test Singaporean born before 1980 (only MediShield)
         Patient oldSingaporean = new PatientBuilder()
                 .withRandomBaseData()
-                .patientId(dataGenerator.generatePatientId())
+                .patientId(DataGenerator.generatePatientId())
                 .residentialStatus(ResidentialStatus.CITIZEN)
                 .dateOfBirth(LocalDate.of(1970, 1, 1))
                 .build();
@@ -69,7 +68,7 @@ public class GovernmentProviderTest {
         // Test PR born after 1980 (both MediShield and CareShield)
         Patient youngPR = new PatientBuilder()
                 .withRandomBaseData()
-                .patientId(dataGenerator.generatePatientId())
+                .patientId(DataGenerator.generatePatientId())
                 .residentialStatus(ResidentialStatus.PERMANENT_RESIDENT)
                 .dateOfBirth(LocalDate.of(1990, 1, 1))
                 .build();
@@ -88,7 +87,7 @@ public class GovernmentProviderTest {
         // Create a test patient that will get a policy
         Patient patient = new PatientBuilder()
                 .withRandomBaseData()
-                .patientId(dataGenerator.generatePatientId())
+                .patientId(DataGenerator.generatePatientId())
                 .residentialStatus(ResidentialStatus.CITIZEN)
                 .dateOfBirth(LocalDate.of(1990, 1, 1))
                 .build();

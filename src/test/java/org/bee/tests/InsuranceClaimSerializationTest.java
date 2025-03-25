@@ -33,14 +33,12 @@ import org.junit.jupiter.api.io.TempDir;
  */
 public class InsuranceClaimSerializationTest {
 
-    private JSONHelper jsonHelper;
     private InsuranceClaim originalClaim;
     
     @BeforeEach
     void setUp() {
         // Initialize JSONHelper
-        jsonHelper = JSONHelper.getInstance();
-        
+
         // Create a test InsuranceClaim object
         originalClaim = createTestClaim();
     }
@@ -49,21 +47,21 @@ public class InsuranceClaimSerializationTest {
     @DisplayName("Test serializing InsuranceClaim to JSON string")
     void testSerializeToJsonString() {
         // Serialize to JSON string
-        String json = jsonHelper.toJson(originalClaim);
+        String json = JSONHelper.toJson(originalClaim);
         
         // Verify JSON string is not empty
         assertNotNull(json);
-        assertTrue(json.length() > 0);
+        assertTrue(!json.isEmpty());
     }
     
     @Test
     @DisplayName("Test deserializing InsuranceClaim from JSON string")
     void testDeserializeFromJsonString() {
         // Serialize to JSON string
-        String json = jsonHelper.toJson(originalClaim);
+        String json = JSONHelper.toJson(originalClaim);
         
         // Deserialize from JSON string
-        InsuranceClaim deserializedClaim = jsonHelper.fromJson(json, InsuranceClaim.class);
+        InsuranceClaim deserializedClaim = JSONHelper.fromJson(json, InsuranceClaim.class);
         
         // Verify key properties match
         assertEquals(originalClaim.isDraft(), deserializedClaim.isDraft());
@@ -79,7 +77,7 @@ public class InsuranceClaimSerializationTest {
         String jsonFilePath = tempDir.resolve("claim_test.json").toString();
         
         // Save InsuranceClaim to JSON file
-        jsonHelper.saveToJsonFile(originalClaim, jsonFilePath);
+        JSONHelper.saveToJsonFile(originalClaim, jsonFilePath);
         
         // Verify file exists
         File jsonFile = new File(jsonFilePath);
@@ -87,7 +85,7 @@ public class InsuranceClaimSerializationTest {
         assertTrue(jsonFile.length() > 0);
         
         // Load InsuranceClaim from JSON file
-        InsuranceClaim fileDeserializedClaim = jsonHelper.loadFromJsonFile(jsonFilePath, InsuranceClaim.class);
+        InsuranceClaim fileDeserializedClaim = JSONHelper.loadFromJsonFile(jsonFilePath, InsuranceClaim.class);
         
         // Verify key properties match
         assertEquals(originalClaim.isDraft(), fileDeserializedClaim.isDraft());
@@ -100,12 +98,10 @@ public class InsuranceClaimSerializationTest {
      * Creates a test InsuranceClaim object with various properties set.
      */
     private InsuranceClaim createTestClaim() {
-        DataGenerator gen = DataGenerator.getInstance();
-        
-        // Create a test patient
+
         Patient patient = new PatientBuilder()
                 .withRandomBaseData()
-                .patientId(gen.generatePatientId())
+                .patientId(DataGenerator.generatePatientId())
                 .residentialStatus(ResidentialStatus.CITIZEN)
                 .dateOfBirth(LocalDate.of(1970, 1, 1))
                 .build();

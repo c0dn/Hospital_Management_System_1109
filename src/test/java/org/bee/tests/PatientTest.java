@@ -44,7 +44,7 @@ public class PatientTest {
                 .bloodType(BloodType.A_POSITIVE)
                 .isVaccinated(true)
                 .patientId("P1001")
-                .drugAllergies(Arrays.asList("Penicillin"))
+                .drugAllergies(List.of("Penicillin"))
                 .nokName("Jane Doe")
                 .nokAddress("456 Test Street")
                 .nokRelation(NokRelation.SPOUSE)
@@ -97,7 +97,7 @@ public class PatientTest {
     void testPatientSpecificFields() throws Exception {
         assertEquals("P1001", getPrivateField(patient1, "patientId", String.class),
                 "Patient ID should match");
-        assertEquals(Arrays.asList("Penicillin"), getPrivateField(patient1, "drugAllergies", List.class),
+        assertEquals(List.of("Penicillin"), getPrivateField(patient1, "drugAllergies", List.class),
                 "Drug allergies should match");
         assertEquals("Jane Doe", getPrivateField(patient1, "nokName", String.class),
                 "NOK name should match");

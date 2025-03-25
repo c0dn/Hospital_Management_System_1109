@@ -18,7 +18,6 @@ public abstract class BaseController<T extends JSONReadable & JSONWritable> {
 
     protected static final String DATABASE_DIR = System.getProperty("database.dir", "database");
     protected final List<T> items = new ArrayList<>();
-    protected final JSONHelper jsonHelper = JSONHelper.getInstance();
 
     /**
      * Protected constructor to enforce singleton pattern in subclasses
@@ -60,7 +59,7 @@ public abstract class BaseController<T extends JSONReadable & JSONWritable> {
      */
     public void loadData() {
         try {
-            List<T> loadedItems = jsonHelper.loadListFromJsonFile(getDataFilePath(), getEntityClass());
+            List<T> loadedItems = JSONHelper.loadListFromJsonFile(getDataFilePath(), getEntityClass());
             items.clear();
             items.addAll(loadedItems);
             System.out.println("Loaded " + items.size() + " items from " + getDataFilePath());
@@ -75,7 +74,7 @@ public abstract class BaseController<T extends JSONReadable & JSONWritable> {
      */
     public void saveData() {
         try {
-            jsonHelper.saveToJsonFile(items, getDataFilePath());
+            JSONHelper.saveToJsonFile(items, getDataFilePath());
             System.out.println("Saved " + items.size() + " items to " + getDataFilePath());
         } catch (IOException e) {
             System.err.println("Error saving data to file: " + e.getMessage());

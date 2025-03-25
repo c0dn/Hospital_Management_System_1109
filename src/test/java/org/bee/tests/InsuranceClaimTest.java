@@ -65,13 +65,12 @@ public class InsuranceClaimTest {
     /**
      * Creates a list containing of random number of nurses for testing
      *
-     * @param count Number of nurse objects to be created
      * @return List of nurse objects
      */
-    private static List<Nurse> randomNurseList(int count) {
+    private static List<Nurse> randomNurseList() {
         List<Nurse> nurseList = new ArrayList<>();
 
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < 4; i++) {
             Nurse nurse = Nurse.builder().withRandomBaseData().build();
             nurseList.add(nurse);
         }
@@ -83,13 +82,12 @@ public class InsuranceClaimTest {
     /**
      * Creates a list containing of random number of doctors for testing
      *
-     * @param count Number of doctor objects to be created
      * @return List of doctor objects
      */
-    private static List<Doctor> randomDoctorList(int count) {
+    private static List<Doctor> randomDoctorList() {
         List<Doctor> doctorList = new ArrayList<>();
 
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < 4; i++) {
             Doctor doctor = Doctor.builder().withRandomBaseData().build();
             doctorList.add(doctor);
         }
@@ -131,7 +129,7 @@ public class InsuranceClaimTest {
 
     private InsurancePolicy createPolicyWithCoverage(Coverage coverage) {
         GovernmentProvider provider = new GovernmentProvider();
-        return new HeldInsurancePolicy.Builder("TEST-" + gen.generateRandomString(6), testPatient, coverage, provider, "Test Policy").build();
+        return new HeldInsurancePolicy.Builder("TEST-" + DataGenerator.generateRandomString(6), testPatient, coverage, provider, "Test Policy").build();
     }
 
     private Bill createBillWithClaimableItems(BigDecimal itemAmount, InsurancePolicy policy) {
@@ -195,8 +193,7 @@ public class InsuranceClaimTest {
 
     @BeforeEach
     void setUp() {
-        gen = DataGenerator.getInstance();
-        testPatient = new PatientBuilder().withRandomBaseData().patientId(gen.generatePatientId()).residentialStatus(ResidentialStatus.CITIZEN).dateOfBirth(LocalDate.of(1970, 1, 1)).build();
+        testPatient = new PatientBuilder().withRandomBaseData().patientId(DataGenerator.generatePatientId()).residentialStatus(ResidentialStatus.CITIZEN).dateOfBirth(LocalDate.of(1970, 1, 1)).build();
     }
 
     static Stream<Arguments> provideInsuranceProviders() {
@@ -293,7 +290,7 @@ public class InsuranceClaimTest {
             // Verify claimable amount is correctly calculated
             assertEquals(expectedClaimAmount, billAmount.subtract(STANDARD_DEDUCTIBLE), "Claim amount after deductible should match expected amount");
         } else {
-            assertTrue(!coverageResult.isApproved(), "No claim should be created when amount <= deductible");
+            assertFalse(coverageResult.isApproved(), "No claim should be created when amount <= deductible");
             assertTrue(coverageResult.claim().isEmpty(), "No claim should be present when amount <= deductible");
         }
     }
@@ -352,8 +349,8 @@ public class InsuranceClaimTest {
         Coverage coverage = createMockCoverage(STANDARD_ANNUAL_LIMIT, BigDecimal.ZERO, coveredBenefits);
         InsurancePolicy policy = createPolicyWithCoverage(coverage);
 
-        List<Doctor> doctors = randomDoctorList(4);
-        List<Nurse> nurses = randomNurseList(4);
+        List<Doctor> doctors = randomDoctorList();
+        List<Nurse> nurses = randomNurseList();
         Visit visit = Visit.createCompatibleVisit(coverage, testPatient, doctors, nurses);
         visit.updateStatus(VisitStatus.DISCHARGED);
         Bill bill = new BillBuilder()

@@ -29,7 +29,7 @@ public class PrivateProviderTest {
     void setUp() {
         provider = new PrivateProvider();
         testPatient = Patient.builder()
-                .withRandomData(DataGenerator.getInstance().generatePatientId())
+                .withRandomData(DataGenerator.generatePatientId())
                 .build();
     }
 

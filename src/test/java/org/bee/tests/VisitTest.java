@@ -39,9 +39,8 @@ public class VisitTest {
 
     @BeforeEach
     void setUp() {
-        DataGenerator gen = DataGenerator.getInstance();
         testPatient = Patient.builder()
-                .patientId(gen.generatePatientId())
+                .patientId(DataGenerator.generatePatientId())
                 .withRandomBaseData()
                 .build();
         testVisit = Visit.createNew(LocalDateTime.now(), testPatient);
