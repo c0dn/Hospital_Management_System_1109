@@ -12,11 +12,19 @@ import java.util.Optional;
  * Also handles view backstack, but backstack management will be removed from canvas in the near future.
  */
 public class Canvas {
+
+    @FunctionalInterface
+    public interface IPageNavigationCallback {
+        void navigateToPage(UiBase newPage);
+    }
+
     private final Terminal terminal;
     private String systemMessage = "";
     private View currentView;
     private boolean requireRedraw = false;
     private IGenericCallbackInterface backNavigationCallback = null;
+    private IPageNavigationCallback pageNavigationCallback;
+
     protected List<IGenericCallbackInterface> backPressedCallback = new ArrayList<>();
     protected List<IGenericCallbackInterface> applicationStopCallback = new ArrayList<>();
     protected boolean stopCanvas = false;
@@ -59,8 +67,20 @@ public class Canvas {
         return this.currentView;
     }
 
+
+    public void setPageNavigationCallback(IPageNavigationCallback callback) {
+        this.pageNavigationCallback = callback;
+    }
+
     public void setBackNavigationCallback(IGenericCallbackInterface callback) {
         this.backNavigationCallback = callback;
+    }
+
+
+    public void navigateToPage(UiBase newPage) {
+        if (pageNavigationCallback != null) {
+            pageNavigationCallback.navigateToPage(newPage);
+        }
     }
 
 

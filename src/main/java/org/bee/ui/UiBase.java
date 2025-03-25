@@ -84,19 +84,12 @@ public abstract class UiBase {
 
     /**
      * Navigates to the next page and adds it to the backstack
-     * FIXED: Improved documentation and clarity
      *
      * @param page the UiBase child class to provide.
      */
     public void ToPage(UiBase page) {
         page.setCanvas(canvas);
-        page.setApplicationContext(context);
-
-//        System.out.println("[DEBUG] ToPage: Pushing new page: " + page.getClass().getSimpleName());
-        context.backStack.push(page);
-
-        View view = page.OnCreateView();
-        page.OnViewCreated(view);
-        canvas.setCurrentView(view);
+        canvas.navigateToPage(page);
     }
+
 }

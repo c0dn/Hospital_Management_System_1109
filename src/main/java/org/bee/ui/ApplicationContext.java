@@ -25,6 +25,19 @@ public class ApplicationContext {
      * @param initialUi the UiBase class entry point
      */
     public void startApplication(UiBase initialUi) {
+        canvas.setPageNavigationCallback(newPage -> {
+            newPage.setCanvas(canvas);
+
+            System.out.println("[DEBUG] ToPage: Pushing new page: " + newPage.getClass().getSimpleName());
+            backStack.push(newPage);
+
+            View view = newPage.OnCreateView();
+            newPage.OnViewCreated(view);
+            canvas.setCurrentView(view);
+        });
+
+
+
         initialUi.setCanvas(canvas);
         initialUi.setApplicationContext(this);
 
@@ -36,8 +49,9 @@ public class ApplicationContext {
         canvas.setCurrentView(view);
 
         canvas.clearCallbacks();
+
         canvas.setBackNavigationCallback(() -> {
-            System.out.println("[DEBUG] Custom back callback - Handling back navigation");
+//            System.out.println("[DEBUG] Custom back callback - Handling back navigation");
 
             UiBase currentPage = backStack.peek();
 
