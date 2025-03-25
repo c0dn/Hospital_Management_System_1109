@@ -21,7 +21,9 @@ public class ConsultationController extends BaseController<Consultation> {
     private static final DataGenerator dataGenerator = DataGenerator.getInstance();
     private static final HumanController humanController = HumanController.getInstance();
 
-    protected ConsultationController() { super(); }
+    protected ConsultationController() {
+        super();
+    }
 
     public static synchronized ConsultationController getInstance() {
         if (instance == null) {
@@ -52,16 +54,23 @@ public class ConsultationController extends BaseController<Consultation> {
             return;
         }
 
-        for (int i = 0; i < 10; i++) {
+        for (Doctor doctor : doctors) {
             Patient patient = dataGenerator.getRandomElement(patients);
-
-            Doctor doctor = dataGenerator.getRandomElement(doctors);
 
             Consultation consultation = Consultation.withRandomData(patient, doctor);
             items.add(consultation);
         }
 
-        System.out.println("Generated " + items.size() + " consultations.");
+        int additionalConsultations = Math.max(0, 10 - doctors.size());
+
+        for (int i = 0; i < additionalConsultations; i++) {
+            Patient patient = dataGenerator.getRandomElement(patients);
+            Doctor doctor = dataGenerator.getRandomElement(doctors);
+
+            Consultation consultation = Consultation.withRandomData(patient, doctor);
+            items.add(consultation);
+        }
+        System.out.format("Generated %d consultations%n", items.size());
     }
 
     public void addCase(Consultation consultation) {
