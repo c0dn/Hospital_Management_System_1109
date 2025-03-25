@@ -1,5 +1,7 @@
 package org.bee.hms.humans;
 
+import org.bee.utils.DataGenerator;
+
 /**
  * Builder class for constructing instances of {@link Nurse}.
  * <p>
@@ -48,7 +50,7 @@ public class NurseBuilder extends StaffBuilder<NurseBuilder> {
     @Override
     public NurseBuilder withRandomBaseData() {
         super.withRandomBaseData();
-        this.rnid = dataGenerator.generateRNIDNumber();
+        this.rnid = DataGenerator.generateRNIDNumber();
         this.title = "Nurse";
         this.department = "Nursing";
         return self();

@@ -56,8 +56,6 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
     @JsonProperty("cost")
     private BigDecimal cost;
 
-    private static final DataGenerator gen = DataGenerator.getInstance();
-
     /** A registry to store diagnostic codes loaded from a CSV file */
     private static final Map<String, DiagnosticCode> CODE_REGISTRY = new HashMap<>();
 
@@ -343,7 +341,7 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
      */
     public static DiagnosticCode getRandomCode() {
         Set<String> codes = CODE_REGISTRY.keySet();
-        return createFromCode(gen.getRandomElement(codes));
+        return createFromCode(DataGenerator.getRandomElement(codes));
     }
     
     /**
@@ -372,7 +370,7 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
             throw new IllegalArgumentException("No diagnostic codes found for benefit type: " + benefitType);
         }
         
-        return createFromCode(gen.getRandomElement(matchingCodes));
+        return createFromCode(DataGenerator.getRandomElement(matchingCodes));
     }
 }
 

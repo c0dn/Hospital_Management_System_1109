@@ -1,6 +1,8 @@
 package org.bee.hms.humans;
 
 
+import org.bee.utils.DataGenerator;
+
 /**
  * Builder class for creating instances of {@link Doctor}.
  * Extends {@link StaffBuilder} to include additional attributes and validation specific to doctors.
@@ -42,7 +44,7 @@ public class DoctorBuilder extends StaffBuilder<DoctorBuilder> {
     @Override
     public DoctorBuilder withRandomBaseData() {
         super.withRandomBaseData();
-        this.mcr = dataGenerator.generateMCRNumber();
+        this.mcr = DataGenerator.generateMCRNumber();
         this.title = "Doctor";
         this.department = "Medical";
         return self();

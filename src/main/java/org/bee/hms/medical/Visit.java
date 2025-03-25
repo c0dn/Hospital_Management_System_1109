@@ -135,7 +135,7 @@ public class Visit implements JSONWritable, JSONReadable {
      */
     private String generateVisitId() {
         return "V" + System.currentTimeMillis() +
-                String.format("%04d", DataGenerator.getInstance().generateRandomInt(10000));
+                String.format("%04d", DataGenerator.generateRandomInt(10000));
     }
 
 
@@ -152,26 +152,25 @@ public class Visit implements JSONWritable, JSONReadable {
 
 
     protected static <T extends Visit> T populateWithRandomData(T visit) {
-        DataGenerator gen = DataGenerator.getInstance();
 
         visit.assignDoctor(Doctor.builder().withRandomBaseData().build());
-        int nurseCount = gen.generateRandomInt(1, 4);
+        int nurseCount = DataGenerator.generateRandomInt(1, 4);
         for (int i = 0; i < nurseCount; i++) {
             visit.assignNurse(Nurse.builder().withRandomBaseData().build());
         }
 
-        int medicationCount = gen.generateRandomInt(1, 5);
+        int medicationCount = DataGenerator.generateRandomInt(1, 5);
         for (int i = 0; i < medicationCount; i++) {
-            visit.prescribeMedicine(gen.getRandomMedication(),
-                    gen.generateRandomInt(1, 10));
+            visit.prescribeMedicine(DataGenerator.getRandomMedication(),
+                    DataGenerator.generateRandomInt(1, 10));
         }
 
-        int procedureCount = gen.generateRandomInt(1, 5);
+        int procedureCount = DataGenerator.generateRandomInt(1, 5);
         for (int i = 0; i < procedureCount; i++) {
             visit.procedure(ProcedureCode.getRandomCode());
         }
 
-        int diagnoseCount = gen.generateRandomInt(1, 5);
+        int diagnoseCount = DataGenerator.generateRandomInt(1, 5);
         for (int i = 0; i < diagnoseCount; i++) {
             visit.diagnose(DiagnosticCode.getRandomCode());
         }
@@ -185,12 +184,11 @@ public class Visit implements JSONWritable, JSONReadable {
      * @return A randomly populated Visit instance
      */
     public static Visit withRandomData() {
-        DataGenerator gen = DataGenerator.getInstance();
         LocalDateTime admissionTime = LocalDateTime.now()
-                .minusDays(gen.generateRandomInt(1, 30));
+                .minusDays(DataGenerator.generateRandomInt(1, 30));
         Patient randomPatient = Patient
                 .builder()
-                .patientId(gen.generatePatientId()).
+                .patientId(DataGenerator.generatePatientId()).
                 withRandomBaseData()
                 .build();
 
@@ -212,13 +210,12 @@ public class Visit implements JSONWritable, JSONReadable {
     public static Visit createCompatibleVisit(Coverage coverage, Patient patient,
                                               List<Doctor> availableDoctors,
                                               List<Nurse> availableNurses) {
-        DataGenerator dataGenerator = DataGenerator.getInstance();
 
-        LocalDateTime admissionTime = LocalDateTime.now().minusDays(dataGenerator.generateRandomInt(30, 90));
+        LocalDateTime admissionTime = LocalDateTime.now().minusDays(DataGenerator.generateRandomInt(30, 90));
         Visit visit = Visit.createNew(admissionTime, patient);
 
-        Doctor randomDoctor = dataGenerator.getRandomElement(availableDoctors);
-        Nurse randomNurse = dataGenerator.getRandomElement(availableNurses);
+        Doctor randomDoctor = DataGenerator.getRandomElement(availableDoctors);
+        Nurse randomNurse = DataGenerator.getRandomElement(availableNurses);
 
         // Assign medical staff
         visit.assignDoctor(randomDoctor);
@@ -236,7 +233,7 @@ public class Visit implements JSONWritable, JSONReadable {
 
         while (totalCharges.compareTo(minTarget) < 0) {
             // We are attempting to create a visit that will have items that is covered
-            BenefitType selectedBenefitType = dataGenerator.getRandomElement(coveredBenefits);
+            BenefitType selectedBenefitType = DataGenerator.getRandomElement(coveredBenefits);
 
             // Add diagnostic code for the selected benefit type
             try {
@@ -257,7 +254,7 @@ public class Visit implements JSONWritable, JSONReadable {
             }
 
             // Add medication
-            Medication medication = dataGenerator.getRandomMedication();
+            Medication medication = DataGenerator.getRandomMedication();
             visit.prescribeMedicine(medication, 1);
 
             visit.addRandomWardStay(selectedBenefitType);
@@ -273,7 +270,7 @@ public class Visit implements JSONWritable, JSONReadable {
             attemptCount++;
             try {
                 // Get a random covered benefit type
-                BenefitType selectedBenefitType = dataGenerator.getRandomElement(coveredBenefits);
+                BenefitType selectedBenefitType = DataGenerator.getRandomElement(coveredBenefits);
 
                 // Add diagnostic code for the selected benefit type
                 try {
@@ -303,7 +300,7 @@ public class Visit implements JSONWritable, JSONReadable {
 
                 // Add medication
                 try {
-                    Medication medication = dataGenerator.getRandomMedication();
+                    Medication medication = DataGenerator.getRandomMedication();
                     visit.prescribeMedicine(medication, 1);
                 } catch (Exception e) {
                     continue;
@@ -509,10 +506,9 @@ public class Visit implements JSONWritable, JSONReadable {
      * @param selectedBenefitType The benefit type to consider for stay duration
      */
     public void addRandomWardStay(BenefitType selectedBenefitType) {
-        DataGenerator gen = DataGenerator.getInstance();
         // Select a random ward type
         WardClassType[] wardTypes = WardClassType.values();
-        WardClassType selectedWardType = wardTypes[gen.generateRandomInt(0, wardTypes.length - 1)];
+        WardClassType selectedWardType = wardTypes[DataGenerator.generateRandomInt(0, wardTypes.length - 1)];
 
         Ward ward = WardFactory.getWard("Hospital Ward", selectedWardType);
 
@@ -527,7 +523,7 @@ public class Visit implements JSONWritable, JSONReadable {
             maxStay = 10;
         }
 
-        int daysStayed = gen.generateRandomInt(minStay, maxStay);
+        int daysStayed = DataGenerator.generateRandomInt(minStay, maxStay);
 
         LocalDateTime endDateTime = this.admissionDateTime.plusDays(daysStayed);
 

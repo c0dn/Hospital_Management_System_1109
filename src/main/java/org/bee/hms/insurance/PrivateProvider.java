@@ -30,8 +30,6 @@ import org.bee.hms.wards.WardClassType;
  */
 public class PrivateProvider extends InsuranceProvider {
 
-    /** Instance of the DataGenerator used to generate random data. */
-    private static final DataGenerator dataGen = DataGenerator.getInstance();
 
     /**
      * Processes an insurance claim for the given patient.
@@ -75,15 +73,15 @@ public class PrivateProvider extends InsuranceProvider {
         ));
 
         CoverageLimit coverageLimit = new CoverageLimit.Builder()
-                .withAnnualLimit(BigDecimal.valueOf(dataGen.generateRandomInt(100_000, 1_000_000)))
-                .withLifetimeLimit(BigDecimal.valueOf(dataGen.generateRandomInt(1_000_000, 10_000_000)))
-                .addBenefitLimit(BenefitType.HOSPITALIZATION, dataGen.generateRandomInt(2_000, 10_000))
-                .addBenefitLimit(BenefitType.SURGERY, dataGen.generateRandomInt(10_000, 100_000))
-                .addBenefitLimit(BenefitType.DIAGNOSTIC_IMAGING, dataGen.generateRandomInt(1_000, 5_000))
-                .addBenefitLimit(BenefitType.ONCOLOGY_TREATMENTS, dataGen.generateRandomInt(5_000, 20_000))
-                .addWardLimit(WardClassType.GENERAL_CLASS_A, dataGen.generateRandomInt(150_000, 300_000))
-                .addWardLimit(WardClassType.GENERAL_CLASS_B1, dataGen.generateRandomInt(100_000, 200_000))
-                .addWardLimit(WardClassType.GENERAL_CLASS_C, dataGen.generateRandomInt(100_000, 200_000))
+                .withAnnualLimit(BigDecimal.valueOf(DataGenerator.generateRandomInt(100_000, 1_000_000)))
+                .withLifetimeLimit(BigDecimal.valueOf(DataGenerator.generateRandomInt(1_000_000, 10_000_000)))
+                .addBenefitLimit(BenefitType.HOSPITALIZATION, DataGenerator.generateRandomInt(2_000, 10_000))
+                .addBenefitLimit(BenefitType.SURGERY, DataGenerator.generateRandomInt(10_000, 100_000))
+                .addBenefitLimit(BenefitType.DIAGNOSTIC_IMAGING, DataGenerator.generateRandomInt(1_000, 5_000))
+                .addBenefitLimit(BenefitType.ONCOLOGY_TREATMENTS, DataGenerator.generateRandomInt(5_000, 20_000))
+                .addWardLimit(WardClassType.GENERAL_CLASS_A, DataGenerator.generateRandomInt(150_000, 300_000))
+                .addWardLimit(WardClassType.GENERAL_CLASS_B1, DataGenerator.generateRandomInt(100_000, 200_000))
+                .addWardLimit(WardClassType.GENERAL_CLASS_C, DataGenerator.generateRandomInt(100_000, 200_000))
                 .build();
 
         Set<String> diagnosisCodes = new HashSet<>(Arrays.asList(
@@ -104,8 +102,8 @@ public class PrivateProvider extends InsuranceProvider {
         ));
 
         BaseCoverage coverage = new BaseCoverage.Builder()
-                .withCoinsurance(BigDecimal.valueOf(dataGen.generateRandomInt(10, 30) / 100.0)) // 10-30%
-                .withDeductible(BigDecimal.valueOf(dataGen.generateRandomInt(1_000, 5_000)))
+                .withCoinsurance(BigDecimal.valueOf(DataGenerator.generateRandomInt(10, 30) / 100.0)) // 10-30%
+                .withDeductible(BigDecimal.valueOf(DataGenerator.generateRandomInt(1_000, 5_000)))
                 .withLimits(coverageLimit)
                 .withCoveredBenefits(randomBenefits)
                 .withExclusions(new ExclusionCriteria(
@@ -117,16 +115,16 @@ public class PrivateProvider extends InsuranceProvider {
                 .build();
 
         LocalDateTime expirationDate = LocalDateTime.now()
-                .plusYears(dataGen.generateRandomInt(1, 10))
-                .plusMonths(dataGen.generateRandomInt(0, 11))
-                .plusDays(dataGen.generateRandomInt(0, 30));
+                .plusYears(DataGenerator.generateRandomInt(1, 10))
+                .plusMonths(DataGenerator.generateRandomInt(0, 11))
+                .plusDays(DataGenerator.generateRandomInt(0, 30));
 
         return Optional.of(new HeldInsurancePolicy.Builder(
-                String.format("PRIV-%06d", dataGen.generateRandomInt(100_000, 999_999)),
+                String.format("PRIV-%06d", DataGenerator.generateRandomInt(100_000, 999_999)),
                 patient,
                 coverage,
                 this,
-                dataGen.getRandomInsuranceName())
+                DataGenerator.getRandomInsuranceName())
                 .withExpirationDate(expirationDate)
                 .build());
     }

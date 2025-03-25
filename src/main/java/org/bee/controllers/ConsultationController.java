@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
  */
 public class ConsultationController extends BaseController<Consultation> {
     private static ConsultationController instance;
-    private static final DataGenerator dataGenerator = DataGenerator.getInstance();
     private static final HumanController humanController = HumanController.getInstance();
 
     protected ConsultationController() {
@@ -55,7 +54,7 @@ public class ConsultationController extends BaseController<Consultation> {
         }
 
         for (Doctor doctor : doctors) {
-            Patient patient = dataGenerator.getRandomElement(patients);
+            Patient patient = DataGenerator.getRandomElement(patients);
 
             Consultation consultation = Consultation.withRandomData(patient, doctor);
             items.add(consultation);
@@ -64,8 +63,8 @@ public class ConsultationController extends BaseController<Consultation> {
         int additionalConsultations = Math.max(0, 10 - doctors.size());
 
         for (int i = 0; i < additionalConsultations; i++) {
-            Patient patient = dataGenerator.getRandomElement(patients);
-            Doctor doctor = dataGenerator.getRandomElement(doctors);
+            Patient patient = DataGenerator.getRandomElement(patients);
+            Doctor doctor = DataGenerator.getRandomElement(doctors);
 
             Consultation consultation = Consultation.withRandomData(patient, doctor);
             items.add(consultation);
@@ -97,22 +96,7 @@ public class ConsultationController extends BaseController<Consultation> {
         return removed;
     }
 
-    /**
-     * Updates an existing consultation and saves to the JSON file.
-     *
-     * @param oldConsultation The consultation to be updated
-     * @param newConsultation The updated consultation data
-     * @return true if the consultation was updated, false if it was not found
-     */
-//    public boolean updateConsultation(Consultation oldConsultation, Consultation newConsultation) {
-//        int index = items.indexOf(oldConsultation);
-//        if (index != -1) {
-//            items.set(index, newConsultation);
-//            saveData();
-//            return true;
-//        }
-//        return false;
-//    }
+
     public void updateConsultation(String consultationId, ConsultationUpdater updater) {
         Consultation consultation = findConsultationById(consultationId);
         updateEntity(consultation, updater);

@@ -149,19 +149,18 @@ public class Consultation implements JSONReadable, JSONWritable {
      * @return A randomly populated {@link Consultation} instance.
      */
     public static Consultation withRandomData() {
-        DataGenerator gen = DataGenerator.getInstance();
         Consultation consultation = new Consultation();
 
         Doctor doc = Doctor.builder().withRandomBaseData().build();
         Patient patient = Patient.builder()
-                .withRandomData(gen.generatePatientId())
+                .withRandomData(DataGenerator.generatePatientId())
                 .build();
         consultation.consultationId = "C" + System.currentTimeMillis() +
-                String.format("%04d", gen.generateRandomInt(10000));
-        consultation.type = gen.getRandomEnum(ConsultationType.class);
+                String.format("%04d", DataGenerator.generateRandomInt(10000));
+        consultation.type = DataGenerator.getRandomEnum(ConsultationType.class);
         consultation.consultationTime = LocalDateTime.now()
-                .minusDays(gen.generateRandomInt(1, 30));
-        consultation.consultationFee = new BigDecimal(gen.generateRandomInt(50, 300));
+                .minusDays(DataGenerator.generateRandomInt(1, 30));
+        consultation.consultationFee = new BigDecimal(DataGenerator.generateRandomInt(50, 300));
 
         consultation.doctor = doc;
         consultation.patient = patient;
@@ -178,7 +177,7 @@ public class Consultation implements JSONReadable, JSONWritable {
                 "Chronic condition management",
                 "Mental health consultation"
         };
-        consultation.visitReason = gen.getRandomElement(reasons);
+        consultation.visitReason = DataGenerator.getRandomElement(reasons);
 
         String[] diagnoses = {
                 "Common cold",
@@ -192,7 +191,7 @@ public class Consultation implements JSONReadable, JSONWritable {
                 "Respiratory infection",
                 "Vitamin D deficiency"
         };
-        consultation.diagnosis = gen.getRandomElement(diagnoses);
+        consultation.diagnosis = DataGenerator.getRandomElement(diagnoses);
 
         String[] instructionOptions = {
                 "Take medication as prescribed. Rest for 2-3 days.",
@@ -203,7 +202,7 @@ public class Consultation implements JSONReadable, JSONWritable {
                 "Take blood pressure readings daily and log them.",
                 "Continue with current treatment plan. No changes needed."
         };
-        consultation.instructions = gen.getRandomElement(instructionOptions);
+        consultation.instructions = DataGenerator.getRandomElement(instructionOptions);
 
         String[] histories = {
                 "No significant medical history.",
@@ -214,30 +213,30 @@ public class Consultation implements JSONReadable, JSONWritable {
                 "Family history of cardiovascular disease.",
                 "Previous allergic reaction to penicillin."
         };
-        consultation.medicalHistory = gen.getRandomElement(histories);
+        consultation.medicalHistory = DataGenerator.getRandomElement(histories);
 
         consultation.notes = "Consultation for " + consultation.visitReason.toLowerCase() +
                 ". Diagnosed with " + consultation.diagnosis.toLowerCase() +
-                ". " + gen.getRandomElement(instructionOptions);
+                ". " + DataGenerator.getRandomElement(instructionOptions);
 
         consultation.diagnosticCodes = new ArrayList<>();
-        int diagCount = gen.generateRandomInt(1, 3);
+        int diagCount = DataGenerator.generateRandomInt(1, 3);
         for (int i = 0; i < diagCount; i++) {
             consultation.diagnosticCodes.add(DiagnosticCode.getRandomCode());
         }
 
         consultation.procedureCodes = new ArrayList<>();
-        int procCount = gen.generateRandomInt(0, 2);
+        int procCount = DataGenerator.generateRandomInt(0, 2);
         for (int i = 0; i < procCount; i++) {
             consultation.procedureCodes.add(ProcedureCode.getRandomCode());
         }
 
         consultation.prescriptions = new HashMap<>();
-        int medCount = gen.generateRandomInt(1, 4);
+        int medCount = DataGenerator.generateRandomInt(1, 4);
         for (int i = 0; i < medCount; i++) {
             consultation.prescriptions.put(
-                    gen.getRandomMedication(),
-                    gen.generateRandomInt(1, 10)
+                    DataGenerator.getRandomMedication(),
+                    DataGenerator.generateRandomInt(1, 10)
             );
         }
 

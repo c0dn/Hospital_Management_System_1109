@@ -1,5 +1,7 @@
 package org.bee.hms.humans;
 
+import org.bee.utils.DataGenerator;
+
 /**
  * An abstract builder class for creating Staff objects.
  * This class extends {@link HumanBuilder} and provides methods for setting attributes
@@ -61,7 +63,7 @@ public abstract class StaffBuilder<T extends StaffBuilder<T>> extends HumanBuild
         super.withRandomBaseData();
         
 
-        this.staffId = dataGenerator.generateStaffId();
+        this.staffId = DataGenerator.generateStaffId();
         this.title = "Staff Member";
         this.department = "General";
 

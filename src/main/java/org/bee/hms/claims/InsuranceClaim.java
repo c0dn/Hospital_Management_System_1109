@@ -480,7 +480,7 @@ public class InsuranceClaim implements JSONWritable, JSONReadable {
     private static String generateClaimId() {
         LocalDateTime now = LocalDateTime.now();
         String datePart = now.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
-        String randomPart = DataGenerator.getInstance().generateRandomString(4);
+        String randomPart = DataGenerator.generateRandomString(4);
 
         return String.format("CLM-%s-%s", datePart, randomPart);
     }

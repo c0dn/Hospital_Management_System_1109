@@ -32,7 +32,6 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
     @JsonProperty("cost")
     private BigDecimal price;
 
-    private static final DataGenerator gen = DataGenerator.getInstance();
     private static final Map<String, ProcedureCode> CODE_REGISTRY = new HashMap<>();
     private static final BigDecimal DEFAULT_PRICE = new BigDecimal("1000.00");
 
@@ -335,7 +334,7 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
      */
     public static ProcedureCode getRandomCode() {
         Set<String> codes = CODE_REGISTRY.keySet();
-        return createFromCode(gen.getRandomElement(codes));
+        return createFromCode(DataGenerator.getRandomElement(codes));
     }
     
     /**
@@ -360,7 +359,7 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
             throw new IllegalArgumentException("No procedure codes found for benefit type: " + benefitType);
         }
         
-        return createFromCode(gen.getRandomElement(matchingCodes));
+        return createFromCode(DataGenerator.getRandomElement(matchingCodes));
     }
 
     public String getPCode() { return code + ": " + description; }

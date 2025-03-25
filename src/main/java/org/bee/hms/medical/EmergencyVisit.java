@@ -40,11 +40,10 @@ public class EmergencyVisit extends Visit {
      */
 
     public static EmergencyVisit withRandomData() {
-        DataGenerator gen = DataGenerator.getInstance();
         LocalDateTime admissionTime = LocalDateTime.now()
-                .minusDays(gen.generateRandomInt(1, 30));
-        Patient randomPatient = Patient.builder().withRandomBaseData().patientId(gen.generatePatientId()).build();
-        AccidentType accidentType = gen.getRandomElement(AccidentType.values());
+                .minusDays(DataGenerator.generateRandomInt(1, 30));
+        Patient randomPatient = Patient.builder().withRandomBaseData().patientId(DataGenerator.generatePatientId()).build();
+        AccidentType accidentType = DataGenerator.getRandomElement(AccidentType.values());
 
         EmergencyVisit visit = new EmergencyVisit(accidentType,
                 admissionTime, randomPatient);
@@ -62,7 +61,7 @@ public class EmergencyVisit extends Visit {
      */
     private String generatePoliceReportNumber() {
         return String.format("PR%d/%d",
-                DataGenerator.getInstance().generateRandomInt(1000, 9999),
+                DataGenerator.generateRandomInt(1000, 9999),
                 LocalDateTime.now().getYear()
         );
     }

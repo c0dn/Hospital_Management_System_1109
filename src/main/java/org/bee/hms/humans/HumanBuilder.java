@@ -13,7 +13,6 @@ import javax.naming.Name;
  * @param <T> The specific subclass of {@code HumanBuilder}, ensuring method chaining returns the correct type.
  */
 abstract class HumanBuilder<T extends HumanBuilder<T>> {
-    protected static final DataGenerator dataGenerator = DataGenerator.getInstance();
 
     /** The full name of the individual. */
     String name;
@@ -92,7 +91,7 @@ abstract class HumanBuilder<T extends HumanBuilder<T>> {
     }
 
     /**
-     * Set Human type JSOn
+     * Set Human type JSON
      *
      * @param humanType The marital status.
      * @return The current builder instance.
@@ -207,17 +206,17 @@ abstract class HumanBuilder<T extends HumanBuilder<T>> {
         } else {
             nameType = NameType.ALL; // Default fallback
         }
-        this.name = dataGenerator.getRandomElement(dataGenerator.getAllNames(nameType));
-        this.dateOfBirth = LocalDate.now().minusYears(dataGenerator.generateRandomInt(20, 60)); // Age between 20-60
-        this.nricFin = dataGenerator.generateNRICNumber();
-        this.maritalStatus = dataGenerator.getRandomEnum(MaritalStatus.class);
-        this.residentialStatus = dataGenerator.getRandomEnum(ResidentialStatus.class);
+        this.name = DataGenerator.getRandomElement(DataGenerator.getAllNames(nameType));
+        this.dateOfBirth = LocalDate.now().minusYears(DataGenerator.generateRandomInt(20, 60)); // Age between 20-60
+        this.nricFin = DataGenerator.generateNRICNumber();
+        this.maritalStatus = DataGenerator.getRandomEnum(MaritalStatus.class);
+        this.residentialStatus = DataGenerator.getRandomEnum(ResidentialStatus.class);
         this.nationality = "Singaporean";
-        this.address = dataGenerator.generateSGAddress();
-        this.contact = dataGenerator.generateContact();
-        this.sex = dataGenerator.getRandomEnum(Sex.class);
-        this.bloodType = dataGenerator.getRandomEnum(BloodType.class);
-        this.isVaccinated = dataGenerator.generateRandomInt(2) == 1; // 50% chance of being vaccinated
+        this.address = DataGenerator.generateSGAddress();
+        this.contact = DataGenerator.generateContact();
+        this.sex = DataGenerator.getRandomEnum(Sex.class);
+        this.bloodType = DataGenerator.getRandomEnum(BloodType.class);
+        this.isVaccinated = DataGenerator.generateRandomInt(2) == 1; // 50% chance of being vaccinated
         return self();
     }
 

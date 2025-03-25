@@ -3,6 +3,7 @@ package org.bee.utils;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 import org.bee.hms.humans.*;
 import org.bee.hms.medical.*;
@@ -11,83 +12,70 @@ import org.bee.hms.telemed.Appointment;
 import org.bee.hms.telemed.AppointmentStatus;
 
 /**
- * Utility class for generating common data used across different entities.
- * Implemented as a singleton to ensure only one instance exists.
+ * Static utility class for generating common data used across different entities.
  */
-public class DataGenerator {
-    private static DataGenerator instance;
-    private final Random random = new Random();
+public final class DataGenerator {
+    // Use ThreadLocalRandom for better thread safety
+    private static final Random RANDOM = new Random();
 
     // Personal Information
-    private final String[] STAFF_NAMES = {
+    private static final String[] STAFF_NAMES = {
             "Tan Wei Ming", "Lim Mei Ling", "Muhammad Ibrahim", "Siti Nurhaliza",
             "Zhang Wei", "Kumar Ravi", "Abdullah Malik", "Lee Hui Ling"
     };
 
-    private final String[] PATIENT_NAMES = {
+    private static final String[] PATIENT_NAMES = {
             "Lim Boon Teck", "Wee Jun Kiat", "Muhammad Danial", "Aisha Fatimah",
             "Ben Tan", "Rohan Aand", "Divya Singh", "Ong Li Ting"
     };
 
-    private final String[] SG_NAMES = {
+    private static final String[] SG_NAMES = {
             "Tan Wei Ming", "Lim Mei Ling", "Muhammad Ibrahim", "Siti Nurhaliza",
             "Zhang Wei", "Kumar Ravi", "Abdullah Malik", "Lee Hui Ling",
             "Lim Boon Teck", "Wee Jun Kiat", "Muhammad Danial", "Aisha Fatimah",
             "Ben Tan", "Rohan Aand", "Divya Singh", "Ong Li Ting"
     };
 
-    private final String[] OCCUPATIONS = {
+    private static final String[] OCCUPATIONS = {
             "Engineer", "Teacher", "Doctor", "Artist", "Chef", "Programmer"
     };
 
     // Address-related constants
-    private final String[] SG_STREETS = {
+    private static final String[] SG_STREETS = {
             "Ang Mo Kio Ave", "Tampines St", "Jurong East Ave", "Serangoon Road",
             "Bedok North St", "Woodlands Drive", "Yishun Ring Road", "Punggol Way"
     };
 
-    private final String[] SG_BUILDINGS = {
+    private static final String[] SG_BUILDINGS = {
             "Plaza", "Tower", "Complex", "Centre", "Building", "Point"
     };
 
     // Company-related constants
-    private final String[] SG_COMPANIES = {
+    private static final String[] SG_COMPANIES = {
             "DBS Bank", "Singapore Airlines", "Singtel", "OCBC Bank",
             "CapitaLand", "Keppel Corporation", "ST Engineering", "ComfortDelGro"
     };
 
-
-    private final String[] HEALTH_INSURANCE_NAMES = {
+    private static final String[] HEALTH_INSURANCE_NAMES = {
             "HealthShield Gold Max", "Enhanced IncomeShield", "PRUShield",
             "MyShield", "Great Eastern Supreme Health", "Elite Health Plus"
     };
 
-    private final String[] ACCIDENT_INSURANCE_NAMES = {
+    private static final String[] ACCIDENT_INSURANCE_NAMES = {
             "Personal Accident Elite", "Accident Protect Plus", "PA Secure",
             "Total Protect", "AccidentCare Plus", "Personal Accident Guard"
     };
 
-    private final String[] CRITICAL_ILLNESS_NAMES = {
+    private static final String[] CRITICAL_ILLNESS_NAMES = {
             "Early Critical Care", "Critical Illness Plus", "Critical Protect",
             "Crisis Cover", "Critical Care Advantage", "MultiPay Critical Illness"
     };
 
-    private final AccidentType[] ACCIDENT_TYPES = AccidentType.values();
+    private static final AccidentType[] ACCIDENT_TYPES = AccidentType.values();
 
-
+    // Private constructor to prevent instantiation
     private DataGenerator() {
-    }
-
-    /**
-     * Gets the singleton instance of DataGenerator
-     *
-     * @return The DataGenerator instance
-     */
-    public static DataGenerator getInstance() {
-        if (instance == null) {
-            instance = new DataGenerator();
-        }
-        return instance;
+        throw new AssertionError("Utility class should not be instantiated");
     }
 
     /**
@@ -97,8 +85,8 @@ public class DataGenerator {
      * @param max The maximum value (inclusive)
      * @return A random integer between min and max
      */
-    public int generateRandomInt(int min, int max) {
-        return min + random.nextInt(max - min + 1);
+    public static int generateRandomInt(int min, int max) {
+        return min + RANDOM.nextInt(max - min + 1);
     }
 
     /**
@@ -107,14 +95,13 @@ public class DataGenerator {
      * @param max The upper bound (exclusive)
      * @return A random integer from 0 to max-1
      */
-    public int generateRandomInt(int max) {
-        return random.nextInt(max);
+    public static int generateRandomInt(int max) {
+        return RANDOM.nextInt(max);
     }
 
-
-    public Medication getRandomMedication() {
+    public static Medication getRandomMedication() {
         List<String> categories = Medication.getAllCategories();
-        String randomCategory = categories.get(random.nextInt(categories.size()));
+        String randomCategory = categories.get(RANDOM.nextInt(categories.size()));
 
         // Get up to 5 medications from the category and select one randomly
         List<Medication> medications = Medication.getMedicationsByCategory(
@@ -127,21 +114,20 @@ public class DataGenerator {
         return medications.get(0); // First one since the list is already randomized
     }
 
-
     /**
      * Gets all available Singapore names
      *
      * @return Array of Singapore names
      */
-    public String[] getStaffNames() {
+    public static String[] getStaffNames() {
         return STAFF_NAMES;
     }
 
-    public String[] getPatientNames() {
+    public static String[] getPatientNames() {
         return PATIENT_NAMES;
     }
 
-    public String[] getAllNames(NameType nameType) {
+    public static String[] getAllNames(NameType nameType) {
         return switch (nameType) {
             case STAFF -> STAFF_NAMES;
             case PATIENT -> PATIENT_NAMES;
@@ -149,35 +135,34 @@ public class DataGenerator {
         };
     }
 
-    public String generateStaffId() {
+    public static String generateStaffId() {
         String uuid = UUID.randomUUID().toString();
         return "S" + uuid.substring(0, 8).toUpperCase();
     }
 
-    public String generateMCRNumber() {
+    public static String generateMCRNumber() {
         return String.format("M%05dA", generateRandomInt(100000));
     }
 
-    public String generateRNIDNumber() {
+    public static String generateRNIDNumber() {
         return String.format("RN%05dB", generateRandomInt(100000));
     }
 
-    public String generatePatientId() {
+    public static String generatePatientId() {
         int year = java.time.LocalDate.now().getYear();
         String uuid = UUID.randomUUID().toString();
 
         return String.format("P-%d%s", year, uuid.substring(0, 8).toUpperCase());
     }
 
-
-    public String generateNRICNumber() {
+    public static String generateNRICNumber() {
         String[] prefixes = {"S", "T", "F", "G"};
         String prefix = prefixes[generateRandomInt(prefixes.length)];
         String numbers = String.format("%07d", generateRandomInt(10000000));
         return prefix + numbers + calculateChecksum(prefix, numbers);
     }
 
-    private char calculateChecksum(String prefix, String numbers) {
+    private static char calculateChecksum(String prefix, String numbers) {
         int[] weights = {2, 7, 6, 5, 4, 3, 2};
 
         int sum = 0;
@@ -214,13 +199,12 @@ public class DataGenerator {
         return '?';
     }
 
-
     /**
      * Generates a random Singapore address.
      *
      * @return A randomly generated address string
      */
-    public String generateSGAddress() {
+    public static String generateSGAddress() {
         String block = String.format("Blk %d", generateRandomInt(100, 999));
         String street = SG_STREETS[generateRandomInt(SG_STREETS.length)];
         String unit = String.format("#%02d-%02d",
@@ -235,7 +219,7 @@ public class DataGenerator {
      *
      * @return A randomly selected occupation
      */
-    public String getRandomOccupation() {
+    public static String getRandomOccupation() {
         return getRandomElement(OCCUPATIONS);
     }
 
@@ -244,7 +228,7 @@ public class DataGenerator {
      *
      * @return A randomly selected company name
      */
-    public String getRandomCompanyName() {
+    public static String getRandomCompanyName() {
         return getRandomElement(SG_COMPANIES);
     }
 
@@ -253,7 +237,7 @@ public class DataGenerator {
      *
      * @return Array of all insurance policy names
      */
-    private String[] getInsuranceNames() {
+    private static String[] getInsuranceNames() {
         int totalLength = HEALTH_INSURANCE_NAMES.length +
                 ACCIDENT_INSURANCE_NAMES.length +
                 CRITICAL_ILLNESS_NAMES.length;
@@ -272,38 +256,34 @@ public class DataGenerator {
         return allNames;
     }
 
-
     /**
      * Gets a random insurance policy name
      *
      * @return Random insurance policy name
      */
-    public String getRandomInsuranceName() {
+    public static String getRandomInsuranceName() {
         String[] allNames = getInsuranceNames();
-        return allNames[random.nextInt(allNames.length)];
+        return allNames[RANDOM.nextInt(allNames.length)];
     }
 
-    public String generateRandomString(int length) {
+    public static String generateRandomString(int length) {
         String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         StringBuilder sb = new StringBuilder();
-        Random random = new Random();
 
         for (int i = 0; i < length; i++) {
-            int index = random.nextInt(chars.length());
+            int index = RANDOM.nextInt(chars.length());
             sb.append(chars.charAt(index));
         }
 
         return sb.toString();
     }
 
-
-
     /**
      * Generates random contact information.
      *
      * @return A Contact object with randomly generated details
      */
-    public Contact generateContact() {
+    public static Contact generateContact() {
         String personalPhone = String.format("9%07d", generateRandomInt(0, 9999999));
         String homePhone = String.format("6%07d", generateRandomInt(0, 9999999));
         String companyPhone = String.format("6%07d", generateRandomInt(0, 9999999));
@@ -320,14 +300,13 @@ public class DataGenerator {
      * @return A random element from the array, or null if the array is empty
      * @throws NullPointerException if the array is null
      */
-    public <T> T getRandomElement(T[] array) {
+    public static <T> T getRandomElement(T[] array) {
         Objects.requireNonNull(array, "Array cannot be null");
         if (array.length == 0) {
             return null;
         }
         return array[generateRandomInt(array.length)];
     }
-
 
     /**
      * Gets a random element from a list.
@@ -336,7 +315,7 @@ public class DataGenerator {
      * @return A random element from the list, or null if the list is empty
      * @throws NullPointerException if the list is null
      */
-    public <T> T getRandomElement(List<T> list) {
+    public static <T> T getRandomElement(List<T> list) {
         Objects.requireNonNull(list, "List cannot be null");
         if (list.isEmpty()) {
             return null;
@@ -351,7 +330,7 @@ public class DataGenerator {
      * @return A random element from the set, or null if the set is empty
      * @throws NullPointerException if the set is null
      */
-    public <T> T getRandomElement(Set<T> set) {
+    public static <T> T getRandomElement(Set<T> set) {
         Objects.requireNonNull(set, "Set cannot be null");
         if (set.isEmpty()) {
             return null;
@@ -367,7 +346,7 @@ public class DataGenerator {
      * @param enumClass The enum class
      * @return A random enum value
      */
-    public <T extends Enum<?>> T getRandomEnum(Class<T> enumClass) {
+    public static <T extends Enum<?>> T getRandomEnum(Class<T> enumClass) {
         T[] values = enumClass.getEnumConstants();
         return values[generateRandomInt(values.length)];
     }
@@ -375,103 +354,102 @@ public class DataGenerator {
     public static String generateUUID() {
         return UUID.randomUUID().toString();
     }
-    
+
     /**
      * Generates a random appointment with a patient, reason, time, and status.
-     * 
+     *
      * @return A randomly generated Appointment object
      */
-    public Appointment generateRandomAppointment() {
+    public static Appointment generateRandomAppointment() {
         Patient patient = Patient.builder()
                 .patientId(generatePatientId())
                 .withRandomBaseData()
                 .build();
-        
+
         return generateRandomAppointment(patient, null);
     }
-    
+
     /**
      * Generates a random appointment with a specific patient, reason, time, and status.
-     * 
+     *
      * @param patient The patient for the appointment
      * @param doctor The doctor for the appointment (can be null)
      * @return A randomly generated Appointment object
      */
-    public Appointment generateRandomAppointment(Patient patient, Doctor doctor) {
+    public static Appointment generateRandomAppointment(Patient patient, Doctor doctor) {
         String[] reasons = {
-            "Regular check-up", 
-            "Flu symptoms", 
-            "Headache", 
-            "Skin rash", 
-            "Fever", 
-            "Stomach pain",
-            "Follow-up consultation", 
-            "Medication review", 
-            "Chronic condition management",
-            "Mental health consultation"
+                "Regular check-up",
+                "Flu symptoms",
+                "Headache",
+                "Skin rash",
+                "Fever",
+                "Stomach pain",
+                "Follow-up consultation",
+                "Medication review",
+                "Chronic condition management",
+                "Mental health consultation"
         };
-        
-        String reason = reasons[random.nextInt(reasons.length)];
-        
+
+        String reason = reasons[RANDOM.nextInt(reasons.length)];
+
         // Generate a random appointment time between now and 30 days in the future
         LocalDateTime now = LocalDateTime.now();
-        int daysToAdd = random.nextInt(30) + 1;
-        int hoursToAdd = random.nextInt(8) + 9; // 9 AM to 5 PM
+        int daysToAdd = RANDOM.nextInt(30) + 1;
+        int hoursToAdd = RANDOM.nextInt(8) + 9; // 9 AM to 5 PM
         LocalDateTime appointmentTime = now.plusDays(daysToAdd).withHour(hoursToAdd).withMinute(0).withSecond(0);
-        
+
         // Randomly select an appointment status
         AppointmentStatus[] statuses = AppointmentStatus.values();
-        AppointmentStatus status = statuses[random.nextInt(statuses.length)];
-        
+        AppointmentStatus status = statuses[RANDOM.nextInt(statuses.length)];
+
         Appointment appointment = new Appointment(patient, reason, appointmentTime, status);
-        
+
         // If doctor is provided, assign it to the appointment
         if (doctor != null) {
             appointment.setDoctor(doctor);
-            
+
             // If the appointment has a doctor and is ACCEPTED, create a session
             if (status == AppointmentStatus.ACCEPTED) {
-                String zoomLink = "https://zoom.us/j/" + (10000000 + random.nextInt(90000000));
+                String zoomLink = "https://zoom.us/j/" + (10000000 + RANDOM.nextInt(90000000));
                 appointment.approveAppointment(doctor, zoomLink);
             }
-            
+
             // If the appointment is COMPLETED, add doctor notes
             if (status == AppointmentStatus.COMPLETED) {
                 String[] notes = {
-                    "Patient is recovering well.",
-                    "Prescribed medication for symptoms.",
-                    "Recommended follow-up in 2 weeks.",
-                    "Referred to specialist for further evaluation.",
-                    "No significant concerns at this time."
+                        "Patient is recovering well.",
+                        "Prescribed medication for symptoms.",
+                        "Recommended follow-up in 2 weeks.",
+                        "Referred to specialist for further evaluation.",
+                        "No significant concerns at this time."
                 };
-                appointment.setDoctorNotes(notes[random.nextInt(notes.length)]);
-            }
-        } 
-        // If no doctor is provided, randomly decide if a doctor should be assigned (50% chance)
-        else if (random.nextBoolean()) {
-            Doctor randomDoctor = Doctor.builder().withRandomBaseData().build();
-            appointment.setDoctor(randomDoctor);
-            
-            // If the appointment has a doctor and is ACCEPTED, create a session
-            if (status == AppointmentStatus.ACCEPTED) {
-                String zoomLink = "https://zoom.us/j/" + (10000000 + random.nextInt(90000000));
-                appointment.approveAppointment(randomDoctor, zoomLink);
-            }
-            
-            // If the appointment is COMPLETED, add doctor notes
-            if (status == AppointmentStatus.COMPLETED) {
-                String[] notes = {
-                    "Patient is recovering well.",
-                    "Prescribed medication for symptoms.",
-                    "Recommended follow-up in 2 weeks.",
-                    "Referred to specialist for further evaluation.",
-                    "No significant concerns at this time."
-                };
-                appointment.setDoctorNotes(notes[random.nextInt(notes.length)]);
+                appointment.setDoctorNotes(notes[RANDOM.nextInt(notes.length)]);
             }
         }
-        
+        // If no doctor is provided, randomly decide if a doctor should be assigned (50% chance)
+        else if (RANDOM.nextBoolean()) {
+            Doctor randomDoctor = Doctor.builder().withRandomBaseData().build();
+            appointment.setDoctor(randomDoctor);
+
+            // If the appointment has a doctor and is ACCEPTED, create a session
+            if (status == AppointmentStatus.ACCEPTED) {
+                String zoomLink = "https://zoom.us/j/" + (10000000 + RANDOM.nextInt(90000000));
+                appointment.approveAppointment(randomDoctor, zoomLink);
+            }
+
+            // If the appointment is COMPLETED, add doctor notes
+            if (status == AppointmentStatus.COMPLETED) {
+                String[] notes = {
+                        "Patient is recovering well.",
+                        "Prescribed medication for symptoms.",
+                        "Recommended follow-up in 2 weeks.",
+                        "Referred to specialist for further evaluation.",
+                        "No significant concerns at this time."
+                };
+                appointment.setDoctorNotes(notes[RANDOM.nextInt(notes.length)]);
+            }
+        }
+
         return appointment;
     }
-
 }

@@ -1,7 +1,10 @@
 package org.bee.hms.humans;
 
+import org.bee.utils.DataGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -198,17 +201,17 @@ public class PatientBuilder extends HumanBuilder<PatientBuilder> {
         this.weight = 45 + random.nextDouble() * 55;
 
         // Generate NOK relation and name
-        this.nokRelation = dataGenerator.getRandomEnum(NokRelation.class);
+        this.nokRelation = DataGenerator.getRandomEnum(NokRelation.class);
         this.nokName = generateNokName(this.name, this.nokRelation);
 
         // Generate addresses and other details
-        this.nokAddress = dataGenerator.generateSGAddress();
-        this.occupation = dataGenerator.getRandomOccupation();
-        this.companyName = dataGenerator.getRandomCompanyName();
-        this.companyAddress = dataGenerator.generateSGAddress();
+        this.nokAddress = DataGenerator.generateSGAddress();
+        this.occupation = DataGenerator.getRandomOccupation();
+        this.companyName = DataGenerator.getRandomCompanyName();
+        this.companyAddress = DataGenerator.generateSGAddress();
 
         // Generate patient consent
-        this.patientConsent = dataGenerator.generateRandomInt(2)==1;
+        this.patientConsent = DataGenerator.generateRandomInt(2)==1;
 
         // Generate drug allergies (0-2 allergies)
         this.drugAllergies.clear();
@@ -235,24 +238,24 @@ public class PatientBuilder extends HumanBuilder<PatientBuilder> {
         switch (relation) {
             case SPOUSE, SIBLING, PARENT -> {
                 // Keep the same family name
-                String[] nokNameParts = dataGenerator.getRandomElement(dataGenerator.getPatientNames()).split(" ");
+                String[] nokNameParts = Objects.requireNonNull(DataGenerator.getRandomElement(DataGenerator.getPatientNames())).split(" ");
                 return nokNameParts[0] + " " + familyName;
             }
             case CHILD, GRANDCHILD -> {
                 // Child/Grandchild should have patient's family name
-                String[] nokNameParts = dataGenerator.getRandomElement(dataGenerator.getPatientNames()).split(" ");
+                String[] nokNameParts = Objects.requireNonNull(DataGenerator.getRandomElement(DataGenerator.getPatientNames())).split(" ");
                 return nokNameParts[0] + " " + familyName;
             }
             case GRANDPARENT -> {
                 // Grandparent might have different family name
-                return dataGenerator.getRandomElement(dataGenerator.getPatientNames());
+                return DataGenerator.getRandomElement(DataGenerator.getPatientNames());
             }
             case GUARDIAN, OTHER -> {
                 // Different family name for non-blood relations
-                return dataGenerator.getRandomElement(dataGenerator.getPatientNames());
+                return DataGenerator.getRandomElement(DataGenerator.getPatientNames());
             }
             default -> {
-                return dataGenerator.getRandomElement(dataGenerator.getPatientNames());
+                return DataGenerator.getRandomElement(DataGenerator.getPatientNames());
             }
         }
     }

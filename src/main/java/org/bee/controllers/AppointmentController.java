@@ -36,7 +36,6 @@ import okhttp3.Response;
  */
 public class AppointmentController extends BaseController<Appointment> {
     private static AppointmentController instance;
-    private static final DataGenerator dataGenerator = DataGenerator.getInstance();
     private static final HumanController humanController = HumanController.getInstance();
 
     private AppointmentController() {
@@ -74,16 +73,16 @@ public class AppointmentController extends BaseController<Appointment> {
         
         for (int i = 0; i < 10; i++) {
             // Randomly select a patient
-            Patient patient = patients.get(dataGenerator.generateRandomInt(patients.size()));
+            Patient patient = patients.get(DataGenerator.generateRandomInt(patients.size()));
             
             // Randomly decide whether to assign a doctor (50% chance)
             Doctor doctor = null;
-            if (!doctors.isEmpty() && dataGenerator.generateRandomInt(2) == 0) {
-                doctor = doctors.get(dataGenerator.generateRandomInt(doctors.size()));
+            if (!doctors.isEmpty() && DataGenerator.generateRandomInt(2) == 0) {
+                doctor = doctors.get(DataGenerator.generateRandomInt(doctors.size()));
             }
             
             // Generate the appointment
-            Appointment appointment = dataGenerator.generateRandomAppointment(patient, doctor);
+            Appointment appointment = DataGenerator.generateRandomAppointment(patient, doctor);
             items.add(appointment);
         }
         
@@ -177,7 +176,7 @@ public class AppointmentController extends BaseController<Appointment> {
         }
         
         // Generate the appointment
-        Appointment appointment = dataGenerator.generateRandomAppointment(patient, doctor);
+        Appointment appointment = DataGenerator.generateRandomAppointment(patient, doctor);
         
         // Add to the list and save
             addItem(appointment);
@@ -284,14 +283,14 @@ public class AppointmentController extends BaseController<Appointment> {
             return null;
         }
         
-        Patient patient = patients.get(dataGenerator.generateRandomInt(patients.size()));
+        Patient patient = patients.get(DataGenerator.generateRandomInt(patients.size()));
         
         Doctor doctor = null;
-        if (!doctors.isEmpty() && dataGenerator.generateRandomInt(2) == 0) {
-            doctor = doctors.get(dataGenerator.generateRandomInt(doctors.size()));
+        if (!doctors.isEmpty() && DataGenerator.generateRandomInt(2) == 0) {
+            doctor = doctors.get(DataGenerator.generateRandomInt(doctors.size()));
         }
         
-        Appointment appointment = dataGenerator.generateRandomAppointment(patient, doctor);
+        Appointment appointment = DataGenerator.generateRandomAppointment(patient, doctor);
         
         addItem(appointment);
         
