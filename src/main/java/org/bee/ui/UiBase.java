@@ -92,4 +92,45 @@ public abstract class UiBase {
         canvas.navigateToPage(page);
     }
 
+
+    /**
+     * Wraps text with ANSI color codes
+     * This works with the terminal's color support to render colored text
+     */
+    protected String colorText(String text, Color color) {
+        return color.getAnsiCode() + text + Color.ESCAPE.getAnsiCode();
+    }
+
+    /**
+     * Extending the color functionality with more flexible styling
+     * Allows combining colors with text styles
+     */
+    protected String styledText(String text, Color color, TextStyle style) {
+        return style.getAnsiCode() + color.getAnsiCode() + text + TextStyle.RESET.getAnsiCode();
+    }
+
+
+    /**
+     * Formats enum values to make them more readable
+     * Converts SNAKE_CASE to Title Case with spaces
+     */
+    protected String formatEnum(String enumValue) {
+        if (enumValue == null) return "Unknown";
+
+        String[] words = enumValue.split("_");
+        StringBuilder result = new StringBuilder();
+
+        for (String word : words) {
+            if (!word.isEmpty()) {
+                result.append(word.substring(0, 1).toUpperCase());
+                if (word.length() > 1) {
+                    result.append(word.substring(1).toLowerCase());
+                }
+                result.append(" ");
+            }
+        }
+
+        return result.toString().trim();
+    }
+
 }

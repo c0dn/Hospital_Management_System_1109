@@ -186,7 +186,7 @@ public class PatientMainPage extends UiBase {
 
         SystemUser systemUser = humanController.getLoggedInUser();
         if (systemUser instanceof Patient patient) {
-            Appointment appointment = new Appointment(patient, reason, selectedDateTime, AppointmentStatus.PENDING);
+            Appointment appointment = new Appointment(null, patient, reason, selectedDateTime, AppointmentStatus.PENDING);
 
 
             // check if consent is already given before asking.

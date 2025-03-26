@@ -1,16 +1,8 @@
     package org.bee.pages.clerk;
 
-    import org.bee.controllers.AppointmentController;
-    import org.bee.controllers.ConsultationController;
     import org.bee.controllers.HumanController;
-    import org.bee.hms.medical.*;
-    import org.bee.pages.GenericUpdatePage;
     import org.bee.ui.*;
-    import org.bee.ui.views.ListView;
-    import org.bee.ui.views.MenuView;
-    import org.bee.utils.formAdapters.ConsultationFormAdapter;
-
-    import java.util.*;
+    import org.bee.ui.views.*;
 
     /**
      * Represents the main page for the Clerk.
@@ -19,109 +11,53 @@
      */
     public class ClerkMainPage extends UiBase {
 
-        private static final AppointmentController appointmentController = AppointmentController.getInstance();
-        private static final ConsultationController consultationController = ConsultationController.getInstance();
-        private Consultation consultation;
-        private static final Scanner scanner = new Scanner(System.in);
-
+        private static final HumanController humanController = HumanController.getInstance();
 
         /**
          * Called when the main page's view is created.
-         * Creates a {@link ListView} to hold the main menu options.
-         * Sets the title header to "Main".
+         * Creates a MenuView with styled sections for the clerk dashboard.
          *
-         * @return A new {@link ListView} instance representing the main page's view.
+         * @return A MenuView instance representing the main page.
          */
         @Override
         public View createView() {
-            return new MenuView(this.canvas, "Main", Color.GREEN, true, false);
+            return new MenuView(this.canvas, humanController.getUserGreeting(), Color.CYAN, true, false);
         }
 
         /**
          * Called after the view has been created and attached to the UI.
-         * Populates the view with the main menu options, such as "New Claim", "Manage Claim", "Claim Status", "Change Claim Status".
-         * Attaches user input handlers to each menu option to navigate to the corresponding pages.
-         * <p>
-         * Each menu option is associated with a specific user action, such as viewing
-         * existing cases, submitting a new claim, or changing the status of a claim.
+         * Populates the view with structured menu options for different clerk functions.
          *
-         * @param parentView The parent {@link View} that represents the main screen
-         *                   of the UI. This should be a {@link ListView} that will
-         *                   contain the menu items and allow the user to interact with them.
+         * @param parentView The parent MenuView that represents the main dashboard
          */
         @Override
         public void OnViewCreated(View parentView) {
             MenuView menuView = (MenuView) parentView;
-            HumanController controller = HumanController.getInstance();
-            menuView.setTitleHeader(controller.getUserGreeting());
 
+            // Telemedicine section
             MenuView.MenuSection telemedSection = menuView.addSection("Telemedicine Services");
-            telemedSection.addOption(1, "View All Telemedicine cases - To view all telemed cases");
+            telemedSection.addOption(1, "View All Telemedicine Cases");
+            menuView.attachMenuOptionInput(1, "View Telemedicine Cases", str -> ToPage(new TelemedicineAppointmentPage()));
 
-            MenuView.MenuSection outpatientSection = menuView.addSection("Outpatient Management Services");
-            outpatientSection.addOption(2, "View All Outpatient Cases - To view all outpatient cases");
-            outpatientSection.addOption(3, "Update Fields For Outpatient cases - To update outpatient cases");
+            // Outpatient section
+            MenuView.MenuSection outpatientSection = menuView.addSection("Outpatient Management");
+            outpatientSection.addOption(2, "View All Outpatient Cases");
+            outpatientSection.addOption(3, "Update Outpatient Case Details");
+            menuView.attachMenuOptionInput(2, "View Outpatient Cases", str -> ToPage(new OutpatientCasesPage()));
+            menuView.attachMenuOptionInput(3, "Update Outpatient Case", str -> ToPage(new OutpatientUpdatePage()));
 
-            MenuView.MenuSection insuranceSection = menuView.addSection("Insurance Claim Management");
-            insuranceSection.addOption(4, "New Claim - Submit new claim");
-            insuranceSection.addOption(5, "Manage Claim - Manage existing claims");
-            insuranceSection.addOption(6, "Claim Status - Check existing claim status");
-            insuranceSection.addOption(7, "Change Claim Status - Update existing claim status");
-
-            menuView.attachMenuOptionInput(1, "View All Telemedicine cases", str -> viewAllAppointments());
-            menuView.attachMenuOptionInput(2, "View All Outpatient Cases", str -> viewAllOutpatientCases());
-            menuView.attachMenuOptionInput(3, "Update Fields For Outpatient Cases", str -> updateOutpatientCase());
-//            menuView.attachMenuOptionInput(4, "New Claim", str -> ToPage(new NewClaimPage()));
-//            menuView.attachMenuOptionInput(5, "Manage Claim", str -> ToPage(new ManageClaimPage()));
-//            menuView.attachMenuOptionInput(6, "Claim Status", str -> ToPage(new ClaimStatusPage()));
-//            menuView.attachMenuOptionInput(7, "Change Claim Status", str -> ToPage(new ChangeClaimStatusPage()));
+            // Insurance section
+            MenuView.MenuSection insuranceSection = menuView.addSection("Insurance Claims");
+            insuranceSection.addOption(4, "Submit New Claim");
+            insuranceSection.addOption(5, "Manage Existing Claims");
+            insuranceSection.addOption(6, "Check Claim Status");
+            insuranceSection.addOption(7, "Update Claim Status");
+//            menuView.attachMenuOptionInput(4, "New Claim", str -> ToPage(new InsuranceClaimPage(InsuranceClaimPage.Mode.NEW)));
+//            menuView.attachMenuOptionInput(5, "Manage Claims", str -> ToPage(new InsuranceClaimPage(InsuranceClaimPage.Mode.MANAGE)));
+//            menuView.attachMenuOptionInput(6, "Check Claim Status", str -> ToPage(new InsuranceClaimPage(InsuranceClaimPage.Mode.CHECK)));
+//            menuView.attachMenuOptionInput(7, "Update Claim Status", str -> ToPage(new InsuranceClaimPage(InsuranceClaimPage.Mode.UPDATE)));
 
             canvas.setRequireRedraw(true);
-        }
-
-
-        private void viewAllAppointments() {
-            appointmentController.viewAllAppointments();
-        }
-
-        private void viewAllOutpatientCases() {
-            consultationController.viewAllOutpatientCases();
-        }
-
-        private Consultation selectConsultation() {
-            List<Consultation> consultations = consultationController.getAllOutpatientCases();
-            if (consultations.isEmpty()) {
-                System.out.println("No outpatient cases found.");
-                return null;
-            }
-
-            System.out.println("Select a consultation to update:");
-            for (int i = 0; i < consultations.size(); i++) {
-                Consultation c = consultations.get(i);
-                System.out.printf("%d. %s - %s\n", i + 1, c.getConsultationId(), c.getPatient().getName());
-            }
-
-            int choice = InputHelper.getValidIndex(canvas.getTerminal(), "Enter your choice", 1, consultations.size());
-            return consultations.get(choice - 1);
-        }
-
-        private void updateOutpatientCase() {
-            consultation = selectConsultation();
-
-            if (consultation == null) {
-                System.out.println("No consultation selected. Returning to main menu.");
-                return;
-            }
-
-            ConsultationFormAdapter adapter = new ConsultationFormAdapter();
-
-            GenericUpdatePage<Consultation> updatePage = new GenericUpdatePage<>(
-                    consultation,
-                    adapter,
-                    () -> System.out.println("Consultation information updated successfully!")
-            );
-
-            ToPage(updatePage);
         }
 
     }

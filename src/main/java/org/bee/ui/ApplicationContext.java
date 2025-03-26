@@ -28,7 +28,7 @@ public class ApplicationContext {
         canvas.setPageNavigationCallback(newPage -> {
             newPage.setCanvas(canvas);
 
-            System.out.println("[DEBUG] ToPage: Pushing new page: " + newPage.getClass().getSimpleName());
+//            System.out.println("[DEBUG] ToPage: Pushing new page: " + newPage.getClass().getSimpleName());
             backStack.push(newPage);
 
             View view = newPage.OnCreateView();

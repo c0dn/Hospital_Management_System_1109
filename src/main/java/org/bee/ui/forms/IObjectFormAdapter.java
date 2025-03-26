@@ -1,5 +1,7 @@
 package org.bee.ui.forms;
 
+import org.bee.utils.ReflectionHelper;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -55,7 +57,7 @@ public interface IObjectFormAdapter<T> {
                 }
             }
 
-            Field field = findField(object.getClass(), fieldName);
+            Field field = ReflectionHelper.findField(object.getClass(), fieldName);
             if (field != null) {
                 field.setAccessible(true);
                 field.set(object, value);
@@ -74,7 +76,7 @@ public interface IObjectFormAdapter<T> {
             Method getInstanceMethod = controllerClass.getMethod("getInstance");
             Object controller = getInstanceMethod.invoke(null);
 
-            Method saveDataMethod = controllerClass.getMethod("saveData");
+            Method saveDataMethod = controllerClass.getMethod(controllerMethodName);
 
             Method getAllMethod = null;
             for (Method method : controllerClass.getMethods()) {
@@ -138,7 +140,7 @@ public interface IObjectFormAdapter<T> {
      * Check if a class has a field with the given name
      */
     default boolean hasField(Class<?> clazz, String fieldName) {
-        return findField(clazz, fieldName) != null;
+        return ReflectionHelper.findField(clazz, fieldName) != null;
     }
 
     /**
@@ -207,7 +209,7 @@ public interface IObjectFormAdapter<T> {
                 }
             }
 
-            Field field = findField(object.getClass(), fieldName);
+            Field field = ReflectionHelper.findField(object.getClass(), fieldName);
             if (field != null) {
                 field.setAccessible(true);
                 return field.get(object);
@@ -219,21 +221,6 @@ public interface IObjectFormAdapter<T> {
             System.err.println("Error getting field " + fieldName + ": " + e.getMessage());
             return null;
         }
-    }
-
-    /**
-     * Helper method to find a field in a class or its superclasses.
-     */
-    default Field findField(Class<?> clazz, String fieldName) {
-        Class<?> currentClass = clazz;
-        while (currentClass != null && currentClass != Object.class) {
-            try {
-                return currentClass.getDeclaredField(fieldName);
-            } catch (NoSuchFieldException e) {
-                currentClass = currentClass.getSuperclass();
-            }
-        }
-        return null;
     }
 
     /**

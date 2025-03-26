@@ -4,12 +4,9 @@ package org.bee.ui;
 import org.bee.ui.views.NullView;
 import org.bee.ui.views.UserInput;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
-/** handles page rendering, lifecycle, and callbacks (application exit and onbackpressed callbacks).
+/** handles page rendering, lifecycle, and callbacks (application exit and onBackPressed callbacks).
  * Also handles view backstack, but backstack management will be removed from canvas in the near future.
  */
 public class Canvas {
@@ -158,7 +155,7 @@ public class Canvas {
     }
 
     /**
-     * Simple utility function that tells the mainloop to redraw the current page.
+     * Simple utility function that tells the main loop to redraw the current page.
      * Call this when updates are required.
      * @param requireRedraw boolean value to set the requireRedraw flag
      */
@@ -189,6 +186,35 @@ public class Canvas {
             if(response != null && !response.isEmpty() && response.toLowerCase().charAt(0) == 'e'){
                 if (backNavigationCallback != null) {
                     backNavigationCallback.callback();
+                    continue;
+                }
+            }
+
+
+            if(response != null && !response.isEmpty() && Character.isLetter(response.charAt(0))) {
+                boolean inputHandled = false;
+
+                // Check for letter-based input handlers
+                for (Enumeration<Integer> e = currentView.getInputOptions().keys(); e.hasMoreElements();) {
+                    Integer key = e.nextElement();
+                    UserInput inputOption = currentView.getInputOptions().get(key);
+
+                    if (inputOption != null &&
+                            (inputOption.promptText().equalsIgnoreCase("Next Page") && response.equalsIgnoreCase("n") ||
+                                    inputOption.promptText().equalsIgnoreCase("Previous Page") && response.equalsIgnoreCase("p") ||
+                                    inputOption.promptText().equalsIgnoreCase("Jump to Page") && response.equalsIgnoreCase("j"))) {
+
+                        try {
+                            inputOption.lambda().onInput(response);
+                            inputHandled = true;
+                            break;
+                        } catch (Exception ex) {
+                            System.out.println("[DEBUG] Exception in letter input handler: " + ex.getMessage());
+                        }
+                    }
+                }
+
+                if (inputHandled) {
                     continue;
                 }
             }
