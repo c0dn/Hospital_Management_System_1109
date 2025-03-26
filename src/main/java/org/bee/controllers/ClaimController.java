@@ -29,15 +29,37 @@ import org.bee.hms.policy.InsurancePolicy;
  * Extends BaseController to handle JSON persistence.
  */
 public class ClaimController extends BaseController<InsuranceClaim> {
+
+    /**
+     * Singleton instance of ClaimController
+     * Ensures that only one ClaimController exists throughout the application
+     * providing management of insurance claims
+     */
     private static ClaimController instance;
+
+    /**
+     * Instance for managing human-related data
+     * This is used to access patient and healthcare provider information
+     */
     private static final HumanController humanController = HumanController.getInstance();
     private static final PolicyController policyController = PolicyController.getInstance();
 
-
+    /**
+     * ClaimController is initialized as protected for singleton instance to prevent direct modification
+     *
+     * It calls the superclass constructor to initialize the base controller functionality
+     */
     protected ClaimController() {
         super();
     }
 
+    /**
+     * Returns the singleton instance of ClaimController
+     * This method ensures that only one instance of ClaimController is created and used throughout the application
+     *
+     * Creates a new instance if one does not exist
+     * @return The singleton instance of ClaimController
+     */
     public static synchronized ClaimController getInstance() {
         if (instance == null) {
             instance = new ClaimController();
@@ -45,16 +67,34 @@ public class ClaimController extends BaseController<InsuranceClaim> {
         return instance;
     }
 
+    /**
+     * Provides the file path for storing claim data(claims.txt)
+     * This method is used by the BaseController for JSON operations
+     * @return The file path for claims.txt
+     */
     @Override
     protected String getDataFilePath() {
         return DATABASE_DIR + "/claims.txt";
     }
 
+    /**
+     * Specifies the class type of InsuranceClaim
+     * This method is used by the BaseController for operations and JSON deserialization
+     *
+     * @return The InsuranceClaim type
+     */
     @Override
     protected Class<InsuranceClaim> getEntityClass() {
         return InsuranceClaim.class;
     }
 
+    /**
+     * Generates initial insurance claim data
+     * This method creates claims for all patients using private and government insurance providers
+     * Generates 2 claims per patient per provider type
+     *
+     * @throws IllegalStateException if no patients available to generate claims
+     */
     @Override
     protected void generateInitialData() {
         System.out.println("Generating initial claim data...");
@@ -96,9 +136,8 @@ public class ClaimController extends BaseController<InsuranceClaim> {
         System.out.println("Generated " + claimCount + " claims.");
     }
 
-
     /**
-     * Processes an insurance claim for a bill if possible.
+     * Processes an insurance claim for a bill if possible
      *
      * @param bill The bill to process
      * @return An optional insurance claim if created
@@ -115,11 +154,10 @@ public class ClaimController extends BaseController<InsuranceClaim> {
         return Optional.empty();
     }
 
-
     /**
-     * Generates valid insurance claims for a patient with a specific provider.
+     * Generates valid insurance claims for a patient with a specific provider
      * This method ensures that the generated claims will be approved by creating
-     * appropriate visits and bills that match the policy coverage.
+     * appropriate visits and bills that match the policy coverage
      *
      * @param patient  The patient to generate claims for
      * @param provider The insurance provider to use
@@ -161,32 +199,63 @@ public class ClaimController extends BaseController<InsuranceClaim> {
         });
     }
 
+    /**
+     * Adds a new insurance claim for the patient
+     * This method adds the given claim
+     * @param claim The claim to be added
+     */
     public void addClaim(InsuranceClaim claim) {
         addItem(claim);
     }
 
+    /**
+     * Retrieves all the claim details for all patient
+     * @return A List of all InsuranceClaim
+     */
     public List<InsuranceClaim> getAllClaims() {
         return getAllItems();
     }
 
+    /**
+     * Finds an insurance claim by its claimID
+     * @param claimId The unique identifier for claim
+     * @return An Optional containing the InsuranceClaim if found, empty otherwise
+     *
+     */
     public Optional<InsuranceClaim> findClaimById(String claimId) {
         return items.stream()
                 .filter(claim -> claim.getClaimId().equals(claimId))
                 .findFirst();
     }
 
+    /**
+     * Retrieves all insurance claims for a specific patient.
+     * @param patient The Patient for whom to retrieve claims
+     * @return A List of InsuranceClaim associated with the specified patient
+     */
     public List<InsuranceClaim> getClaimsForPatient(Patient patient) {
         return items.stream()
                 .filter(claim -> claim.getPatient().equals(patient))
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Retrieves all insurance claims by a specified status.
+     * @param status The ClaimStatus to filter claims by
+     * @return A List of InsuranceClaim with the specified status
+     */
     public List<InsuranceClaim> getClaimsByStatus(ClaimStatus status) {
         return items.stream()
                 .filter(claim -> claim.getClaimStatus() == status)
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Updates the status of a specified insurance claim
+     * @param claimId The ID of the claim to update
+     * @param newStatus The new ClaimStatus
+     * @return true if the claim was found and updated, false otherwise
+     */
     public boolean updateClaimStatus(String claimId, ClaimStatus newStatus) {
         Optional<InsuranceClaim> claimOpt = findClaimById(claimId);
         if (claimOpt.isPresent()) {
@@ -198,6 +267,15 @@ public class ClaimController extends BaseController<InsuranceClaim> {
         return false;
     }
 
+    /**
+     * Processes a partial approval for a specific insurance claim
+     * This method updates the claim with the approved amount and reason if found
+     *
+     * @param claimId The ID of the claim to process
+     * @param approvedAmount The partially approved amount
+     * @param reason  The reason for partial approval
+     * @return  true if the claim was found and processed, false otherwise
+     */
     public boolean processPartialApproval(String claimId, BigDecimal approvedAmount, String reason) {
         Optional<InsuranceClaim> claimOpt = findClaimById(claimId);
         if (claimOpt.isPresent()) {
@@ -209,6 +287,13 @@ public class ClaimController extends BaseController<InsuranceClaim> {
         return false;
     }
 
+    /**
+     * Adds a supporting document tfor a specified insurance claim
+     * This method finds the claim by ID and adds the document description
+     * @param claimId The ID of the claim to update
+     * @param documentDescription The description of the supporting document
+     * @return true if the claim was found and updated, false otherwise
+     */
     public boolean addSupportingDocument(String claimId, String documentDescription) {
         Optional<InsuranceClaim> claimOpt = findClaimById(claimId);
         if (claimOpt.isPresent()) {
@@ -220,6 +305,13 @@ public class ClaimController extends BaseController<InsuranceClaim> {
         return false;
     }
 
+    /**
+     * Updates the comments for a specific insurance claim
+     * This method finds the claim by ID and updates its comments
+     * @param claimId The ID of the claim to update
+     * @param comments The new comments
+     * @return true if the claim was found and updated, false otherwise
+     */
     public boolean updateComments(String claimId, String comments) {
         Optional<InsuranceClaim> claimOpt = findClaimById(claimId);
         if (claimOpt.isPresent()) {
@@ -231,6 +323,11 @@ public class ClaimController extends BaseController<InsuranceClaim> {
         return false;
     }
 
+    /**
+     * Removes a specific insurance claim
+     * @param claimId The ID of the claim to remove
+     * @return true if the claim was found and removed, false otherwise
+     */
     public boolean removeClaim(String claimId) {
         Optional<InsuranceClaim> claimOpt = findClaimById(claimId);
         if (claimOpt.isPresent()) {

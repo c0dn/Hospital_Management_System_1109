@@ -30,18 +30,35 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
- * Manages the storage and retrieval of {@link Appointment} objects.
- * This class provides centralized management of appointments through a list and supports operations such as adding, removing, and searching for appointments.
- * It extends BaseController to handle JSON persistence.
+ * Manages the storage and retrieval of {@link Appointment} objects
+ * This class provides centralized management of appointments through a list and supports operations such as adding, removing, and searching for appointments
+ * It extends BaseController to handle JSON persistence
  */
 public class AppointmentController extends BaseController<Appointment> {
+
+    /**
+     * Singleton instance of the AppointmentController
+     */
     private static AppointmentController instance;
+
+    /**
+     * Reference to the HumanController singleton instance
+     */
     private static final HumanController humanController = HumanController.getInstance();
 
+    /**
+     * Private to prevent direct modification
+     */
     private AppointmentController() {
         super();
     }
 
+    /**
+     * Returns the instance of AppointmentController
+     * Create instance if it does not exist
+     *
+     * @return The singleton instance of AppointmentController
+     */
     public static synchronized AppointmentController getInstance() {
         if (instance == null) {
             instance = new AppointmentController();
@@ -49,47 +66,69 @@ public class AppointmentController extends BaseController<Appointment> {
         return instance;
     }
 
+    /**
+     * Returns the file path for appointments.txt file
+     *
+     * @return A String representing the directory to appointments.txt file
+     */
     @Override
     protected String getDataFilePath() {
         return DATABASE_DIR + "/appointments.txt";
     }
 
+    /**
+     * Returns the Class for Appointment
+     *
+     * @return The Class for Appointment
+     */
     @Override
     protected Class<Appointment> getEntityClass() {
         return Appointment.class;
     }
-    
+
+    /**
+     * Generates initial appointment data for the healthcare management system
+     * This method creates 10 random appointments, assigns them to existing patients
+     * and optionally to doctors(50% chance). It uses the HumanController to fetch existing
+     * patient and doctor data
+     */
     @Override
     protected void generateInitialData() {
         System.out.println("Generating initial appointment data...");
-        
+
         List<Patient> patients = humanController.getAllPatients();
         List<Doctor> doctors = humanController.getAllDoctors();
-        
+
         if (patients.isEmpty()) {
             System.err.println("No patients available to generate appointments");
             return;
         }
-        
+
         for (int i = 0; i < 10; i++) {
             // Randomly select a patient
             Patient patient = patients.get(DataGenerator.generateRandomInt(patients.size()));
-            
+
             // Randomly decide whether to assign a doctor (50% chance)
             Doctor doctor = null;
             if (!doctors.isEmpty() && DataGenerator.generateRandomInt(2) == 0) {
                 doctor = doctors.get(DataGenerator.generateRandomInt(doctors.size()));
             }
-            
+
             // Generate the appointment
             Appointment appointment = DataGenerator.generateRandomAppointment(patient, doctor);
             items.add(appointment);
         }
-        
+
         System.out.println("Generated " + items.size() + " appointments.");
     }
 
-
+    /**
+     * Removes the specified appointment from the list of appointments
+     * If the appointment is removed, save the data
+     *
+     * @param appointment The Appointment  to be removed
+     * @return true if the appointment was successfully removed, false otherwise
+     */
     public boolean removeAppointment(Appointment appointment) {
         boolean removed = items.remove(appointment);
         if (removed) {
@@ -98,6 +137,12 @@ public class AppointmentController extends BaseController<Appointment> {
         return removed;
     }
 
+    /**
+     * Retrieves all appointments associated with a specific patient
+     *
+     * @param patient The Patient whose appointments to retrieved from
+     * @return A list of Appointment for the specified patient
+     */
     public List<Appointment> getAppointmentsForPatient(Patient patient) {
         return items.stream()
                 .filter(appointment -> appointment.getPatient().equals(patient))
@@ -131,11 +176,21 @@ public class AppointmentController extends BaseController<Appointment> {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Adds a new appointment to the appointment list and saves the data
+     *
+     * @param appointment The Appointment to be added
+     */
     public void addAppointment(Appointment appointment) {
         addItem(appointment);
         saveData();
     }
 
+    /**
+     * Retrieves all appointments in the healthcare management system
+     *
+     * @return A list containing all Appointment
+     */
     public List<Appointment> getAllAppointments() {
         return getAllItems();
     }
@@ -152,38 +207,48 @@ public class AppointmentController extends BaseController<Appointment> {
         Optional<Patient> patientOpt = humanController.getAllPatients().stream()
                 .filter(p -> p.getPatientId().equals(patientId))
                 .findFirst();
-        
+
         if (patientOpt.isEmpty()) {
             System.err.println("Patient with ID " + patientId + " not found");
             return null;
         }
-        
+
         Patient patient = patientOpt.get();
         Doctor doctor = null;
-        
+
         // Find the doctor if provided
         if (doctorId != null && !doctorId.isEmpty()) {
             Optional<Doctor> doctorOpt = humanController.getAllDoctors().stream()
                     .filter(d -> d.getMcr().equals(doctorId))
                     .findFirst();
-            
+
             if (doctorOpt.isEmpty()) {
                 System.err.println("Doctor with MCR " + doctorId + " not found");
                 return null;
             }
-            
+
             doctor = doctorOpt.get();
         }
-        
+
         // Generate the appointment
         Appointment appointment = DataGenerator.generateRandomAppointment(patient, doctor);
-        
+
         // Add to the list and save
-            addItem(appointment);
-        
+        addItem(appointment);
+
         return appointment;
     }
 
+    /**
+     * Displays all appointments in a paginated format
+     *
+     * This method retrieves all appointments, shows 5 appointments per page and allows the user
+     * to navigate between pages or exit to the main menu
+     *
+     * The displayed information for each appointment includes: "ID", "Patient Name",
+     * "Date/Time", "Status", "Reason", "Doctor"
+     * If no appointments are found, it displays a message and returns to the main menu
+     */
     public void viewAllAppointments() {
         AppointmentController appointmentController = AppointmentController.getInstance();
         List<Appointment> appointments = appointmentController.getAllAppointments();
@@ -277,23 +342,23 @@ public class AppointmentController extends BaseController<Appointment> {
     public Appointment createRandomAppointment() {
         List<Patient> patients = humanController.getAllPatients();
         List<Doctor> doctors = humanController.getAllDoctors();
-        
+
         if (patients.isEmpty()) {
             System.err.println("No patients available in the system");
             return null;
         }
-        
+
         Patient patient = patients.get(DataGenerator.generateRandomInt(patients.size()));
-        
+
         Doctor doctor = null;
         if (!doctors.isEmpty() && DataGenerator.generateRandomInt(2) == 0) {
             doctor = doctors.get(DataGenerator.generateRandomInt(doctors.size()));
         }
-        
+
         Appointment appointment = DataGenerator.generateRandomAppointment(patient, doctor);
-        
+
         addItem(appointment);
-        
+
         return appointment;
     }
 
@@ -323,9 +388,9 @@ public class AppointmentController extends BaseController<Appointment> {
      */
     public Optional<Appointment> findAppointment(Patient patient, LocalDateTime appointmentTime) {
         return items.stream()
-                .filter(appointment -> 
-                    appointment.getPatient().equals(patient) && 
-                    appointment.getAppointmentTime().equals(appointmentTime))
+                .filter(appointment ->
+                        appointment.getPatient().equals(patient) &&
+                                appointment.getAppointmentTime().equals(appointmentTime))
                 .findFirst();
     }
 

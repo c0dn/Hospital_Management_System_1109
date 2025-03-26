@@ -14,7 +14,14 @@ import java.util.List;
  */
 public abstract class BaseController<T extends JSONSerializable> {
 
+    /**
+     * Defaults to "database" if the system property "database.dir" is not set.
+     */
     protected static final String DATABASE_DIR = System.getProperty("database.dir", "database");
+
+    /**
+     * A list containing all items managed by this controller
+     */
     protected final List<T> items = new ArrayList<>();
 
     /**
@@ -50,7 +57,6 @@ public abstract class BaseController<T extends JSONSerializable> {
      * @return The file path as a string
      */
     protected abstract String getDataFilePath();
-
 
     /**
      * Loads data from the JSON file into the items list.
@@ -88,8 +94,6 @@ public abstract class BaseController<T extends JSONSerializable> {
         items.add(item);
         saveData();
     }
-
-
 
     /**
      * Gets all items managed by this controller.
