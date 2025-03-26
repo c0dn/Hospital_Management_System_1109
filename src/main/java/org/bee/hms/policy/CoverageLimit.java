@@ -1,7 +1,6 @@
 package org.bee.hms.policy;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.bee.hms.wards.WardClassType;
 import org.bee.utils.JSONSerializable;
 
@@ -38,43 +37,6 @@ public class CoverageLimit implements JSONSerializable {
         this.benefitLimits = builder.benefitLimits;
         this.wardLimits = builder.wardLimits;
         this.accidentSubLimits = builder.accidentSubLimits;
-    }
-
-
-    /**
-     * JSON Creator method for deserializing CoverageLimit
-     */
-    @JsonCreator
-    public static CoverageLimit create(
-            @JsonProperty("annualLimit") BigDecimal annualLimit,
-            @JsonProperty("lifetimeLimit") BigDecimal lifetimeLimit,
-            @JsonProperty("benefitLimits") Map<BenefitType, BigDecimal> benefitLimits,
-            @JsonProperty("wardLimits") Map<WardClassType, BigDecimal> wardLimits,
-            @JsonProperty("accidentSubLimits") Map<AccidentType, BigDecimal> accidentSubLimits
-    ) {
-        Builder builder = new Builder();
-
-        if (annualLimit != null) {
-            builder.withAnnualLimit(annualLimit);
-        }
-
-        if (lifetimeLimit != null) {
-            builder.withLifetimeLimit(lifetimeLimit);
-        }
-
-        if (benefitLimits != null) {
-            benefitLimits.forEach(builder::addBenefitLimit);
-        }
-
-        if (wardLimits != null) {
-            wardLimits.forEach(builder::addWardLimit);
-        }
-
-        if (accidentSubLimits != null) {
-            accidentSubLimits.forEach(builder::addAccidentLimit);
-        }
-
-        return builder.build();
     }
 
     /**
@@ -212,9 +174,9 @@ public class CoverageLimit implements JSONSerializable {
     public static class Builder {
         private BigDecimal annualLimit;
         private BigDecimal lifetimeLimit;
-        private final Map<BenefitType, BigDecimal> benefitLimits = new HashMap<>();
-        private final Map<WardClassType, BigDecimal> wardLimits = new HashMap<>();
-        private final Map<AccidentType, BigDecimal> accidentSubLimits = new HashMap<>();
+        private Map<BenefitType, BigDecimal> benefitLimits = new HashMap<>();
+        private Map<WardClassType, BigDecimal> wardLimits = new HashMap<>();
+        private Map<AccidentType, BigDecimal> accidentSubLimits = new HashMap<>();
 
         /**
          * Sets the annual limit for the coverage.
@@ -245,8 +207,8 @@ public class CoverageLimit implements JSONSerializable {
          * @param limit The coverage limit for the accident type.
          * @return The builder instance for method chaining.
          */
-        public Builder addAccidentLimit(AccidentType type, BigDecimal limit) {
-            this.accidentSubLimits.put(type, limit);
+        public Builder addAccidentLimit(AccidentType type, double limit) {
+            this.accidentSubLimits.put(type, BigDecimal.valueOf(limit));
             return this;
         }
 
@@ -257,8 +219,8 @@ public class CoverageLimit implements JSONSerializable {
          * @param limit The coverage limit for the benefit type.
          * @return The builder instance for method chaining.
          */
-        public Builder addBenefitLimit(BenefitType type, BigDecimal limit) {
-            this.benefitLimits.put(type, limit);
+        public Builder addBenefitLimit(BenefitType type, double limit) {
+            this.benefitLimits.put(type, BigDecimal.valueOf(limit));
             return this;
         }
 
@@ -269,8 +231,8 @@ public class CoverageLimit implements JSONSerializable {
          * @param limit     The coverage limit for the ward class type.
          * @return The builder instance for method chaining.
          */
-        public Builder addWardLimit(WardClassType wardClass, BigDecimal limit) {
-            this.wardLimits.put(wardClass, limit);
+        public Builder addWardLimit(WardClassType wardClass, double limit) {
+            this.wardLimits.put(wardClass, BigDecimal.valueOf(limit));
             return this;
         }
 

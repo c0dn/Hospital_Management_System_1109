@@ -59,62 +59,75 @@ public class ClaimController extends BaseController<InsuranceClaim> {
     protected void generateInitialData() {
         System.out.println("Generating initial claim data...");
 
-        BillController billController = BillController.getInstance();
-        List<Bill> existingBills = billController.getAllItems();
+        List<Patient> patients = humanController.getAllPatients();
+        PolicyController policyController = PolicyController.getInstance();
+        VisitController visitController = VisitController.getInstance();
+        ConsultationController consultationController = ConsultationController.getInstance();
 
-        if (existingBills.isEmpty()) {
-            System.err.println("No bills available to generate claims");
+        if (patients.isEmpty()) {
+            System.err.println("No patients available to generate claims");
             return;
         }
 
         AtomicInteger claimCount = new AtomicInteger();
+        // For each patient, create claims based on visits and consultations
+        for (Patient patient : patients) {
+            List<InsurancePolicy> policies = policyController.getAllPoliciesForPatient(patient);
 
-        // Process each existing bill to potentially create a claim
-        for (Bill bill : existingBills) {
-            Patient patient = bill.getPatient();
-            InsurancePolicy policy = bill.getInsurancePolicy(); // You might need to add this getter to Bill
-
-            if (policy == null) {
-                continue; // Skip bills without insurance policy
+            if (policies.isEmpty()) {
+                continue; // Skip patients without policies
             }
 
-            InsuranceProvider provider = policy.getInsuranceProvider();
+            for (InsurancePolicy policy : policies) {
+                InsuranceProvider provider = policy.getInsuranceProvider();
 
-            // Calculate insurance coverage using the existing bill
-            InsuranceCoverageResult coverageResult = bill.calculateInsuranceCoverage();
-            if (coverageResult.isApproved()) {
-                Optional<InsuranceClaim> claim = coverageResult.claim();
-                claim.ifPresent(c -> {
-                    items.add(c);
-                    provider.submitClaim(patient, c);
-                    provider.processClaim(patient, c);
-                    claimCount.getAndIncrement();
-                });
+                List<Visit> patientVisits = visitController.getAllItems().stream()
+                        .filter(v -> v.getPatient().equals(patient) && v.isDischarged())
+                        .toList();
+
+                for (Visit visit : patientVisits) {
+                    Bill bill = new BillBuilder()
+                            .withPatient(patient)
+                            .withVisit(visit)
+                            .withInsurancePolicy(policy)
+                            .build();
+
+                    InsuranceCoverageResult coverageResult = bill.calculateInsuranceCoverage();
+                    if (coverageResult.isApproved()) {
+                        Optional<InsuranceClaim> claim = coverageResult.claim();
+                        claim.ifPresent(c -> {
+                            items.add(c);
+                            provider.processClaim(patient, c);
+                            claimCount.getAndIncrement();
+                        });
+                    }
+                }
+
+                List<Consultation> patientConsultations = consultationController.getAllOutpatientCases().stream()
+                        .filter(c -> c.getPatient().equals(patient))
+                        .toList();
+
+                for (Consultation consultation : patientConsultations) {
+                    Bill bill = new BillBuilder()
+                            .withPatient(patient)
+                            .withConsultation(consultation)
+                            .withInsurancePolicy(policy)
+                            .build();
+
+                    InsuranceCoverageResult coverageResult = bill.calculateInsuranceCoverage();
+                    if (coverageResult.isApproved()) {
+                        Optional<InsuranceClaim> claim = coverageResult.claim();
+                        claim.ifPresent(c -> {
+                            items.add(c);
+                            provider.processClaim(patient, c);
+                            claimCount.getAndIncrement();
+                        });
+                    }
+                }
             }
         }
-
         System.out.println("Generated " + claimCount + " claims.");
     }
-
-
-    /**
-     * Processes an insurance claim for a bill if possible.
-     *
-     * @param bill The bill to process
-     * @return An optional insurance claim if created
-     */
-    public Optional<InsuranceClaim> processBillClaim(Bill bill) {
-        InsuranceCoverageResult coverageResult = bill.calculateInsuranceCoverage();
-
-        if (coverageResult.isApproved()) {
-            Optional<InsuranceClaim> claim = coverageResult.claim();
-            claim.ifPresent(this::addClaim);
-            return claim;
-        }
-
-        return Optional.empty();
-    }
-
 
     /**
      * Generates valid insurance claims for a patient with a specific provider.

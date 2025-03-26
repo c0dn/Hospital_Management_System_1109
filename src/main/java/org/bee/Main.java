@@ -23,7 +23,6 @@ public class Main {
         PolicyController.getInstance();
         AppointmentController.getInstance();
         VisitController.getInstance();
-        BillController.getInstance();
         ClaimController.getInstance();
         ConsultationController.getInstance();
         var canvas = new Canvas();
