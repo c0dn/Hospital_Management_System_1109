@@ -3,9 +3,7 @@ package org.bee.hms.policy;
 import java.math.BigDecimal;
 import java.util.Set;
 
-import org.bee.hms.billing.BillableItem;
-import org.bee.utils.JSONReadable;
-import org.bee.utils.JSONWritable;
+import org.bee.utils.JSONSerializable;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -18,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
     @JsonSubTypes.Type(value = BaseCoverage.class, name = "base"),
     @JsonSubTypes.Type(value = CompositeCoverage.class, name = "composite")
 })
-public interface Coverage extends JSONWritable, JSONReadable {
+public interface Coverage extends JSONSerializable {
 
     /**
      * Checks if a given item is covered by this coverage.

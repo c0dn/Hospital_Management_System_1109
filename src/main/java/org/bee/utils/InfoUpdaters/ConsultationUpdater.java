@@ -84,9 +84,9 @@ public class ConsultationUpdater extends UpdaterBase<Consultation, ConsultationU
 
     @Override
     protected void applySpecificUpdates(Consultation consultation) {
-        ifPresent(diagnosticCodes, consultation::setDiagnosticCodes);
-        ifPresent(procedureCodes, consultation::setProcedureCodes);
-        ifPresent(prescriptions, consultation::setPrescriptions);
+//        ifPresent(diagnosticCodes, consultation::setDiagnosticCodes);
+//        ifPresent(procedureCodes, consultation::setProcedureCodes);
+//        ifPresent(prescriptions, consultation::setPrescriptions);
         ifPresent(notes, consultation::setNotes);
         ifPresent(medicalHistory, consultation::setMedicalHistory);
         ifPresent(diagnosis, consultation::setDiagnosis);

@@ -14,8 +14,7 @@ import org.bee.hms.humans.Patient;
 import org.bee.hms.insurance.InsuranceProvider;
 import org.bee.hms.policy.InsurancePolicy;
 import org.bee.utils.DataGenerator;
-import org.bee.utils.JSONReadable;
-import org.bee.utils.JSONWritable;
+import org.bee.utils.JSONSerializable;
 
 /**
  * Represents an insurance claim made.
@@ -24,7 +23,7 @@ import org.bee.utils.JSONWritable;
  * </p>
  */
 
-public class InsuranceClaim implements JSONWritable, JSONReadable {
+public class InsuranceClaim implements JSONSerializable {
 
     /**
      * Unique identifier for the insurance claim.

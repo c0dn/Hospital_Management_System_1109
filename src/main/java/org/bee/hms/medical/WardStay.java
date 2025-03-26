@@ -4,21 +4,20 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.bee.hms.billing.BillableItem;
 import org.bee.hms.policy.BenefitType;
 import org.bee.hms.policy.ClaimableItem;
 import org.bee.hms.wards.*;
+import org.bee.utils.JSONSerializable;
 
 /**
  * Represents a patient's stay in a hospital ward, including the ward information and the duration
  * of the stay. This class is used to track ward-specific stays, including transfers to different wards.
  * It also calculates the charges for the stay and determines the type of benefit associated with the stay.
  */
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class WardStay implements ClaimableItem, BillableItem {
+public class WardStay implements ClaimableItem, BillableItem, JSONSerializable {
 
     private final Ward ward;
     private final LocalDateTime startDateTime;

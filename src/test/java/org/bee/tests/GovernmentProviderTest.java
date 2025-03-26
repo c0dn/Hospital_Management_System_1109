@@ -22,7 +22,6 @@ import org.junit.jupiter.api.Test;
  */
 public class GovernmentProviderTest {
     private GovernmentProvider provider;
-    private DataGenerator dataGenerator;
 
     @BeforeEach
     void setUp() {

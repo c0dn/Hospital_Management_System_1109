@@ -2,12 +2,7 @@ package org.bee.hms.medical;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -23,8 +18,7 @@ import org.bee.hms.wards.Ward;
 import org.bee.hms.wards.WardClassType;
 import org.bee.hms.wards.WardFactory;
 import org.bee.utils.DataGenerator;
-import org.bee.utils.JSONReadable;
-import org.bee.utils.JSONWritable;
+import org.bee.utils.JSONSerializable;
 import org.bee.utils.jackson.PrescriptionMapDeserializer;
 import org.bee.utils.jackson.PrescriptionMapSerializer;
 
@@ -33,8 +27,7 @@ import org.bee.utils.jackson.PrescriptionMapSerializer;
  * The class encapsulates information related to the visit, including ward stays,
  * procedures performed, attending medical personnel, and the status of the visit.
  */
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class Visit implements JSONWritable, JSONReadable {
+public class Visit implements JSONSerializable {
     /**
      * A unique identifier for the visit.
      * This identifier is used to distinguish each hospital visit
@@ -179,20 +172,48 @@ public class Visit implements JSONWritable, JSONReadable {
     }
 
     /**
-     * Creates a regular visit with random data
+     * Creates a visit with randomly generated data.
+     * <p>
+     * This method generates a random patient, sets an admission time within the past 30 days,
+     * and populates the visit with random medical data including procedures, prescriptions,
+     * diagnostic codes, and medical staff.
+     * </p>
      *
-     * @return A randomly populated Visit instance
+     * @return A randomly populated {@link Visit} instance
+     * @see #withRandomData(Patient) to create a random visit for a specific patient
      */
     public static Visit withRandomData() {
         LocalDateTime admissionTime = LocalDateTime.now()
                 .minusDays(DataGenerator.generateRandomInt(1, 30));
         Patient randomPatient = Patient
                 .builder()
-                .patientId(DataGenerator.generatePatientId()).
-                withRandomBaseData()
+                .patientId(DataGenerator.generatePatientId())
+                .withRandomBaseData()
                 .build();
 
         return populateWithRandomData(new Visit(admissionTime, randomPatient));
+    }
+
+    /**
+     * Creates a visit with randomly generated data for a specific patient.
+     * <p>
+     * This method sets an admission time within the past 30 days and populates
+     * the visit with random medical data including procedures, prescriptions,
+     * diagnostic codes, and medical staff, while using the provided patient.
+     * </p>
+     *
+     * @param patient The patient for whom the visit is created (must not be null)
+     * @return A randomly populated {@link Visit} instance for the specified patient
+     * @throws NullPointerException if the patient is null
+     * @see #withRandomData() to create a random visit with a random patient
+     */
+    public static Visit withRandomData(Patient patient) {
+        Objects.requireNonNull(patient, "Patient cannot be null");
+
+        LocalDateTime admissionTime = LocalDateTime.now()
+                .minusDays(DataGenerator.generateRandomInt(1, 30));
+
+        return populateWithRandomData(new Visit(admissionTime, patient));
     }
     
     /**
@@ -512,7 +533,6 @@ public class Visit implements JSONWritable, JSONReadable {
 
         Ward ward = WardFactory.getWard("Hospital Ward", selectedWardType);
 
-
         // Some logic to generate believable stay duration
         int minStay = 1;
         int maxStay = 5;
@@ -638,6 +658,11 @@ public class Visit implements JSONWritable, JSONReadable {
             ).toHours());
         }
         return Optional.empty();
+    }
+
+
+    public Patient getPatient() {
+        return patient;
     }
 
 

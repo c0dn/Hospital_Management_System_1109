@@ -1,14 +1,17 @@
 package org.bee.controllers;
 
 import org.bee.hms.humans.Doctor;
+import org.bee.hms.humans.Nurse;
 import org.bee.hms.humans.Patient;
-import org.bee.hms.medical.Consultation;
+import org.bee.hms.medical.*;
+import org.bee.hms.policy.BenefitType;
+import org.bee.hms.policy.Coverage;
+import org.bee.hms.policy.InsurancePolicy;
 import org.bee.utils.DataGenerator;
 import org.bee.utils.InfoUpdaters.ConsultationUpdater;
 
 import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -47,28 +50,30 @@ public class ConsultationController extends BaseController<Consultation> {
 
         List<Patient> patients = humanController.getAllPatients();
         List<Doctor> doctors = humanController.getAllDoctors();
+        PolicyController policyController = PolicyController.getInstance();
 
         if (patients.isEmpty() || doctors.isEmpty()) {
-            System.err.println("No patients or doctors available to generate appointments");
+            System.err.println("No patients or doctors available to generate consultations");
             return;
         }
 
-        for (Doctor doctor : doctors) {
-            Patient patient = DataGenerator.getRandomElement(patients);
+        for (Patient patient : patients) {
+            List<InsurancePolicy> policies = policyController.getAllPoliciesForPatient(patient);
 
-            Consultation consultation = Consultation.withRandomData(patient, doctor);
-            items.add(consultation);
+            if (!policies.isEmpty()) {
+                InsurancePolicy policy = policies.getFirst();
+                Coverage coverage = policy.getCoverage();
+
+                Consultation consultation = Consultation.createCompatibleConsultation(
+                        coverage, patient, doctors);
+                items.add(consultation);
+            } else {
+                Consultation consultation = Consultation.withRandomData(patient,
+                        DataGenerator.getRandomElement(doctors));
+                items.add(consultation);
+            }
         }
 
-        int additionalConsultations = Math.max(0, 10 - doctors.size());
-
-        for (int i = 0; i < additionalConsultations; i++) {
-            Patient patient = DataGenerator.getRandomElement(patients);
-            Doctor doctor = DataGenerator.getRandomElement(doctors);
-
-            Consultation consultation = Consultation.withRandomData(patient, doctor);
-            items.add(consultation);
-        }
         System.out.format("Generated %d consultations%n", items.size());
     }
 

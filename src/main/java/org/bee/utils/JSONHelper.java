@@ -81,7 +81,7 @@ public final class JSONHelper {
      * @param <T>      The type of the objects, which must implement JSONWritable
      * @throws IOException If there is an error writing to the file
      */
-    public static <T extends JSONWritable> void saveToJsonFile(List<T> objects, String filePath) throws IOException {
+    public static <T extends JSONSerializable> void saveToJsonFile(List<T> objects, String filePath) throws IOException {
         try (FileWriter writer = new FileWriter(filePath)) {
             OBJECT_MAPPER.writeValue(writer, objects);
         }
@@ -95,7 +95,7 @@ public final class JSONHelper {
      * @param <T>      The type of the object, which must implement JSONWritable
      * @throws IOException If there is an error writing to the file
      */
-    public static <T extends JSONWritable> void saveToJsonFile(T object, String filePath) throws IOException {
+    public static <T extends JSONSerializable> void saveToJsonFile(T object, String filePath) throws IOException {
         try (FileWriter writer = new FileWriter(filePath)) {
             OBJECT_MAPPER.writeValue(writer, object);
         }
@@ -110,7 +110,7 @@ public final class JSONHelper {
      * @return A list of objects of type T
      * @throws IOException If there is an error reading from the file
      */
-    public static <T extends JSONReadable> List<T> loadListFromJsonFile(String filePath, Class<T> clazz) throws IOException {
+    public static <T extends JSONSerializable> List<T> loadListFromJsonFile(String filePath, Class<T> clazz) throws IOException {
         try (FileReader reader = new FileReader(filePath)) {
             JavaType listType = OBJECT_MAPPER.getTypeFactory().constructCollectionType(List.class, clazz);
             return OBJECT_MAPPER.readValue(reader, listType);
@@ -135,7 +135,7 @@ public final class JSONHelper {
      * @return An object of type T
      * @throws IOException If there is an error reading from the file
      */
-    public static <T extends JSONReadable> T loadFromJsonFile(String filePath, Class<T> clazz) throws IOException {
+    public static <T extends JSONSerializable> T loadFromJsonFile(String filePath, Class<T> clazz) throws IOException {
         try (FileReader reader = new FileReader(filePath)) {
             return OBJECT_MAPPER.readValue(reader, clazz);
         }
@@ -149,7 +149,7 @@ public final class JSONHelper {
      * @return A JSON string representation of the object
      * @throws RuntimeException If there is an error converting the object to JSON
      */
-    public static <T extends JSONWritable> String toJson(T object) {
+    public static <T extends JSONSerializable> String toJson(T object) {
         try {
             return OBJECT_MAPPER.writeValueAsString(object);
         } catch (JsonProcessingException e) {
@@ -166,7 +166,7 @@ public final class JSONHelper {
      * @return An object of type T
      * @throws RuntimeException If there is an error converting the JSON to an object
      */
-    public static <T extends JSONReadable> T fromJson(String json, Class<T> clazz) {
+    public static <T extends JSONSerializable> T fromJson(String json, Class<T> clazz) {
         try {
             return OBJECT_MAPPER.readValue(json, clazz);
         } catch (JsonProcessingException e) {

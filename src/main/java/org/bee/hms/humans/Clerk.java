@@ -4,8 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.bee.hms.auth.SystemUser;
-import org.bee.utils.JSONReadable;
-import org.bee.utils.JSONWritable;
+import org.bee.utils.JSONSerializable;
 
 import java.time.LocalDate;
 
@@ -14,8 +13,7 @@ import java.time.LocalDate;
  * Clerks are administrative staff members responsible for managing
  * paperwork, appointments, and other administrative tasks.
  */
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class Clerk extends Staff implements JSONReadable, JSONWritable, SystemUser {
+public class Clerk extends Staff implements JSONSerializable, SystemUser {
     /**
      * Creates a new instance of ClerkBuilder to construct a Clerk object.
      *

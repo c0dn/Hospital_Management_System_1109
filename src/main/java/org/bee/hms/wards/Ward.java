@@ -4,14 +4,13 @@ import java.util.Map;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.bee.utils.JSONReadable;
-import org.bee.utils.JSONWritable;
+import org.bee.utils.JSONSerializable;
 import org.bee.utils.jackson.WardDeserializer;
 import org.bee.utils.jackson.WardSerializer;
 
 @JsonSerialize(using = WardSerializer.class)
 @JsonDeserialize(using = WardDeserializer.class)
-public interface Ward extends JSONWritable, JSONReadable {
+public interface Ward extends JSONSerializable {
     /**
      * Retrieves the name of the ward.
      *

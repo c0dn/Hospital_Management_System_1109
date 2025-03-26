@@ -9,8 +9,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.bee.utils.CSVHelper;
-import org.bee.utils.JSONReadable;
-import org.bee.utils.JSONWritable;
+import org.bee.utils.JSONSerializable;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -27,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *     <li>Price per unit and manufacturer details</li>
  * </ul>
  */
-public class Medication implements JSONWritable, JSONReadable {
+public class Medication implements JSONSerializable {
     /** The unique drug code identifying this medication. */
     @JsonProperty("code")
     protected String drugCode;

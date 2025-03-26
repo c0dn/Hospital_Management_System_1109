@@ -3,8 +3,6 @@ package org.bee.hms.insurance;
 import org.bee.hms.claims.InsuranceClaim;
 import org.bee.hms.humans.Patient;
 import org.bee.hms.policy.InsurancePolicy;
-import org.bee.utils.JSONReadable;
-import org.bee.utils.JSONWritable;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;

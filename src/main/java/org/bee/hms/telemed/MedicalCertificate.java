@@ -7,15 +7,14 @@ import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.bee.utils.JSONReadable;
-import org.bee.utils.JSONWritable;
+import org.bee.utils.JSONSerializable;
 
 /**
  * Represents a medical certificate. Medical certificates in Singapore are usually simple.
  * Consisting of startDate, endDate, id and any additional remarks from the doctor.
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class MedicalCertificate implements JSONWritable, JSONReadable {
+public class MedicalCertificate implements JSONSerializable {
     private String id;
     private LocalDateTime startDate;
     private LocalDateTime endDate;

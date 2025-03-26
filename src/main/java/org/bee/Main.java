@@ -1,9 +1,6 @@
 package org.bee;
 
-import org.bee.controllers.AppointmentController;
-import org.bee.controllers.ClaimController;
-import org.bee.controllers.ConsultationController;
-import org.bee.controllers.HumanController;
+import org.bee.controllers.*;
 import org.bee.pages.LoginPage;
 import org.bee.ui.ApplicationContext;
 import org.bee.ui.Canvas;
@@ -23,7 +20,9 @@ public class Main {
     public static void main(String[] args) {
         // Init controllers first by getting instance
         HumanController.getInstance();
+        PolicyController.getInstance();
         AppointmentController.getInstance();
+        VisitController.getInstance();
         ClaimController.getInstance();
         ConsultationController.getInstance();
         var canvas = new Canvas();

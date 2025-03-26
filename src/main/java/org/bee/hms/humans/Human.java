@@ -2,9 +2,7 @@ package org.bee.hms.humans;
 
 import java.time.LocalDate;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import org.bee.utils.JSONReadable;
-import org.bee.utils.JSONWritable;
+import org.bee.utils.JSONSerializable;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -21,8 +19,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
     @JsonSubTypes.Type(value = Doctor.class, name = "doctor"),
     @JsonSubTypes.Type(value = Nurse.class, name = "nurse")
 })
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public abstract class Human implements JSONWritable, JSONReadable {
+public abstract class Human implements JSONSerializable {
 
     /**
      * The name of the person.

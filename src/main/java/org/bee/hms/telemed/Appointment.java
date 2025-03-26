@@ -10,8 +10,7 @@ import org.bee.hms.humans.Contact;
 import org.bee.hms.humans.Doctor;
 import org.bee.hms.humans.Patient;
 import org.bee.utils.DataGenerator;
-import org.bee.utils.JSONReadable;
-import org.bee.utils.JSONWritable;
+import org.bee.utils.JSONSerializable;
 
 /**
  * This class represents an appointment for a telemedicine integeration for a hospital
@@ -25,8 +24,7 @@ import org.bee.utils.JSONWritable;
  * appointment.approve(doctor, "zoomLinkExample");
  */
 
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class Appointment implements JSONWritable, JSONReadable {
+public class Appointment implements JSONSerializable {
     private Patient patient;
     private String reason;
     private String history;

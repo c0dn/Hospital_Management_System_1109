@@ -4,19 +4,16 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.bee.utils.JSONReadable;
-import org.bee.utils.JSONWritable;
+import org.bee.utils.JSONSerializable;
 
 /**
  * Represents a session for a virtual meeting via Zoom in the context of medical or professional interactions.
  * This class handles session details such as start and end times, connectivity issues, and session statuses,
  * providing methods to manage and record session activities effectively.
  */
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class Session implements JSONWritable, JSONReadable {
+public class Session implements JSONSerializable {
     private String id;
     private LocalDateTime startTime;
     private LocalDateTime endTime;

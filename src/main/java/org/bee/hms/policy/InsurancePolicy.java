@@ -1,7 +1,10 @@
 package org.bee.hms.policy;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.bee.hms.humans.Patient;
 import org.bee.hms.insurance.InsuranceProvider;
+import org.bee.utils.JSONSerializable;
 
 import java.time.LocalDateTime;
 
@@ -10,7 +13,14 @@ import java.time.LocalDateTime;
  * must follow, including getting details about the policy number, policyholder, insurance provider, coverage, and the
  * policy's status (active, expired, cancelled, pending).
  */
-public interface InsurancePolicy {
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "policyType")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = HeldInsurancePolicy.class, name = "held")
+})
+public interface InsurancePolicy extends JSONSerializable {
 
     /**
      * Returns the unique policy number for this insurance policy.

@@ -6,8 +6,7 @@ import org.bee.hms.medical.DiagnosticCode;
 import org.bee.hms.medical.MedicationBillableItem;
 import org.bee.hms.medical.ProcedureCode;
 import org.bee.hms.medical.WardStay;
-import org.bee.utils.JSONReadable;
-import org.bee.utils.JSONWritable;
+import org.bee.utils.JSONSerializable;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -22,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
     @JsonSubTypes.Type(value = DiagnosticCode.class, name = "diagnostic"),
     @JsonSubTypes.Type(value = WardStay.class, name = "wardStay")
 })
-public interface BillableItem extends JSONWritable, JSONReadable {
+public interface BillableItem extends JSONSerializable {
     BigDecimal getUnsubsidisedCharges();
     String getBillItemDescription();
     String getBillItemCategory();

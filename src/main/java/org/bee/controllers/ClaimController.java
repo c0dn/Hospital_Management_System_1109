@@ -3,6 +3,7 @@ package org.bee.controllers;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import org.bee.hms.billing.Bill;
@@ -14,11 +15,12 @@ import org.bee.hms.humans.Nurse;
 import org.bee.hms.humans.Patient;
 import org.bee.hms.insurance.GovernmentProvider;
 import org.bee.hms.insurance.InsuranceProvider;
-import org.bee.hms.insurance.PrivateProvider;
+import org.bee.hms.medical.Consultation;
 import org.bee.hms.medical.Visit;
 import org.bee.hms.medical.VisitStatus;
 import org.bee.hms.policy.Coverage;
-import org.bee.utils.DataGenerator;
+import org.bee.hms.policy.InsuranceCoverageResult;
+import org.bee.hms.policy.InsurancePolicy;
 
 /**
  * Controller class that manages all insurance claims in the system.
@@ -29,6 +31,8 @@ import org.bee.utils.DataGenerator;
 public class ClaimController extends BaseController<InsuranceClaim> {
     private static ClaimController instance;
     private static final HumanController humanController = HumanController.getInstance();
+    private static final PolicyController policyController = PolicyController.getInstance();
+
 
     protected ClaimController() {
         super();
@@ -54,24 +58,75 @@ public class ClaimController extends BaseController<InsuranceClaim> {
     @Override
     protected void generateInitialData() {
         System.out.println("Generating initial claim data...");
-        System.out.println("This could take a while");
 
         List<Patient> patients = humanController.getAllPatients();
+        PolicyController policyController = PolicyController.getInstance();
+        VisitController visitController = VisitController.getInstance();
+        ConsultationController consultationController = ConsultationController.getInstance();
+
         if (patients.isEmpty()) {
             System.err.println("No patients available to generate claims");
             return;
         }
 
+        AtomicInteger claimCount = new AtomicInteger();
+        // For each patient, create claims based on visits and consultations
         for (Patient patient : patients) {
-            PrivateProvider privateProvider = new PrivateProvider();
-            GovernmentProvider governmentProvider = new GovernmentProvider();
+            List<InsurancePolicy> policies = policyController.getAllPoliciesForPatient(patient);
 
-            generateValidClaimsForPatient(patient, privateProvider, 2);
+            if (policies.isEmpty()) {
+                continue; // Skip patients without policies
+            }
 
-            generateValidClaimsForPatient(patient, governmentProvider, 2);
+            for (InsurancePolicy policy : policies) {
+                InsuranceProvider provider = policy.getInsuranceProvider();
+
+                List<Visit> patientVisits = visitController.getAllItems().stream()
+                        .filter(v -> v.getPatient().equals(patient) && v.isDischarged())
+                        .toList();
+
+                for (Visit visit : patientVisits) {
+                    Bill bill = new BillBuilder()
+                            .withPatient(patient)
+                            .withVisit(visit)
+                            .withInsurancePolicy(policy)
+                            .build();
+
+                    InsuranceCoverageResult coverageResult = bill.calculateInsuranceCoverage();
+                    if (coverageResult.isApproved()) {
+                        Optional<InsuranceClaim> claim = coverageResult.claim();
+                        claim.ifPresent(c -> {
+                            items.add(c);
+                            provider.processClaim(patient, c);
+                            claimCount.getAndIncrement();
+                        });
+                    }
+                }
+
+                List<Consultation> patientConsultations = consultationController.getAllOutpatientCases().stream()
+                        .filter(c -> c.getPatient().equals(patient))
+                        .toList();
+
+                for (Consultation consultation : patientConsultations) {
+                    Bill bill = new BillBuilder()
+                            .withPatient(patient)
+                            .withConsultation(consultation)
+                            .withInsurancePolicy(policy)
+                            .build();
+
+                    InsuranceCoverageResult coverageResult = bill.calculateInsuranceCoverage();
+                    if (coverageResult.isApproved()) {
+                        Optional<InsuranceClaim> claim = coverageResult.claim();
+                        claim.ifPresent(c -> {
+                            items.add(c);
+                            provider.processClaim(patient, c);
+                            claimCount.getAndIncrement();
+                        });
+                    }
+                }
+            }
         }
-
-        System.out.println("Generated " + items.size() + " claims.");
+        System.out.println("Generated " + claimCount + " claims.");
     }
 
     /**
@@ -84,15 +139,23 @@ public class ClaimController extends BaseController<InsuranceClaim> {
      * @param count    The number of claims to generate
      */
     private void generateValidClaimsForPatient(Patient patient, InsuranceProvider provider, int count) {
-        // Get a policy for the patient
-        provider.getPatientPolicy(patient).ifPresent(policy -> {
+        // Get policy from the policy controller instead of provider directly
+        Optional<InsurancePolicy> policyOpt;
+
+        if (provider instanceof GovernmentProvider) {
+            policyOpt = policyController.getGovernmentPolicy(patient);
+        } else {
+            policyOpt = policyController.getPrivatePolicy(patient);
+        }
+
+        policyOpt.ifPresent(policy -> {
             Coverage coverage = policy.getCoverage();
 
             // Create multiple claims
             for (int i = 0; i < count; i++) {
                 List<Doctor> availableDoctors = humanController.getAllDoctors();
                 List<Nurse> availableNurses = humanController.getAllNurses();
-                
+
                 Visit visit = Visit.createCompatibleVisit(coverage, patient, availableDoctors, availableNurses);
 
                 visit.updateStatus(VisitStatus.DISCHARGED);
@@ -102,7 +165,6 @@ public class ClaimController extends BaseController<InsuranceClaim> {
                         .withVisit(visit)
                         .withInsurancePolicy(policy)
                         .build();
-
 
                 var coverageResult = bill.calculateInsuranceCoverage();
                 if (coverageResult.isApproved()) {

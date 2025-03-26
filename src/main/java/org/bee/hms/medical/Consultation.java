@@ -12,9 +12,10 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.bee.hms.billing.BillableItem;
 import org.bee.hms.humans.Doctor;
 import org.bee.hms.humans.Patient;
+import org.bee.hms.policy.BenefitType;
+import org.bee.hms.policy.Coverage;
 import org.bee.utils.DataGenerator;
-import org.bee.utils.JSONReadable;
-import org.bee.utils.JSONWritable;
+import org.bee.utils.JSONSerializable;
 import org.bee.utils.jackson.PrescriptionMapDeserializer;
 import org.bee.utils.jackson.PrescriptionMapSerializer;
 
@@ -26,8 +27,7 @@ import org.bee.utils.jackson.PrescriptionMapSerializer;
  * charges. It also provides methods to generate random consultations, calculate charges, and retrieve related billable items.
  * </p>
  */
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class Consultation implements JSONReadable, JSONWritable {
+public class Consultation implements JSONSerializable {
 
     /**
      * The unique consultation ID
@@ -244,6 +244,64 @@ public class Consultation implements JSONReadable, JSONWritable {
     }
 
 
+    /**
+     * Creates a consultation that is compatible with the given insurance policy coverage.
+     * Similar to createCompatibleVisit in the Visit class.
+     *
+     * @param coverage         The insurance coverage
+     * @param patient          The patient for this consultation
+     * @param availableDoctors List of doctors to choose from
+     * @return A consultation that will be covered by the policy
+     */
+    public static Consultation createCompatibleConsultation(Coverage coverage, Patient patient,
+                                                            List<Doctor> availableDoctors) {
+        Doctor doctor = null;
+        if (availableDoctors != null && !availableDoctors.isEmpty()) {
+            doctor = DataGenerator.getRandomElement(availableDoctors);
+        }
+
+        Consultation consultation = Consultation.withRandomData(patient, doctor);
+
+        Set<BenefitType> coveredBenefits = coverage.getCoveredBenefits();
+
+        consultation.clearDiagnosticCodes();
+        consultation.clearProcedureCodes();
+        consultation.clearPrescriptions();
+
+        for (BenefitType benefitType : coveredBenefits) {
+            try {
+                DiagnosticCode code = DiagnosticCode.getRandomCodeForBenefitType(benefitType, false);
+                consultation.diagnosticCodes.add(code);
+                if (consultation.getDiagnosticCodes().size() >= 2) break;
+            } catch (IllegalArgumentException ignored) {
+            }
+        }
+
+        for (BenefitType benefitType : coveredBenefits) {
+            try {
+                ProcedureCode code = ProcedureCode.getRandomCodeForBenefitType(benefitType, false);
+                consultation.procedureCodes.add(code);
+                if (consultation.getProcedureCodes().size() >= 2) break;
+            } catch (IllegalArgumentException ignored) {
+            }
+        }
+
+        for (String category : Medication.getAllCategories()) {
+            List<Medication> meds = Medication.getMedicationsByCategory(category, 5, true);
+            for (Medication med : meds) {
+                MedicationBillableItem item = new MedicationBillableItem(med, 1);
+                if (coverage.isItemCovered(item, false)) {
+                    consultation.addPrescription(med, 1 + DataGenerator.generateRandomInt(3));
+                    if (consultation.getPrescriptions().size() >= 3) break;
+                }
+            }
+            if (consultation.getPrescriptions().size() >= 3) break;
+        }
+
+        return consultation;
+    }
+
+
     public static Consultation withRandomData(Patient patient, Doctor doctor) {
         Consultation consultation = withRandomData();
         consultation.doctor = doctor;
@@ -265,17 +323,14 @@ public class Consultation implements JSONReadable, JSONWritable {
     public List<BillableItem> getRelatedBillableItems() {
         List<BillableItem> items = new ArrayList<>();
 
-        // Add diagnostics
         if (diagnosticCodes != null) {
             items.addAll(diagnosticCodes);
         }
 
-        // Add procedures
         if (procedureCodes != null) {
             items.addAll(procedureCodes);
         }
 
-        // Add medications with their quantities as MedicationBillableItem
         if (prescriptions != null) {
             prescriptions.forEach((medication, quantity) ->
                     items.add(new MedicationBillableItem(medication, quantity)));
@@ -287,6 +342,7 @@ public class Consultation implements JSONReadable, JSONWritable {
     public Doctor getDoctor() {
         return doctor;
     }
+
     /**
      * Calculates the total charges for the consultation.
      * <p>
@@ -300,21 +356,18 @@ public class Consultation implements JSONReadable, JSONWritable {
     public BigDecimal calculateCharges() {
         BigDecimal total = consultationFee;
 
-        // Add diagnostic charges
         if (diagnosticCodes != null) {
             total = total.add(diagnosticCodes.stream()
                     .map(DiagnosticCode::getUnsubsidisedCharges)
                     .reduce(BigDecimal.ZERO, BigDecimal::add));
         }
 
-        // Add procedure charges
         if (procedureCodes != null) {
             total = total.add(procedureCodes.stream()
                     .map(ProcedureCode::getUnsubsidisedCharges)
                     .reduce(BigDecimal.ZERO, BigDecimal::add));
         }
 
-        // Add prescription charges
         if (prescriptions != null) {
             total = total.add(prescriptions.entrySet().stream()
                     .map(entry -> entry.getKey().calculateCost(entry.getValue()))
@@ -461,16 +514,157 @@ public class Consultation implements JSONReadable, JSONWritable {
         return status;
     }
 
-    public void setDiagnosticCodes(List<DiagnosticCode> diagnosticCodes) {
-        this.diagnosticCodes = diagnosticCodes;
+    /**
+     * Gets the list of diagnostic codes for this consultation.
+     * The returned list can be modified directly to add or remove codes.
+     *
+     * @return The list of diagnostic codes
+     */
+    public List<DiagnosticCode> getDiagnosticCodes() {
+        if (this.diagnosticCodes == null) {
+            this.diagnosticCodes = new ArrayList<>();
+        }
+        return this.diagnosticCodes;
     }
 
-    public void setProcedureCodes(List<ProcedureCode> procedureCodes) {
-        this.procedureCodes = procedureCodes;
+    /**
+     * Adds a diagnostic code to this consultation.
+     *
+     * @param code The diagnostic code to add
+     * @return true if the code was added successfully
+     */
+    public boolean addDiagnosticCode(DiagnosticCode code) {
+        if (code == null) {
+            return false;
+        }
+        if (this.diagnosticCodes == null) {
+            this.diagnosticCodes = new ArrayList<>();
+        }
+        return this.diagnosticCodes.add(code);
     }
 
-    public void setPrescriptions(Map<Medication, Integer> prescriptions) {
-        this.prescriptions = prescriptions;
+    /**
+     * Removes a diagnostic code from this consultation.
+     *
+     * @param code The diagnostic code to remove
+     * @return true if the code was removed successfully
+     */
+    public boolean removeDiagnosticCode(DiagnosticCode code) {
+        if (this.diagnosticCodes == null || code == null) {
+            return false;
+        }
+        return this.diagnosticCodes.remove(code);
+    }
+
+    /**
+     * Clears all diagnostic codes from this consultation.
+     */
+    public void clearDiagnosticCodes() {
+        if (this.diagnosticCodes != null) {
+            this.diagnosticCodes.clear();
+        }
+    }
+
+    /**
+     * Gets the list of procedure codes for this consultation.
+     * The returned list can be modified directly to add or remove codes.
+     *
+     * @return The list of procedure codes
+     */
+    public List<ProcedureCode> getProcedureCodes() {
+        if (this.procedureCodes == null) {
+            this.procedureCodes = new ArrayList<>();
+        }
+        return this.procedureCodes;
+    }
+
+    /**
+     * Adds a procedure code to this consultation.
+     *
+     * @param code The procedure code to add
+     * @return true if the code was added successfully
+     */
+    public boolean addProcedureCode(ProcedureCode code) {
+        if (code == null) {
+            return false;
+        }
+        if (this.procedureCodes == null) {
+            this.procedureCodes = new ArrayList<>();
+        }
+        return this.procedureCodes.add(code);
+    }
+
+    /**
+     * Removes a procedure code from this consultation.
+     *
+     * @param code The procedure code to remove
+     * @return true if the code was removed successfully
+     */
+    public boolean removeProcedureCode(ProcedureCode code) {
+        if (this.procedureCodes == null || code == null) {
+            return false;
+        }
+        return this.procedureCodes.remove(code);
+    }
+
+    /**
+     * Clears all procedure codes from this consultation.
+     */
+    public void clearProcedureCodes() {
+        if (this.procedureCodes != null) {
+            this.procedureCodes.clear();
+        }
+    }
+
+    /**
+     * Gets the map of prescriptions for this consultation.
+     * The returned map can be modified directly to add or update prescriptions.
+     *
+     * @return The map of prescriptions
+     */
+    public Map<Medication, Integer> getPrescriptions() {
+        if (this.prescriptions == null) {
+            this.prescriptions = new HashMap<>();
+        }
+        return this.prescriptions;
+    }
+
+    /**
+     * Adds or updates a prescription in this consultation.
+     *
+     * @param medication The medication to prescribe
+     * @param quantity The quantity to prescribe
+     */
+    public void addPrescription(Medication medication, int quantity) {
+        if (medication == null || quantity <= 0) {
+            return;
+        }
+        if (this.prescriptions == null) {
+            this.prescriptions = new HashMap<>();
+        }
+        this.prescriptions.put(medication, quantity);
+    }
+
+    /**
+     * Removes a prescription from this consultation.
+     *
+     * @param medication The medication to remove
+     * @return true if the prescription was removed successfully
+     */
+    public boolean removePrescription(Medication medication) {
+        if (this.prescriptions == null || medication == null) {
+            return false;
+        }
+        return this.prescriptions.remove(medication) != null;
+    }
+
+    /**
+     * Clears all prescriptions from this consultation.
+     */
+    public void clearPrescriptions() {
+        if (this.prescriptions != null) {
+            this.prescriptions.clear();
+        }
     }
 
     public void setNotes(String notes) {

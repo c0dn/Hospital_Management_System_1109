@@ -3,8 +3,11 @@ package org.bee.hms.policy;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.bee.hms.humans.Patient;
 import org.bee.hms.insurance.InsuranceProvider;
+import org.bee.utils.JSONSerializable;
 
 /**
  * Represents an insurance policy that is actively held by a policyholder. This class extends {@link BaseInsurancePolicy}
@@ -13,7 +16,7 @@ import org.bee.hms.insurance.InsuranceProvider;
  * It includes attributes such as policy number, policyholder details, expiration date, cancellation date, and the policy's status.
  * </p>
  */
-public class HeldInsurancePolicy extends BaseInsurancePolicy implements InsurancePolicy {
+public class HeldInsurancePolicy extends BaseInsurancePolicy implements InsurancePolicy, JSONSerializable {
 
     private final String policyNumber;
     private final Patient policyHolder;
@@ -35,6 +38,21 @@ public class HeldInsurancePolicy extends BaseInsurancePolicy implements Insuranc
         this.name = builder.name;
         this.cancellationDate = builder.cancellationDate;
         this.status = Objects.requireNonNull(builder.status);
+    }
+
+
+    @JsonCreator
+    public static HeldInsurancePolicy fromJson(
+            @JsonProperty("policy_id") String policyId,
+            @JsonProperty("patient") Patient patient,
+            @JsonProperty("coverage") Coverage coverage,
+            @JsonProperty("provider") InsuranceProvider provider,
+            @JsonProperty("name") String name,
+            @JsonProperty("expiration_date") LocalDateTime expirationDate
+    ) {
+        return new HeldInsurancePolicy.Builder(policyId, patient, coverage, provider, name)
+                .withExpirationDate(expirationDate)
+                .build();
     }
 
     /**

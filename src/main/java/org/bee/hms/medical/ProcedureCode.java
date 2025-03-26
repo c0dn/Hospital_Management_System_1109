@@ -6,10 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import org.bee.hms.billing.BillableItem;
 import org.bee.hms.policy.BenefitType;
 import org.bee.hms.policy.ClaimableItem;
@@ -23,6 +20,12 @@ import org.bee.utils.DataGenerator;
  * billing and claims of the procedure.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonAutoDetect(
+        fieldVisibility = JsonAutoDetect.Visibility.ANY,
+        getterVisibility = JsonAutoDetect.Visibility.NONE,
+        setterVisibility = JsonAutoDetect.Visibility.NONE,
+        isGetterVisibility = JsonAutoDetect.Visibility.NONE
+)
 public class ProcedureCode implements BillableItem, ClaimableItem {
 
     @JsonProperty("code")
@@ -107,7 +110,6 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
      * @return A string representing the billing item code.
      */
     @Override
-    @JsonIgnore
     public String getBillingItemCode() {
         return String.format("PROC-%s", code);
     }
@@ -118,7 +120,6 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
      * @return The unsubsidised charges for the procedure.
      */
     @Override
-    @JsonIgnore
     public BigDecimal getUnsubsidisedCharges() {
         return price;
     }
@@ -129,7 +130,6 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
      * @return The procedure description.
      */
     @Override
-    @JsonIgnore
     public String getBillItemDescription() {
         return description;
     }
@@ -140,7 +140,6 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
      * @return The category of the bill item.
      */
     @Override
-    @JsonIgnore
     public String getBillItemCategory() {
         return "PROCEDURE";
     }
@@ -161,7 +160,6 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
      * @return The charges for the procedure.
      */
     @Override
-    @JsonIgnore
     public BigDecimal getCharges() {
         return price;
     }
@@ -174,7 +172,6 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
      * @return A {@link BenefitType} representing the type of benefit for the procedure.
      */
     @Override
-    @JsonIgnore
     public BenefitType resolveBenefitType(boolean isInpatient) {
         if (code == null || code.length() < 2) return defaultFallback(isInpatient);
 
@@ -222,7 +219,6 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
      * @return A string representing a description of the procedure benefit.
      */
     @Override
-    @JsonIgnore
     public String getBenefitDescription(boolean isInpatient) {
         StringBuilder description = new StringBuilder();
         description.append(isInpatient ? "Inpatient" : "Outpatient")
@@ -246,7 +242,6 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
      * @param secondChar The second character in the procedure code.
      * @return The body system description, or null if not applicable.
      */
-    @JsonIgnore
     private String getBodySystem(char secondChar) {
         // This method appears to be for the Medical and Surgical section (0)
         // Body systems vary by section, so ideally this would check the first character too
@@ -291,7 +286,6 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
      *
      * @return A string representing the procedure section.
      */
-    @JsonIgnore
     public String getProcedureSection() {
         char firstDigit = code.charAt(0);
         return switch (firstDigit) {
@@ -322,7 +316,6 @@ public class ProcedureCode implements BillableItem, ClaimableItem {
      * @return The procedure code.
      */
     @Override
-    @JsonIgnore
     public String getProcedureCode() {
         return code;
     }

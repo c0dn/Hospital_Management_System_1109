@@ -2,8 +2,7 @@ package org.bee.controllers;
 
 import org.bee.utils.InfoUpdaters.UpdaterBase;
 import org.bee.utils.JSONHelper;
-import org.bee.utils.JSONReadable;
-import org.bee.utils.JSONWritable;
+import org.bee.utils.JSONSerializable;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,7 +13,7 @@ import java.util.List;
  * Abstract base class for controllers that handle loading and saving data to JSON files.
  * @param <T> The type of entity managed by this controller (must be both JSONReadable and JSONWritable)
  */
-public abstract class BaseController<T extends JSONReadable & JSONWritable> {
+public abstract class BaseController<T extends JSONSerializable> {
 
     protected static final String DATABASE_DIR = System.getProperty("database.dir", "database");
     protected final List<T> items = new ArrayList<>();

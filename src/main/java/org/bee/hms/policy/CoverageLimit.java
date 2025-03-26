@@ -1,6 +1,8 @@
 package org.bee.hms.policy;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.bee.hms.wards.WardClassType;
+import org.bee.utils.JSONSerializable;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -16,7 +18,7 @@ import java.util.Optional;
  * using the builder pattern.
  * </p>
  */
-public class CoverageLimit {
+public class CoverageLimit implements JSONSerializable {
 
     private BigDecimal annualLimit;
     private BigDecimal lifetimeLimit;
