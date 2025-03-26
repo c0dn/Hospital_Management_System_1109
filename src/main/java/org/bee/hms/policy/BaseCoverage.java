@@ -1,5 +1,8 @@
 package org.bee.hms.policy;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Set;
@@ -44,6 +47,56 @@ public class BaseCoverage implements Coverage {
         this.deathBenefitAmount = builder.deathBenefitAmount;
         this.coveredBenefits = builder.coveredBenefits;
         this.exclusions = builder.exclusions;
+    }
+
+
+    /**
+     * JSON Creator method for deserializing BaseCoverage objects from JSON.
+     *
+     * @param limits The coverage limits
+     * @param deductible The deductible amount
+     * @param coinsurance The coinsurance percentage
+     * @param deathBenefitAmount The death benefit amount
+     * @param coveredBenefits The set of covered benefits
+     * @param exclusions The exclusion criteria
+     * @return A new BaseCoverage instance initialized with the provided values
+     */
+    @JsonCreator
+    public static BaseCoverage create(
+            @JsonProperty("limits") CoverageLimit limits,
+            @JsonProperty("deductible") BigDecimal deductible,
+            @JsonProperty("coinsurance") BigDecimal coinsurance,
+            @JsonProperty("deathBenefitAmount") BigDecimal deathBenefitAmount,
+            @JsonProperty("coveredBenefits") Set<BenefitType> coveredBenefits,
+            @JsonProperty("exclusions") ExclusionCriteria exclusions) {
+
+        Builder builder = new Builder();
+
+        if (limits != null) {
+            builder.withLimits(limits);
+        }
+
+        if (deductible != null) {
+            builder.withDeductible(deductible);
+        }
+
+        if (coinsurance != null) {
+            builder.withCoinsurance(coinsurance);
+        }
+
+        if (deathBenefitAmount != null) {
+            builder.withDeathBenefitAmount(deathBenefitAmount);
+        }
+
+        if (coveredBenefits != null) {
+            builder.withCoveredBenefits(coveredBenefits);
+        }
+
+        if (exclusions != null) {
+            builder.withExclusions(exclusions);
+        }
+
+        return builder.build();
     }
 
     /**

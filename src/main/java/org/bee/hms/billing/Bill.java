@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.bee.hms.claims.InsuranceClaim;
 import org.bee.hms.humans.Patient;
 import org.bee.hms.policy.*;
+import org.bee.utils.JSONSerializable;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -15,7 +16,7 @@ import java.util.*;
  * Represents a bill for a patient, containing billing items, categorized charges,
  * and billing status. Supports adding line items and retrieving total charges by category.
  */
-public class Bill {
+public class Bill implements JSONSerializable {
     /** Unique identifier for the bill. */
     private String billId;
     /**
@@ -245,5 +246,13 @@ public class Bill {
 
     public Patient getPatient() {
         return patient;
+    }
+
+    public BillingStatus getStatus() {
+        return status;
+    }
+
+    public InsurancePolicy getInsurancePolicy() {
+        return insurancePolicy;
     }
 }

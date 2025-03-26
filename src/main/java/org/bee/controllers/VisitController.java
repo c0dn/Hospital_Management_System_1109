@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 public class VisitController extends BaseController<Visit> {
     private static VisitController instance;
     private static final HumanController humanController = HumanController.getInstance();
-    private static final PolicyController policyController = PolicyController.getInstance();
 
     protected VisitController() {
         super();

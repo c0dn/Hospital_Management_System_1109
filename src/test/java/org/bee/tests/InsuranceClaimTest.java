@@ -223,7 +223,7 @@ public class InsuranceClaimTest {
         assertTrue(claim.isDraft(), "New claim should be in DRAFT status");
 
         // Submit claim
-        claim.submit();
+        provider.submitClaim(testPatient, claim);
         assertTrue(claim.isSubmitted(), "Claim should be in SUBMITTED status after submit()");
 
         // Process claim

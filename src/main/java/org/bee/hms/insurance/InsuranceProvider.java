@@ -66,4 +66,14 @@ public abstract class InsuranceProvider {
         return providerName;
     }
 
+    /**
+     * Submits an insurance claim for a given patient.
+     * This method will send patients' claim information to the provider system.
+     *
+     * @param patient The patient associated with the insurance claim.
+     * @param claim The insurance claim to be processed.
+     * @return {@code true} if the claim is successfully submmited, {@code false} otherwise.
+     */
+    public abstract boolean submitClaim(Patient patient, InsuranceClaim claim);
+
 }

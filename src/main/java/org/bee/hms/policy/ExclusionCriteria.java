@@ -1,10 +1,12 @@
 package org.bee.hms.policy;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.bee.hms.medical.DiagnosticCode;
 import org.bee.hms.medical.ProcedureCode;
+import org.bee.utils.JSONSerializable;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -16,7 +18,7 @@ import java.util.stream.Collectors;
  * from coverage based on patterns (for diagnoses and procedures) and specific benefit or accident types.
  * </p>
  */
-public class ExclusionCriteria {
+public class ExclusionCriteria implements JSONSerializable {
 
     private final List<Pattern> excludedDiagnosisPatterns;
     private final List<Pattern> excludedProcedurePatterns;
@@ -35,8 +37,42 @@ public class ExclusionCriteria {
                              Set<BenefitType> excludedBenefits, Set<AccidentType> excludedAccidentTypes) {
         this.excludedDiagnosisPatterns = compilePatterns(excludedDiagnosis);
         this.excludedProcedurePatterns = compilePatterns(excludedProcedures);
-        this.excludedBenefits = excludedBenefits;
-        this.excludedAccidentTypes = excludedAccidentTypes;
+        this.excludedBenefits = excludedBenefits != null ? new HashSet<>(excludedBenefits) : new HashSet<>();
+        this.excludedAccidentTypes = excludedAccidentTypes != null ? new HashSet<>(excludedAccidentTypes) : new HashSet<>();
+    }
+
+
+    /**
+     * Private constructor used by the builder or JSON creator
+     */
+    private ExclusionCriteria(
+            List<Pattern> excludedDiagnosisPatterns,
+            List<Pattern> excludedProcedurePatterns,
+            Set<BenefitType> excludedBenefits,
+            Set<AccidentType> excludedAccidentTypes
+    ) {
+        this.excludedDiagnosisPatterns = new ArrayList<>(excludedDiagnosisPatterns);
+        this.excludedProcedurePatterns = new ArrayList<>(excludedProcedurePatterns);
+        this.excludedBenefits = new HashSet<>(excludedBenefits);
+        this.excludedAccidentTypes = new HashSet<>(excludedAccidentTypes);
+    }
+
+    /**
+     * JSON Creator method for deserializing ExclusionCriteria
+     */
+    @JsonCreator
+    public static ExclusionCriteria create(
+            @JsonProperty("excludedDiagnosis") Set<String> excludedDiagnosis,
+            @JsonProperty("excludedProcedures") Set<String> excludedProcedures,
+            @JsonProperty("excludedBenefits") Set<BenefitType> excludedBenefits,
+            @JsonProperty("excludedAccidentTypes") Set<AccidentType> excludedAccidentTypes
+    ) {
+        return new ExclusionCriteria(
+                compilePatterns(excludedDiagnosis),
+                compilePatterns(excludedProcedures),
+                excludedBenefits == null ? Collections.emptySet() : excludedBenefits,
+                excludedAccidentTypes == null ? Collections.emptySet() : excludedAccidentTypes
+        );
     }
 
     /**
@@ -45,8 +81,13 @@ public class ExclusionCriteria {
      * @param patterns A set of strings to compile into regular expression patterns.
      * @return A list of compiled regular expression patterns.
      */
-    private List<Pattern> compilePatterns(Set<String> patterns) {
+    private static List<Pattern> compilePatterns(Set<String> patterns) {
+        if (patterns == null || patterns.isEmpty()) {
+            return Collections.emptyList();
+        }
+
         return patterns.stream()
+                .filter(Objects::nonNull)
                 .map(p -> Pattern.compile(p, Pattern.CASE_INSENSITIVE))
                 .collect(Collectors.toList());
     }

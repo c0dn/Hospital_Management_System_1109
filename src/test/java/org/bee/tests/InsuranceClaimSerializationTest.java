@@ -150,9 +150,6 @@ public class InsuranceClaimSerializationTest {
         // Add comments
         claim.updateComments("Patient has a history of similar conditions");
 
-        // Submit the claim to change its status
-        claim.submit();
-
         return claim;
     }
 }

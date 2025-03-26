@@ -41,18 +41,39 @@ public class HeldInsurancePolicy extends BaseInsurancePolicy implements Insuranc
     }
 
 
+    /**
+     * JSON Creator method for deserializing HeldInsurancePolicy
+     */
     @JsonCreator
-    public static HeldInsurancePolicy fromJson(
-            @JsonProperty("policy_id") String policyId,
-            @JsonProperty("patient") Patient patient,
+    public static HeldInsurancePolicy create(
+            @JsonProperty("policyNumber") String policyNumber,
+            @JsonProperty("policyHolder") Patient policyHolder,
             @JsonProperty("coverage") Coverage coverage,
             @JsonProperty("provider") InsuranceProvider provider,
             @JsonProperty("name") String name,
-            @JsonProperty("expiration_date") LocalDateTime expirationDate
+            @JsonProperty("expirationDate") LocalDateTime expirationDate,
+            @JsonProperty("cancellationDate") LocalDateTime cancellationDate,
+            @JsonProperty("status") InsuranceStatus status
     ) {
-        return new HeldInsurancePolicy.Builder(policyId, patient, coverage, provider, name)
-                .withExpirationDate(expirationDate)
-                .build();
+        Builder builder = new Builder(
+                policyNumber,
+                policyHolder,
+                coverage,
+                provider,
+                name
+        );
+
+        if (expirationDate != null) {
+            builder.withExpirationDate(expirationDate);
+        }
+
+        if (cancellationDate != null) {
+            builder.withCancellationDate(cancellationDate);
+        }
+
+        builder.withStatus(Objects.requireNonNullElse(status, InsuranceStatus.ACTIVE));
+
+        return builder.build();
     }
 
     /**

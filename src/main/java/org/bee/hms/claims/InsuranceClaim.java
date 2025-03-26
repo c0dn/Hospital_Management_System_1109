@@ -353,16 +353,6 @@ public class InsuranceClaim implements JSONSerializable {
         this.claimStatus = newStatus;
     }
 
-    /**
-     * Submits the claim, changing its status to SUBMITTED.
-     *
-     * @throws IllegalStateException if the claim is not in DRAFT status
-     */
-    public void submit() {
-        validateStatusTransition(ClaimStatus.SUBMITTED);
-        this.claimStatus = ClaimStatus.SUBMITTED;
-    }
-
 
     /**
      * Checks if the claim is in draft status.

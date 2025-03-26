@@ -1,5 +1,6 @@
 package org.bee.hms.billing;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
@@ -112,6 +113,20 @@ public enum BillingStatus {
      */
     public boolean isInsuranceRelated() {
         return this == INSURANCE_PENDING || this == INSURANCE_APPROVED || this == INSURANCE_REJECTED;
+    }
+
+    @JsonCreator
+    public static BillingStatus fromString(String value) {
+        try {
+            return valueOf(value.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            for (BillingStatus status : values()) {
+                if (status.displayName.equalsIgnoreCase(value)) {
+                    return status;
+                }
+            }
+            throw new IllegalArgumentException("Unknown BillingStatus: " + value);
+        }
     }
 
     /**

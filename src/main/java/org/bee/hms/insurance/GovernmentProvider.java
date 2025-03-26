@@ -51,14 +51,14 @@ public class GovernmentProvider extends InsuranceProvider {
 
         // MediShield Life
         CoverageLimit mediShieldLimit = new CoverageLimit.Builder()
-                .withAnnualLimit(BigDecimal.valueOf(150000))
-                .withLifetimeLimit(BigDecimal.valueOf(2000000))
-                .addBenefitLimit(BenefitType.HOSPITALIZATION, 1200)
-                .addBenefitLimit(BenefitType.SURGERY, 4500)
-                .addBenefitLimit(BenefitType.ONCOLOGY_TREATMENTS, 3000)
-                .addBenefitLimit(BenefitType.ACCIDENT, 150000)
-                .addWardLimit(WardClassType.GENERAL_CLASS_B2, 150000)
-                .addWardLimit(WardClassType.GENERAL_CLASS_C, 150000)
+                .withAnnualLimit(new BigDecimal("150000"))
+                .withLifetimeLimit(new BigDecimal("2000000"))
+                .addBenefitLimit(BenefitType.HOSPITALIZATION, new BigDecimal("1200"))
+                .addBenefitLimit(BenefitType.SURGERY, new BigDecimal("4500"))
+                .addBenefitLimit(BenefitType.ONCOLOGY_TREATMENTS, new BigDecimal("3000"))
+                .addBenefitLimit(BenefitType.ACCIDENT, new BigDecimal("150000"))
+                .addWardLimit(WardClassType.GENERAL_CLASS_B2, new BigDecimal("150000"))
+                .addWardLimit(WardClassType.GENERAL_CLASS_C, new BigDecimal("150000"))
                 .build();
 
         BaseCoverage mediShieldCoverage = new BaseCoverage.Builder()
@@ -83,9 +83,9 @@ public class GovernmentProvider extends InsuranceProvider {
 
         // CareShield Life
         CoverageLimit careShieldLimit = new CoverageLimit.Builder()
-                .withAnnualLimit(BigDecimal.valueOf(50000))
-                .addAccidentLimit(AccidentType.PERMANENT_DISABILITY, 600)
-                .addBenefitLimit(BenefitType.CRITICAL_ILLNESS, 120000)
+                .withAnnualLimit(new BigDecimal("50000"))
+                .addAccidentLimit(AccidentType.PERMANENT_DISABILITY, new BigDecimal("600"))
+                .addBenefitLimit(BenefitType.CRITICAL_ILLNESS, new BigDecimal("120000"))
                 .build();
 
         BaseCoverage careShieldCoverage = new BaseCoverage.Builder()
@@ -118,8 +118,8 @@ public class GovernmentProvider extends InsuranceProvider {
 
         // ElderShield Supplement
         CoverageLimit elderShieldLimit = new CoverageLimit.Builder()
-                .withAnnualLimit(BigDecimal.valueOf(75000))
-                .addAccidentLimit(AccidentType.PERMANENT_DISABILITY, 400)
+                .withAnnualLimit(new BigDecimal("75000"))
+                .addAccidentLimit(AccidentType.PERMANENT_DISABILITY, new BigDecimal("400"))
                 .build();
 
         BaseCoverage elderShieldCoverage = new BaseCoverage.Builder()
@@ -172,6 +172,21 @@ public class GovernmentProvider extends InsuranceProvider {
         // Always approve fully for testing purposes
         claim.updateStatus(ClaimStatus.IN_REVIEW);
         claim.updateStatus(ClaimStatus.APPROVED);
+        return true;
+    }
+
+    /**
+     * Submits an insurance claim for a given patient.
+     * This method will send patients' claim information to the provider system.
+     *
+     * @param patient The patient associated with the insurance claim.
+     * @param claim The insurance claim to be processed.
+     * @return A boolean value indicating if the claim was successfully submitted.
+     */
+    @Override
+    public boolean submitClaim(Patient patient, InsuranceClaim claim) {
+        // In the real world, this will be the step where we submit a claim and it's details to the provider's system.
+        claim.updateStatus(ClaimStatus.SUBMITTED);
         return true;
     }
 

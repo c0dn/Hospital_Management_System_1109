@@ -48,6 +48,23 @@ public class PrivateProvider extends InsuranceProvider {
         return true;
     }
 
+
+    /**
+     * Submits an insurance claim for a given patient.
+     * This method will send patients' claim information to the provider system.
+     *
+     * @param patient The patient associated with the insurance claim.
+     * @param claim The insurance claim to be processed.
+     * @return A boolean value indicating if the claim was successfully submitted.
+     */
+    @Override
+    public boolean submitClaim(Patient patient, InsuranceClaim claim) {
+        // In the real world, this will be the step where we submit a claim and it's details to the provider's system.
+        claim.updateStatus(ClaimStatus.SUBMITTED);
+        return true;
+    }
+
+
     /**
      * Retrieves the insurance policy for a given patient.
      * <p>
@@ -73,15 +90,15 @@ public class PrivateProvider extends InsuranceProvider {
         ));
 
         CoverageLimit coverageLimit = new CoverageLimit.Builder()
-                .withAnnualLimit(BigDecimal.valueOf(DataGenerator.generateRandomInt(100_000, 1_000_000)))
-                .withLifetimeLimit(BigDecimal.valueOf(DataGenerator.generateRandomInt(1_000_000, 10_000_000)))
-                .addBenefitLimit(BenefitType.HOSPITALIZATION, DataGenerator.generateRandomInt(2_000, 10_000))
-                .addBenefitLimit(BenefitType.SURGERY, DataGenerator.generateRandomInt(10_000, 100_000))
-                .addBenefitLimit(BenefitType.DIAGNOSTIC_IMAGING, DataGenerator.generateRandomInt(1_000, 5_000))
-                .addBenefitLimit(BenefitType.ONCOLOGY_TREATMENTS, DataGenerator.generateRandomInt(5_000, 20_000))
-                .addWardLimit(WardClassType.GENERAL_CLASS_A, DataGenerator.generateRandomInt(150_000, 300_000))
-                .addWardLimit(WardClassType.GENERAL_CLASS_B1, DataGenerator.generateRandomInt(100_000, 200_000))
-                .addWardLimit(WardClassType.GENERAL_CLASS_C, DataGenerator.generateRandomInt(100_000, 200_000))
+                .withAnnualLimit(new BigDecimal(DataGenerator.generateRandomInt(100_000, 1_000_000)))
+                .withLifetimeLimit(new BigDecimal(DataGenerator.generateRandomInt(1_000_000, 10_000_000)))
+                .addBenefitLimit(BenefitType.HOSPITALIZATION, new BigDecimal(DataGenerator.generateRandomInt(2_000, 10_000)))
+                .addBenefitLimit(BenefitType.SURGERY, new BigDecimal(DataGenerator.generateRandomInt(10_000, 100_000)))
+                .addBenefitLimit(BenefitType.DIAGNOSTIC_IMAGING, new BigDecimal(DataGenerator.generateRandomInt(1_000, 5_000)))
+                .addBenefitLimit(BenefitType.ONCOLOGY_TREATMENTS, new BigDecimal(DataGenerator.generateRandomInt(5_000, 20_000)))
+                .addWardLimit(WardClassType.GENERAL_CLASS_A, new BigDecimal(DataGenerator.generateRandomInt(150_000, 300_000)))
+                .addWardLimit(WardClassType.GENERAL_CLASS_B1, new BigDecimal(DataGenerator.generateRandomInt(100_000, 200_000)))
+                .addWardLimit(WardClassType.GENERAL_CLASS_C, new BigDecimal(DataGenerator.generateRandomInt(100_000, 200_000)))
                 .build();
 
         Set<String> diagnosisCodes = new HashSet<>(Arrays.asList(

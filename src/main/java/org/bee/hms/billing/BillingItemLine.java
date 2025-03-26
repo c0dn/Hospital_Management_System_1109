@@ -1,5 +1,9 @@
 package org.bee.hms.billing;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.bee.utils.JSONSerializable;
+
 import java.math.BigDecimal;
 
 /**
@@ -7,7 +11,7 @@ import java.math.BigDecimal;
  * Each billing item is associated with a {@link BillableItem}, has a quantity,
  * and maintains its unit price and total price.
  */
-public class BillingItemLine {
+public class BillingItemLine implements JSONSerializable {
     /** The billable item associated with this billing entry. */
     private BillableItem item;
     /** The quantity of the item being billed. */
@@ -24,7 +28,10 @@ public class BillingItemLine {
      * @param item The billable item being added to the bill
      * @param quantity The number of units of the item being billed
      */
-    public BillingItemLine(BillableItem item, int quantity) {
+    @JsonCreator
+    public BillingItemLine(
+            @JsonProperty("item") BillableItem item,
+            @JsonProperty("quantity") int quantity) {
         this.item = item;
         this.quantity = quantity;
         this.unitPrice = item.getUnsubsidisedCharges();
