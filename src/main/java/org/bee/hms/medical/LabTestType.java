@@ -2,12 +2,13 @@ package org.bee.hms.medical;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import org.bee.utils.JSONSerializable;
 
 /**
  * Enums for lab test types
  */
 @JsonFormat(shape = JsonFormat.Shape.STRING)
-public enum LabTestType {
+public enum LabTestType implements JSONSerializable {
     BLOOD,
     URINE,
     STOOL;

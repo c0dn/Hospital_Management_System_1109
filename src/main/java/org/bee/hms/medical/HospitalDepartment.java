@@ -2,12 +2,13 @@ package org.bee.hms.medical;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.bee.utils.JSONSerializable;
 
 /**
  * Enums for type of departments
  */
 @JsonFormat(shape = JsonFormat.Shape.STRING)
-public enum HospitalDepartment {
+public enum HospitalDepartment implements JSONSerializable {
     /** Department specializing in the diagnosis and treatment of adult diseases. */
     INTERNAL_MEDICINE,
 

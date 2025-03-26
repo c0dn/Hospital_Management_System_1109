@@ -2,6 +2,7 @@ package org.bee.hms.telemed;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.bee.utils.JSONSerializable;
 
 /**
  * Enumerates the possible states of a session in the healthcare or service delivery context.
@@ -14,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  * consultations, or any interaction that has a distinct start and end.
  */
 @JsonFormat(shape = JsonFormat.Shape.STRING)
-public enum SessionStatus {
+public enum SessionStatus implements JSONSerializable {
     /**
      * Indicates that the session is currently in progress. This status is used to signify that an appointment
      * or consultation has started but has not yet concluded.

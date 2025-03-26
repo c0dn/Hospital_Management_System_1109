@@ -16,7 +16,6 @@ import org.bee.hms.auth.SystemUser;
  * </ul>
  */
 
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Staff extends Human {
     /** The unique identifier for the staff. */
     protected String staffId;

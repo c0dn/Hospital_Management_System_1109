@@ -15,7 +15,6 @@ import java.time.LocalDate;
  * {@link NurseBuilder} to ensure proper initialization of required fields.
  * </p>
  */
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Nurse extends Staff implements SystemUser {
 
     /** The Registered Nurse ID (RNID) of a nurse. */

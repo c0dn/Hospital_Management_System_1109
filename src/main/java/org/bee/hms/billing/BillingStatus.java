@@ -2,13 +2,14 @@ package org.bee.hms.billing;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.bee.utils.JSONSerializable;
 
 /**
  * Represents the various statuses a bill can have throughout its lifecycle.
  * Each status includes a display name and a description.
  */
 @JsonFormat(shape = JsonFormat.Shape.STRING)
-public enum BillingStatus {
+public enum BillingStatus implements JSONSerializable {
     /** The bill is being prepared and has not yet been finalized. */
     DRAFT("Draft", "Bill is being prepared"),
     /** The bill has been generated but not yet processed. */

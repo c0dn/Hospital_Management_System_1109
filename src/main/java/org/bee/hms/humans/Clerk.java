@@ -13,7 +13,7 @@ import java.time.LocalDate;
  * Clerks are administrative staff members responsible for managing
  * paperwork, appointments, and other administrative tasks.
  */
-public class Clerk extends Staff implements JSONSerializable, SystemUser {
+public class Clerk extends Staff implements SystemUser {
     /**
      * Creates a new instance of ClerkBuilder to construct a Clerk object.
      *

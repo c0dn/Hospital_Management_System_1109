@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.bee.hms.auth.SystemUser;
+import org.bee.utils.JSONSerializable;
 
 /**
  * Represents a patient in the insurance system.
@@ -18,7 +19,6 @@ import org.bee.hms.auth.SystemUser;
  * height, weight, occupation, and company-related details.
  * </p>
  */
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Patient extends Human implements SystemUser {
     /** The unique identifier for the patient. */
     private final String patientId;

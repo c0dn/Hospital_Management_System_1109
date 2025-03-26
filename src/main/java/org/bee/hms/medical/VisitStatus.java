@@ -2,6 +2,7 @@ package org.bee.hms.medical;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.bee.utils.JSONSerializable;
 
 /**
  * Defines the status of a patient's visit.
@@ -16,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  * </ul>
  */
 @JsonFormat(shape = JsonFormat.Shape.STRING)
-public enum VisitStatus {
+public enum VisitStatus implements JSONSerializable {
     /**
      * The patient has been admitted
      */

@@ -2,6 +2,7 @@ package org.bee.hms.telemed;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.bee.utils.JSONSerializable;
 
 /**
  * Enumerates the possible statuses of an appointment within the system.
@@ -9,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  * enabling systematic handling of appointment workflows and user interactions.
  */
 @JsonFormat(shape = JsonFormat.Shape.STRING)
-public enum AppointmentStatus {
+public enum AppointmentStatus implements JSONSerializable {
     /**
      * Indicates that the appointment has been accepted by the healthcare provider.
      * This status is used when an appointment has been reviewed and approved, allowing for further

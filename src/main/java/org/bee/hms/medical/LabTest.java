@@ -1,6 +1,7 @@
 package org.bee.hms.medical;
 
 import org.bee.hms.humans.Doctor;
+import org.bee.utils.JSONSerializable;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,7 +12,7 @@ import java.util.List;
  * a unique lab test ID, lab test type, date stamp, status, the associated outpatient case,
  * the physician who ordered or performed the test, remarks, and cost.
  */
-public class LabTest {
+public class LabTest implements JSONSerializable {
     /** Static counter to generate unique lab test IDs. */
     private static int count = 0;
 

@@ -1,5 +1,7 @@
 package org.bee.hms.medical;
 
+import org.bee.utils.JSONSerializable;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,7 +11,7 @@ import java.util.List;
  * treatment ID, a treatment name, status, start and end dates, notes, cost, and a list of procedures
  * associated with it.
  */
-public class Treatment {
+public class Treatment implements JSONSerializable {
     /** Static counter to generate unique treatment IDs. */
     private static int count = 0;
 

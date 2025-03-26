@@ -12,6 +12,7 @@ import org.bee.hms.policy.BenefitType;
 import org.bee.hms.policy.ClaimableItem;
 import org.bee.utils.CSVHelper;
 import org.bee.utils.DataGenerator;
+import org.bee.utils.JSONSerializable;
 
 /**
  * Represents a medical procedure code with associated description and price.
@@ -19,14 +20,7 @@ import org.bee.utils.DataGenerator;
  * This class implements {@link BillableItem} and {@link ClaimableItem} interfaces to handle the
  * billing and claims of the procedure.
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonAutoDetect(
-        fieldVisibility = JsonAutoDetect.Visibility.ANY,
-        getterVisibility = JsonAutoDetect.Visibility.NONE,
-        setterVisibility = JsonAutoDetect.Visibility.NONE,
-        isGetterVisibility = JsonAutoDetect.Visibility.NONE
-)
-public class ProcedureCode implements BillableItem, ClaimableItem {
+public class ProcedureCode implements BillableItem, ClaimableItem, JSONSerializable {
 
     @JsonProperty("code")
     private String code;

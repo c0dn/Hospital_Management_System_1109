@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.bee.hms.billing.BillableItem;
 import org.bee.hms.policy.BenefitType;
 import org.bee.hms.policy.ClaimableItem;
+import org.bee.utils.JSONSerializable;
+
 /**
  * Represents a billable item for medication in an insurance claim.
  * <p>

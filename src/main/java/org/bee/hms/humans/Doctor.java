@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.bee.hms.auth.SystemUser;
 import org.bee.hms.medical.Consultation;
+import org.bee.utils.JSONSerializable;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -15,7 +16,6 @@ import java.util.ArrayList;
  *     A doctor is a specialized type of {@link Staff} with an additional Medical Council Registration (MCR) number.
  * </p>
  */
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Doctor extends Staff implements SystemUser {
 
     /**

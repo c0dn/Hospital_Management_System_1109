@@ -2,6 +2,7 @@ package org.bee.hms.policy;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.bee.utils.JSONSerializable;
 
 /**
  * Enum representing the various types of benefits available under an insurance policy.
@@ -11,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  * </p>
  */
 @JsonFormat(shape = JsonFormat.Shape.STRING)
-public enum BenefitType {
+public enum BenefitType implements JSONSerializable {
     /** Coverage for inpatient admissions to a hospital. */
     HOSPITALIZATION,      // Inpatient admissions
 

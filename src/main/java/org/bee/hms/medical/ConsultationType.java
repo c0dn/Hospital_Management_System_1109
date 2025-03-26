@@ -2,6 +2,7 @@ package org.bee.hms.medical;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.bee.utils.JSONSerializable;
 
 /**
  * Defines the type of consultation for an insurance claim.
@@ -16,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  * </ul>
  */
 @JsonFormat(shape = JsonFormat.Shape.STRING)
-public enum ConsultationType {
+public enum ConsultationType implements JSONSerializable {
     /**A consultation that occurs in response to an emergency situation.*/
     EMERGENCY,
 

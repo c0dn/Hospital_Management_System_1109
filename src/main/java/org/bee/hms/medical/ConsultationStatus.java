@@ -2,12 +2,13 @@ package org.bee.hms.medical;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.bee.utils.JSONSerializable;
 
 /**
  * Enums for status types
  */
 @JsonFormat(shape = JsonFormat.Shape.STRING)
-public enum ConsultationStatus {
+public enum ConsultationStatus implements JSONSerializable {
     /** The consultation is scheduled but has not yet occurred. */
     SCHEDULED,
 

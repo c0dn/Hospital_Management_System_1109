@@ -2,6 +2,7 @@ package org.bee.hms.policy;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.bee.utils.JSONSerializable;
 
 /**
  * Defines the status of an insurance policy.
@@ -16,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  * </ul>
  */
 @JsonFormat(shape = JsonFormat.Shape.STRING)
-public enum InsuranceStatus {
+public enum InsuranceStatus implements JSONSerializable {
     /**
      * The insurance policy is currently active and in effect.
      */

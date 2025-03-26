@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import org.bee.hms.humans.Patient;
 import org.bee.hms.policy.AccidentType;
 import org.bee.utils.DataGenerator;
+import org.bee.utils.JSONSerializable;
 
 
 /**
@@ -13,7 +14,7 @@ import org.bee.utils.DataGenerator;
  * This class extends {@link Visit} to inherit general visit-related properties.
  */
 
-public class EmergencyVisit extends Visit {
+public class EmergencyVisit extends Visit implements JSONSerializable {
     private AccidentType accidentType;
     // For hospital reference, should law enforcement or the courts require this information
     private String policeReportNumber;

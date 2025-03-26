@@ -1,6 +1,7 @@
 package org.bee.hms.claims;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.bee.utils.JSONSerializable;
 
 /**
  * Defines the current status of an insurance claim.
@@ -20,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  *
  */
 @JsonFormat(shape = JsonFormat.Shape.STRING)
-public enum ClaimStatus {
+public enum ClaimStatus implements JSONSerializable {
 
     DRAFT("Claim is draft"),
 

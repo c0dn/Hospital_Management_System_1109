@@ -2,6 +2,7 @@ package org.bee.hms.policy;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.bee.utils.JSONSerializable;
 
 /**
  * Defines the different types of accidents covered under an insurance policy.
@@ -17,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  * </ul>
  */
 @JsonFormat(shape = JsonFormat.Shape.STRING)
-public enum AccidentType {
+public enum AccidentType implements JSONSerializable {
     /**
      * Accident resulting in death.
      */
