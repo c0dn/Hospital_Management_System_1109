@@ -181,12 +181,12 @@ public class GovernmentProvider extends InsuranceProvider {
      *
      * @param patient The patient associated with the insurance claim.
      * @param claim   The insurance claim to be processed.
-     * @return
      */
     @Override
     public boolean submitClaim(Patient patient, InsuranceClaim claim) {
         // In the real world, this will be the step where we submit a claim and it's details to the provider's system.
         claim.updateStatus(ClaimStatus.SUBMITTED);
+        return true;
     }
 
     /**
