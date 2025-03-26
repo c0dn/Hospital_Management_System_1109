@@ -1,5 +1,8 @@
 package org.bee.hms.policy;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
@@ -19,13 +22,21 @@ public class CompositeCoverage implements Coverage {
     /**
      * Creates a composite coverage from multiple coverage objects.
      * <p>
-     * The composite coverage will treat the individual coverages as a single entity, allowing operations to be performed
-     * as if they were a single coverage.
+     * The composite coverage aggregates multiple coverage objects and treats them
+     * as a single entity. This allows operations to be performed across all contained
+     * coverages transparently, following the Composite design pattern.
+     * </p>
+     * <p>
+     * Coverage operations like evaluations, validations, or queries will be delegated
+     * to all contained coverages according to the specific implementation rules of
+     * this composite.
      * </p>
      *
-     * @param coverages the coverage objects to combine
+     * @param coverages the coverage objects to combine into this composite
+     * @throws IllegalArgumentException if no coverages are provided or if any coverage is null
      */
-    public CompositeCoverage(Coverage... coverages) {
+    @JsonCreator
+    public CompositeCoverage(@JsonProperty("coverages") Coverage... coverages) {
         this.coverages = Arrays.asList(coverages);
     }
 

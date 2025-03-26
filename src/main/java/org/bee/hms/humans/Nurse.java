@@ -44,38 +44,39 @@ public class Nurse extends Staff implements SystemUser {
      * deserialization without requiring a default constructor. It preserves the
      * Nurse class's builder-based construction pattern while enabling JSON serialization.
      *
-     * @param name                The name of the nurse
-     * @param dob                 The date of birth of the nurse
-     * @param nricFin             The NRIC/FIN number of the nurse
-     * @param maritalStatus       The marital status of the nurse
-     * @param residentialStatus   The residential status of the nurse
-     * @param nationality         The nationality of the nurse
-     * @param address             The address of the nurse
-     * @param contact             The contact information of the nurse
-     * @param sex                 The sex of the nurse
-     * @param bloodType           The blood type of the nurse
-     * @param isVaccinated        Vaccination status of the nurse
-     * @param staffId             The staff identifier of the nurse
-     * @param title               The professional title of the nurse
-     * @param department          The department the nurse belongs to
-     * @param rnid                The Registered Nurse ID (RNID) of the nurse
+     * @param name                The name of the nurse (from JSON "name")
+     * @param dateOfBirth         The date of birth of the nurse (from JSON "dateOfBirth")
+     * @param nricFin             The NRIC/FIN number of the nurse (from JSON "nricFin")
+     * @param maritalStatus       The marital status of the nurse (from JSON "maritalStatus")
+     * @param residentialStatus   The residential status of the nurse (from JSON "residentialStatus")
+     * @param nationality         The nationality of the nurse (from JSON "nationality")
+     * @param address             The address of the nurse (from JSON "address")
+     * @param contact             The contact information of the nurse (from JSON "contact")
+     * @param sex                 The sex of the nurse (from JSON "sex")
+     * @param bloodType           The blood type of the nurse (from JSON "bloodType")
+     * @param isVaccinated        Vaccination status of the nurse (from JSON "isVaccinated")
+     * @param staffId             The staff identifier of the nurse (from JSON "staffId")
+     * @param title               The professional title of the nurse (from JSON "title")
+     * @param department          The department the nurse belongs to (from JSON "department")
+     * @param rnid                The Registered Nurse ID (RNID) of the nurse (from JSON "rnid")
+     * @param humanType           The type of human, e.g., "nurse" (from JSON "humanType")
      *
      * @return A fully constructed Nurse object with all properties set from JSON data
      */
     @JsonCreator
     public static Nurse fromJson(
             @JsonProperty("name") String name,
-            @JsonProperty("dob") LocalDate dob,
-            @JsonProperty("nric_fin") String nricFin,
-            @JsonProperty("marital_status") MaritalStatus maritalStatus,
-            @JsonProperty("residential_status") ResidentialStatus residentialStatus,
+            @JsonProperty("dateOfBirth") LocalDate dateOfBirth,
+            @JsonProperty("nricFin") String nricFin,
+            @JsonProperty("maritalStatus") MaritalStatus maritalStatus,
+            @JsonProperty("residentialStatus") ResidentialStatus residentialStatus,
             @JsonProperty("nationality") String nationality,
             @JsonProperty("address") String address,
             @JsonProperty("contact") Contact contact,
             @JsonProperty("sex") Sex sex,
-            @JsonProperty("blood_type") BloodType bloodType,
-            @JsonProperty("is_vaccinated") boolean isVaccinated,
-            @JsonProperty("staff_id") String staffId,
+            @JsonProperty("bloodType") BloodType bloodType,
+            @JsonProperty("isVaccinated") boolean isVaccinated,
+            @JsonProperty("staffId") String staffId,
             @JsonProperty("title") String title,
             @JsonProperty("department") String department,
             @JsonProperty("rnid") String rnid,
@@ -83,7 +84,7 @@ public class Nurse extends Staff implements SystemUser {
     ) {
         NurseBuilder builder = new NurseBuilder();
 
-        setHumanFields(builder, name, dob, nricFin, maritalStatus, residentialStatus,
+        setHumanFields(builder, name, dateOfBirth, nricFin, maritalStatus, residentialStatus,
                 nationality, address, contact, sex, bloodType, isVaccinated, humanType);
 
         setStaffFields(builder, staffId, title, department);

@@ -60,38 +60,39 @@ public class Doctor extends Staff implements SystemUser {
      * deserialization without requiring a default constructor. It preserves the
      * Doctor class's builder-based construction pattern while enabling JSON serialization.
      *
-     * @param name                The name of the doctor
-     * @param dob                 The date of birth of the doctor
-     * @param nricFin             The NRIC/FIN number of the doctor
-     * @param maritalStatus       The marital status of the doctor
-     * @param residentialStatus   The residential status of the doctor
-     * @param nationality         The nationality of the doctor
-     * @param address             The address of the doctor
-     * @param contact             The contact information of the doctor
-     * @param sex                 The sex of the doctor
-     * @param bloodType           The blood type of the doctor
-     * @param isVaccinated        Vaccination status of the doctor
-     * @param staffId             The staff identifier of the doctor
-     * @param title               The professional title of the doctor
-     * @param department          The department the doctor belongs to
-     * @param mcr                 The Medical Council Registration number of the doctor
+     * @param name                The name of the doctor (from JSON "name")
+     * @param dateOfBirth         The date of birth of the doctor (from JSON "dateOfBirth")
+     * @param nricFin             The NRIC/FIN number of the doctor (from JSON "nricFin")
+     * @param maritalStatus       The marital status of the doctor (from JSON "maritalStatus")
+     * @param residentialStatus   The residential status of the doctor (from JSON "residentialStatus")
+     * @param nationality         The nationality of the doctor (from JSON "nationality")
+     * @param address             The address of the doctor (from JSON "address")
+     * @param contact             The contact information of the doctor (from JSON "contact")
+     * @param sex                 The sex of the doctor (from JSON "sex")
+     * @param bloodType           The blood type of the doctor (from JSON "bloodType")
+     * @param isVaccinated        Vaccination status of the doctor (from JSON "isVaccinated")
+     * @param staffId             The staff identifier of the doctor (from JSON "staffId")
+     * @param title               The professional title of the doctor (from JSON "title")
+     * @param department          The department the doctor belongs to (from JSON "department")
+     * @param mcr                 The Medical Council Registration number of the doctor (from JSON "mcr")
+     * @param humanType           The type of human, e.g., "doctor" (from JSON "humanType")
      *
      * @return A fully constructed Doctor object with all properties set from JSON data
      */
     @JsonCreator
     public static Doctor fromJson(
             @JsonProperty("name") String name,
-            @JsonProperty("dob") LocalDate dob,
-            @JsonProperty("nric_fin") String nricFin,
-            @JsonProperty("marital_status") MaritalStatus maritalStatus,
-            @JsonProperty("residential_status") ResidentialStatus residentialStatus,
+            @JsonProperty("dateOfBirth") LocalDate dateOfBirth,
+            @JsonProperty("nricFin") String nricFin,
+            @JsonProperty("maritalStatus") MaritalStatus maritalStatus,
+            @JsonProperty("residentialStatus") ResidentialStatus residentialStatus,
             @JsonProperty("nationality") String nationality,
             @JsonProperty("address") String address,
             @JsonProperty("contact") Contact contact,
             @JsonProperty("sex") Sex sex,
-            @JsonProperty("blood_type") BloodType bloodType,
-            @JsonProperty("is_vaccinated") boolean isVaccinated,
-            @JsonProperty("staff_id") String staffId,
+            @JsonProperty("bloodType") BloodType bloodType,
+            @JsonProperty("isVaccinated") boolean isVaccinated,
+            @JsonProperty("staffId") String staffId,
             @JsonProperty("title") String title,
             @JsonProperty("department") String department,
             @JsonProperty("mcr") String mcr,
@@ -99,7 +100,8 @@ public class Doctor extends Staff implements SystemUser {
     ) {
         DoctorBuilder builder = new DoctorBuilder();
 
-        setHumanFields(builder, name, dob, nricFin, maritalStatus, residentialStatus,
+        // Pass the corrected dateOfBirth parameter
+        setHumanFields(builder, name, dateOfBirth, nricFin, maritalStatus, residentialStatus,
                 nationality, address, contact, sex, bloodType, isVaccinated, humanType);
 
         setStaffFields(builder, staffId, title, department);

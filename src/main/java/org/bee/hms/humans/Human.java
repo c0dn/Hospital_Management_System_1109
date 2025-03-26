@@ -2,6 +2,7 @@ package org.bee.hms.humans;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.bee.utils.JSONSerializable;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
@@ -112,22 +113,21 @@ public abstract class Human implements JSONSerializable {
      * Utility method to set common Human fields on any builder that extends HumanBuilder.
      * This helps avoid repetition in factory methods for Human subclasses.
      *
-     * @param <T> The type of builder extending HumanBuilder
-     * @param builder The builder instance
-     * @param name The name of the human
-     * @param dob The date of birth
-     * @param nricFin The NRIC/FIN number
-     * @param maritalStatus The marital status
+     * @param <T>               The type of builder extending HumanBuilder
+     * @param builder           The builder instance
+     * @param name              The name of the human
+     * @param dob               The date of birth
+     * @param nricFin           The NRIC/FIN number
+     * @param maritalStatus     The marital status
      * @param residentialStatus The residential status
-     * @param nationality The nationality
-     * @param address The address
-     * @param contact The contact information
-     * @param sex The sex
-     * @param bloodType The blood type
-     * @param isVaccinated The vaccination status
-     * @return The same builder instance with human fields set
+     * @param nationality       The nationality
+     * @param address           The address
+     * @param contact           The contact information
+     * @param sex               The sex
+     * @param bloodType         The blood type
+     * @param isVaccinated      The vaccination status
      */
-    protected static <T extends HumanBuilder<?>> T setHumanFields(
+    protected static <T extends HumanBuilder<?>> void setHumanFields(
             T builder,
             String name,
             LocalDate dob,
@@ -155,7 +155,6 @@ public abstract class Human implements JSONSerializable {
         builder.isVaccinated(isVaccinated);
         builder.humanType(humanType);
 
-        return builder;
     }
 
 

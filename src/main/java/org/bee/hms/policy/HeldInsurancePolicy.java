@@ -147,6 +147,11 @@ public class HeldInsurancePolicy extends BaseInsurancePolicy implements Insuranc
         return false;
     }
 
+    @JsonProperty("policyType")
+    public String getPolicyType() {
+        return "held";
+    }
+
     /**
      * Determines if the insurance policy is cancelled.
      *
@@ -171,11 +176,11 @@ public class HeldInsurancePolicy extends BaseInsurancePolicy implements Insuranc
      * Builder pattern to create a {@link HeldInsurancePolicy}.
      */
     public static class Builder {
-        private String policyNumber;
-        private Patient policyHolder;
-        private InsuranceProvider provider;
-        private String name;
-        private Coverage coverage;
+        private final String policyNumber;
+        private final Patient policyHolder;
+        private final InsuranceProvider provider;
+        private final String name;
+        private final Coverage coverage;
         private LocalDateTime expirationDate;
         private LocalDateTime cancellationDate;
         private InsuranceStatus status = InsuranceStatus.ACTIVE;

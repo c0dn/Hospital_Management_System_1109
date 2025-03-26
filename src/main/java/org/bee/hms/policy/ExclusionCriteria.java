@@ -43,33 +43,18 @@ public class ExclusionCriteria implements JSONSerializable {
 
 
     /**
-     * Private constructor used by the builder or JSON creator
-     */
-    private ExclusionCriteria(
-            List<Pattern> excludedDiagnosisPatterns,
-            List<Pattern> excludedProcedurePatterns,
-            Set<BenefitType> excludedBenefits,
-            Set<AccidentType> excludedAccidentTypes
-    ) {
-        this.excludedDiagnosisPatterns = new ArrayList<>(excludedDiagnosisPatterns);
-        this.excludedProcedurePatterns = new ArrayList<>(excludedProcedurePatterns);
-        this.excludedBenefits = new HashSet<>(excludedBenefits);
-        this.excludedAccidentTypes = new HashSet<>(excludedAccidentTypes);
-    }
-
-    /**
      * JSON Creator method for deserializing ExclusionCriteria
      */
     @JsonCreator
     public static ExclusionCriteria create(
-            @JsonProperty("excludedDiagnosis") Set<String> excludedDiagnosis,
-            @JsonProperty("excludedProcedures") Set<String> excludedProcedures,
+            @JsonProperty("excludedDiagnosisPatterns") Set<String> excludedDiagnosis,
+            @JsonProperty("excludedProcedurePatterns") Set<String> excludedProcedures,
             @JsonProperty("excludedBenefits") Set<BenefitType> excludedBenefits,
             @JsonProperty("excludedAccidentTypes") Set<AccidentType> excludedAccidentTypes
     ) {
         return new ExclusionCriteria(
-                compilePatterns(excludedDiagnosis),
-                compilePatterns(excludedProcedures),
+                excludedDiagnosis == null ? Collections.emptySet() : excludedDiagnosis,
+                excludedProcedures == null ? Collections.emptySet() : excludedProcedures,
                 excludedBenefits == null ? Collections.emptySet() : excludedBenefits,
                 excludedAccidentTypes == null ? Collections.emptySet() : excludedAccidentTypes
         );

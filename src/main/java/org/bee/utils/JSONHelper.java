@@ -44,6 +44,7 @@ public final class JSONHelper {
         mapper.registerModule(new JavaTimeModule());
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
         mapper.enable(DeserializationFeature.FAIL_ON_INVALID_SUBTYPE);
+//        mapper.enable(DeserializationFeature.FAIL_ON_MISSING_CREATOR_PROPERTIES);
 
         SimpleModule module = new SimpleModule();
         module.addSerializer(Pattern.class, new JsonSerializer<>() {

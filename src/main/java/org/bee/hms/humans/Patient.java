@@ -35,9 +35,9 @@ public class Patient extends Human implements SystemUser {
     /** Represents the occupation of a patient. */
     private String occupation;
     /** Represents the name of the company where the patient is employed. */
-    private final String companyName;
+    private String companyName;
     /** Represents the business address of the company associated with the patient. */
-    private final String companyAddress;
+    private String companyAddress;
 
     private boolean patientConsent;
 
@@ -105,7 +105,7 @@ public class Patient extends Human implements SystemUser {
     @JsonCreator
     public static Patient fromJson(
             @JsonProperty("name") String name,
-            @JsonProperty("dob") LocalDate dob,
+            @JsonProperty("dateOfBirth") LocalDate dob,
             @JsonProperty("nricFin") String nricFin,
             @JsonProperty("maritalStatus") MaritalStatus maritalStatus,
             @JsonProperty("residentialStatus") ResidentialStatus residentialStatus,
