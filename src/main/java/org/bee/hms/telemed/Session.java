@@ -86,12 +86,12 @@ public class Session implements JSONSerializable {
     public String getZoomLink() {return zoomLink;}
     public void setZoomLink(String zoomLink) {this.zoomLink = zoomLink;}
 
-    public SessionStatus getSessionStatus(){return sessionStatus;};
+    public SessionStatus getSessionStatus(){return sessionStatus;}
     public void setSessionStatus(SessionStatus sessionStatus){this.sessionStatus = sessionStatus;}
 
     public LocalDateTime getEndTime(){return endTime;}
     public void setEndTime(LocalDateTime time){this.endTime= time;}
-    ;
+
 
     /**
      * Marks the session as completed by updating the session status and recording the end time.

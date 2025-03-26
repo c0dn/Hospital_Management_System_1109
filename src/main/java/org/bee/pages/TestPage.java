@@ -7,9 +7,7 @@ import org.bee.ui.views.FormView;
 import org.bee.ui.views.TextView;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
-import java.util.function.Predicate;
 
 public class TestPage extends UiBase {
 
@@ -20,21 +18,13 @@ public class TestPage extends UiBase {
 
     @Override
     public void OnViewCreated(View parentView) {
-        parentView.attachUserInput("Simple Range Input", input -> {
-            demonstrateRangeInput();
-        });
+        parentView.attachUserInput("Simple Range Input", input -> demonstrateRangeInput());
 
-        parentView.attachUserInput("String Validation", input -> {
-            demonstrateStringValidation();
-        });
+        parentView.attachUserInput("String Validation", input -> demonstrateStringValidation());
 
-        parentView.attachUserInput("Form Input", input -> {
-            demonstrateFormInput();
-        });
+        parentView.attachUserInput("Form Input", input -> demonstrateFormInput());
 
-        parentView.attachUserInput("Selection from List", input -> {
-            demonstrateSelectionInput();
-        });
+        parentView.attachUserInput("Selection from List", input -> demonstrateSelectionInput());
     }
 
     private void demonstrateRangeInput() {
@@ -148,7 +138,6 @@ public class TestPage extends UiBase {
         } catch (Exception e) {
             // Debug - print any exceptions
             System.err.println("Form error: " + e.getMessage());
-            e.printStackTrace();
 
             TextView errorView = new TextView(this.canvas,
                     "Error creating form: " + e.getMessage(), Color.RED);

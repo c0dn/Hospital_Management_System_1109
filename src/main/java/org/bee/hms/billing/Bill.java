@@ -18,23 +18,23 @@ import java.util.*;
  */
 public class Bill implements JSONSerializable {
     /** Unique identifier for the bill. */
-    private String billId;
+    private final String billId;
     /**
      * Unique identifier of the patient associated with the bill.
      */
     private final Patient patient;
 
     /** Date and time when the bill was created. */
-    private LocalDateTime billDate;
+    private final LocalDateTime billDate;
     /** List of billing line items included in the bill. */
     private List<BillingItemLine> lineItems;
     /** A mapping of categorized charges, where the key is the category name and the value is the total amount for that category. */
     private Map<String, BigDecimal> categorizedCharges;
     /** Current status of the bill, such as DRAFT. */
     private BillingStatus status;
-    private InsurancePolicy insurancePolicy;
-    private boolean isInpatient;
-    private boolean isEmergency;
+    private final InsurancePolicy insurancePolicy;
+    private final boolean isInpatient;
+    private final boolean isEmergency;
 
     /**
      * Constructs a {@code Bill} object using the {@link BillBuilder}.

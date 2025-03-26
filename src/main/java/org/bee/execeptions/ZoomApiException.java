@@ -2,7 +2,7 @@ package org.bee.execeptions;
 
 /**
  * Class that represents an exception that will occur when interacting with the Zoom API
- *
+ * <p>
  * This exception is thrown when there is a problem with API calls or responses
  * from the Zoom service. It display error messages and the
  * underlying cause of the exception.

@@ -12,7 +12,6 @@ import org.bee.hms.telemed.Appointment;
 import org.bee.hms.telemed.AppointmentStatus;
 import org.bee.ui.Color;
 import org.bee.ui.InputHelper;
-import org.bee.ui.TextStyle;
 import org.bee.ui.UiBase;
 import org.bee.ui.View;
 import org.bee.ui.views.ListView;
@@ -21,7 +20,7 @@ import org.bee.ui.views.TextView;
 
 /**
  * Manages the UI for viewing and interacting with appointments.
- *
+ * <p>
  * This page displays a list of pending appointments and allows doctors to
  * approve, reject, or start consultations.
  */
@@ -33,7 +32,7 @@ public class ViewAppointmentPage extends UiBase {
 
     /**
      * Sets up the initial view for the appointment list.
-     *
+     * <p>
      * Creates a green ListView with a title showing the logged-in user.
      *
      * @return The configured ListView with appointments
@@ -52,7 +51,7 @@ public class ViewAppointmentPage extends UiBase {
 
     /**
      * Populates the view with appointment data and sets up user interactions.
-     *
+     * <p>
      * Filters out completed appointments and adds a prompt for selecting appointments.
      *
      * @param parentView The parent view to populate
@@ -87,7 +86,7 @@ public class ViewAppointmentPage extends UiBase {
 
     /**
      * Handles the appointment selection process.
-     *
+     * <p>
      * Allows the user to approve, reject, view patient info, or start an appointment.
      * Also handles Zoom link generation for approved appointments.
      *
@@ -153,7 +152,7 @@ public class ViewAppointmentPage extends UiBase {
             case 4:
                 TeleconsultPage.setAppointment(selectedAppointment);
                 ToPage(new TeleconsultPage());
-                System.out.println("Starting teleconsultation for appointment: " + selectedAppointment.toString());
+                System.out.println("Starting teleconsultation for appointment: " + selectedAppointment);
                 break;
         }
 
@@ -162,7 +161,7 @@ public class ViewAppointmentPage extends UiBase {
 
     /**
      * Updates the UI with the current list of appointments.
-     *
+     * <p>
      * Clears the existing view and adds each appointment with color-coding based on status.
      * Displays a message if no appointments are available.
      */
@@ -205,13 +204,7 @@ public class ViewAppointmentPage extends UiBase {
         this.canvas.setRequireRedraw(true);
     }
 
-    /**
-     * Determines the color for an appointment based on its status.
-     *
-     * @param status The appointment status
-     * @return The corresponding color (RED for declined, CYAN for pending, GREEN for others)
-     */
-//    private Color getItemColor(AppointmentStatus status) {
+        //    private Color getItemColor(AppointmentStatus status) {
 //        switch (status) {
 //            case DECLINED:
 //                return Color.RED;

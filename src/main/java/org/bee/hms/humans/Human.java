@@ -2,7 +2,6 @@ package org.bee.hms.humans;
 
 import java.time.LocalDate;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.bee.utils.JSONSerializable;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;

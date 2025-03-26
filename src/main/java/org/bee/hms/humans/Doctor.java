@@ -1,14 +1,10 @@
 package org.bee.hms.humans;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.bee.hms.auth.SystemUser;
-import org.bee.hms.medical.Consultation;
-import org.bee.utils.JSONSerializable;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 /**
  * Represents a doctor in the insurance system.

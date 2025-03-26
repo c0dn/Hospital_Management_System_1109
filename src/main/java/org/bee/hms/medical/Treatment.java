@@ -83,18 +83,16 @@ public class Treatment implements JSONSerializable {
      */
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("\n\nTreatment Details:\n");
-        stringBuilder.append(String.format("Treatment ID:         %s\n", treatmentID));
-        stringBuilder.append(String.format("Name:                 %s\n", treatmentName));
-        stringBuilder.append(String.format("Status:               %s\n", status));
-        stringBuilder.append(String.format("Start Date:           %s\n", startDate));
-        stringBuilder.append(String.format("End Date:             %s\n", endDate));
-        stringBuilder.append(String.format("Notes:                %s\n", (notes.equals("") ? "null" : notes)));
-        stringBuilder.append(String.format("Costs:                $ %s", cost));
+        String stringBuilder = "\n\nTreatment Details:\n" +
+                String.format("Treatment ID:         %s\n", treatmentID) +
+                String.format("Name:                 %s\n", treatmentName) +
+                String.format("Status:               %s\n", status) +
+                String.format("Start Date:           %s\n", startDate) +
+                String.format("End Date:             %s\n", endDate) +
+                String.format("Notes:                %s\n", (notes.equals("") ? "null" : notes)) +
+                String.format("Costs:                $ %s", cost);
 
-        String string = stringBuilder.toString();
-        return string;
+        return stringBuilder;
     }
 
     /**

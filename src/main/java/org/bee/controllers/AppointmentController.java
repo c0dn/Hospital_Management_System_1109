@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 import java.util.stream.Collectors;
-import java.time.format.DateTimeFormatter;
 
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -20,7 +19,6 @@ import org.bee.hms.humans.Patient;
 import org.bee.hms.telemed.Appointment;
 import org.bee.hms.telemed.AppointmentStatus;
 import org.bee.utils.DataGenerator;
-import java.util.Scanner;
 
 import okhttp3.FormBody;
 import okhttp3.MediaType;
@@ -127,14 +125,12 @@ public class AppointmentController extends BaseController<Appointment> {
      * If the appointment is removed, save the data
      *
      * @param appointment The Appointment  to be removed
-     * @return true if the appointment was successfully removed, false otherwise
      */
-    public boolean removeAppointment(Appointment appointment) {
+    public void removeAppointment(Appointment appointment) {
         boolean removed = items.remove(appointment);
         if (removed) {
             saveData();
         }
-        return removed;
     }
 
     /**
@@ -241,10 +237,10 @@ public class AppointmentController extends BaseController<Appointment> {
 
     /**
      * Displays all appointments in a paginated format
-     *
-     * This method retrieves all appointments, shows 5 appointments per page and allows the user
+     * <p> <p>
+     * This method retrieves all appointments, shows 5 appointments per page, and allows the user
      * to navigate between pages or exit to the main menu
-     *
+     * <p> <p>
      * The displayed information for each appointment includes: "ID", "Patient Name",
      * "Date/Time", "Status", "Reason", "Doctor"
      * If no appointments are found, it displays a message and returns to the main menu
@@ -335,48 +331,17 @@ public class AppointmentController extends BaseController<Appointment> {
     }
 
     /**
-     * Creates a random appointment with a randomly selected doctor and patient from the system
-     *
-     * @return The created appointment, or null if no patients or doctors are available
-     */
-    public Appointment createRandomAppointment() {
-        List<Patient> patients = humanController.getAllPatients();
-        List<Doctor> doctors = humanController.getAllDoctors();
-
-        if (patients.isEmpty()) {
-            System.err.println("No patients available in the system");
-            return null;
-        }
-
-        Patient patient = patients.get(DataGenerator.generateRandomInt(patients.size()));
-
-        Doctor doctor = null;
-        if (!doctors.isEmpty() && DataGenerator.generateRandomInt(2) == 0) {
-            doctor = doctors.get(DataGenerator.generateRandomInt(doctors.size()));
-        }
-
-        Appointment appointment = DataGenerator.generateRandomAppointment(patient, doctor);
-
-        addItem(appointment);
-
-        return appointment;
-    }
-
-    /**
      * Updates an existing appointment and saves to the JSON file
      *
      * @param oldAppointment The appointment to be updated
      * @param newAppointment The updated appointment data
-     * @return true if the appointment was updated, false if it was not found
      */
-    public boolean updateAppointment(Appointment oldAppointment, Appointment newAppointment) {
+    public void updateAppointment(Appointment oldAppointment, Appointment newAppointment) {
         int index = items.indexOf(oldAppointment);
         if (index != -1) {
             items.set(index, newAppointment);
             saveData();
-            return true;
         }
-        return false;
     }
 
     /**

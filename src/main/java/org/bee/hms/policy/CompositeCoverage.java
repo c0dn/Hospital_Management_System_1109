@@ -23,7 +23,8 @@ public class CompositeCoverage implements Coverage {
      * Creates a composite coverage from multiple coverage objects.
      * <p>
      * The composite coverage aggregates multiple coverage objects and treats them
-     * as a single entity. This allows operations to be performed across all contained
+     * as a single entity.
+     * This allows operations to be performed across all contained
      * coverages transparently, following the Composite design pattern.
      * </p>
      * <p>

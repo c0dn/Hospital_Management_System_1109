@@ -79,7 +79,6 @@ public class PatientInfoPage extends UiBase {
             try {
                 displayPatient(patient, lv);
             }catch (Exception e){
-                e.printStackTrace();
                 throw e;
             }
 //        });

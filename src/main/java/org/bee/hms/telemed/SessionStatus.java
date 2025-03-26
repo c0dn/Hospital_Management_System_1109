@@ -9,11 +9,6 @@ import org.bee.utils.JSONSerializable;
  * This enum is used to manage and track the current state of sessions.
  * consultations, or any interaction that has a distinct start and end.
  */
-/**
- * Enumerates the possible states of a session in the healthcare or service delivery context.
- * This enum is used to manage and track the current state of sessions.
- * consultations, or any interaction that has a distinct start and end.
- */
 @JsonFormat(shape = JsonFormat.Shape.STRING)
 public enum SessionStatus implements JSONSerializable {
     /**

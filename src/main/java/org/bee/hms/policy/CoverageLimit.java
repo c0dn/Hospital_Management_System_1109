@@ -21,11 +21,11 @@ import java.util.Optional;
  */
 public class CoverageLimit implements JSONSerializable {
 
-    private BigDecimal annualLimit;
-    private BigDecimal lifetimeLimit;
-    private Map<BenefitType, BigDecimal> benefitLimits;
-    private Map<WardClassType, BigDecimal> wardLimits;
-    private Map<AccidentType, BigDecimal> accidentSubLimits;
+    private final BigDecimal annualLimit;
+    private final BigDecimal lifetimeLimit;
+    private final Map<BenefitType, BigDecimal> benefitLimits;
+    private final Map<WardClassType, BigDecimal> wardLimits;
+    private final Map<AccidentType, BigDecimal> accidentSubLimits;
 
     /**
      * Private constructor that initializes a CoverageLimit using the provided builder.

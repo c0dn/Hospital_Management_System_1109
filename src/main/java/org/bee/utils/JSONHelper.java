@@ -121,7 +121,7 @@ public final class JSONHelper {
                 for (int i = 0; i < 5 && br.ready(); i++) {
                     sb.append(br.readLine()).append("\n");
                 }
-                System.err.println(sb.toString());
+                System.err.println(sb);
             }
             throw e;
         }

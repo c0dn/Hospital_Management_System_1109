@@ -15,8 +15,7 @@ import java.util.Map;
  * A form view for collecting multiple pieces of related data with validation.
  */
 public class FormView extends View {
-    private List<FormField<?>> fields = new ArrayList<>();
-    private final Map<String, Object> formData = new HashMap<>();
+    private final List<FormField<?>> fields = new ArrayList<>();
     private FormSubmitCallback onSubmit;
     private int currentFieldIndex = 0;
     private boolean isFormComplete = false;

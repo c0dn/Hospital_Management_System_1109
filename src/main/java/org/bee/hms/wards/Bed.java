@@ -7,7 +7,7 @@ import org.bee.hms.humans.Patient;
  */
 public class Bed {
     /** The bed number within the ward. */
-    private int bedNumber;
+    private final int bedNumber;
     /** The patient currently occupying the bed (null if unoccupied). */
     private Patient currentPatient;
     /**

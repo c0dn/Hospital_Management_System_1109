@@ -1,12 +1,9 @@
 package org.bee.pages.doctor;
 
-import org.bee.controllers.ConsultationController;
 import org.bee.controllers.HumanController;
-import org.bee.hms.medical.*;
 import org.bee.ui.*;
 import org.bee.ui.views.ListView;
 import org.bee.ui.views.MenuView;
-import java.util.*;
 
 /**
  * Represents the main page for the doctors.
@@ -14,11 +11,6 @@ import java.util.*;
  * It extends {@link UiBase} and uses a {@link ListView} to present the menu items.
  */
 public class DoctorMainPage extends UiBase {
-
-    private static final HumanController humanController = HumanController.getInstance();
-    private static final ConsultationController consultationController = ConsultationController.getInstance();
-    private static Consultation consultation;
-    private static final Scanner scanner = new Scanner(System.in);
 
     /**
      * Called when the main page's view is created.
@@ -29,9 +21,6 @@ public class DoctorMainPage extends UiBase {
      */
     @Override
     public View createView() {
-//        ListView lv = new ListView(this.canvas, Color.GREEN);
-//        lv.setTitleHeader("Main");
-//        return lv;
         return new MenuView(this.canvas, "Main", Color.GREEN, true, false);
     }
 

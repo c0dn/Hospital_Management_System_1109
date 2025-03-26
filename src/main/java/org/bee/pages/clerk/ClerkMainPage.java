@@ -38,13 +38,10 @@
         }
 
         /**
-         * This method is called after the view has been created and attached to the UI.
-         * It populates the `ListView` with the main menu options and attaches user input
-         * handlers to navigate to the corresponding pages or perform actions.
-         *
-         * The main menu includes options for viewing and managing telemedicine cases,
-         * outpatient services, and insurance claims.
-         *
+         * Called after the view has been created and attached to the UI.
+         * Populates the view with the main menu options, such as "New Claim", "Manage Claim", "Claim Status", "Change Claim Status".
+         * Attaches user input handlers to each menu option to navigate to the corresponding pages.
+         * <p>
          * Each menu option is associated with a specific user action, such as viewing
          * existing cases, submitting a new claim, or changing the status of a claim.
          *

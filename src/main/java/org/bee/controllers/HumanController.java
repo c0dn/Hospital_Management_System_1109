@@ -106,10 +106,6 @@ public class HumanController extends BaseController<Human> {
         return authenticatedUser;
     }
 
-    public void addHuman(Human human) {
-        addItem(human);
-    }
-
 
     private Patient findPatientById(String patientId) {
         return getAllPatients().stream()

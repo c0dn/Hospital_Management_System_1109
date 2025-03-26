@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.bee.utils.JSONSerializable;
@@ -52,9 +51,5 @@ public class MedicalCertificate implements JSONSerializable {
 
     public String getId() {
         return id;
-    }
-
-    public void setRemarks(String remarks) {
-        this.remarks = remarks;
     }
 }

@@ -4,8 +4,6 @@ import java.time.LocalDate;
 
 import org.bee.utils.DataGenerator;
 
-import javax.naming.Name;
-
 /**
  * Abstract builder class for constructing instances of {@link Human} or its subclasses.
  * Implements a fluent builder pattern to allow method chaining.

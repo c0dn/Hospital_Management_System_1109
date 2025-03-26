@@ -35,7 +35,7 @@ public class BillBuilder {
     LocalDateTime billDate;
     InsurancePolicy insurancePolicy;
     private Visit visit;
-    private List<Consultation> consultations;
+    private final List<Consultation> consultations;
     boolean isInpatient;
     boolean isEmergency;
 

@@ -1,13 +1,10 @@
 package org.bee.utils;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
 
 import org.bee.hms.humans.*;
 import org.bee.hms.medical.*;
-import org.bee.hms.policy.AccidentType;
 import org.bee.hms.telemed.Appointment;
 import org.bee.hms.telemed.AppointmentStatus;
 
@@ -71,8 +68,6 @@ public final class DataGenerator {
             "Crisis Cover", "Critical Care Advantage", "MultiPay Critical Illness"
     };
 
-    private static final AccidentType[] ACCIDENT_TYPES = AccidentType.values();
-
     // Private constructor to prevent instantiation
     private DataGenerator() {
         throw new AssertionError("Utility class should not be instantiated");
@@ -111,7 +106,7 @@ public final class DataGenerator {
             throw new IllegalStateException("No medications available in the system");
         }
 
-        return medications.get(0); // First one since the list is already randomized
+        return medications.getFirst(); // First one since the list is already randomized
     }
 
     /**
@@ -353,20 +348,6 @@ public final class DataGenerator {
 
     public static String generateUUID() {
         return UUID.randomUUID().toString();
-    }
-
-    /**
-     * Generates a random appointment with a patient, reason, time, and status.
-     *
-     * @return A randomly generated Appointment object
-     */
-    public static Appointment generateRandomAppointment() {
-        Patient patient = Patient.builder()
-                .patientId(generatePatientId())
-                .withRandomBaseData()
-                .build();
-
-        return generateRandomAppointment(patient, null);
     }
 
     /**

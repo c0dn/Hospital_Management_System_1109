@@ -11,9 +11,9 @@ public class AbstractWard implements Ward {
     /** The name of the ward. */
     protected String wardName;
     /** The classification type of the ward. */
-    private WardClassType wardClassType;
+    private final WardClassType wardClassType;
     /** A mapping of bed numbers to bed objects in the ward. */
-    private Map<Integer, Bed> beds;
+    private final Map<Integer, Bed> beds;
 
     /**
      * The type of ward, used for JSON serialization/deserialization.

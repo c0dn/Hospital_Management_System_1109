@@ -6,11 +6,11 @@ import java.util.function.Predicate;
  * A form field with validation for building interactive forms.
  */
 public class FormField<T> {
-    private String name;
-    private String prompt;
-    private Predicate<String> validator;
-    private String errorMessage;
-    private FormInputParser<T> parser;
+    private final String name;
+    private final String prompt;
+    private final Predicate<String> validator;
+    private final String errorMessage;
+    private final FormInputParser<T> parser;
     private T value;
 
     public FormField(String name, String prompt, Predicate<String> validator,

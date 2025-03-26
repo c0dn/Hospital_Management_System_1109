@@ -2,18 +2,15 @@ package org.bee.controllers;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.bee.hms.billing.Bill;
 import org.bee.hms.billing.BillBuilder;
 import org.bee.hms.billing.BillingStatus;
-import org.bee.hms.claims.InsuranceClaim;
 import org.bee.hms.humans.Patient;
 import org.bee.hms.medical.Consultation;
 import org.bee.hms.medical.Visit;
 import org.bee.hms.policy.InsurancePolicy;
-import org.bee.hms.policy.InsuranceCoverageResult;
 
 /**
  * Controller class for managing bills in the hospital management system.

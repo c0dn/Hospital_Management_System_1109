@@ -10,7 +10,6 @@ import org.bee.ui.views.ListView;
 import org.bee.ui.views.TextView;
 
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 /**
  * A UI class that extends UiBase to display a summary of an appointment.

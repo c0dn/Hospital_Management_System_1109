@@ -6,8 +6,6 @@ import org.bee.hms.auth.SystemUser;
 import org.bee.hms.humans.Doctor;
 import org.bee.hms.humans.Patient;
 import org.bee.hms.medical.Consultation;
-import org.bee.hms.telemed.Appointment;
-import org.bee.hms.telemed.AppointmentStatus;
 import org.bee.ui.Color;
 import org.bee.ui.InputHelper;
 import org.bee.ui.UiBase;
@@ -86,7 +84,7 @@ public class OutpatientPatientInfoPage extends UiBase {
         List<Consultation> allCases = consultationController.getAllOutpatientCases();
 
         if (systemUser instanceof Doctor doctor) {
-            String staffId = (String) doctor.getStaffId();
+            String staffId = doctor.getStaffId();
 
             if (patient != null) {
                 displayOutpatientCase(consultation, lv);
@@ -123,7 +121,6 @@ public class OutpatientPatientInfoPage extends UiBase {
                 try {
                     displayOutpatientCase(consultation, lv);
                 } catch (Exception e) {
-                    e.printStackTrace();
                     throw e;
                 }
             });

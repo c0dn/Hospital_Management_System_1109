@@ -8,15 +8,15 @@ import java.util.List;
 /**
  * Represents a feedback entry provided by a patient regarding their medical
  * care and service experience.
- *
+ * <p>
  * This class stores details about a patient's feedback, including ratings for
  * medical care
  * and service, the date of submission, and any additional remarks.
- *
+ * <p>
  * Each feedback entry is uniquely identified by a {@code feedbackID}, which is
  * automatically
  * assigned using a static counter.
- *
+ * <p>
  * Instances of this class are stored in a static list {@code instances} for
  * retrieval
  * and management.
@@ -38,23 +38,21 @@ public class Feedback {
      */
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(String.format("Feedback ID:             %s\n", feedbackID));
-        stringBuilder.append(String.format("Medical Care Rating:     %s\n", medicalCareRating));
-        stringBuilder.append(String.format("Service Rating:          %s\n", serviceRating));
-        stringBuilder.append(String.format("Date:                    %s\n", dateStamp));
-        stringBuilder.append(String.format("Remarks:                 %s\n", remarks));
-        stringBuilder.append("----------------------------\n");
+        String stringBuilder = String.format("Feedback ID:             %s\n", feedbackID) +
+                String.format("Medical Care Rating:     %s\n", medicalCareRating) +
+                String.format("Service Rating:          %s\n", serviceRating) +
+                String.format("Date:                    %s\n", dateStamp) +
+                String.format("Remarks:                 %s\n", remarks) +
+                "----------------------------\n";
 
-        String string = stringBuilder.toString();
-        return string;
+        return stringBuilder;
     }
 
     /**
      * A static list that stores all instances of the class
      * The list keeps track of all feedback objects created in the system.
      */
-    private static List<Feedback> instances = new ArrayList<>();
+    private static final List<Feedback> instances = new ArrayList<>();
 
     /**
      * Retrieves a list of all feedback instances.

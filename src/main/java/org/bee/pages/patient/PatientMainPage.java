@@ -185,23 +185,32 @@ public class PatientMainPage extends UiBase {
         System.out.println("You have requested for an appointment on " + formatter.format(selectedDateTime) + " at index " + selectedSlot);
 
         SystemUser systemUser = humanController.getLoggedInUser();
-        if (systemUser instanceof Patient) {
-            Patient patient = (Patient) systemUser;
+        if (systemUser instanceof Patient patient) {
             Appointment appointment = new Appointment(patient, reason, selectedDateTime, AppointmentStatus.PENDING);
 
 
             // check if consent is already given before asking.
             if (!patient.getPatientConsent()) {
-                String consentString = "Telemedicine Consent Form\n\n" +
-                        "Purpose: This telemedicine session is for a general checkup.\n\n" +
-                        "Procedure:  This session will use live video and audio to connect you with the provider.  You may be asked to share information about your health, and the provider may provide advice or recommendations.\n\n" +
-                        "Recording: This session will not be recorded. If this session is recorded for any purpose, it will be made known to you and separate verbal consent will be required during the call.\n\n" +
-                        "Confidentiality: Your personal health information is protected by Singapore privacy laws.  We will take reasonable steps to protect your privacy.\n\n" +
-                        "Risks and Limitations: Telemedicine is not a substitute for in-person care.  Some conditions cannot be diagnosed or treated remotely.  Technical issues (e.g., poor internet connection) may affect the quality of the session.  In case of an emergency, please call 911 or go to the nearest emergency room.\n\n" +
-                        "Alternatives: You have the option to schedule an in-person appointment instead of using telemedicine.\n\n" +
-                        "Rights: You have the right to refuse or withdraw consent at any time. You have the right to ask questions about this session and your health information.\n\n" +
-                        "By Agreeing, you confirm that you have read, understood, and agree to the terms of this telemedicine consent (Y/N). \n\n" +
-                        "Technical requirements: A laptop or mobile device (such as phone or tablet) with Zoom Meetings app installed";
+                String consentString = """
+                        Telemedicine Consent Form
+                        
+                        Purpose: This telemedicine session is for a general checkup.
+                        
+                        Procedure:  This session will use live video and audio to connect you with the provider.  You may be asked to share information about your health, and the provider may provide advice or recommendations.
+                        
+                        Recording: This session will not be recorded. If this session is recorded for any purpose, it will be made known to you and separate verbal consent will be required during the call.
+                        
+                        Confidentiality: Your personal health information is protected by Singapore privacy laws.  We will take reasonable steps to protect your privacy.
+                        
+                        Risks and Limitations: Telemedicine is not a substitute for in-person care.  Some conditions cannot be diagnosed or treated remotely.  Technical issues (e.g., poor internet connection) may affect the quality of the session.  In case of an emergency, please call 911 or go to the nearest emergency room.
+                        
+                        Alternatives: You have the option to schedule an in-person appointment instead of using telemedicine.
+                        
+                        Rights: You have the right to refuse or withdraw consent at any time. You have the right to ask questions about this session and your health information.
+                        
+                        By Agreeing, you confirm that you have read, understood, and agree to the terms of this telemedicine consent (Y/N).\s
+                        
+                        Technical requirements: A laptop or mobile device (such as phone or tablet) with Zoom Meetings app installed""";
                 System.out.println(consentString);
                 boolean validInput = false;
                 while (!validInput) {
@@ -232,7 +241,7 @@ public class PatientMainPage extends UiBase {
      * The user can choose to change the appointment date and time, cancel the appointment, or return to the main menu.
      * If changing the appointment, the user is prompted to select a new date and time slot. The new appointment time
      * must be in the future. If the user decides to cancel the appointment, the appointment is removed from the system.
-     *
+     * <p>
      * The available time slots for appointment changes start at 8:00 AM and are incremented hourly, with 9 available slots.
      *
      * @throws IllegalStateException if the logged-in user is not a patient.

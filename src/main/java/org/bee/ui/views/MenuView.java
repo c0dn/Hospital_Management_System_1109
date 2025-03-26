@@ -16,8 +16,8 @@ import java.util.List;
  */
 public class MenuView extends View {
     private final List<MenuSection> sections = new ArrayList<>();
-    private boolean showCompactFooter = true;
-    private boolean showDetailedOptions = true;
+    private boolean showCompactFooter;
+    private boolean showDetailedOptions;
 
 
     public MenuView(Canvas canvas, String title, Color color, boolean showDetailedOptions, boolean showCompactFooter) {

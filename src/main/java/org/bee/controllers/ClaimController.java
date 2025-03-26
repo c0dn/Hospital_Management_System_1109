@@ -15,7 +15,6 @@ import org.bee.hms.humans.Nurse;
 import org.bee.hms.humans.Patient;
 import org.bee.hms.insurance.GovernmentProvider;
 import org.bee.hms.insurance.InsuranceProvider;
-import org.bee.hms.medical.Consultation;
 import org.bee.hms.medical.Visit;
 import org.bee.hms.medical.VisitStatus;
 import org.bee.hms.policy.Coverage;
@@ -46,7 +45,7 @@ public class ClaimController extends BaseController<InsuranceClaim> {
 
     /**
      * ClaimController is initialized as protected for singleton instance to prevent direct modification
-     *
+     * <p>
      * It calls the superclass constructor to initialize the base controller functionality
      */
     protected ClaimController() {
@@ -56,7 +55,7 @@ public class ClaimController extends BaseController<InsuranceClaim> {
     /**
      * Returns the singleton instance of ClaimController
      * This method ensures that only one instance of ClaimController is created and used throughout the application
-     *
+     * <p>
      * Creates a new instance if one does not exist
      * @return The singleton instance of ClaimController
      */

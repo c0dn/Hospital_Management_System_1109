@@ -34,6 +34,7 @@ public class FormValidators {
         return s -> s.length() <= max;
     }
 
+    @SafeVarargs
     public static Predicate<String> combine(Predicate<String>... validators) {
         Predicate<String> result = s -> true;
         for (Predicate<String> validator : validators) {

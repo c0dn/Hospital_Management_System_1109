@@ -1,9 +1,5 @@
 package org.bee.hms.humans;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.bee.hms.auth.SystemUser;
-
 /**
  * Represents staff in the insurance system.
  * <p>

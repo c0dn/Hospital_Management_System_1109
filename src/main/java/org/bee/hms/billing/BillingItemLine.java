@@ -13,13 +13,13 @@ import java.math.BigDecimal;
  */
 public class BillingItemLine implements JSONSerializable {
     /** The billable item associated with this billing entry. */
-    private BillableItem item;
+    private final BillableItem item;
     /** The quantity of the item being billed. */
-    private int quantity;
+    private final int quantity;
     /** The unit price of the item. */
-    private BigDecimal unitPrice;
+    private final BigDecimal unitPrice;
     /** The total price calculated as {@code unitPrice * quantity}. */
-    private BigDecimal totalPrice;
+    private final BigDecimal totalPrice;
 
     /**
      * Constructs a new {@code BillingItem} with the specified {@link BillableItem} and quantity.

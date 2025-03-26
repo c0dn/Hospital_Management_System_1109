@@ -1,7 +1,6 @@
 package org.bee.hms.claims;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -53,7 +52,7 @@ public class InsuranceClaim implements JSONSerializable {
     /**
      * The date when the claim was submitted.
      */
-    private LocalDateTime submissionDate;
+    private final LocalDateTime submissionDate;
 
     /**
      * The current status of the claim.
@@ -63,7 +62,7 @@ public class InsuranceClaim implements JSONSerializable {
     /**
      * The total amount claimed.
      */
-    private BigDecimal claimAmount;
+    private final BigDecimal claimAmount;
 
     /**
      * Approved amount

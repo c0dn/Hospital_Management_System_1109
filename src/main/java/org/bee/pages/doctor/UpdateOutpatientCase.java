@@ -71,7 +71,7 @@ public class UpdateOutpatientCase extends UiBase {
         List<Consultation> allCases = consultationController.getAllOutpatientCases();
 
         if (systemUser instanceof Doctor doctor) {
-            String staffId = (String) doctor.getStaffId();
+            String staffId = doctor.getStaffId();
 
             if (consultation != null) {
                 displayOutpatientCase(consultation, lv);
@@ -108,7 +108,6 @@ public class UpdateOutpatientCase extends UiBase {
                 try {
                     updateOutpatientCase();
                 } catch (Exception e) {
-                    e.printStackTrace();
                     throw e;
                 }
             });

@@ -3,7 +3,6 @@ package org.bee.hms.telemed;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.bee.hms.humans.Contact;
@@ -63,13 +62,9 @@ public class Appointment implements JSONSerializable {
         return session;
     }
 
-    ;
-
     public void setSession(Session session) {
         this.session = session;
     }
-
-    ;
 
     public AppointmentStatus getAppointmentStatus() {
         return this.appointmentStatus;
@@ -79,7 +74,6 @@ public class Appointment implements JSONSerializable {
         this.appointmentStatus = appointmentStatus;
     }
 
-    ;
 
     public Doctor getDoctor() {
         return doctor;
@@ -123,9 +117,6 @@ public class Appointment implements JSONSerializable {
 
     public Contact getContact() { return contact; }
 
-    public String getHistory() {
-        return history;
-    }
 
     public void setAppointmentTime(LocalDateTime appointmentTime) {
         this.appointmentTime = appointmentTime;

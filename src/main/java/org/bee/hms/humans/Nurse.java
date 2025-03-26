@@ -1,6 +1,5 @@
 package org.bee.hms.humans;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.bee.hms.auth.SystemUser;
@@ -136,7 +135,7 @@ public class Nurse extends Staff implements SystemUser {
 
     public void printAsAttending() {
         System.out.printf("  - Attending Nurse: %s (RNID: %s)%n", name, rnid);
-    };
+    }
 
     @Override
     public String getUsername() {

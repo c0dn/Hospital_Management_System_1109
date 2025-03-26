@@ -46,14 +46,7 @@ public class ListView extends View {
     public ListView(Canvas canvas, Color color, ListViewOrientation orientation, String separator) {
         super(canvas, "", color);
         this.orientation = orientation;
-    }
-
-    /**
-     * Adds a list of views to the listview
-     * @param views list of children
-     */
-    public void addItems(List<View> views){
-        this.views.addAll(views);
+        this.separator = separator;
     }
 
     /**
@@ -62,14 +55,6 @@ public class ListView extends View {
      */
     public void addItem(View view){
         this.views.add(view);
-    }
-
-    /**
-     * Removes a listview child at index
-     * @param index index of child to remove
-     */
-    public void removeItemAt(int index){
-        this.views.remove(index);
     }
 
     /**

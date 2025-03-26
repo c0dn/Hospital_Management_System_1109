@@ -17,7 +17,6 @@ import org.bee.ui.UiBase;
 import org.bee.ui.View;
 import org.bee.ui.views.ListView;
 import org.bee.ui.views.MenuView;
-import org.bee.ui.views.TextView;
 
 /**
  * Represents the login page of the Hospital Management System.
@@ -72,10 +71,10 @@ public class LoginPage extends UiBase {
             humanController.authenticate(user);
 
             switch (user) {
-                case Doctor doctor -> ToPage(new DoctorMainPage());
-                case Nurse nurse -> ToPage(new TestPage());
-                case Patient patient -> ToPage(new PatientMainPage());
-                case Clerk clerk -> ToPage(new ClerkMainPage());
+                case Doctor ignored -> ToPage(new DoctorMainPage());
+                case Nurse ignored -> ToPage(new TestPage());
+                case Patient ignored -> ToPage(new PatientMainPage());
+                case Clerk ignored -> ToPage(new ClerkMainPage());
                 default -> {
                 }
             }

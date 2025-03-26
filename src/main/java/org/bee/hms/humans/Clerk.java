@@ -1,10 +1,8 @@
 package org.bee.hms.humans;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.bee.hms.auth.SystemUser;
-import org.bee.utils.JSONSerializable;
 
 import java.time.LocalDate;
 

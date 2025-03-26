@@ -43,22 +43,29 @@ public class WardSerializer extends JsonSerializer<Ward> {
         // Infer WardClassType based on the concrete class and daily rate
         double rate = ward.getDailyRate();
 
-        if (ward instanceof LabourWard) {
-            if (rate == 1500) return WardClassType.LABOUR_CLASS_A;
-            if (rate == 1000) return WardClassType.LABOUR_CLASS_B1;
-            if (rate == 500) return WardClassType.LABOUR_CLASS_B2;
-            if (rate == 250) return WardClassType.LABOUR_CLASS_C;
-        } else if (ward instanceof ICUWard) {
-            return WardClassType.ICU;
-        } else if (ward instanceof DaySurgeryWard) {
-            if (rate == 300) return WardClassType.DAYSURGERY_CLASS_SEATER;
-            if (rate == 250) return WardClassType.DAYSURGERY_CLASS_COHORT;
-            if (rate == 200) return WardClassType.DAYSURGERY_CLASS_SINGLE;
-        } else if (ward instanceof GeneralWard) {
-            if (rate == 500) return WardClassType.GENERAL_CLASS_A;
-            if (rate == 250) return WardClassType.GENERAL_CLASS_B1;
-            if (rate == 200) return WardClassType.GENERAL_CLASS_B2;
-            if (rate == 150) return WardClassType.GENERAL_CLASS_C;
+        switch (ward) {
+            case LabourWard ignored1 -> {
+                if (rate == 1500) return WardClassType.LABOUR_CLASS_A;
+                if (rate == 1000) return WardClassType.LABOUR_CLASS_B1;
+                if (rate == 500) return WardClassType.LABOUR_CLASS_B2;
+                if (rate == 250) return WardClassType.LABOUR_CLASS_C;
+            }
+            case ICUWard ignored -> {
+                return WardClassType.ICU;
+            }
+            case DaySurgeryWard ignored -> {
+                if (rate == 300) return WardClassType.DAYSURGERY_CLASS_SEATER;
+                if (rate == 250) return WardClassType.DAYSURGERY_CLASS_COHORT;
+                if (rate == 200) return WardClassType.DAYSURGERY_CLASS_SINGLE;
+            }
+            case GeneralWard ignored -> {
+                if (rate == 500) return WardClassType.GENERAL_CLASS_A;
+                if (rate == 250) return WardClassType.GENERAL_CLASS_B1;
+                if (rate == 200) return WardClassType.GENERAL_CLASS_B2;
+                if (rate == 150) return WardClassType.GENERAL_CLASS_C;
+            }
+            default -> {
+            }
         }
 
         return null;

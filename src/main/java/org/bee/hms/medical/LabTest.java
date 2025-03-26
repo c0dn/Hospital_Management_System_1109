@@ -77,16 +77,15 @@ public class LabTest implements JSONSerializable {
      */
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("\n\nLab Test Details:\n");
-        stringBuilder.append(String.format("Lab Test ID:          %s\n", labTestID));
-        stringBuilder.append(String.format("Type:                 %s\n", type));
-        stringBuilder.append(String.format("Date:                 %s\n", dateStamp));
-        stringBuilder.append(String.format("Status:               %s\n", status));
-        stringBuilder.append(String.format("Remarks:              %s\n", remarks));
-        stringBuilder.append(String.format("Cost:                 $ %.2f", cost));
+        String stringBuilder = "\n\nLab Test Details:\n" +
+                String.format("Lab Test ID:          %s\n", labTestID) +
+                String.format("Type:                 %s\n", type) +
+                String.format("Date:                 %s\n", dateStamp) +
+                String.format("Status:               %s\n", status) +
+                String.format("Remarks:              %s\n", remarks) +
+                String.format("Cost:                 $ %.2f", cost);
 
-        return stringBuilder.toString();
+        return stringBuilder;
     }
 
     /**

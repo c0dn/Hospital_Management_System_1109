@@ -72,7 +72,7 @@ public abstract class InsuranceProvider {
      *
      * @param patient The patient associated with the insurance claim.
      * @param claim The insurance claim to be processed.
-     * @return {@code true} if the claim is successfully submmited, {@code false} otherwise.
+     * @return {@code true} if the claim is successfully submitted, {@code false} otherwise.
      */
     public abstract boolean submitClaim(Patient patient, InsuranceClaim claim);
 

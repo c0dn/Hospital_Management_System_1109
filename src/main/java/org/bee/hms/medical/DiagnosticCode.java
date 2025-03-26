@@ -9,14 +9,13 @@ import java.util.regex.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.bee.hms.billing.BillableItem;
 import org.bee.hms.policy.BenefitType;
 import org.bee.hms.policy.ClaimableItem;
 import org.bee.utils.CSVHelper;
 import org.bee.utils.DataGenerator;
+import org.bee.utils.JSONSerializable;
 
 /**
  * Represents a diagnostic code, typically used for medical diagnosis.
@@ -26,15 +25,14 @@ import org.bee.utils.DataGenerator;
  * based on the category code.
  * </p>
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class DiagnosticCode implements BillableItem, ClaimableItem {
+public class DiagnosticCode implements BillableItem, ClaimableItem, JSONSerializable {
     /** The category code of the diagnosis (e.g., ICD-10 category) */
     @JsonIgnore
-    private String categoryCode;
+    private final String categoryCode;
 
     /** The diagnosis code (e.g., ICD-10 code) */
     @JsonIgnore
-    private String diagnosisCode;
+    private final String diagnosisCode;
 
     /** The full code (e.g., ICD-10 CM code) */
     @JsonProperty("code")
@@ -42,15 +40,15 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
 
     /** The abbreviated description of the diagnosis */
     @JsonIgnore
-    private String abbreviatedDescription;
+    private final String abbreviatedDescription;
 
     /** The full description of the diagnosis */
     @JsonIgnore
-    private String fullDescription;
+    private final String fullDescription;
 
     /** The category title of the diagnosis */
     @JsonIgnore
-    private String categoryTitle;
+    private final String categoryTitle;
 
     /** The cost of the diagnostic code, used for billing purposes */
     @JsonProperty("cost")
@@ -58,9 +56,6 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
 
     /** A registry to store diagnostic codes loaded from a CSV file */
     private static final Map<String, DiagnosticCode> CODE_REGISTRY = new HashMap<>();
-
-    /** The default cost assigned to a diagnostic code if not specified */
-    private static final BigDecimal DEFAULT_COST = new BigDecimal("100.00");
 
     static {
         loadCodesFromCsv();
@@ -85,7 +80,7 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
         this.abbreviatedDescription = abbreviatedDescription;
         this.fullDescription = fullDescription;
         this.categoryTitle = categoryTitle;
-        this.cost = DEFAULT_COST; // Setting default cost
+        this.cost = new BigDecimal(DataGenerator.generateRandomInt(100, 500));
     }
 
 
@@ -167,7 +162,6 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
      *
      * @return A string representing the billing item code.
      */
-    @JsonIgnore
     @Override
     public String getBillingItemCode() {
         return String.format("DIAG-%s", fullCode);
@@ -182,7 +176,6 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
      * @return The unsubsidized charges (cost).
      */
     @Override
-    @JsonIgnore
     public BigDecimal getUnsubsidisedCharges() {
         return cost;
     }
@@ -196,7 +189,6 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
      * @return The abbreviated description of the diagnostic code.
      */
     @Override
-    @JsonIgnore
     public String getBillItemDescription() {
         return abbreviatedDescription;
     }
@@ -210,7 +202,6 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
      * @return The category of the diagnostic code ("DIAGNOSIS").
      */
     @Override
-    @JsonIgnore
     public String getBillItemCategory() {
         return "DIAGNOSIS";
     }
@@ -248,7 +239,6 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
      * @return The charges for the diagnostic code.
      */
     @Override
-    @JsonIgnore
     public BigDecimal getCharges() {
         return cost;
     }
@@ -265,7 +255,6 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
      */
 
     @Override
-    @JsonIgnore
     public BenefitType resolveBenefitType(boolean isInpatient) {
         if (categoryCode == null || categoryCode.isEmpty()) {
             return defaultFallback(isInpatient);
@@ -313,7 +302,6 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
      * @return The benefit description for the diagnostic code.
      */
     @Override
-    @JsonIgnore
     public String getBenefitDescription(boolean isInpatient) {
         return fullDescription;
     }
@@ -327,7 +315,6 @@ public class DiagnosticCode implements BillableItem, ClaimableItem {
      * @return The full diagnostic code.
      */
     @Override
-    @JsonIgnore
     public String getDiagnosisCode() {
         return this.fullCode;
     }

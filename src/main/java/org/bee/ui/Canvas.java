@@ -6,6 +6,7 @@ import org.bee.ui.views.UserInput;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /** handles page rendering, lifecycle, and callbacks (application exit and onbackpressed callbacks).
@@ -194,7 +195,7 @@ public class Canvas {
 
             int responseInt;
             try {
-                responseInt = Integer.parseInt(response);
+                responseInt = Integer.parseInt(Objects.requireNonNull(response));
             } catch (Exception e) {
                 systemMessage = "Invalid input, please try again.";
                 setRequireRedraw(true);
@@ -216,7 +217,6 @@ public class Canvas {
                 inputOptions.lambda().onInput(response);
             }catch (Exception e){
 //                System.out.println("[DEBUG] Exception in input handler: " + e.getMessage());
-                e.printStackTrace();
             }
         }
 
