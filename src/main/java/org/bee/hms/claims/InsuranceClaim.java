@@ -53,7 +53,7 @@ public class InsuranceClaim implements JSONSerializable {
     /**
      * The date when the claim was submitted.
      */
-    private LocalDate submissionDate;
+    private LocalDateTime submissionDate;
 
     /**
      * The current status of the claim.
@@ -92,7 +92,7 @@ public class InsuranceClaim implements JSONSerializable {
      * Private constructor for creating insurance claims.
      */
     private InsuranceClaim(String claimId, Bill bill, InsuranceProvider insuranceProvider,
-                           InsurancePolicy insurancePolicy, Patient patient, LocalDate submissionDate,
+                           InsurancePolicy insurancePolicy, Patient patient, LocalDateTime submissionDate,
                            ClaimStatus claimStatus, BigDecimal claimAmount, String comments) {
         this.claimId = claimId;
         this.bill = bill;
@@ -105,32 +105,6 @@ public class InsuranceClaim implements JSONSerializable {
         this.comments = comments;
     }
 
-
-    /**
-     * Creates a new insurance claim with a generated claim ID.
-     *
-     * @param bill              The medical bill associated with the claim
-     * @param insuranceProvider The insurance provider
-     * @param insurancePolicy   The insurance policy
-     * @param patient           The patient
-     * @param claimAmount       The amount being claimed
-     * @return A new InsuranceClaim instance
-     */
-    public static InsuranceClaim createNew(Bill bill, InsuranceProvider insuranceProvider,
-                                           InsurancePolicy insurancePolicy, Patient patient,
-                                           BigDecimal claimAmount) {
-        return new InsuranceClaim(
-                generateClaimId(),
-                bill,
-                insuranceProvider,
-                insurancePolicy,
-                patient,
-                LocalDate.now(),
-                ClaimStatus.DRAFT,
-                claimAmount,
-                ""
-        );
-    }
 
     /**
      * Creates an insurance claim with an existing claim ID.
@@ -154,7 +128,7 @@ public class InsuranceClaim implements JSONSerializable {
             @JsonProperty("insurance_provider") InsuranceProvider insuranceProvider,
             @JsonProperty("insurance_policy") InsurancePolicy insurancePolicy,
             @JsonProperty("patient") Patient patient,
-            @JsonProperty("submission_date") LocalDate submissionDate,
+            @JsonProperty("submission_date") LocalDateTime submissionDate,
             @JsonProperty("claim_status") ClaimStatus claimStatus,
             @JsonProperty("claim_amount") BigDecimal claimAmount,
             @JsonProperty("comments") String comments) {
@@ -475,4 +449,7 @@ public class InsuranceClaim implements JSONSerializable {
     }
 
 
+    public LocalDateTime getSubmissionDate() {
+        return submissionDate;
+    }
 }

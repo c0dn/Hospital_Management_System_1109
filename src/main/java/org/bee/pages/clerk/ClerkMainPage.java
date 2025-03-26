@@ -76,10 +76,10 @@
             menuView.attachMenuOptionInput(1, "View All Telemedicine cases", str -> viewAllAppointments());
             menuView.attachMenuOptionInput(2, "View All Outpatient Cases", str -> viewAllOutpatientCases());
             menuView.attachMenuOptionInput(3, "Update Fields For Outpatient Cases", str -> updateOutpatientCase());
-            menuView.attachMenuOptionInput(4, "New Claim", str -> ToPage(new NewClaimPage()));
-            menuView.attachMenuOptionInput(5, "Manage Claim", str -> ToPage(new ManageClaimPage()));
-            menuView.attachMenuOptionInput(6, "Claim Status", str -> ToPage(new ClaimStatusPage()));
-            menuView.attachMenuOptionInput(7, "Change Claim Status", str -> ToPage(new ChangeClaimStatusPage()));
+//            menuView.attachMenuOptionInput(4, "New Claim", str -> ToPage(new NewClaimPage()));
+//            menuView.attachMenuOptionInput(5, "Manage Claim", str -> ToPage(new ManageClaimPage()));
+//            menuView.attachMenuOptionInput(6, "Claim Status", str -> ToPage(new ClaimStatusPage()));
+//            menuView.attachMenuOptionInput(7, "Change Claim Status", str -> ToPage(new ChangeClaimStatusPage()));
 
             canvas.setRequireRedraw(true);
         }
