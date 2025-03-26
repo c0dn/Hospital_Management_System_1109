@@ -102,20 +102,13 @@ public class AppointmentController extends BaseController<Appointment> {
             return;
         }
 
-        for (int i = 0; i < 10; i++) {
-            // Randomly select a patient
-            Patient patient = patients.get(DataGenerator.generateRandomInt(patients.size()));
-
-            // Randomly decide whether to assign a doctor (50% chance)
-            Doctor doctor = null;
-            if (!doctors.isEmpty() && DataGenerator.generateRandomInt(2) == 0) {
-                doctor = doctors.get(DataGenerator.generateRandomInt(doctors.size()));
-            }
-
-            // Generate the appointment
-            Appointment appointment = DataGenerator.generateRandomAppointment(patient, doctor);
+        for (Doctor doctor : doctors) {
+            Patient patient = DataGenerator.getRandomElement(patients);
+            Appointment appointment = Appointment.withRandomData(patient, doctor);
             items.add(appointment);
         }
+
+        saveData();
 
         System.out.println("Generated " + items.size() + " appointments.");
     }
@@ -189,50 +182,6 @@ public class AppointmentController extends BaseController<Appointment> {
      */
     public List<Appointment> getAllAppointments() {
         return getAllItems();
-    }
-
-    /**
-     * Creates a random appointment with a specific doctor and patient
-     *
-     * @param patientId The ID of the patient for the appointment
-     * @param doctorId The ID of the doctor for the appointment (can be null)
-     * @return The created appointment, or null if the patient or doctor was not found
-     */
-    public Appointment createRandomAppointment(String patientId, String doctorId) {
-        // Find the patient
-        Optional<Patient> patientOpt = humanController.getAllPatients().stream()
-                .filter(p -> p.getPatientId().equals(patientId))
-                .findFirst();
-
-        if (patientOpt.isEmpty()) {
-            System.err.println("Patient with ID " + patientId + " not found");
-            return null;
-        }
-
-        Patient patient = patientOpt.get();
-        Doctor doctor = null;
-
-        // Find the doctor if provided
-        if (doctorId != null && !doctorId.isEmpty()) {
-            Optional<Doctor> doctorOpt = humanController.getAllDoctors().stream()
-                    .filter(d -> d.getMcr().equals(doctorId))
-                    .findFirst();
-
-            if (doctorOpt.isEmpty()) {
-                System.err.println("Doctor with MCR " + doctorId + " not found");
-                return null;
-            }
-
-            doctor = doctorOpt.get();
-        }
-
-        // Generate the appointment
-        Appointment appointment = DataGenerator.generateRandomAppointment(patient, doctor);
-
-        // Add to the list and save
-        addItem(appointment);
-
-        return appointment;
     }
 
     /**

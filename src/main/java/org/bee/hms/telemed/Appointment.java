@@ -12,7 +12,7 @@ import org.bee.utils.DataGenerator;
 import org.bee.utils.JSONSerializable;
 
 /**
- * This class represents an appointment for a telemedicine integeration for a hospital
+ * This class represents an appointment for a telemedicine integration for a hospital
  * It provides functionalities to manage appointments involving patients and doctors
  * It includes setting and updating appointment time, managing appointment statuses, and handling billing procedures.
  * <p>
@@ -24,6 +24,7 @@ import org.bee.utils.JSONSerializable;
  */
 
 public class Appointment implements JSONSerializable {
+    private String appointmentId;
     private Patient patient;
     private String reason;
     private String history;
@@ -38,19 +39,27 @@ public class Appointment implements JSONSerializable {
 
     /**
      * Constructs a new Appointment with the specified details.
+     * Handles initialization of appointmentId (from JSON or generated).
      *
+     * @param appointmentId     the unique ID for the appointment (optional, will be generated if null/missing)
      * @param patient           the patient involved in the appointment (must not be null)
      * @param reason            the reason for the appointment (must not be null)
      * @param appointmentTime   the time the appointment is scheduled (must not be null)
      * @param appointmentStatus the initial status of the appointment (must not be null)
-     * @throws NullPointerException if any of the parameters are null
+     * @throws NullPointerException if patient, reason, appointmentTime, or appointmentStatus are null
      */
     @JsonCreator
     public Appointment(
+            @JsonProperty("appointmentId") String appointmentId,
             @JsonProperty("patient") Patient patient,
             @JsonProperty("reason") String reason,
             @JsonProperty("appointmentTime") LocalDateTime appointmentTime,
             @JsonProperty("appointmentStatus") AppointmentStatus appointmentStatus) {
+
+        this.appointmentId = (appointmentId != null && !appointmentId.isEmpty())
+                ? appointmentId
+                : DataGenerator.generateUUID();
+
         this.patient = Objects.requireNonNull(patient, "Patient cannot be null");
         this.reason = Objects.requireNonNull(reason, "Reason cannot be null");
         this.appointmentTime = Objects.requireNonNull(appointmentTime, "Appointment time cannot be null");
@@ -60,6 +69,10 @@ public class Appointment implements JSONSerializable {
 
     public Session getSession() {
         return session;
+    }
+
+    public String getAppointmentId() {
+        return appointmentId;
     }
 
     public void setSession(Session session) {
@@ -208,7 +221,7 @@ public class Appointment implements JSONSerializable {
         AppointmentStatus[] statuses = AppointmentStatus.values();
         AppointmentStatus status = statuses[DataGenerator.generateRandomInt(statuses.length)];
 
-        Appointment appointment = new Appointment(patient, reason, appointmentTime, status);
+        Appointment appointment = new Appointment(null, patient, reason, appointmentTime, status);
 
         // If doctor is provided, assign it to the appointment
         if (doctor != null) {
@@ -263,13 +276,15 @@ public class Appointment implements JSONSerializable {
     @Override
     public String toString() {
         return "Appointment{" +
-                "patient=" + patient +
+                "appointmentId='" + appointmentId + '\'' +
+                ", patient=" + (patient != null ? patient.getName() : "null") +
                 ", reason='" + reason + '\'' +
                 ", appointmentTime=" + appointmentTime +
-                ", doctor=" + doctor +
+                ", doctor=" + (doctor != null ? doctor.getName() : "null") +
                 ", appointmentStatus=" + appointmentStatus +
                 ", session=" + session +
                 ", doctorNotes='" + doctorNotes + '\'' +
+                ", mc=" + (mc != null) +
                 '}';
     }
 }
