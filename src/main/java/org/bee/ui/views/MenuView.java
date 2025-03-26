@@ -60,6 +60,9 @@ public class MenuView extends View {
 
         StringBuilder sb = new StringBuilder();
 
+        sb.append(TextStyle.RESET.getAnsiCode())
+                .append(Color.ESCAPE.getAnsiCode());
+
         for (int i = 0; i < sections.size(); i++) {
             MenuSection section = sections.get(i);
 
