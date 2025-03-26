@@ -12,6 +12,7 @@ public enum Color {
     MAGENTA("\u001b[35m"),
     CYAN("\u001b[36m"),
     WHITE("\u001b[37m"),
+    BRIGHT_WHITE("\u001b[97m"),
     ESCAPE("\u001b[0m");
 
     private final String ansiCode;

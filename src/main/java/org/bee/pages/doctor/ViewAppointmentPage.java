@@ -45,7 +45,7 @@ public class ViewAppointmentPage extends UiBase {
                 Color.GREEN
         );
 
-        lv.setTitleHeader(" View Appointments | " + humanController.getLoginInUser());
+        lv.setTitleHeader("\n View Appointments | " + humanController.getLoginInUser());
         this.listView = lv;
         return lv;
     }
@@ -65,8 +65,24 @@ public class ViewAppointmentPage extends UiBase {
                 .filter(x -> x.getAppointmentStatus() != AppointmentStatus.COMPLETED)
                 .toList();
 
-        listView.attachUserInput("Select Patient index", str -> selectAppointmentPrompt(appointments));
         refreshUi();
+//        selectAppointmentPrompt(appointments);
+
+        listView.attachUserInput("Select Patient index", input -> {
+            try {
+                int selectedIndex = Integer.parseInt(input.trim());
+                if (selectedIndex >= 0 && selectedIndex < appointments.size()) {
+                    selectAppointmentPrompt((List<Appointment>) appointments.get(selectedIndex));
+                } else {
+                    System.out.println("Invalid selection. Please try again.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid number.");
+            }
+        });
+
+//        listView.attachUserInput("Select Patient index", str -> selectAppointmentPrompt(appointments));
+//        refreshUi();
     }
 
     /**
@@ -157,6 +173,8 @@ public class ViewAppointmentPage extends UiBase {
             this.canvas.setRequireRedraw(true);
             return;}
 
+        listView.addItem(new TextView(this.canvas, String.format("%3s | %-15s | %-20s | %-12s | %-7s | %-15s", "ID", "Patient Name", "Consult Reason", "Date", "Time", "Status"), Color.BRIGHT_WHITE));
+
         // loop through the appointments and display them
         for (int i = 0; i < appointments.size(); i++) {
             Appointment appointment = appointments.get(i);
@@ -172,17 +190,18 @@ public class ViewAppointmentPage extends UiBase {
 
             String status = appointment.getAppointmentStatus().toString();
 
-            String displayText = String.format("%d. %s | Consult Reason: %s | Date: %s | Time: %s |",
-                    i, patientName, consultReason, formattedDate, formattedTime);
+            String displayText = String.format("%3d. %17s %20s %14s %9s %11s",
+                    i, patientName, consultReason, formattedDate, formattedTime, status);
 
-            Color itemColor = getItemColor(appointment.getAppointmentStatus());
+//            Color itemColor = getItemColor(appointment.getAppointmentStatus());
 
             // add row view for horizontal separation, use two text views for two different statuses.
-            ListView rowView = new ListView(this.canvas, itemColor, ListViewOrientation.HORIZONTAL);
-            rowView.addItem(new TextView(this.canvas, displayText, itemColor));
-            rowView.addItem(new TextView(this.canvas, status, itemColor, TextStyle.BOLD));
+            ListView rowView = new ListView(this.canvas, Color.WHITE, ListViewOrientation.HORIZONTAL);
+            rowView.addItem(new TextView(this.canvas, displayText, Color.WHITE));
+//            rowView.addItem(new TextView(this.canvas, status, itemColor, TextStyle.BOLD));
             listView.addItem(rowView);
-        }
+
+
         this.canvas.setRequireRedraw(true);
     }
 
@@ -192,14 +211,14 @@ public class ViewAppointmentPage extends UiBase {
      * @param status The appointment status
      * @return The corresponding color (RED for declined, CYAN for pending, GREEN for others)
      */
-    private Color getItemColor(AppointmentStatus status) {
-        switch (status) {
-            case DECLINED:
-                return Color.RED;
-            case PENDING:
-                return Color.CYAN;
-            default:
-                return Color.GREEN;
-        }
+//    private Color getItemColor(AppointmentStatus status) {
+//        switch (status) {
+//            case DECLINED:
+//                return Color.RED;
+//            case PENDING:
+//                return Color.CYAN;
+//            default:
+//                return Color.GREEN;
+//        }
     }
 }

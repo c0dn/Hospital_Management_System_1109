@@ -64,6 +64,7 @@ public class PatientMainPage extends UiBase {
         lv.addItem(new TextView(this.canvas, "2. Book Appointment - To schedule teleconsult appointment", Color.GREEN));
         lv.addItem(new TextView(this.canvas, "3. View/Change Appointment - To view or reschedule an existing teleconsult appointment", Color.GREEN));
         lv.addItem(new TextView(this.canvas, "4. View Billing - To view unpaid bills ", Color.GREEN));
+        lv.addItem(new TextView(this.canvas, "5. View Appointment Summary ", Color.GREEN));
 
 
         lv.attachUserInput("View/Update Particulars ", str -> viewUpdateParticularsPrompt());
@@ -75,6 +76,8 @@ public class PatientMainPage extends UiBase {
 //            BillingPage.appointments = appointmentController.getAppointments();
 //            ToPage(new BillingPage());
 //        });
+
+        lv.attachUserInput(" View Appointment Summary ", str -> ToPage(new ViewAppointmentSummaryPage()));
 
 
         canvas.setRequireRedraw(true);

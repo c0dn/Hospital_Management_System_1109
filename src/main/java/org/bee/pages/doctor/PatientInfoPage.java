@@ -66,12 +66,13 @@ public class PatientInfoPage extends UiBase {
 
         // Show list of patient
         for (Patient patient : patients) {
-            lv.addItem(new TextView(this.canvas, index + ". " + patient.getName(), Color.GREEN));
+//            lv.addItem(new TextView(this.canvas, index + ". " + patient.getName(), Color.GREEN));
+            System.out.println(index + ". " + patient.getName());
             index += 1;
         }
 
         // When selecting "Select Patient Index"
-        lv.attachUserInput("Select Patient Index ", str -> {
+//        lv.attachUserInput("Select Patient Index ", str -> {
             int selectedIndex = InputHelper.getValidIndex(canvas.getTerminal(), "Select Patient index", patients);
             patient = patients.get(selectedIndex);
 
@@ -81,7 +82,7 @@ public class PatientInfoPage extends UiBase {
                 e.printStackTrace();
                 throw e;
             }
-        });
+//        });
     }
 
     /**
@@ -93,13 +94,13 @@ public class PatientInfoPage extends UiBase {
     private void displayPatient(Patient patient, ListView lv) {
         lv.clear();
         lv.setTitleHeader("Patient Information");
-        lv.addItem(new TextView(this.canvas, "Name: " + patient.getName(), Color.GREEN));
-        lv.addItem(new TextView(this.canvas, "ID: " + patient.getNricFin(), Color.GREEN));
-        lv.addItem(new TextView(this.canvas, "Age: " + patient.getAge(), Color.GREEN));
-        lv.addItem(new TextView(this.canvas, "Gender: " + patient.getSex(), Color.GREEN));
-        lv.addItem(new TextView(this.canvas, "Address: " + patient.getAddress(), Color.GREEN));
-        lv.addItem(new TextView(this.canvas, "Patient ID: " + patient.getPatientId(), Color.GREEN));
-        lv.addItem(new TextView(this.canvas, "Date of Birth: " + patient.getDOB(), Color.GREEN));
+        lv.addItem(new TextView(this.canvas, "Name: " + patient.getName(), Color.WHITE));
+        lv.addItem(new TextView(this.canvas, "ID: " + patient.getNricFin(), Color.WHITE));
+        lv.addItem(new TextView(this.canvas, "Age: " + patient.getAge(), Color.WHITE));
+        lv.addItem(new TextView(this.canvas, "Gender: " + patient.getSex(), Color.WHITE));
+        lv.addItem(new TextView(this.canvas, "Address: " + patient.getAddress(), Color.WHITE));
+        lv.addItem(new TextView(this.canvas, "Patient ID: " + patient.getPatientId(), Color.WHITE));
+        lv.addItem(new TextView(this.canvas, "Date of Birth: " + patient.getDOB(), Color.WHITE));
         //lv.addItem(new TextView(this.canvas, "Next of Kin: " + patient.get(), Color.GREEN));
 
         // Request UI redraw
