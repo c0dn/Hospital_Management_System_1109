@@ -21,12 +21,31 @@ import org.bee.hms.policy.InsuranceCoverageResult;
  * Extends BaseController to provide JSON persistence.
  */
 public class BillController extends BaseController<Bill> {
+
+    /**
+     * Singleton instance of the BillController.
+     */
     private static BillController instance;
 
     // Singleton dependencies
+    /**
+     * Singleton instance of HumanController
+     */
     private static final HumanController humanController = HumanController.getInstance();
+
+    /**
+     * Singleton instance of PolicyController
+     */
     private static final PolicyController policyController = PolicyController.getInstance();
+
+    /**
+     * Singleton instance of VisitController
+     */
     private static final VisitController visitController = VisitController.getInstance();
+
+    /**
+     * Singleton instance of ConsultationController
+     */
     private static final ConsultationController consultationController = ConsultationController.getInstance();
 
     /**
@@ -48,16 +67,30 @@ public class BillController extends BaseController<Bill> {
         return instance;
     }
 
+    /**
+     * Returns the file path for bills
+     *
+     * @return A String representing the path to the bills data file
+     */
     @Override
     protected String getDataFilePath() {
         return DATABASE_DIR + "/bills.txt";
     }
 
+    /**
+     * Returns the Class for the Bill entity.
+     *
+     * @return The Class for Bill
+     */
     @Override
     protected Class<Bill> getEntityClass() {
         return Bill.class;
     }
 
+    /**
+     * Generates initial bill data for the healthcare management system
+     * This method creates bills for all patients based on their visits and consultations and policies
+     */
     @Override
     protected void generateInitialData() {
         System.out.println("Generating initial bill data...");

@@ -16,13 +16,29 @@ import java.util.stream.Collectors;
  * It extends BaseController to handle JSON persistence.
  */
 public class ConsultationController extends BaseController<Consultation> {
+    /**
+     * Singleton instance of the ConsultationController.
+     */
     private static ConsultationController instance;
+
+    /**
+     * Reference to the HumanController singleton instance
+     */
     private static final HumanController humanController = HumanController.getInstance();
 
+    /**
+     * Protected constructor to enforce singleton pattern.
+     */
     protected ConsultationController() {
         super();
     }
 
+    /**
+     * Returns the instance of ConsultationController
+     * Create instance if it does not exist
+     *
+     * @return The singleton instance of ConsultationController
+     */
     public static synchronized ConsultationController getInstance() {
         if (instance == null) {
             instance = new ConsultationController();
@@ -30,16 +46,30 @@ public class ConsultationController extends BaseController<Consultation> {
         return instance;
     }
 
+    /**
+     * Returns the file path for storing consultation data
+     *
+     * @return A String representing the path to the consultations data file
+     */
     @Override
     protected String getDataFilePath() {
         return DATABASE_DIR + "/consultations.txt";
     }
 
+    /**
+     * Returns the Class for Consultation entity
+     *
+     * @return The Class for Consultation
+     */
     @Override
     protected Class<Consultation> getEntityClass() {
         return Consultation.class;
     }
 
+    /**
+     * Generates initial consultation data for the system
+     * This method creates consultations for all patients, considering their insurance policies if available
+     */
     @Override
     protected void generateInitialData() {
         System.out.println("Generating initial consultations data...");
@@ -73,15 +103,24 @@ public class ConsultationController extends BaseController<Consultation> {
         System.out.format("Generated %d consultations%n", items.size());
     }
 
+     /**
+     * Adds a new consultation case to the healthcare management system and saves the data
+     *
+     * @param consultation The Consultation  to be added
+     */
     public void addCase(Consultation consultation) {
         addItem(consultation);
         saveData();
     }
 
+    /**
+     * Retrieves all outpatient consultation cases in the healthcare management system.
+     *
+     * @return A list containing all Consultation
+     */
     public List<Consultation> getAllOutpatientCases() {
         return getAllItems();
     }
-
 
     /**
      * Removes a consultation from the list and saves to the JSON file.
@@ -97,7 +136,12 @@ public class ConsultationController extends BaseController<Consultation> {
         return removed;
     }
 
-
+    /**
+     * Finds a consultation by its consultationID.
+     *
+     * @param consultationId The ID of the consultation to find
+     * @return Consultation if found, null otherwise
+     */
     private Consultation findConsultationById(String consultationId) {
         return getAllOutpatientCases().stream()
                 .filter(c -> c.getConsultationId().equals(consultationId))
@@ -105,6 +149,10 @@ public class ConsultationController extends BaseController<Consultation> {
                 .orElse(null);
     }
 
+    /**
+     * Displays all outpatient cases
+     * If the logged-in user is a doctor, their patient consultations are shown
+     */
     public void viewAllOutpatientCases() {
         ConsultationController consultationController = ConsultationController.getInstance();
         List<Consultation> allConsultations = consultationController.getAllOutpatientCases();
