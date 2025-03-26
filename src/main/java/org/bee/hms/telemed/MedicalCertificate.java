@@ -13,7 +13,6 @@ import org.bee.utils.JSONSerializable;
  * Represents a medical certificate. Medical certificates in Singapore are usually simple.
  * Consisting of startDate, endDate, id and any additional remarks from the doctor.
  */
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class MedicalCertificate implements JSONSerializable {
     private String id;
     private LocalDateTime startDate;
