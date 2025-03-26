@@ -147,6 +147,33 @@ public class InsuranceClaim implements JSONSerializable {
 
 
     /**
+     * Creates a new insurance claim with a generated claim ID.
+     *
+     * @param bill              The medical bill associated with the claim
+     * @param insuranceProvider The insurance provider
+     * @param insurancePolicy   The insurance policy
+     * @param patient           The patient
+     * @param claimAmount       The amount being claimed
+     * @return A new InsuranceClaim instance
+     */
+    public static InsuranceClaim createNew(Bill bill, InsuranceProvider insuranceProvider,
+                                           InsurancePolicy insurancePolicy, Patient patient,
+                                           BigDecimal claimAmount) {
+        return new InsuranceClaim(
+                generateClaimId(),
+                bill,
+                insuranceProvider,
+                insurancePolicy,
+                patient,
+                null,
+                ClaimStatus.DRAFT,
+                claimAmount,
+                ""
+        );
+    }
+
+
+    /**
      * Retrieves the unique identifier for the claim.
      *
      * @return The claim ID.

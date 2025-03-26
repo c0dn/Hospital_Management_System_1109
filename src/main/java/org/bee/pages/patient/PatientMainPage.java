@@ -3,15 +3,15 @@ package org.bee.pages.patient;
 import org.bee.controllers.AppointmentController;
 import org.bee.controllers.HumanController;
 import org.bee.hms.auth.SystemUser;
-import org.bee.hms.humans.NokRelation;
 import org.bee.hms.humans.Patient;
 
 import org.bee.hms.telemed.Appointment;
 import org.bee.hms.telemed.AppointmentStatus;
+import org.bee.pages.GenericUpdatePage;
 import org.bee.ui.*;
 import org.bee.ui.views.ListView;
-import org.bee.ui.views.TextView;
-import org.bee.utils.InfoUpdaters.PatientUpdater;
+import org.bee.ui.views.MenuView;
+import org.bee.utils.formAdapters.PatientFormAdapter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -26,23 +26,21 @@ import java.util.*;
  * It extends {@link UiBase} and uses a {@link ListView} to present the menu items.
  */
 public class PatientMainPage extends UiBase {
-    ListView listView;
     private static final HumanController humanController = HumanController.getInstance();
     private static final AppointmentController appointmentController = AppointmentController.getInstance();
 
     /**
      * Called when the main page's view is created.
-     * Creates a {@link ListView} to hold the main menu options.
+     * Creates a {@link MenuView} to hold the main menu options.
      * Sets the title header to "Main".
      *
-     * @return A new {@link ListView} instance representing the main page's view.
+     * @return A new {@link MenuView} instance representing the main page's view.
      */
 
     @Override
     public View createView() {
-        ListView lv = new ListView(this.canvas, Color.GREEN);
-        listView = lv;
-        return lv;
+        return new MenuView(this.canvas, "Patient Portal", Color.GREEN, true, false);
+
     }
 
     /**
@@ -57,28 +55,29 @@ public class PatientMainPage extends UiBase {
      */
     @Override
     public void OnViewCreated(View parentView) {
-        ListView lv = (ListView) parentView; // Cast the parent view to a list view
+        MenuView menuView = (MenuView) parentView;
         HumanController controller = HumanController.getInstance();
-        lv.setTitleHeader(controller.getUserGreeting());
-        lv.addItem(new TextView(this.canvas, "1. View/Update Particulars - To update user particular ", Color.GREEN));
-        lv.addItem(new TextView(this.canvas, "2. Book Appointment - To schedule teleconsult appointment", Color.GREEN));
-        lv.addItem(new TextView(this.canvas, "3. View/Change Appointment - To view or reschedule an existing teleconsult appointment", Color.GREEN));
-        lv.addItem(new TextView(this.canvas, "4. View Billing - To view unpaid bills ", Color.GREEN));
-        lv.addItem(new TextView(this.canvas, "5. View Appointment Summary ", Color.GREEN));
+        menuView.setTitleHeader(controller.getUserGreeting());
 
+        MenuView.MenuSection patientSection = menuView.addSection("Patient Services");
+        patientSection.addOption(1, "View/Update Particulars - To update user particular");
+        patientSection.addOption(2, "Book Appointment - To schedule teleconsult appointment");
+        patientSection.addOption(3, "View/Change Appointment - To view or reschedule an existing teleconsult appointment");
 
-        lv.attachUserInput("View/Update Particulars ", str -> viewUpdateParticularsPrompt());
-        lv.attachUserInput("Book Appointment ", str -> bookAppointmentPrompt());
-        lv.attachUserInput("View/Change Appointment ", str -> changeAppointmentPrompt());
+        MenuView.MenuSection infoSection = menuView.addSection("Information Services");
+        infoSection.addOption(4, "View Billing - To view unpaid bills");
+        infoSection.addOption(5, "View Appointment Summary");
 
+        menuView.attachMenuOptionInput(1, "View/Update Particulars", str -> viewUpdateParticularsPrompt());
+        menuView.attachMenuOptionInput(2, "Book Appointment", str -> bookAppointmentPrompt());
+        menuView.attachMenuOptionInput(3, "View/Change Appointment", str -> changeAppointmentPrompt());
 
-//        lv.attachUserInput("View Billing", str -> {
-//            BillingPage.appointments = appointmentController.getAppointments();
-//            ToPage(new BillingPage());
-//        });
+        // menuView.attachMenuOptionInput(4, "View Billing", str -> {
+        //     BillingPage.appointments = appointmentController.getAppointments();
+        //     ToPage(new BillingPage());
+        // });
 
-        lv.attachUserInput(" View Appointment Summary ", str -> ToPage(new ViewAppointmentSummaryPage()));
-
+        menuView.attachMenuOptionInput(5, "View Appointment Summary", str -> ToPage(new ViewAppointmentSummaryPage()));
 
         canvas.setRequireRedraw(true);
     }
@@ -93,359 +92,19 @@ public class PatientMainPage extends UiBase {
     private void viewUpdateParticularsPrompt() {
         SystemUser systemUser = humanController.getLoggedInUser();
         if (systemUser instanceof Patient patient) {
-            Terminal term = canvas.getTerminal();
-            try {
-                // Display current particulars
-                System.out.println("\nCurrent Particulars:");
-                patient.displayHuman(); // This will show all patient details
+            System.out.println("\nCurrent Particulars:");
+            patient.displayHuman();
 
-                System.out.println("\nWhat would you like to update?");
-                System.out.println("1. Contact Information");
-                System.out.println("2. Address");
-                System.out.println("3. Height");
-                System.out.println("4. Weight");
-                System.out.println("5. Drug Allergies");
-                System.out.println("6. Next of Kin Information");
-                System.out.println("7. Next of Kin Relationship");
-                System.out.println("8. Next of Kin Address");
-                System.out.println("9. Return to Main Menu");
+            PatientFormAdapter adapter = new PatientFormAdapter();
 
-                int choice = InputHelper.getValidIndex(term, "Enter your choice", 1, 9);
+            GenericUpdatePage<Patient> updatePage = new GenericUpdatePage<>(
+                    patient,
+                    adapter,
+                    () -> System.out.println("Patient information updated successfully!")
+            );
 
-                String patientId = patient.getPatientId();
-                PatientUpdater updater = PatientUpdater.builder();
-                boolean updateNeeded = true;
-
-                switch (choice) {
-                    case 1:
-                        updater = updateContactWithValidation(term, updater);
-                        break;
-                    case 2:
-                        updater = updateAddressWithValidation(term, updater);
-                        break;
-                    case 3:
-                        updater = updateHeightWithValidation(term, updater);
-                        break;
-                    case 4:
-                        updater = updateWeightWithValidation(term, updater);
-                        break;
-                    case 5:
-                        updater = updateDrugAllergiesWithValidation(term, updater);
-                        break;
-                    case 6:
-                        updater = updateNokNameWithValidation(term, updater);
-                        break;
-                    case 7:
-                        updater = updateNokRelationWithValidation(term, updater);
-                        break;
-                    case 8:
-                        updater = updateNokAddressWithValidation(term, updater);
-                        break;
-                    case 9:
-                        updateNeeded = false;
-                        break;
-                }
-
-                if (updateNeeded && updater.isValid()) {
-                    humanController.updatePatient(patientId, updater);
-                    System.out.println("\nPatient information updated successfully!");
-                } else if (choice != 9) {
-                    System.out.println("\nNo changes were made.");
-                }
-            } finally {
-                canvas.setRequireRedraw(true);
-            }
+            ToPage(updatePage);
         }
-    }
-
-    /**
-     * Updates the contact of the patient with input validation.
-     *
-     * @param terminal The terminal for user input
-     * @param updater  The patient updater object to apply the update
-     * @return The updated {@link PatientUpdater} object
-     */
-    private PatientUpdater updateContactWithValidation(Terminal terminal, PatientUpdater updater) {
-        boolean isValid = false;
-
-        while (!isValid) {
-            System.out.println("Enter new contact number:");
-            String contact = terminal.getUserInput();
-            updater = updater.contact(contact);
-
-            if (updater.getValidationError("contact") != null) {
-                System.out.println("Error: " + updater.getValidationError("contact"));
-                System.out.println("Would you like to try again? (Y/N)");
-                String response = terminal.getUserInput().trim().toUpperCase();
-                if (!response.equals("Y")) {
-                    break;
-                }
-            } else {
-                System.out.println("Contact information updated successfully!");
-                isValid = true;
-            }
-        }
-
-        return updater;
-    }
-
-    /**
-     * Updates the address of the patient with input validation.
-     *
-     * @param terminal The terminal for user input
-     * @param updater  The patient updater object to apply the update
-     * @return The updated {@link PatientUpdater} object
-     */
-    private PatientUpdater updateAddressWithValidation(Terminal terminal, PatientUpdater updater) {
-        boolean isValid = false;
-
-        while (!isValid) {
-            System.out.println("Enter new address:");
-            String address = terminal.getUserInput();
-            updater = updater.address(address);
-
-            if (updater.getValidationError("address") != null) {
-                System.out.println("Error: " + updater.getValidationError("address"));
-                System.out.println("Would you like to try again? (Y/N)");
-                String response = terminal.getUserInput().trim().toUpperCase();
-                if (!response.equals("Y")) {
-                    break;
-                }
-            } else {
-                System.out.println("Address updated successfully!");
-                isValid = true;
-            }
-        }
-
-        return updater;
-    }
-
-    /**
-     * Updates height with validation.
-     *
-     * @param terminal The terminal for user input
-     * @param updater  The patient updater
-     * @return The updated {@link PatientUpdater} object
-     */
-    private PatientUpdater updateHeightWithValidation(Terminal terminal, PatientUpdater updater) {
-        boolean isValid = false;
-
-        while (!isValid) {
-            System.out.println("Enter new height (in meters):");
-            try {
-                String heightInput = terminal.getUserInput();
-                double height = Double.parseDouble(heightInput);
-
-                updater = updater.height(height);
-
-                if (updater.getValidationError("height") != null) {
-                    System.out.println("Error: " + updater.getValidationError("height"));
-                    System.out.println("Would you like to try again? (Y/N)");
-                    String response = terminal.getUserInput().trim().toUpperCase();
-                    if (!response.equals("Y")) {
-                        break;
-                    }
-                } else {
-                    System.out.println("Height updated successfully!");
-                    isValid = true;
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Error: Invalid number format");
-                System.out.println("Would you like to try again? (Y/N)");
-                String response = terminal.getUserInput().trim().toUpperCase();
-                if (!response.equals("Y")) {
-                    break;
-                }
-            }
-        }
-
-        return updater;
-    }
-
-    /**
-     * Updates weight with validation.
-     *
-     * @param terminal The terminal for user input
-     * @param updater  The patient updater
-     * @return The updated {@link PatientUpdater} object
-     */
-    private PatientUpdater updateWeightWithValidation(Terminal terminal, PatientUpdater updater) {
-        boolean isValid = false;
-
-        while (!isValid) {
-            System.out.println("Enter new weight (in kg):");
-            try {
-                String weightInput = terminal.getUserInput();
-                double weight = Double.parseDouble(weightInput);
-
-                updater = updater.weight(weight);
-
-                if (updater.getValidationError("weight") != null) {
-                    System.out.println("Error: " + updater.getValidationError("weight"));
-                    System.out.println("Would you like to try again? (Y/N)");
-                    String response = terminal.getUserInput().trim().toUpperCase();
-                    if (!response.equals("Y")) {
-                        break;
-                    }
-                } else {
-                    System.out.println("Weight updated successfully!");
-                    isValid = true;
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Error: Invalid number format");
-                System.out.println("Would you like to try again? (Y/N)");
-                String response = terminal.getUserInput().trim().toUpperCase();
-                if (!response.equals("Y")) {
-                    break;
-                }
-            }
-        }
-
-        return updater;
-    }
-
-    /**
-     * Updates drug allergies with validation.
-     *
-     * @param terminal The terminal for user input
-     * @param updater  The patient updater
-     * @return The updated {@link PatientUpdater} object
-     */
-    private PatientUpdater updateDrugAllergiesWithValidation(Terminal terminal, PatientUpdater updater) {
-        boolean isValid = false;
-
-        while (!isValid) {
-            System.out.println("Enter drug allergies (comma-separated):");
-            String allergiesInput = terminal.getUserInput();
-
-            String[] allergiesArray = allergiesInput.split(",");
-            List<String> drugAllergies = new ArrayList<>();
-            for (String allergy : allergiesArray) {
-                drugAllergies.add(allergy.trim());
-            }
-
-            updater = updater.drugAllergies(drugAllergies);
-
-            if (updater.getValidationError("drugAllergies") != null) {
-                System.out.println("Error: " + updater.getValidationError("drugAllergies"));
-                System.out.println("Would you like to try again? (Y/N)");
-                String response = terminal.getUserInput().trim().toUpperCase();
-                if (!response.equals("Y")) {
-                    break;
-                }
-            } else {
-                System.out.println("Drug allergies updated successfully!");
-                isValid = true;
-            }
-        }
-
-        return updater;
-    }
-
-    /**
-     * Updates next of kin name with validation.
-     *
-     * @param terminal The terminal for user input
-     * @param updater  The patient updater
-     * @return The updated {@link PatientUpdater} object
-     */
-    private PatientUpdater updateNokNameWithValidation(Terminal terminal, PatientUpdater updater) {
-        boolean isValid = false;
-
-        while (!isValid) {
-            System.out.println("Enter next of kin name:");
-            String nokName = terminal.getUserInput();
-
-            updater = updater.nokName(nokName);
-
-            if (updater.getValidationError("nokName") != null) {
-                System.out.println("Error: " + updater.getValidationError("nokName"));
-                System.out.println("Would you like to try again? (Y/N)");
-                String response = terminal.getUserInput().trim().toUpperCase();
-                if (!response.equals("Y")) {
-                    break;
-                }
-            } else {
-                System.out.println("Next of kin name updated successfully!");
-                isValid = true;
-            }
-        }
-
-        return updater;
-    }
-
-    /**
-     * Updates next of kin relationship with validation.
-     *
-     * @param terminal The terminal for user input
-     * @param updater  The patient updater
-     * @return The updated {@link PatientUpdater} object
-     */
-    private PatientUpdater updateNokRelationWithValidation(Terminal terminal, PatientUpdater updater) {
-        boolean isValid = false;
-
-        while (!isValid) {
-            System.out.println("Enter next of kin relationship (SPOUSE, PARENT, CHILD, SIBLING, OTHER):");
-            String relationInput = terminal.getUserInput().toUpperCase();
-
-            try {
-                NokRelation nokRelation = NokRelation.valueOf(relationInput);
-                updater = updater.nokRelation(nokRelation);
-
-                if (updater.getValidationError("nokRelation") != null) {
-                    System.out.println("Error: " + updater.getValidationError("nokRelation"));
-                    System.out.println("Would you like to try again? (Y/N)");
-                    String response = terminal.getUserInput().trim().toUpperCase();
-                    if (!response.equals("Y")) {
-                        break;
-                    }
-                } else {
-                    System.out.println("Next of kin relationship updated successfully!");
-                    isValid = true;
-                }
-            } catch (IllegalArgumentException e) {
-                System.out.println("Error: Invalid relationship type");
-                System.out.println("Would you like to try again? (Y/N)");
-                String response = terminal.getUserInput().trim().toUpperCase();
-                if (!response.equals("Y")) {
-                    break;
-                }
-            }
-        }
-
-        return updater;
-    }
-
-    /**
-     * Updates next of kin address with validation.
-     *
-     * @param terminal The terminal for user input
-     * @param updater  The patient updater
-     * @return The updated {@link PatientUpdater} object
-     */
-    private PatientUpdater updateNokAddressWithValidation(Terminal terminal, PatientUpdater updater) {
-        boolean isValid = false;
-
-        while (!isValid) {
-            System.out.println("Enter next of kin address:");
-            String nokAddress = terminal.getUserInput();
-
-            updater = updater.nokAddress(nokAddress);
-
-            if (updater.getValidationError("nokAddress") != null) {
-                System.out.println("Error: " + updater.getValidationError("nokAddress"));
-                System.out.println("Would you like to try again? (Y/N)");
-                String response = terminal.getUserInput().trim().toUpperCase();
-                if (!response.equals("Y")) {
-                    break;
-                }
-            } else {
-                System.out.println("Next of kin address updated successfully!");
-                isValid = true;
-            }
-        }
-
-        return updater;
     }
 
     /**
@@ -579,7 +238,6 @@ public class PatientMainPage extends UiBase {
      * @throws IllegalStateException if the logged-in user is not a patient.
      */
     private void changeAppointmentPrompt() {
-        // Get all appointments for the logged-in patient
         SystemUser systemUser = humanController.getLoggedInUser();
         if (systemUser instanceof Patient patient) {
             List<Appointment> appointments = appointmentController.getAppointmentsForPatient(patient);

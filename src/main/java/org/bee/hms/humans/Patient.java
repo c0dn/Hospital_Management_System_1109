@@ -5,12 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.bee.hms.auth.SystemUser;
-import org.bee.utils.JSONSerializable;
 
 /**
  * Represents a patient in the insurance system.
@@ -248,18 +246,11 @@ public class Patient extends Human implements SystemUser {
         return nricFin;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        Patient other = (Patient) obj;
-        return Objects.equals(patientId, other.patientId);
+    public double getHeight() {
+        return height;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(patientId);
+    public double getWeight() {
+        return weight;
     }
-
-
 }

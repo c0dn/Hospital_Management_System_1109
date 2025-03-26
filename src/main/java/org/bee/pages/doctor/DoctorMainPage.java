@@ -2,19 +2,10 @@ package org.bee.pages.doctor;
 
 import org.bee.controllers.ConsultationController;
 import org.bee.controllers.HumanController;
-import org.bee.hms.auth.SystemUser;
-import org.bee.hms.humans.Doctor;
-import org.bee.hms.humans.Patient;
 import org.bee.hms.medical.*;
 import org.bee.ui.*;
 import org.bee.ui.views.ListView;
 import org.bee.ui.views.MenuView;
-import org.bee.ui.views.TextView;
-import org.bee.utils.InfoUpdaters.ConsultationUpdater;
-import org.bee.utils.InfoUpdaters.PatientUpdater;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**

@@ -23,7 +23,7 @@ public class TeleconsultPage extends UiBase {
     }
 
     @Override
-    public View OnCreateView() {
+    protected View createView() {
         listView = new ListView(
                 this.canvas,
                 Color.CYAN
@@ -32,7 +32,6 @@ public class TeleconsultPage extends UiBase {
         return listView;
     }
 
-    @Override
     public void OnViewCreated(View parentView) {
         ListView lv = (ListView) parentView;
         lv.attachUserInput("Set Doctor Notes", str -> {
@@ -77,14 +76,14 @@ public class TeleconsultPage extends UiBase {
             // according to official government policy, MOM allocates mandatory 14 days MC. Above that, most companies consider it
             // hospitalisation leave. Therefore, telemedicine should not usually provide more than a few days of MC
             // 14 is a very reasonable upper limit to set here. Anymore and they should be inpatient/physical consult.
-            int days = InputHelper.getValidIndex("Medical Certificate No. Days * incl today:", 1, 14);
+//            int days = InputHelper.getValidIndex("Medical Certificate No. Days * incl today:", 1, 14);
 
             scanner = new Scanner(System.in);
             System.out.println("Medical Certificate Remarks: ");
             String remarks = scanner.nextLine();
 
             LocalDate today = LocalDate.now();
-            LocalDate endDay = today.plusDays(days - 1);
+            LocalDate endDay = today.plusDays(12 - 1);
             MedicalCertificate mc = new MedicalCertificate(today.atStartOfDay(), endDay.atTime(23, 59), remarks);
             appointment.setMedicalCertificate(mc);
 
@@ -105,11 +104,12 @@ public class TeleconsultPage extends UiBase {
             System.out.println("Calculating Billing for patient...");
             appointment.finishAppointment(appointment.getDoctorNotes());
             AppointmentController.getInstance().updateAppointment(appointment, appointment);
-            canvas.previousPage();
+//            canvas.previousPage();
             this.OnBackPressed();
         });
         refreshUi();
     }
+
 /*
     private int selectMedicineIndexPrompt(){
         List<Medicine> medicines = appointment.getBilling().getPrescription().getMedicines();

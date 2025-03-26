@@ -1,16 +1,12 @@
 package org.bee.controllers;
 
 import org.bee.hms.humans.Doctor;
-import org.bee.hms.humans.Nurse;
 import org.bee.hms.humans.Patient;
 import org.bee.hms.medical.*;
-import org.bee.hms.policy.BenefitType;
 import org.bee.hms.policy.Coverage;
 import org.bee.hms.policy.InsurancePolicy;
 import org.bee.utils.DataGenerator;
-import org.bee.utils.InfoUpdaters.ConsultationUpdater;
 
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -101,11 +97,6 @@ public class ConsultationController extends BaseController<Consultation> {
         return removed;
     }
 
-
-    public void updateConsultation(String consultationId, ConsultationUpdater updater) {
-        Consultation consultation = findConsultationById(consultationId);
-        updateEntity(consultation, updater);
-    }
 
     private Consultation findConsultationById(String consultationId) {
         return getAllOutpatientCases().stream()

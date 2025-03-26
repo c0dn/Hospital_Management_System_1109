@@ -281,4 +281,8 @@ public abstract class Human implements JSONSerializable {
         System.out.printf("\nBlood Type: " + bloodType);
         System.out.printf("\nVaccinated: " + isVaccinated);
     }
+
+    public Contact getContact() {
+        return contact;
+    }
 }

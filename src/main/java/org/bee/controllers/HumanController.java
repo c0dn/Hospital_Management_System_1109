@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import org.bee.hms.auth.SystemUser;
 import org.bee.hms.humans.*;
-import org.bee.utils.InfoUpdaters.PatientUpdater;
+import org.bee.utils.DataGenerator;
 
 /**
  * Controller class that manages all human entities in the system.
@@ -65,9 +65,8 @@ public class HumanController extends BaseController<Human> {
         }
 
         for (int i = 0; i < 30; i++) {
-            String patientId = String.format("P%04d", 1001 + i);
             Patient patient = Patient.builder()
-                    .withRandomData(patientId)
+                    .withRandomData(DataGenerator.generatePatientId())
                     .build();
             items.add(patient);
         }
@@ -109,17 +108,6 @@ public class HumanController extends BaseController<Human> {
 
     public void addHuman(Human human) {
         addItem(human);
-    }
-
-    /**
-     * Updates a patient using the PatientUpdater.
-     *
-     * @param patientId ID of the patient to update
-     * @param updater   PatientUpdater with the fields to update
-     */
-    public void updatePatient(String patientId, PatientUpdater updater) {
-        Patient patient = findPatientById(patientId);
-        updateEntity(patient, updater);
     }
 
 

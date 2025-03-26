@@ -1,6 +1,5 @@
 package org.bee.controllers;
 
-import org.bee.utils.InfoUpdaters.UpdaterBase;
 import org.bee.utils.JSONHelper;
 import org.bee.utils.JSONSerializable;
 
@@ -91,22 +90,6 @@ public abstract class BaseController<T extends JSONSerializable> {
     }
 
 
-    /**
-     * Generic update method for any entity type
-     *
-     * @param <Z> The type of entity
-     * @param entity The entity to update
-     * @param updater The updater containing the fields to update
-     * @return true if the entity was updated successfully
-     */
-    public <Z> boolean updateEntity(Z entity, UpdaterBase<Z, ?> updater) {
-        if (entity != null) {
-            updater.applyTo(entity);
-            saveData();
-            return true;
-        }
-        return false;
-    }
 
     /**
      * Gets all items managed by this controller.
