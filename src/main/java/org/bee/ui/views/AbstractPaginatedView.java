@@ -1,9 +1,6 @@
 package org.bee.ui.views;
 
-import org.bee.ui.Canvas;
-import org.bee.ui.Color;
-import org.bee.ui.TextStyle;
-import org.bee.ui.View;
+import org.bee.ui.*;
 
 import java.util.function.Consumer;
 
@@ -143,11 +140,11 @@ public abstract class AbstractPaginatedView<T> extends View {
                 jumpToPage(page);
                 canvas.setRequireRedraw(true);
             } else {
-                canvas.setSystemMessage("Invalid page number");
+                canvas.setSystemMessage("Invalid page number", SystemMessageStatus.ERROR);
                 canvas.setRequireRedraw(true);
             }
         } catch (NumberFormatException e) {
-            canvas.setSystemMessage("Invalid input");
+            canvas.setSystemMessage("Invalid input", SystemMessageStatus.ERROR);
             canvas.setRequireRedraw(true);
         }
     }

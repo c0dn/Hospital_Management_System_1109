@@ -13,6 +13,7 @@ import org.bee.pages.clerk.ClerkMainPage;
 import org.bee.pages.doctor.DoctorMainPage;
 import org.bee.pages.patient.PatientMainPage;
 import org.bee.ui.Color;
+import org.bee.ui.SystemMessageStatus;
 import org.bee.ui.UiBase;
 import org.bee.ui.View;
 import org.bee.ui.views.ListView;
@@ -67,7 +68,8 @@ public class LoginPage extends UiBase {
         if (userOpt.isPresent()) {
             SystemUser user = userOpt.get();
 
-            System.out.println("Login successful!");
+            canvas.setSystemMessage("Login successful", SystemMessageStatus.SUCCESS);
+
             humanController.authenticate(user);
 
             switch (user) {
@@ -79,7 +81,7 @@ public class LoginPage extends UiBase {
                 }
             }
         } else {
-            System.out.println("User not found!");
+            canvas.setSystemMessage("User not found!", SystemMessageStatus.ERROR);
         }
         canvas.setRequireRedraw(true);
     }

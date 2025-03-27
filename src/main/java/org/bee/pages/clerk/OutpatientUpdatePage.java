@@ -4,6 +4,7 @@ import org.bee.controllers.ConsultationController;
 import org.bee.hms.medical.Consultation;
 import org.bee.pages.GenericUpdatePage;
 import org.bee.ui.Color;
+import org.bee.ui.SystemMessageStatus;
 import org.bee.ui.UiBase;
 import org.bee.ui.View;
 import org.bee.ui.views.PaginatedMenuView;
@@ -67,13 +68,12 @@ public class OutpatientUpdatePage extends UiBase {
                     Consultation selectedConsultation = (Consultation) option.getData();
                     openUpdateForm(selectedConsultation);
                 } else {
-                    canvas.setSystemMessage("Error: Invalid selection");
+                    canvas.setSystemMessage("Error: Invalid selection", SystemMessageStatus.ERROR);
                     canvas.setRequireRedraw(true);
                 }
             } catch (Exception e) {
-                canvas.setSystemMessage("Error processing selection: " + e.getMessage());
+                canvas.setSystemMessage("Error processing selection: " + e.getMessage(), SystemMessageStatus.ERROR);
                 canvas.setRequireRedraw(true);
-                System.err.println("Exception in selection callback: " + e.getMessage());
             }
         });
 
@@ -98,9 +98,8 @@ public class OutpatientUpdatePage extends UiBase {
 
             ToPage(updatePage);
         } catch (Exception e) {
-            canvas.setSystemMessage("Error opening update form: " + e.getMessage());
+            canvas.setSystemMessage("Error opening update form: " + e.getMessage(), SystemMessageStatus.ERROR);
             canvas.setRequireRedraw(true);
-            System.err.println("Exception in openUpdateForm: " + e.getMessage());
         }
     }
 }

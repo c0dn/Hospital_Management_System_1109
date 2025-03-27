@@ -71,7 +71,7 @@ public class ApplicationContext {
 
                 if (previousPage instanceof NullPage) {
 //                    System.out.println("[DEBUG] At first page, can't go back further");
-                    canvas.setSystemMessage("You are at the main page. Please login or quit.");
+                    canvas.setSystemMessage("You are at the main page. Please login or quit.", SystemMessageStatus.ERROR);
                     canvas.setRequireRedraw(true);
                     return;
                 }

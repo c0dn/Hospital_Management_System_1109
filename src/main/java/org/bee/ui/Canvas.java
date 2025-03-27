@@ -16,8 +16,11 @@ public class Canvas {
         void navigateToPage(UiBase newPage);
     }
 
+    private static record SystemMessage(String message, SystemMessageStatus status) {}
+
+
     private final Terminal terminal;
-    private String systemMessage = "";
+    private SystemMessage systemMessage;
     private View currentView;
     private boolean requireRedraw = false;
     private IGenericCallbackInterface backNavigationCallback = null;
@@ -41,9 +44,9 @@ public class Canvas {
      */
     public void drawText(String text, Color color, int x, int y) {
         terminal.setCursorPosition(x, y);
-        terminal.setTextColor(color); // Assuming Terminal handles ANSI color codes
+        terminal.setTextColor(color);
         terminal.write(text);
-        terminal.resetColor(); // Reset to default color after printing
+        terminal.resetColor();
     }
 
     /**
@@ -52,9 +55,9 @@ public class Canvas {
      * @param color The color of the text.
      */
     public void drawText(String text, Color color) {
-        terminal.setTextColor(color); // Assuming Terminal handles ANSI color codes
+        terminal.setTextColor(color);
         terminal.write(text);
-        terminal.resetColor(); // Reset to default color after printing
+        terminal.resetColor();
     }
 
     /**
@@ -99,9 +102,39 @@ public class Canvas {
     }
 
 
-    public void setSystemMessage(String message) {
-        this.systemMessage = message;
+    /**
+     * Sets a system message with the specified status.
+     * The message will be displayed with a color corresponding to its status.
+     *
+     * @param message The message to be displayed
+     * @param status The status determining the message's color
+     */
+    public void setSystemMessage(String message, SystemMessageStatus status) {
+        if (message == null || message.isBlank()) {
+            this.systemMessage = null;
+        } else {
+            this.systemMessage = new SystemMessage(message, status);
+        }
+        this.setRequireRedraw(true);
     }
+
+    /**
+     * Sets a system message with the default INFO status.
+     * This maintains backward compatibility with existing code.
+     *
+     * @param message The message to be displayed
+     */
+    public void setSystemMessage(String message) {
+        setSystemMessage(message, SystemMessageStatus.INFO);
+    }
+
+    /**
+     * Clears the current system message.
+     */
+    public void clearSystemMessage() {
+        this.systemMessage = null;
+    }
+
 
     /**
      * clears all the callbacks for the current page.
@@ -172,10 +205,12 @@ public class Canvas {
             if (currentView instanceof NullView) {
                 continue;
             }
-            if(requireRedraw || !systemMessage.isBlank()){
+            if(requireRedraw) {
                 renderView();
             }
             terminal.flush();
+
+            clearSystemMessage();
             String response = terminal.getUserInput();
 
             if(response != null && !response.isEmpty() && response.toLowerCase().charAt(0) == 'q'){
@@ -223,19 +258,19 @@ public class Canvas {
             try {
                 responseInt = Integer.parseInt(Objects.requireNonNull(response));
             } catch (Exception e) {
-                systemMessage = "Invalid input, please try again.";
+                setSystemMessage("Invalid input, please try again.", SystemMessageStatus.ERROR);
                 setRequireRedraw(true);
                 continue;
             }
 
 
             if (currentView.getInputOptions() != null && currentView.getInputOptions().get(responseInt) == null) {
-                systemMessage = "Invalid input, please try again.";
+                setSystemMessage("Invalid input, please try again.", SystemMessageStatus.ERROR);
                 setRequireRedraw(true);
                 continue;
             }
 
-            systemMessage = "";
+            clearSystemMessage();
 
             try {
                 UserInput inputOptions = currentView.getInputOptions().get(responseInt);
@@ -266,9 +301,17 @@ public class Canvas {
         Optional.ofNullable(currentView.getText())
                 .ifPresent(text -> drawText(text, pageColor));
 
-        if (!systemMessage.isBlank()) {
-            System.out.println();
-            drawText(systemMessage, Color.RED);
+        if (Objects.nonNull(systemMessage)) {
+            Color messageColor = switch (systemMessage.status()) {
+                case SUCCESS -> Color.GREEN;
+                case ERROR -> Color.RED;
+                case WARNING -> Color.YELLOW;
+                case INFO -> Color.CYAN;
+            };
+
+            terminal.writeln("");
+            drawText(systemMessage.message(), messageColor);
+            terminal.writeln("");
         }
 
         Optional.ofNullable(currentView.getFooter())
