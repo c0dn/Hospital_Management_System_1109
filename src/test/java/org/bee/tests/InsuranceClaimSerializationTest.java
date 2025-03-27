@@ -137,6 +137,8 @@ public class InsuranceClaimSerializationTest {
                 .build();
 
 
+        bill.submitForProcessing();
+
         InsuranceCoverageResult coverageResult = bill.calculateInsuranceCoverage();
 
         InsuranceClaim claim = coverageResult.claim()

@@ -276,6 +276,8 @@ public class InsuranceClaimTest {
         // Create bill with test amount
         Bill bill = createBillWithClaimableItems(billAmount, policy);
 
+        bill.submitForProcessing();
+
         // Calculate insurance coverage
         var coverageResult = bill.calculateInsuranceCoverage();
 
@@ -316,6 +318,8 @@ public class InsuranceClaimTest {
 
         // Create bill with test amount
         Bill bill = createBillWithClaimableItems(billAmount, policy);
+
+        bill.submitForProcessing();
 
         // Calculate insurance coverage
         var coverageResult = bill.calculateInsuranceCoverage();

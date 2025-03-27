@@ -139,6 +139,23 @@ public class Bill implements JSONSerializable {
         recalculateTotals();
     }
 
+
+    /**
+     * Submits the bill for processing.
+     * This changes the bill's status from {@link BillingStatus#DRAFT} to {@link BillingStatus#SUBMITTED}.
+     * This action typically signifies that the bill is finalized from the user's perspective and ready for
+     * the next stage, like payment processing or insurance claim submission.
+     *
+     * @throws IllegalStateException if the bill is not currently in the {@link BillingStatus#DRAFT} status.
+     */
+    public void submitForProcessing() {
+        if (this.status == BillingStatus.DRAFT) {
+            this.status = BillingStatus.SUBMITTED;
+        } else {
+            throw new IllegalStateException("Bill cannot be submitted. Current status is '" + this.status.getDisplayName() + "', required status is '" + BillingStatus.DRAFT.getDisplayName() + "'.");
+        }
+    }
+
     /**
      * Calculates the insurance coverage based on the associated insurance policy.
      * Updates the {@code insuranceCoverage} and {@code patientResponsibility} values.
@@ -147,6 +164,10 @@ public class Bill implements JSONSerializable {
     public InsuranceCoverageResult calculateInsuranceCoverage() {
         if (insurancePolicy == null) {
             return InsuranceCoverageResult.denied("No insurance policy associated with this bill");
+        }
+
+        if (this.status == BillingStatus.DRAFT) {
+            throw new IllegalStateException("Cannot calculate insurance coverage for a bill in DRAFT status. Submit the bill first.");
         }
 
         if (lineItems.isEmpty()) {
@@ -335,5 +356,13 @@ public class Bill implements JSONSerializable {
 
     public InsurancePolicy getInsurancePolicy() {
         return insurancePolicy;
+    }
+
+    public String getBillId() {
+        return billId;
+    }
+
+    public LocalDateTime getBillDate() {
+        return billDate;
     }
 }

@@ -1,6 +1,7 @@
     package org.bee.pages.clerk;
 
     import org.bee.controllers.HumanController;
+    import org.bee.pages.clerk.insurance.NewInsuranceClaimPage;
     import org.bee.ui.*;
     import org.bee.ui.views.*;
 
@@ -52,7 +53,8 @@
             insuranceSection.addOption(5, "Manage Existing Claims");
             insuranceSection.addOption(6, "Check Claim Status");
             insuranceSection.addOption(7, "Update Claim Status");
-//            menuView.attachMenuOptionInput(4, "New Claim", str -> ToPage(new InsuranceClaimPage(InsuranceClaimPage.Mode.NEW)));
+            menuView.attachMenuOptionInput(4, "Submit New Claim", str -> ToPage(new NewInsuranceClaimPage()));
+
 //            menuView.attachMenuOptionInput(5, "Manage Claims", str -> ToPage(new InsuranceClaimPage(InsuranceClaimPage.Mode.MANAGE)));
 //            menuView.attachMenuOptionInput(6, "Check Claim Status", str -> ToPage(new InsuranceClaimPage(InsuranceClaimPage.Mode.CHECK)));
 //            menuView.attachMenuOptionInput(7, "Update Claim Status", str -> ToPage(new InsuranceClaimPage(InsuranceClaimPage.Mode.UPDATE)));

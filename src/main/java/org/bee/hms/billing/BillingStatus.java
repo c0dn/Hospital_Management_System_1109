@@ -87,6 +87,28 @@ public enum BillingStatus implements JSONSerializable {
     }
 
     /**
+     * Determines if the bill is still in the initial preparation phase (Draft).
+     * This status means the bill is actively being edited or reviewed before finalization/submission.
+     *
+     * @return {@code true} if the status is {@code DRAFT}, otherwise {@code false}.
+     */
+    public boolean isInPreparation() {
+        return this == DRAFT;
+    }
+
+    /**
+     * Determines if the bill has been explicitly submitted for processing.
+     * This checks if the status is exactly {@code SUBMITTED}. Note that other statuses
+     * like {@code INSURANCE_PENDING} or {@code PAID} occur *after* submission but are not
+     * {@code SUBMITTED} themselves. Use this to check for the specific point of submission.
+     *
+     * @return {@code true} if the status is {@code SUBMITTED}, otherwise {@code false}.
+     */
+    public boolean isSubmitted() {
+        return this == SUBMITTED;
+    }
+
+    /**
      * Determines if the billing status requires further action.
      * Action-required statuses include:
      * <ul>
