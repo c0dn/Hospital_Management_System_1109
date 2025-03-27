@@ -4,14 +4,8 @@ import org.bee.controllers.HumanController;
 import org.bee.hms.humans.Patient;
 import org.bee.hms.humans.Sex;
 import org.bee.hms.medical.Consultation;
-import org.bee.ui.Color;
-import org.bee.ui.InputHelper;
-import org.bee.ui.UiBase;
-import org.bee.ui.View;
-import org.bee.ui.views.AbstractPaginatedView;
-import org.bee.ui.views.ListView;
-import org.bee.ui.views.PaginatedMenuView;
-import org.bee.ui.views.TextView;
+import org.bee.ui.*;
+import org.bee.ui.views.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -135,24 +129,45 @@ public class PatientInfoPage extends UiBase {
             }
         });
 
+
         return paginatedView;
 
     }
 
-    public void displaySelectedPatient(Patient patient, ListView lv) {
-        lv.clear();
-        lv.setTitleHeader("\nPatient Information");
-        lv.addItem(new TextView(this.canvas, "Name: " + patient.getName(), Color.ESCAPE));
-        lv.addItem(new TextView(this.canvas, "ID: " + patient.getNricFin(), Color.ESCAPE));
-        lv.addItem(new TextView(this.canvas, "Age: " + patient.getAge(), Color.ESCAPE));
-        lv.addItem(new TextView(this.canvas, "Gender: " + patient.getSex(), Color.ESCAPE));
-        lv.addItem(new TextView(this.canvas, "Address: " + patient.getAddress(), Color.ESCAPE));
-        lv.addItem(new TextView(this.canvas, "Patient ID: " + patient.getPatientId(), Color.ESCAPE));
-        lv.addItem(new TextView(this.canvas, "Date of Birth: " + patient.getDOB(), Color.ESCAPE));
-        //lv.addItem(new TextView(this.canvas, "Next of Kin: " + patient.get(), Color.GREEN));
+//    public void displaySelectedPatient(Patient patient, ListView lv) {
+//        lv.clear();
+//        lv.setTitleHeader("\nPatient Information");
+//        lv.addItem(new TextView(this.canvas, "Name: " + patient.getName(), Color.ESCAPE));
+//        lv.addItem(new TextView(this.canvas, "ID: " + patient.getNricFin(), Color.ESCAPE));
+//        lv.addItem(new TextView(this.canvas, "Age: " + patient.getAge(), Color.ESCAPE));
+//        lv.addItem(new TextView(this.canvas, "Gender: " + patient.getSex(), Color.ESCAPE));
+//        lv.addItem(new TextView(this.canvas, "Address: " + patient.getAddress(), Color.ESCAPE));
+//        lv.addItem(new TextView(this.canvas, "Patient ID: " + patient.getPatientId(), Color.ESCAPE));
+//        lv.addItem(new TextView(this.canvas, "Date of Birth: " + patient.getDOB(), Color.ESCAPE));
+//        //lv.addItem(new TextView(this.canvas, "Next of Kin: " + patient.get(), Color.GREEN));
+//
+//        // Request UI redraw
+//        canvas.setCurrentView(lv);
+//        canvas.setRequireRedraw(true);
+//    }
 
-        // Request UI redraw
-        canvas.setCurrentView(lv);
+    public void displaySelectedPatient(Patient patient, View previousView) {
+        DetailsView<Patient> detailsView = new DetailsView<>(canvas, "PATIENT INFORMATION", patient, Color.ESCAPE);
+        detailsView.setPreviousView(previousView);
+
+        // Basic Information Section
+        detailsView.addDetail("Personal Information", "Name", patient.getName());
+        detailsView.addDetail("Personal Information", "ID", patient.getNricFin());
+        detailsView.addDetail("Personal Information", "Age", String.valueOf(patient.getAge()));
+        detailsView.addDetail("Personal Information", "Gender", patient.getSex().toString());
+        detailsView.addDetail("Personal Information", "Date of Birth", patient.getDOB().toString());
+
+        // Contact Information Section
+        detailsView.addDetail("Contact Information", "Phone", patient.getContact().getPersonalPhone());
+        detailsView.addDetail("Contact Information", "Address", patient.getAddress());
+
+        // Set the view and request redraw
+        canvas.setCurrentView(detailsView);
         canvas.setRequireRedraw(true);
     }
 

@@ -7,6 +7,8 @@ import org.bee.ui.View;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 /**
@@ -14,6 +16,7 @@ import java.util.function.Function;
  * Supports custom column definitions and data formatting.
  */
 public class TableView<T> extends View {
+    private Consumer<BiConsumer<Integer, T>> selectionCallback;
 
 
     public static class Column<T> {
@@ -46,6 +49,25 @@ public class TableView<T> extends View {
             String value = valueExtractor.apply(item);
             return value != null ? value : "";
         }
+    }
+
+    public void setSelectionCallback(BiConsumer<Integer, T> callback) {
+        this.selectionCallback = (consumer) -> {
+            // This allows the PaginatedView to set up its own callback
+            consumer = callback;
+        };
+
+        // Example of how you might handle input for row selection
+        attachUserInput("Select row", input -> {
+            try {
+                int row = Integer.parseInt(input) - 1;
+                if (row >= 0 && row < data.size()) {
+                    callback.accept(row, data.get(row));
+                }
+            } catch (NumberFormatException e) {
+                // Handle invalid input
+            }
+        });
     }
 
     private final List<Column<T>> columns = new ArrayList<>();

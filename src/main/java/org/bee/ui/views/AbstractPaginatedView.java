@@ -45,6 +45,8 @@ public abstract class AbstractPaginatedView<T> extends View {
         private final String text;
         private final Object data;
 
+        private int selectedRowNumber = -1; // Track selected row
+
         public MenuOption(String id, String text) {
             this(id, text, null);
         }
@@ -66,7 +68,12 @@ public abstract class AbstractPaginatedView<T> extends View {
         public Object getData() {
             return data;
         }
+        public int getRowNumber() {
+            return selectedRowNumber;
+        }
+
     }
+
 
     /**
      * Set a callback to be invoked when an option is selected

@@ -10,10 +10,7 @@ import org.bee.ui.Color;
 import org.bee.ui.InputHelper;
 import org.bee.ui.UiBase;
 import org.bee.ui.View;
-import org.bee.ui.views.AbstractPaginatedView;
-import org.bee.ui.views.ListView;
-import org.bee.ui.views.PaginatedMenuView;
-import org.bee.ui.views.TextView;
+import org.bee.ui.views.*;
 
 import java.util.AbstractCollection;
 import java.util.ArrayList;
@@ -184,21 +181,33 @@ public class OutpatientPatientInfoPage extends UiBase {
      * @param consultation The Consultation object containing details about the case.
      * @param lv           The ListView where the details will be displayed.
      */
-    private void displayOutpatientCase(Consultation consultation, ListView lv) {
+    private void displayOutpatientCase(Consultation consultation, View previousView) {
 
-        lv.clear();
-        lv.setTitleHeader("Patient Information");
-        lv.addItem(new TextView(this.canvas, "Case ID: " + consultation.getConsultationId(), Color.ESCAPE));
-        lv.addItem(new TextView(this.canvas, "Appointment Date: " + consultation.getAppointmentDate(), Color.ESCAPE));
-        lv.addItem(new TextView(this.canvas, "Patient ID: " + consultation.getPatient().getPatientId(), Color.ESCAPE));
-        lv.addItem(new TextView(this.canvas, "Patient Name: " + consultation.getPatient().getName(), Color.ESCAPE));
-        lv.addItem(new TextView(this.canvas, "Type: " + consultation.getConsultationType(), Color.ESCAPE));
-        lv.addItem(new TextView(this.canvas, "Status: " + consultation.getStatus(), Color.ESCAPE));
-        lv.addItem(new TextView(this.canvas, "Diagnosis: " + consultation.getDiagnosis(), Color.ESCAPE));
-        lv.addItem(new TextView(this.canvas, "Doctor Name: " + consultation.getDoctor().getName(), Color.ESCAPE));
+        DetailsView<Consultation> detailsView = new DetailsView<>(canvas, "", consultation, Color.ESCAPE);
+        detailsView.setPreviousView(previousView);
+
+        detailsView.addDetail("\u001b[1mOUTPATIENT INFORMATION\n", "Case ID: ", consultation.getConsultationId());
+        detailsView.addDetail("\u001b[1mOUTPATIENT INFORMATION\n", "Appointment Date: ", String.valueOf(consultation.getAppointmentDate()));
+        detailsView.addDetail("\u001b[1mOUTPATIENT INFORMATION\n", "Patient ID: ", consultation.getPatient().getNricFin());
+        detailsView.addDetail("\u001b[1mOUTPATIENT INFORMATION\n", "Patient Name: ", consultation.getPatient().getName());
+        detailsView.addDetail("\u001b[1mOUTPATIENT INFORMATION\n", "Type: ", String.valueOf(consultation.getConsultationType()));
+        detailsView.addDetail("\u001b[1mOUTPATIENT INFORMATION\n", "Status: ", String.valueOf(consultation.getStatus()));
+        detailsView.addDetail("\u001b[1mOUTPATIENT INFORMATION\n", "Diagnosis: ", consultation.getDiagnosis());
+        detailsView.addDetail("\u001b[1mOUTPATIENT INFORMATION\n", "Doctor Name: ", consultation.getDoctor().getName());
+
+//        lv.clear();
+//        lv.setTitleHeader("Patient Information");
+//        lv.addItem(new TextView(this.canvas, "Case ID: " + consultation.getConsultationId(), Color.ESCAPE));
+//        lv.addItem(new TextView(this.canvas, "Appointment Date: " + consultation.getAppointmentDate(), Color.ESCAPE));
+//        lv.addItem(new TextView(this.canvas, "Patient ID: " + consultation.getPatient().getPatientId(), Color.ESCAPE));
+//        lv.addItem(new TextView(this.canvas, "Patient Name: " + consultation.getPatient().getName(), Color.ESCAPE));
+//        lv.addItem(new TextView(this.canvas, "Type: " + consultation.getConsultationType(), Color.ESCAPE));
+//        lv.addItem(new TextView(this.canvas, "Status: " + consultation.getStatus(), Color.ESCAPE));
+//        lv.addItem(new TextView(this.canvas, "Diagnosis: " + consultation.getDiagnosis(), Color.ESCAPE));
+//        lv.addItem(new TextView(this.canvas, "Doctor Name: " + consultation.getDoctor().getName(), Color.ESCAPE));
         //lv.addItem(new TextView(this.canvas, "Next of Kin: " + patient.get(), Color.GREEN));
 
-        canvas.setCurrentView(lv);
+        canvas.setCurrentView(detailsView);
         // Request UI redraw
         canvas.setRequireRedraw(true);
     }
