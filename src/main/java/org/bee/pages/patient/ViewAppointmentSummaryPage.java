@@ -64,8 +64,9 @@ public class ViewAppointmentSummaryPage extends UiBase {
      */
     @Override
     public void OnViewCreated(View parentView) {
-        ListView lv = (ListView) parentView;
-        refreshUi();
+//        ListView lv = (ListView) parentView;
+//        refreshUi();
+        canvas.setRequireRedraw(true);
     }
 
     /**
@@ -108,5 +109,7 @@ public class ViewAppointmentSummaryPage extends UiBase {
 //        }
         canvas.setRequireRedraw(true);
     }
+
+
 }
 

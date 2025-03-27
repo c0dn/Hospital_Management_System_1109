@@ -121,6 +121,8 @@ public class TelemedicineAppointmentPage extends UiBase {
                         case ACCEPTED -> colorText(statusStr, Color.CYAN);
                         case PENDING -> colorText(statusStr, Color.YELLOW);
                         case DECLINED, CANCELED -> colorText(statusStr, Color.RED);
+                        case PAYMENT_PENDING -> colorText(statusStr, Color.UND_RED);
+                        case PAID -> colorText(statusStr, Color.UND_GREEN);
                     };
                 })
 

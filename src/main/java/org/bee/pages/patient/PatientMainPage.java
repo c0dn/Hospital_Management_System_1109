@@ -8,9 +8,12 @@ import org.bee.hms.humans.Patient;
 import org.bee.hms.telemed.Appointment;
 import org.bee.hms.telemed.AppointmentStatus;
 import org.bee.pages.GenericUpdatePage;
+import org.bee.pages.doctor.ViewAppointmentPage;
 import org.bee.ui.*;
 import org.bee.ui.views.ListView;
 import org.bee.ui.views.MenuView;
+import org.bee.ui.views.TableView;
+import org.bee.utils.ReflectionHelper;
 import org.bee.utils.formAdapters.PatientFormAdapter;
 
 import java.time.LocalDate;
@@ -28,6 +31,8 @@ import java.util.*;
 public class PatientMainPage extends UiBase {
     private static final HumanController humanController = HumanController.getInstance();
     private static final AppointmentController appointmentController = AppointmentController.getInstance();
+    private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
 
     /**
      * Called when the main page's view is created.
@@ -63,20 +68,14 @@ public class PatientMainPage extends UiBase {
         patientSection.addOption(1, "View/Update Particulars - To update user particular");
         patientSection.addOption(2, "Book Appointment - To schedule teleconsult appointment");
         patientSection.addOption(3, "View/Change Appointment - To view or reschedule an existing teleconsult appointment");
+        menuView.attachMenuOptionInput(1, "View/Update Particulars", str -> viewPatientDetails());
+        menuView.attachMenuOptionInput(2, "Book Appointment", str -> bookAppointmentPrompt());
+        menuView.attachMenuOptionInput(3, "View/Change Appointment", str -> ToPage(new org.bee.pages.patient.ViewAppointmentPage()));
 
         MenuView.MenuSection infoSection = menuView.addSection("Information Services");
         infoSection.addOption(4, "View Billing - To view unpaid bills");
         infoSection.addOption(5, "View Appointment Summary");
-
-        menuView.attachMenuOptionInput(1, "View/Update Particulars", str -> viewPatientDetails());
-        menuView.attachMenuOptionInput(2, "Book Appointment", str -> bookAppointmentPrompt());
-        menuView.attachMenuOptionInput(3, "View/Change Appointment", str -> changeAppointmentPrompt());
-
-        // menuView.attachMenuOptionInput(4, "View Billing", str -> {
-        //     BillingPage.appointments = appointmentController.getAppointments();
-        //     ToPage(new BillingPage());
-        // });
-
+        menuView.attachMenuOptionInput(4, "View Billing", str -> ToPage(new ViewAppointmentPage()));
         menuView.attachMenuOptionInput(5, "View Appointment Summary", str -> ToPage(new ViewAppointmentSummaryPage()));
 
         canvas.setRequireRedraw(true);
@@ -106,7 +105,7 @@ public class PatientMainPage extends UiBase {
     private void bookAppointmentPrompt() {
         appointmentController.getAllAppointments();
         Terminal terminal = canvas.getTerminal();
-        System.out.println("Enter reason to consult: ");
+        System.out.println("\nEnter reason to consult: ");
         String reason = terminal.getUserInput();
         System.out.println("Do you have any Medical History?: ");
         String history = terminal.getUserInput();
@@ -247,7 +246,7 @@ public class PatientMainPage extends UiBase {
             boolean viewingAppointments = true;
             while (viewingAppointments) {
                 // Display appointments
-                System.out.println("Your Appointments:");
+                System.out.println("\nYour Appointments:");
                 for (int i = 0; i < appointments.size(); i++) {
                     Appointment appointment = appointments.get(i);
                     System.out.println((i + 1) + ". " + appointment.getAppointmentTime() + " - " + appointment.getReason());
@@ -345,5 +344,53 @@ public class PatientMainPage extends UiBase {
                 }
             }
         }
+    }
+
+    private TableView<Appointment> createAppointmentTableView(List<Appointment> appointments) {
+        TableView<Appointment> tableView = new TableView<>(canvas, "", Color.CYAN);
+
+        tableView.showRowNumbers(true)
+                .addColumn("Appointment ID", 15, a -> (String) ReflectionHelper.propertyAccessor("appointmentId", null).apply(a))
+
+                .addColumn("Consult Reason", 25, a -> {
+                    String reason = (String) ReflectionHelper.propertyAccessor("reason", null).apply(a);
+                    return reason != null ? reason : "Not specified";
+                })
+                .addColumn("Date & Time", 20, a -> {
+                    LocalDateTime time = (LocalDateTime) ReflectionHelper.propertyAccessor("appointmentTime", null).apply(a);
+                    if (time == null) return "Not scheduled";
+
+                    String formattedDate = dateFormatter.format(time);
+                    LocalDateTime now = LocalDateTime.now();
+
+                    // Color appointments based on timing
+                    if (time.isBefore(now)) {
+                        return colorText(formattedDate, Color.RED);
+                    } else if (time.isBefore(now.plusDays(1))) {
+                        return colorText(formattedDate, Color.YELLOW);
+                    } else if (time.isBefore(now.plusDays(3))) {
+                        return colorText(formattedDate, Color.GREEN);
+                    }
+                    return formattedDate;
+                })
+                .addColumn("Status", 15, a -> {
+                    AppointmentStatus status = (AppointmentStatus) ReflectionHelper.propertyAccessor("appointmentStatus", null).apply(a);
+                    if (status == null) return "Unknown";
+
+                    String statusStr = formatEnum(status.toString());
+
+                    return switch (status) {
+                        case COMPLETED -> colorText(statusStr, Color.GREEN);
+                        case ACCEPTED -> colorText(statusStr, Color.CYAN);
+                        case PENDING -> colorText(statusStr, Color.YELLOW);
+                        case DECLINED, CANCELED -> colorText(statusStr, Color.RED);
+                        case PAYMENT_PENDING -> colorText(statusStr, Color.UND_RED);
+                        case PAID -> colorText(statusStr, Color.UND_GREEN);
+                    };
+                })
+                .setData(appointments);
+
+        return tableView;
+
     }
 }

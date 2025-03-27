@@ -12,6 +12,8 @@ import org.bee.ui.views.MenuView;
  */
 public class DoctorMainPage extends UiBase {
 
+    private static final HumanController humanController = HumanController.getInstance();
+
     /**
      * Called when the main page's view is created.
      * Creates a {@link ListView} to hold the main menu options.
@@ -21,7 +23,7 @@ public class DoctorMainPage extends UiBase {
      */
     @Override
     public View createView() {
-        return new MenuView(this.canvas, "Main", Color.GREEN, true, false);
+        return new MenuView(this.canvas, humanController.getUserGreeting(), Color.GREEN, true, false);
     }
 
     /**
@@ -33,21 +35,19 @@ public class DoctorMainPage extends UiBase {
     @Override
     public void OnViewCreated(View parentView) {
         MenuView menuView = (MenuView) parentView;
-        HumanController controller = HumanController.getInstance();
-        menuView.setTitleHeader(controller.getUserGreeting());
 
         MenuView.MenuSection telemedSection = menuView.addSection("Telemedicine Services");
         telemedSection.addOption(1, "View List of Patients - To view patient information");
         telemedSection.addOption(2, "View Appointment - To view new / scheduled appointments for teleconsultation");
+        menuView.attachMenuOptionInput(1, "View List of Patients", str -> ToPage(new PatientInfoPage()));
+        menuView.attachMenuOptionInput(2, "View Appointment", str -> ToPage(new ViewAppointmentPage()));
 
         MenuView.MenuSection outpatientSection = menuView.addSection("Outpatient Management Services");
         outpatientSection.addOption(3, "View List of Outpatient Cases");
         outpatientSection.addOption(4, "Update Outpatient Case");
-
-        menuView.attachMenuOptionInput(1, "View List of Patients", str -> ToPage(new PatientInfoPage()));
-        menuView.attachMenuOptionInput(2, "View Appointment", str -> ToPage(new ViewAppointmentPage()));
         menuView.attachMenuOptionInput(3, "View List of Outpatient Cases", str -> ToPage(new OutpatientPatientInfoPage()));
         menuView.attachMenuOptionInput(4, "Update Outpatient Case", str -> ToPage(new UpdateOutpatientCase()));
 
+        canvas.setRequireRedraw(true);
     }
 }

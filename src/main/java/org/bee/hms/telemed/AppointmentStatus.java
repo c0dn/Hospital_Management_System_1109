@@ -40,7 +40,11 @@ public enum AppointmentStatus implements JSONSerializable {
     COMPLETED,
 
     /** On patient end where they cancel the appointment */
-    CANCELED;
+    CANCELED,
+
+    PAYMENT_PENDING,
+
+    PAID;
 
     /**
      * Creates an AppointmentStatus from a string value.

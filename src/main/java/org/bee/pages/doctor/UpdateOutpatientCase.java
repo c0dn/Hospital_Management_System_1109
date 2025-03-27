@@ -11,7 +11,9 @@ import org.bee.ui.Color;
 import org.bee.ui.InputHelper;
 import org.bee.ui.UiBase;
 import org.bee.ui.View;
+import org.bee.ui.views.AbstractPaginatedView;
 import org.bee.ui.views.ListView;
+import org.bee.ui.views.PaginatedMenuView;
 import org.bee.ui.views.TextView;
 import org.bee.utils.formAdapters.ConsultationFormAdapter;
 
@@ -23,6 +25,7 @@ import java.util.stream.Collectors;
  * This class allows doctors to view and update their assigned outpatient cases.
  */
 public class UpdateOutpatientCase extends UiBase {
+    private static final int ITEMS_PER_PAGE = 7;
 
     /**
      * Singleton instance of the HumanController to manage user-related data.
@@ -54,7 +57,7 @@ public class UpdateOutpatientCase extends UiBase {
      */
     @Override
     public View createView() {
-        return new ListView(this.canvas, Color.GREEN);
+        return updateOutpatientRecord();
     }
 
     /**
@@ -65,52 +68,121 @@ public class UpdateOutpatientCase extends UiBase {
      */
     @Override
     public void OnViewCreated(View parentView) {
-        ListView lv = (ListView) parentView;
 
-        SystemUser systemUser = humanController.getLoggedInUser();
-        List<Consultation> allCases = consultationController.getAllOutpatientCases();
+        canvas.setRequireRedraw(true);
+//        ListView lv = (ListView) parentView;
 
-        if (systemUser instanceof Doctor doctor) {
-            String staffId = doctor.getStaffId();
+//        SystemUser systemUser = humanController.getLoggedInUser();
+//        List<Consultation> allCases = consultationController.getAllOutpatientCases();
+//
+//        if (systemUser instanceof Doctor doctor) {
+//            String staffId = doctor.getStaffId();
+//
+//            if (consultation != null) {
+//                displayOutpatientCase(consultation, lv);
+//                return;
+//            }
+//
+//            lv.setTitleHeader("List of Outpatient Cases");
+//
+//            List<Consultation> cases = allCases.stream()
+//                    .filter(c -> c.getDoctor() != null &&
+//                            c.getDoctor().getStaffId().equals(staffId))
+//                    .collect(Collectors.toList());
+//
+//            if (cases.isEmpty()) {
+//                System.out.println("No outpatient cases found.");
+//                System.out.println("\nPress Enter to continue...");
+//                new Scanner(System.in).nextLine();
+//                return;
+//            }
+//
+//            int index = 0;
+//
+//            // Show list of patient
+//            for (Consultation consultation : cases) {
+//                lv.addItem(new TextView(this.canvas, index + ". " + consultation.getPatient().getName(), Color.GREEN));
+//                index += 1;
+//            }
+//
+//            // When selecting "Select Patient Index"
+//            lv.attachUserInput("Select Patient Index ", str -> {
+//                int selectedIndex = InputHelper.getValidIndex(canvas.getTerminal(), "Select Patient index", cases);
+//                consultation = cases.get(selectedIndex);
+//
+//                try {
+//                    updateOutpatientCase();
+//                } catch (Exception e) {
+//                    throw e;
+//                }
+//            });
+//        }
+    }
 
-            if (consultation != null) {
-                displayOutpatientCase(consultation, lv);
-                return;
-            }
+    private View updateOutpatientRecord() {
+        List<Consultation> consultations = consultationController.getAllOutpatientCases();
 
-            lv.setTitleHeader("List of Outpatient Cases");
+        if (consultations.isEmpty()) {
+            return new TextView(canvas, "No outpatient cases found to update.", Color.YELLOW);
+        }
 
-            List<Consultation> cases = allCases.stream()
-                    .filter(c -> c.getDoctor() != null &&
-                            c.getDoctor().getStaffId().equals(staffId))
-                    .collect(Collectors.toList());
+        List<AbstractPaginatedView.MenuOption> menuOptions = new ArrayList<>();
+        for (Consultation c : consultations) {
+            String patientName = c.getPatient() != null ? c.getPatient().getName() : "Unknown Patient";
+            String consultId = c.getConsultationId();
+            String diagnosis = c.getDiagnosis() != null ? c.getDiagnosis() : "No diagnosis";
 
-            if (cases.isEmpty()) {
-                System.out.println("No outpatient cases found.");
-                System.out.println("\nPress Enter to continue...");
-                new Scanner(System.in).nextLine();
-                return;
-            }
+            String optionText = String.format("%s - %s (%s)", consultId, patientName, diagnosis);
+            menuOptions.add(new PaginatedMenuView.MenuOption(consultId, optionText, c));
+        }
 
-            int index = 0;
+        PaginatedMenuView paginatedView = new PaginatedMenuView(
+                canvas,
+                "Select Consultation to Update",
+                "Available Consultations",
+                menuOptions,
+                ITEMS_PER_PAGE,
+                Color.CYAN
+        );
 
-            // Show list of patient
-            for (Consultation consultation : cases) {
-                lv.addItem(new TextView(this.canvas, index + ". " + consultation.getPatient().getName(), Color.GREEN));
-                index += 1;
-            }
-
-            // When selecting "Select Patient Index"
-            lv.attachUserInput("Select Patient Index ", str -> {
-                int selectedIndex = InputHelper.getValidIndex(canvas.getTerminal(), "Select Patient index", cases);
-                consultation = cases.get(selectedIndex);
-
-                try {
-                    updateOutpatientCase();
-                } catch (Exception e) {
-                    throw e;
+        // Set the callback with proper error handling
+        paginatedView.setSelectionCallback(option -> {
+            try {
+                if (option != null && option.getData() != null) {
+                    Consultation selectedConsultation = (Consultation) option.getData();
+                    openUpdateForm(selectedConsultation);
+                } else {
+                    canvas.setSystemMessage("Error: Invalid selection");
+                    canvas.setRequireRedraw(true);
                 }
-            });
+            } catch (Exception e) {
+                canvas.setSystemMessage("Error processing selection: " + e.getMessage());
+                canvas.setRequireRedraw(true);
+                System.err.println("Exception in selection callback: " + e.getMessage());
+            }
+        });
+
+        return paginatedView;
+        }
+
+    private void openUpdateForm(Consultation consultation) {
+        try {
+            ConsultationFormAdapter adapter = new ConsultationFormAdapter();
+
+            GenericUpdatePage<Consultation> updatePage = new GenericUpdatePage<>(
+                    consultation,
+                    adapter,
+                    () -> {
+                        View refreshedView = updateOutpatientRecord();
+                        navigateToView(refreshedView);
+                    }
+            );
+
+            ToPage(updatePage);
+        } catch (Exception e) {
+            canvas.setSystemMessage("Error opening update form: " + e.getMessage());
+            canvas.setRequireRedraw(true);
+            System.err.println("Exception in openUpdateForm: " + e.getMessage());
         }
     }
 

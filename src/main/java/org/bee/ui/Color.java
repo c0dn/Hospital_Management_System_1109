@@ -6,7 +6,9 @@ package org.bee.ui;
 public enum Color {
     BLACK("\u001b[30m"),
     RED("\u001b[31m"),
+    UND_RED("\u001b[4;31m"),
     GREEN("\u001b[32m"),
+    UND_GREEN("\u001b[4;32m"),
     YELLOW("\u001b[33m"),
     BLUE("\u001b[34m"),
     MAGENTA("\u001b[35m"),

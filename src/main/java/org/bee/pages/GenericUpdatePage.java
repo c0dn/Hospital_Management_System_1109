@@ -46,7 +46,7 @@ public class GenericUpdatePage<T> extends UiBase {
 
     @Override
     public View createView() {
-        String title = "Update " + adapter.getObjectTypeName();
+        String title = "\nUpdate " + adapter.getObjectTypeName();
         return new FormView(this.canvas, title, Color.CYAN);
     }
 
