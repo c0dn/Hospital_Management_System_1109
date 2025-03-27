@@ -1,6 +1,7 @@
 package org.bee.hms.billing;
 
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,12 +40,14 @@ public class BillBuilder {
     boolean isInpatient;
     boolean isEmergency;
     PaymentMethod paymentMethod;
+    BigDecimal settledAmount;
 
 
     /**
      * Constructs a new {@code BillBuilder} instance.
      * Initializes {@code billId} with a randomly generated UUID and
-     * {@code billDate} with the current timestamp.
+     * {@code billDate} with the current timestamp. Also initializes
+     * {@code settledAmount} to zero.
      */
     public BillBuilder() {
         this.billId = UUID.randomUUID().toString();
@@ -54,6 +57,7 @@ public class BillBuilder {
         this.isInpatient = false;
         this.isEmergency = false;
         this.paymentMethod = PaymentMethod.NOT_APPLICABLE;
+        this.settledAmount = BigDecimal.ZERO;
     }
 
     /**
@@ -158,11 +162,11 @@ public class BillBuilder {
      * @throws IllegalStateException if any of the required fields are not set (e.g., patientId, visit, or consultations).
      */
     private void validateBuildRequirements() {
-        if (patient == null) {
-            throw new IllegalStateException("Patient ID is required");
+        if (Objects.isNull(patient)) {
+            throw new IllegalStateException("Patient is required");
         }
 
-        if (visit == null && consultations.isEmpty()) {
+        if (Objects.isNull(visit) && consultations.isEmpty()) {
             throw new IllegalStateException("Either a visit or at least one consultation is required");
         }
     }

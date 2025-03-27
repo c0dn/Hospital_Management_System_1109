@@ -39,6 +39,7 @@ public class Bill implements JSONSerializable {
     private Map<String, BigDecimal> categorizedCharges;
     /** Current status of the bill, such as DRAFT. */
     private BillingStatus status;
+    private BigDecimal settledAmount;
     private final InsurancePolicy insurancePolicy;
     private final boolean isInpatient;
     private final boolean isEmergency;
@@ -60,6 +61,7 @@ public class Bill implements JSONSerializable {
         this.isInpatient = builder.isInpatient;
         this.isEmergency = builder.isEmergency;
         this.paymentMethod = builder.paymentMethod;
+        this.settledAmount = builder.settledAmount != null ? builder.settledAmount : BigDecimal.ZERO;
     }
 
     /**
@@ -75,6 +77,7 @@ public class Bill implements JSONSerializable {
      * @param lineItems           The list of billing line items included in the bill
      * @param categorizedCharges  The mapping of charges categorized by category name
      * @param status              The current status of the bill
+     * @param settledAmount       The amount already settled for this bill // Added parameter
      * @param insurancePolicy     The insurance policy associated with the bill
      * @param isInpatient         Flag indicating if this is for an inpatient service
      * @param isEmergency         Flag indicating if this is for an emergency service
@@ -90,6 +93,7 @@ public class Bill implements JSONSerializable {
             @JsonProperty("lineItems") List<BillingItemLine> lineItems,
             @JsonProperty("categorizedCharges") Map<String, BigDecimal> categorizedCharges,
             @JsonProperty("status") BillingStatus status,
+            @JsonProperty("settledAmount") BigDecimal settledAmount,
             @JsonProperty("insurancePolicy") InsurancePolicy insurancePolicy,
             @JsonProperty("isInpatient") boolean isInpatient,
             @JsonProperty("isEmergency") boolean isEmergency,
@@ -103,6 +107,7 @@ public class Bill implements JSONSerializable {
         builder.isInpatient = isInpatient;
         builder.isEmergency = isEmergency;
         builder.paymentMethod = paymentMethod != null ? paymentMethod : PaymentMethod.NOT_APPLICABLE;
+        builder.settledAmount = settledAmount != null ? settledAmount : BigDecimal.ZERO;
 
         Bill bill = new Bill(builder);
 
@@ -118,6 +123,7 @@ public class Bill implements JSONSerializable {
 
         return bill;
     }
+
 
     /**
      * Adds a new line item to the bill.
@@ -298,6 +304,168 @@ public class Bill implements JSONSerializable {
         return paymentMethod;
     }
 
+    public BigDecimal getSettledAmount() {
+        return settledAmount == null ? BigDecimal.ZERO : settledAmount;
+    }
+
+    /**
+     * Cancels the bill, changing its status to CANCELLED.
+     *
+     * @throws IllegalStateException if the bill is already in a finalized status
+     */
+    public void cancelBill() {
+        if (this.status.isFinalized()) {
+            throw new IllegalStateException("Cannot cancel bill. Bill is already in a finalized state: " + this.status.getDisplayName());
+        }
+        this.status = BillingStatus.CANCELLED;
+    }
+
+    /**
+     * Updates the bill's insurance status to INSURANCE_APPROVED.
+     *
+     * @throws IllegalStateException if the bill is not in INSURANCE_PENDING status
+     */
+    public void approveInsurance() {
+        if (this.status != BillingStatus.INSURANCE_PENDING) {
+            throw new IllegalStateException("Cannot approve insurance. Current status is '" +
+                    this.status.getDisplayName() + "', required status is 'Insurance Pending'.");
+        }
+        this.status = BillingStatus.INSURANCE_APPROVED;
+    }
+
+    /**
+     * Updates the bill's insurance status to INSURANCE_REJECTED.
+     *
+     * @throws IllegalStateException if the bill is not in INSURANCE_PENDING status
+     */
+    public void rejectInsurance() {
+        if (this.status != BillingStatus.INSURANCE_PENDING) {
+            throw new IllegalStateException("Cannot reject insurance. Current status is '" +
+                    this.status.getDisplayName() + "', required status is 'Insurance Pending'.");
+        }
+        this.status = BillingStatus.INSURANCE_REJECTED;
+    }
+
+    /**
+     * Updates the bill's status to PARTIALLY_PAID, records the payment method, and the settled amount.
+     * This method should only be used for payments that are less than the bill's grand total.
+     *
+     * @param amount          The partial amount that has been paid. Must be greater than zero and less than the grand total.
+     * @param paymentMethod   The method used for making the payment.
+     * @throws IllegalStateException    if the bill is already in a finalized state (e.g., PAID, CANCELLED).
+     * @throws IllegalArgumentException if the payment amount is invalid (null, <= 0, or >= grand total).
+     */
+    public void recordPartialPayment(BigDecimal amount, PaymentMethod paymentMethod) {
+        if (this.status.isFinalized()) {
+            throw new IllegalStateException("Cannot record payment. Bill is already in a finalized state: " +
+                    this.status.getDisplayName());
+        }
+
+        if (amount == null || amount.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("Payment amount must be greater than zero.");
+        }
+
+        if (amount.compareTo(getGrandTotal()) >= 0) {
+            throw new IllegalArgumentException("Partial payment amount cannot be greater than or equal to the grand total. Use recordFullPayment for full payments.");
+        }
+
+        this.paymentMethod = paymentMethod;
+        this.settledAmount = amount; // Record the actual amount paid
+        this.status = BillingStatus.PARTIALLY_PAID;
+    }
+
+    /**
+     * Updates the bill's status to PAID, sets the settled amount to the grand total, and records the payment method.
+     * This indicates the bill has been fully settled.
+     *
+     * @param paymentMethod   The method used for making the full payment.
+     * @throws IllegalStateException if the bill is already in a finalized state (e.g., PAID, CANCELLED).
+     */
+    public void recordFullPayment(PaymentMethod paymentMethod) {
+        if (this.status.isFinalized()) {
+            throw new IllegalStateException("Cannot record payment. Bill is already in a finalized state: " +
+                    this.status.getDisplayName());
+        }
+
+        this.paymentMethod = paymentMethod;
+        this.settledAmount = getGrandTotal();
+        this.status = BillingStatus.PAID;
+    }
+    /**
+     * Initiates a refund process for the bill, changing its status to REFUND_PENDING.
+     *
+     * @throws IllegalStateException if the bill is not in PAID or PARTIALLY_PAID status
+     */
+    public void initiateRefund() {
+        if (this.status != BillingStatus.PAID && this.status != BillingStatus.PARTIALLY_PAID) {
+            throw new IllegalStateException("Cannot initiate refund. Current status is '" +
+                    this.status.getDisplayName() + "', bill must be paid or partially paid.");
+        }
+
+        this.status = BillingStatus.REFUND_PENDING;
+    }
+
+    /**
+     * Completes the refund process, changing the bill's status to REFUNDED.
+     *
+     * @throws IllegalStateException if the bill is not in REFUND_PENDING status
+     */
+    public void completeRefund() {
+        if (this.status != BillingStatus.REFUND_PENDING) {
+            throw new IllegalStateException("Cannot complete refund. Current status is '" +
+                    this.status.getDisplayName() + "', required status is 'Refund Pending'.");
+        }
+
+        this.status = BillingStatus.REFUNDED;
+        this.settledAmount = BigDecimal.ZERO;
+    }
+
+    /**
+     * Marks a bill as overdue.
+     *
+     * @throws IllegalStateException if the bill is in a finalized status or already overdue
+     */
+    public void markAsOverdue() {
+        if (this.status.isFinalized()) {
+            throw new IllegalStateException("Cannot mark as overdue. Bill is already in a finalized state: " +
+                    this.status.getDisplayName());
+        }
+
+        if (this.status == BillingStatus.OVERDUE) {
+            throw new IllegalStateException("Bill is already marked as overdue.");
+        }
+
+        this.status = BillingStatus.OVERDUE;
+    }
+
+    /**
+     * Marks a bill as in dispute.
+     *
+     * @throws IllegalStateException if the bill is in a finalized status or already in dispute
+     */
+    public void markInDispute() {
+        if (this.status.isFinalized()) {
+            throw new IllegalStateException("Cannot mark as in dispute. Bill is already in a finalized state: " +
+                    this.status.getDisplayName());
+        }
+
+        if (this.status == BillingStatus.IN_DISPUTE) {
+            throw new IllegalStateException("Bill is already marked as in dispute.");
+        }
+
+        this.status = BillingStatus.IN_DISPUTE;
+    }
+
+    /**
+     * Returns the outstanding balance for this bill.
+     *
+     * @return The amount still owed on the bill (grand total minus settled amount)
+     */
+    public BigDecimal getOutstandingBalance() {
+        BigDecimal settled = this.settledAmount != null ? this.settledAmount : BigDecimal.ZERO;
+        return getGrandTotal().subtract(settled);
+    }
+
     /**
      * Calculates the tax amount based on the Singapore GST rate.
      *
@@ -364,5 +532,16 @@ public class Bill implements JSONSerializable {
 
     public LocalDateTime getBillDate() {
         return billDate;
+    }
+
+    /**
+     * Sets the status of this bill.
+     * This method should be used carefully, as it bypasses the business logic
+     * in the specific status change methods.
+     *
+     * @param status The new status to set
+     */
+    public void setStatus(BillingStatus status) {
+        this.status = status;
     }
 }
