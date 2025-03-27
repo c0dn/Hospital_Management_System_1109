@@ -68,7 +68,7 @@ public class PatientMainPage extends UiBase {
         infoSection.addOption(4, "View Billing - To view unpaid bills");
         infoSection.addOption(5, "View Appointment Summary");
 
-        menuView.attachMenuOptionInput(1, "View/Update Particulars", str -> viewUpdateParticularsPrompt());
+        menuView.attachMenuOptionInput(1, "View/Update Particulars", str -> viewPatientDetails());
         menuView.attachMenuOptionInput(2, "Book Appointment", str -> bookAppointmentPrompt());
         menuView.attachMenuOptionInput(3, "View/Change Appointment", str -> changeAppointmentPrompt());
 
@@ -82,28 +82,16 @@ public class PatientMainPage extends UiBase {
         canvas.setRequireRedraw(true);
     }
 
-    /**
-     * Prompts the user to update their personal particulars, such as contact information, address, height, weight, etc.
-     * Displays the current particulars and provides options for the user to choose what they want to update.
-     * Validates the input and applies the changes if necessary.
-     *
-     * @throws IllegalStateException if the current user is not a patient or if an invalid option is selected.
-     */
-    private void viewUpdateParticularsPrompt() {
-        SystemUser systemUser = humanController.getLoggedInUser();
-        if (systemUser instanceof Patient patient) {
-            System.out.println("\nCurrent Particulars:");
-            patient.displayHuman();
+    public void viewPatientDetails() {
+        try {
+            HumanController humanController = HumanController.getInstance();
+            Patient currentPatient = (Patient) humanController.getLoggedInUser();
 
-            PatientFormAdapter adapter = new PatientFormAdapter();
+            PatientDetailsPage detailsPage = new PatientDetailsPage(currentPatient);
+            ToPage(detailsPage);
 
-            GenericUpdatePage<Patient> updatePage = new GenericUpdatePage<>(
-                    patient,
-                    adapter,
-                    () -> System.out.println("Patient information updated successfully!")
-            );
-
-            ToPage(updatePage);
+        } catch (Exception e) {
+            System.err.println("Error viewing patient details: " + e.getMessage());
         }
     }
 
