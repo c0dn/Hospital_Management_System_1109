@@ -1,6 +1,7 @@
 package org.bee.controllers;
 
 import org.bee.hms.humans.Doctor;
+import org.bee.hms.humans.Human;
 import org.bee.hms.humans.Nurse;
 import org.bee.hms.humans.Patient;
 import org.bee.hms.medical.Visit;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Controller class for managing patient visits
+ * Manages the storage and retrieval of {@link Visit} objects.
  * Handles loading, saving, and management of visit
  * Implemented as a singleton
  * Extends BaseController to handle JSON persistence

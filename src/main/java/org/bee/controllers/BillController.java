@@ -13,7 +13,7 @@ import org.bee.hms.medical.Visit;
 import org.bee.hms.policy.InsurancePolicy;
 
 /**
- * Controller class for managing bills in the hospital management system.
+ * Manages the storage and retrieval of {@link Bill} objects.
  * Handles creating, retrieving, and processing bills.
  * Extends BaseController to provide JSON persistence.
  */

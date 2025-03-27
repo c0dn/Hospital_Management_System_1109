@@ -1,5 +1,6 @@
 package org.bee.controllers;
 
+import org.bee.hms.humans.Human;
 import org.bee.hms.humans.Patient;
 import org.bee.hms.policy.InsurancePolicy;
 import org.bee.hms.insurance.GovernmentProvider;
@@ -9,7 +10,7 @@ import org.bee.hms.insurance.InsuranceProvider;
 import java.util.*;
 
 /**
- * Controller class that manages all insurance policies in the system.
+ * Manages the storage and retrieval of {@link InsuranceProvider} objects
  * Handles loading, saving, and searching of government and private insurance policies.
  * Implemented as a singleton.
  * Extends BaseController to handle JSON persistence.

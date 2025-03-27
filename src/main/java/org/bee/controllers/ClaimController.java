@@ -16,6 +16,7 @@ import org.bee.hms.humans.Nurse;
 import org.bee.hms.humans.Patient;
 import org.bee.hms.insurance.GovernmentProvider;
 import org.bee.hms.insurance.InsuranceProvider;
+import org.bee.hms.medical.Consultation;
 import org.bee.hms.medical.Visit;
 import org.bee.hms.medical.VisitStatus;
 import org.bee.hms.policy.Coverage;
@@ -23,7 +24,7 @@ import org.bee.hms.policy.InsuranceCoverageResult;
 import org.bee.hms.policy.InsurancePolicy;
 
 /**
- * Controller class that manages all insurance claims in the system.
+ * * Manages the storage and retrieval of {@link InsuranceClaim} objects.
  * Handles loading, saving, and searching of claims.
  * Implemented as a singleton.
  * Extends BaseController to handle JSON persistence.
@@ -89,11 +90,10 @@ public class ClaimController extends BaseController<InsuranceClaim> {
     }
 
     /**
-     * Generates initial insurance claim data
-     * This method creates claims for all patients using private and government insurance providers
-     * Generates 2 claims per patient per provider type
-     *
-     * @throws IllegalStateException if no patients available to generate claims
+     * Generates initial insurance claim data for the healthcare management system.
+     * This method processes draft bills and create insurance claims for those with valid insurance policies
+     * If there is no existing bills, it will print that there is no bills available for generation of claims
+     * @throws IllegalStateException if there's an error processing a bill
      */
     @Override
     protected void generateInitialData() {

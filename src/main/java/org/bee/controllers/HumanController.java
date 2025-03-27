@@ -6,13 +6,14 @@ import java.util.stream.Collectors;
 
 import org.bee.hms.auth.SystemUser;
 import org.bee.hms.humans.*;
+import org.bee.hms.medical.Consultation;
 import org.bee.utils.DataGenerator;
 
 /**
- * Controller class that manages all human entities in the system.
- * Handles loading, saving, and searching of doctors, nurses, and patients.
- * Implemented as a singleton.
- * Extends BaseController to handle JSON persistence.
+ * Manages the storage and retrieval of {@link Human} objects.
+ * Handles loading, saving, and searching of doctors, nurses, and patients
+ * Implemented as a singleton
+ * Extends BaseController to handle JSON persistence
  */
 public class HumanController extends BaseController<Human> {
 
@@ -130,6 +131,12 @@ public class HumanController extends BaseController<Human> {
         };
     }
 
+    /**
+     * Returns information about the logged-on user
+     * The information varies based on the user's role (Doctor, Patient, Nurse, Clerk)
+     *
+     * @return Information containing the user's name and relevant ID
+     */
     public String getLoginInUser() {
         return switch (authenticatedUser) {
             case Doctor doc -> String.format(doc.getName(), doc.getMcr(), doc.getStaffId());
