@@ -2,9 +2,11 @@ package org.bee.hms.billing;
 
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.bee.hms.claims.InsuranceClaim;
 import org.bee.hms.humans.Patient;
+import org.bee.hms.humans.ResidentialStatus;
 import org.bee.hms.policy.*;
 import org.bee.utils.JSONSerializable;
 
@@ -19,6 +21,10 @@ import java.util.*;
 public class Bill implements JSONSerializable {
     /** Unique identifier for the bill. */
     private final String billId;
+
+    @JsonIgnore
+    private static final BigDecimal SINGAPORE_TAX_RATE = new BigDecimal("0.09");
+
     /**
      * Unique identifier of the patient associated with the bill.
      */
@@ -227,6 +233,72 @@ public class Bill implements JSONSerializable {
     public BigDecimal getTotalByCategory(String category) {
         return categorizedCharges.getOrDefault(category, BigDecimal.ZERO);
     }
+
+
+    /**
+     * Gets the discount percentage applicable to this patient based on their residential status.
+     * Singaporeans and PRs get 30%, others get 0%.
+     * @return The discount percentage (e.g., 0.30 for 30%).
+     */
+    public Optional<Double> getDiscountPercentage() {
+        if (patient.isResident()) {
+            return Optional.of(0.30);
+        } else {
+            return Optional.empty();
+        }
+    }
+
+    /**
+     * Calculates the discount amount based on patient's residential status.
+     *
+     * @return The discount amount
+     */
+    public BigDecimal getDiscountAmount() {
+        return getDiscountPercentage()
+                .map(discountRate -> getTotalAmount().multiply(BigDecimal.valueOf(discountRate)))
+                .orElse(BigDecimal.ZERO);
+    }
+
+    /**
+     * Calculates the total amount after applying the discount.
+     *
+     * @return The discounted total amount
+     */
+    public BigDecimal getDiscountedTotal() {
+        return getTotalAmount().subtract(getDiscountAmount());
+    }
+
+    /**
+     * Calculates the tax amount based on the Singapore GST rate.
+     *
+     * @return The tax amount
+     */
+    public BigDecimal getTaxAmount() {
+        return getDiscountedTotal().multiply(SINGAPORE_TAX_RATE);
+    }
+
+    /**
+     * Calculates the grand total including tax.
+     *
+     * @return The grand total amount
+     */
+    public BigDecimal getGrandTotal() {
+        return getDiscountedTotal().add(getTaxAmount());
+    }
+
+    /**
+     * Gets the patient responsibility amount (after insurance if applicable).
+     *
+     * @param insuranceCoverageAmount The amount covered by insurance
+     * @return The amount the patient is responsible for
+     */
+    public BigDecimal getPatientResponsibility(BigDecimal insuranceCoverageAmount) {
+        return getGrandTotal().subtract(
+                insuranceCoverageAmount != null ? insuranceCoverageAmount : BigDecimal.ZERO
+        );
+    }
+
+
 
     /**
      * Recalculates the total charges for each category.
