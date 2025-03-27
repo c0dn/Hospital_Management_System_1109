@@ -48,6 +48,27 @@ public class PaginatedMenuView extends AbstractPaginatedView<AbstractPaginatedVi
         }
     }
 
+    /**
+     * Attaches a custom option to the view after pagination navigation.
+     * This method ensures custom options don't interfere with pagination controls.
+     *
+     * @param optionName The name of the custom option
+     * @param lambda The action to perform when the option is selected
+     */
+    public void attachCustomOption(String optionName, org.bee.ui.views.UserInputResult lambda) {
+        int nextIndex = 100;
+        for (java.util.Enumeration<Integer> e = inputOptions.keys(); e.hasMoreElements();) {
+            Integer key = e.nextElement();
+            if (key > 0 && key < 100) {
+                nextIndex = Math.max(nextIndex, key + 1);
+            }
+        }
+
+        inputOptions.put(nextIndex, new org.bee.ui.views.UserInput(optionName, lambda));
+
+        setupNavigation();
+    }
+
     @Override
     protected List<MenuOption> getCurrentPageItems() {
         int startIndex = currentPage * itemsPerPage;

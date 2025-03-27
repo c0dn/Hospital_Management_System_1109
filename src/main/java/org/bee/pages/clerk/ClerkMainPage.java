@@ -1,6 +1,7 @@
     package org.bee.pages.clerk;
 
     import org.bee.controllers.HumanController;
+    import org.bee.pages.clerk.billing.ViewAllBillsPage;
     import org.bee.pages.clerk.insurance.NewInsuranceClaimPage;
     import org.bee.ui.*;
     import org.bee.ui.views.*;
@@ -47,13 +48,19 @@
             menuView.attachMenuOptionInput(2, "View Outpatient Cases", str -> ToPage(new OutpatientCasesPage()));
             menuView.attachMenuOptionInput(3, "Update Outpatient Case", str -> ToPage(new OutpatientUpdatePage()));
 
+
+            // billing section
+            MenuView.MenuSection billingSection = menuView.addSection("Billing and Invoicing");
+            billingSection.addOption(4, "View all bills");
+            menuView.attachMenuOptionInput(4, "View all bills", str -> ToPage(new ViewAllBillsPage()));
+
             // Insurance section
             MenuView.MenuSection insuranceSection = menuView.addSection("Insurance Claims");
-            insuranceSection.addOption(4, "Submit New Claim");
-            insuranceSection.addOption(5, "Manage Existing Claims");
-            insuranceSection.addOption(6, "Check Claim Status");
-            insuranceSection.addOption(7, "Update Claim Status");
-            menuView.attachMenuOptionInput(4, "Submit New Claim", str -> ToPage(new NewInsuranceClaimPage()));
+            insuranceSection.addOption(8, "Submit New Claim");
+            insuranceSection.addOption(9, "Manage Existing Claims");
+            insuranceSection.addOption(10, "Check Claim Status");
+            insuranceSection.addOption(11, "Update Claim Status");
+            menuView.attachMenuOptionInput(8, "Submit New Claim", str -> ToPage(new NewInsuranceClaimPage()));
 
 //            menuView.attachMenuOptionInput(5, "Manage Claims", str -> ToPage(new InsuranceClaimPage(InsuranceClaimPage.Mode.MANAGE)));
 //            menuView.attachMenuOptionInput(6, "Check Claim Status", str -> ToPage(new InsuranceClaimPage(InsuranceClaimPage.Mode.CHECK)));

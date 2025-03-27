@@ -8,6 +8,7 @@ import org.bee.hms.claims.InsuranceClaim;
 import org.bee.hms.insurance.InsuranceProvider;
 import org.bee.hms.policy.InsuranceCoverageResult;
 import org.bee.hms.policy.InsurancePolicy;
+import org.bee.pages.clerk.billing.BillDetailsPage;
 import org.bee.ui.Color;
 import org.bee.ui.SystemMessageStatus;
 import org.bee.ui.UiBase;
@@ -103,7 +104,7 @@ public class NewInsuranceClaimPage extends UiBase {
      */
     private List<Bill> getEligibleBills() {
         return billController.getAllItems().stream()
-                .filter(bill -> bill.getStatus().isFinalized())
+                .filter(bill -> bill.getStatus().isSubmitted())
                 .filter(bill -> bill.getInsurancePolicy() != null &&
                         bill.getInsurancePolicy().isActive())
                 .collect(Collectors.toList());
@@ -192,38 +193,5 @@ public class NewInsuranceClaimPage extends UiBase {
             View refreshedView = selectBillForClaim();
             navigateToView(refreshedView);
         });
-    }
-
-    /**
-     * Inner class to show bill details with claim submission option
-     */
-    private class BillDetailsPage extends UiBase {
-        private final Bill bill;
-        private final IObjectDetailsAdapter<Bill> adapter;
-        private final Runnable onSubmitCallback;
-
-        public BillDetailsPage(Bill bill, IObjectDetailsAdapter<Bill> adapter, Runnable onSubmitCallback) {
-            this.bill = bill;
-            this.adapter = adapter;
-            this.onSubmitCallback = onSubmitCallback;
-        }
-
-        @Override
-        public View createView() {
-            org.bee.pages.ObjectDetailsPage<Bill> detailsPage =
-                    new org.bee.pages.ObjectDetailsPage<>(bill, adapter);
-            return detailsPage.createView();
-        }
-
-        @Override
-        public void OnViewCreated(View parentView) {
-            parentView.attachUserInput("Submit Insurance Claim", input -> {
-                if (onSubmitCallback != null) {
-                    onSubmitCallback.run();
-                }
-            });
-
-            canvas.setRequireRedraw(true);
-        }
     }
 }

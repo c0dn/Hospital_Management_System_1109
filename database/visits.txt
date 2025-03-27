@@ -1,115 +1,106 @@
 [ {
-  "visitId" : "V17430218556323565",
-  "admissionDateTime" : [ 2025, 1, 31, 4, 44, 15, 632703500 ],
-  "dischargeDateTime" : [ 2025, 3, 27, 4, 44, 16, 55501400 ],
-  "wardStays" : [ {
-    "type" : "wardStay",
-    "ward" : {
-      "type" : "icu",
-      "name" : "Hospital Ward",
-      "dailyRate" : 2000.0,
-      "classType" : "ICU"
-    },
-    "startDateTime" : [ 2025, 1, 31, 4, 44, 15, 632703500 ],
-    "endDateTime" : [ 2025, 2, 5, 4, 44, 15, 632703500 ]
-  } ],
+  "visitId" : "V17430844101552028",
+  "admissionDateTime" : [ 2024, 12, 28, 22, 6, 50, 155727000 ],
+  "dischargeDateTime" : [ 2025, 3, 27, 22, 6, 50, 765869100 ],
+  "wardStays" : [ ],
   "inpatientProcedures" : [ {
     "type" : "procedure",
-    "code" : "BQ0KZZZ",
+    "code" : "DBY28ZZ",
     "cost" : 1000.00
   } ],
   "diagnosticCodes" : [ {
     "type" : "diagnostic",
-    "code" : "H35451",
-    "cost" : 255
+    "code" : "S55891S",
+    "cost" : 140
   } ],
   "attendingDoc" : {
     "humanType" : "doctor",
-    "name" : "Zhang Wei",
-    "dateOfBirth" : [ 1973, 3, 27 ],
-    "nricFin" : "G8564966W",
-    "maritalStatus" : "MARRIED",
+    "name" : "Muhammad Ibrahim",
+    "dateOfBirth" : [ 1999, 3, 27 ],
+    "nricFin" : "G6797545L",
+    "maritalStatus" : "SINGLE",
     "residentialStatus" : "WORK_PASS",
     "nationality" : "Singaporean",
-    "address" : "Blk 656 Yishun Ring Road 7, #28-905, Singapore 464095",
+    "address" : "Blk 156 Bedok North St 5, #16-494, Singapore 567612",
     "contact" : {
-      "personalPhone" : "97606959",
-      "homePhone" : "64773556",
-      "companyPhone" : "62868531",
-      "email" : "user281@gmail.com"
+      "personalPhone" : "93003728",
+      "homePhone" : "63280973",
+      "companyPhone" : "65795666",
+      "email" : "user987@hotmail.com"
     },
-    "sex" : "MALE",
-    "bloodType" : "AB_NEGATIVE",
-    "isVaccinated" : true,
-    "staffId" : "SD8A8D5F4",
+    "sex" : "FEMALE",
+    "bloodType" : "B_NEGATIVE",
+    "isVaccinated" : false,
+    "staffId" : "S1385A86B",
     "title" : "Doctor",
     "department" : "Medical",
-    "mcr" : "M85390A",
+    "mcr" : "M88582A",
     "humanType" : "doctor"
   },
   "attendingNurses" : [ {
     "humanType" : "nurse",
-    "name" : "Abdullah Malik",
-    "dateOfBirth" : [ 1992, 3, 27 ],
-    "nricFin" : "T7765611H",
+    "name" : "Tan Wei Ming",
+    "dateOfBirth" : [ 1986, 3, 27 ],
+    "nricFin" : "T8353287J",
     "maritalStatus" : "SINGLE",
-    "residentialStatus" : "CITIZEN",
+    "residentialStatus" : "VISITOR",
     "nationality" : "Singaporean",
-    "address" : "Blk 222 Yishun Ring Road 4, #28-392, Singapore 471223",
+    "address" : "Blk 457 Jurong East Ave 3, #45-465, Singapore 551987",
     "contact" : {
-      "personalPhone" : "99027914",
-      "homePhone" : "66696573",
-      "companyPhone" : "67583724",
-      "email" : "user147@gmail.com"
+      "personalPhone" : "99107597",
+      "homePhone" : "65209559",
+      "companyPhone" : "61869601",
+      "email" : "user360@gmail.com"
     },
-    "sex" : "FEMALE",
-    "bloodType" : "B_POSITIVE",
-    "isVaccinated" : false,
-    "staffId" : "S2FF280D8",
+    "sex" : "OTHERS",
+    "bloodType" : "O_POSITIVE",
+    "isVaccinated" : true,
+    "staffId" : "S33245D38",
     "title" : "Nurse",
     "department" : "Nursing",
-    "rnid" : "RN73874B",
+    "rnid" : "RN41524B",
     "humanType" : "nurse"
   } ],
   "status" : "DISCHARGED",
   "patient" : {
     "humanType" : "patient",
-    "name" : "Lim Boon Teck",
-    "dateOfBirth" : [ 1989, 3, 27 ],
-    "nricFin" : "F3410159X",
-    "maritalStatus" : "DIVORCED",
+    "name" : "Ong Li Ting",
+    "dateOfBirth" : [ 2005, 3, 27 ],
+    "nricFin" : "F3075557W",
+    "maritalStatus" : "WIDOWED",
     "residentialStatus" : "VISITOR",
     "nationality" : "Singaporean",
-    "address" : "Blk 596 Punggol Way 8, #03-200, Singapore 502637",
+    "address" : "Blk 206 Woodlands Drive 12, #46-666, Singapore 550533",
     "contact" : {
-      "personalPhone" : "92809477",
-      "homePhone" : "68160196",
-      "companyPhone" : "67743950",
-      "email" : "user181@gmail.com"
+      "personalPhone" : "93576508",
+      "homePhone" : "63569924",
+      "companyPhone" : "67086398",
+      "email" : "user636@gmail.com"
     },
-    "sex" : "FEMALE",
-    "bloodType" : "AB_POSITIVE",
-    "isVaccinated" : false,
-    "patientId" : "P-2025A4BFEA1E",
+    "sex" : "MALE",
+    "bloodType" : "AB_NEGATIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-202540C1C5BD",
     "drugAllergies" : [ ],
-    "nokName" : "Aisha Teck",
-    "nokAddress" : "Blk 904 Woodlands Drive 1, #32-114, Singapore 540291",
-    "nokRelation" : "Grandchild",
-    "height" : 1.7909357906116161,
-    "weight" : 70.39502748010582,
-    "occupation" : "Doctor",
-    "companyName" : "Keppel Corporation",
-    "companyAddress" : "Blk 253 Tampines St 7, #47-243, Singapore 478528",
+    "nokName" : "Aisha Fatimah",
+    "nokAddress" : "Blk 704 Tampines St 12, #48-902, Singapore 484068",
+    "nokRelation" : "Other",
+    "height" : 1.676254765113937,
+    "weight" : 66.11145546991169,
+    "occupation" : "Programmer",
+    "companyName" : "DBS Bank",
+    "companyAddress" : "Blk 530 Bedok North St 11, #39-455, Singapore 547577",
     "patientConsent" : false,
     "humanType" : "patient"
   },
   "prescriptions" : {
-    "D0201" : 1
+    "D0135" : 1,
+    "D0261" : 1
   }
 }, {
-  "visitId" : "V17430218560550275",
-  "admissionDateTime" : [ 2025, 1, 18, 4, 44, 16, 55501400 ],
-  "dischargeDateTime" : [ 2025, 3, 27, 4, 44, 16, 175680500 ],
+  "visitId" : "V17430844107659610",
+  "admissionDateTime" : [ 2025, 1, 8, 22, 6, 50, 765869100 ],
+  "dischargeDateTime" : [ 2025, 3, 27, 22, 6, 50, 875712300 ],
   "wardStays" : [ {
     "type" : "wardStay",
     "ward" : {
@@ -118,106 +109,821 @@
       "dailyRate" : 1500.0,
       "classType" : "LABOUR_CLASS_A"
     },
-    "startDateTime" : [ 2025, 1, 18, 4, 44, 16, 55501400 ],
-    "endDateTime" : [ 2025, 1, 23, 4, 44, 16, 55501400 ]
+    "startDateTime" : [ 2025, 1, 8, 22, 6, 50, 765869100 ],
+    "endDateTime" : [ 2025, 1, 13, 22, 6, 50, 765869100 ]
   } ],
   "inpatientProcedures" : [ {
     "type" : "procedure",
-    "code" : "0JUP0KZ",
+    "code" : "0HRMXJZ",
     "cost" : 1000.00
   } ],
   "diagnosticCodes" : [ {
     "type" : "diagnostic",
-    "code" : "M65351",
-    "cost" : 280
+    "code" : "T22342S",
+    "cost" : 259
   } ],
   "attendingDoc" : {
     "humanType" : "doctor",
-    "name" : "Tan Wei Ming",
-    "dateOfBirth" : [ 1974, 3, 27 ],
-    "nricFin" : "F5044286K",
-    "maritalStatus" : "WIDOWED",
-    "residentialStatus" : "PERMANENT_RESIDENT",
+    "name" : "Muhammad Ibrahim",
+    "dateOfBirth" : [ 1999, 3, 27 ],
+    "nricFin" : "G6797545L",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "WORK_PASS",
     "nationality" : "Singaporean",
-    "address" : "Blk 427 Punggol Way 1, #22-890, Singapore 484675",
+    "address" : "Blk 156 Bedok North St 5, #16-494, Singapore 567612",
     "contact" : {
-      "personalPhone" : "99315586",
-      "homePhone" : "62752097",
-      "companyPhone" : "63068407",
-      "email" : "user120@gmail.com"
+      "personalPhone" : "93003728",
+      "homePhone" : "63280973",
+      "companyPhone" : "65795666",
+      "email" : "user987@hotmail.com"
     },
-    "sex" : "MALE",
-    "bloodType" : "AB_NEGATIVE",
+    "sex" : "FEMALE",
+    "bloodType" : "B_NEGATIVE",
     "isVaccinated" : false,
-    "staffId" : "S6B72FB65",
+    "staffId" : "S1385A86B",
     "title" : "Doctor",
     "department" : "Medical",
-    "mcr" : "M69553A",
+    "mcr" : "M88582A",
     "humanType" : "doctor"
   },
   "attendingNurses" : [ {
     "humanType" : "nurse",
-    "name" : "Lim Mei Ling",
+    "name" : "Zhang Wei",
+    "dateOfBirth" : [ 1993, 3, 27 ],
+    "nricFin" : "S3603550A",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "VISITOR",
+    "nationality" : "Singaporean",
+    "address" : "Blk 916 Serangoon Road 4, #30-376, Singapore 500995",
+    "contact" : {
+      "personalPhone" : "98640870",
+      "homePhone" : "62278392",
+      "companyPhone" : "60990440",
+      "email" : "user674@hotmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "B_POSITIVE",
+    "isVaccinated" : true,
+    "staffId" : "S34ECF64C",
+    "title" : "Nurse",
+    "department" : "Nursing",
+    "rnid" : "RN10653B",
+    "humanType" : "nurse"
+  } ],
+  "status" : "DISCHARGED",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Divya Singh",
+    "dateOfBirth" : [ 1983, 3, 27 ],
+    "nricFin" : "S7306429E",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "CITIZEN",
+    "nationality" : "Singaporean",
+    "address" : "Blk 788 Woodlands Drive 7, #30-524, Singapore 567849",
+    "contact" : {
+      "personalPhone" : "99431761",
+      "homePhone" : "61938703",
+      "companyPhone" : "68186272",
+      "email" : "user759@gmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "AB_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-20250D85465F",
+    "drugAllergies" : [ "None" ],
+    "nokName" : "Wee Jun Kiat",
+    "nokAddress" : "Blk 143 Tampines St 6, #02-259, Singapore 486392",
+    "nokRelation" : "Other",
+    "height" : 1.5609764711928067,
+    "weight" : 62.22454816957071,
+    "occupation" : "Engineer",
+    "companyName" : "CapitaLand",
+    "companyAddress" : "Blk 893 Yishun Ring Road 3, #45-37, Singapore 538946",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "prescriptions" : {
+    "D0151" : 1
+  }
+}, {
+  "visitId" : "V17430844108756091",
+  "admissionDateTime" : [ 2024, 12, 29, 22, 6, 50, 875712300 ],
+  "dischargeDateTime" : [ 2025, 3, 27, 22, 6, 51, 117414900 ],
+  "wardStays" : [ {
+    "type" : "wardStay",
+    "ward" : {
+      "type" : "daySurgery",
+      "name" : "Hospital Ward",
+      "dailyRate" : 250.0,
+      "classType" : "DAYSURGERY_CLASS_COHORT"
+    },
+    "startDateTime" : [ 2024, 12, 29, 22, 6, 50, 875712300 ],
+    "endDateTime" : [ 2025, 1, 2, 22, 6, 50, 875712300 ]
+  }, {
+    "type" : "wardStay",
+    "ward" : {
+      "type" : "general",
+      "name" : "Hospital Ward",
+      "dailyRate" : 200.0,
+      "classType" : "GENERAL_CLASS_B2"
+    },
+    "startDateTime" : [ 2024, 12, 29, 22, 6, 50, 875712300 ],
+    "endDateTime" : [ 2025, 1, 1, 22, 6, 50, 875712300 ]
+  }, {
+    "type" : "wardStay",
+    "ward" : {
+      "type" : "icu",
+      "name" : "Hospital Ward",
+      "dailyRate" : 2000.0,
+      "classType" : "ICU"
+    },
+    "startDateTime" : [ 2024, 12, 29, 22, 6, 50, 875712300 ],
+    "endDateTime" : [ 2025, 1, 1, 22, 6, 50, 875712300 ]
+  } ],
+  "inpatientProcedures" : [ {
+    "type" : "procedure",
+    "code" : "0CQNXZZ",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "0VUJ47Z",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "B53MYZZ",
+    "cost" : 1000.00
+  } ],
+  "diagnosticCodes" : [ {
+    "type" : "diagnostic",
+    "code" : "V0319XD",
+    "cost" : 247
+  }, {
+    "type" : "diagnostic",
+    "code" : "J4541",
+    "cost" : 456
+  }, {
+    "type" : "diagnostic",
+    "code" : "S65192A",
+    "cost" : 143
+  } ],
+  "attendingDoc" : {
+    "humanType" : "doctor",
+    "name" : "Lee Hui Ling",
+    "dateOfBirth" : [ 1998, 3, 27 ],
+    "nricFin" : "G2559108P",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 260 Tampines St 12, #14-810, Singapore 556521",
+    "contact" : {
+      "personalPhone" : "97126026",
+      "homePhone" : "66031960",
+      "companyPhone" : "64388156",
+      "email" : "user366@gmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "B_POSITIVE",
+    "isVaccinated" : true,
+    "staffId" : "S0BE2E0CA",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M45158A",
+    "humanType" : "doctor"
+  },
+  "attendingNurses" : [ {
+    "humanType" : "nurse",
+    "name" : "Zhang Wei",
+    "dateOfBirth" : [ 1983, 3, 27 ],
+    "nricFin" : "F0364398X",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "DEPENDENT_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 633 Jurong East Ave 12, #15-210, Singapore 541055",
+    "contact" : {
+      "personalPhone" : "96817979",
+      "homePhone" : "65500013",
+      "companyPhone" : "66587894",
+      "email" : "user305@gmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "B_POSITIVE",
+    "isVaccinated" : true,
+    "staffId" : "S1D9A00E6",
+    "title" : "Nurse",
+    "department" : "Nursing",
+    "rnid" : "RN05337B",
+    "humanType" : "nurse"
+  } ],
+  "status" : "DISCHARGED",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Muhammad Danial",
+    "dateOfBirth" : [ 1989, 3, 27 ],
+    "nricFin" : "G7496634P",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "VISITOR",
+    "nationality" : "Singaporean",
+    "address" : "Blk 824 Jurong East Ave 5, #33-479, Singapore 539959",
+    "contact" : {
+      "personalPhone" : "94402875",
+      "homePhone" : "65324619",
+      "companyPhone" : "68356783",
+      "email" : "user818@gmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "A_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-202506DF3135",
+    "drugAllergies" : [ "Penicillin" ],
+    "nokName" : "Ong Danial",
+    "nokAddress" : "Blk 938 Serangoon Road 6, #27-856, Singapore 476444",
+    "nokRelation" : "Grandchild",
+    "height" : 1.9765989264043504,
+    "weight" : 77.13171544252508,
+    "occupation" : "Chef",
+    "companyName" : "ComfortDelGro",
+    "companyAddress" : "Blk 506 Serangoon Road 1, #16-87, Singapore 505651",
+    "patientConsent" : true,
+    "humanType" : "patient"
+  },
+  "prescriptions" : {
+    "D0104" : 1,
+    "D0130" : 1,
+    "D0003" : 1
+  }
+}, {
+  "visitId" : "V17430844111176929",
+  "admissionDateTime" : [ 2025, 1, 19, 22, 6, 51, 117414900 ],
+  "dischargeDateTime" : [ 2025, 3, 27, 22, 6, 51, 224676000 ],
+  "wardStays" : [ ],
+  "inpatientProcedures" : [ {
+    "type" : "procedure",
+    "code" : "0LRT07Z",
+    "cost" : 1000.00
+  } ],
+  "diagnosticCodes" : [ {
+    "type" : "diagnostic",
+    "code" : "S40029S",
+    "cost" : 266
+  } ],
+  "attendingDoc" : {
+    "humanType" : "doctor",
+    "name" : "Kumar Ravi",
     "dateOfBirth" : [ 1973, 3, 27 ],
-    "nricFin" : "T0605926G",
+    "nricFin" : "T8901481B",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "VISITOR",
+    "nationality" : "Singaporean",
+    "address" : "Blk 159 Ang Mo Kio Ave 12, #08-84, Singapore 473404",
+    "contact" : {
+      "personalPhone" : "96960890",
+      "homePhone" : "64702865",
+      "companyPhone" : "61316478",
+      "email" : "user935@gmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "B_NEGATIVE",
+    "isVaccinated" : true,
+    "staffId" : "S1E2B01B0",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M58068A",
+    "humanType" : "doctor"
+  },
+  "attendingNurses" : [ {
+    "humanType" : "nurse",
+    "name" : "Kumar Ravi",
+    "dateOfBirth" : [ 1985, 3, 27 ],
+    "nricFin" : "S1775223E",
+    "maritalStatus" : "MARRIED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 607 Jurong East Ave 12, #49-523, Singapore 517674",
+    "contact" : {
+      "personalPhone" : "99617418",
+      "homePhone" : "69320450",
+      "companyPhone" : "64130082",
+      "email" : "user158@hotmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "AB_POSITIVE",
+    "isVaccinated" : true,
+    "staffId" : "S1E6F415F",
+    "title" : "Nurse",
+    "department" : "Nursing",
+    "rnid" : "RN30110B",
+    "humanType" : "nurse"
+  } ],
+  "status" : "DISCHARGED",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Rohan Aand",
+    "dateOfBirth" : [ 1984, 3, 27 ],
+    "nricFin" : "T7967067C",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 991 Punggol Way 11, #01-778, Singapore 502386",
+    "contact" : {
+      "personalPhone" : "90022654",
+      "homePhone" : "66596360",
+      "companyPhone" : "68284384",
+      "email" : "user434@hotmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "AB_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-2025CF9DCF29",
+    "drugAllergies" : [ ],
+    "nokName" : "Lim Aand",
+    "nokAddress" : "Blk 186 Bedok North St 7, #07-572, Singapore 516453",
+    "nokRelation" : "Spouse",
+    "height" : 1.5687172597846082,
+    "weight" : 61.844285916789744,
+    "occupation" : "Engineer",
+    "companyName" : "OCBC Bank",
+    "companyAddress" : "Blk 384 Bedok North St 7, #32-610, Singapore 529790",
+    "patientConsent" : true,
+    "humanType" : "patient"
+  },
+  "prescriptions" : {
+    "D0253" : 1
+  }
+}, {
+  "visitId" : "V17430844112242781",
+  "admissionDateTime" : [ 2024, 12, 27, 22, 6, 51, 224676000 ],
+  "dischargeDateTime" : [ 2025, 3, 27, 22, 6, 51, 510710000 ],
+  "wardStays" : [ {
+    "type" : "wardStay",
+    "ward" : {
+      "type" : "labour",
+      "name" : "Hospital Ward",
+      "dailyRate" : 250.0,
+      "classType" : "LABOUR_CLASS_C"
+    },
+    "startDateTime" : [ 2024, 12, 27, 22, 6, 51, 224676000 ],
+    "endDateTime" : [ 2024, 12, 29, 22, 6, 51, 224676000 ]
+  }, {
+    "type" : "wardStay",
+    "ward" : {
+      "type" : "labour",
+      "name" : "Hospital Ward",
+      "dailyRate" : 1500.0,
+      "classType" : "LABOUR_CLASS_A"
+    },
+    "startDateTime" : [ 2024, 12, 27, 22, 6, 51, 224676000 ],
+    "endDateTime" : [ 2025, 1, 1, 22, 6, 51, 224676000 ]
+  } ],
+  "inpatientProcedures" : [ {
+    "type" : "procedure",
+    "code" : "DW169CZ",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "079M4ZX",
+    "cost" : 1000.00
+  } ],
+  "diagnosticCodes" : [ {
+    "type" : "diagnostic",
+    "code" : "M4813",
+    "cost" : 385
+  }, {
+    "type" : "diagnostic",
+    "code" : "O352XX9",
+    "cost" : 385
+  } ],
+  "attendingDoc" : {
+    "humanType" : "doctor",
+    "name" : "Zhang Wei",
+    "dateOfBirth" : [ 1971, 3, 27 ],
+    "nricFin" : "S5093000I",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 105 Punggol Way 12, #10-263, Singapore 492781",
+    "contact" : {
+      "personalPhone" : "94750357",
+      "homePhone" : "66128945",
+      "companyPhone" : "61732057",
+      "email" : "user215@hotmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "A_NEGATIVE",
+    "isVaccinated" : false,
+    "staffId" : "SE65FA6C7",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M02019A",
+    "humanType" : "doctor"
+  },
+  "attendingNurses" : [ {
+    "humanType" : "nurse",
+    "name" : "Tan Wei Ming",
+    "dateOfBirth" : [ 1983, 3, 27 ],
+    "nricFin" : "S3131068G",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 654 Woodlands Drive 3, #20-152, Singapore 502961",
+    "contact" : {
+      "personalPhone" : "91892401",
+      "homePhone" : "63834082",
+      "companyPhone" : "67926056",
+      "email" : "user122@hotmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "B_NEGATIVE",
+    "isVaccinated" : false,
+    "staffId" : "S5E3D5D3A",
+    "title" : "Nurse",
+    "department" : "Nursing",
+    "rnid" : "RN05973B",
+    "humanType" : "nurse"
+  } ],
+  "status" : "DISCHARGED",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Wee Jun Kiat",
+    "dateOfBirth" : [ 1997, 3, 27 ],
+    "nricFin" : "T7925079H",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "VISITOR",
+    "nationality" : "Singaporean",
+    "address" : "Blk 263 Punggol Way 2, #29-356, Singapore 547406",
+    "contact" : {
+      "personalPhone" : "99948957",
+      "homePhone" : "65615704",
+      "companyPhone" : "62055759",
+      "email" : "user502@hotmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "B_NEGATIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-2025E5843C46",
+    "drugAllergies" : [ "Ibuprofen", "None" ],
+    "nokName" : "Wee Kiat",
+    "nokAddress" : "Blk 307 Yishun Ring Road 2, #03-40, Singapore 537848",
+    "nokRelation" : "Grandchild",
+    "height" : 1.889155982385028,
+    "weight" : 84.41158541274105,
+    "occupation" : "Engineer",
+    "companyName" : "CapitaLand",
+    "companyAddress" : "Blk 927 Bedok North St 5, #35-438, Singapore 505577",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "prescriptions" : {
+    "D0113" : 1,
+    "D0132" : 1
+  }
+}, {
+  "visitId" : "V17430844115102263",
+  "admissionDateTime" : [ 2025, 2, 13, 22, 6, 51, 510710000 ],
+  "dischargeDateTime" : [ 2025, 3, 27, 22, 6, 51, 677053700 ],
+  "wardStays" : [ {
+    "type" : "wardStay",
+    "ward" : {
+      "type" : "icu",
+      "name" : "Hospital Ward",
+      "dailyRate" : 2000.0,
+      "classType" : "ICU"
+    },
+    "startDateTime" : [ 2025, 2, 13, 22, 6, 51, 510710000 ],
+    "endDateTime" : [ 2025, 2, 15, 22, 6, 51, 510710000 ]
+  }, {
+    "type" : "wardStay",
+    "ward" : {
+      "type" : "daySurgery",
+      "name" : "Hospital Ward",
+      "dailyRate" : 250.0,
+      "classType" : "DAYSURGERY_CLASS_COHORT"
+    },
+    "startDateTime" : [ 2025, 2, 13, 22, 6, 51, 510710000 ],
+    "endDateTime" : [ 2025, 2, 17, 22, 6, 51, 510710000 ]
+  } ],
+  "inpatientProcedures" : [ {
+    "type" : "procedure",
+    "code" : "05NP0ZZ",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "BP2YZZZ",
+    "cost" : 1000.00
+  } ],
+  "diagnosticCodes" : [ {
+    "type" : "diagnostic",
+    "code" : "J4551",
+    "cost" : 443
+  }, {
+    "type" : "diagnostic",
+    "code" : "O359XX0",
+    "cost" : 500
+  } ],
+  "attendingDoc" : {
+    "humanType" : "doctor",
+    "name" : "Kumar Ravi",
+    "dateOfBirth" : [ 1999, 3, 27 ],
+    "nricFin" : "S3529627A",
+    "maritalStatus" : "MARRIED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 561 Tampines St 7, #12-404, Singapore 521561",
+    "contact" : {
+      "personalPhone" : "98541237",
+      "homePhone" : "69048108",
+      "companyPhone" : "62908720",
+      "email" : "user723@gmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "B_POSITIVE",
+    "isVaccinated" : false,
+    "staffId" : "SF3433031",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M58748A",
+    "humanType" : "doctor"
+  },
+  "attendingNurses" : [ {
+    "humanType" : "nurse",
+    "name" : "Tan Wei Ming",
+    "dateOfBirth" : [ 1986, 3, 27 ],
+    "nricFin" : "T8353287J",
     "maritalStatus" : "SINGLE",
     "residentialStatus" : "VISITOR",
     "nationality" : "Singaporean",
-    "address" : "Blk 204 Tampines St 3, #41-882, Singapore 531646",
+    "address" : "Blk 457 Jurong East Ave 3, #45-465, Singapore 551987",
     "contact" : {
-      "personalPhone" : "91155599",
-      "homePhone" : "64131701",
-      "companyPhone" : "61037369",
-      "email" : "user839@gmail.com"
+      "personalPhone" : "99107597",
+      "homePhone" : "65209559",
+      "companyPhone" : "61869601",
+      "email" : "user360@gmail.com"
     },
     "sex" : "OTHERS",
-    "bloodType" : "AB_POSITIVE",
-    "isVaccinated" : false,
-    "staffId" : "S28D72298",
+    "bloodType" : "O_POSITIVE",
+    "isVaccinated" : true,
+    "staffId" : "S33245D38",
     "title" : "Nurse",
     "department" : "Nursing",
-    "rnid" : "RN59465B",
+    "rnid" : "RN41524B",
+    "humanType" : "nurse"
+  } ],
+  "status" : "DISCHARGED",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Ben Tan",
+    "dateOfBirth" : [ 1975, 3, 27 ],
+    "nricFin" : "S9062399J",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "VISITOR",
+    "nationality" : "Singaporean",
+    "address" : "Blk 931 Yishun Ring Road 11, #49-480, Singapore 476867",
+    "contact" : {
+      "personalPhone" : "98526168",
+      "homePhone" : "64732798",
+      "companyPhone" : "61847224",
+      "email" : "user732@hotmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "O_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-2025882FA28D",
+    "drugAllergies" : [ ],
+    "nokName" : "Muhammad Danial",
+    "nokAddress" : "Blk 734 Punggol Way 10, #19-526, Singapore 529403",
+    "nokRelation" : "Other",
+    "height" : 1.8612860336917598,
+    "weight" : 91.72206062062419,
+    "occupation" : "Artist",
+    "companyName" : "CapitaLand",
+    "companyAddress" : "Blk 969 Ang Mo Kio Ave 12, #30-612, Singapore 490472",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "prescriptions" : {
+    "D0117" : 1,
+    "D0125" : 1
+  }
+}, {
+  "visitId" : "V17430844116778579",
+  "admissionDateTime" : [ 2025, 1, 19, 22, 6, 51, 677053700 ],
+  "dischargeDateTime" : [ 2025, 3, 27, 22, 6, 51, 839712200 ],
+  "wardStays" : [ {
+    "type" : "wardStay",
+    "ward" : {
+      "type" : "labour",
+      "name" : "Hospital Ward",
+      "dailyRate" : 1500.0,
+      "classType" : "LABOUR_CLASS_A"
+    },
+    "startDateTime" : [ 2025, 1, 19, 22, 6, 51, 677053700 ],
+    "endDateTime" : [ 2025, 1, 28, 22, 6, 51, 677053700 ]
+  } ],
+  "inpatientProcedures" : [ {
+    "type" : "procedure",
+    "code" : "C7637ZZ",
+    "cost" : 1000.00
+  } ],
+  "diagnosticCodes" : [ {
+    "type" : "diagnostic",
+    "code" : "S92314B",
+    "cost" : 111
+  } ],
+  "attendingDoc" : {
+    "humanType" : "doctor",
+    "name" : "Lee Hui Ling",
+    "dateOfBirth" : [ 1998, 3, 27 ],
+    "nricFin" : "G2559108P",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 260 Tampines St 12, #14-810, Singapore 556521",
+    "contact" : {
+      "personalPhone" : "97126026",
+      "homePhone" : "66031960",
+      "companyPhone" : "64388156",
+      "email" : "user366@gmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "B_POSITIVE",
+    "isVaccinated" : true,
+    "staffId" : "S0BE2E0CA",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M45158A",
+    "humanType" : "doctor"
+  },
+  "attendingNurses" : [ {
+    "humanType" : "nurse",
+    "name" : "Zhang Wei",
+    "dateOfBirth" : [ 1993, 3, 27 ],
+    "nricFin" : "S3603550A",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "VISITOR",
+    "nationality" : "Singaporean",
+    "address" : "Blk 916 Serangoon Road 4, #30-376, Singapore 500995",
+    "contact" : {
+      "personalPhone" : "98640870",
+      "homePhone" : "62278392",
+      "companyPhone" : "60990440",
+      "email" : "user674@hotmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "B_POSITIVE",
+    "isVaccinated" : true,
+    "staffId" : "S34ECF64C",
+    "title" : "Nurse",
+    "department" : "Nursing",
+    "rnid" : "RN10653B",
+    "humanType" : "nurse"
+  } ],
+  "status" : "DISCHARGED",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Rohan Aand",
+    "dateOfBirth" : [ 1969, 3, 27 ],
+    "nricFin" : "T2460902I",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 960 Bedok North St 1, #38-409, Singapore 567446",
+    "contact" : {
+      "personalPhone" : "92412103",
+      "homePhone" : "63202826",
+      "companyPhone" : "62969189",
+      "email" : "user973@hotmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "A_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-20259A3A9BCD",
+    "drugAllergies" : [ ],
+    "nokName" : "Divya Singh",
+    "nokAddress" : "Blk 675 Jurong East Ave 10, #09-111, Singapore 527464",
+    "nokRelation" : "Legal Guardian",
+    "height" : 1.9075268183255556,
+    "weight" : 89.85992630988338,
+    "occupation" : "Chef",
+    "companyName" : "ComfortDelGro",
+    "companyAddress" : "Blk 156 Woodlands Drive 8, #12-766, Singapore 549986",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "prescriptions" : {
+    "D0025" : 1,
+    "D0114" : 1
+  }
+}, {
+  "visitId" : "V17430844118395759",
+  "admissionDateTime" : [ 2025, 2, 18, 22, 6, 51, 839712200 ],
+  "dischargeDateTime" : [ 2025, 3, 27, 22, 6, 51, 920115700 ],
+  "wardStays" : [ {
+    "type" : "wardStay",
+    "ward" : {
+      "type" : "icu",
+      "name" : "Hospital Ward",
+      "dailyRate" : 2000.0,
+      "classType" : "ICU"
+    },
+    "startDateTime" : [ 2025, 2, 18, 22, 6, 51, 839712200 ],
+    "endDateTime" : [ 2025, 2, 23, 22, 6, 51, 839712200 ]
+  } ],
+  "inpatientProcedures" : [ {
+    "type" : "procedure",
+    "code" : "05UT47Z",
+    "cost" : 1000.00
+  } ],
+  "diagnosticCodes" : [ {
+    "type" : "diagnostic",
+    "code" : "E663",
+    "cost" : 344
+  } ],
+  "attendingDoc" : {
+    "humanType" : "doctor",
+    "name" : "Kumar Ravi",
+    "dateOfBirth" : [ 1999, 3, 27 ],
+    "nricFin" : "S3529627A",
+    "maritalStatus" : "MARRIED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 561 Tampines St 7, #12-404, Singapore 521561",
+    "contact" : {
+      "personalPhone" : "98541237",
+      "homePhone" : "69048108",
+      "companyPhone" : "62908720",
+      "email" : "user723@gmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "B_POSITIVE",
+    "isVaccinated" : false,
+    "staffId" : "SF3433031",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M58748A",
+    "humanType" : "doctor"
+  },
+  "attendingNurses" : [ {
+    "humanType" : "nurse",
+    "name" : "Siti Nurhaliza",
+    "dateOfBirth" : [ 1968, 3, 27 ],
+    "nricFin" : "T8926534C",
+    "maritalStatus" : "MARRIED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 418 Bedok North St 11, #23-361, Singapore 539975",
+    "contact" : {
+      "personalPhone" : "95782391",
+      "homePhone" : "61887378",
+      "companyPhone" : "68097156",
+      "email" : "user484@gmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "AB_NEGATIVE",
+    "isVaccinated" : false,
+    "staffId" : "SB89CD064",
+    "title" : "Nurse",
+    "department" : "Nursing",
+    "rnid" : "RN68333B",
     "humanType" : "nurse"
   } ],
   "status" : "DISCHARGED",
   "patient" : {
     "humanType" : "patient",
     "name" : "Ong Li Ting",
-    "dateOfBirth" : [ 1981, 3, 27 ],
-    "nricFin" : "S3534743G",
-    "maritalStatus" : "SINGLE",
+    "dateOfBirth" : [ 1967, 3, 27 ],
+    "nricFin" : "G5352626N",
+    "maritalStatus" : "MARRIED",
     "residentialStatus" : "WORK_PASS",
     "nationality" : "Singaporean",
-    "address" : "Blk 647 Tampines St 5, #12-495, Singapore 493784",
+    "address" : "Blk 462 Tampines St 9, #35-20, Singapore 559799",
     "contact" : {
-      "personalPhone" : "95085627",
-      "homePhone" : "66585564",
-      "companyPhone" : "62872630",
-      "email" : "user455@hotmail.com"
+      "personalPhone" : "98767811",
+      "homePhone" : "67191157",
+      "companyPhone" : "61293306",
+      "email" : "user385@hotmail.com"
     },
     "sex" : "FEMALE",
-    "bloodType" : "O_POSITIVE",
-    "isVaccinated" : false,
-    "patientId" : "P-2025944A7D15",
-    "drugAllergies" : [ "Ibuprofen" ],
-    "nokName" : "Divya Ting",
-    "nokAddress" : "Blk 125 Punggol Way 2, #01-525, Singapore 502299",
-    "nokRelation" : "Parent",
-    "height" : 1.5322904866639382,
-    "weight" : 62.92697420072729,
-    "occupation" : "Chef",
-    "companyName" : "Keppel Corporation",
-    "companyAddress" : "Blk 947 Jurong East Ave 5, #39-704, Singapore 529492",
-    "patientConsent" : false,
+    "bloodType" : "AB_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-20255FEE483B",
+    "drugAllergies" : [ ],
+    "nokName" : "Wee Jun Kiat",
+    "nokAddress" : "Blk 789 Punggol Way 9, #13-822, Singapore 480394",
+    "nokRelation" : "Legal Guardian",
+    "height" : 1.5458490863886842,
+    "weight" : 72.23904043420477,
+    "occupation" : "Programmer",
+    "companyName" : "OCBC Bank",
+    "companyAddress" : "Blk 644 Tampines St 9, #39-94, Singapore 489417",
+    "patientConsent" : true,
     "humanType" : "patient"
   },
   "prescriptions" : {
-    "D0129" : 1
+    "D0117" : 1
   }
 }, {
-  "visitId" : "V17430218561759684",
-  "admissionDateTime" : [ 2025, 1, 3, 4, 44, 16, 175680500 ],
-  "dischargeDateTime" : [ 2025, 3, 27, 4, 44, 16, 266574400 ],
+  "visitId" : "V17430844119202901",
+  "admissionDateTime" : [ 2025, 2, 25, 22, 6, 51, 920115700 ],
+  "dischargeDateTime" : [ 2025, 3, 27, 22, 6, 52, 76499700 ],
   "wardStays" : [ {
     "type" : "wardStay",
     "ward" : {
@@ -226,341 +932,430 @@
       "dailyRate" : 250.0,
       "classType" : "GENERAL_CLASS_B1"
     },
-    "startDateTime" : [ 2025, 1, 3, 4, 44, 16, 175680500 ],
-    "endDateTime" : [ 2025, 1, 8, 4, 44, 16, 175680500 ]
+    "startDateTime" : [ 2025, 2, 25, 22, 6, 51, 920115700 ],
+    "endDateTime" : [ 2025, 2, 26, 22, 6, 51, 920115700 ]
+  }, {
+    "type" : "wardStay",
+    "ward" : {
+      "type" : "daySurgery",
+      "name" : "Hospital Ward",
+      "dailyRate" : 250.0,
+      "classType" : "DAYSURGERY_CLASS_COHORT"
+    },
+    "startDateTime" : [ 2025, 2, 25, 22, 6, 51, 920115700 ],
+    "endDateTime" : [ 2025, 2, 26, 22, 6, 51, 920115700 ]
   } ],
   "inpatientProcedures" : [ {
     "type" : "procedure",
-    "code" : "08UN37Z",
+    "code" : "02HL00Z",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "0RWG3KZ",
     "cost" : 1000.00
   } ],
   "diagnosticCodes" : [ {
     "type" : "diagnostic",
-    "code" : "M84521G",
-    "cost" : 499
+    "code" : "C752",
+    "cost" : 132
+  }, {
+    "type" : "diagnostic",
+    "code" : "Z510",
+    "cost" : 417
   } ],
   "attendingDoc" : {
     "humanType" : "doctor",
-    "name" : "Zhang Wei",
+    "name" : "Kumar Ravi",
     "dateOfBirth" : [ 1973, 3, 27 ],
-    "nricFin" : "G8564966W",
-    "maritalStatus" : "MARRIED",
-    "residentialStatus" : "WORK_PASS",
+    "nricFin" : "T8901481B",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "VISITOR",
     "nationality" : "Singaporean",
-    "address" : "Blk 656 Yishun Ring Road 7, #28-905, Singapore 464095",
+    "address" : "Blk 159 Ang Mo Kio Ave 12, #08-84, Singapore 473404",
     "contact" : {
-      "personalPhone" : "97606959",
-      "homePhone" : "64773556",
-      "companyPhone" : "62868531",
-      "email" : "user281@gmail.com"
+      "personalPhone" : "96960890",
+      "homePhone" : "64702865",
+      "companyPhone" : "61316478",
+      "email" : "user935@gmail.com"
     },
     "sex" : "MALE",
-    "bloodType" : "AB_NEGATIVE",
+    "bloodType" : "B_NEGATIVE",
     "isVaccinated" : true,
-    "staffId" : "SD8A8D5F4",
+    "staffId" : "S1E2B01B0",
     "title" : "Doctor",
     "department" : "Medical",
-    "mcr" : "M85390A",
+    "mcr" : "M58068A",
     "humanType" : "doctor"
   },
   "attendingNurses" : [ {
     "humanType" : "nurse",
     "name" : "Abdullah Malik",
-    "dateOfBirth" : [ 1992, 3, 27 ],
-    "nricFin" : "T7765611H",
+    "dateOfBirth" : [ 1977, 3, 27 ],
+    "nricFin" : "S9087743G",
+    "maritalStatus" : "MARRIED",
+    "residentialStatus" : "CITIZEN",
+    "nationality" : "Singaporean",
+    "address" : "Blk 359 Punggol Way 4, #05-34, Singapore 534738",
+    "contact" : {
+      "personalPhone" : "96356295",
+      "homePhone" : "60739526",
+      "companyPhone" : "68038392",
+      "email" : "user320@gmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "AB_POSITIVE",
+    "isVaccinated" : false,
+    "staffId" : "SD68B7AF9",
+    "title" : "Nurse",
+    "department" : "Nursing",
+    "rnid" : "RN51620B",
+    "humanType" : "nurse"
+  } ],
+  "status" : "DISCHARGED",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Ong Li Ting",
+    "dateOfBirth" : [ 1988, 3, 27 ],
+    "nricFin" : "S0344099J",
     "maritalStatus" : "SINGLE",
     "residentialStatus" : "CITIZEN",
     "nationality" : "Singaporean",
-    "address" : "Blk 222 Yishun Ring Road 4, #28-392, Singapore 471223",
+    "address" : "Blk 238 Jurong East Ave 8, #10-484, Singapore 559495",
     "contact" : {
-      "personalPhone" : "99027914",
-      "homePhone" : "66696573",
-      "companyPhone" : "67583724",
-      "email" : "user147@gmail.com"
+      "personalPhone" : "90476023",
+      "homePhone" : "68166259",
+      "companyPhone" : "63138210",
+      "email" : "user880@gmail.com"
     },
-    "sex" : "FEMALE",
+    "sex" : "OTHERS",
+    "bloodType" : "A_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-20259EE512C5",
+    "drugAllergies" : [ ],
+    "nokName" : "Wee Jun Kiat",
+    "nokAddress" : "Blk 372 Punggol Way 4, #22-621, Singapore 528376",
+    "nokRelation" : "Other",
+    "height" : 1.8106281645177233,
+    "weight" : 65.04328878004694,
+    "occupation" : "Programmer",
+    "companyName" : "ST Engineering",
+    "companyAddress" : "Blk 361 Woodlands Drive 3, #50-822, Singapore 521311",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "prescriptions" : {
+    "D0003" : 1,
+    "D0026" : 1
+  }
+}, {
+  "visitId" : "V17430844120768828",
+  "admissionDateTime" : [ 2025, 1, 24, 22, 6, 52, 76499700 ],
+  "dischargeDateTime" : [ 2025, 3, 27, 22, 6, 52, 158058400 ],
+  "wardStays" : [ {
+    "type" : "wardStay",
+    "ward" : {
+      "type" : "labour",
+      "name" : "Hospital Ward",
+      "dailyRate" : 250.0,
+      "classType" : "LABOUR_CLASS_C"
+    },
+    "startDateTime" : [ 2025, 1, 24, 22, 6, 52, 76499700 ],
+    "endDateTime" : [ 2025, 1, 29, 22, 6, 52, 76499700 ]
+  } ],
+  "inpatientProcedures" : [ {
+    "type" : "procedure",
+    "code" : "0KU747Z",
+    "cost" : 1000.00
+  } ],
+  "diagnosticCodes" : [ {
+    "type" : "diagnostic",
+    "code" : "J4531",
+    "cost" : 496
+  } ],
+  "attendingDoc" : {
+    "humanType" : "doctor",
+    "name" : "Lee Hui Ling",
+    "dateOfBirth" : [ 1998, 3, 27 ],
+    "nricFin" : "G2559108P",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 260 Tampines St 12, #14-810, Singapore 556521",
+    "contact" : {
+      "personalPhone" : "97126026",
+      "homePhone" : "66031960",
+      "companyPhone" : "64388156",
+      "email" : "user366@gmail.com"
+    },
+    "sex" : "MALE",
     "bloodType" : "B_POSITIVE",
+    "isVaccinated" : true,
+    "staffId" : "S0BE2E0CA",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M45158A",
+    "humanType" : "doctor"
+  },
+  "attendingNurses" : [ {
+    "humanType" : "nurse",
+    "name" : "Abdullah Malik",
+    "dateOfBirth" : [ 1977, 3, 27 ],
+    "nricFin" : "S9087743G",
+    "maritalStatus" : "MARRIED",
+    "residentialStatus" : "CITIZEN",
+    "nationality" : "Singaporean",
+    "address" : "Blk 359 Punggol Way 4, #05-34, Singapore 534738",
+    "contact" : {
+      "personalPhone" : "96356295",
+      "homePhone" : "60739526",
+      "companyPhone" : "68038392",
+      "email" : "user320@gmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "AB_POSITIVE",
     "isVaccinated" : false,
-    "staffId" : "S2FF280D8",
+    "staffId" : "SD68B7AF9",
     "title" : "Nurse",
     "department" : "Nursing",
-    "rnid" : "RN73874B",
+    "rnid" : "RN51620B",
+    "humanType" : "nurse"
+  } ],
+  "status" : "DISCHARGED",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Divya Singh",
+    "dateOfBirth" : [ 1968, 3, 27 ],
+    "nricFin" : "G8966804U",
+    "maritalStatus" : "MARRIED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 317 Punggol Way 12, #07-134, Singapore 537629",
+    "contact" : {
+      "personalPhone" : "90251516",
+      "homePhone" : "68709972",
+      "companyPhone" : "67900673",
+      "email" : "user333@gmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "B_NEGATIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-2025ED80CC33",
+    "drugAllergies" : [ "Sulfa" ],
+    "nokName" : "Lim Singh",
+    "nokAddress" : "Blk 177 Serangoon Road 5, #14-220, Singapore 545592",
+    "nokRelation" : "Parent",
+    "height" : 1.6160794771830016,
+    "weight" : 66.02302635845274,
+    "occupation" : "Chef",
+    "companyName" : "Singtel",
+    "companyAddress" : "Blk 865 Woodlands Drive 4, #15-948, Singapore 557093",
+    "patientConsent" : true,
+    "humanType" : "patient"
+  },
+  "prescriptions" : {
+    "D0126" : 1
+  }
+}, {
+  "visitId" : "V17430844121589717",
+  "admissionDateTime" : [ 2025, 1, 16, 22, 6, 52, 158058400 ],
+  "dischargeDateTime" : [ 2025, 3, 27, 22, 6, 52, 234902300 ],
+  "wardStays" : [ ],
+  "inpatientProcedures" : [ {
+    "type" : "procedure",
+    "code" : "019F40Z",
+    "cost" : 1000.00
+  } ],
+  "diagnosticCodes" : [ {
+    "type" : "diagnostic",
+    "code" : "J45909",
+    "cost" : 470
+  } ],
+  "attendingDoc" : {
+    "humanType" : "doctor",
+    "name" : "Kumar Ravi",
+    "dateOfBirth" : [ 1973, 3, 27 ],
+    "nricFin" : "T8901481B",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "VISITOR",
+    "nationality" : "Singaporean",
+    "address" : "Blk 159 Ang Mo Kio Ave 12, #08-84, Singapore 473404",
+    "contact" : {
+      "personalPhone" : "96960890",
+      "homePhone" : "64702865",
+      "companyPhone" : "61316478",
+      "email" : "user935@gmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "B_NEGATIVE",
+    "isVaccinated" : true,
+    "staffId" : "S1E2B01B0",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M58068A",
+    "humanType" : "doctor"
+  },
+  "attendingNurses" : [ {
+    "humanType" : "nurse",
+    "name" : "Tan Wei Ming",
+    "dateOfBirth" : [ 1986, 3, 27 ],
+    "nricFin" : "T8353287J",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "VISITOR",
+    "nationality" : "Singaporean",
+    "address" : "Blk 457 Jurong East Ave 3, #45-465, Singapore 551987",
+    "contact" : {
+      "personalPhone" : "99107597",
+      "homePhone" : "65209559",
+      "companyPhone" : "61869601",
+      "email" : "user360@gmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "O_POSITIVE",
+    "isVaccinated" : true,
+    "staffId" : "S33245D38",
+    "title" : "Nurse",
+    "department" : "Nursing",
+    "rnid" : "RN41524B",
     "humanType" : "nurse"
   } ],
   "status" : "DISCHARGED",
   "patient" : {
     "humanType" : "patient",
     "name" : "Rohan Aand",
-    "dateOfBirth" : [ 1991, 3, 27 ],
-    "nricFin" : "T3469251Z",
+    "dateOfBirth" : [ 1985, 3, 27 ],
+    "nricFin" : "F0199870Q",
     "maritalStatus" : "SINGLE",
-    "residentialStatus" : "PERMANENT_RESIDENT",
+    "residentialStatus" : "WORK_PASS",
     "nationality" : "Singaporean",
-    "address" : "Blk 465 Bedok North St 8, #35-103, Singapore 525561",
+    "address" : "Blk 742 Bedok North St 11, #19-641, Singapore 560695",
     "contact" : {
-      "personalPhone" : "96293884",
-      "homePhone" : "65818344",
-      "companyPhone" : "66338380",
-      "email" : "user675@hotmail.com"
+      "personalPhone" : "94772662",
+      "homePhone" : "69279155",
+      "companyPhone" : "63208843",
+      "email" : "user923@gmail.com"
     },
     "sex" : "MALE",
-    "bloodType" : "A_POSITIVE",
-    "isVaccinated" : false,
-    "patientId" : "P-20251881740A",
-    "drugAllergies" : [ "Ibuprofen" ],
-    "nokName" : "Muhammad Aand",
-    "nokAddress" : "Blk 320 Woodlands Drive 5, #44-420, Singapore 532287",
-    "nokRelation" : "Parent",
-    "height" : 1.938494341775331,
-    "weight" : 71.80811937921465,
-    "occupation" : "Doctor",
-    "companyName" : "ST Engineering",
-    "companyAddress" : "Blk 740 Bedok North St 8, #46-670, Singapore 471959",
-    "patientConsent" : true,
-    "humanType" : "patient"
-  },
-  "prescriptions" : {
-    "D0210" : 1
-  }
-}, {
-  "visitId" : "V17430218562661972",
-  "admissionDateTime" : [ 2025, 1, 5, 4, 44, 16, 266574400 ],
-  "dischargeDateTime" : [ 2025, 3, 27, 4, 44, 16, 338841400 ],
-  "wardStays" : [ {
-    "type" : "wardStay",
-    "ward" : {
-      "type" : "labour",
-      "name" : "Hospital Ward",
-      "dailyRate" : 1500.0,
-      "classType" : "LABOUR_CLASS_A"
-    },
-    "startDateTime" : [ 2025, 1, 5, 4, 44, 16, 266574400 ],
-    "endDateTime" : [ 2025, 1, 8, 4, 44, 16, 266574400 ]
-  } ],
-  "inpatientProcedures" : [ {
-    "type" : "procedure",
-    "code" : "CW20KZZ",
-    "cost" : 1000.00
-  } ],
-  "diagnosticCodes" : [ {
-    "type" : "diagnostic",
-    "code" : "S81831A",
-    "cost" : 160
-  } ],
-  "attendingDoc" : {
-    "humanType" : "doctor",
-    "name" : "Siti Nurhaliza",
-    "dateOfBirth" : [ 1987, 3, 27 ],
-    "nricFin" : "G2832926T",
-    "maritalStatus" : "MARRIED",
-    "residentialStatus" : "VISITOR",
-    "nationality" : "Singaporean",
-    "address" : "Blk 220 Jurong East Ave 6, #33-107, Singapore 472159",
-    "contact" : {
-      "personalPhone" : "90810043",
-      "homePhone" : "60879174",
-      "companyPhone" : "68798842",
-      "email" : "user153@hotmail.com"
-    },
-    "sex" : "OTHERS",
-    "bloodType" : "AB_NEGATIVE",
-    "isVaccinated" : false,
-    "staffId" : "S62263E12",
-    "title" : "Doctor",
-    "department" : "Medical",
-    "mcr" : "M60758A",
-    "humanType" : "doctor"
-  },
-  "attendingNurses" : [ {
-    "humanType" : "nurse",
-    "name" : "Lim Mei Ling",
-    "dateOfBirth" : [ 1985, 3, 27 ],
-    "nricFin" : "S9288752I",
-    "maritalStatus" : "SINGLE",
-    "residentialStatus" : "CITIZEN",
-    "nationality" : "Singaporean",
-    "address" : "Blk 934 Ang Mo Kio Ave 2, #16-973, Singapore 515623",
-    "contact" : {
-      "personalPhone" : "90576319",
-      "homePhone" : "66796034",
-      "companyPhone" : "66460929",
-      "email" : "user480@hotmail.com"
-    },
-    "sex" : "OTHERS",
-    "bloodType" : "O_NEGATIVE",
-    "isVaccinated" : false,
-    "staffId" : "S345792BF",
-    "title" : "Nurse",
-    "department" : "Nursing",
-    "rnid" : "RN94199B",
-    "humanType" : "nurse"
-  } ],
-  "status" : "DISCHARGED",
-  "patient" : {
-    "humanType" : "patient",
-    "name" : "Lim Boon Teck",
-    "dateOfBirth" : [ 1978, 3, 27 ],
-    "nricFin" : "S8371532D",
-    "maritalStatus" : "MARRIED",
-    "residentialStatus" : "VISITOR",
-    "nationality" : "Singaporean",
-    "address" : "Blk 130 Yishun Ring Road 3, #50-343, Singapore 558018",
-    "contact" : {
-      "personalPhone" : "91628506",
-      "homePhone" : "60543100",
-      "companyPhone" : "64617374",
-      "email" : "user826@hotmail.com"
-    },
-    "sex" : "FEMALE",
-    "bloodType" : "AB_NEGATIVE",
+    "bloodType" : "AB_POSITIVE",
     "isVaccinated" : true,
-    "patientId" : "P-20258FDD810C",
-    "drugAllergies" : [ "None", "Sulfa" ],
-    "nokName" : "Muhammad Teck",
-    "nokAddress" : "Blk 288 Tampines St 11, #25-834, Singapore 531526",
-    "nokRelation" : "Grandchild",
-    "height" : 1.8396367982946071,
-    "weight" : 86.42213843948744,
-    "occupation" : "Doctor",
-    "companyName" : "Singtel",
-    "companyAddress" : "Blk 651 Jurong East Ave 8, #06-838, Singapore 485687",
+    "patientId" : "P-202589CD0AB2",
+    "drugAllergies" : [ ],
+    "nokName" : "Ben Aand",
+    "nokAddress" : "Blk 764 Yishun Ring Road 9, #49-830, Singapore 558404",
+    "nokRelation" : "Spouse",
+    "height" : 1.7799263942656565,
+    "weight" : 93.28437437759541,
+    "occupation" : "Teacher",
+    "companyName" : "DBS Bank",
+    "companyAddress" : "Blk 457 Bedok North St 1, #35-28, Singapore 496425",
     "patientConsent" : true,
     "humanType" : "patient"
   },
   "prescriptions" : {
-    "D0082" : 1
+    "D0260" : 1
   }
 }, {
-  "visitId" : "V17430218563385926",
-  "admissionDateTime" : [ 2025, 1, 23, 4, 44, 16, 338841400 ],
-  "dischargeDateTime" : [ 2025, 3, 27, 4, 44, 16, 481706700 ],
-  "wardStays" : [ {
-    "type" : "wardStay",
-    "ward" : {
-      "type" : "daySurgery",
-      "name" : "Hospital Ward",
-      "dailyRate" : 300.0,
-      "classType" : "DAYSURGERY_CLASS_SEATER"
-    },
-    "startDateTime" : [ 2025, 1, 23, 4, 44, 16, 338841400 ],
-    "endDateTime" : [ 2025, 1, 25, 4, 44, 16, 338841400 ]
-  }, {
-    "type" : "wardStay",
-    "ward" : {
-      "type" : "general",
-      "name" : "Hospital Ward",
-      "dailyRate" : 150.0,
-      "classType" : "GENERAL_CLASS_C"
-    },
-    "startDateTime" : [ 2025, 1, 23, 4, 44, 16, 338841400 ],
-    "endDateTime" : [ 2025, 1, 24, 4, 44, 16, 338841400 ]
-  } ],
+  "visitId" : "V17430844122344227",
+  "admissionDateTime" : [ 2025, 1, 14, 22, 6, 52, 234902300 ],
+  "dischargeDateTime" : [ 2025, 3, 27, 22, 6, 52, 393933800 ],
+  "wardStays" : [ ],
   "inpatientProcedures" : [ {
     "type" : "procedure",
-    "code" : "B5140ZA",
-    "cost" : 1000.00
-  }, {
-    "type" : "procedure",
-    "code" : "049H00Z",
+    "code" : "0Q8R4ZZ",
     "cost" : 1000.00
   } ],
   "diagnosticCodes" : [ {
     "type" : "diagnostic",
-    "code" : "V9334XD",
-    "cost" : 327
-  }, {
-    "type" : "diagnostic",
-    "code" : "D483",
-    "cost" : 198
+    "code" : "S62131B",
+    "cost" : 113
   } ],
   "attendingDoc" : {
     "humanType" : "doctor",
-    "name" : "Lim Mei Ling",
-    "dateOfBirth" : [ 1975, 3, 27 ],
-    "nricFin" : "F5758344N",
+    "name" : "Lee Hui Ling",
+    "dateOfBirth" : [ 1998, 3, 27 ],
+    "nricFin" : "G2559108P",
     "maritalStatus" : "WIDOWED",
     "residentialStatus" : "WORK_PASS",
     "nationality" : "Singaporean",
-    "address" : "Blk 400 Tampines St 11, #22-533, Singapore 466674",
+    "address" : "Blk 260 Tampines St 12, #14-810, Singapore 556521",
     "contact" : {
-      "personalPhone" : "92117975",
-      "homePhone" : "63993988",
-      "companyPhone" : "61679337",
-      "email" : "user752@gmail.com"
+      "personalPhone" : "97126026",
+      "homePhone" : "66031960",
+      "companyPhone" : "64388156",
+      "email" : "user366@gmail.com"
     },
     "sex" : "MALE",
-    "bloodType" : "A_NEGATIVE",
+    "bloodType" : "B_POSITIVE",
     "isVaccinated" : true,
-    "staffId" : "SEA278780",
+    "staffId" : "S0BE2E0CA",
     "title" : "Doctor",
     "department" : "Medical",
-    "mcr" : "M16883A",
+    "mcr" : "M45158A",
     "humanType" : "doctor"
   },
   "attendingNurses" : [ {
     "humanType" : "nurse",
     "name" : "Lim Mei Ling",
-    "dateOfBirth" : [ 1985, 3, 27 ],
-    "nricFin" : "S9288752I",
-    "maritalStatus" : "SINGLE",
-    "residentialStatus" : "CITIZEN",
+    "dateOfBirth" : [ 1965, 3, 27 ],
+    "nricFin" : "T3151557I",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "WORK_PASS",
     "nationality" : "Singaporean",
-    "address" : "Blk 934 Ang Mo Kio Ave 2, #16-973, Singapore 515623",
+    "address" : "Blk 315 Yishun Ring Road 10, #07-716, Singapore 536781",
     "contact" : {
-      "personalPhone" : "90576319",
-      "homePhone" : "66796034",
-      "companyPhone" : "66460929",
-      "email" : "user480@hotmail.com"
+      "personalPhone" : "98073340",
+      "homePhone" : "67254232",
+      "companyPhone" : "60446128",
+      "email" : "user893@hotmail.com"
     },
-    "sex" : "OTHERS",
-    "bloodType" : "O_NEGATIVE",
+    "sex" : "MALE",
+    "bloodType" : "B_NEGATIVE",
     "isVaccinated" : false,
-    "staffId" : "S345792BF",
+    "staffId" : "S0C0B4FE5",
     "title" : "Nurse",
     "department" : "Nursing",
-    "rnid" : "RN94199B",
+    "rnid" : "RN56328B",
     "humanType" : "nurse"
   } ],
   "status" : "DISCHARGED",
   "patient" : {
     "humanType" : "patient",
-    "name" : "Aisha Fatimah",
-    "dateOfBirth" : [ 1993, 3, 27 ],
-    "nricFin" : "S4650388J",
-    "maritalStatus" : "MARRIED",
-    "residentialStatus" : "CITIZEN",
+    "name" : "Ong Li Ting",
+    "dateOfBirth" : [ 1984, 3, 27 ],
+    "nricFin" : "S9933662E",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "PERMANENT_RESIDENT",
     "nationality" : "Singaporean",
-    "address" : "Blk 956 Punggol Way 8, #08-123, Singapore 497606",
+    "address" : "Blk 306 Ang Mo Kio Ave 9, #37-705, Singapore 481407",
     "contact" : {
-      "personalPhone" : "97493485",
-      "homePhone" : "61415866",
-      "companyPhone" : "62719154",
-      "email" : "user107@gmail.com"
+      "personalPhone" : "91003798",
+      "homePhone" : "63315421",
+      "companyPhone" : "63082494",
+      "email" : "user447@gmail.com"
     },
-    "sex" : "FEMALE",
-    "bloodType" : "O_POSITIVE",
+    "sex" : "MALE",
+    "bloodType" : "B_POSITIVE",
     "isVaccinated" : true,
-    "patientId" : "P-2025111E1A75",
-    "drugAllergies" : [ "Sulfa", "Ibuprofen" ],
-    "nokName" : "Ong Fatimah",
-    "nokAddress" : "Blk 342 Jurong East Ave 12, #25-999, Singapore 516467",
-    "nokRelation" : "Child",
-    "height" : 1.8330216991365216,
-    "weight" : 92.43833895636291,
+    "patientId" : "P-2025A33ADB81",
+    "drugAllergies" : [ "Ibuprofen", "Aspirin" ],
+    "nokName" : "Ong Li Ting",
+    "nokAddress" : "Blk 876 Ang Mo Kio Ave 4, #29-530, Singapore 546157",
+    "nokRelation" : "Legal Guardian",
+    "height" : 1.7486010768761555,
+    "weight" : 97.60440879587689,
     "occupation" : "Teacher",
-    "companyName" : "CapitaLand",
-    "companyAddress" : "Blk 951 Jurong East Ave 11, #22-103, Singapore 566959",
+    "companyName" : "OCBC Bank",
+    "companyAddress" : "Blk 878 Punggol Way 10, #42-996, Singapore 526187",
     "patientConsent" : false,
     "humanType" : "patient"
   },
   "prescriptions" : {
-    "D0105" : 1,
-    "D0026" : 1
+    "D0252" : 1,
+    "D0115" : 1
   }
 }, {
-  "visitId" : "V17430218564813991",
-  "admissionDateTime" : [ 2025, 1, 27, 4, 44, 16, 481706700 ],
-  "dischargeDateTime" : [ 2025, 3, 27, 4, 44, 16, 577366700 ],
+  "visitId" : "V17430844123939514",
+  "admissionDateTime" : [ 2025, 1, 15, 22, 6, 52, 393933800 ],
+  "dischargeDateTime" : [ 2025, 3, 27, 22, 6, 52, 475083800 ],
   "wardStays" : [ {
     "type" : "wardStay",
     "ward" : {
@@ -569,106 +1364,528 @@
       "dailyRate" : 2000.0,
       "classType" : "ICU"
     },
-    "startDateTime" : [ 2025, 1, 27, 4, 44, 16, 481706700 ],
-    "endDateTime" : [ 2025, 1, 30, 4, 44, 16, 481706700 ]
+    "startDateTime" : [ 2025, 1, 15, 22, 6, 52, 393933800 ],
+    "endDateTime" : [ 2025, 1, 19, 22, 6, 52, 393933800 ]
   } ],
   "inpatientProcedures" : [ {
     "type" : "procedure",
-    "code" : "XXE3X58",
+    "code" : "BP2XZZZ",
     "cost" : 1000.00
   } ],
   "diagnosticCodes" : [ {
     "type" : "diagnostic",
-    "code" : "V980XXS",
-    "cost" : 242
+    "code" : "T22329S",
+    "cost" : 405
   } ],
   "attendingDoc" : {
     "humanType" : "doctor",
     "name" : "Lee Hui Ling",
-    "dateOfBirth" : [ 1974, 3, 27 ],
-    "nricFin" : "S3879200H",
-    "maritalStatus" : "MARRIED",
-    "residentialStatus" : "VISITOR",
+    "dateOfBirth" : [ 1998, 3, 27 ],
+    "nricFin" : "G2559108P",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "WORK_PASS",
     "nationality" : "Singaporean",
-    "address" : "Blk 950 Woodlands Drive 7, #15-964, Singapore 498487",
+    "address" : "Blk 260 Tampines St 12, #14-810, Singapore 556521",
     "contact" : {
-      "personalPhone" : "94843049",
-      "homePhone" : "61804587",
-      "companyPhone" : "60944518",
-      "email" : "user854@hotmail.com"
+      "personalPhone" : "97126026",
+      "homePhone" : "66031960",
+      "companyPhone" : "64388156",
+      "email" : "user366@gmail.com"
     },
     "sex" : "MALE",
-    "bloodType" : "AB_POSITIVE",
-    "isVaccinated" : false,
-    "staffId" : "S38A1BFEC",
+    "bloodType" : "B_POSITIVE",
+    "isVaccinated" : true,
+    "staffId" : "S0BE2E0CA",
     "title" : "Doctor",
     "department" : "Medical",
-    "mcr" : "M01216A",
+    "mcr" : "M45158A",
     "humanType" : "doctor"
   },
   "attendingNurses" : [ {
     "humanType" : "nurse",
-    "name" : "Tan Wei Ming",
-    "dateOfBirth" : [ 1975, 3, 27 ],
-    "nricFin" : "F6161547N",
-    "maritalStatus" : "MARRIED",
+    "name" : "Zhang Wei",
+    "dateOfBirth" : [ 1993, 3, 27 ],
+    "nricFin" : "S3603550A",
+    "maritalStatus" : "WIDOWED",
     "residentialStatus" : "VISITOR",
     "nationality" : "Singaporean",
-    "address" : "Blk 399 Tampines St 1, #24-292, Singapore 497693",
+    "address" : "Blk 916 Serangoon Road 4, #30-376, Singapore 500995",
     "contact" : {
-      "personalPhone" : "90345293",
-      "homePhone" : "62437613",
-      "companyPhone" : "65111604",
-      "email" : "user126@gmail.com"
+      "personalPhone" : "98640870",
+      "homePhone" : "62278392",
+      "companyPhone" : "60990440",
+      "email" : "user674@hotmail.com"
     },
     "sex" : "MALE",
     "bloodType" : "B_POSITIVE",
-    "isVaccinated" : false,
-    "staffId" : "SD2AB3283",
+    "isVaccinated" : true,
+    "staffId" : "S34ECF64C",
     "title" : "Nurse",
     "department" : "Nursing",
-    "rnid" : "RN45586B",
+    "rnid" : "RN10653B",
     "humanType" : "nurse"
   } ],
   "status" : "DISCHARGED",
   "patient" : {
     "humanType" : "patient",
-    "name" : "Ben Tan",
-    "dateOfBirth" : [ 1971, 3, 27 ],
-    "nricFin" : "F7243321K",
+    "name" : "Rohan Aand",
+    "dateOfBirth" : [ 1976, 3, 27 ],
+    "nricFin" : "S1936325B",
     "maritalStatus" : "SINGLE",
-    "residentialStatus" : "VISITOR",
+    "residentialStatus" : "PERMANENT_RESIDENT",
     "nationality" : "Singaporean",
-    "address" : "Blk 978 Tampines St 4, #42-978, Singapore 496265",
+    "address" : "Blk 921 Yishun Ring Road 3, #23-885, Singapore 489758",
     "contact" : {
-      "personalPhone" : "96666321",
-      "homePhone" : "65046641",
-      "companyPhone" : "69080447",
-      "email" : "user950@hotmail.com"
+      "personalPhone" : "97335596",
+      "homePhone" : "62739547",
+      "companyPhone" : "65829822",
+      "email" : "user230@hotmail.com"
     },
-    "sex" : "OTHERS",
-    "bloodType" : "A_NEGATIVE",
+    "sex" : "FEMALE",
+    "bloodType" : "B_NEGATIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-202508A0B991",
+    "drugAllergies" : [ ],
+    "nokName" : "Ben Aand",
+    "nokAddress" : "Blk 916 Bedok North St 4, #48-243, Singapore 554873",
+    "nokRelation" : "Child",
+    "height" : 1.843949393123172,
+    "weight" : 85.5420325329909,
+    "occupation" : "Doctor",
+    "companyName" : "ComfortDelGro",
+    "companyAddress" : "Blk 746 Tampines St 8, #39-835, Singapore 510766",
+    "patientConsent" : true,
+    "humanType" : "patient"
+  },
+  "prescriptions" : {
+    "D0095" : 1
+  }
+}, {
+  "visitId" : "V17430844124757511",
+  "admissionDateTime" : [ 2025, 1, 6, 22, 6, 52, 475083800 ],
+  "dischargeDateTime" : [ 2025, 3, 27, 22, 6, 52, 632663200 ],
+  "wardStays" : [ ],
+  "inpatientProcedures" : [ {
+    "type" : "procedure",
+    "code" : "D7053Z0",
+    "cost" : 1000.00
+  } ],
+  "diagnosticCodes" : [ {
+    "type" : "diagnostic",
+    "code" : "S0032XS",
+    "cost" : 228
+  } ],
+  "attendingDoc" : {
+    "humanType" : "doctor",
+    "name" : "Lee Hui Ling",
+    "dateOfBirth" : [ 1998, 3, 27 ],
+    "nricFin" : "G2559108P",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 260 Tampines St 12, #14-810, Singapore 556521",
+    "contact" : {
+      "personalPhone" : "97126026",
+      "homePhone" : "66031960",
+      "companyPhone" : "64388156",
+      "email" : "user366@gmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "B_POSITIVE",
+    "isVaccinated" : true,
+    "staffId" : "S0BE2E0CA",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M45158A",
+    "humanType" : "doctor"
+  },
+  "attendingNurses" : [ {
+    "humanType" : "nurse",
+    "name" : "Tan Wei Ming",
+    "dateOfBirth" : [ 1982, 3, 27 ],
+    "nricFin" : "S9875452J",
+    "maritalStatus" : "MARRIED",
+    "residentialStatus" : "CITIZEN",
+    "nationality" : "Singaporean",
+    "address" : "Blk 751 Bedok North St 5, #19-910, Singapore 487132",
+    "contact" : {
+      "personalPhone" : "90825548",
+      "homePhone" : "63762898",
+      "companyPhone" : "65217164",
+      "email" : "user803@hotmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "AB_POSITIVE",
+    "isVaccinated" : true,
+    "staffId" : "SABC95694",
+    "title" : "Nurse",
+    "department" : "Nursing",
+    "rnid" : "RN38053B",
+    "humanType" : "nurse"
+  } ],
+  "status" : "DISCHARGED",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Muhammad Danial",
+    "dateOfBirth" : [ 1994, 3, 27 ],
+    "nricFin" : "T5380022F",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "PERMANENT_RESIDENT",
+    "nationality" : "Singaporean",
+    "address" : "Blk 950 Serangoon Road 4, #32-973, Singapore 558387",
+    "contact" : {
+      "personalPhone" : "93820932",
+      "homePhone" : "62553196",
+      "companyPhone" : "63983534",
+      "email" : "user856@hotmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "AB_POSITIVE",
     "isVaccinated" : false,
-    "patientId" : "P-20251D892992",
-    "drugAllergies" : [ "Penicillin" ],
-    "nokName" : "Ben Tan",
-    "nokAddress" : "Blk 680 Yishun Ring Road 8, #26-903, Singapore 508785",
-    "nokRelation" : "Grandchild",
-    "height" : 1.9948232057813762,
-    "weight" : 77.72847071329258,
-    "occupation" : "Artist",
-    "companyName" : "DBS Bank",
-    "companyAddress" : "Blk 491 Yishun Ring Road 5, #44-333, Singapore 478434",
+    "patientId" : "P-202544806CB1",
+    "drugAllergies" : [ "Ibuprofen" ],
+    "nokName" : "Muhammad Danial",
+    "nokAddress" : "Blk 280 Bedok North St 10, #21-279, Singapore 549587",
+    "nokRelation" : "Child",
+    "height" : 1.5854432373779295,
+    "weight" : 78.43361469076066,
+    "occupation" : "Doctor",
+    "companyName" : "Keppel Corporation",
+    "companyAddress" : "Blk 782 Woodlands Drive 5, #47-346, Singapore 468342",
     "patientConsent" : false,
     "humanType" : "patient"
   },
   "prescriptions" : {
-    "D0135" : 1
+    "D0050" : 1,
+    "D0261" : 1
   }
 }, {
-  "visitId" : "V17430218565778840",
-  "admissionDateTime" : [ 2025, 2, 1, 4, 44, 16, 577366700 ],
-  "dischargeDateTime" : [ 2025, 3, 27, 4, 44, 16, 899039200 ],
+  "visitId" : "V17430844126325422",
+  "admissionDateTime" : [ 2025, 2, 24, 22, 6, 52, 632663200 ],
+  "dischargeDateTime" : [ 2025, 3, 27, 22, 6, 52, 713451300 ],
+  "wardStays" : [ ],
+  "inpatientProcedures" : [ {
+    "type" : "procedure",
+    "code" : "DB16BB1",
+    "cost" : 1000.00
+  } ],
+  "diagnosticCodes" : [ {
+    "type" : "diagnostic",
+    "code" : "V699XXD",
+    "cost" : 100
+  } ],
+  "attendingDoc" : {
+    "humanType" : "doctor",
+    "name" : "Zhang Wei",
+    "dateOfBirth" : [ 1966, 3, 27 ],
+    "nricFin" : "G2076576W",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "CITIZEN",
+    "nationality" : "Singaporean",
+    "address" : "Blk 454 Tampines St 2, #24-543, Singapore 546307",
+    "contact" : {
+      "personalPhone" : "95871744",
+      "homePhone" : "65142405",
+      "companyPhone" : "64130106",
+      "email" : "user831@gmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "AB_NEGATIVE",
+    "isVaccinated" : true,
+    "staffId" : "S684418D4",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M58800A",
+    "humanType" : "doctor"
+  },
+  "attendingNurses" : [ {
+    "humanType" : "nurse",
+    "name" : "Abdullah Malik",
+    "dateOfBirth" : [ 1977, 3, 27 ],
+    "nricFin" : "S9087743G",
+    "maritalStatus" : "MARRIED",
+    "residentialStatus" : "CITIZEN",
+    "nationality" : "Singaporean",
+    "address" : "Blk 359 Punggol Way 4, #05-34, Singapore 534738",
+    "contact" : {
+      "personalPhone" : "96356295",
+      "homePhone" : "60739526",
+      "companyPhone" : "68038392",
+      "email" : "user320@gmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "AB_POSITIVE",
+    "isVaccinated" : false,
+    "staffId" : "SD68B7AF9",
+    "title" : "Nurse",
+    "department" : "Nursing",
+    "rnid" : "RN51620B",
+    "humanType" : "nurse"
+  } ],
+  "status" : "DISCHARGED",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Wee Jun Kiat",
+    "dateOfBirth" : [ 1976, 3, 27 ],
+    "nricFin" : "F2619551U",
+    "maritalStatus" : "MARRIED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 872 Jurong East Ave 9, #13-669, Singapore 488728",
+    "contact" : {
+      "personalPhone" : "98686238",
+      "homePhone" : "62314251",
+      "companyPhone" : "60998359",
+      "email" : "user635@hotmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "O_NEGATIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-2025165E2A35",
+    "drugAllergies" : [ "Aspirin" ],
+    "nokName" : "Aisha Kiat",
+    "nokAddress" : "Blk 512 Ang Mo Kio Ave 10, #37-809, Singapore 564580",
+    "nokRelation" : "Parent",
+    "height" : 1.5893802636443417,
+    "weight" : 55.394918420164025,
+    "occupation" : "Artist",
+    "companyName" : "Keppel Corporation",
+    "companyAddress" : "Blk 837 Bedok North St 10, #30-597, Singapore 527989",
+    "patientConsent" : true,
+    "humanType" : "patient"
+  },
+  "prescriptions" : {
+    "D0252" : 1
+  }
+}, {
+  "visitId" : "V17430844127136504",
+  "admissionDateTime" : [ 2025, 2, 4, 22, 6, 52, 713451300 ],
+  "dischargeDateTime" : [ 2025, 3, 27, 22, 6, 52, 788651600 ],
+  "wardStays" : [ {
+    "type" : "wardStay",
+    "ward" : {
+      "type" : "labour",
+      "name" : "Hospital Ward",
+      "dailyRate" : 1500.0,
+      "classType" : "LABOUR_CLASS_A"
+    },
+    "startDateTime" : [ 2025, 2, 4, 22, 6, 52, 713451300 ],
+    "endDateTime" : [ 2025, 2, 6, 22, 6, 52, 713451300 ]
+  } ],
+  "inpatientProcedures" : [ {
+    "type" : "procedure",
+    "code" : "089R30Z",
+    "cost" : 1000.00
+  } ],
+  "diagnosticCodes" : [ {
+    "type" : "diagnostic",
+    "code" : "J4542",
+    "cost" : 185
+  } ],
+  "attendingDoc" : {
+    "humanType" : "doctor",
+    "name" : "Kumar Ravi",
+    "dateOfBirth" : [ 1973, 3, 27 ],
+    "nricFin" : "T8901481B",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "VISITOR",
+    "nationality" : "Singaporean",
+    "address" : "Blk 159 Ang Mo Kio Ave 12, #08-84, Singapore 473404",
+    "contact" : {
+      "personalPhone" : "96960890",
+      "homePhone" : "64702865",
+      "companyPhone" : "61316478",
+      "email" : "user935@gmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "B_NEGATIVE",
+    "isVaccinated" : true,
+    "staffId" : "S1E2B01B0",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M58068A",
+    "humanType" : "doctor"
+  },
+  "attendingNurses" : [ {
+    "humanType" : "nurse",
+    "name" : "Tan Wei Ming",
+    "dateOfBirth" : [ 1983, 3, 27 ],
+    "nricFin" : "S3131068G",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 654 Woodlands Drive 3, #20-152, Singapore 502961",
+    "contact" : {
+      "personalPhone" : "91892401",
+      "homePhone" : "63834082",
+      "companyPhone" : "67926056",
+      "email" : "user122@hotmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "B_NEGATIVE",
+    "isVaccinated" : false,
+    "staffId" : "S5E3D5D3A",
+    "title" : "Nurse",
+    "department" : "Nursing",
+    "rnid" : "RN05973B",
+    "humanType" : "nurse"
+  } ],
+  "status" : "DISCHARGED",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Ong Li Ting",
+    "dateOfBirth" : [ 1981, 3, 27 ],
+    "nricFin" : "G4586030U",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 683 Woodlands Drive 5, #38-810, Singapore 499820",
+    "contact" : {
+      "personalPhone" : "92917417",
+      "homePhone" : "64569844",
+      "companyPhone" : "64324862",
+      "email" : "user447@hotmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "B_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-20254303267B",
+    "drugAllergies" : [ "None", "None" ],
+    "nokName" : "Muhammad Danial",
+    "nokAddress" : "Blk 112 Bedok North St 1, #26-567, Singapore 566362",
+    "nokRelation" : "Other",
+    "height" : 1.7850471684708769,
+    "weight" : 86.79301014401358,
+    "occupation" : "Doctor",
+    "companyName" : "CapitaLand",
+    "companyAddress" : "Blk 662 Yishun Ring Road 8, #14-553, Singapore 544045",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "prescriptions" : {
+    "D0026" : 1
+  }
+}, {
+  "visitId" : "V17430844127883073",
+  "admissionDateTime" : [ 2025, 2, 25, 22, 6, 52, 788651600 ],
+  "dischargeDateTime" : [ 2025, 3, 27, 22, 6, 52, 935721300 ],
+  "wardStays" : [ {
+    "type" : "wardStay",
+    "ward" : {
+      "type" : "daySurgery",
+      "name" : "Hospital Ward",
+      "dailyRate" : 250.0,
+      "classType" : "DAYSURGERY_CLASS_COHORT"
+    },
+    "startDateTime" : [ 2025, 2, 25, 22, 6, 52, 788651600 ],
+    "endDateTime" : [ 2025, 2, 26, 22, 6, 52, 788651600 ]
+  } ],
+  "inpatientProcedures" : [ {
+    "type" : "procedure",
+    "code" : "CP1C1ZZ",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "DW1298Z",
+    "cost" : 1000.00
+  } ],
+  "diagnosticCodes" : [ {
+    "type" : "diagnostic",
+    "code" : "S1114XD",
+    "cost" : 274
+  }, {
+    "type" : "diagnostic",
+    "code" : "S66311D",
+    "cost" : 122
+  } ],
+  "attendingDoc" : {
+    "humanType" : "doctor",
+    "name" : "Lee Hui Ling",
+    "dateOfBirth" : [ 1998, 3, 27 ],
+    "nricFin" : "G2559108P",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 260 Tampines St 12, #14-810, Singapore 556521",
+    "contact" : {
+      "personalPhone" : "97126026",
+      "homePhone" : "66031960",
+      "companyPhone" : "64388156",
+      "email" : "user366@gmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "B_POSITIVE",
+    "isVaccinated" : true,
+    "staffId" : "S0BE2E0CA",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M45158A",
+    "humanType" : "doctor"
+  },
+  "attendingNurses" : [ {
+    "humanType" : "nurse",
+    "name" : "Siti Nurhaliza",
+    "dateOfBirth" : [ 1968, 3, 27 ],
+    "nricFin" : "T8926534C",
+    "maritalStatus" : "MARRIED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 418 Bedok North St 11, #23-361, Singapore 539975",
+    "contact" : {
+      "personalPhone" : "95782391",
+      "homePhone" : "61887378",
+      "companyPhone" : "68097156",
+      "email" : "user484@gmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "AB_NEGATIVE",
+    "isVaccinated" : false,
+    "staffId" : "SB89CD064",
+    "title" : "Nurse",
+    "department" : "Nursing",
+    "rnid" : "RN68333B",
+    "humanType" : "nurse"
+  } ],
+  "status" : "DISCHARGED",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Ong Li Ting",
+    "dateOfBirth" : [ 1985, 3, 27 ],
+    "nricFin" : "G9838766N",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "PERMANENT_RESIDENT",
+    "nationality" : "Singaporean",
+    "address" : "Blk 972 Woodlands Drive 7, #02-947, Singapore 502783",
+    "contact" : {
+      "personalPhone" : "97524322",
+      "homePhone" : "68790905",
+      "companyPhone" : "66938359",
+      "email" : "user156@hotmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "A_NEGATIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-2025F8F5716A",
+    "drugAllergies" : [ ],
+    "nokName" : "Wee Ting",
+    "nokAddress" : "Blk 633 Punggol Way 9, #36-590, Singapore 520639",
+    "nokRelation" : "Sibling",
+    "height" : 1.6518753511413864,
+    "weight" : 96.9311179184887,
+    "occupation" : "Teacher",
+    "companyName" : "Keppel Corporation",
+    "companyAddress" : "Blk 407 Tampines St 11, #50-141, Singapore 548778",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "prescriptions" : {
+    "D0145" : 1,
+    "D0126" : 1
+  }
+}, {
+  "visitId" : "V17430844129355792",
+  "admissionDateTime" : [ 2025, 1, 30, 22, 6, 52, 935721300 ],
+  "dischargeDateTime" : [ 2025, 3, 27, 22, 6, 53, 77429200 ],
   "wardStays" : [ {
     "type" : "wardStay",
     "ward" : {
@@ -677,8 +1894,439 @@
       "dailyRate" : 250.0,
       "classType" : "LABOUR_CLASS_C"
     },
-    "startDateTime" : [ 2025, 2, 1, 4, 44, 16, 577366700 ],
-    "endDateTime" : [ 2025, 2, 5, 4, 44, 16, 577366700 ]
+    "startDateTime" : [ 2025, 1, 30, 22, 6, 52, 935721300 ],
+    "endDateTime" : [ 2025, 2, 1, 22, 6, 52, 935721300 ]
+  } ],
+  "inpatientProcedures" : [ {
+    "type" : "procedure",
+    "code" : "B316010",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "10Q03ZP",
+    "cost" : 1000.00
+  } ],
+  "diagnosticCodes" : [ {
+    "type" : "diagnostic",
+    "code" : "M80051G",
+    "cost" : 484
+  }, {
+    "type" : "diagnostic",
+    "code" : "Q7123",
+    "cost" : 162
+  } ],
+  "attendingDoc" : {
+    "humanType" : "doctor",
+    "name" : "Zhang Wei",
+    "dateOfBirth" : [ 1975, 3, 27 ],
+    "nricFin" : "T8288960J",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "DEPENDENT_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 383 Bedok North St 3, #06-411, Singapore 551061",
+    "contact" : {
+      "personalPhone" : "92396069",
+      "homePhone" : "63222258",
+      "companyPhone" : "69547947",
+      "email" : "user965@hotmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "B_POSITIVE",
+    "isVaccinated" : false,
+    "staffId" : "SA92C8D63",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M25970A",
+    "humanType" : "doctor"
+  },
+  "attendingNurses" : [ {
+    "humanType" : "nurse",
+    "name" : "Tan Wei Ming",
+    "dateOfBirth" : [ 1986, 3, 27 ],
+    "nricFin" : "T8353287J",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "VISITOR",
+    "nationality" : "Singaporean",
+    "address" : "Blk 457 Jurong East Ave 3, #45-465, Singapore 551987",
+    "contact" : {
+      "personalPhone" : "99107597",
+      "homePhone" : "65209559",
+      "companyPhone" : "61869601",
+      "email" : "user360@gmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "O_POSITIVE",
+    "isVaccinated" : true,
+    "staffId" : "S33245D38",
+    "title" : "Nurse",
+    "department" : "Nursing",
+    "rnid" : "RN41524B",
+    "humanType" : "nurse"
+  } ],
+  "status" : "DISCHARGED",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Wee Jun Kiat",
+    "dateOfBirth" : [ 1979, 3, 27 ],
+    "nricFin" : "F1627294U",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "CITIZEN",
+    "nationality" : "Singaporean",
+    "address" : "Blk 581 Punggol Way 3, #31-503, Singapore 530463",
+    "contact" : {
+      "personalPhone" : "92031066",
+      "homePhone" : "67946125",
+      "companyPhone" : "66610494",
+      "email" : "user566@hotmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "O_NEGATIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-20250719732C",
+    "drugAllergies" : [ "Sulfa" ],
+    "nokName" : "Muhammad Kiat",
+    "nokAddress" : "Blk 961 Bedok North St 10, #29-612, Singapore 557865",
+    "nokRelation" : "Sibling",
+    "height" : 1.7795440197903636,
+    "weight" : 96.94250817107931,
+    "occupation" : "Programmer",
+    "companyName" : "Singtel",
+    "companyAddress" : "Blk 844 Bedok North St 6, #12-108, Singapore 512194",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "prescriptions" : {
+    "D0110" : 1,
+    "D0104" : 1
+  }
+}, {
+  "visitId" : "V17430844130776539",
+  "admissionDateTime" : [ 2025, 1, 25, 22, 6, 53, 77429200 ],
+  "dischargeDateTime" : [ 2025, 3, 27, 22, 6, 53, 149076300 ],
+  "wardStays" : [ {
+    "type" : "wardStay",
+    "ward" : {
+      "type" : "general",
+      "name" : "Hospital Ward",
+      "dailyRate" : 500.0,
+      "classType" : "GENERAL_CLASS_A"
+    },
+    "startDateTime" : [ 2025, 1, 25, 22, 6, 53, 77429200 ],
+    "endDateTime" : [ 2025, 1, 27, 22, 6, 53, 77429200 ]
+  } ],
+  "inpatientProcedures" : [ {
+    "type" : "procedure",
+    "code" : "B325Z2Z",
+    "cost" : 1000.00
+  } ],
+  "diagnosticCodes" : [ {
+    "type" : "diagnostic",
+    "code" : "T452X6S",
+    "cost" : 416
+  } ],
+  "attendingDoc" : {
+    "humanType" : "doctor",
+    "name" : "Abdullah Malik",
+    "dateOfBirth" : [ 2000, 3, 27 ],
+    "nricFin" : "S7318174G",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "PERMANENT_RESIDENT",
+    "nationality" : "Singaporean",
+    "address" : "Blk 297 Woodlands Drive 7, #09-381, Singapore 522632",
+    "contact" : {
+      "personalPhone" : "99521196",
+      "homePhone" : "67479117",
+      "companyPhone" : "67295508",
+      "email" : "user914@gmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "A_NEGATIVE",
+    "isVaccinated" : false,
+    "staffId" : "S57A5B45E",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M30130A",
+    "humanType" : "doctor"
+  },
+  "attendingNurses" : [ {
+    "humanType" : "nurse",
+    "name" : "Siti Nurhaliza",
+    "dateOfBirth" : [ 1991, 3, 27 ],
+    "nricFin" : "G5010116P",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 540 Bedok North St 2, #04-253, Singapore 566694",
+    "contact" : {
+      "personalPhone" : "93555776",
+      "homePhone" : "69598173",
+      "companyPhone" : "62371431",
+      "email" : "user182@gmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "AB_POSITIVE",
+    "isVaccinated" : true,
+    "staffId" : "SFEC37AE5",
+    "title" : "Nurse",
+    "department" : "Nursing",
+    "rnid" : "RN88362B",
+    "humanType" : "nurse"
+  } ],
+  "status" : "DISCHARGED",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Aisha Fatimah",
+    "dateOfBirth" : [ 1969, 3, 27 ],
+    "nricFin" : "S2152814E",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "CITIZEN",
+    "nationality" : "Singaporean",
+    "address" : "Blk 466 Woodlands Drive 4, #01-224, Singapore 469679",
+    "contact" : {
+      "personalPhone" : "95378616",
+      "homePhone" : "60342232",
+      "companyPhone" : "61912177",
+      "email" : "user845@gmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "O_POSITIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-20250F9D204C",
+    "drugAllergies" : [ ],
+    "nokName" : "Muhammad Fatimah",
+    "nokAddress" : "Blk 508 Punggol Way 1, #25-480, Singapore 503887",
+    "nokRelation" : "Child",
+    "height" : 1.8511716946041672,
+    "weight" : 90.24235895329343,
+    "occupation" : "Doctor",
+    "companyName" : "ST Engineering",
+    "companyAddress" : "Blk 747 Punggol Way 8, #14-606, Singapore 478853",
+    "patientConsent" : true,
+    "humanType" : "patient"
+  },
+  "prescriptions" : {
+    "D0127" : 1
+  }
+}, {
+  "visitId" : "V17430844131497873",
+  "admissionDateTime" : [ 2024, 12, 31, 22, 6, 53, 149076300 ],
+  "dischargeDateTime" : [ 2025, 3, 27, 22, 6, 53, 222847600 ],
+  "wardStays" : [ {
+    "type" : "wardStay",
+    "ward" : {
+      "type" : "daySurgery",
+      "name" : "Hospital Ward",
+      "dailyRate" : 300.0,
+      "classType" : "DAYSURGERY_CLASS_SEATER"
+    },
+    "startDateTime" : [ 2024, 12, 31, 22, 6, 53, 149076300 ],
+    "endDateTime" : [ 2025, 1, 10, 22, 6, 53, 149076300 ]
+  } ],
+  "inpatientProcedures" : [ {
+    "type" : "procedure",
+    "code" : "DGY1FZZ",
+    "cost" : 1000.00
+  } ],
+  "diagnosticCodes" : [ {
+    "type" : "diagnostic",
+    "code" : "M06861",
+    "cost" : 344
+  } ],
+  "attendingDoc" : {
+    "humanType" : "doctor",
+    "name" : "Zhang Wei",
+    "dateOfBirth" : [ 1975, 3, 27 ],
+    "nricFin" : "T8288960J",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "DEPENDENT_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 383 Bedok North St 3, #06-411, Singapore 551061",
+    "contact" : {
+      "personalPhone" : "92396069",
+      "homePhone" : "63222258",
+      "companyPhone" : "69547947",
+      "email" : "user965@hotmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "B_POSITIVE",
+    "isVaccinated" : false,
+    "staffId" : "SA92C8D63",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M25970A",
+    "humanType" : "doctor"
+  },
+  "attendingNurses" : [ {
+    "humanType" : "nurse",
+    "name" : "Siti Nurhaliza",
+    "dateOfBirth" : [ 1991, 3, 27 ],
+    "nricFin" : "G5010116P",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 540 Bedok North St 2, #04-253, Singapore 566694",
+    "contact" : {
+      "personalPhone" : "93555776",
+      "homePhone" : "69598173",
+      "companyPhone" : "62371431",
+      "email" : "user182@gmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "AB_POSITIVE",
+    "isVaccinated" : true,
+    "staffId" : "SFEC37AE5",
+    "title" : "Nurse",
+    "department" : "Nursing",
+    "rnid" : "RN88362B",
+    "humanType" : "nurse"
+  } ],
+  "status" : "DISCHARGED",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Wee Jun Kiat",
+    "dateOfBirth" : [ 1972, 3, 27 ],
+    "nricFin" : "F7141369K",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "PERMANENT_RESIDENT",
+    "nationality" : "Singaporean",
+    "address" : "Blk 976 Jurong East Ave 11, #44-627, Singapore 558141",
+    "contact" : {
+      "personalPhone" : "93661569",
+      "homePhone" : "60233934",
+      "companyPhone" : "63175594",
+      "email" : "user496@gmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "B_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-20255C0B6CD5",
+    "drugAllergies" : [ "None" ],
+    "nokName" : "Wee Jun Kiat",
+    "nokAddress" : "Blk 747 Jurong East Ave 3, #04-849, Singapore 554469",
+    "nokRelation" : "Legal Guardian",
+    "height" : 1.8306886509479956,
+    "weight" : 90.32461625923042,
+    "occupation" : "Teacher",
+    "companyName" : "ST Engineering",
+    "companyAddress" : "Blk 443 Bedok North St 2, #13-524, Singapore 468304",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "prescriptions" : {
+    "D0099" : 1
+  }
+}, {
+  "visitId" : "V17430844132228394",
+  "admissionDateTime" : [ 2025, 1, 31, 22, 6, 53, 222847600 ],
+  "dischargeDateTime" : [ 2025, 3, 27, 22, 6, 53, 294636700 ],
+  "wardStays" : [ ],
+  "inpatientProcedures" : [ {
+    "type" : "procedure",
+    "code" : "3E0S305",
+    "cost" : 1000.00
+  } ],
+  "diagnosticCodes" : [ {
+    "type" : "diagnostic",
+    "code" : "E669",
+    "cost" : 163
+  } ],
+  "attendingDoc" : {
+    "humanType" : "doctor",
+    "name" : "Zhang Wei",
+    "dateOfBirth" : [ 1971, 3, 27 ],
+    "nricFin" : "S5093000I",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 105 Punggol Way 12, #10-263, Singapore 492781",
+    "contact" : {
+      "personalPhone" : "94750357",
+      "homePhone" : "66128945",
+      "companyPhone" : "61732057",
+      "email" : "user215@hotmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "A_NEGATIVE",
+    "isVaccinated" : false,
+    "staffId" : "SE65FA6C7",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M02019A",
+    "humanType" : "doctor"
+  },
+  "attendingNurses" : [ {
+    "humanType" : "nurse",
+    "name" : "Abdullah Malik",
+    "dateOfBirth" : [ 1977, 3, 27 ],
+    "nricFin" : "S9087743G",
+    "maritalStatus" : "MARRIED",
+    "residentialStatus" : "CITIZEN",
+    "nationality" : "Singaporean",
+    "address" : "Blk 359 Punggol Way 4, #05-34, Singapore 534738",
+    "contact" : {
+      "personalPhone" : "96356295",
+      "homePhone" : "60739526",
+      "companyPhone" : "68038392",
+      "email" : "user320@gmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "AB_POSITIVE",
+    "isVaccinated" : false,
+    "staffId" : "SD68B7AF9",
+    "title" : "Nurse",
+    "department" : "Nursing",
+    "rnid" : "RN51620B",
+    "humanType" : "nurse"
+  } ],
+  "status" : "DISCHARGED",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Rohan Aand",
+    "dateOfBirth" : [ 1984, 3, 27 ],
+    "nricFin" : "S9172074D",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "VISITOR",
+    "nationality" : "Singaporean",
+    "address" : "Blk 373 Ang Mo Kio Ave 1, #41-446, Singapore 491412",
+    "contact" : {
+      "personalPhone" : "92458025",
+      "homePhone" : "60224023",
+      "companyPhone" : "63764066",
+      "email" : "user827@gmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "B_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-2025B404C3E8",
+    "drugAllergies" : [ ],
+    "nokName" : "Aisha Fatimah",
+    "nokAddress" : "Blk 344 Yishun Ring Road 1, #32-923, Singapore 538567",
+    "nokRelation" : "Grandparent",
+    "height" : 1.5906106117464633,
+    "weight" : 64.16062344461724,
+    "occupation" : "Artist",
+    "companyName" : "Singapore Airlines",
+    "companyAddress" : "Blk 854 Serangoon Road 3, #30-369, Singapore 534582",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "prescriptions" : {
+    "D0207" : 1
+  }
+}, {
+  "visitId" : "V17430844132948125",
+  "admissionDateTime" : [ 2025, 1, 3, 22, 6, 53, 294636700 ],
+  "dischargeDateTime" : [ 2025, 3, 27, 22, 6, 53, 443541900 ],
+  "wardStays" : [ {
+    "type" : "wardStay",
+    "ward" : {
+      "type" : "general",
+      "name" : "Hospital Ward",
+      "dailyRate" : 250.0,
+      "classType" : "GENERAL_CLASS_B1"
+    },
+    "startDateTime" : [ 2025, 1, 3, 22, 6, 53, 294636700 ],
+    "endDateTime" : [ 2025, 1, 4, 22, 6, 53, 294636700 ]
   }, {
     "type" : "wardStay",
     "ward" : {
@@ -687,134 +2335,115 @@
       "dailyRate" : 250.0,
       "classType" : "DAYSURGERY_CLASS_COHORT"
     },
-    "startDateTime" : [ 2025, 2, 1, 4, 44, 16, 577366700 ],
-    "endDateTime" : [ 2025, 2, 6, 4, 44, 16, 577366700 ]
-  }, {
-    "type" : "wardStay",
-    "ward" : {
-      "type" : "labour",
-      "name" : "Hospital Ward",
-      "dailyRate" : 250.0,
-      "classType" : "LABOUR_CLASS_C"
-    },
-    "startDateTime" : [ 2025, 2, 1, 4, 44, 16, 577366700 ],
-    "endDateTime" : [ 2025, 2, 2, 4, 44, 16, 577366700 ]
+    "startDateTime" : [ 2025, 1, 3, 22, 6, 53, 294636700 ],
+    "endDateTime" : [ 2025, 1, 7, 22, 6, 53, 294636700 ]
   } ],
   "inpatientProcedures" : [ {
     "type" : "procedure",
-    "code" : "06HF43Z",
+    "code" : "0P8M3ZZ",
     "cost" : 1000.00
   }, {
     "type" : "procedure",
-    "code" : "BW1JYZZ",
-    "cost" : 1000.00
-  }, {
-    "type" : "procedure",
-    "code" : "0HWPX7Z",
+    "code" : "DPY27ZZ",
     "cost" : 1000.00
   } ],
   "diagnosticCodes" : [ {
     "type" : "diagnostic",
-    "code" : "E661",
-    "cost" : 232
+    "code" : "V6981XS",
+    "cost" : 212
   }, {
     "type" : "diagnostic",
-    "code" : "D334",
-    "cost" : 448
-  }, {
-    "type" : "diagnostic",
-    "code" : "J45902",
-    "cost" : 455
+    "code" : "S52035F",
+    "cost" : 217
   } ],
   "attendingDoc" : {
     "humanType" : "doctor",
-    "name" : "Siti Nurhaliza",
-    "dateOfBirth" : [ 1999, 3, 27 ],
-    "nricFin" : "F0250643L",
+    "name" : "Muhammad Ibrahim",
+    "dateOfBirth" : [ 1990, 3, 27 ],
+    "nricFin" : "F6558264M",
     "maritalStatus" : "WIDOWED",
-    "residentialStatus" : "WORK_PASS",
+    "residentialStatus" : "DEPENDENT_PASS",
     "nationality" : "Singaporean",
-    "address" : "Blk 333 Ang Mo Kio Ave 3, #11-784, Singapore 557990",
+    "address" : "Blk 168 Ang Mo Kio Ave 6, #38-912, Singapore 473995",
     "contact" : {
-      "personalPhone" : "90657803",
-      "homePhone" : "63225414",
-      "companyPhone" : "62697725",
-      "email" : "user510@gmail.com"
+      "personalPhone" : "90673823",
+      "homePhone" : "67992007",
+      "companyPhone" : "67555101",
+      "email" : "user769@gmail.com"
     },
-    "sex" : "FEMALE",
+    "sex" : "OTHERS",
     "bloodType" : "A_NEGATIVE",
     "isVaccinated" : true,
-    "staffId" : "S5B4C5421",
+    "staffId" : "S3E7F5A86",
     "title" : "Doctor",
     "department" : "Medical",
-    "mcr" : "M38152A",
+    "mcr" : "M98810A",
     "humanType" : "doctor"
   },
   "attendingNurses" : [ {
     "humanType" : "nurse",
-    "name" : "Muhammad Ibrahim",
-    "dateOfBirth" : [ 1974, 3, 27 ],
-    "nricFin" : "G3936480N",
+    "name" : "Abdullah Malik",
+    "dateOfBirth" : [ 1977, 3, 27 ],
+    "nricFin" : "S9087743G",
     "maritalStatus" : "MARRIED",
     "residentialStatus" : "CITIZEN",
     "nationality" : "Singaporean",
-    "address" : "Blk 318 Serangoon Road 12, #39-441, Singapore 496454",
+    "address" : "Blk 359 Punggol Way 4, #05-34, Singapore 534738",
     "contact" : {
-      "personalPhone" : "95875557",
-      "homePhone" : "61932564",
-      "companyPhone" : "68710787",
-      "email" : "user150@gmail.com"
+      "personalPhone" : "96356295",
+      "homePhone" : "60739526",
+      "companyPhone" : "68038392",
+      "email" : "user320@gmail.com"
     },
     "sex" : "OTHERS",
-    "bloodType" : "B_POSITIVE",
-    "isVaccinated" : true,
-    "staffId" : "SA5DD0227",
+    "bloodType" : "AB_POSITIVE",
+    "isVaccinated" : false,
+    "staffId" : "SD68B7AF9",
     "title" : "Nurse",
     "department" : "Nursing",
-    "rnid" : "RN39069B",
+    "rnid" : "RN51620B",
     "humanType" : "nurse"
   } ],
   "status" : "DISCHARGED",
   "patient" : {
     "humanType" : "patient",
     "name" : "Lim Boon Teck",
-    "dateOfBirth" : [ 1981, 3, 27 ],
-    "nricFin" : "T1189650I",
+    "dateOfBirth" : [ 1992, 3, 27 ],
+    "nricFin" : "F0733311X",
     "maritalStatus" : "MARRIED",
-    "residentialStatus" : "VISITOR",
+    "residentialStatus" : "WORK_PASS",
     "nationality" : "Singaporean",
-    "address" : "Blk 809 Woodlands Drive 7, #49-957, Singapore 564197",
+    "address" : "Blk 186 Woodlands Drive 7, #48-674, Singapore 550928",
     "contact" : {
-      "personalPhone" : "91779529",
-      "homePhone" : "60501975",
-      "companyPhone" : "66848059",
-      "email" : "user736@hotmail.com"
+      "personalPhone" : "93658923",
+      "homePhone" : "60359032",
+      "companyPhone" : "64235432",
+      "email" : "user571@hotmail.com"
     },
     "sex" : "FEMALE",
-    "bloodType" : "B_NEGATIVE",
-    "isVaccinated" : true,
-    "patientId" : "P-2025EA159CC4",
-    "drugAllergies" : [ "Ibuprofen" ],
+    "bloodType" : "A_NEGATIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-2025E2FA67D8",
+    "drugAllergies" : [ "None", "Aspirin" ],
     "nokName" : "Lim Boon Teck",
-    "nokAddress" : "Blk 615 Serangoon Road 3, #34-590, Singapore 550062",
+    "nokAddress" : "Blk 167 Bedok North St 12, #48-854, Singapore 536623",
     "nokRelation" : "Other",
-    "height" : 1.6466325010529537,
-    "weight" : 58.38089873988019,
-    "occupation" : "Teacher",
-    "companyName" : "CapitaLand",
-    "companyAddress" : "Blk 809 Bedok North St 7, #24-226, Singapore 471062",
-    "patientConsent" : true,
+    "height" : 1.7646506983676025,
+    "weight" : 67.26195747931988,
+    "occupation" : "Chef",
+    "companyName" : "ST Engineering",
+    "companyAddress" : "Blk 210 Tampines St 10, #27-241, Singapore 469696",
+    "patientConsent" : false,
     "humanType" : "patient"
   },
   "prescriptions" : {
-    "D0097" : 1,
-    "D0073" : 1,
-    "D0135" : 1
+    "D0104" : 1,
+    "D0058" : 1
   }
 }, {
-  "visitId" : "V17430218568995972",
-  "admissionDateTime" : [ 2025, 2, 9, 4, 44, 16, 899039200 ],
-  "dischargeDateTime" : [ 2025, 3, 27, 4, 44, 16, 977137800 ],
+  "visitId" : "V17430844134431240",
+  "admissionDateTime" : [ 2025, 1, 15, 22, 6, 53, 443541900 ],
+  "dischargeDateTime" : [ 2025, 3, 27, 22, 6, 53, 515562000 ],
   "wardStays" : [ {
     "type" : "wardStay",
     "ward" : {
@@ -823,244 +2452,206 @@
       "dailyRate" : 250.0,
       "classType" : "DAYSURGERY_CLASS_COHORT"
     },
-    "startDateTime" : [ 2025, 2, 9, 4, 44, 16, 899039200 ],
-    "endDateTime" : [ 2025, 2, 14, 4, 44, 16, 899039200 ]
+    "startDateTime" : [ 2025, 1, 15, 22, 6, 53, 443541900 ],
+    "endDateTime" : [ 2025, 1, 20, 22, 6, 53, 443541900 ]
   } ],
   "inpatientProcedures" : [ {
     "type" : "procedure",
-    "code" : "03N54ZZ",
+    "code" : "0L890ZZ",
     "cost" : 1000.00
   } ],
   "diagnosticCodes" : [ {
     "type" : "diagnostic",
-    "code" : "Y0713",
-    "cost" : 201
+    "code" : "S33131D",
+    "cost" : 333
   } ],
   "attendingDoc" : {
     "humanType" : "doctor",
     "name" : "Zhang Wei",
-    "dateOfBirth" : [ 1987, 3, 27 ],
-    "nricFin" : "S3270253H",
-    "maritalStatus" : "MARRIED",
-    "residentialStatus" : "PERMANENT_RESIDENT",
+    "dateOfBirth" : [ 1971, 3, 27 ],
+    "nricFin" : "S5093000I",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "WORK_PASS",
     "nationality" : "Singaporean",
-    "address" : "Blk 145 Yishun Ring Road 5, #28-785, Singapore 469695",
+    "address" : "Blk 105 Punggol Way 12, #10-263, Singapore 492781",
     "contact" : {
-      "personalPhone" : "97747865",
-      "homePhone" : "68439044",
-      "companyPhone" : "64513548",
-      "email" : "user279@gmail.com"
+      "personalPhone" : "94750357",
+      "homePhone" : "66128945",
+      "companyPhone" : "61732057",
+      "email" : "user215@hotmail.com"
     },
-    "sex" : "FEMALE",
-    "bloodType" : "A_POSITIVE",
+    "sex" : "MALE",
+    "bloodType" : "A_NEGATIVE",
     "isVaccinated" : false,
-    "staffId" : "SFE2BCC2B",
+    "staffId" : "SE65FA6C7",
     "title" : "Doctor",
     "department" : "Medical",
-    "mcr" : "M97152A",
+    "mcr" : "M02019A",
     "humanType" : "doctor"
   },
   "attendingNurses" : [ {
     "humanType" : "nurse",
-    "name" : "Tan Wei Ming",
-    "dateOfBirth" : [ 1967, 3, 27 ],
-    "nricFin" : "T7104678D",
+    "name" : "Abdullah Malik",
+    "dateOfBirth" : [ 1977, 3, 27 ],
+    "nricFin" : "S9087743G",
     "maritalStatus" : "MARRIED",
-    "residentialStatus" : "VISITOR",
+    "residentialStatus" : "CITIZEN",
     "nationality" : "Singaporean",
-    "address" : "Blk 913 Tampines St 3, #34-694, Singapore 485825",
+    "address" : "Blk 359 Punggol Way 4, #05-34, Singapore 534738",
     "contact" : {
-      "personalPhone" : "98807994",
-      "homePhone" : "62787025",
-      "companyPhone" : "68303159",
-      "email" : "user533@gmail.com"
+      "personalPhone" : "96356295",
+      "homePhone" : "60739526",
+      "companyPhone" : "68038392",
+      "email" : "user320@gmail.com"
     },
     "sex" : "OTHERS",
-    "bloodType" : "O_NEGATIVE",
+    "bloodType" : "AB_POSITIVE",
     "isVaccinated" : false,
-    "staffId" : "S51AB4811",
+    "staffId" : "SD68B7AF9",
     "title" : "Nurse",
     "department" : "Nursing",
-    "rnid" : "RN50885B",
+    "rnid" : "RN51620B",
     "humanType" : "nurse"
   } ],
   "status" : "DISCHARGED",
   "patient" : {
     "humanType" : "patient",
-    "name" : "Ben Tan",
-    "dateOfBirth" : [ 2001, 3, 27 ],
-    "nricFin" : "G1483207L",
-    "maritalStatus" : "MARRIED",
-    "residentialStatus" : "DEPENDENT_PASS",
+    "name" : "Ong Li Ting",
+    "dateOfBirth" : [ 1976, 3, 27 ],
+    "nricFin" : "T9348109C",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "PERMANENT_RESIDENT",
     "nationality" : "Singaporean",
-    "address" : "Blk 276 Serangoon Road 12, #28-375, Singapore 553524",
+    "address" : "Blk 989 Woodlands Drive 4, #14-466, Singapore 476391",
     "contact" : {
-      "personalPhone" : "94666914",
-      "homePhone" : "67664458",
-      "companyPhone" : "64314382",
-      "email" : "user175@gmail.com"
+      "personalPhone" : "91313938",
+      "homePhone" : "64765349",
+      "companyPhone" : "67949176",
+      "email" : "user571@hotmail.com"
     },
     "sex" : "OTHERS",
-    "bloodType" : "O_NEGATIVE",
-    "isVaccinated" : false,
-    "patientId" : "P-2025C67BB357",
-    "drugAllergies" : [ "Aspirin", "Ibuprofen" ],
-    "nokName" : "Divya Tan",
-    "nokAddress" : "Blk 703 Yishun Ring Road 4, #05-404, Singapore 464851",
+    "bloodType" : "O_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-2025ADA35B84",
+    "drugAllergies" : [ "Sulfa" ],
+    "nokName" : "Wee Ting",
+    "nokAddress" : "Blk 221 Serangoon Road 12, #34-609, Singapore 549110",
     "nokRelation" : "Parent",
-    "height" : 1.8872157387083115,
-    "weight" : 97.74095982369079,
-    "occupation" : "Doctor",
-    "companyName" : "ComfortDelGro",
-    "companyAddress" : "Blk 913 Ang Mo Kio Ave 12, #35-666, Singapore 538825",
-    "patientConsent" : false,
+    "height" : 1.9098498221916185,
+    "weight" : 54.73016522985551,
+    "occupation" : "Engineer",
+    "companyName" : "ST Engineering",
+    "companyAddress" : "Blk 898 Tampines St 1, #30-554, Singapore 463691",
+    "patientConsent" : true,
     "humanType" : "patient"
   },
   "prescriptions" : {
-    "D0115" : 1
+    "D0120" : 1
   }
 }, {
-  "visitId" : "V17430218569772121",
-  "admissionDateTime" : [ 2025, 1, 19, 4, 44, 16, 977137800 ],
-  "dischargeDateTime" : [ 2025, 3, 27, 4, 44, 17, 120111200 ],
-  "wardStays" : [ {
-    "type" : "wardStay",
-    "ward" : {
-      "type" : "general",
-      "name" : "Hospital Ward",
-      "dailyRate" : 200.0,
-      "classType" : "GENERAL_CLASS_B2"
-    },
-    "startDateTime" : [ 2025, 1, 19, 4, 44, 16, 977137800 ],
-    "endDateTime" : [ 2025, 1, 22, 4, 44, 16, 977137800 ]
-  }, {
-    "type" : "wardStay",
-    "ward" : {
-      "type" : "general",
-      "name" : "Hospital Ward",
-      "dailyRate" : 150.0,
-      "classType" : "GENERAL_CLASS_C"
-    },
-    "startDateTime" : [ 2025, 1, 19, 4, 44, 16, 977137800 ],
-    "endDateTime" : [ 2025, 1, 21, 4, 44, 16, 977137800 ]
-  } ],
+  "visitId" : "V17430844135153879",
+  "admissionDateTime" : [ 2025, 2, 6, 22, 6, 53, 515562000 ],
+  "dischargeDateTime" : [ 2025, 3, 27, 22, 6, 53, 657199800 ],
+  "wardStays" : [ ],
   "inpatientProcedures" : [ {
     "type" : "procedure",
-    "code" : "0MUF4JZ",
-    "cost" : 1000.00
-  }, {
-    "type" : "procedure",
-    "code" : "0RWK38Z",
+    "code" : "0X9H3ZX",
     "cost" : 1000.00
   } ],
   "diagnosticCodes" : [ {
     "type" : "diagnostic",
-    "code" : "D61811",
-    "cost" : 415
-  }, {
-    "type" : "diagnostic",
-    "code" : "J45902",
-    "cost" : 452
+    "code" : "Y92190",
+    "cost" : 299
   } ],
   "attendingDoc" : {
     "humanType" : "doctor",
-    "name" : "Siti Nurhaliza",
-    "dateOfBirth" : [ 1987, 3, 27 ],
-    "nricFin" : "G2832926T",
-    "maritalStatus" : "MARRIED",
-    "residentialStatus" : "VISITOR",
+    "name" : "Zhang Wei",
+    "dateOfBirth" : [ 1971, 3, 27 ],
+    "nricFin" : "S5093000I",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "WORK_PASS",
     "nationality" : "Singaporean",
-    "address" : "Blk 220 Jurong East Ave 6, #33-107, Singapore 472159",
+    "address" : "Blk 105 Punggol Way 12, #10-263, Singapore 492781",
     "contact" : {
-      "personalPhone" : "90810043",
-      "homePhone" : "60879174",
-      "companyPhone" : "68798842",
-      "email" : "user153@hotmail.com"
+      "personalPhone" : "94750357",
+      "homePhone" : "66128945",
+      "companyPhone" : "61732057",
+      "email" : "user215@hotmail.com"
     },
-    "sex" : "OTHERS",
-    "bloodType" : "AB_NEGATIVE",
+    "sex" : "MALE",
+    "bloodType" : "A_NEGATIVE",
     "isVaccinated" : false,
-    "staffId" : "S62263E12",
+    "staffId" : "SE65FA6C7",
     "title" : "Doctor",
     "department" : "Medical",
-    "mcr" : "M60758A",
+    "mcr" : "M02019A",
     "humanType" : "doctor"
   },
   "attendingNurses" : [ {
     "humanType" : "nurse",
     "name" : "Tan Wei Ming",
-    "dateOfBirth" : [ 1975, 3, 27 ],
-    "nricFin" : "F6161547N",
-    "maritalStatus" : "MARRIED",
+    "dateOfBirth" : [ 1986, 3, 27 ],
+    "nricFin" : "T8353287J",
+    "maritalStatus" : "SINGLE",
     "residentialStatus" : "VISITOR",
     "nationality" : "Singaporean",
-    "address" : "Blk 399 Tampines St 1, #24-292, Singapore 497693",
+    "address" : "Blk 457 Jurong East Ave 3, #45-465, Singapore 551987",
     "contact" : {
-      "personalPhone" : "90345293",
-      "homePhone" : "62437613",
-      "companyPhone" : "65111604",
-      "email" : "user126@gmail.com"
+      "personalPhone" : "99107597",
+      "homePhone" : "65209559",
+      "companyPhone" : "61869601",
+      "email" : "user360@gmail.com"
     },
-    "sex" : "MALE",
-    "bloodType" : "B_POSITIVE",
-    "isVaccinated" : false,
-    "staffId" : "SD2AB3283",
+    "sex" : "OTHERS",
+    "bloodType" : "O_POSITIVE",
+    "isVaccinated" : true,
+    "staffId" : "S33245D38",
     "title" : "Nurse",
     "department" : "Nursing",
-    "rnid" : "RN45586B",
+    "rnid" : "RN41524B",
     "humanType" : "nurse"
   } ],
   "status" : "DISCHARGED",
   "patient" : {
     "humanType" : "patient",
-    "name" : "Ben Tan",
-    "dateOfBirth" : [ 1979, 3, 27 ],
-    "nricFin" : "G2405158M",
-    "maritalStatus" : "MARRIED",
+    "name" : "Ong Li Ting",
+    "dateOfBirth" : [ 2002, 3, 27 ],
+    "nricFin" : "G7676978N",
+    "maritalStatus" : "WIDOWED",
     "residentialStatus" : "VISITOR",
     "nationality" : "Singaporean",
-    "address" : "Blk 869 Tampines St 5, #38-213, Singapore 566286",
+    "address" : "Blk 332 Bedok North St 7, #08-595, Singapore 533789",
     "contact" : {
-      "personalPhone" : "91122639",
-      "homePhone" : "64821527",
-      "companyPhone" : "68525576",
-      "email" : "user395@hotmail.com"
+      "personalPhone" : "90436825",
+      "homePhone" : "62853244",
+      "companyPhone" : "68628937",
+      "email" : "user638@gmail.com"
     },
     "sex" : "MALE",
     "bloodType" : "AB_POSITIVE",
     "isVaccinated" : false,
-    "patientId" : "P-2025FC3AF5B2",
-    "drugAllergies" : [ "Sulfa", "Aspirin" ],
-    "nokName" : "Ben Tan",
-    "nokAddress" : "Blk 566 Bedok North St 12, #16-652, Singapore 512600",
-    "nokRelation" : "Parent",
-    "height" : 1.9896586232978761,
-    "weight" : 90.25104625476814,
-    "occupation" : "Teacher",
-    "companyName" : "OCBC Bank",
-    "companyAddress" : "Blk 363 Woodlands Drive 12, #46-938, Singapore 482597",
+    "patientId" : "P-2025D2C8FAA1",
+    "drugAllergies" : [ "None" ],
+    "nokName" : "Muhammad Danial",
+    "nokAddress" : "Blk 705 Serangoon Road 7, #26-843, Singapore 506807",
+    "nokRelation" : "Grandparent",
+    "height" : 1.9480506674864357,
+    "weight" : 83.94642889323217,
+    "occupation" : "Doctor",
+    "companyName" : "ComfortDelGro",
+    "companyAddress" : "Blk 394 Punggol Way 8, #18-261, Singapore 461759",
     "patientConsent" : false,
     "humanType" : "patient"
   },
   "prescriptions" : {
-    "D0122" : 1,
-    "D0138" : 1
+    "D0206" : 1,
+    "D0150" : 1
   }
 }, {
-  "visitId" : "V17430218571206056",
-  "admissionDateTime" : [ 2025, 2, 25, 4, 44, 17, 120111200 ],
-  "dischargeDateTime" : [ 2025, 3, 27, 4, 44, 17, 424287500 ],
+  "visitId" : "V17430844136575032",
+  "admissionDateTime" : [ 2025, 1, 8, 22, 6, 53, 657199800 ],
+  "dischargeDateTime" : [ 2025, 3, 27, 22, 6, 53, 732565300 ],
   "wardStays" : [ {
-    "type" : "wardStay",
-    "ward" : {
-      "type" : "labour",
-      "name" : "Hospital Ward",
-      "dailyRate" : 250.0,
-      "classType" : "LABOUR_CLASS_C"
-    },
-    "startDateTime" : [ 2025, 2, 25, 4, 44, 17, 120111200 ],
-    "endDateTime" : [ 2025, 2, 28, 4, 44, 17, 120111200 ]
-  }, {
     "type" : "wardStay",
     "ward" : {
       "type" : "daySurgery",
@@ -1068,8 +2659,116 @@
       "dailyRate" : 250.0,
       "classType" : "DAYSURGERY_CLASS_COHORT"
     },
-    "startDateTime" : [ 2025, 2, 25, 4, 44, 17, 120111200 ],
-    "endDateTime" : [ 2025, 2, 26, 4, 44, 17, 120111200 ]
+    "startDateTime" : [ 2025, 1, 8, 22, 6, 53, 657199800 ],
+    "endDateTime" : [ 2025, 1, 13, 22, 6, 53, 657199800 ]
+  } ],
+  "inpatientProcedures" : [ {
+    "type" : "procedure",
+    "code" : "06L73ZZ",
+    "cost" : 1000.00
+  } ],
+  "diagnosticCodes" : [ {
+    "type" : "diagnostic",
+    "code" : "S62619K",
+    "cost" : 168
+  } ],
+  "attendingDoc" : {
+    "humanType" : "doctor",
+    "name" : "Kumar Ravi",
+    "dateOfBirth" : [ 1973, 3, 27 ],
+    "nricFin" : "T8901481B",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "VISITOR",
+    "nationality" : "Singaporean",
+    "address" : "Blk 159 Ang Mo Kio Ave 12, #08-84, Singapore 473404",
+    "contact" : {
+      "personalPhone" : "96960890",
+      "homePhone" : "64702865",
+      "companyPhone" : "61316478",
+      "email" : "user935@gmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "B_NEGATIVE",
+    "isVaccinated" : true,
+    "staffId" : "S1E2B01B0",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M58068A",
+    "humanType" : "doctor"
+  },
+  "attendingNurses" : [ {
+    "humanType" : "nurse",
+    "name" : "Kumar Ravi",
+    "dateOfBirth" : [ 1976, 3, 27 ],
+    "nricFin" : "G3491877K",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "DEPENDENT_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 158 Yishun Ring Road 3, #06-729, Singapore 514628",
+    "contact" : {
+      "personalPhone" : "96682460",
+      "homePhone" : "62911735",
+      "companyPhone" : "61596273",
+      "email" : "user820@hotmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "AB_NEGATIVE",
+    "isVaccinated" : true,
+    "staffId" : "S4F38EC07",
+    "title" : "Nurse",
+    "department" : "Nursing",
+    "rnid" : "RN80954B",
+    "humanType" : "nurse"
+  } ],
+  "status" : "DISCHARGED",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Divya Singh",
+    "dateOfBirth" : [ 1979, 3, 27 ],
+    "nricFin" : "G7503729K",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "VISITOR",
+    "nationality" : "Singaporean",
+    "address" : "Blk 719 Woodlands Drive 6, #04-512, Singapore 526982",
+    "contact" : {
+      "personalPhone" : "91622074",
+      "homePhone" : "64102390",
+      "companyPhone" : "64994280",
+      "email" : "user851@gmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "O_NEGATIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-2025B991AA25",
+    "drugAllergies" : [ ],
+    "nokName" : "Wee Singh",
+    "nokAddress" : "Blk 321 Woodlands Drive 5, #14-577, Singapore 468228",
+    "nokRelation" : "Child",
+    "height" : 1.5667544633491508,
+    "weight" : 45.9383976752695,
+    "occupation" : "Engineer",
+    "companyName" : "DBS Bank",
+    "companyAddress" : "Blk 111 Bedok North St 8, #50-562, Singapore 486366",
+    "patientConsent" : true,
+    "humanType" : "patient"
+  },
+  "prescriptions" : {
+    "D0268" : 1
+  }
+}, {
+  "visitId" : "V17430844137325454",
+  "admissionDateTime" : [ 2025, 1, 8, 22, 6, 53, 732565300 ],
+  "dischargeDateTime" : [ 2025, 3, 27, 22, 6, 53, 877140800 ],
+  "wardStays" : [ {
+    "type" : "wardStay",
+    "ward" : {
+      "type" : "daySurgery",
+      "name" : "Hospital Ward",
+      "dailyRate" : 200.0,
+      "classType" : "DAYSURGERY_CLASS_SINGLE"
+    },
+    "startDateTime" : [ 2025, 1, 8, 22, 6, 53, 732565300 ],
+    "endDateTime" : [ 2025, 1, 13, 22, 6, 53, 732565300 ]
   }, {
     "type" : "wardStay",
     "ward" : {
@@ -1078,8 +2777,125 @@
       "dailyRate" : 300.0,
       "classType" : "DAYSURGERY_CLASS_SEATER"
     },
-    "startDateTime" : [ 2025, 2, 25, 4, 44, 17, 120111200 ],
-    "endDateTime" : [ 2025, 2, 28, 4, 44, 17, 120111200 ]
+    "startDateTime" : [ 2025, 1, 8, 22, 6, 53, 732565300 ],
+    "endDateTime" : [ 2025, 1, 12, 22, 6, 53, 732565300 ]
+  } ],
+  "inpatientProcedures" : [ {
+    "type" : "procedure",
+    "code" : "0FN88ZZ",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "03US3JZ",
+    "cost" : 1000.00
+  } ],
+  "diagnosticCodes" : [ {
+    "type" : "diagnostic",
+    "code" : "S93136S",
+    "cost" : 175
+  }, {
+    "type" : "diagnostic",
+    "code" : "F509",
+    "cost" : 312
+  } ],
+  "attendingDoc" : {
+    "humanType" : "doctor",
+    "name" : "Zhang Wei",
+    "dateOfBirth" : [ 1975, 3, 27 ],
+    "nricFin" : "T8288960J",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "DEPENDENT_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 383 Bedok North St 3, #06-411, Singapore 551061",
+    "contact" : {
+      "personalPhone" : "92396069",
+      "homePhone" : "63222258",
+      "companyPhone" : "69547947",
+      "email" : "user965@hotmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "B_POSITIVE",
+    "isVaccinated" : false,
+    "staffId" : "SA92C8D63",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M25970A",
+    "humanType" : "doctor"
+  },
+  "attendingNurses" : [ {
+    "humanType" : "nurse",
+    "name" : "Siti Nurhaliza",
+    "dateOfBirth" : [ 1968, 3, 27 ],
+    "nricFin" : "T8926534C",
+    "maritalStatus" : "MARRIED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 418 Bedok North St 11, #23-361, Singapore 539975",
+    "contact" : {
+      "personalPhone" : "95782391",
+      "homePhone" : "61887378",
+      "companyPhone" : "68097156",
+      "email" : "user484@gmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "AB_NEGATIVE",
+    "isVaccinated" : false,
+    "staffId" : "SB89CD064",
+    "title" : "Nurse",
+    "department" : "Nursing",
+    "rnid" : "RN68333B",
+    "humanType" : "nurse"
+  } ],
+  "status" : "DISCHARGED",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Aisha Fatimah",
+    "dateOfBirth" : [ 1992, 3, 27 ],
+    "nricFin" : "T2948527A",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "DEPENDENT_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 179 Ang Mo Kio Ave 3, #44-382, Singapore 535029",
+    "contact" : {
+      "personalPhone" : "91653407",
+      "homePhone" : "67022360",
+      "companyPhone" : "68609697",
+      "email" : "user841@hotmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "A_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-2025902911FC",
+    "drugAllergies" : [ "Sulfa" ],
+    "nokName" : "Rohan Aand",
+    "nokAddress" : "Blk 816 Punggol Way 12, #28-601, Singapore 499382",
+    "nokRelation" : "Other",
+    "height" : 1.9057092842718106,
+    "weight" : 48.80986815490757,
+    "occupation" : "Doctor",
+    "companyName" : "Singapore Airlines",
+    "companyAddress" : "Blk 321 Ang Mo Kio Ave 9, #32-288, Singapore 488390",
+    "patientConsent" : true,
+    "humanType" : "patient"
+  },
+  "prescriptions" : {
+    "D0121" : 1,
+    "D0202" : 1
+  }
+}, {
+  "visitId" : "V17430844138773931",
+  "admissionDateTime" : [ 2025, 1, 2, 22, 6, 53, 877140800 ],
+  "dischargeDateTime" : [ 2025, 3, 27, 22, 6, 54, 20831400 ],
+  "wardStays" : [ {
+    "type" : "wardStay",
+    "ward" : {
+      "type" : "daySurgery",
+      "name" : "Hospital Ward",
+      "dailyRate" : 300.0,
+      "classType" : "DAYSURGERY_CLASS_SEATER"
+    },
+    "startDateTime" : [ 2025, 1, 2, 22, 6, 53, 877140800 ],
+    "endDateTime" : [ 2025, 1, 4, 22, 6, 53, 877140800 ]
   }, {
     "type" : "wardStay",
     "ward" : {
@@ -1088,133 +2904,115 @@
       "dailyRate" : 1000.0,
       "classType" : "LABOUR_CLASS_B1"
     },
-    "startDateTime" : [ 2025, 2, 25, 4, 44, 17, 120111200 ],
-    "endDateTime" : [ 2025, 3, 2, 4, 44, 17, 120111200 ]
+    "startDateTime" : [ 2025, 1, 2, 22, 6, 53, 877140800 ],
+    "endDateTime" : [ 2025, 1, 3, 22, 6, 53, 877140800 ]
   } ],
   "inpatientProcedures" : [ {
     "type" : "procedure",
-    "code" : "01PY47Z",
+    "code" : "02160JQ",
     "cost" : 1000.00
   }, {
     "type" : "procedure",
-    "code" : "BT0BYZZ",
-    "cost" : 1000.00
-  }, {
-    "type" : "procedure",
-    "code" : "0WP543Z",
-    "cost" : 1000.00
-  }, {
-    "type" : "procedure",
-    "code" : "0NBL4ZZ",
+    "code" : "0SG03J1",
     "cost" : 1000.00
   } ],
   "diagnosticCodes" : [ {
     "type" : "diagnostic",
-    "code" : "T23369A",
-    "cost" : 293
+    "code" : "X920XXD",
+    "cost" : 241
   }, {
     "type" : "diagnostic",
-    "code" : "S82031Q",
-    "cost" : 234
-  }, {
-    "type" : "diagnostic",
-    "code" : "V00892D",
-    "cost" : 181
-  }, {
-    "type" : "diagnostic",
-    "code" : "J4550",
-    "cost" : 384
+    "code" : "C719",
+    "cost" : 123
   } ],
   "attendingDoc" : {
     "humanType" : "doctor",
-    "name" : "Siti Nurhaliza",
-    "dateOfBirth" : [ 1987, 3, 27 ],
-    "nricFin" : "G2832926T",
-    "maritalStatus" : "MARRIED",
-    "residentialStatus" : "VISITOR",
+    "name" : "Muhammad Ibrahim",
+    "dateOfBirth" : [ 1999, 3, 27 ],
+    "nricFin" : "G6797545L",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "WORK_PASS",
     "nationality" : "Singaporean",
-    "address" : "Blk 220 Jurong East Ave 6, #33-107, Singapore 472159",
+    "address" : "Blk 156 Bedok North St 5, #16-494, Singapore 567612",
     "contact" : {
-      "personalPhone" : "90810043",
-      "homePhone" : "60879174",
-      "companyPhone" : "68798842",
-      "email" : "user153@hotmail.com"
+      "personalPhone" : "93003728",
+      "homePhone" : "63280973",
+      "companyPhone" : "65795666",
+      "email" : "user987@hotmail.com"
     },
-    "sex" : "OTHERS",
-    "bloodType" : "AB_NEGATIVE",
+    "sex" : "FEMALE",
+    "bloodType" : "B_NEGATIVE",
     "isVaccinated" : false,
-    "staffId" : "S62263E12",
+    "staffId" : "S1385A86B",
     "title" : "Doctor",
     "department" : "Medical",
-    "mcr" : "M60758A",
+    "mcr" : "M88582A",
     "humanType" : "doctor"
   },
   "attendingNurses" : [ {
     "humanType" : "nurse",
-    "name" : "Lim Mei Ling",
-    "dateOfBirth" : [ 1985, 3, 27 ],
-    "nricFin" : "S9288752I",
-    "maritalStatus" : "SINGLE",
-    "residentialStatus" : "CITIZEN",
+    "name" : "Siti Nurhaliza",
+    "dateOfBirth" : [ 1991, 3, 27 ],
+    "nricFin" : "G5010116P",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "WORK_PASS",
     "nationality" : "Singaporean",
-    "address" : "Blk 934 Ang Mo Kio Ave 2, #16-973, Singapore 515623",
+    "address" : "Blk 540 Bedok North St 2, #04-253, Singapore 566694",
     "contact" : {
-      "personalPhone" : "90576319",
-      "homePhone" : "66796034",
-      "companyPhone" : "66460929",
-      "email" : "user480@hotmail.com"
+      "personalPhone" : "93555776",
+      "homePhone" : "69598173",
+      "companyPhone" : "62371431",
+      "email" : "user182@gmail.com"
     },
-    "sex" : "OTHERS",
-    "bloodType" : "O_NEGATIVE",
-    "isVaccinated" : false,
-    "staffId" : "S345792BF",
+    "sex" : "MALE",
+    "bloodType" : "AB_POSITIVE",
+    "isVaccinated" : true,
+    "staffId" : "SFEC37AE5",
     "title" : "Nurse",
     "department" : "Nursing",
-    "rnid" : "RN94199B",
+    "rnid" : "RN88362B",
     "humanType" : "nurse"
   } ],
   "status" : "DISCHARGED",
   "patient" : {
     "humanType" : "patient",
-    "name" : "Aisha Fatimah",
-    "dateOfBirth" : [ 1967, 3, 27 ],
-    "nricFin" : "S6734535E",
-    "maritalStatus" : "SINGLE",
-    "residentialStatus" : "VISITOR",
+    "name" : "Wee Jun Kiat",
+    "dateOfBirth" : [ 1985, 3, 27 ],
+    "nricFin" : "G5911801W",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "CITIZEN",
     "nationality" : "Singaporean",
-    "address" : "Blk 254 Jurong East Ave 7, #25-629, Singapore 465347",
+    "address" : "Blk 760 Bedok North St 6, #35-48, Singapore 522279",
     "contact" : {
-      "personalPhone" : "97640620",
-      "homePhone" : "60285054",
-      "companyPhone" : "64897208",
-      "email" : "user471@hotmail.com"
+      "personalPhone" : "99748064",
+      "homePhone" : "66371121",
+      "companyPhone" : "69583905",
+      "email" : "user916@gmail.com"
     },
-    "sex" : "FEMALE",
+    "sex" : "OTHERS",
     "bloodType" : "B_POSITIVE",
-    "isVaccinated" : false,
-    "patientId" : "P-20258B383017",
-    "drugAllergies" : [ "Aspirin", "Aspirin" ],
-    "nokName" : "Wee Jun Kiat",
-    "nokAddress" : "Blk 640 Woodlands Drive 9, #38-376, Singapore 569928",
-    "nokRelation" : "Other",
-    "height" : 1.8071313862453675,
-    "weight" : 73.1015952012147,
-    "occupation" : "Teacher",
-    "companyName" : "Singtel",
-    "companyAddress" : "Blk 155 Tampines St 1, #41-529, Singapore 523434",
-    "patientConsent" : false,
+    "isVaccinated" : true,
+    "patientId" : "P-2025004BBB26",
+    "drugAllergies" : [ "Ibuprofen" ],
+    "nokName" : "Aisha Kiat",
+    "nokAddress" : "Blk 778 Yishun Ring Road 8, #04-701, Singapore 502461",
+    "nokRelation" : "Spouse",
+    "height" : 1.6347191517005901,
+    "weight" : 75.425385463371,
+    "occupation" : "Chef",
+    "companyName" : "DBS Bank",
+    "companyAddress" : "Blk 145 Punggol Way 1, #22-192, Singapore 521023",
+    "patientConsent" : true,
     "humanType" : "patient"
   },
   "prescriptions" : {
-    "D0138" : 1,
-    "D0110" : 1,
-    "D0128" : 1,
-    "D0026" : 1
+    "D0067" : 1,
+    "D0108" : 1
   }
 }, {
-  "visitId" : "V17430218574242623",
-  "admissionDateTime" : [ 2025, 1, 16, 4, 44, 17, 424287500 ],
-  "dischargeDateTime" : [ 2025, 3, 27, 4, 44, 17, 577455800 ],
+  "visitId" : "V17430844140206679",
+  "admissionDateTime" : [ 2025, 2, 15, 22, 6, 54, 20831400 ],
+  "dischargeDateTime" : [ 2025, 3, 27, 22, 6, 54, 92973000 ],
   "wardStays" : [ {
     "type" : "wardStay",
     "ward" : {
@@ -1223,331 +3021,106 @@
       "dailyRate" : 250.0,
       "classType" : "DAYSURGERY_CLASS_COHORT"
     },
-    "startDateTime" : [ 2025, 1, 16, 4, 44, 17, 424287500 ],
-    "endDateTime" : [ 2025, 1, 19, 4, 44, 17, 424287500 ]
+    "startDateTime" : [ 2025, 2, 15, 22, 6, 54, 20831400 ],
+    "endDateTime" : [ 2025, 2, 17, 22, 6, 54, 20831400 ]
   } ],
   "inpatientProcedures" : [ {
     "type" : "procedure",
-    "code" : "0XW64KZ",
-    "cost" : 1000.00
-  }, {
-    "type" : "procedure",
-    "code" : "0RWF4KZ",
+    "code" : "0QBF3ZZ",
     "cost" : 1000.00
   } ],
   "diagnosticCodes" : [ {
     "type" : "diagnostic",
-    "code" : "S82013G",
-    "cost" : 299
-  }, {
-    "type" : "diagnostic",
-    "code" : "T22119D",
-    "cost" : 401
+    "code" : "S0124XS",
+    "cost" : 452
   } ],
   "attendingDoc" : {
     "humanType" : "doctor",
-    "name" : "Siti Nurhaliza",
-    "dateOfBirth" : [ 1987, 3, 27 ],
-    "nricFin" : "G2832926T",
-    "maritalStatus" : "MARRIED",
-    "residentialStatus" : "VISITOR",
+    "name" : "Abdullah Malik",
+    "dateOfBirth" : [ 2000, 3, 27 ],
+    "nricFin" : "S7318174G",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "PERMANENT_RESIDENT",
     "nationality" : "Singaporean",
-    "address" : "Blk 220 Jurong East Ave 6, #33-107, Singapore 472159",
+    "address" : "Blk 297 Woodlands Drive 7, #09-381, Singapore 522632",
     "contact" : {
-      "personalPhone" : "90810043",
-      "homePhone" : "60879174",
-      "companyPhone" : "68798842",
-      "email" : "user153@hotmail.com"
+      "personalPhone" : "99521196",
+      "homePhone" : "67479117",
+      "companyPhone" : "67295508",
+      "email" : "user914@gmail.com"
     },
-    "sex" : "OTHERS",
-    "bloodType" : "AB_NEGATIVE",
+    "sex" : "MALE",
+    "bloodType" : "A_NEGATIVE",
     "isVaccinated" : false,
-    "staffId" : "S62263E12",
+    "staffId" : "S57A5B45E",
     "title" : "Doctor",
     "department" : "Medical",
-    "mcr" : "M60758A",
+    "mcr" : "M30130A",
     "humanType" : "doctor"
   },
   "attendingNurses" : [ {
     "humanType" : "nurse",
     "name" : "Tan Wei Ming",
-    "dateOfBirth" : [ 1975, 3, 27 ],
-    "nricFin" : "F6161547N",
-    "maritalStatus" : "MARRIED",
-    "residentialStatus" : "VISITOR",
+    "dateOfBirth" : [ 1983, 3, 27 ],
+    "nricFin" : "S3131068G",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "WORK_PASS",
     "nationality" : "Singaporean",
-    "address" : "Blk 399 Tampines St 1, #24-292, Singapore 497693",
+    "address" : "Blk 654 Woodlands Drive 3, #20-152, Singapore 502961",
     "contact" : {
-      "personalPhone" : "90345293",
-      "homePhone" : "62437613",
-      "companyPhone" : "65111604",
-      "email" : "user126@gmail.com"
+      "personalPhone" : "91892401",
+      "homePhone" : "63834082",
+      "companyPhone" : "67926056",
+      "email" : "user122@hotmail.com"
     },
-    "sex" : "MALE",
-    "bloodType" : "B_POSITIVE",
+    "sex" : "OTHERS",
+    "bloodType" : "B_NEGATIVE",
     "isVaccinated" : false,
-    "staffId" : "SD2AB3283",
+    "staffId" : "S5E3D5D3A",
     "title" : "Nurse",
     "department" : "Nursing",
-    "rnid" : "RN45586B",
+    "rnid" : "RN05973B",
     "humanType" : "nurse"
   } ],
   "status" : "DISCHARGED",
   "patient" : {
     "humanType" : "patient",
-    "name" : "Wee Jun Kiat",
-    "dateOfBirth" : [ 2001, 3, 27 ],
-    "nricFin" : "T7185995E",
-    "maritalStatus" : "MARRIED",
-    "residentialStatus" : "CITIZEN",
-    "nationality" : "Singaporean",
-    "address" : "Blk 843 Yishun Ring Road 2, #37-840, Singapore 552247",
-    "contact" : {
-      "personalPhone" : "97617762",
-      "homePhone" : "61115333",
-      "companyPhone" : "60147140",
-      "email" : "user897@gmail.com"
-    },
-    "sex" : "OTHERS",
-    "bloodType" : "A_POSITIVE",
-    "isVaccinated" : true,
-    "patientId" : "P-2025E2FD0F7B",
-    "drugAllergies" : [ "None" ],
-    "nokName" : "Aisha Kiat",
-    "nokAddress" : "Blk 964 Tampines St 2, #07-761, Singapore 549195",
-    "nokRelation" : "Parent",
-    "height" : 1.839687631852169,
-    "weight" : 51.56358769337558,
-    "occupation" : "Teacher",
-    "companyName" : "Singapore Airlines",
-    "companyAddress" : "Blk 230 Punggol Way 2, #40-249, Singapore 509566",
-    "patientConsent" : true,
-    "humanType" : "patient"
-  },
-  "prescriptions" : {
-    "D0201" : 1,
-    "D0143" : 1
-  }
-}, {
-  "visitId" : "V17430218575773550",
-  "admissionDateTime" : [ 2025, 2, 18, 4, 44, 17, 577455800 ],
-  "dischargeDateTime" : [ 2025, 3, 27, 4, 44, 17, 722479900 ],
-  "wardStays" : [ {
-    "type" : "wardStay",
-    "ward" : {
-      "type" : "labour",
-      "name" : "Hospital Ward",
-      "dailyRate" : 250.0,
-      "classType" : "LABOUR_CLASS_C"
-    },
-    "startDateTime" : [ 2025, 2, 18, 4, 44, 17, 577455800 ],
-    "endDateTime" : [ 2025, 2, 21, 4, 44, 17, 577455800 ]
-  } ],
-  "inpatientProcedures" : [ {
-    "type" : "procedure",
-    "code" : "0G9B00Z",
-    "cost" : 1000.00
-  }, {
-    "type" : "procedure",
-    "code" : "099M0ZZ",
-    "cost" : 1000.00
-  } ],
-  "diagnosticCodes" : [ {
-    "type" : "diagnostic",
-    "code" : "F5112",
-    "cost" : 174
-  }, {
-    "type" : "diagnostic",
-    "code" : "S52343K",
-    "cost" : 104
-  } ],
-  "attendingDoc" : {
-    "humanType" : "doctor",
-    "name" : "Siti Nurhaliza",
-    "dateOfBirth" : [ 1987, 3, 27 ],
-    "nricFin" : "G2832926T",
-    "maritalStatus" : "MARRIED",
+    "name" : "Ben Tan",
+    "dateOfBirth" : [ 1977, 3, 27 ],
+    "nricFin" : "T0899864C",
+    "maritalStatus" : "SINGLE",
     "residentialStatus" : "VISITOR",
     "nationality" : "Singaporean",
-    "address" : "Blk 220 Jurong East Ave 6, #33-107, Singapore 472159",
+    "address" : "Blk 200 Serangoon Road 3, #50-782, Singapore 503242",
     "contact" : {
-      "personalPhone" : "90810043",
-      "homePhone" : "60879174",
-      "companyPhone" : "68798842",
-      "email" : "user153@hotmail.com"
-    },
-    "sex" : "OTHERS",
-    "bloodType" : "AB_NEGATIVE",
-    "isVaccinated" : false,
-    "staffId" : "S62263E12",
-    "title" : "Doctor",
-    "department" : "Medical",
-    "mcr" : "M60758A",
-    "humanType" : "doctor"
-  },
-  "attendingNurses" : [ {
-    "humanType" : "nurse",
-    "name" : "Abdullah Malik",
-    "dateOfBirth" : [ 1992, 3, 27 ],
-    "nricFin" : "T7765611H",
-    "maritalStatus" : "SINGLE",
-    "residentialStatus" : "CITIZEN",
-    "nationality" : "Singaporean",
-    "address" : "Blk 222 Yishun Ring Road 4, #28-392, Singapore 471223",
-    "contact" : {
-      "personalPhone" : "99027914",
-      "homePhone" : "66696573",
-      "companyPhone" : "67583724",
-      "email" : "user147@gmail.com"
+      "personalPhone" : "90223028",
+      "homePhone" : "66728915",
+      "companyPhone" : "67977297",
+      "email" : "user654@hotmail.com"
     },
     "sex" : "FEMALE",
-    "bloodType" : "B_POSITIVE",
+    "bloodType" : "O_POSITIVE",
     "isVaccinated" : false,
-    "staffId" : "S2FF280D8",
-    "title" : "Nurse",
-    "department" : "Nursing",
-    "rnid" : "RN73874B",
-    "humanType" : "nurse"
-  } ],
-  "status" : "DISCHARGED",
-  "patient" : {
-    "humanType" : "patient",
-    "name" : "Muhammad Danial",
-    "dateOfBirth" : [ 1979, 3, 27 ],
-    "nricFin" : "T8876676D",
-    "maritalStatus" : "SINGLE",
-    "residentialStatus" : "CITIZEN",
-    "nationality" : "Singaporean",
-    "address" : "Blk 750 Jurong East Ave 6, #44-323, Singapore 523470",
-    "contact" : {
-      "personalPhone" : "92791238",
-      "homePhone" : "68094788",
-      "companyPhone" : "62766025",
-      "email" : "user989@hotmail.com"
-    },
-    "sex" : "OTHERS",
-    "bloodType" : "O_NEGATIVE",
-    "isVaccinated" : true,
-    "patientId" : "P-2025FC2AF6A7",
-    "drugAllergies" : [ ],
-    "nokName" : "Ben Danial",
-    "nokAddress" : "Blk 148 Woodlands Drive 1, #30-661, Singapore 527416",
-    "nokRelation" : "Child",
-    "height" : 1.7661779481226183,
-    "weight" : 76.26367536424291,
+    "patientId" : "P-2025675621FB",
+    "drugAllergies" : [ "Ibuprofen" ],
+    "nokName" : "Ong Tan",
+    "nokAddress" : "Blk 315 Tampines St 8, #07-441, Singapore 531890",
+    "nokRelation" : "Parent",
+    "height" : 1.8388675553954312,
+    "weight" : 61.43928284027301,
     "occupation" : "Engineer",
     "companyName" : "ComfortDelGro",
-    "companyAddress" : "Blk 750 Woodlands Drive 5, #45-723, Singapore 553823",
-    "patientConsent" : true,
-    "humanType" : "patient"
-  },
-  "prescriptions" : {
-    "D0116" : 1,
-    "D0104" : 1
-  }
-}, {
-  "visitId" : "V17430218577220247",
-  "admissionDateTime" : [ 2024, 12, 28, 4, 44, 17, 722479900 ],
-  "dischargeDateTime" : [ 2025, 3, 27, 4, 44, 17, 863522000 ],
-  "wardStays" : [ ],
-  "inpatientProcedures" : [ {
-    "type" : "procedure",
-    "code" : "02WA3QZ",
-    "cost" : 1000.00
-  } ],
-  "diagnosticCodes" : [ {
-    "type" : "diagnostic",
-    "code" : "J45990",
-    "cost" : 195
-  } ],
-  "attendingDoc" : {
-    "humanType" : "doctor",
-    "name" : "Siti Nurhaliza",
-    "dateOfBirth" : [ 1999, 3, 27 ],
-    "nricFin" : "F0250643L",
-    "maritalStatus" : "WIDOWED",
-    "residentialStatus" : "WORK_PASS",
-    "nationality" : "Singaporean",
-    "address" : "Blk 333 Ang Mo Kio Ave 3, #11-784, Singapore 557990",
-    "contact" : {
-      "personalPhone" : "90657803",
-      "homePhone" : "63225414",
-      "companyPhone" : "62697725",
-      "email" : "user510@gmail.com"
-    },
-    "sex" : "FEMALE",
-    "bloodType" : "A_NEGATIVE",
-    "isVaccinated" : true,
-    "staffId" : "S5B4C5421",
-    "title" : "Doctor",
-    "department" : "Medical",
-    "mcr" : "M38152A",
-    "humanType" : "doctor"
-  },
-  "attendingNurses" : [ {
-    "humanType" : "nurse",
-    "name" : "Siti Nurhaliza",
-    "dateOfBirth" : [ 1980, 3, 27 ],
-    "nricFin" : "G1466059W",
-    "maritalStatus" : "MARRIED",
-    "residentialStatus" : "WORK_PASS",
-    "nationality" : "Singaporean",
-    "address" : "Blk 202 Yishun Ring Road 7, #12-685, Singapore 511427",
-    "contact" : {
-      "personalPhone" : "93737858",
-      "homePhone" : "68400782",
-      "companyPhone" : "65284140",
-      "email" : "user697@hotmail.com"
-    },
-    "sex" : "OTHERS",
-    "bloodType" : "AB_NEGATIVE",
-    "isVaccinated" : true,
-    "staffId" : "S15EBB9DF",
-    "title" : "Nurse",
-    "department" : "Nursing",
-    "rnid" : "RN43206B",
-    "humanType" : "nurse"
-  } ],
-  "status" : "DISCHARGED",
-  "patient" : {
-    "humanType" : "patient",
-    "name" : "Rohan Aand",
-    "dateOfBirth" : [ 1973, 3, 27 ],
-    "nricFin" : "T0470350I",
-    "maritalStatus" : "WIDOWED",
-    "residentialStatus" : "VISITOR",
-    "nationality" : "Singaporean",
-    "address" : "Blk 954 Bedok North St 5, #23-789, Singapore 467403",
-    "contact" : {
-      "personalPhone" : "91518050",
-      "homePhone" : "66789219",
-      "companyPhone" : "62170051",
-      "email" : "user985@hotmail.com"
-    },
-    "sex" : "MALE",
-    "bloodType" : "A_POSITIVE",
-    "isVaccinated" : true,
-    "patientId" : "P-20255ACE8C54",
-    "drugAllergies" : [ "Aspirin" ],
-    "nokName" : "Divya Singh",
-    "nokAddress" : "Blk 395 Woodlands Drive 10, #30-105, Singapore 468814",
-    "nokRelation" : "Other",
-    "height" : 1.8691147876884435,
-    "weight" : 87.60362748134303,
-    "occupation" : "Artist",
-    "companyName" : "OCBC Bank",
-    "companyAddress" : "Blk 643 Serangoon Road 9, #07-200, Singapore 482231",
+    "companyAddress" : "Blk 797 Bedok North St 12, #02-786, Singapore 506034",
     "patientConsent" : false,
     "humanType" : "patient"
   },
   "prescriptions" : {
-    "D0208" : 1,
-    "D0122" : 1
+    "D0116" : 1
   }
 }, {
-  "visitId" : "V17430218578632893",
-  "admissionDateTime" : [ 2025, 2, 14, 4, 44, 17, 863522000 ],
-  "dischargeDateTime" : [ 2025, 3, 27, 4, 44, 17, 936520100 ],
+  "visitId" : "V17430844140929371",
+  "admissionDateTime" : [ 2025, 2, 22, 22, 6, 54, 92973000 ],
+  "dischargeDateTime" : [ 2025, 3, 27, 22, 6, 54, 163657800 ],
   "wardStays" : [ {
     "type" : "wardStay",
     "ward" : {
@@ -1556,1884 +3129,199 @@
       "dailyRate" : 1500.0,
       "classType" : "LABOUR_CLASS_A"
     },
-    "startDateTime" : [ 2025, 2, 14, 4, 44, 17, 863522000 ],
-    "endDateTime" : [ 2025, 2, 19, 4, 44, 17, 863522000 ]
+    "startDateTime" : [ 2025, 2, 22, 22, 6, 54, 92973000 ],
+    "endDateTime" : [ 2025, 2, 24, 22, 6, 54, 92973000 ]
   } ],
   "inpatientProcedures" : [ {
     "type" : "procedure",
-    "code" : "0KXC0ZZ",
+    "code" : "D7Y7FZZ",
     "cost" : 1000.00
   } ],
   "diagnosticCodes" : [ {
     "type" : "diagnostic",
-    "code" : "T85858D",
-    "cost" : 414
+    "code" : "S75809S",
+    "cost" : 261
   } ],
   "attendingDoc" : {
     "humanType" : "doctor",
-    "name" : "Lim Mei Ling",
-    "dateOfBirth" : [ 1973, 3, 27 ],
-    "nricFin" : "T7878600G",
+    "name" : "Abdullah Malik",
+    "dateOfBirth" : [ 2000, 3, 27 ],
+    "nricFin" : "S7318174G",
     "maritalStatus" : "DIVORCED",
-    "residentialStatus" : "VISITOR",
-    "nationality" : "Singaporean",
-    "address" : "Blk 290 Jurong East Ave 4, #44-451, Singapore 544812",
-    "contact" : {
-      "personalPhone" : "96415288",
-      "homePhone" : "63024281",
-      "companyPhone" : "62833474",
-      "email" : "user165@hotmail.com"
-    },
-    "sex" : "MALE",
-    "bloodType" : "B_NEGATIVE",
-    "isVaccinated" : true,
-    "staffId" : "SDA270CF4",
-    "title" : "Doctor",
-    "department" : "Medical",
-    "mcr" : "M72199A",
-    "humanType" : "doctor"
-  },
-  "attendingNurses" : [ {
-    "humanType" : "nurse",
-    "name" : "Kumar Ravi",
-    "dateOfBirth" : [ 1991, 3, 27 ],
-    "nricFin" : "G3705037M",
-    "maritalStatus" : "WIDOWED",
     "residentialStatus" : "PERMANENT_RESIDENT",
     "nationality" : "Singaporean",
-    "address" : "Blk 312 Ang Mo Kio Ave 1, #30-459, Singapore 549164",
+    "address" : "Blk 297 Woodlands Drive 7, #09-381, Singapore 522632",
     "contact" : {
-      "personalPhone" : "99260423",
-      "homePhone" : "61362342",
-      "companyPhone" : "65820764",
-      "email" : "user249@gmail.com"
-    },
-    "sex" : "OTHERS",
-    "bloodType" : "B_NEGATIVE",
-    "isVaccinated" : true,
-    "staffId" : "SD1C4BA53",
-    "title" : "Nurse",
-    "department" : "Nursing",
-    "rnid" : "RN72352B",
-    "humanType" : "nurse"
-  } ],
-  "status" : "DISCHARGED",
-  "patient" : {
-    "humanType" : "patient",
-    "name" : "Ong Li Ting",
-    "dateOfBirth" : [ 1981, 3, 27 ],
-    "nricFin" : "G3165018L",
-    "maritalStatus" : "DIVORCED",
-    "residentialStatus" : "WORK_PASS",
-    "nationality" : "Singaporean",
-    "address" : "Blk 731 Woodlands Drive 1, #28-250, Singapore 508930",
-    "contact" : {
-      "personalPhone" : "93645625",
-      "homePhone" : "69725325",
-      "companyPhone" : "61230682",
-      "email" : "user808@hotmail.com"
-    },
-    "sex" : "FEMALE",
-    "bloodType" : "AB_POSITIVE",
-    "isVaccinated" : false,
-    "patientId" : "P-202585004EAF",
-    "drugAllergies" : [ ],
-    "nokName" : "Lim Boon Teck",
-    "nokAddress" : "Blk 865 Woodlands Drive 10, #43-371, Singapore 463912",
-    "nokRelation" : "Legal Guardian",
-    "height" : 1.8261664236552502,
-    "weight" : 77.17498806446825,
-    "occupation" : "Programmer",
-    "companyName" : "Singtel",
-    "companyAddress" : "Blk 222 Ang Mo Kio Ave 6, #04-895, Singapore 538160",
-    "patientConsent" : true,
-    "humanType" : "patient"
-  },
-  "prescriptions" : {
-    "D0129" : 1
-  }
-}, {
-  "visitId" : "V17430218579362488",
-  "admissionDateTime" : [ 2025, 2, 11, 4, 44, 17, 936520100 ],
-  "dischargeDateTime" : [ 2025, 3, 27, 4, 44, 18, 71989900 ],
-  "wardStays" : [ ],
-  "inpatientProcedures" : [ {
-    "type" : "procedure",
-    "code" : "B51G0ZA",
-    "cost" : 1000.00
-  } ],
-  "diagnosticCodes" : [ {
-    "type" : "diagnostic",
-    "code" : "S63279A",
-    "cost" : 141
-  } ],
-  "attendingDoc" : {
-    "humanType" : "doctor",
-    "name" : "Lee Hui Ling",
-    "dateOfBirth" : [ 1974, 3, 27 ],
-    "nricFin" : "S3879200H",
-    "maritalStatus" : "MARRIED",
-    "residentialStatus" : "VISITOR",
-    "nationality" : "Singaporean",
-    "address" : "Blk 950 Woodlands Drive 7, #15-964, Singapore 498487",
-    "contact" : {
-      "personalPhone" : "94843049",
-      "homePhone" : "61804587",
-      "companyPhone" : "60944518",
-      "email" : "user854@hotmail.com"
-    },
-    "sex" : "MALE",
-    "bloodType" : "AB_POSITIVE",
-    "isVaccinated" : false,
-    "staffId" : "S38A1BFEC",
-    "title" : "Doctor",
-    "department" : "Medical",
-    "mcr" : "M01216A",
-    "humanType" : "doctor"
-  },
-  "attendingNurses" : [ {
-    "humanType" : "nurse",
-    "name" : "Lee Hui Ling",
-    "dateOfBirth" : [ 1994, 3, 27 ],
-    "nricFin" : "G4348378T",
-    "maritalStatus" : "DIVORCED",
-    "residentialStatus" : "CITIZEN",
-    "nationality" : "Singaporean",
-    "address" : "Blk 973 Yishun Ring Road 8, #22-43, Singapore 512884",
-    "contact" : {
-      "personalPhone" : "98607093",
-      "homePhone" : "64713233",
-      "companyPhone" : "68198526",
-      "email" : "user644@gmail.com"
-    },
-    "sex" : "FEMALE",
-    "bloodType" : "B_NEGATIVE",
-    "isVaccinated" : false,
-    "staffId" : "SB0B79509",
-    "title" : "Nurse",
-    "department" : "Nursing",
-    "rnid" : "RN91122B",
-    "humanType" : "nurse"
-  } ],
-  "status" : "DISCHARGED",
-  "patient" : {
-    "humanType" : "patient",
-    "name" : "Lim Boon Teck",
-    "dateOfBirth" : [ 1996, 3, 27 ],
-    "nricFin" : "S5593379J",
-    "maritalStatus" : "MARRIED",
-    "residentialStatus" : "PERMANENT_RESIDENT",
-    "nationality" : "Singaporean",
-    "address" : "Blk 801 Bedok North St 1, #19-315, Singapore 472382",
-    "contact" : {
-      "personalPhone" : "98723930",
-      "homePhone" : "66275389",
-      "companyPhone" : "69707300",
-      "email" : "user663@hotmail.com"
-    },
-    "sex" : "FEMALE",
-    "bloodType" : "B_NEGATIVE",
-    "isVaccinated" : false,
-    "patientId" : "P-2025806F7DB0",
-    "drugAllergies" : [ "Sulfa" ],
-    "nokName" : "Ong Teck",
-    "nokAddress" : "Blk 412 Woodlands Drive 8, #19-459, Singapore 500605",
-    "nokRelation" : "Spouse",
-    "height" : 1.8458322834886807,
-    "weight" : 85.26048741372367,
-    "occupation" : "Artist",
-    "companyName" : "ST Engineering",
-    "companyAddress" : "Blk 559 Tampines St 1, #26-776, Singapore 540295",
-    "patientConsent" : false,
-    "humanType" : "patient"
-  },
-  "prescriptions" : {
-    "D0201" : 1,
-    "D0251" : 1
-  }
-}, {
-  "visitId" : "V17430218580711547",
-  "admissionDateTime" : [ 2025, 1, 11, 4, 44, 18, 71989900 ],
-  "dischargeDateTime" : [ 2025, 3, 27, 4, 44, 18, 143212500 ],
-  "wardStays" : [ {
-    "type" : "wardStay",
-    "ward" : {
-      "type" : "icu",
-      "name" : "Hospital Ward",
-      "dailyRate" : 2000.0,
-      "classType" : "ICU"
-    },
-    "startDateTime" : [ 2025, 1, 11, 4, 44, 18, 71989900 ],
-    "endDateTime" : [ 2025, 1, 15, 4, 44, 18, 71989900 ]
-  } ],
-  "inpatientProcedures" : [ {
-    "type" : "procedure",
-    "code" : "0PR70JZ",
-    "cost" : 1000.00
-  } ],
-  "diagnosticCodes" : [ {
-    "type" : "diagnostic",
-    "code" : "J4541",
-    "cost" : 411
-  } ],
-  "attendingDoc" : {
-    "humanType" : "doctor",
-    "name" : "Lim Mei Ling",
-    "dateOfBirth" : [ 1975, 3, 27 ],
-    "nricFin" : "F5758344N",
-    "maritalStatus" : "WIDOWED",
-    "residentialStatus" : "WORK_PASS",
-    "nationality" : "Singaporean",
-    "address" : "Blk 400 Tampines St 11, #22-533, Singapore 466674",
-    "contact" : {
-      "personalPhone" : "92117975",
-      "homePhone" : "63993988",
-      "companyPhone" : "61679337",
-      "email" : "user752@gmail.com"
+      "personalPhone" : "99521196",
+      "homePhone" : "67479117",
+      "companyPhone" : "67295508",
+      "email" : "user914@gmail.com"
     },
     "sex" : "MALE",
     "bloodType" : "A_NEGATIVE",
-    "isVaccinated" : true,
-    "staffId" : "SEA278780",
+    "isVaccinated" : false,
+    "staffId" : "S57A5B45E",
     "title" : "Doctor",
     "department" : "Medical",
-    "mcr" : "M16883A",
+    "mcr" : "M30130A",
     "humanType" : "doctor"
   },
   "attendingNurses" : [ {
     "humanType" : "nurse",
-    "name" : "Lee Hui Ling",
-    "dateOfBirth" : [ 1979, 3, 27 ],
-    "nricFin" : "G0298398U",
+    "name" : "Tan Wei Ming",
+    "dateOfBirth" : [ 1982, 3, 27 ],
+    "nricFin" : "S9875452J",
     "maritalStatus" : "MARRIED",
-    "residentialStatus" : "PERMANENT_RESIDENT",
-    "nationality" : "Singaporean",
-    "address" : "Blk 889 Ang Mo Kio Ave 1, #27-99, Singapore 486137",
-    "contact" : {
-      "personalPhone" : "91593038",
-      "homePhone" : "63267834",
-      "companyPhone" : "65074693",
-      "email" : "user805@gmail.com"
-    },
-    "sex" : "FEMALE",
-    "bloodType" : "O_POSITIVE",
-    "isVaccinated" : false,
-    "staffId" : "S0A7A909C",
-    "title" : "Nurse",
-    "department" : "Nursing",
-    "rnid" : "RN34696B",
-    "humanType" : "nurse"
-  } ],
-  "status" : "DISCHARGED",
-  "patient" : {
-    "humanType" : "patient",
-    "name" : "Ben Tan",
-    "dateOfBirth" : [ 2004, 3, 27 ],
-    "nricFin" : "S9394576Z",
-    "maritalStatus" : "MARRIED",
-    "residentialStatus" : "VISITOR",
-    "nationality" : "Singaporean",
-    "address" : "Blk 312 Tampines St 7, #08-166, Singapore 513952",
-    "contact" : {
-      "personalPhone" : "94419721",
-      "homePhone" : "63198960",
-      "companyPhone" : "68215345",
-      "email" : "user288@hotmail.com"
-    },
-    "sex" : "MALE",
-    "bloodType" : "AB_POSITIVE",
-    "isVaccinated" : true,
-    "patientId" : "P-20256CE48516",
-    "drugAllergies" : [ ],
-    "nokName" : "Lim Tan",
-    "nokAddress" : "Blk 404 Yishun Ring Road 11, #49-656, Singapore 536039",
-    "nokRelation" : "Sibling",
-    "height" : 1.5344495492673338,
-    "weight" : 76.43682038487003,
-    "occupation" : "Doctor",
-    "companyName" : "CapitaLand",
-    "companyAddress" : "Blk 187 Woodlands Drive 12, #20-178, Singapore 517383",
-    "patientConsent" : false,
-    "humanType" : "patient"
-  },
-  "prescriptions" : {
-    "D0116" : 1
-  }
-}, {
-  "visitId" : "V17430218581435685",
-  "admissionDateTime" : [ 2025, 1, 10, 4, 44, 18, 143212500 ],
-  "dischargeDateTime" : [ 2025, 3, 27, 4, 44, 18, 213168100 ],
-  "wardStays" : [ {
-    "type" : "wardStay",
-    "ward" : {
-      "type" : "labour",
-      "name" : "Hospital Ward",
-      "dailyRate" : 500.0,
-      "classType" : "LABOUR_CLASS_B2"
-    },
-    "startDateTime" : [ 2025, 1, 10, 4, 44, 18, 143212500 ],
-    "endDateTime" : [ 2025, 1, 16, 4, 44, 18, 143212500 ]
-  } ],
-  "inpatientProcedures" : [ {
-    "type" : "procedure",
-    "code" : "DM11BYZ",
-    "cost" : 1000.00
-  } ],
-  "diagnosticCodes" : [ {
-    "type" : "diagnostic",
-    "code" : "S67196D",
-    "cost" : 274
-  } ],
-  "attendingDoc" : {
-    "humanType" : "doctor",
-    "name" : "Zhang Wei",
-    "dateOfBirth" : [ 1973, 3, 27 ],
-    "nricFin" : "G8564966W",
-    "maritalStatus" : "MARRIED",
-    "residentialStatus" : "WORK_PASS",
-    "nationality" : "Singaporean",
-    "address" : "Blk 656 Yishun Ring Road 7, #28-905, Singapore 464095",
-    "contact" : {
-      "personalPhone" : "97606959",
-      "homePhone" : "64773556",
-      "companyPhone" : "62868531",
-      "email" : "user281@gmail.com"
-    },
-    "sex" : "MALE",
-    "bloodType" : "AB_NEGATIVE",
-    "isVaccinated" : true,
-    "staffId" : "SD8A8D5F4",
-    "title" : "Doctor",
-    "department" : "Medical",
-    "mcr" : "M85390A",
-    "humanType" : "doctor"
-  },
-  "attendingNurses" : [ {
-    "humanType" : "nurse",
-    "name" : "Lim Mei Ling",
-    "dateOfBirth" : [ 1973, 3, 27 ],
-    "nricFin" : "T0605926G",
-    "maritalStatus" : "SINGLE",
-    "residentialStatus" : "VISITOR",
-    "nationality" : "Singaporean",
-    "address" : "Blk 204 Tampines St 3, #41-882, Singapore 531646",
-    "contact" : {
-      "personalPhone" : "91155599",
-      "homePhone" : "64131701",
-      "companyPhone" : "61037369",
-      "email" : "user839@gmail.com"
-    },
-    "sex" : "OTHERS",
-    "bloodType" : "AB_POSITIVE",
-    "isVaccinated" : false,
-    "staffId" : "S28D72298",
-    "title" : "Nurse",
-    "department" : "Nursing",
-    "rnid" : "RN59465B",
-    "humanType" : "nurse"
-  } ],
-  "status" : "DISCHARGED",
-  "patient" : {
-    "humanType" : "patient",
-    "name" : "Aisha Fatimah",
-    "dateOfBirth" : [ 2003, 3, 27 ],
-    "nricFin" : "F8127373K",
-    "maritalStatus" : "SINGLE",
     "residentialStatus" : "CITIZEN",
     "nationality" : "Singaporean",
-    "address" : "Blk 256 Serangoon Road 3, #03-18, Singapore 465013",
+    "address" : "Blk 751 Bedok North St 5, #19-910, Singapore 487132",
     "contact" : {
-      "personalPhone" : "92133881",
-      "homePhone" : "63584574",
-      "companyPhone" : "67758080",
-      "email" : "user436@gmail.com"
+      "personalPhone" : "90825548",
+      "homePhone" : "63762898",
+      "companyPhone" : "65217164",
+      "email" : "user803@hotmail.com"
     },
     "sex" : "FEMALE",
-    "bloodType" : "A_POSITIVE",
-    "isVaccinated" : true,
-    "patientId" : "P-202562E26A8B",
-    "drugAllergies" : [ "None" ],
-    "nokName" : "Aisha Fatimah",
-    "nokAddress" : "Blk 590 Ang Mo Kio Ave 6, #17-556, Singapore 511401",
-    "nokRelation" : "Child",
-    "height" : 1.6624590282851799,
-    "weight" : 87.55160120662458,
-    "occupation" : "Chef",
-    "companyName" : "DBS Bank",
-    "companyAddress" : "Blk 839 Serangoon Road 1, #01-329, Singapore 509860",
-    "patientConsent" : false,
-    "humanType" : "patient"
-  },
-  "prescriptions" : {
-    "D0116" : 1
-  }
-}, {
-  "visitId" : "V17430218582131955",
-  "admissionDateTime" : [ 2025, 1, 26, 4, 44, 18, 213168100 ],
-  "dischargeDateTime" : [ 2025, 3, 27, 4, 44, 18, 282145700 ],
-  "wardStays" : [ {
-    "type" : "wardStay",
-    "ward" : {
-      "type" : "icu",
-      "name" : "Hospital Ward",
-      "dailyRate" : 2000.0,
-      "classType" : "ICU"
-    },
-    "startDateTime" : [ 2025, 1, 26, 4, 44, 18, 213168100 ],
-    "endDateTime" : [ 2025, 1, 29, 4, 44, 18, 213168100 ]
-  } ],
-  "inpatientProcedures" : [ {
-    "type" : "procedure",
-    "code" : "XW033R9",
-    "cost" : 1000.00
-  } ],
-  "diagnosticCodes" : [ {
-    "type" : "diagnostic",
-    "code" : "M02222",
-    "cost" : 412
-  } ],
-  "attendingDoc" : {
-    "humanType" : "doctor",
-    "name" : "Zhang Wei",
-    "dateOfBirth" : [ 1994, 3, 27 ],
-    "nricFin" : "T0035228J",
-    "maritalStatus" : "DIVORCED",
-    "residentialStatus" : "VISITOR",
-    "nationality" : "Singaporean",
-    "address" : "Blk 759 Yishun Ring Road 11, #50-293, Singapore 483735",
-    "contact" : {
-      "personalPhone" : "93836207",
-      "homePhone" : "66044919",
-      "companyPhone" : "66049916",
-      "email" : "user801@gmail.com"
-    },
-    "sex" : "OTHERS",
     "bloodType" : "AB_POSITIVE",
     "isVaccinated" : true,
-    "staffId" : "S7BA1878D",
-    "title" : "Doctor",
-    "department" : "Medical",
-    "mcr" : "M94964A",
-    "humanType" : "doctor"
-  },
-  "attendingNurses" : [ {
-    "humanType" : "nurse",
-    "name" : "Lim Mei Ling",
-    "dateOfBirth" : [ 1985, 3, 27 ],
-    "nricFin" : "S9288752I",
-    "maritalStatus" : "SINGLE",
-    "residentialStatus" : "CITIZEN",
-    "nationality" : "Singaporean",
-    "address" : "Blk 934 Ang Mo Kio Ave 2, #16-973, Singapore 515623",
-    "contact" : {
-      "personalPhone" : "90576319",
-      "homePhone" : "66796034",
-      "companyPhone" : "66460929",
-      "email" : "user480@hotmail.com"
-    },
-    "sex" : "OTHERS",
-    "bloodType" : "O_NEGATIVE",
-    "isVaccinated" : false,
-    "staffId" : "S345792BF",
+    "staffId" : "SABC95694",
     "title" : "Nurse",
     "department" : "Nursing",
-    "rnid" : "RN94199B",
-    "humanType" : "nurse"
-  } ],
-  "status" : "DISCHARGED",
-  "patient" : {
-    "humanType" : "patient",
-    "name" : "Ben Tan",
-    "dateOfBirth" : [ 1999, 3, 27 ],
-    "nricFin" : "F4968842M",
-    "maritalStatus" : "DIVORCED",
-    "residentialStatus" : "VISITOR",
-    "nationality" : "Singaporean",
-    "address" : "Blk 899 Bedok North St 7, #04-995, Singapore 547126",
-    "contact" : {
-      "personalPhone" : "91581774",
-      "homePhone" : "66043070",
-      "companyPhone" : "68207445",
-      "email" : "user963@gmail.com"
-    },
-    "sex" : "FEMALE",
-    "bloodType" : "O_POSITIVE",
-    "isVaccinated" : true,
-    "patientId" : "P-20255041E10C",
-    "drugAllergies" : [ ],
-    "nokName" : "Lim Boon Teck",
-    "nokAddress" : "Blk 925 Punggol Way 1, #02-849, Singapore 467268",
-    "nokRelation" : "Grandparent",
-    "height" : 1.8605605550667932,
-    "weight" : 87.55548343613114,
-    "occupation" : "Doctor",
-    "companyName" : "ST Engineering",
-    "companyAddress" : "Blk 459 Bedok North St 12, #33-499, Singapore 563780",
-    "patientConsent" : false,
-    "humanType" : "patient"
-  },
-  "prescriptions" : {
-    "D0026" : 1
-  }
-}, {
-  "visitId" : "V17430218582826295",
-  "admissionDateTime" : [ 2025, 1, 26, 4, 44, 18, 282145700 ],
-  "dischargeDateTime" : [ 2025, 3, 27, 4, 44, 18, 423513900 ],
-  "wardStays" : [ {
-    "type" : "wardStay",
-    "ward" : {
-      "type" : "general",
-      "name" : "Hospital Ward",
-      "dailyRate" : 500.0,
-      "classType" : "GENERAL_CLASS_A"
-    },
-    "startDateTime" : [ 2025, 1, 26, 4, 44, 18, 282145700 ],
-    "endDateTime" : [ 2025, 1, 27, 4, 44, 18, 282145700 ]
-  } ],
-  "inpatientProcedures" : [ {
-    "type" : "procedure",
-    "code" : "B52K10Z",
-    "cost" : 1000.00
-  }, {
-    "type" : "procedure",
-    "code" : "D7Y0FZZ",
-    "cost" : 1000.00
-  } ],
-  "diagnosticCodes" : [ {
-    "type" : "diagnostic",
-    "code" : "S72331R",
-    "cost" : 362
-  }, {
-    "type" : "diagnostic",
-    "code" : "O3091",
-    "cost" : 461
-  } ],
-  "attendingDoc" : {
-    "humanType" : "doctor",
-    "name" : "Lee Hui Ling",
-    "dateOfBirth" : [ 1978, 3, 27 ],
-    "nricFin" : "S0763867A",
-    "maritalStatus" : "MARRIED",
-    "residentialStatus" : "DEPENDENT_PASS",
-    "nationality" : "Singaporean",
-    "address" : "Blk 914 Serangoon Road 9, #18-47, Singapore 542410",
-    "contact" : {
-      "personalPhone" : "90737167",
-      "homePhone" : "63481324",
-      "companyPhone" : "65279239",
-      "email" : "user711@gmail.com"
-    },
-    "sex" : "MALE",
-    "bloodType" : "B_NEGATIVE",
-    "isVaccinated" : true,
-    "staffId" : "S913AF334",
-    "title" : "Doctor",
-    "department" : "Medical",
-    "mcr" : "M01733A",
-    "humanType" : "doctor"
-  },
-  "attendingNurses" : [ {
-    "humanType" : "nurse",
-    "name" : "Zhang Wei",
-    "dateOfBirth" : [ 1978, 3, 27 ],
-    "nricFin" : "G7565109R",
-    "maritalStatus" : "MARRIED",
-    "residentialStatus" : "VISITOR",
-    "nationality" : "Singaporean",
-    "address" : "Blk 935 Serangoon Road 11, #18-397, Singapore 512604",
-    "contact" : {
-      "personalPhone" : "95141163",
-      "homePhone" : "68431950",
-      "companyPhone" : "61985208",
-      "email" : "user183@hotmail.com"
-    },
-    "sex" : "OTHERS",
-    "bloodType" : "B_POSITIVE",
-    "isVaccinated" : false,
-    "staffId" : "S568FD75C",
-    "title" : "Nurse",
-    "department" : "Nursing",
-    "rnid" : "RN30641B",
+    "rnid" : "RN38053B",
     "humanType" : "nurse"
   } ],
   "status" : "DISCHARGED",
   "patient" : {
     "humanType" : "patient",
     "name" : "Wee Jun Kiat",
-    "dateOfBirth" : [ 2003, 3, 27 ],
-    "nricFin" : "F5501442Q",
-    "maritalStatus" : "SINGLE",
-    "residentialStatus" : "PERMANENT_RESIDENT",
-    "nationality" : "Singaporean",
-    "address" : "Blk 502 Tampines St 9, #44-481, Singapore 467007",
-    "contact" : {
-      "personalPhone" : "94290279",
-      "homePhone" : "62699902",
-      "companyPhone" : "68868436",
-      "email" : "user179@gmail.com"
-    },
-    "sex" : "FEMALE",
-    "bloodType" : "B_NEGATIVE",
-    "isVaccinated" : true,
-    "patientId" : "P-202554A0869F",
-    "drugAllergies" : [ ],
-    "nokName" : "Lim Boon Teck",
-    "nokAddress" : "Blk 581 Ang Mo Kio Ave 7, #38-446, Singapore 553758",
-    "nokRelation" : "Other",
-    "height" : 1.8074426834170096,
-    "weight" : 78.52001716372479,
-    "occupation" : "Engineer",
-    "companyName" : "OCBC Bank",
-    "companyAddress" : "Blk 608 Serangoon Road 12, #37-750, Singapore 486543",
-    "patientConsent" : false,
-    "humanType" : "patient"
-  },
-  "prescriptions" : {
-    "D0147" : 1,
-    "D0096" : 1
-  }
-}, {
-  "visitId" : "V17430218584239949",
-  "admissionDateTime" : [ 2024, 12, 29, 4, 44, 18, 423513900 ],
-  "dischargeDateTime" : [ 2025, 3, 27, 4, 44, 18, 557632700 ],
-  "wardStays" : [ ],
-  "inpatientProcedures" : [ {
-    "type" : "procedure",
-    "code" : "B3070ZZ",
-    "cost" : 1000.00
-  } ],
-  "diagnosticCodes" : [ {
-    "type" : "diagnostic",
-    "code" : "S82265R",
-    "cost" : 112
-  } ],
-  "attendingDoc" : {
-    "humanType" : "doctor",
-    "name" : "Zhang Wei",
-    "dateOfBirth" : [ 1994, 3, 27 ],
-    "nricFin" : "T0035228J",
-    "maritalStatus" : "DIVORCED",
-    "residentialStatus" : "VISITOR",
-    "nationality" : "Singaporean",
-    "address" : "Blk 759 Yishun Ring Road 11, #50-293, Singapore 483735",
-    "contact" : {
-      "personalPhone" : "93836207",
-      "homePhone" : "66044919",
-      "companyPhone" : "66049916",
-      "email" : "user801@gmail.com"
-    },
-    "sex" : "OTHERS",
-    "bloodType" : "AB_POSITIVE",
-    "isVaccinated" : true,
-    "staffId" : "S7BA1878D",
-    "title" : "Doctor",
-    "department" : "Medical",
-    "mcr" : "M94964A",
-    "humanType" : "doctor"
-  },
-  "attendingNurses" : [ {
-    "humanType" : "nurse",
-    "name" : "Lee Hui Ling",
-    "dateOfBirth" : [ 1994, 3, 27 ],
-    "nricFin" : "G4348378T",
+    "dateOfBirth" : [ 1979, 3, 27 ],
+    "nricFin" : "T2710923Z",
     "maritalStatus" : "DIVORCED",
     "residentialStatus" : "CITIZEN",
     "nationality" : "Singaporean",
-    "address" : "Blk 973 Yishun Ring Road 8, #22-43, Singapore 512884",
+    "address" : "Blk 854 Tampines St 2, #30-85, Singapore 503489",
     "contact" : {
-      "personalPhone" : "98607093",
-      "homePhone" : "64713233",
-      "companyPhone" : "68198526",
-      "email" : "user644@gmail.com"
+      "personalPhone" : "96137689",
+      "homePhone" : "61740427",
+      "companyPhone" : "60278644",
+      "email" : "user811@gmail.com"
     },
     "sex" : "FEMALE",
-    "bloodType" : "B_NEGATIVE",
-    "isVaccinated" : false,
-    "staffId" : "SB0B79509",
-    "title" : "Nurse",
-    "department" : "Nursing",
-    "rnid" : "RN91122B",
-    "humanType" : "nurse"
-  } ],
-  "status" : "DISCHARGED",
-  "patient" : {
-    "humanType" : "patient",
-    "name" : "Rohan Aand",
-    "dateOfBirth" : [ 1969, 3, 27 ],
-    "nricFin" : "S6612015E",
-    "maritalStatus" : "DIVORCED",
-    "residentialStatus" : "WORK_PASS",
-    "nationality" : "Singaporean",
-    "address" : "Blk 291 Yishun Ring Road 4, #48-854, Singapore 510421",
-    "contact" : {
-      "personalPhone" : "90524998",
-      "homePhone" : "61641290",
-      "companyPhone" : "64876856",
-      "email" : "user624@gmail.com"
-    },
-    "sex" : "OTHERS",
-    "bloodType" : "O_POSITIVE",
-    "isVaccinated" : false,
-    "patientId" : "P-20257C01CF35",
-    "drugAllergies" : [ "Ibuprofen" ],
-    "nokName" : "Divya Singh",
-    "nokAddress" : "Blk 976 Punggol Way 2, #24-102, Singapore 488227",
-    "nokRelation" : "Other",
-    "height" : 1.7441942805585589,
-    "weight" : 86.31642849598487,
-    "occupation" : "Engineer",
-    "companyName" : "ST Engineering",
-    "companyAddress" : "Blk 399 Woodlands Drive 7, #13-54, Singapore 461957",
-    "patientConsent" : false,
+    "bloodType" : "A_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-2025BA65E1A1",
+    "drugAllergies" : [ ],
+    "nokName" : "Rohan Kiat",
+    "nokAddress" : "Blk 412 Serangoon Road 12, #43-958, Singapore 533701",
+    "nokRelation" : "Grandchild",
+    "height" : 1.9080338725560806,
+    "weight" : 82.27968745325066,
+    "occupation" : "Teacher",
+    "companyName" : "OCBC Bank",
+    "companyAddress" : "Blk 172 Woodlands Drive 2, #26-189, Singapore 501486",
+    "patientConsent" : true,
     "humanType" : "patient"
   },
   "prescriptions" : {
-    "D0114" : 1,
-    "D0205" : 1
+    "D0127" : 1
   }
 }, {
-  "visitId" : "V17430218585571709",
-  "admissionDateTime" : [ 2025, 1, 6, 4, 44, 18, 557632700 ],
-  "dischargeDateTime" : [ 2025, 3, 27, 4, 44, 18, 698910300 ],
+  "visitId" : "V17430844141636616",
+  "admissionDateTime" : [ 2025, 1, 27, 22, 6, 54, 163657800 ],
+  "dischargeDateTime" : [ 2025, 3, 27, 22, 6, 54, 308281700 ],
   "wardStays" : [ ],
   "inpatientProcedures" : [ {
     "type" : "procedure",
-    "code" : "0M893ZZ",
+    "code" : "D9085ZZ",
     "cost" : 1000.00
   } ],
   "diagnosticCodes" : [ {
     "type" : "diagnostic",
-    "code" : "S32112A",
+    "code" : "W182XXS",
     "cost" : 276
   } ],
   "attendingDoc" : {
     "humanType" : "doctor",
-    "name" : "Tan Wei Ming",
-    "dateOfBirth" : [ 1974, 3, 27 ],
-    "nricFin" : "F5044286K",
-    "maritalStatus" : "WIDOWED",
-    "residentialStatus" : "PERMANENT_RESIDENT",
+    "name" : "Zhang Wei",
+    "dateOfBirth" : [ 1975, 3, 27 ],
+    "nricFin" : "T8288960J",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "DEPENDENT_PASS",
     "nationality" : "Singaporean",
-    "address" : "Blk 427 Punggol Way 1, #22-890, Singapore 484675",
+    "address" : "Blk 383 Bedok North St 3, #06-411, Singapore 551061",
     "contact" : {
-      "personalPhone" : "99315586",
-      "homePhone" : "62752097",
-      "companyPhone" : "63068407",
-      "email" : "user120@gmail.com"
+      "personalPhone" : "92396069",
+      "homePhone" : "63222258",
+      "companyPhone" : "69547947",
+      "email" : "user965@hotmail.com"
     },
-    "sex" : "MALE",
-    "bloodType" : "AB_NEGATIVE",
+    "sex" : "OTHERS",
+    "bloodType" : "B_POSITIVE",
     "isVaccinated" : false,
-    "staffId" : "S6B72FB65",
+    "staffId" : "SA92C8D63",
     "title" : "Doctor",
     "department" : "Medical",
-    "mcr" : "M69553A",
+    "mcr" : "M25970A",
     "humanType" : "doctor"
   },
   "attendingNurses" : [ {
     "humanType" : "nurse",
     "name" : "Tan Wei Ming",
-    "dateOfBirth" : [ 1972, 3, 27 ],
-    "nricFin" : "G6116314Q",
-    "maritalStatus" : "SINGLE",
-    "residentialStatus" : "CITIZEN",
+    "dateOfBirth" : [ 1985, 3, 27 ],
+    "nricFin" : "F4446369P",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "DEPENDENT_PASS",
     "nationality" : "Singaporean",
-    "address" : "Blk 380 Punggol Way 11, #14-864, Singapore 522903",
+    "address" : "Blk 620 Bedok North St 4, #23-122, Singapore 550292",
     "contact" : {
-      "personalPhone" : "92442436",
-      "homePhone" : "65880451",
-      "companyPhone" : "64868533",
-      "email" : "user158@gmail.com"
-    },
-    "sex" : "OTHERS",
-    "bloodType" : "AB_NEGATIVE",
-    "isVaccinated" : true,
-    "staffId" : "S9959828C",
-    "title" : "Nurse",
-    "department" : "Nursing",
-    "rnid" : "RN42225B",
-    "humanType" : "nurse"
-  } ],
-  "status" : "DISCHARGED",
-  "patient" : {
-    "humanType" : "patient",
-    "name" : "Rohan Aand",
-    "dateOfBirth" : [ 1980, 3, 27 ],
-    "nricFin" : "T5211071D",
-    "maritalStatus" : "MARRIED",
-    "residentialStatus" : "VISITOR",
-    "nationality" : "Singaporean",
-    "address" : "Blk 355 Tampines St 5, #19-574, Singapore 479341",
-    "contact" : {
-      "personalPhone" : "97812018",
-      "homePhone" : "68731177",
-      "companyPhone" : "60071308",
-      "email" : "user350@hotmail.com"
+      "personalPhone" : "91802488",
+      "homePhone" : "68333877",
+      "companyPhone" : "69848805",
+      "email" : "user454@hotmail.com"
     },
     "sex" : "OTHERS",
     "bloodType" : "AB_POSITIVE",
-    "isVaccinated" : false,
-    "patientId" : "P-2025420EB5BA",
-    "drugAllergies" : [ ],
-    "nokName" : "Rohan Aand",
-    "nokAddress" : "Blk 956 Serangoon Road 2, #15-301, Singapore 512963",
-    "nokRelation" : "Spouse",
-    "height" : 1.9774100834810941,
-    "weight" : 64.9169857119712,
-    "occupation" : "Chef",
-    "companyName" : "ComfortDelGro",
-    "companyAddress" : "Blk 101 Tampines St 4, #31-674, Singapore 542309",
-    "patientConsent" : true,
-    "humanType" : "patient"
-  },
-  "prescriptions" : {
-    "D0260" : 1,
-    "D0126" : 1
-  }
-}, {
-  "visitId" : "V17430218586984208",
-  "admissionDateTime" : [ 2025, 2, 24, 4, 44, 18, 698910300 ],
-  "dischargeDateTime" : [ 2025, 3, 27, 4, 44, 18, 770119500 ],
-  "wardStays" : [ ],
-  "inpatientProcedures" : [ {
-    "type" : "procedure",
-    "code" : "05784D1",
-    "cost" : 1000.00
-  } ],
-  "diagnosticCodes" : [ {
-    "type" : "diagnostic",
-    "code" : "V609XXS",
-    "cost" : 224
-  } ],
-  "attendingDoc" : {
-    "humanType" : "doctor",
-    "name" : "Tan Wei Ming",
-    "dateOfBirth" : [ 1974, 3, 27 ],
-    "nricFin" : "F5044286K",
-    "maritalStatus" : "WIDOWED",
-    "residentialStatus" : "PERMANENT_RESIDENT",
-    "nationality" : "Singaporean",
-    "address" : "Blk 427 Punggol Way 1, #22-890, Singapore 484675",
-    "contact" : {
-      "personalPhone" : "99315586",
-      "homePhone" : "62752097",
-      "companyPhone" : "63068407",
-      "email" : "user120@gmail.com"
-    },
-    "sex" : "MALE",
-    "bloodType" : "AB_NEGATIVE",
-    "isVaccinated" : false,
-    "staffId" : "S6B72FB65",
-    "title" : "Doctor",
-    "department" : "Medical",
-    "mcr" : "M69553A",
-    "humanType" : "doctor"
-  },
-  "attendingNurses" : [ {
-    "humanType" : "nurse",
-    "name" : "Siti Nurhaliza",
-    "dateOfBirth" : [ 1980, 3, 27 ],
-    "nricFin" : "G1466059W",
-    "maritalStatus" : "MARRIED",
-    "residentialStatus" : "WORK_PASS",
-    "nationality" : "Singaporean",
-    "address" : "Blk 202 Yishun Ring Road 7, #12-685, Singapore 511427",
-    "contact" : {
-      "personalPhone" : "93737858",
-      "homePhone" : "68400782",
-      "companyPhone" : "65284140",
-      "email" : "user697@hotmail.com"
-    },
-    "sex" : "OTHERS",
-    "bloodType" : "AB_NEGATIVE",
     "isVaccinated" : true,
-    "staffId" : "S15EBB9DF",
+    "staffId" : "S58A45076",
     "title" : "Nurse",
     "department" : "Nursing",
-    "rnid" : "RN43206B",
+    "rnid" : "RN85249B",
     "humanType" : "nurse"
   } ],
   "status" : "DISCHARGED",
   "patient" : {
     "humanType" : "patient",
     "name" : "Divya Singh",
-    "dateOfBirth" : [ 1980, 3, 27 ],
-    "nricFin" : "F6497539X",
-    "maritalStatus" : "DIVORCED",
-    "residentialStatus" : "WORK_PASS",
+    "dateOfBirth" : [ 1965, 3, 27 ],
+    "nricFin" : "S4352355D",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "VISITOR",
     "nationality" : "Singaporean",
-    "address" : "Blk 882 Yishun Ring Road 7, #46-197, Singapore 568132",
+    "address" : "Blk 530 Woodlands Drive 12, #12-669, Singapore 555254",
     "contact" : {
-      "personalPhone" : "95339028",
-      "homePhone" : "62284778",
-      "companyPhone" : "61254790",
-      "email" : "user506@hotmail.com"
+      "personalPhone" : "93071027",
+      "homePhone" : "63580635",
+      "companyPhone" : "62820618",
+      "email" : "user278@hotmail.com"
     },
     "sex" : "OTHERS",
-    "bloodType" : "O_POSITIVE",
-    "isVaccinated" : true,
-    "patientId" : "P-202522FEA3A3",
-    "drugAllergies" : [ "Penicillin" ],
-    "nokName" : "Rohan Aand",
-    "nokAddress" : "Blk 366 Punggol Way 2, #08-165, Singapore 516544",
-    "nokRelation" : "Legal Guardian",
-    "height" : 1.6592052851894639,
-    "weight" : 73.4568364343661,
-    "occupation" : "Artist",
-    "companyName" : "CapitaLand",
-    "companyAddress" : "Blk 376 Punggol Way 5, #20-824, Singapore 567805",
-    "patientConsent" : false,
-    "humanType" : "patient"
-  },
-  "prescriptions" : {
-    "D0153" : 1
-  }
-}, {
-  "visitId" : "V17430218587703531",
-  "admissionDateTime" : [ 2025, 1, 8, 4, 44, 18, 770119500 ],
-  "dischargeDateTime" : [ 2025, 3, 27, 4, 44, 18, 910146900 ],
-  "wardStays" : [ {
-    "type" : "wardStay",
-    "ward" : {
-      "type" : "general",
-      "name" : "Hospital Ward",
-      "dailyRate" : 500.0,
-      "classType" : "GENERAL_CLASS_A"
-    },
-    "startDateTime" : [ 2025, 1, 8, 4, 44, 18, 770119500 ],
-    "endDateTime" : [ 2025, 1, 10, 4, 44, 18, 770119500 ]
-  } ],
-  "inpatientProcedures" : [ {
-    "type" : "procedure",
-    "code" : "DH076ZZ",
-    "cost" : 1000.00
-  }, {
-    "type" : "procedure",
-    "code" : "0TLC8ZZ",
-    "cost" : 1000.00
-  } ],
-  "diagnosticCodes" : [ {
-    "type" : "diagnostic",
-    "code" : "S52202M",
-    "cost" : 119
-  }, {
-    "type" : "diagnostic",
-    "code" : "I67848",
-    "cost" : 471
-  } ],
-  "attendingDoc" : {
-    "humanType" : "doctor",
-    "name" : "Zhang Wei",
-    "dateOfBirth" : [ 1973, 3, 27 ],
-    "nricFin" : "G8564966W",
-    "maritalStatus" : "MARRIED",
-    "residentialStatus" : "WORK_PASS",
-    "nationality" : "Singaporean",
-    "address" : "Blk 656 Yishun Ring Road 7, #28-905, Singapore 464095",
-    "contact" : {
-      "personalPhone" : "97606959",
-      "homePhone" : "64773556",
-      "companyPhone" : "62868531",
-      "email" : "user281@gmail.com"
-    },
-    "sex" : "MALE",
     "bloodType" : "AB_NEGATIVE",
     "isVaccinated" : true,
-    "staffId" : "SD8A8D5F4",
-    "title" : "Doctor",
-    "department" : "Medical",
-    "mcr" : "M85390A",
-    "humanType" : "doctor"
-  },
-  "attendingNurses" : [ {
-    "humanType" : "nurse",
-    "name" : "Zhang Wei",
-    "dateOfBirth" : [ 1978, 3, 27 ],
-    "nricFin" : "G7565109R",
-    "maritalStatus" : "MARRIED",
-    "residentialStatus" : "VISITOR",
-    "nationality" : "Singaporean",
-    "address" : "Blk 935 Serangoon Road 11, #18-397, Singapore 512604",
-    "contact" : {
-      "personalPhone" : "95141163",
-      "homePhone" : "68431950",
-      "companyPhone" : "61985208",
-      "email" : "user183@hotmail.com"
-    },
-    "sex" : "OTHERS",
-    "bloodType" : "B_POSITIVE",
-    "isVaccinated" : false,
-    "staffId" : "S568FD75C",
-    "title" : "Nurse",
-    "department" : "Nursing",
-    "rnid" : "RN30641B",
-    "humanType" : "nurse"
-  } ],
-  "status" : "DISCHARGED",
-  "patient" : {
-    "humanType" : "patient",
-    "name" : "Ben Tan",
-    "dateOfBirth" : [ 1982, 3, 27 ],
-    "nricFin" : "F0001746U",
-    "maritalStatus" : "DIVORCED",
-    "residentialStatus" : "DEPENDENT_PASS",
-    "nationality" : "Singaporean",
-    "address" : "Blk 261 Woodlands Drive 3, #25-512, Singapore 525238",
-    "contact" : {
-      "personalPhone" : "96198942",
-      "homePhone" : "65101466",
-      "companyPhone" : "63846163",
-      "email" : "user118@hotmail.com"
-    },
-    "sex" : "OTHERS",
-    "bloodType" : "AB_POSITIVE",
-    "isVaccinated" : false,
-    "patientId" : "P-2025E3652C25",
-    "drugAllergies" : [ "Penicillin" ],
-    "nokName" : "Muhammad Danial",
-    "nokAddress" : "Blk 581 Ang Mo Kio Ave 11, #30-555, Singapore 492771",
-    "nokRelation" : "Other",
-    "height" : 1.6097210529939663,
-    "weight" : 61.05887299972811,
-    "occupation" : "Programmer",
-    "companyName" : "ST Engineering",
-    "companyAddress" : "Blk 260 Jurong East Ave 7, #08-75, Singapore 544262",
-    "patientConsent" : true,
-    "humanType" : "patient"
-  },
-  "prescriptions" : {
-    "D0260" : 1,
-    "D0135" : 1
-  }
-}, {
-  "visitId" : "V17430218589106177",
-  "admissionDateTime" : [ 2025, 2, 24, 4, 44, 18, 910146900 ],
-  "dischargeDateTime" : [ 2025, 3, 27, 4, 44, 19, 47214900 ],
-  "wardStays" : [ {
-    "type" : "wardStay",
-    "ward" : {
-      "type" : "general",
-      "name" : "Hospital Ward",
-      "dailyRate" : 250.0,
-      "classType" : "GENERAL_CLASS_B1"
-    },
-    "startDateTime" : [ 2025, 2, 24, 4, 44, 18, 910146900 ],
-    "endDateTime" : [ 2025, 2, 28, 4, 44, 18, 910146900 ]
-  } ],
-  "inpatientProcedures" : [ {
-    "type" : "procedure",
-    "code" : "0M9K30Z",
-    "cost" : 1000.00
-  }, {
-    "type" : "procedure",
-    "code" : "XW033F6",
-    "cost" : 1000.00
-  } ],
-  "diagnosticCodes" : [ {
-    "type" : "diagnostic",
-    "code" : "J4522",
-    "cost" : 495
-  }, {
-    "type" : "diagnostic",
-    "code" : "M4852XA",
-    "cost" : 108
-  } ],
-  "attendingDoc" : {
-    "humanType" : "doctor",
-    "name" : "Lee Hui Ling",
-    "dateOfBirth" : [ 1974, 3, 27 ],
-    "nricFin" : "S3879200H",
-    "maritalStatus" : "MARRIED",
-    "residentialStatus" : "VISITOR",
-    "nationality" : "Singaporean",
-    "address" : "Blk 950 Woodlands Drive 7, #15-964, Singapore 498487",
-    "contact" : {
-      "personalPhone" : "94843049",
-      "homePhone" : "61804587",
-      "companyPhone" : "60944518",
-      "email" : "user854@hotmail.com"
-    },
-    "sex" : "MALE",
-    "bloodType" : "AB_POSITIVE",
-    "isVaccinated" : false,
-    "staffId" : "S38A1BFEC",
-    "title" : "Doctor",
-    "department" : "Medical",
-    "mcr" : "M01216A",
-    "humanType" : "doctor"
-  },
-  "attendingNurses" : [ {
-    "humanType" : "nurse",
-    "name" : "Kumar Ravi",
-    "dateOfBirth" : [ 1991, 3, 27 ],
-    "nricFin" : "G3705037M",
-    "maritalStatus" : "WIDOWED",
-    "residentialStatus" : "PERMANENT_RESIDENT",
-    "nationality" : "Singaporean",
-    "address" : "Blk 312 Ang Mo Kio Ave 1, #30-459, Singapore 549164",
-    "contact" : {
-      "personalPhone" : "99260423",
-      "homePhone" : "61362342",
-      "companyPhone" : "65820764",
-      "email" : "user249@gmail.com"
-    },
-    "sex" : "OTHERS",
-    "bloodType" : "B_NEGATIVE",
-    "isVaccinated" : true,
-    "staffId" : "SD1C4BA53",
-    "title" : "Nurse",
-    "department" : "Nursing",
-    "rnid" : "RN72352B",
-    "humanType" : "nurse"
-  } ],
-  "status" : "DISCHARGED",
-  "patient" : {
-    "humanType" : "patient",
-    "name" : "Ong Li Ting",
-    "dateOfBirth" : [ 1993, 3, 27 ],
-    "nricFin" : "F2337913U",
-    "maritalStatus" : "MARRIED",
-    "residentialStatus" : "DEPENDENT_PASS",
-    "nationality" : "Singaporean",
-    "address" : "Blk 296 Yishun Ring Road 5, #03-320, Singapore 475780",
-    "contact" : {
-      "personalPhone" : "92519341",
-      "homePhone" : "63697519",
-      "companyPhone" : "61690663",
-      "email" : "user737@gmail.com"
-    },
-    "sex" : "MALE",
-    "bloodType" : "B_NEGATIVE",
-    "isVaccinated" : true,
-    "patientId" : "P-2025403B2CBF",
-    "drugAllergies" : [ "Aspirin" ],
-    "nokName" : "Muhammad Danial",
-    "nokAddress" : "Blk 652 Woodlands Drive 4, #23-341, Singapore 477923",
-    "nokRelation" : "Grandparent",
-    "height" : 1.9731087044937665,
-    "weight" : 59.14927796711028,
-    "occupation" : "Artist",
-    "companyName" : "Singtel",
-    "companyAddress" : "Blk 175 Jurong East Ave 5, #23-965, Singapore 544868",
-    "patientConsent" : false,
-    "humanType" : "patient"
-  },
-  "prescriptions" : {
-    "D0075" : 1,
-    "D0099" : 1
-  }
-}, {
-  "visitId" : "V17430218590478739",
-  "admissionDateTime" : [ 2025, 2, 24, 4, 44, 19, 47214900 ],
-  "dischargeDateTime" : [ 2025, 3, 27, 4, 44, 19, 121613400 ],
-  "wardStays" : [ {
-    "type" : "wardStay",
-    "ward" : {
-      "type" : "labour",
-      "name" : "Hospital Ward",
-      "dailyRate" : 250.0,
-      "classType" : "LABOUR_CLASS_C"
-    },
-    "startDateTime" : [ 2025, 2, 24, 4, 44, 19, 47214900 ],
-    "endDateTime" : [ 2025, 3, 4, 4, 44, 19, 47214900 ]
-  } ],
-  "inpatientProcedures" : [ {
-    "type" : "procedure",
-    "code" : "D91DB6Z",
-    "cost" : 1000.00
-  } ],
-  "diagnosticCodes" : [ {
-    "type" : "diagnostic",
-    "code" : "M05522",
-    "cost" : 104
-  } ],
-  "attendingDoc" : {
-    "humanType" : "doctor",
-    "name" : "Lim Mei Ling",
-    "dateOfBirth" : [ 1975, 3, 27 ],
-    "nricFin" : "F5758344N",
-    "maritalStatus" : "WIDOWED",
-    "residentialStatus" : "WORK_PASS",
-    "nationality" : "Singaporean",
-    "address" : "Blk 400 Tampines St 11, #22-533, Singapore 466674",
-    "contact" : {
-      "personalPhone" : "92117975",
-      "homePhone" : "63993988",
-      "companyPhone" : "61679337",
-      "email" : "user752@gmail.com"
-    },
-    "sex" : "MALE",
-    "bloodType" : "A_NEGATIVE",
-    "isVaccinated" : true,
-    "staffId" : "SEA278780",
-    "title" : "Doctor",
-    "department" : "Medical",
-    "mcr" : "M16883A",
-    "humanType" : "doctor"
-  },
-  "attendingNurses" : [ {
-    "humanType" : "nurse",
-    "name" : "Kumar Ravi",
-    "dateOfBirth" : [ 1991, 3, 27 ],
-    "nricFin" : "G3705037M",
-    "maritalStatus" : "WIDOWED",
-    "residentialStatus" : "PERMANENT_RESIDENT",
-    "nationality" : "Singaporean",
-    "address" : "Blk 312 Ang Mo Kio Ave 1, #30-459, Singapore 549164",
-    "contact" : {
-      "personalPhone" : "99260423",
-      "homePhone" : "61362342",
-      "companyPhone" : "65820764",
-      "email" : "user249@gmail.com"
-    },
-    "sex" : "OTHERS",
-    "bloodType" : "B_NEGATIVE",
-    "isVaccinated" : true,
-    "staffId" : "SD1C4BA53",
-    "title" : "Nurse",
-    "department" : "Nursing",
-    "rnid" : "RN72352B",
-    "humanType" : "nurse"
-  } ],
-  "status" : "DISCHARGED",
-  "patient" : {
-    "humanType" : "patient",
-    "name" : "Muhammad Danial",
-    "dateOfBirth" : [ 1986, 3, 27 ],
-    "nricFin" : "T8951856Z",
-    "maritalStatus" : "DIVORCED",
-    "residentialStatus" : "PERMANENT_RESIDENT",
-    "nationality" : "Singaporean",
-    "address" : "Blk 286 Yishun Ring Road 8, #23-624, Singapore 560554",
-    "contact" : {
-      "personalPhone" : "97118924",
-      "homePhone" : "64683757",
-      "companyPhone" : "64823170",
-      "email" : "user989@hotmail.com"
-    },
-    "sex" : "FEMALE",
-    "bloodType" : "B_NEGATIVE",
-    "isVaccinated" : false,
-    "patientId" : "P-2025B7A7849D",
+    "patientId" : "P-2025F398DF26",
     "drugAllergies" : [ ],
-    "nokName" : "Ben Danial",
-    "nokAddress" : "Blk 692 Yishun Ring Road 4, #14-707, Singapore 530081",
+    "nokName" : "Divya Singh",
+    "nokAddress" : "Blk 815 Tampines St 12, #16-100, Singapore 489550",
     "nokRelation" : "Child",
-    "height" : 1.5996884704432648,
-    "weight" : 97.94573132547488,
-    "occupation" : "Programmer",
+    "height" : 1.8780786349332221,
+    "weight" : 72.44590128839404,
+    "occupation" : "Engineer",
     "companyName" : "OCBC Bank",
-    "companyAddress" : "Blk 937 Punggol Way 6, #15-750, Singapore 472689",
+    "companyAddress" : "Blk 943 Serangoon Road 3, #08-361, Singapore 518953",
     "patientConsent" : false,
     "humanType" : "patient"
   },
   "prescriptions" : {
-    "D0056" : 1
-  }
-}, {
-  "visitId" : "V17430218591211617",
-  "admissionDateTime" : [ 2025, 1, 4, 4, 44, 19, 121613400 ],
-  "dischargeDateTime" : [ 2025, 3, 27, 4, 44, 19, 257371300 ],
-  "wardStays" : [ {
-    "type" : "wardStay",
-    "ward" : {
-      "type" : "general",
-      "name" : "Hospital Ward",
-      "dailyRate" : 250.0,
-      "classType" : "GENERAL_CLASS_B1"
-    },
-    "startDateTime" : [ 2025, 1, 4, 4, 44, 19, 121613400 ],
-    "endDateTime" : [ 2025, 1, 8, 4, 44, 19, 121613400 ]
-  } ],
-  "inpatientProcedures" : [ {
-    "type" : "procedure",
-    "code" : "0NHV45Z",
-    "cost" : 1000.00
-  }, {
-    "type" : "procedure",
-    "code" : "BF37ZZZ",
-    "cost" : 1000.00
-  } ],
-  "diagnosticCodes" : [ {
-    "type" : "diagnostic",
-    "code" : "G463",
-    "cost" : 173
-  }, {
-    "type" : "diagnostic",
-    "code" : "K8063",
-    "cost" : 395
-  } ],
-  "attendingDoc" : {
-    "humanType" : "doctor",
-    "name" : "Zhang Wei",
-    "dateOfBirth" : [ 1994, 3, 27 ],
-    "nricFin" : "T0035228J",
-    "maritalStatus" : "DIVORCED",
-    "residentialStatus" : "VISITOR",
-    "nationality" : "Singaporean",
-    "address" : "Blk 759 Yishun Ring Road 11, #50-293, Singapore 483735",
-    "contact" : {
-      "personalPhone" : "93836207",
-      "homePhone" : "66044919",
-      "companyPhone" : "66049916",
-      "email" : "user801@gmail.com"
-    },
-    "sex" : "OTHERS",
-    "bloodType" : "AB_POSITIVE",
-    "isVaccinated" : true,
-    "staffId" : "S7BA1878D",
-    "title" : "Doctor",
-    "department" : "Medical",
-    "mcr" : "M94964A",
-    "humanType" : "doctor"
-  },
-  "attendingNurses" : [ {
-    "humanType" : "nurse",
-    "name" : "Lim Mei Ling",
-    "dateOfBirth" : [ 2000, 3, 27 ],
-    "nricFin" : "T1260751I",
-    "maritalStatus" : "SINGLE",
-    "residentialStatus" : "PERMANENT_RESIDENT",
-    "nationality" : "Singaporean",
-    "address" : "Blk 944 Ang Mo Kio Ave 10, #18-332, Singapore 502627",
-    "contact" : {
-      "personalPhone" : "92604325",
-      "homePhone" : "60009347",
-      "companyPhone" : "68502247",
-      "email" : "user231@hotmail.com"
-    },
-    "sex" : "OTHERS",
-    "bloodType" : "A_NEGATIVE",
-    "isVaccinated" : false,
-    "staffId" : "SBE2595D9",
-    "title" : "Nurse",
-    "department" : "Nursing",
-    "rnid" : "RN91231B",
-    "humanType" : "nurse"
-  } ],
-  "status" : "DISCHARGED",
-  "patient" : {
-    "humanType" : "patient",
-    "name" : "Aisha Fatimah",
-    "dateOfBirth" : [ 1986, 3, 27 ],
-    "nricFin" : "F2336439P",
-    "maritalStatus" : "WIDOWED",
-    "residentialStatus" : "CITIZEN",
-    "nationality" : "Singaporean",
-    "address" : "Blk 451 Ang Mo Kio Ave 8, #42-446, Singapore 467914",
-    "contact" : {
-      "personalPhone" : "97516560",
-      "homePhone" : "69014753",
-      "companyPhone" : "66733013",
-      "email" : "user394@gmail.com"
-    },
-    "sex" : "FEMALE",
-    "bloodType" : "AB_NEGATIVE",
-    "isVaccinated" : true,
-    "patientId" : "P-2025283383B2",
-    "drugAllergies" : [ "Penicillin", "None" ],
-    "nokName" : "Aisha Fatimah",
-    "nokAddress" : "Blk 283 Woodlands Drive 8, #15-544, Singapore 561951",
-    "nokRelation" : "Parent",
-    "height" : 1.9534054279448316,
-    "weight" : 45.81466035013989,
-    "occupation" : "Artist",
-    "companyName" : "OCBC Bank",
-    "companyAddress" : "Blk 291 Bedok North St 12, #22-273, Singapore 539266",
-    "patientConsent" : true,
-    "humanType" : "patient"
-  },
-  "prescriptions" : {
-    "D0114" : 1,
-    "D0119" : 1
-  }
-}, {
-  "visitId" : "V17430218592576369",
-  "admissionDateTime" : [ 2024, 12, 27, 4, 44, 19, 257371300 ],
-  "dischargeDateTime" : [ 2025, 3, 27, 4, 44, 19, 332630900 ],
-  "wardStays" : [ {
-    "type" : "wardStay",
-    "ward" : {
-      "type" : "labour",
-      "name" : "Hospital Ward",
-      "dailyRate" : 1500.0,
-      "classType" : "LABOUR_CLASS_A"
-    },
-    "startDateTime" : [ 2024, 12, 27, 4, 44, 19, 257371300 ],
-    "endDateTime" : [ 2024, 12, 30, 4, 44, 19, 257371300 ]
-  } ],
-  "inpatientProcedures" : [ {
-    "type" : "procedure",
-    "code" : "D9149YZ",
-    "cost" : 1000.00
-  } ],
-  "diagnosticCodes" : [ {
-    "type" : "diagnostic",
-    "code" : "S32511K",
-    "cost" : 144
-  } ],
-  "attendingDoc" : {
-    "humanType" : "doctor",
-    "name" : "Tan Wei Ming",
-    "dateOfBirth" : [ 1974, 3, 27 ],
-    "nricFin" : "F5044286K",
-    "maritalStatus" : "WIDOWED",
-    "residentialStatus" : "PERMANENT_RESIDENT",
-    "nationality" : "Singaporean",
-    "address" : "Blk 427 Punggol Way 1, #22-890, Singapore 484675",
-    "contact" : {
-      "personalPhone" : "99315586",
-      "homePhone" : "62752097",
-      "companyPhone" : "63068407",
-      "email" : "user120@gmail.com"
-    },
-    "sex" : "MALE",
-    "bloodType" : "AB_NEGATIVE",
-    "isVaccinated" : false,
-    "staffId" : "S6B72FB65",
-    "title" : "Doctor",
-    "department" : "Medical",
-    "mcr" : "M69553A",
-    "humanType" : "doctor"
-  },
-  "attendingNurses" : [ {
-    "humanType" : "nurse",
-    "name" : "Tan Wei Ming",
-    "dateOfBirth" : [ 1975, 3, 27 ],
-    "nricFin" : "F6161547N",
-    "maritalStatus" : "MARRIED",
-    "residentialStatus" : "VISITOR",
-    "nationality" : "Singaporean",
-    "address" : "Blk 399 Tampines St 1, #24-292, Singapore 497693",
-    "contact" : {
-      "personalPhone" : "90345293",
-      "homePhone" : "62437613",
-      "companyPhone" : "65111604",
-      "email" : "user126@gmail.com"
-    },
-    "sex" : "MALE",
-    "bloodType" : "B_POSITIVE",
-    "isVaccinated" : false,
-    "staffId" : "SD2AB3283",
-    "title" : "Nurse",
-    "department" : "Nursing",
-    "rnid" : "RN45586B",
-    "humanType" : "nurse"
-  } ],
-  "status" : "DISCHARGED",
-  "patient" : {
-    "humanType" : "patient",
-    "name" : "Divya Singh",
-    "dateOfBirth" : [ 1969, 3, 27 ],
-    "nricFin" : "T0542952D",
-    "maritalStatus" : "MARRIED",
-    "residentialStatus" : "WORK_PASS",
-    "nationality" : "Singaporean",
-    "address" : "Blk 135 Yishun Ring Road 9, #13-197, Singapore 482109",
-    "contact" : {
-      "personalPhone" : "96922713",
-      "homePhone" : "62245934",
-      "companyPhone" : "69675041",
-      "email" : "user179@hotmail.com"
-    },
-    "sex" : "MALE",
-    "bloodType" : "A_NEGATIVE",
-    "isVaccinated" : false,
-    "patientId" : "P-2025310BCEA6",
-    "drugAllergies" : [ "None", "None" ],
-    "nokName" : "Muhammad Singh",
-    "nokAddress" : "Blk 777 Jurong East Ave 7, #50-454, Singapore 471401",
-    "nokRelation" : "Spouse",
-    "height" : 1.8361868834168094,
-    "weight" : 69.54108138827486,
-    "occupation" : "Doctor",
-    "companyName" : "OCBC Bank",
-    "companyAddress" : "Blk 908 Tampines St 7, #20-267, Singapore 494484",
-    "patientConsent" : false,
-    "humanType" : "patient"
-  },
-  "prescriptions" : {
-    "D0060" : 1
-  }
-}, {
-  "visitId" : "V17430218593322501",
-  "admissionDateTime" : [ 2025, 2, 21, 4, 44, 19, 332630900 ],
-  "dischargeDateTime" : [ 2025, 3, 27, 4, 44, 19, 469231600 ],
-  "wardStays" : [ {
-    "type" : "wardStay",
-    "ward" : {
-      "type" : "general",
-      "name" : "Hospital Ward",
-      "dailyRate" : 150.0,
-      "classType" : "GENERAL_CLASS_C"
-    },
-    "startDateTime" : [ 2025, 2, 21, 4, 44, 19, 332630900 ],
-    "endDateTime" : [ 2025, 2, 25, 4, 44, 19, 332630900 ]
-  }, {
-    "type" : "wardStay",
-    "ward" : {
-      "type" : "daySurgery",
-      "name" : "Hospital Ward",
-      "dailyRate" : 200.0,
-      "classType" : "DAYSURGERY_CLASS_SINGLE"
-    },
-    "startDateTime" : [ 2025, 2, 21, 4, 44, 19, 332630900 ],
-    "endDateTime" : [ 2025, 2, 25, 4, 44, 19, 332630900 ]
-  } ],
-  "inpatientProcedures" : [ {
-    "type" : "procedure",
-    "code" : "BP3JZZZ",
-    "cost" : 1000.00
-  }, {
-    "type" : "procedure",
-    "code" : "0SSB0ZZ",
-    "cost" : 1000.00
-  } ],
-  "diagnosticCodes" : [ {
-    "type" : "diagnostic",
-    "code" : "S1110XD",
-    "cost" : 129
-  }, {
-    "type" : "diagnostic",
-    "code" : "T50A92S",
-    "cost" : 462
-  } ],
-  "attendingDoc" : {
-    "humanType" : "doctor",
-    "name" : "Lee Hui Ling",
-    "dateOfBirth" : [ 1974, 3, 27 ],
-    "nricFin" : "S3879200H",
-    "maritalStatus" : "MARRIED",
-    "residentialStatus" : "VISITOR",
-    "nationality" : "Singaporean",
-    "address" : "Blk 950 Woodlands Drive 7, #15-964, Singapore 498487",
-    "contact" : {
-      "personalPhone" : "94843049",
-      "homePhone" : "61804587",
-      "companyPhone" : "60944518",
-      "email" : "user854@hotmail.com"
-    },
-    "sex" : "MALE",
-    "bloodType" : "AB_POSITIVE",
-    "isVaccinated" : false,
-    "staffId" : "S38A1BFEC",
-    "title" : "Doctor",
-    "department" : "Medical",
-    "mcr" : "M01216A",
-    "humanType" : "doctor"
-  },
-  "attendingNurses" : [ {
-    "humanType" : "nurse",
-    "name" : "Tan Wei Ming",
-    "dateOfBirth" : [ 1967, 3, 27 ],
-    "nricFin" : "T7104678D",
-    "maritalStatus" : "MARRIED",
-    "residentialStatus" : "VISITOR",
-    "nationality" : "Singaporean",
-    "address" : "Blk 913 Tampines St 3, #34-694, Singapore 485825",
-    "contact" : {
-      "personalPhone" : "98807994",
-      "homePhone" : "62787025",
-      "companyPhone" : "68303159",
-      "email" : "user533@gmail.com"
-    },
-    "sex" : "OTHERS",
-    "bloodType" : "O_NEGATIVE",
-    "isVaccinated" : false,
-    "staffId" : "S51AB4811",
-    "title" : "Nurse",
-    "department" : "Nursing",
-    "rnid" : "RN50885B",
-    "humanType" : "nurse"
-  } ],
-  "status" : "DISCHARGED",
-  "patient" : {
-    "humanType" : "patient",
-    "name" : "Lim Boon Teck",
-    "dateOfBirth" : [ 1995, 3, 27 ],
-    "nricFin" : "S6640035B",
-    "maritalStatus" : "MARRIED",
-    "residentialStatus" : "DEPENDENT_PASS",
-    "nationality" : "Singaporean",
-    "address" : "Blk 443 Woodlands Drive 10, #07-731, Singapore 504640",
-    "contact" : {
-      "personalPhone" : "94053147",
-      "homePhone" : "62881524",
-      "companyPhone" : "67383946",
-      "email" : "user421@hotmail.com"
-    },
-    "sex" : "MALE",
-    "bloodType" : "AB_NEGATIVE",
-    "isVaccinated" : true,
-    "patientId" : "P-2025C2DC2CDD",
-    "drugAllergies" : [ "None", "Ibuprofen" ],
-    "nokName" : "Muhammad Danial",
-    "nokAddress" : "Blk 472 Ang Mo Kio Ave 11, #08-994, Singapore 531731",
-    "nokRelation" : "Other",
-    "height" : 1.9055216944396376,
-    "weight" : 57.378334124496874,
-    "occupation" : "Artist",
-    "companyName" : "Keppel Corporation",
-    "companyAddress" : "Blk 264 Jurong East Ave 2, #30-573, Singapore 529543",
-    "patientConsent" : false,
-    "humanType" : "patient"
-  },
-  "prescriptions" : {
-    "D0137" : 1,
-    "D0121" : 1
-  }
-}, {
-  "visitId" : "V17430218594699230",
-  "admissionDateTime" : [ 2025, 2, 11, 4, 44, 19, 469231600 ],
-  "dischargeDateTime" : [ 2025, 3, 27, 4, 44, 19, 607563700 ],
-  "wardStays" : [ {
-    "type" : "wardStay",
-    "ward" : {
-      "type" : "general",
-      "name" : "Hospital Ward",
-      "dailyRate" : 250.0,
-      "classType" : "GENERAL_CLASS_B1"
-    },
-    "startDateTime" : [ 2025, 2, 11, 4, 44, 19, 469231600 ],
-    "endDateTime" : [ 2025, 2, 12, 4, 44, 19, 469231600 ]
-  }, {
-    "type" : "wardStay",
-    "ward" : {
-      "type" : "labour",
-      "name" : "Hospital Ward",
-      "dailyRate" : 1500.0,
-      "classType" : "LABOUR_CLASS_A"
-    },
-    "startDateTime" : [ 2025, 2, 11, 4, 44, 19, 469231600 ],
-    "endDateTime" : [ 2025, 2, 14, 4, 44, 19, 469231600 ]
-  } ],
-  "inpatientProcedures" : [ {
-    "type" : "procedure",
-    "code" : "0FHG41Z",
-    "cost" : 1000.00
-  }, {
-    "type" : "procedure",
-    "code" : "00UJ4JZ",
-    "cost" : 1000.00
-  } ],
-  "diagnosticCodes" : [ {
-    "type" : "diagnostic",
-    "code" : "N182",
-    "cost" : 256
-  }, {
-    "type" : "diagnostic",
-    "code" : "D3112",
-    "cost" : 393
-  } ],
-  "attendingDoc" : {
-    "humanType" : "doctor",
-    "name" : "Lee Hui Ling",
-    "dateOfBirth" : [ 1974, 3, 27 ],
-    "nricFin" : "S3879200H",
-    "maritalStatus" : "MARRIED",
-    "residentialStatus" : "VISITOR",
-    "nationality" : "Singaporean",
-    "address" : "Blk 950 Woodlands Drive 7, #15-964, Singapore 498487",
-    "contact" : {
-      "personalPhone" : "94843049",
-      "homePhone" : "61804587",
-      "companyPhone" : "60944518",
-      "email" : "user854@hotmail.com"
-    },
-    "sex" : "MALE",
-    "bloodType" : "AB_POSITIVE",
-    "isVaccinated" : false,
-    "staffId" : "S38A1BFEC",
-    "title" : "Doctor",
-    "department" : "Medical",
-    "mcr" : "M01216A",
-    "humanType" : "doctor"
-  },
-  "attendingNurses" : [ {
-    "humanType" : "nurse",
-    "name" : "Lim Mei Ling",
-    "dateOfBirth" : [ 2005, 3, 27 ],
-    "nricFin" : "G3426923N",
-    "maritalStatus" : "SINGLE",
-    "residentialStatus" : "CITIZEN",
-    "nationality" : "Singaporean",
-    "address" : "Blk 719 Yishun Ring Road 2, #03-784, Singapore 559534",
-    "contact" : {
-      "personalPhone" : "93232814",
-      "homePhone" : "65684166",
-      "companyPhone" : "60158249",
-      "email" : "user415@gmail.com"
-    },
-    "sex" : "FEMALE",
-    "bloodType" : "AB_POSITIVE",
-    "isVaccinated" : true,
-    "staffId" : "S3643D768",
-    "title" : "Nurse",
-    "department" : "Nursing",
-    "rnid" : "RN86657B",
-    "humanType" : "nurse"
-  } ],
-  "status" : "DISCHARGED",
-  "patient" : {
-    "humanType" : "patient",
-    "name" : "Wee Jun Kiat",
-    "dateOfBirth" : [ 1984, 3, 27 ],
-    "nricFin" : "S1306453I",
-    "maritalStatus" : "SINGLE",
-    "residentialStatus" : "VISITOR",
-    "nationality" : "Singaporean",
-    "address" : "Blk 966 Woodlands Drive 3, #04-929, Singapore 503281",
-    "contact" : {
-      "personalPhone" : "91465365",
-      "homePhone" : "69786537",
-      "companyPhone" : "61082383",
-      "email" : "user729@hotmail.com"
-    },
-    "sex" : "MALE",
-    "bloodType" : "A_POSITIVE",
-    "isVaccinated" : true,
-    "patientId" : "P-202511726C15",
-    "drugAllergies" : [ "Aspirin" ],
-    "nokName" : "Ben Kiat",
-    "nokAddress" : "Blk 417 Tampines St 8, #17-351, Singapore 547215",
-    "nokRelation" : "Parent",
-    "height" : 1.8286516141324356,
-    "weight" : 84.7933704831128,
-    "occupation" : "Programmer",
-    "companyName" : "ComfortDelGro",
-    "companyAddress" : "Blk 903 Yishun Ring Road 6, #38-875, Singapore 512925",
-    "patientConsent" : true,
-    "humanType" : "patient"
-  },
-  "prescriptions" : {
-    "D0099" : 1,
-    "D0014" : 1
-  }
-}, {
-  "visitId" : "V17430218596073083",
-  "admissionDateTime" : [ 2025, 1, 15, 4, 44, 19, 607563700 ],
-  "dischargeDateTime" : [ 2025, 3, 27, 4, 44, 19, 746487300 ],
-  "wardStays" : [ {
-    "type" : "wardStay",
-    "ward" : {
-      "type" : "daySurgery",
-      "name" : "Hospital Ward",
-      "dailyRate" : 300.0,
-      "classType" : "DAYSURGERY_CLASS_SEATER"
-    },
-    "startDateTime" : [ 2025, 1, 15, 4, 44, 19, 607563700 ],
-    "endDateTime" : [ 2025, 1, 16, 4, 44, 19, 607563700 ]
-  }, {
-    "type" : "wardStay",
-    "ward" : {
-      "type" : "daySurgery",
-      "name" : "Hospital Ward",
-      "dailyRate" : 250.0,
-      "classType" : "DAYSURGERY_CLASS_COHORT"
-    },
-    "startDateTime" : [ 2025, 1, 15, 4, 44, 19, 607563700 ],
-    "endDateTime" : [ 2025, 1, 18, 4, 44, 19, 607563700 ]
-  } ],
-  "inpatientProcedures" : [ {
-    "type" : "procedure",
-    "code" : "10Q00YL",
-    "cost" : 1000.00
-  }, {
-    "type" : "procedure",
-    "code" : "031K0AK",
-    "cost" : 1000.00
-  } ],
-  "diagnosticCodes" : [ {
-    "type" : "diagnostic",
-    "code" : "H35079",
-    "cost" : 431
-  }, {
-    "type" : "diagnostic",
-    "code" : "W6122XA",
-    "cost" : 500
-  } ],
-  "attendingDoc" : {
-    "humanType" : "doctor",
-    "name" : "Lim Mei Ling",
-    "dateOfBirth" : [ 1973, 3, 27 ],
-    "nricFin" : "T7878600G",
-    "maritalStatus" : "DIVORCED",
-    "residentialStatus" : "VISITOR",
-    "nationality" : "Singaporean",
-    "address" : "Blk 290 Jurong East Ave 4, #44-451, Singapore 544812",
-    "contact" : {
-      "personalPhone" : "96415288",
-      "homePhone" : "63024281",
-      "companyPhone" : "62833474",
-      "email" : "user165@hotmail.com"
-    },
-    "sex" : "MALE",
-    "bloodType" : "B_NEGATIVE",
-    "isVaccinated" : true,
-    "staffId" : "SDA270CF4",
-    "title" : "Doctor",
-    "department" : "Medical",
-    "mcr" : "M72199A",
-    "humanType" : "doctor"
-  },
-  "attendingNurses" : [ {
-    "humanType" : "nurse",
-    "name" : "Lim Mei Ling",
-    "dateOfBirth" : [ 1973, 3, 27 ],
-    "nricFin" : "T0605926G",
-    "maritalStatus" : "SINGLE",
-    "residentialStatus" : "VISITOR",
-    "nationality" : "Singaporean",
-    "address" : "Blk 204 Tampines St 3, #41-882, Singapore 531646",
-    "contact" : {
-      "personalPhone" : "91155599",
-      "homePhone" : "64131701",
-      "companyPhone" : "61037369",
-      "email" : "user839@gmail.com"
-    },
-    "sex" : "OTHERS",
-    "bloodType" : "AB_POSITIVE",
-    "isVaccinated" : false,
-    "staffId" : "S28D72298",
-    "title" : "Nurse",
-    "department" : "Nursing",
-    "rnid" : "RN59465B",
-    "humanType" : "nurse"
-  } ],
-  "status" : "DISCHARGED",
-  "patient" : {
-    "humanType" : "patient",
-    "name" : "Ben Tan",
-    "dateOfBirth" : [ 1970, 3, 27 ],
-    "nricFin" : "F4297388L",
-    "maritalStatus" : "WIDOWED",
-    "residentialStatus" : "DEPENDENT_PASS",
-    "nationality" : "Singaporean",
-    "address" : "Blk 146 Jurong East Ave 10, #46-852, Singapore 480500",
-    "contact" : {
-      "personalPhone" : "95473101",
-      "homePhone" : "67830865",
-      "companyPhone" : "65362667",
-      "email" : "user337@hotmail.com"
-    },
-    "sex" : "OTHERS",
-    "bloodType" : "O_NEGATIVE",
-    "isVaccinated" : true,
-    "patientId" : "P-2025AAD410F1",
-    "drugAllergies" : [ ],
-    "nokName" : "Aisha Tan",
-    "nokAddress" : "Blk 480 Ang Mo Kio Ave 8, #03-191, Singapore 487399",
-    "nokRelation" : "Child",
-    "height" : 1.8141745227259787,
-    "weight" : 90.1152591839542,
-    "occupation" : "Teacher",
-    "companyName" : "DBS Bank",
-    "companyAddress" : "Blk 336 Punggol Way 3, #37-558, Singapore 553685",
-    "patientConsent" : true,
-    "humanType" : "patient"
-  },
-  "prescriptions" : {
-    "D0072" : 1,
-    "D0119" : 1
+    "D0205" : 1,
+    "D0116" : 1
   }
 } ]
