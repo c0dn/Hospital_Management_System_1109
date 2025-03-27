@@ -15,13 +15,30 @@ import org.bee.utils.DataGenerator;
  * Extends BaseController to handle JSON persistence.
  */
 public class HumanController extends BaseController<Human> {
+
+    /**
+     * Singleton instance of the HumanController
+     */
     private static HumanController instance;
+
+    /**
+     * The current authenticated user
+     */
     private SystemUser authenticatedUser;
 
+    /**
+     * Protected constructor to enforce singleton pattern.
+     */
     protected HumanController() {
         super();
     }
 
+    /**
+     * Returns the instance of HumanController
+     * Create instance if it does not exist
+     *
+     * @return The singleton instance of HumanController
+     */
     public static synchronized HumanController getInstance() {
         if (instance == null) {
             instance = new HumanController();
@@ -29,16 +46,30 @@ public class HumanController extends BaseController<Human> {
         return instance;
     }
 
+    /**
+     * Returns the file path for storing humans data
+     *
+     * @return A String representing the path to the humans file
+     */
     @Override
     protected String getDataFilePath() {
         return DATABASE_DIR + "/humans.txt";
     }
 
+    /**
+     * Returns the Class for Human entity
+     *
+     * @return The Class for Human
+     */
     @Override
     protected Class<Human> getEntityClass() {
         return Human.class;
     }
 
+    /**
+     * Generates initial Humans data for the healthcare management system
+     * This method creates all the Humans data for the healthcare management system(Doctors,Nurses,Clerks,Paitents)
+     */
     @Override
     protected void generateInitialData() {
         System.out.println("Generating initial human data...");
@@ -74,10 +105,21 @@ public class HumanController extends BaseController<Human> {
         System.out.println("Generated " + items.size() + " humans.");
     }
 
+    /**
+     * Authenticates a user into the system
+     *
+     * @param user The authenticated user
+     */
     public void authenticate(SystemUser user) {
         this.authenticatedUser = user;
     }
 
+    /**
+     * Returns a greeting for the current user
+     * The greeting varies based on the role (Doctor, Patient, Nurse, Clerk).
+     *
+     *  @return A greeting message for the authenticated user
+     */
     public String getUserGreeting() {
         return switch (authenticatedUser) {
             case Doctor doc -> String.format("Welcome back Dr %s MCR No. %s", doc.getName(), doc.getMcr());
@@ -98,7 +140,12 @@ public class HumanController extends BaseController<Human> {
         };
     }
 
-
+    /**
+     * Retrieves the current logged-in user
+     *
+     * @return The authenticated user
+     * @throws IllegalStateException If no user is logged in
+     */
     public SystemUser getLoggedInUser() {
         if (authenticatedUser == null) {
             throw new IllegalStateException("There is no logged in user");
@@ -106,7 +153,12 @@ public class HumanController extends BaseController<Human> {
         return authenticatedUser;
     }
 
-
+    /**
+     * Finds a patient by their patientId
+     *
+     * @param patientId The ID of the patient
+     * @return The Patient object if found, null otherwise
+     */
     private Patient findPatientById(String patientId) {
         return getAllPatients().stream()
                 .filter(p -> p.getPatientId().equals(patientId))
@@ -114,6 +166,12 @@ public class HumanController extends BaseController<Human> {
                 .orElse(null);
     }
 
+    /**
+     * Searches for user by their username
+     *
+     * @param username The username to search for
+     * @return An Optional containing the SystemUser if found, empty Optional otherwise
+     */
     public Optional<SystemUser> findUserByUsername(String username) {
         if (username == null || username.isEmpty()) {
             return Optional.empty();
@@ -126,10 +184,20 @@ public class HumanController extends BaseController<Human> {
                 .findFirst();
     }
 
+    /**
+     * Retrieves all humans in the healthcare management system
+     *
+     * @return A list of Human
+     */
     public List<Human> getAllHumans() {
         return getAllItems();
     }
 
+    /**
+     * Retrieves all doctors in the healthcare management system
+     *
+     * @return A list of Doctor
+     */
     public List<Doctor> getAllDoctors() {
         return items.stream()
                 .filter(human -> human instanceof Doctor)
@@ -137,6 +205,11 @@ public class HumanController extends BaseController<Human> {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Retrieves all nurses in the healthcare management system
+     *
+     * @return A list of Nurse
+     */
     public List<Nurse> getAllNurses() {
         return items.stream()
                 .filter(human -> human instanceof Nurse)
@@ -144,6 +217,11 @@ public class HumanController extends BaseController<Human> {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Retrieves all patients in the healthcare management system
+     *
+     * @return A list of Patient
+     */
     public List<Patient> getAllPatients() {
         return items.stream()
                 .filter(human -> human instanceof Patient)
@@ -151,7 +229,11 @@ public class HumanController extends BaseController<Human> {
                 .collect(Collectors.toList());
     }
 
-
+    /**
+     * Retrieves all clerks in the healthcare management system
+     *
+     * @return A list of Clerk
+     */
     public List<Clerk> getAllClerks() {
         return items.stream()
                 .filter(human -> human instanceof Clerk)
