@@ -87,6 +87,12 @@ public class Clerk extends Staff implements SystemUser {
 
         return new Clerk(builder);
     }
+
+    /**
+     * Returns the staffId as the username
+     *
+     * @return The staffI
+     */
     @Override
     public String getUsername() {
         return staffId;

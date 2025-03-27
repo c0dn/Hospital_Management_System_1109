@@ -44,6 +44,15 @@ public class Contact implements JSONSerializable {
         this.email = email;
     }
 
+    /**
+     * Creates a Contact instance from JSON properties
+     *
+     * @param personalPhone The personal phone number
+     * @param homePhone The home phone number
+     * @param companyPhone The company phone number
+     * @param email The email address
+     * @return A new Contact instance
+     */
     @JsonCreator
     public static Contact create(
             @JsonProperty("personalPhone") String personalPhone,
@@ -53,10 +62,20 @@ public class Contact implements JSONSerializable {
         return new Contact(personalPhone, homePhone, companyPhone, email);
     }
 
+    /**
+     * Gets the personal phone number
+     *
+     * @return The personal phone numbe
+     */
     public String getPersonalPhone() {
         return personalPhone;
     }
 
+    /**
+     * Sets the personal phone number
+     *
+     * @param personalPhone The new personal phone number
+     */
     public void setPersonalPhone(String personalPhone) {
         this.personalPhone = personalPhone;
     }

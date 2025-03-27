@@ -7,7 +7,7 @@ import org.bee.hms.auth.SystemUser;
 import java.time.LocalDate;
 
 /**
- * Represents a doctor in the insurance system.
+ * Represents a doctor in the healthcare management system.
  * <p>
  *     A doctor is a specialized type of {@link Staff} with an additional Medical Council Registration (MCR) number.
  * </p>
@@ -117,6 +117,10 @@ public class Doctor extends Staff implements SystemUser {
         return mcr;
     }
 
+    /**
+     * Prints the doctor's information as attending doctor
+     * Output format: "Attending Doctor : [name] (ID: [mcr])"
+     */
     public void printAsAttending() {
         System.out.format("%-20s: %s (ID: %s)%n",
                 "Attending Doctor",
@@ -137,6 +141,11 @@ public class Doctor extends Staff implements SystemUser {
         System.out.println("=====================================================================");
     }
 
+    /**
+     * Returns the staffId as the username
+     *
+     * @return The staffId
+     */
     @Override
     public String getUsername() {
         return staffId;

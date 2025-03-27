@@ -7,11 +7,28 @@ import org.bee.utils.JSONSerializable;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
+/**
+ * Base class for human entities in the system.
+ * Uses JSON type information for polymorphic deserialization.
+ *
+ * The "humanType" property in JSON determines the concrete class.
+ */
 @JsonTypeInfo(
+
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
     property = "humanType",
     visible = true)
+
+/**
+ * Specifies subtypes for JSON deserialization.
+ * Maps JSON "humanType" property to their corresponding classes:
+ * - "patient" → Patient
+ * - "staff" → Staff
+ * - "clerk" → Clerk
+ * - "doctor" → Doctor
+ * - "nurse" → Nurse
+ */
 @JsonSubTypes({
     @JsonSubTypes.Type(value = Patient.class, name = "patient"),
     @JsonSubTypes.Type(value = Staff.class, name = "staff"),
@@ -19,6 +36,15 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
     @JsonSubTypes.Type(value = Doctor.class, name = "doctor"),
     @JsonSubTypes.Type(value = Nurse.class, name = "nurse")
 })
+
+/**
+ * Abstract base class for all human entities in the system.
+ * Implements JSONSerializable for JSON conversion.
+ *
+ * Subclasses include:
+ * - Patient
+ * - Staff (and its subclasses: Clerk, Doctor, Nurse)
+ */
 public abstract class Human implements JSONSerializable {
 
     /**
@@ -228,7 +254,11 @@ public abstract class Human implements JSONSerializable {
                 residentialStatus == ResidentialStatus.PERMANENT_RESIDENT;
     }
 
-
+    /**
+     * Retrieves the name
+     *
+     * @return The full name .
+     */
     public String getName() {
         return name;
     }
@@ -280,6 +310,11 @@ public abstract class Human implements JSONSerializable {
         System.out.printf("\nVaccinated: " + isVaccinated);
     }
 
+    /**
+     * Retrieves the contact information f
+     *
+     * @return A Contact object containing the human's contact details
+     */
     public Contact getContact() {
         return contact;
     }

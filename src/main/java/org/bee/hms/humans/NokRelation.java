@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 /**
  * Represents the relationship between a patient and their next of kin.
  */
+
 @JsonFormat(shape = JsonFormat.Shape.STRING)
 public enum NokRelation {
     /** Spouse of the patient. */
@@ -46,6 +47,13 @@ public enum NokRelation {
         return displayName;
     }
 
+    /**
+     * Converts a string to its corresponding NokRelation enum value
+     *
+     * @param value The string representation of the NokRelation
+     * @return The matching NokRelation enum value
+     * @throws IllegalArgumentException If no matching NokRelation is found
+     */
     @JsonCreator
     public static NokRelation fromString(String value) {
         for (NokRelation relation : values()) {
