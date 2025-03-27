@@ -11,14 +11,37 @@ import org.bee.hms.policy.InsurancePolicy;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Controller class for managing patient visits
+ * Handles loading, saving, and management of visit
+ * Implemented as a singleton
+ * Extends BaseController to handle JSON persistence
+ */
 public class VisitController extends BaseController<Visit> {
+
+    /**
+     * Singleton instance of VisitController
+     */
     private static VisitController instance;
+
+    /**
+     * Reference to HumanController singleton instance
+     */
     private static final HumanController humanController = HumanController.getInstance();
 
+    /**
+     * Protected constructor to prevent direct modification
+     */
     protected VisitController() {
         super();
     }
 
+    /**
+     * Returns the singleton instance of VisitController
+     * Creates instance if it doesn't exist
+     *
+     * @return Singleton VisitController instance
+     */
     public static synchronized VisitController getInstance() {
         if (instance == null) {
             instance = new VisitController();
@@ -26,16 +49,34 @@ public class VisitController extends BaseController<Visit> {
         return instance;
     }
 
+    /**
+     * Specifies the file path for visits.txt
+     *
+     * @return Path to visits.txt
+     *
+     */
     @Override
     protected String getDataFilePath() {
         return DATABASE_DIR + "/visits.txt";
     }
 
+    /**
+     * Returns the Class for Visit entity
+     *
+     * @return The Class for Visit
+     */
     @Override
     protected Class<Visit> getEntityClass() {
         return Visit.class;
     }
 
+    /**
+     * Generates initial visit data for tye healthcare management system
+     * Creates visits for all patients
+     *
+     * Requires existing patients and doctors to generate visits
+     * Displays warnings if no patients or doctors are available
+     */
     @Override
     protected void generateInitialData() {
         System.out.println("Generating initial visit data...");
@@ -73,7 +114,12 @@ public class VisitController extends BaseController<Visit> {
         System.out.println("Generated " + items.size() + " visits.");
     }
 
-
+    /**
+     * Retrieves all visits associated with a specific patient
+     *
+     * @param patient The patient visits to retrieve
+     * @return A list of Visit objects for the specified patient
+     */
     public List<Visit> getVisitsForPatient(Patient patient) {
         return getAllItems().stream()
                 .filter(visit -> visit.getPatient().equals(patient))

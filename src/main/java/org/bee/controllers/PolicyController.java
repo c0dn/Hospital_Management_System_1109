@@ -8,20 +8,59 @@ import org.bee.hms.insurance.InsuranceProvider;
 
 import java.util.*;
 
+/**
+ * Controller class that manages all insurance policies in the system.
+ * Handles loading, saving, and searching of government and private insurance policies.
+ * Implemented as a singleton.
+ * Extends BaseController to handle JSON persistence.
+ */
 public class PolicyController extends BaseController<InsurancePolicy> {
+
+    /**
+     * Singleton instance of the PolicyController
+     */
     private static PolicyController instance;
+
+    /**
+     * Reference to the singleton instance of HumanController
+     *
+     */
     private static final HumanController humanController = HumanController.getInstance();
 
+    /**
+     * Insurance provider for government policies
+     */
     private static final InsuranceProvider governmentProvider = new GovernmentProvider();
+
+    /**
+     * Insurance provider for private policies
+     */
     private static final InsuranceProvider privateProvider = new PrivateProvider();
 
+    /**
+     * Stores government insurance policies, by patientId
+     */
     private static final Map<String, InsurancePolicy> governmentPolicies = new HashMap<>();
+
+    /**
+     * Stores private insurance policies, by patientId
+     */
     private static final Map<String, InsurancePolicy> privatePolicies = new HashMap<>();
 
+    /**
+     * Protected constructor to prevent direct modification
+     * Calls the superclass constructor
+     */
     protected PolicyController() {
         super();
     }
 
+    /**
+     * Returns the singleton instance of PolicyController
+     * Creates the instance if it doesn't exist
+     *
+     * @return The singleton instance of PolicyController
+     */
     public static synchronized PolicyController getInstance() {
         if (instance == null) {
             instance = new PolicyController();
@@ -29,16 +68,30 @@ public class PolicyController extends BaseController<InsurancePolicy> {
         return instance;
     }
 
+    /**
+     * Provides the file path for storing policy data
+     *
+     * @return String representation of the file path
+     */
     @Override
     protected String getDataFilePath() {
         return DATABASE_DIR + "/policies.txt";
     }
 
+    /**
+     * Specifies the class type for policy
+     *
+     * @return Class object for InsurancePolicy
+     */
     @Override
     protected Class<InsurancePolicy> getEntityClass() {
         return InsurancePolicy.class;
     }
 
+    /**
+     * Generates initial mock policy data for all patients
+     * This method is for demonstration purposes only
+     */
     @Override
     protected void generateInitialData() {
         System.out.println("Generating initial policy data...");
