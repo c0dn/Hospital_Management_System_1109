@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import org.bee.utils.JSONSerializable;
 
 /**
- * Defines the current status of an insurance claim.
+ * Defines the current status of an insurance claim in healthcare management system.
  * <br><br>A claim can have one of the following statuses:
  * <ul>
  *     <li>{@link #SUBMITTED} - Claim has been submitted.</li>

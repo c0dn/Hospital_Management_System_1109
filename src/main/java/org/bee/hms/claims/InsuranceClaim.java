@@ -69,23 +69,26 @@ public class InsuranceClaim implements JSONSerializable {
      */
     private BigDecimal approvedAmount;
 
-
     /**
      * Reviewer comments
      */
     private String reviewerComments;
-
 
     /**
      * Additional comments related to the claim.
      */
     private String comments;
 
-
+    /**
+     * Map of supporting documents with their associated timestamps
+     */
     private Map<LocalDateTime, String> supportingDocuments = new HashMap<>();
 
+    /**
+     * Timestamp of the last update to the record.
+     * Initialized to current time and should be updated on changes.
+     */
     private LocalDateTime lastUpdatedDate = LocalDateTime.now();
-
 
     /**
      * Private constructor for creating insurance claims.
@@ -103,7 +106,6 @@ public class InsuranceClaim implements JSONSerializable {
         this.claimAmount = claimAmount;
         this.comments = comments;
     }
-
 
     /**
      * Creates an insurance claim with an existing claim ID.
@@ -144,7 +146,6 @@ public class InsuranceClaim implements JSONSerializable {
         );
     }
 
-
     /**
      * Creates a new insurance claim with a generated claim ID.
      *
@@ -171,7 +172,6 @@ public class InsuranceClaim implements JSONSerializable {
         );
     }
 
-
     /**
      * Retrieves the unique identifier for the claim.
      *
@@ -190,7 +190,6 @@ public class InsuranceClaim implements JSONSerializable {
         return bill;
     }
 
-
     /**
      * Retrieves the patient associated with the claim.
      *
@@ -199,7 +198,6 @@ public class InsuranceClaim implements JSONSerializable {
     public Patient getPatient() {
         return patient;
     }
-
 
     /**
      * Validates if the status transition is allowed.
@@ -257,7 +255,6 @@ public class InsuranceClaim implements JSONSerializable {
         }
     }
 
-
     /**
      * Processes a partial approval for the claim.
      *
@@ -283,7 +280,6 @@ public class InsuranceClaim implements JSONSerializable {
         updateStatus(ClaimStatus.PARTIALLY_APPROVED);
     }
 
-
     /**
      * Gets the most recent supporting document.
      *
@@ -301,7 +297,6 @@ public class InsuranceClaim implements JSONSerializable {
 
         return supportingDocuments.get(mostRecent);
     }
-
 
     /**
      * Adds a supporting document to the claim.
@@ -321,7 +316,6 @@ public class InsuranceClaim implements JSONSerializable {
         supportingDocuments.put(LocalDateTime.now(), documentDescription);
     }
 
-
     /**
      * Gets the approved amount for the claim.
      *
@@ -331,7 +325,6 @@ public class InsuranceClaim implements JSONSerializable {
         return approvedAmount == null ? BigDecimal.ZERO : approvedAmount;
     }
 
-
     /**
      * Gets the claim amount for the claim.
      *
@@ -340,7 +333,6 @@ public class InsuranceClaim implements JSONSerializable {
     public BigDecimal getClaimAmount() {
         return claimAmount;
     }
-
 
     /**
      * Updates the status of the claim.
@@ -352,7 +344,6 @@ public class InsuranceClaim implements JSONSerializable {
         validateStatusTransition(newStatus);
         this.claimStatus = newStatus;
     }
-
 
     /**
      * Checks if the claim is in draft status.
@@ -456,7 +447,6 @@ public class InsuranceClaim implements JSONSerializable {
         return !isClosed();
     }
 
-
     /**
      * Sets the comments of the claim.
      *
@@ -466,6 +456,12 @@ public class InsuranceClaim implements JSONSerializable {
         this.comments = comments;
     }
 
+    /**
+     * Generates a unique ClaimID using current date and a random string.
+     * Format: CLM-YYYYMMDD-XXXX, where XXXX is a random 4-character string.
+     *
+     * @return The generated ClaimID as a String.
+     */
     private static String generateClaimId() {
         LocalDateTime now = LocalDateTime.now();
         String datePart = now.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
@@ -474,7 +470,11 @@ public class InsuranceClaim implements JSONSerializable {
         return String.format("CLM-%s-%s", datePart, randomPart);
     }
 
-
+    /**
+     * Retrieves the submission date of the claim.
+     *
+     * @return The LocalDateTime when the claim was submitted.
+     */
     public LocalDateTime getSubmissionDate() {
         return submissionDate;
     }
