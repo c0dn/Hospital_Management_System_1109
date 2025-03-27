@@ -1,10 +1,12 @@
 /**
- * The billing package manages the financial aspects of the insurance system.
- * <br><br>It includes:
- * <br>- Generating and processing bills
- * <br>- Managing patient payments
- *
- * <br><br>The Bill and Billing classes work together to track financial transactions.
+ * Manages financial operations and transactions in the healthcare management system.
+ * <p>
+ * This package provides comprehensive functionality for handling billing-related tasks,
+ * such as:
+ * <ul>
+ *   <li>Bill generation and processing</li>
+ *   <li>Payment management for patients</li>
+ * </ul>
+ * <p>
  */
-
 package org.bee.hms.billing;

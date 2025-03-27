@@ -21,6 +21,7 @@ public class Bill implements JSONSerializable {
     /** Unique identifier for the bill. */
     private final String billId;
 
+    /** Tax rate for Singapore, excluded from JSON serialization */
     @JsonIgnore
     private static final BigDecimal SINGAPORE_TAX_RATE = new BigDecimal("0.09");
 
@@ -29,6 +30,7 @@ public class Bill implements JSONSerializable {
      */
     private final Patient patient;
 
+    /** Method of payment for the bill */
     private PaymentMethod paymentMethod;
 
     /** Date and time when the bill was created. */
@@ -39,9 +41,17 @@ public class Bill implements JSONSerializable {
     private Map<String, BigDecimal> categorizedCharges;
     /** Current status of the bill, such as DRAFT. */
     private BillingStatus status;
+
+    /** Amount that has been settled for the bill */
     private BigDecimal settledAmount;
+
+    /** Insurance policy associated with the bill */
     private final InsurancePolicy insurancePolicy;
+
+    /** Indicates whether the bill is for an inpatient service */
     private final boolean isInpatient;
+
+    /** Indicates whether the bill is for an emergency service */
     private final boolean isEmergency;
 
     /**
@@ -496,8 +506,6 @@ public class Bill implements JSONSerializable {
         );
     }
 
-
-
     /**
      * Recalculates the total charges for each category.
      * This method iterates through all billing line items and updates the categorized charges.
@@ -513,23 +521,42 @@ public class Bill implements JSONSerializable {
         }
     }
 
-
+    /**
+     * Retrieves the patient associated with the bill
+     * @return The {@link Patient} object for the bill
+     */
     public Patient getPatient() {
         return patient;
     }
 
+    /**
+     * Gets the current status of the bill
+     * @return The {@link BillingStatus} of the bill
+     */
     public BillingStatus getStatus() {
         return status;
     }
 
+    /**
+     * Retrieves the insurance policy associated with the bill
+     * @return The {@link InsurancePolicy} for the bill
+     */
     public InsurancePolicy getInsurancePolicy() {
         return insurancePolicy;
     }
 
+    /**
+     * Gets the billId the bill
+     * @return The billId
+     */
     public String getBillId() {
         return billId;
     }
 
+    /**
+     * Retrieves the date and time when the bill was created
+     * @return The bill date as a {@link LocalDateTime} object
+     */
     public LocalDateTime getBillDate() {
         return billDate;
     }

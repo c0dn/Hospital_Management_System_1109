@@ -34,12 +34,30 @@ public class BillBuilder {
      * The date and time when the bill was created, set to the current timestamp by default.
      */
     LocalDateTime billDate;
+
+    /** The insurance policy associated with the bill */
     InsurancePolicy insurancePolicy;
+
+    /** The visit associated with the bill */
     private Visit visit;
+
+    /** List of consultations associated with the bill */
     private final List<Consultation> consultations;
+
+    /** Flag indicating whether the bill is for an inpatient service */
     boolean isInpatient;
+
+    /** Flag indicating whether the bill is for an emergency service */
     boolean isEmergency;
+
+    /**
+     * The payment method used for the bill
+     */
     PaymentMethod paymentMethod;
+
+    /**
+     * The amount that has been settled for the bill
+     */
     BigDecimal settledAmount;
 
 
@@ -70,7 +88,6 @@ public class BillBuilder {
         this.patient = patient;
         return this;
     }
-
 
     /**
      * Sets the payment method for this bill.

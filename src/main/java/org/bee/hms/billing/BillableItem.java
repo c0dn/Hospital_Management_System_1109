@@ -11,6 +11,20 @@ import org.bee.utils.JSONSerializable;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
+/**
+ * Interface representing a billable item in the hospital management system.
+ * <p>
+ * This interface defines the common structure for various types of billable items
+ * such as medications, procedures, diagnostics, and ward stays. It provides methods
+ * for retrieving essential billing information and supports JSON serialization with
+ * type information for proper deserialization of concrete implementations.
+ *
+ * @see JSONSerializable
+ * @see MedicationBillableItem
+ * @see ProcedureCode
+ * @see DiagnosticCode
+ * @see WardStay
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
