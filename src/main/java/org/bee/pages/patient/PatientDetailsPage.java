@@ -1,9 +1,7 @@
 package org.bee.pages.patient;
 
-import org.bee.controllers.HumanController;
 import org.bee.hms.humans.Patient;
 import org.bee.pages.GenericUpdatePage;
-import org.bee.pages.ObjectDetailsPage;
 import org.bee.ui.Color;
 import org.bee.ui.SystemMessageStatus;
 import org.bee.ui.UiBase;

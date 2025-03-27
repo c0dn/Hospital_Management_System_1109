@@ -38,6 +38,8 @@ public class BillBuilder {
     private final List<Consultation> consultations;
     boolean isInpatient;
     boolean isEmergency;
+    PaymentMethod paymentMethod;
+
 
     /**
      * Constructs a new {@code BillBuilder} instance.
@@ -51,6 +53,7 @@ public class BillBuilder {
         this.insurancePolicy = null;
         this.isInpatient = false;
         this.isEmergency = false;
+        this.paymentMethod = PaymentMethod.NOT_APPLICABLE;
     }
 
     /**
@@ -61,6 +64,18 @@ public class BillBuilder {
      */
     public BillBuilder withPatient(Patient patient) {
         this.patient = patient;
+        return this;
+    }
+
+
+    /**
+     * Sets the payment method for this bill.
+     *
+     * @param paymentMethod The payment method to be used.
+     * @return The current instance of {@code BillBuilder} for method chaining.
+     */
+    public BillBuilder withPaymentMethod(PaymentMethod paymentMethod) {
+        this.paymentMethod = paymentMethod;
         return this;
     }
 

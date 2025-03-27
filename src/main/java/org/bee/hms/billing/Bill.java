@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.bee.hms.claims.InsuranceClaim;
 import org.bee.hms.humans.Patient;
-import org.bee.hms.humans.ResidentialStatus;
 import org.bee.hms.policy.*;
 import org.bee.utils.JSONSerializable;
 
@@ -29,6 +28,8 @@ public class Bill implements JSONSerializable {
      * Unique identifier of the patient associated with the bill.
      */
     private final Patient patient;
+
+    private PaymentMethod paymentMethod;
 
     /** Date and time when the bill was created. */
     private final LocalDateTime billDate;
@@ -58,6 +59,7 @@ public class Bill implements JSONSerializable {
         this.status = BillingStatus.DRAFT;
         this.isInpatient = builder.isInpatient;
         this.isEmergency = builder.isEmergency;
+        this.paymentMethod = builder.paymentMethod;
     }
 
     /**
@@ -76,20 +78,22 @@ public class Bill implements JSONSerializable {
      * @param insurancePolicy     The insurance policy associated with the bill
      * @param isInpatient         Flag indicating if this is for an inpatient service
      * @param isEmergency         Flag indicating if this is for an emergency service
+     * @param paymentMethod       The payment method used for the bill
      *
      * @return A fully constructed Bill object with all properties set from JSON data
      */
     @JsonCreator
     public static Bill fromJson(
-            @JsonProperty("bill_id") String billId,
+            @JsonProperty("billId") String billId,
             @JsonProperty("patient") Patient patient,
-            @JsonProperty("bill_date") LocalDateTime billDate,
-            @JsonProperty("line_items") List<BillingItemLine> lineItems,
-            @JsonProperty("categorized_charges") Map<String, BigDecimal> categorizedCharges,
+            @JsonProperty("billDate") LocalDateTime billDate,
+            @JsonProperty("lineItems") List<BillingItemLine> lineItems,
+            @JsonProperty("categorizedCharges") Map<String, BigDecimal> categorizedCharges,
             @JsonProperty("status") BillingStatus status,
-            @JsonProperty("insurance_policy") InsurancePolicy insurancePolicy,
-            @JsonProperty("is_inpatient") boolean isInpatient,
-            @JsonProperty("is_emergency") boolean isEmergency
+            @JsonProperty("insurancePolicy") InsurancePolicy insurancePolicy,
+            @JsonProperty("isInpatient") boolean isInpatient,
+            @JsonProperty("isEmergency") boolean isEmergency,
+            @JsonProperty("paymentMethod") PaymentMethod paymentMethod
     ) {
         BillBuilder builder = new BillBuilder();
         builder.billId = billId;
@@ -98,6 +102,7 @@ public class Bill implements JSONSerializable {
         builder.insurancePolicy = insurancePolicy;
         builder.isInpatient = isInpatient;
         builder.isEmergency = isEmergency;
+        builder.paymentMethod = paymentMethod != null ? paymentMethod : PaymentMethod.NOT_APPLICABLE;
 
         Bill bill = new Bill(builder);
 
@@ -266,6 +271,10 @@ public class Bill implements JSONSerializable {
      */
     public BigDecimal getDiscountedTotal() {
         return getTotalAmount().subtract(getDiscountAmount());
+    }
+
+    public PaymentMethod getPaymentMethod() {
+        return paymentMethod;
     }
 
     /**
