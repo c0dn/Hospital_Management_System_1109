@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import org.bee.hms.billing.Bill;
 import org.bee.hms.billing.BillBuilder;
+import org.bee.hms.billing.BillingStatus;
 import org.bee.hms.claims.ClaimStatus;
 import org.bee.hms.claims.InsuranceClaim;
 import org.bee.hms.humans.Doctor;
@@ -106,29 +107,45 @@ public class ClaimController extends BaseController<InsuranceClaim> {
             return;
         }
 
-        AtomicInteger claimCount = new AtomicInteger();
 
-        // Process each existing bill to potentially create a claim
+        AtomicInteger claimCount = new AtomicInteger(0);
+        AtomicInteger billCounterAtomic = new AtomicInteger(0);
+
         for (Bill bill : existingBills) {
+            int currentBillCount = billCounterAtomic.getAndIncrement();
+
             Patient patient = bill.getPatient();
-            InsurancePolicy policy = bill.getInsurancePolicy(); // You might need to add this getter to Bill
+            InsurancePolicy policy = bill.getInsurancePolicy();
 
             if (policy == null) {
-                continue; // Skip bills without insurance policy
+                continue; // Skip bills without an insurance policy
             }
 
-            InsuranceProvider provider = policy.getInsuranceProvider();
+            if (bill.getStatus() == BillingStatus.DRAFT) {
+                if (currentBillCount % 4 == 3) {
+                    try {
+                        bill.submitForProcessing();
+                        InsuranceProvider provider = policy.getInsuranceProvider();
+                        InsuranceCoverageResult coverageResult = bill.calculateInsuranceCoverage();
 
-            // Calculate insurance coverage using the existing bill
-            InsuranceCoverageResult coverageResult = bill.calculateInsuranceCoverage();
-            if (coverageResult.isApproved()) {
-                Optional<InsuranceClaim> claim = coverageResult.claim();
-                claim.ifPresent(c -> {
-                    items.add(c);
-                    provider.submitClaim(patient, c);
-                    provider.processClaim(patient, c);
-                    claimCount.getAndIncrement();
-                });
+                        if (coverageResult.isApproved()) {
+                            Optional<InsuranceClaim> claimOpt = coverageResult.claim();
+                            claimOpt.ifPresent(c -> {
+                                items.add(c);
+                                claimCount.getAndIncrement();
+                                if (currentBillCount % 3 == 0) {
+                                    boolean submitted = provider.submitClaim(patient, c);
+                                    if (submitted) {
+                                        provider.processClaim(patient, c);
+                                    }
+                                }
+                            });
+                        }
+
+                    } catch (IllegalStateException e) {
+                        System.err.println("Error processing bill " + bill.getBillId() + ": " + e.getMessage());
+                    }
+                }
             }
         }
 
