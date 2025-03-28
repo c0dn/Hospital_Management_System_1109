@@ -65,7 +65,7 @@ public class AppointmentController extends BaseController<Appointment> {
     }
 
     /**
-     * Returns the file path for appointments.txt file
+     * Returns the file path for the data file
      *
      * @return A String representing the directory to appointments.txt file
      */
@@ -97,15 +97,22 @@ public class AppointmentController extends BaseController<Appointment> {
         List<Patient> patients = humanController.getAllPatients();
         List<Doctor> doctors = humanController.getAllDoctors();
 
-        if (patients.isEmpty()) {
-            System.err.println("No patients available to generate appointments");
+        if (patients.isEmpty() || doctors.isEmpty()) {
+            System.err.println("No patients or doctors available to generate appointments");
             return;
         }
 
+        AppointmentStatus[] statuses = AppointmentStatus.values();
+
         for (Doctor doctor : doctors) {
-            Patient patient = DataGenerator.getRandomElement(patients);
-            Appointment appointment = Appointment.withRandomData(patient, doctor);
-            items.add(appointment);
+            for (AppointmentStatus status : statuses) {
+                Patient patient = DataGenerator.getRandomElement(patients);
+
+                Appointment appointment = Appointment.withRandomData(patient, doctor);
+                appointment.setAppointmentStatus(status);
+
+                items.add(appointment);
+            }
         }
 
         saveData();
@@ -147,8 +154,8 @@ public class AppointmentController extends BaseController<Appointment> {
     public List<Appointment> getAppointmentsForDoctor(Doctor doctor) {
         return items.stream()
                 .filter(appointment -> {
-                    Doctor appointmentDoctor = appointment.getDoctor();
-                    return appointmentDoctor != null && appointmentDoctor.equals(doctor);
+                    String appointmentDoctorID = appointment.getDoctor().getStaffId();
+                    return appointmentDoctorID.equals(doctor.getStaffId());
                 })
                 .collect(Collectors.toList());
     }
@@ -184,100 +191,6 @@ public class AppointmentController extends BaseController<Appointment> {
         return getAllItems();
     }
 
-    /**
-     * Displays all appointments in a paginated format
-     * <p> <p>
-     * This method retrieves all appointments, shows 5 appointments per page, and allows the user
-     * to navigate between pages or exit to the main menu
-     * <p> <p>
-     * The displayed information for each appointment includes: "ID", "Patient Name",
-     * "Date/Time", "Status", "Reason", "Doctor"
-     * If no appointments are found, it displays a message and returns to the main menu
-     */
-    public void viewAllAppointments() {
-        AppointmentController appointmentController = AppointmentController.getInstance();
-        List<Appointment> appointments = appointmentController.getAllAppointments();
-
-        if (appointments.isEmpty()) {
-            System.out.println("No appointments found.");
-            System.out.println("\nPress Enter to continue...");
-            new Scanner(System.in).nextLine();
-            return;
-        }
-
-        // Pagination variables
-        final int PAGE_SIZE = 5; // Number of appointments per page
-        int currentPage = 1;
-        int totalPages = (int) Math.ceil((double) appointments.size() / PAGE_SIZE);
-
-        boolean exit = false;
-        while (!exit) {
-            // Calculate start and end indices for the current page
-            int startIndex = (currentPage - 1) * PAGE_SIZE;
-            int endIndex = Math.min(startIndex + PAGE_SIZE, appointments.size());
-
-            // Get appointments for the current page
-            List<Appointment> currentPageAppointments = appointments.subList(startIndex, endIndex);
-
-            // Display header
-            System.out.println("\n=== All Appointments (Page " + currentPage + " of " + totalPages + ") ===");
-            System.out.println("--------------------------------------------------");
-            System.out.printf("%-5s %-20s %-20s %-15s %-15s %-20s\n",
-                    "ID", "Patient Name", "Date/Time", "Status", "Reason", "Doctor");
-            System.out.println("--------------------------------------------------");
-
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-
-            // Display appointments for the current page
-            for (int i = 0; i < currentPageAppointments.size(); i++) {
-                Appointment appointment = currentPageAppointments.get(i);
-                String doctorName = appointment.getDoctor() != null ?
-                        appointment.getDoctor().getName() : "Not Assigned";
-
-                System.out.printf("%-5d %-20s %-20s %-15s %-15s %-20s\n",
-                        startIndex + i + 1,
-                        appointment.getPatient().getName(),
-                        appointment.getAppointmentTime().format(formatter),
-                        appointment.getAppointmentStatus(),
-                        appointment.getReason(),
-                        doctorName);
-            }
-            System.out.println("--------------------------------------------------");
-
-            // Display navigation options
-            System.out.println("\nNavigation:");
-            if (currentPage > 1) {
-                System.out.println("P - Previous Page");
-            }
-            if (currentPage < totalPages) {
-                System.out.println("N - Next Page");
-            }
-            System.out.println("E - Exit to Main Menu");
-
-            // Get user input for navigation
-            System.out.print("\nEnter your choice: ");
-            String choice = new Scanner(System.in).nextLine().toUpperCase();
-
-            switch (choice) {
-                case "P":
-                    if (currentPage > 1) {
-                        currentPage--;
-                    }
-                    break;
-                case "N":
-                    if (currentPage < totalPages) {
-                        currentPage++;
-                    }
-                    break;
-                case "E":
-                    exit = true;
-                    break;
-                default:
-                    System.out.println("Invalid choice. Please try again.");
-                    break;
-            }
-        }
-    }
 
     /**
      * Updates an existing appointment and saves to the JSON file

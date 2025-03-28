@@ -3,17 +3,17 @@ package org.bee.pages.doctor;
 import org.bee.controllers.ConsultationController;
 import org.bee.controllers.HumanController;
 import org.bee.hms.humans.Doctor;
-import org.bee.hms.humans.Patient;
 import org.bee.hms.medical.Consultation;
+import org.bee.pages.GenericUpdatePage;
 import org.bee.ui.*;
 import org.bee.ui.views.*;
 import org.bee.utils.detailAdapters.ConsultationDetailsViewAdapter;
+import org.bee.utils.formAdapters.ConsultationFormAdapter;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BiFunction;
 
 /**
  * Page for viewing outpatient cases for doctors.
@@ -25,7 +25,8 @@ public class ConsultationInfoPage extends UiBase {
     private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     private static final int ITEMS_PER_PAGE = 7;
 
-    private final Consultation selectedConsultation;
+    private Consultation selectedConsultation;
+    private View consultationListView;
 
     /**
      * Default constructor - shows list of outpatient cases
@@ -44,10 +45,12 @@ public class ConsultationInfoPage extends UiBase {
     @Override
     public View createView() {
         if (selectedConsultation != null) {
-            return createConsultationCompositeView(selectedConsultation, canvas.getCurrentView());
+            consultationListView = createConsultationDetailsView(selectedConsultation);
         } else {
-            return viewAllOutpatientCases();
+            consultationListView = createConsultationListView();
         }
+
+        return consultationListView;
     }
 
     @Override
@@ -56,31 +59,35 @@ public class ConsultationInfoPage extends UiBase {
     }
 
     /**
-     * Creates a view showing all patients in a paginated list
+     * Creates a list view showing all outpatient consultations
      */
-    private View createPatientListView() {
-        List<Patient> patients = humanController.getAllPatients();
+    private View createConsultationListView() {
+        Doctor currentDoctor = (Doctor) humanController.getLoggedInUser();
+        List<Consultation> consultations = consultationController.getConsultationsByDoctorId(
+                currentDoctor.getStaffId());
 
-        if (patients.isEmpty()) {
-            return new TextView(canvas, "No patients found.", Color.YELLOW);
+        if (consultations.isEmpty()) {
+            return new TextView(canvas, "No outpatient cases found.", Color.YELLOW);
         }
 
         List<PaginatedMenuView.MenuOption> menuOptions = new ArrayList<>();
-        for (Patient p : patients) {
-            String patientName = p.getName();
-            String patientId = p.getPatientId();
-            String nricFin = p.getNricFin();
+        for (Consultation c : consultations) {
+            String patientName = c.getPatient() != null ? c.getPatient().getName() : "Unknown";
+            String consultId = c.getConsultationId();
+            LocalDateTime consultTime = c.getConsultationTime();
+            String timeString = consultTime != null ? dateFormatter.format(consultTime) : "Not scheduled";
+            String diagnosis = c.getDiagnosis() != null ? c.getDiagnosis() : "No diagnosis";
 
-            String optionText = String.format("%s (%s) - ID: %s",
-                    patientName, nricFin, patientId);
+            String optionText = String.format("%s - %s (%s) - %s",
+                    consultId, patientName, timeString, diagnosis);
 
-            menuOptions.add(new PaginatedMenuView.MenuOption(patientId, optionText, p));
+            menuOptions.add(new PaginatedMenuView.MenuOption(consultId, optionText, c));
         }
 
         PaginatedMenuView paginatedView = new PaginatedMenuView(
                 canvas,
-                "\nPatient Records",
-                "Select a patient to view details",
+                "\nOutpatient Cases",
+                "Select a case to view details",
                 menuOptions,
                 ITEMS_PER_PAGE,
                 Color.CYAN
@@ -89,8 +96,8 @@ public class ConsultationInfoPage extends UiBase {
         paginatedView.setSelectionCallback(option -> {
             try {
                 if (option != null && option.getData() != null) {
-                    Patient selectedPatient = (Patient) option.getData();
-                    displaySelectedPatient(selectedPatient, canvas.getCurrentView());
+                    Consultation selected = (Consultation) option.getData();
+                    displaySelectedConsultation(selected);
                 } else {
                     canvas.setSystemMessage("Error: Invalid selection",
                             SystemMessageStatus.ERROR);
@@ -108,111 +115,12 @@ public class ConsultationInfoPage extends UiBase {
     }
 
     /**
-     * Display a table of all outpatient cases with pagination
+     * Creates a view showing consultation details
      */
-    private View viewAllOutpatientCases() {
-        Doctor currentDoctor = (Doctor) humanController.getLoggedInUser();
-        List<Consultation> consultations = consultationController.getConsultationsByDoctorId(
-                currentDoctor.getStaffId());
-
-        if (consultations.isEmpty()) {
-            return new TextView(canvas, "No outpatient cases found.", Color.YELLOW);
-        }
-
-        BiFunction<List<Consultation>, Integer, TableView<Consultation>> tableFactory =
-                (pageItems, pageNum) -> createConsultationTableView(pageItems);
-
-        PaginatedView<Consultation, TableView<Consultation>> paginatedView = new PaginatedView<>(
-                canvas,
-                "Outpatient Cases",
-                consultations,
-                ITEMS_PER_PAGE,
-                tableFactory,
-                Color.CYAN
-        );
-
-        paginatedView.attachUserInput("View Case Details", input -> {
-            TableView<Consultation> tableView = paginatedView.getContentView();
-            if (tableView != null) {
-                tableView.setSelectionCallback((rowIndex, consultation) -> {
-                    View detailsView = createConsultationCompositeView(consultation, canvas.getCurrentView());
-                    canvas.setCurrentView(detailsView);
-                    canvas.setRequireRedraw(true);
-                });
-            }
-        });
-
-        paginatedView.attachUserInput("Select Patient", input -> {
-            View patientListView = createPatientListView();
-            canvas.setCurrentView(patientListView);
-            canvas.setRequireRedraw(true);
-        });
-
-        return paginatedView;
-    }
-
-    /**
-     * Creates a TableView for displaying consultation data
-     */
-    private TableView<Consultation> createConsultationTableView(List<Consultation> consultations) {
-        TableView<Consultation> tableView = new TableView<>(canvas, "", Color.CYAN);
-
-        tableView.showRowNumbers(true)
-                .addColumn("Case ID", 12, c -> c.getConsultationId())
-                .addColumn("Date", 16, c -> {
-                    LocalDateTime time = c.getConsultationTime();
-                    String formattedDate = time != null ? dateFormatter.format(time) : "Not scheduled";
-
-                    if (time != null && time.isAfter(LocalDateTime.now().minusDays(7))) {
-                        return colorText(formattedDate, Color.GREEN);
-                    }
-                    else if (time != null && time.isBefore(LocalDateTime.now().minusDays(30))) {
-                        return colorText(formattedDate, Color.BLUE);
-                    }
-                    return formattedDate;
-                })
-                .addColumn("Patient Name", 18, c -> {
-                    Patient patient = c.getPatient();
-                    return patient != null ? patient.getName() : "Unknown";
-                })
-                .addColumn("Status", 10, c -> {
-                    if (c.getStatus() == null) return "Not set";
-
-                    String statusStr = formatEnum(c.getStatus().toString());
-
-                    return switch (c.getStatus()) {
-                        case COMPLETED -> colorText(statusStr, Color.GREEN);
-                        case IN_PROGRESS -> colorText(statusStr, Color.YELLOW);
-                        case CANCELLED -> colorText(statusStr, Color.RED);
-                        case SCHEDULED -> colorText(statusStr, Color.CYAN);
-                    };
-                })
-                .addColumn("Diagnosis", 20, c -> {
-                    String diagnosis = c.getDiagnosis();
-                    if (diagnosis == null || diagnosis.isEmpty()) {
-                        return "No diagnosis";
-                    }
-
-                    String lowerDiag = diagnosis.toLowerCase();
-                    if (lowerDiag.contains("hypertension") ||
-                            lowerDiag.contains("diabetes") ||
-                            lowerDiag.contains("infection")) {
-                        return colorText(diagnosis, Color.YELLOW);
-                    }
-                    return diagnosis;
-                })
-                .setData(consultations);
-
-        return tableView;
-    }
-
-    /**
-     * Creates a composite view for displaying consultation details with action buttons
-     */
-    private View createConsultationCompositeView(Consultation consultation, View previousView) {
+    private View createConsultationDetailsView(Consultation consultation) {
+        ConsultationDetailsViewAdapter adapter = new ConsultationDetailsViewAdapter();
         CompositeView compositeView = new CompositeView(canvas, "", Color.CYAN);
 
-        ConsultationDetailsViewAdapter adapter = new ConsultationDetailsViewAdapter();
         DetailsView<Consultation> detailsView = new DetailsView<>(
                 canvas,
                 "OUTPATIENT CASE DETAILS",
@@ -224,12 +132,15 @@ public class ConsultationInfoPage extends UiBase {
         compositeView.addView(detailsView);
 
         if (humanController.getLoggedInUser() instanceof Doctor) {
-            MenuView actionMenu = new MenuView(canvas, "", Color.CYAN, true, false);
-            MenuView.MenuSection actionSection = actionMenu.addSection("Available Actions");
-            actionSection.addOption(1, "Update Case (u)");
+            MenuView actionMenu = new MenuView(canvas, "", Color.CYAN, false, true);
 
             actionMenu.attachLetterOption('u', "Update Case", input -> {
-                ToPage(new UpdateOutpatientCase(consultation));
+                openUpdateForm(consultation);
+            });
+
+            actionMenu.attachLetterOption('s', "Schedule Appointment", input -> {
+                canvas.setSystemMessage("Feature coming soon!", SystemMessageStatus.INFO);
+                canvas.setRequireRedraw(true);
             });
 
             compositeView.addView(actionMenu);
@@ -239,14 +150,39 @@ public class ConsultationInfoPage extends UiBase {
     }
 
     /**
-     * Displays details about a selected patient
+     * Opens the update form for a specific consultation
      */
-    private void displaySelectedPatient(Patient patient, View previousView) {
-        // Here you can implement what happens when a patient is selected
-        // For example, you could show their medical history or add a new consultation
+    private void openUpdateForm(Consultation consultation) {
+        try {
+            ConsultationFormAdapter adapter = new ConsultationFormAdapter();
 
-        canvas.setSystemMessage("Selected patient: " + patient.getName() + ". Functionality coming soon.",
-                SystemMessageStatus.INFO);
+            GenericUpdatePage<Consultation> updatePage = new GenericUpdatePage<>(
+                    consultation,
+                    adapter,
+                    () -> {
+                        displaySelectedConsultation(consultation);
+                    }
+            );
+
+            ToPage(updatePage);
+        } catch (Exception e) {
+            canvas.setSystemMessage("Error opening update form: " + e.getMessage(), SystemMessageStatus.ERROR);
+            canvas.setRequireRedraw(true);
+        }
+    }
+
+    /**
+     * Displays the selected consultation
+     */
+    public void displaySelectedConsultation(Consultation consultation) {
+        View consultationView = createConsultationDetailsView(consultation);
+        canvas.setCurrentView(consultationView);
         canvas.setRequireRedraw(true);
+    }
+
+
+    @Override
+    public void OnBackPressed() {
+        super.OnBackPressed();
     }
 }

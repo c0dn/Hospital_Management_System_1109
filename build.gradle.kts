@@ -125,3 +125,30 @@ tasks.register<JavaExec>("runJarCleanSlate") {
     standardInput = System.`in`
     workingDir = layout.buildDirectory.dir("libs").get().asFile
 }
+
+
+tasks.register<JavaExec>("runJarOverwriteData") {
+    dependsOn(tasks.jar)
+
+    doFirst {
+        val libsDir = layout.buildDirectory.dir("libs")
+        val destDir = libsDir.get().dir("database").asFile
+
+        if (!destDir.exists()) {
+            destDir.mkdirs()
+        }
+
+        destDir.deleteRecursively()
+        destDir.mkdirs()
+
+        copy {
+            from(databaseDir)
+            into(destDir)
+        }
+    }
+
+    classpath = files(tasks.jar.get().outputs.files)
+    mainClass.set("org.bee.Main")
+    standardInput = System.`in`
+    workingDir = layout.buildDirectory.dir("libs").get().asFile
+}

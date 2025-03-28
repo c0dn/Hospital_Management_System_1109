@@ -8,21 +8,18 @@ import org.bee.hms.humans.Patient;
 import org.bee.hms.telemed.Appointment;
 import org.bee.hms.telemed.AppointmentStatus;
 import org.bee.hms.telemed.Session;
-import org.bee.hms.telemed.SessionStatus;
 import org.bee.ui.Color;
 import org.bee.ui.SystemMessageStatus;
 import org.bee.ui.UiBase;
 import org.bee.ui.View;
-import org.bee.ui.views.PaginatedView;
-import org.bee.ui.views.TableView;
-import org.bee.ui.views.TextView;
+import org.bee.ui.views.*;
 import org.bee.utils.ReflectionHelper;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BiFunction;
 
 /**
  * Page for viewing and managing telemedicine appointments for doctors.
@@ -33,10 +30,12 @@ public class ViewAppointmentPage extends UiBase {
     private static final AppointmentController appointmentController = AppointmentController.getInstance();
     private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     private static final int ITEMS_PER_PAGE = 7;
+    private View appointmentListView;
 
     @Override
     public View createView() {
-        return viewAllAppointments();
+        appointmentListView = createAppointmentListView();
+        return appointmentListView;
     }
 
     @Override
@@ -45,51 +44,57 @@ public class ViewAppointmentPage extends UiBase {
     }
 
     /**
-     * Display a table of all telemedicine appointments with pagination
+     * Creates a list view showing all appointments
      */
-    private View viewAllAppointments() {
+    private View createAppointmentListView() {
         Doctor currentDoctor = (Doctor) humanController.getLoggedInUser();
-        List<Appointment> appointments = appointmentController.getAllAppointments().stream()
-                .filter(a -> {
-                    Doctor appointmentDoctor = a.getDoctor();
-                    boolean doctorMatch = appointmentDoctor == null || appointmentDoctor.getStaffId().equals(currentDoctor.getStaffId());
-                    boolean statusMatch = a.getAppointmentStatus() != AppointmentStatus.PAID && a.getAppointmentStatus() != AppointmentStatus.PAYMENT_PENDING;
-
-                    return doctorMatch && statusMatch;
-                })
+        List<Appointment> appointments = appointmentController.getAppointmentsForDoctor(currentDoctor).stream()
+                .filter(a -> a.getAppointmentStatus() != AppointmentStatus.PAID && a.getAppointmentStatus() != AppointmentStatus.PAYMENT_PENDING)
                 .toList();
 
         if (appointments.isEmpty()) {
             return new TextView(canvas, "No telemedicine appointments found.", Color.YELLOW);
         }
 
-        BiFunction<List<Appointment>, Integer, TableView<Appointment>> tableFactory =
-                (pageItems, pageNum) -> createAppointmentTableView(pageItems);
+        List<PaginatedMenuView.MenuOption> menuOptions = new ArrayList<>();
+        for (Appointment a : appointments) {
+            String patientName = a.getPatient() != null ? a.getPatient().getName() : "Unknown";
+            String appointmentId = ReflectionHelper.propertyAccessor("appointmentId", "N/A").apply(a);
+            LocalDateTime appointmentTime = a.getAppointmentTime();
+            String timeString = appointmentTime != null ? dateFormatter.format(appointmentTime) : "Not scheduled";
+            String reason = a.getReason() != null ? a.getReason() : "Not specified";
+            String status = a.getAppointmentStatus() != null ? formatEnum(a.getAppointmentStatus().toString()) : "Unknown";
 
-        PaginatedView<Appointment, TableView<Appointment>> paginatedView = new PaginatedView<>(
+            String optionText = String.format("%s - %s (%s) - %s - %s",
+                    appointmentId, patientName, timeString, reason, status);
+
+            menuOptions.add(new PaginatedMenuView.MenuOption(appointmentId, optionText, a));
+        }
+
+        PaginatedMenuView paginatedView = new PaginatedMenuView(
                 canvas,
-                "Telemedicine Appointments",
-                appointments,
+                "\nTelemedicine Appointments",
+                "Select an appointment to view details",
+                menuOptions,
                 ITEMS_PER_PAGE,
-                tableFactory,
                 Color.CYAN
         );
 
-        paginatedView.attachUserInput("View Patient Info", input -> {
-            TableView<Appointment> tableView = paginatedView.getContentView();
-            if (tableView != null) {
-                tableView.setSelectionCallback((rowIndex, appointment) -> {
-                    ToPage(new PatientInfoPage(appointment.getPatient()));
-                });
-            }
-        });
-
-        paginatedView.attachUserInput("Manage Appointment", input -> {
-            TableView<Appointment> tableView = paginatedView.getContentView();
-            if (tableView != null) {
-                tableView.setSelectionCallback((rowIndex, appointment) -> {
-                    manageAppointment(appointment);
-                });
+        paginatedView.setSelectionCallback(option -> {
+            try {
+                if (option != null && option.getData() != null) {
+                    Appointment selected = (Appointment) option.getData();
+                    displaySelectedAppointment(selected, canvas.getCurrentView());
+                } else {
+                    canvas.setSystemMessage("Error: Invalid selection",
+                            SystemMessageStatus.ERROR);
+                    canvas.setRequireRedraw(true);
+                }
+            } catch (Exception e) {
+                canvas.setSystemMessage("Error processing selection: " + e.getMessage(),
+                        SystemMessageStatus.ERROR);
+                canvas.setRequireRedraw(true);
+                System.err.println("Exception in selection callback: " + e.getMessage());
             }
         });
 
@@ -97,132 +102,172 @@ public class ViewAppointmentPage extends UiBase {
     }
 
     /**
-     * Creates a TableView for displaying appointment data
+     * Creates a detail view for a specific appointment
      */
-    private TableView<Appointment> createAppointmentTableView(List<Appointment> appointments) {
-        TableView<Appointment> tableView = new TableView<>(canvas, "", Color.CYAN);
+    private View createAppointmentDetailsView(Appointment appointment) {
+        CompositeView compositeView = new CompositeView(canvas, "", Color.CYAN);
 
-        tableView.showRowNumbers(true)
-                .addColumn("Appointment ID", 15, a -> (String) ReflectionHelper.propertyAccessor("appointmentId", null).apply(a))
+        DetailsView<Appointment> detailsView = new DetailsView<>(
+                canvas,
+                "TELEMEDICINE APPOINTMENT DETAILS",
+                appointment,
+                Color.CYAN
+        );
 
-                .addColumn("Date & Time", 20, a -> {
-                    LocalDateTime time = (LocalDateTime) ReflectionHelper.propertyAccessor("appointmentTime", null).apply(a);
-                    if (time == null) return "Not scheduled";
+        detailsView.addDetail("Basic Information", "Appointment ID",
+                (String) ReflectionHelper.propertyAccessor("appointmentId", "N/A").apply(appointment));
 
-                    String formattedDate = dateFormatter.format(time);
-                    LocalDateTime now = LocalDateTime.now();
+        LocalDateTime appointmentTime = appointment.getAppointmentTime();
+        detailsView.addDetail("Basic Information", "Date & Time",
+                appointmentTime != null ? dateFormatter.format(appointmentTime) : "Not scheduled");
 
-                    // Color appointments based on timing
-                    if (time.isBefore(now)) {
-                        return colorText(formattedDate, Color.RED);
-                    } else if (time.isBefore(now.plusDays(1))) {
-                        return colorText(formattedDate, Color.YELLOW);
-                    } else if (time.isBefore(now.plusDays(3))) {
-                        return colorText(formattedDate, Color.GREEN);
-                    }
-                    return formattedDate;
-                })
+        Patient patient = appointment.getPatient();
+        detailsView.addDetail("Patient Information", "Name",
+                patient != null ? patient.getName() : "Unknown");
+        detailsView.addDetail("Patient Information", "Patient ID",
+                patient != null ? patient.getPatientId() : "Unknown");
 
-                .addColumn("Patient", 20, a -> {
-                    Patient patient = (Patient) ReflectionHelper.propertyAccessor("patient", null).apply(a);
-                    return patient != null ? patient.getName() : "Unknown";
-                })
+        detailsView.addDetail("Appointment Details", "Reason",
+                appointment.getReason() != null ? appointment.getReason() : "Not specified");
+        detailsView.addDetail("Appointment Details", "Status",
+                appointment.getAppointmentStatus() != null ?
+                        formatEnum(appointment.getAppointmentStatus().toString()) : "Unknown");
 
-                .addColumn("Reason", 25, a -> {
-                    String reason = (String) ReflectionHelper.propertyAccessor("reason", null).apply(a);
-                    return reason != null ? reason : "Not specified";
-                })
+        Session session = (Session) ReflectionHelper.propertyAccessor("session", null).apply(appointment);
+        if (session != null) {
+            detailsView.addDetail("Session Information", "Status",
+                    session.getSessionStatus() != null ?
+                            formatEnum(session.getSessionStatus().toString()) : "Unknown");
 
-                .addColumn("Status", 15, a -> {
-                    AppointmentStatus status = (AppointmentStatus) ReflectionHelper.propertyAccessor("appointmentStatus", null).apply(a);
-                    if (status == null) return "Unknown";
+            String joinUrl = (String) ReflectionHelper.propertyAccessor("joinUrl", null).apply(session);
+            if (joinUrl != null && !joinUrl.isEmpty()) {
+                detailsView.addDetail("Session Information", "Join URL", joinUrl);
+            }
+        }
 
-                    String statusStr = formatEnum(status.toString());
+        compositeView.addView(detailsView);
 
-                    return switch (status) {
-                        case COMPLETED -> colorText(statusStr, Color.GREEN);
-                        case ACCEPTED -> colorText(statusStr, Color.CYAN);
-                        case PENDING -> colorText(statusStr, Color.YELLOW);
-                        case DECLINED, CANCELED -> colorText(statusStr, Color.RED);
-                        case PAYMENT_PENDING -> colorText(statusStr, Color.UND_RED);
-                        case PAID -> colorText(statusStr, Color.UND_GREEN);
-                    };
-                })
+        if (humanController.getLoggedInUser() instanceof Doctor) {
+            MenuView actionMenu = new MenuView(canvas, "", Color.CYAN, false, true);
 
-                .addColumn("Session", 15, a -> {
-                    Session session = (Session) ReflectionHelper.propertyAccessor("session", null).apply(a);
-                    if (session == null) {
-                        return "No session";
-                    }
+            AppointmentStatus status = appointment.getAppointmentStatus();
 
-                    SessionStatus sessionStatus = session.getSessionStatus();
-                    String statusText = sessionStatus != null ? formatEnum(sessionStatus.toString()) : "Unknown";
+            if (status == AppointmentStatus.PENDING) {
+                actionMenu.attachLetterOption('a', "Approve Appointment", input -> {
+                    approveAppointment(appointment);
+                });
 
-                    if (sessionStatus == SessionStatus.ONGOING) {
-                        return colorText(statusText, Color.GREEN);
-                    } else if (sessionStatus == SessionStatus.COMPLETED) {
-                        return colorText(statusText, Color.BLUE);
-                    }
+                actionMenu.attachLetterOption('d', "Decline Appointment", input -> {
+                    declineAppointment(appointment);
+                });
+            } else if (status == AppointmentStatus.ACCEPTED) {
+                actionMenu.attachLetterOption('s', "Start Consultation", input -> {
+                    startConsultation(appointment);
+                });
+            } else if (status == AppointmentStatus.COMPLETED) {
+                actionMenu.attachLetterOption('v', "View Records", input -> {
+                    viewRecords(appointment);
+                });
+            }
 
-                    return statusText;
-                })
+            actionMenu.attachLetterOption('p', "View Patient Details", input -> {
+                ToPage(new PatientInfoPage(appointment.getPatient()));
+            });
 
-                .addColumn("Actions", 15, a -> {
-                    AppointmentStatus status = a.getAppointmentStatus();
-                    if (status == AppointmentStatus.PENDING) {
-                        return colorText("Needs Review", Color.YELLOW);
-                    } else if (status == AppointmentStatus.ACCEPTED) {
-                        return colorText("Start Consult", Color.GREEN);
-                    } else if (status == AppointmentStatus.COMPLETED) {
-                        return colorText("View Records", Color.BLUE);
-                    }
-                    return "";
-                })
+            compositeView.addView(actionMenu);
+        }
 
-                .setData(appointments);
-
-        return tableView;
+        return compositeView;
     }
 
     /**
-     * Manage the selected appointment
+     * Approve the appointment
      */
-    private void manageAppointment(Appointment appointment) {
-        AppointmentStatus status = appointment.getAppointmentStatus();
-
+    private void approveAppointment(Appointment appointment) {
         try {
-            if (status == AppointmentStatus.PENDING) {
-                canvas.setSystemMessage("Approving appointment...", SystemMessageStatus.INFO);
+            canvas.setSystemMessage("Approving appointment...", SystemMessageStatus.INFO);
 
-                Doctor currentDoctor = (Doctor) humanController.getLoggedInUser();
-                if (appointment.getDoctor() == null) {
-                    appointment.setDoctor(currentDoctor);
-                }
+            Doctor currentDoctor = (Doctor) humanController.getLoggedInUser();
+            if (appointment.getDoctor() == null) {
+                appointment.setDoctor(currentDoctor);
+            }
 
-                try {
-                    String joinUrl = appointmentController.generateZoomLink(
-                            "Appointment with " + appointment.getPatient().getName(),
-                            30
-                    );
-                    appointment.approveAppointment(currentDoctor, joinUrl);
-                    appointmentController.saveData();
-                    canvas.setSystemMessage("Appointment approved successfully!", SystemMessageStatus.SUCCESS);
-                } catch (ZoomApiException | IOException e) {
-                    canvas.setSystemMessage("Error: " + e.getMessage(), SystemMessageStatus.ERROR);
-                }
-            } else if (status == AppointmentStatus.ACCEPTED) {
-                TeleconsultPage.setAppointment(appointment);
-                ToPage(new TeleconsultPage());
-            } else if (status == AppointmentStatus.COMPLETED) {
-                canvas.setSystemMessage("Viewing completed consultation records...", SystemMessageStatus.INFO);
-            } else if (status == AppointmentStatus.DECLINED) {
-                canvas.setSystemMessage("This appointment was declined.", SystemMessageStatus.INFO);
+            try {
+                String joinUrl = appointmentController.generateZoomLink(
+                        "Appointment with " + appointment.getPatient().getName(),
+                        30
+                );
+                appointment.approveAppointment(currentDoctor, joinUrl);
+                appointmentController.saveData();
+                canvas.setSystemMessage("Appointment approved successfully!", SystemMessageStatus.SUCCESS);
+
+                displaySelectedAppointment(appointment, null);
+            } catch (ZoomApiException | IOException e) {
+                canvas.setSystemMessage("Error: " + e.getMessage(), SystemMessageStatus.ERROR);
             }
         } catch (Exception e) {
-            canvas.setSystemMessage("Error processing appointment: " + e.getMessage(), SystemMessageStatus.ERROR);
+            canvas.setSystemMessage("Error approving appointment: " + e.getMessage(), SystemMessageStatus.ERROR);
         }
+    }
 
-        View refreshedView = viewAllAppointments();
-        navigateToView(refreshedView);
+    /**
+     * Decline the appointment
+     */
+    private void declineAppointment(Appointment appointment) {
+        try {
+            Doctor currentDoctor = (Doctor) humanController.getLoggedInUser();
+            appointment.setAppointmentStatus(AppointmentStatus.DECLINED);
+            appointmentController.saveData();
+            canvas.setSystemMessage("Appointment declined.", SystemMessageStatus.SUCCESS);
+
+            appointmentListView = createAppointmentListView();
+            navigateToView(appointmentListView);
+        } catch (Exception e) {
+            canvas.setSystemMessage("Error declining appointment: " + e.getMessage(), SystemMessageStatus.ERROR);
+        }
+    }
+
+    /**
+     * Start the consultation
+     */
+    private void startConsultation(Appointment appointment) {
+        try {
+            TeleconsultPage.setAppointment(appointment);
+            ToPage(new TeleconsultPage());
+        } catch (Exception e) {
+            canvas.setSystemMessage("Error starting consultation: " + e.getMessage(), SystemMessageStatus.ERROR);
+        }
+    }
+
+    /**
+     * View consultation records
+     */
+    private void viewRecords(Appointment appointment) {
+        canvas.setSystemMessage("Viewing completed consultation records...", SystemMessageStatus.INFO);
+    }
+
+    /**
+     * Displays the selected appointment
+     */
+    public void displaySelectedAppointment(Appointment appointment) {
+        displaySelectedAppointment(appointment, canvas.getCurrentView());
+    }
+
+    /**
+     * Displays detailed information for the selected appointment
+     * with support for returning to the previous view
+     */
+    public void displaySelectedAppointment(Appointment appointment, View previousView) {
+        View appointmentView = createAppointmentDetailsView(appointment);
+        canvas.setCurrentView(appointmentView);
+        canvas.setRequireRedraw(true);
+    }
+
+    /**
+     * Handles the back button press by calling the superclass implementation.
+     */
+    @Override
+    public void OnBackPressed() {
+        super.OnBackPressed();
     }
 }
