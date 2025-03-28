@@ -67,8 +67,14 @@ public class Consultation implements JSONSerializable {
      * The list of medications prescribed during the consultation with their quantities
      */
     @JsonSerialize(using = PrescriptionMapSerializer.class)
+
+    /** Custom JSON deserialization configuration */
     @JsonDeserialize(using = PrescriptionMapDeserializer.class)
+
+    /** JSON property name for prescriptions */
     @JsonProperty("prescriptions")
+
+    /** Medication: Quantity mappings from consultation */
     private Map<Medication, Integer> prescriptions;
 
     /**
@@ -300,7 +306,13 @@ public class Consultation implements JSONSerializable {
         return consultation;
     }
 
-
+    /**
+     * Creates a consultation with randomized data for the specified patient
+     *
+     * @param patient The patient for the consultation
+     * @param doctor The treating doctor
+     * @return New consultation with random clinical data
+     */
     public static Consultation withRandomData(Patient patient, Doctor doctor) {
         Consultation consultation = withRandomData();
         consultation.doctor = doctor;
@@ -338,6 +350,11 @@ public class Consultation implements JSONSerializable {
         return items;
     }
 
+    /**
+     * Gets the doctor attending thex` consultation
+     *
+     * @return The attending Doctor
+     */
     public Doctor getDoctor() {
         return doctor;
     }
@@ -397,24 +414,58 @@ public class Consultation implements JSONSerializable {
         };
     }
 
+    /**
+     * Gets the unique identifier for the consultation
+     * @return The consultationId
+     */
     public String getConsultationId() { return consultationId; }
 
+    /**
+     * Gets the patient associated with the consultation
+     * @return The Patient object
+     */
     public Patient getPatient() { return patient; }
 
+    /**
+     * Gets the diagnosis for the consultation
+     * @return The diagnosis description
+     */
     public String getDiagnosis() {
         return diagnosis;
     }
 
+    /**
+     * Gets the type of consultation (ignored in JSON serialization)
+     * @return The ConsultationType enum value
+     * @see ConsultationType
+     */
     @JsonIgnore
     public ConsultationType getConsultationType() {
         return type;
     }
 
 
+    /**
+     * Gets the scheduled date/time for the consultation
+     * @return The appointment datetime
+     */
     public LocalDateTime getAppointmentDate() {
         return appointmentDate;
     }
 
+    /**
+     * Displays consultation details including:
+     * <ul>
+     *   <li>Patient information (via displayHuman())</li>
+     *   <li>Consultation metadata (ID, date, type, status)</li>
+     *   <li>Medical details (diagnosis, procedures, lab tests)</li>
+     *   <li>Treatment plan (prescriptions, follow-up)</li>
+     *   <li>Doctor information and notes</li>
+     * </ul>
+     * <p>
+     * Display "-" when data is missing.
+     * </p>
+     */
     public void displayConsultation() {
         patient.displayHuman();
         System.out.printf("%n");
@@ -505,10 +556,18 @@ public class Consultation implements JSONSerializable {
         System.out.println();
     }
 
+    /**
+     * Gets the time when the consultation occurred
+     * @return LocalDateTime of the consultation
+     */
     public LocalDateTime getConsultationTime() {
         return consultationTime;
     }
 
+    /**
+     * Gets the current status of the consultation
+     * @return ConsultationStatus
+     */
     public ConsultationStatus getStatus() {
         return status;
     }
@@ -666,70 +725,138 @@ public class Consultation implements JSONSerializable {
         }
     }
 
+    /**
+     * Sets the doctor's notes for this consultation
+     * @param notes Clinical notes
+     */
     public void setNotes(String notes) {
         this.notes = notes;
     }
 
+    /**
+     * Sets the patient's medical history to this consultation
+     * @param medicalHistory Medical history summary
+     */
     public void setMedicalHistory(String medicalHistory) {
         this.medicalHistory = medicalHistory;
     }
 
+    /**
+     * Sets the primary diagnosis for this consultation
+     * @param diagnosis Clinical diagnosis
+     */
     public void setDiagnosis(String diagnosis) {
         this.diagnosis = diagnosis;
     }
 
+    /**
+     * Sets the reason for the patient's visit
+     * @param visitReason Description of visit purpose
+     */
     public void setVisitReason(String visitReason) {
         this.visitReason = visitReason;
     }
 
+    /**
+     * Sets the follow-up date
+     * @param followUpDate Future follow-up date
+     */
     public void setFollowUpDate(LocalDateTime followUpDate) {
         this.followUpDate = followUpDate;
     }
 
+    /**
+     * Sets post-consultation instructions for the patient
+     * @param instructions Care instructions
+     */
     public void setInstructions(String instructions) {
         this.instructions = instructions;
     }
 
+    /**
+     * Sets the treatments prescribed during this consultation
+     * @param treatments List of Treatment
+     */
     public void setTreatments(ArrayList<Treatment> treatments) {
         this.treatments = treatments;
     }
 
+    /**
+     * Sets the lab tests ordered during this consultation
+     * @param labTests List of LabTest
+     */
     public void setLabtests(ArrayList<LabTest> labTests) {
         this.labTests = labTests;
     }
 
+    /**
+     * Sets the unique identifier for this consultation
+     * @param consultationId Consultation ID string
+     */
     public void setConsultationId(String consultationId) {
         this.consultationId = consultationId;
     }
 
+    /**
+     * Sets type of consultation
+     * @param type ConsultationType enum value
+     */
     public void setType(ConsultationType type) {
         this.type = type;
     }
 
+    /**
+     * Sets the date/time when consultation occurred
+     * @param consultationTime Timestamp of consultation
+     */
     public void setConsultationTime(LocalDateTime consultationTime) {
         this.consultationTime = consultationTime;
     }
 
+    /**
+     * Sets the consultation fee for this consultation
+     * @param consultationFee Fee amount
+     */
     public void setConsultationFee(BigDecimal consultationFee) {
         this.consultationFee = consultationFee;
     }
 
+    /**
+     * Sets the scheduled appointment date/time
+     * @param appointmentDate Planned consultation time
+     */
     public void setAppointmentDate(LocalDateTime appointmentDate) {
         this.appointmentDate = appointmentDate;
     }
 
+    /**
+     * Sets the current status of the consultation
+     * @param status ConsultationStatus enum value
+     */
     public void setStatus(ConsultationStatus status) {
         this.status = status;
     }
 
+    /**
+     * Sets the hospital department where consultation occurred
+     * @param department HospitalDepartment enum value
+     */
     public void setDepartment(HospitalDepartment department) {
         this.department = department;
     }
 
+    /**
+     * Sets the patient associated with this consultation.
+     * @param patient Patient object
+     */
     public void setPatient(Patient patient) {
         this.patient = patient;
     }
 
+    /**
+     * Sets the doctor who conducted the consultation
+     * @param doctor Doctor object
+     */
     public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
     }
