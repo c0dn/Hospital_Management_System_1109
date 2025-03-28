@@ -10,9 +10,7 @@ import org.bee.hms.telemed.AppointmentStatus;
 import org.bee.pages.GenericUpdatePage;
 import org.bee.pages.doctor.ViewAppointmentPage;
 import org.bee.ui.*;
-import org.bee.ui.views.ListView;
-import org.bee.ui.views.MenuView;
-import org.bee.ui.views.TableView;
+import org.bee.ui.views.*;
 import org.bee.utils.ReflectionHelper;
 import org.bee.utils.formAdapters.PatientFormAdapter;
 
@@ -239,110 +237,86 @@ public class PatientMainPage extends UiBase {
             List<Appointment> appointments = appointmentController.getAppointmentsForPatient(patient);
 
             if (appointments.isEmpty()) {
-                System.out.println("No appointments found.");
+                TextView noAppointmentsView = new TextView(canvas, "No appointments found.", Color.YELLOW);
+                navigateToView(noAppointmentsView);
                 return;
             }
 
-            boolean viewingAppointments = true;
-            while (viewingAppointments) {
-                // Display appointments
-                System.out.println("\nYour Appointments:");
-                for (int i = 0; i < appointments.size(); i++) {
-                    Appointment appointment = appointments.get(i);
-                    System.out.println((i + 1) + ". " + appointment.getAppointmentTime() + " - " + appointment.getReason());
-                }
+            List<PaginatedMenuView.MenuOption> menuOptions = new ArrayList<>();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-                System.out.println("Select appointment to view details or change:");
-                int choice = InputHelper.getValidIndex(canvas.getTerminal(), "Enter your choice", 1, appointments.size());
+            for (Appointment appointment : appointments) {
+                String formattedTime = appointment.getAppointmentTime().format(formatter);
+                String status = appointment.getAppointmentStatus().toString();
+                String appointmentText = String.format("%s - %s - %s",
+                        formattedTime, appointment.getReason(), status);
 
-                Appointment selectedAppointment = appointments.get(choice - 1);
-
-                System.out.println("Appointment Details:");
-                System.out.println("Time: " + selectedAppointment.getAppointmentTime());
-                System.out.println("Reason: " + selectedAppointment.getReason());
-                System.out.println("Status: " + selectedAppointment.getAppointmentStatus());
-
-                System.out.println("Options:");
-                System.out.println("1. Change Appointment");
-                System.out.println("2. Cancel Appointment");
-                System.out.println("3. Back");
-                System.out.println("4. Return to Main Page");
-
-                int optionChoice = InputHelper.getValidIndex(canvas.getTerminal(), "Enter your option", 1, 4);
-
-                if (optionChoice == 1) {
-                    // Change appointment logic
-                    Scanner scanner = new Scanner(System.in);
-                    LocalDate newDate = null; // Initialize newDate as null
-                    boolean validDate = false;
-                    while (!validDate) {
-                        System.out.println("Enter new appointment date (DD-MM-YYYY):");
-                        String newDateStr = scanner.nextLine();
-                        try {
-                            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-                            newDate = LocalDate.parse(newDateStr, dateFormatter);
-                            if (newDate.isBefore(LocalDate.now())) {
-                                System.out.println("The appointment date must be in the future.");
-                                continue;
-                            }
-                            validDate = true;
-                        } catch (DateTimeParseException e) {
-                            System.out.println("Invalid date format. Please use DD-MM-YYYY.");
-                        }
-                    }
-
-                    Dictionary<Integer, LocalDateTime> timeSlots = new Hashtable<>();
-                    LocalDateTime startDate = newDate.atStartOfDay().withHour(8).withMinute(0).withSecond(0).withNano(0);
-                    for (int i = 1; i <= 9; i++) {
-                        timeSlots.put(i, startDate.plusHours(i - 1));
-                    }
-
-                    System.out.println("Available timeslots:");
-                    StringBuilder sb = new StringBuilder("[");
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-                    for (int i = 1; i <= timeSlots.size(); i++) {
-                        sb.append(i).append(". ").append(formatter.format(timeSlots.get(i)));
-                        if (i < timeSlots.size()) {
-                            sb.append(", ");
-                        }
-                    }
-                    sb.append("]");
-                    System.out.println(sb);
-
-                    int selectedSlot = InputHelper.getValidIndex(canvas.getTerminal(), "Select your new appointment timeslot", 1, timeSlots.size());
-                    LocalDateTime newTime = timeSlots.get(selectedSlot);
-
-                    // Update the appointment time
-                    selectedAppointment.setAppointmentTime(newTime);
-
-                    // Save the changes
-                    appointmentController.updateAppointment(selectedAppointment, selectedAppointment);
-
-                    System.out.println("Appointment time updated successfully.");
-                } else if (optionChoice == 2) {
-                    // Cancel appointment logic
-                    System.out.println("Are you sure you want to cancel this appointment? (Y/N)");
-                    Scanner scanner = new Scanner(System.in);
-                    String confirm = scanner.nextLine().trim().toUpperCase();
-                    if (confirm.equals("Y")) {
-                        // Update appointment status to CANCELED
-                        selectedAppointment.setAppointmentStatus(AppointmentStatus.CANCELED);
-                        appointmentController.updateAppointment(selectedAppointment, selectedAppointment);
-                        appointmentController.removeAppointment(selectedAppointment);
-
-                        // Update the appointments list in PatientMainPage
-                        appointments.remove(selectedAppointment);
-
-                        System.out.println("Appointment canceled successfully.");
-                    } else {
-                        System.out.println("Cancellation canceled.");
-                    }
-                } else if (optionChoice == 4) {
-                    // Return to main page
-                    viewingAppointments = false;
-                    canvas.setRequireRedraw(true);
-                }
+                menuOptions.add(new PaginatedMenuView.MenuOption(
+                        appointment.getAppointmentId(),
+                        appointmentText,
+                        appointment));
             }
+
+            PaginatedMenuView appointmentView = new PaginatedMenuView(
+                    canvas,
+                    "Your Appointments",
+                    "Select an appointment to manage",
+                    menuOptions,
+                    5, // Show 5 items per page
+                    Color.CYAN
+            );
+
+            appointmentView.setSelectionCallback(option -> {
+                if (option != null && option.getData() != null) {
+                    Appointment selectedAppointment = (Appointment) option.getData();
+                    displayAppointmentOptions(selectedAppointment);
+                }
+            });
+
+            navigateToView(appointmentView);
+        }
+    }
+
+    private void displayAppointmentOptions(Appointment appointment) {
+        MenuView optionsView = new MenuView(
+                canvas,
+                "Appointment: " + appointment.getAppointmentTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),
+                Color.CYAN,
+                true,
+                true
+        );
+
+        MenuView.MenuSection actionSection = optionsView.addSection("Available Actions");
+        actionSection.addOption(1, "Change Appointment Date/Time");
+        actionSection.addOption(2, "Cancel Appointment");
+
+        optionsView.attachMenuOptionInput(1, "Change Date/Time", input -> promptForNewDateTime(appointment));
+        optionsView.attachMenuOptionInput(2, "Cancel Appointment", input -> confirmCancelAppointment(appointment));
+
+        navigateToView(optionsView);
+    }
+
+    private void promptForNewDateTime(Appointment appointment) {
+        // Implement date selection with a form or similar UI component
+        // After selecting date/time:
+        // appointment.setAppointmentTime(newDateTime);
+        // appointmentController.updateAppointment(appointment, appointment);
+        // Show success message
+    }
+
+    private void confirmCancelAppointment(Appointment appointment) {
+        boolean confirm = InputHelper.getYesNoInput(canvas.getTerminal(),
+                "Are you sure you want to cancel this appointment? (y/n)");
+
+        if (confirm) {
+            appointment.setAppointmentStatus(AppointmentStatus.CANCELED);
+            appointmentController.updateAppointment(appointment, appointment);
+            appointmentController.removeAppointment(appointment);
+
+            canvas.setSystemMessage("Appointment canceled successfully.", SystemMessageStatus.SUCCESS);
+            ToPage(new PatientMainPage()); // Return to main page
+        } else {
+            canvas.setRequireRedraw(true);
         }
     }
 

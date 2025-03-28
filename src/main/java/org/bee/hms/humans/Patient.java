@@ -297,4 +297,8 @@ public class Patient extends Human implements SystemUser {
     public double getWeight() {
         return weight;
     }
+
+    public List<String> getDrugAllergies() {
+        return drugAllergies;
+    }
 }

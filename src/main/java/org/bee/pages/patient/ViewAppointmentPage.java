@@ -7,17 +7,16 @@ import org.bee.hms.humans.Patient;
 import org.bee.hms.telemed.Appointment;
 import org.bee.hms.telemed.AppointmentStatus;
 import org.bee.ui.Color;
+import org.bee.ui.SystemMessageStatus;
 import org.bee.ui.UiBase;
 import org.bee.ui.View;
-import org.bee.ui.views.PaginatedView;
-import org.bee.ui.views.TableView;
+import org.bee.ui.views.PaginatedMenuView;
 import org.bee.ui.views.TextView;
-import org.bee.utils.ReflectionHelper;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BiFunction;
 
 public class ViewAppointmentPage extends UiBase {
 
@@ -40,72 +39,86 @@ public class ViewAppointmentPage extends UiBase {
         SystemUser systemUser = humanController.getLoggedInUser();
         if (systemUser instanceof Patient patient) {
             List<Appointment> appointments = appointmentController.getAppointmentsForPatient(patient);
-            System.out.println(appointments);
 
             if (appointments.isEmpty()) {
                 return new TextView(canvas, "No appointments found.", Color.YELLOW);
             }
 
-            BiFunction<List<Appointment>, Integer, TableView<Appointment>> tableFactory =
-                    (pageItems, pageNum) -> createAppointmentTableView(pageItems);
+            List<PaginatedMenuView.MenuOption> menuOptions = new ArrayList<>();
+            for (Appointment appointment : appointments) {
+                LocalDateTime time = appointment.getAppointmentTime();
+                String formattedDate = time != null ? dateFormatter.format(time) : "Not scheduled";
+                String reason = appointment.getReason() != null ? appointment.getReason() : "Not specified";
+                AppointmentStatus status = appointment.getAppointmentStatus();
 
-            return new PaginatedView<>(
+                String displayText;
+                if (time != null) {
+                    String timeInfo;
+                    LocalDateTime now = LocalDateTime.now();
+
+                    if (time.isBefore(now)) {
+                        timeInfo = colorText(formattedDate, Color.RED) + " (Past)";
+                    } else if (time.isBefore(now.plusDays(1))) {
+                        timeInfo = colorText(formattedDate, Color.YELLOW) + " (Today)";
+                    } else if (time.isBefore(now.plusDays(3))) {
+                        timeInfo = colorText(formattedDate, Color.GREEN) + " (Soon)";
+                    } else {
+                        timeInfo = formattedDate;
+                    }
+
+                    String statusText = formatEnum(status.toString());
+                    String coloredStatus = switch (status) {
+                        case COMPLETED -> colorText(statusText, Color.GREEN);
+                        case ACCEPTED -> colorText(statusText, Color.CYAN);
+                        case PENDING -> colorText(statusText, Color.YELLOW);
+                        case DECLINED, CANCELED -> colorText(statusText, Color.RED);
+                        case PAYMENT_PENDING -> colorText(statusText, Color.UND_RED);
+                        case PAID -> colorText(statusText, Color.UND_GREEN);
+                    };
+
+                    displayText = String.format("%s - %s - %s", timeInfo, reason, coloredStatus);
+                } else {
+                    displayText = String.format("Not scheduled - %s - %s", reason, status);
+                }
+
+                menuOptions.add(new PaginatedMenuView.MenuOption(
+                        appointment.getAppointmentId(),
+                        displayText,
+                        appointment));
+            }
+
+            PaginatedMenuView paginatedView = new PaginatedMenuView(
                     canvas,
-                    "\nTelemedicine Appointments",
-                    appointments,
+                    "Your Appointments",
+                    "Select an appointment to view details",
+                    menuOptions,
                     ITEMS_PER_PAGE,
-                    tableFactory,
                     Color.CYAN
             );
+
+            paginatedView.setSelectionCallback(option -> {
+                try {
+                    if (option != null && option.getData() != null) {
+                        Appointment selectedAppointment = (Appointment) option.getData();
+                        displayAppointmentDetails(selectedAppointment);
+                    } else {
+                        canvas.setSystemMessage("Error: Invalid selection", SystemMessageStatus.ERROR);
+                        canvas.setRequireRedraw(true);
+                    }
+                } catch (Exception e) {
+                    canvas.setSystemMessage("Error processing selection: " + e.getMessage(), SystemMessageStatus.ERROR);
+                    canvas.setRequireRedraw(true);
+                }
+            });
+
+            return paginatedView;
         }
+
         return new TextView(canvas, "Access denied. Only patients can view appointments.", Color.RED);
     }
 
-    private TableView<Appointment> createAppointmentTableView(List<Appointment> appointments) {
-        TableView<Appointment> tableView = new TableView<>(canvas, "", Color.CYAN);
-
-        tableView.showRowNumbers(true)
-                .addColumn("Appointment ID", 15, a -> (String) ReflectionHelper.propertyAccessor("appointmentId", null).apply(a))
-
-                .addColumn("Consult Reason", 25, a -> {
-                    String reason = (String) ReflectionHelper.propertyAccessor("reason", null).apply(a);
-                    return reason != null ? reason : "Not specified";
-                })
-                .addColumn("Date & Time", 20, a -> {
-                    LocalDateTime time = (LocalDateTime) ReflectionHelper.propertyAccessor("appointmentTime", null).apply(a);
-                    if (time == null) return "Not scheduled";
-
-                    String formattedDate = dateFormatter.format(time);
-                    LocalDateTime now = LocalDateTime.now();
-
-                    // Color appointments based on timing
-                    if (time.isBefore(now)) {
-                        return colorText(formattedDate, Color.RED);
-                    } else if (time.isBefore(now.plusDays(1))) {
-                        return colorText(formattedDate, Color.YELLOW);
-                    } else if (time.isBefore(now.plusDays(3))) {
-                        return colorText(formattedDate, Color.GREEN);
-                    }
-                    return formattedDate;
-                })
-                .addColumn("Status", 15, a -> {
-                    AppointmentStatus status = (AppointmentStatus) ReflectionHelper.propertyAccessor("appointmentStatus", null).apply(a);
-                    if (status == null) return "Unknown";
-
-                    String statusStr = formatEnum(status.toString());
-
-                    return switch (status) {
-                        case COMPLETED -> colorText(statusStr, Color.GREEN);
-                        case ACCEPTED -> colorText(statusStr, Color.CYAN);
-                        case PENDING -> colorText(statusStr, Color.YELLOW);
-                        case DECLINED, CANCELED -> colorText(statusStr, Color.RED);
-                        case PAYMENT_PENDING -> colorText(statusStr, Color.UND_RED);
-                        case PAID -> colorText(statusStr, Color.UND_GREEN);
-                    };
-                })
-                .setData(appointments);
-
-        return tableView;
-
+    private void displayAppointmentDetails(Appointment appointment) {
+        ViewAppointmentSummaryPage.setAppointment(appointment);
+        ToPage(new ViewAppointmentSummaryPage());
     }
 }

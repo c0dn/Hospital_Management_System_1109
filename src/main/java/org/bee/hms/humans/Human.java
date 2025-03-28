@@ -318,4 +318,9 @@ public abstract class Human implements JSONSerializable {
     public Contact getContact() {
         return contact;
     }
+
+    public boolean isVaccinated() {
+        return isVaccinated;
+    }
+
 }

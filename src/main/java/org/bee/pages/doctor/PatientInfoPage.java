@@ -1,11 +1,13 @@
 package org.bee.pages.doctor;
 
 import org.bee.controllers.HumanController;
+import org.bee.hms.humans.Doctor;
 import org.bee.hms.humans.Patient;
 import org.bee.hms.humans.Sex;
 import org.bee.hms.medical.Consultation;
 import org.bee.ui.*;
 import org.bee.ui.views.*;
+import org.bee.utils.detailAdapters.PatientDetailsViewAdapter;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ import java.util.List;
 public class PatientInfoPage extends UiBase {
     private static final HumanController humanController = HumanController.getInstance();
     private Patient patient;
+    private View patientListView;
     private static final int ITEMS_PER_PAGE = 7;
 
     /**
@@ -43,130 +46,126 @@ public class PatientInfoPage extends UiBase {
      */
     @Override
     public View createView() {
-//        return new ListView(this.canvas, Color.GREEN);
-        return displayAllPatient();
+        if (patient == null) {
+            patientListView = createPatientListView();
+        } else {
+            patientListView = createPatientDetailsView(patient);
+        }
+
+        return patientListView;
     }
 
     /**
-     * Called when the view is created. Displays either a specific patient's information
-     * or a list of all patients, depending on whether a patient has been pre-selected.
+     * Called when the view is created. Populates the view with data.
      *
-     * @param parentView The parent view, expected to be a ListView.
+     * @param parentView The parent view created in createView
      */
     @Override
     public void OnViewCreated(View parentView) {
-//
-//        ListView lv = (ListView) parentView;
-//
-//        if(patient != null){
-//            displayAllPatient();
-//            return;
-//        }
-//        lv.setTitleHeader("List of Patients");
-//        List<Patient> patients = humanController.getAllPatients();
-//        int index = 0;
-//
-//        // Show list of patient
-//        for (Patient patient : patients) {
-//            lv.addItem(new TextView(this.canvas, index + ". " + patient.getName(), Color.GREEN));
-////            System.out.println(index + ". " + patient.getName());
-//            index += 1;
-//        }
-//
-//        // When selecting "Select Patient Index"
-//        lv.attachUserInput1("Select Patient Index ", str -> {
-//            int selectedIndex = InputHelper.getValidIndex(canvas.getTerminal(), "Select Patient index", patients);
-//            patient = patients.get(selectedIndex);
-//
-//            try {
-//                displayAllPatient();
-//            }catch (Exception e){
-//                throw e;
-//            }
-//        });
         canvas.setRequireRedraw(true);
     }
 
-    private View displayAllPatient() {
+    /**
+     * Creates a view showing all patients in a paginated list
+     */
+    private View createPatientListView() {
         List<Patient> patients = humanController.getAllPatients();
 
         if (patients.isEmpty()) {
-            return new TextView(canvas, "No patient cases found.", Color.YELLOW);
+            return new TextView(canvas, "No patients found.", Color.YELLOW);
         }
 
-        List<AbstractPaginatedView.MenuOption> menuOptions = new ArrayList<>();
+        List<PaginatedMenuView.MenuOption> menuOptions = new ArrayList<>();
         for (Patient p : patients) {
             String patientName = p.getName();
+            String patientId = p.getPatientId();
+            String nricFin = p.getNricFin();
 
-            String optionText = String.format("%s", patientName);
-            menuOptions.add(new AbstractPaginatedView.MenuOption(patientName, optionText, p));
+            String optionText = String.format("%s (%s) - ID: %s",
+                    patientName, nricFin, patientId);
+
+            menuOptions.add(new PaginatedMenuView.MenuOption(patientId, optionText, p));
         }
 
         PaginatedMenuView paginatedView = new PaginatedMenuView(
                 canvas,
-                "\nSelect Patient Record to View",
-                "List of Patients",
+                "\nPatient Records",
+                "Select a patient to view details",
                 menuOptions,
                 ITEMS_PER_PAGE,
                 Color.CYAN
         );
 
-        // Set the callback with proper error handling
         paginatedView.setSelectionCallback(option -> {
             try {
                 if (option != null && option.getData() != null) {
                     Patient selectedPatient = (Patient) option.getData();
-                    displaySelectedPatient(selectedPatient, new ListView(canvas, Color.ESCAPE));
-
+                    displaySelectedPatient(selectedPatient, canvas.getCurrentView());
                 } else {
-                    canvas.setSystemMessage("Error: Invalid selection");
+                    canvas.setSystemMessage("Error: Invalid selection",
+                            SystemMessageStatus.ERROR);
                     canvas.setRequireRedraw(true);
                 }
             } catch (Exception e) {
-                canvas.setSystemMessage("Error processing selection: " + e.getMessage());
+                canvas.setSystemMessage("Error processing selection: " + e.getMessage(),
+                        SystemMessageStatus.ERROR);
                 canvas.setRequireRedraw(true);
                 System.err.println("Exception in selection callback: " + e.getMessage());
             }
         });
 
-
         return paginatedView;
-
     }
 
-//    public void displaySelectedPatient(Patient patient, ListView lv) {
-//        lv.clear();
-//        lv.setTitleHeader("\nPatient Information");
-//        lv.addItem(new TextView(this.canvas, "Name: " + patient.getName(), Color.ESCAPE));
-//        lv.addItem(new TextView(this.canvas, "ID: " + patient.getNricFin(), Color.ESCAPE));
-//        lv.addItem(new TextView(this.canvas, "Age: " + patient.getAge(), Color.ESCAPE));
-//        lv.addItem(new TextView(this.canvas, "Gender: " + patient.getSex(), Color.ESCAPE));
-//        lv.addItem(new TextView(this.canvas, "Address: " + patient.getAddress(), Color.ESCAPE));
-//        lv.addItem(new TextView(this.canvas, "Patient ID: " + patient.getPatientId(), Color.ESCAPE));
-//        lv.addItem(new TextView(this.canvas, "Date of Birth: " + patient.getDOB(), Color.ESCAPE));
-//        //lv.addItem(new TextView(this.canvas, "Next of Kin: " + patient.get(), Color.GREEN));
-//
-//        // Request UI redraw
-//        canvas.setCurrentView(lv);
-//        canvas.setRequireRedraw(true);
-//    }
+    /**
+     * Creates a view showing details for a specific patient
+     */
+    private View createPatientDetailsView(Patient patient) {
+        PatientDetailsViewAdapter adapter = new PatientDetailsViewAdapter();
 
+        DetailsView<Patient> detailsView = new DetailsView<>(
+                canvas,
+                "PATIENT INFORMATION",
+                patient,
+                Color.CYAN,
+                adapter
+        );
+
+        return detailsView;
+    }
+
+
+    /**
+     * Displays detailed information for the selected patient
+     */
+    public void displaySelectedPatient(Patient patient) {
+        displaySelectedPatient(patient, canvas.getCurrentView());
+    }
+
+    /**
+     * Displays detailed information for the selected patient
+     * with support for returning to the previous view
+     */
     public void displaySelectedPatient(Patient patient, View previousView) {
-        DetailsView<Patient> detailsView = new DetailsView<>(canvas, "PATIENT INFORMATION", patient, Color.ESCAPE);
+        PatientDetailsViewAdapter adapter = new PatientDetailsViewAdapter();
+
+        DetailsView<Patient> detailsView = new DetailsView<>(
+                canvas,
+                "PATIENT INFORMATION",
+                patient,
+                Color.CYAN,
+                adapter
+        );
+
         detailsView.setPreviousView(previousView);
 
-        // Basic Information Section
-        detailsView.addDetail("Personal Information", "Name", patient.getName());
-        detailsView.addDetail("Personal Information", "ID", patient.getNricFin());
-        detailsView.addDetail("Personal Information", "Age", String.valueOf(patient.getAge()));
-        detailsView.addDetail("Personal Information", "Gender", patient.getSex().toString());
-        detailsView.addDetail("Personal Information", "Date of Birth", patient.getDOB().toString());
+        if (humanController.getLoggedInUser() instanceof Doctor) {
+            detailsView.addAction("Schedule Appointment", "s", () -> {
+                canvas.setSystemMessage("Feature coming soon", SystemMessageStatus.INFO);
+                canvas.setRequireRedraw(true);
+            });
+        }
 
-        // Contact Information Section
-        detailsView.addDetail("Contact Information", "Phone", patient.getContact().getPersonalPhone());
-        detailsView.addDetail("Contact Information", "Address", patient.getAddress());
-
-        // Set the view and request redraw
         canvas.setCurrentView(detailsView);
         canvas.setRequireRedraw(true);
     }

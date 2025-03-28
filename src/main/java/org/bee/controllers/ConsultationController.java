@@ -150,85 +150,15 @@ public class ConsultationController extends BaseController<Consultation> {
     }
 
     /**
-     * Displays all outpatient cases
-     * If the logged-in user is a doctor, their patient consultations are shown
+     * Retrieves all consultations for a specific doctor identified by their ID.
+     *
+     * @param doctorId The staff ID of the doctor
+     * @return A list containing all consultations for the specified doctor
      */
-    public void viewAllOutpatientCases() {
-        ConsultationController consultationController = ConsultationController.getInstance();
-        List<Consultation> allConsultations = consultationController.getAllOutpatientCases();
-
-        List<Consultation> consultations = allConsultations;
-        if (humanController.getLoggedInUser() instanceof Doctor) {
-            // If user is a doctor, filter to only show their consultations
-            consultations = allConsultations.stream()
-                    .filter(consultation -> consultation.getDoctor() != null &&
-                            consultation.getDoctor().getStaffId().equals(
-                                    ((Doctor) humanController.getLoggedInUser()).getStaffId()))
-                    .collect(Collectors.toList());
-        }
-
-        if (consultations.isEmpty()) {
-            System.out.println("No outpatient cases found.");
-            System.out.println("\nPress Enter to continue...");
-            new Scanner(System.in).nextLine();
-            return;
-        }
-
-        final int PAGE_SIZE = 7;
-        int currentPage = 1;
-        int totalPages = (int) Math.ceil((double) consultations.size() / PAGE_SIZE);
-
-        boolean exit = false;
-        while (!exit) {
-            int startIndex = (currentPage - 1) * PAGE_SIZE;
-            int endIndex = Math.min(startIndex + PAGE_SIZE, consultations.size());
-
-            List<Consultation> currentPageConsultations = consultations.subList(startIndex, endIndex);
-            System.out.printf("%-8s | %-32s | %-10s | %-15s | %-20s | %-15s | %-20s | %-15s \n",
-                    "Case ID", "Appointment Date", "Patient ID", "Patient Name", "Type", "Status", "Diagnosis",
-                    "Doctor Name");
-            System.out.println("-".repeat(180));
-
-            for (Consultation consultation : currentPageConsultations) {
-                System.out.printf("%-8s %-32s %-10s %-15s %-20s %-15s %-20s %-15s \n",
-                        consultation.getConsultationId(), consultation.getConsultationTime(),
-                        consultation.getPatient().getPatientId(),
-                        consultation.getPatient().getName(),
-                        consultation.getConsultationType(), consultation.getStatus(),
-                        consultation.getDiagnosis(),
-                        consultation.getDoctor().getName());
-            }
-
-            System.out.println("\nNavigation:");
-            if (currentPage > 1) {
-                System.out.println("P - Previous Page");
-            }
-            if (currentPage < totalPages) {
-                System.out.println("N - Next Page");
-            }
-            System.out.println("E - Exit to Main Menu");
-
-            System.out.println("\nEnter your choice: ");
-            String choice = new Scanner(System.in).nextLine().toUpperCase();
-
-            switch (choice) {
-                case "P":
-                    if (currentPage > 1) {
-                        currentPage--;
-                    }
-                    break;
-                case "N":
-                    if (currentPage < totalPages) {
-                        currentPage++;
-                    }
-                    break;
-                case "E":
-                    exit = true;
-                    break;
-                default:
-                    System.out.println("Invalid choice. Please try again.");
-                    break;
-            }
-        }
+    public List<Consultation> getConsultationsByDoctorId(String doctorId) {
+        return getAllOutpatientCases().stream()
+                .filter(consultation -> consultation.getDoctor() != null &&
+                        consultation.getDoctor().getStaffId().equals(doctorId))
+                .collect(Collectors.toList());
     }
 }
