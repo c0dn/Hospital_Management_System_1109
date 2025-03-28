@@ -48,8 +48,12 @@ public class ViewAppointmentPage extends UiBase {
      */
     private View createAppointmentListView() {
         Doctor currentDoctor = (Doctor) humanController.getLoggedInUser();
-        List<Appointment> appointments = appointmentController.getAppointmentsForDoctor(currentDoctor).stream()
-                .filter(a -> a.getAppointmentStatus() != AppointmentStatus.PAID && a.getAppointmentStatus() != AppointmentStatus.PAYMENT_PENDING)
+        List<Appointment> appointments = appointmentController.getAllAppointments().stream()
+                .filter(a -> {
+                    Doctor appointmentDoctor = a.getDoctor();
+                    return appointmentDoctor == null ||
+                            appointmentDoctor.getStaffId().equals(currentDoctor.getStaffId());
+                })
                 .toList();
 
         if (appointments.isEmpty()) {
@@ -63,7 +67,12 @@ public class ViewAppointmentPage extends UiBase {
             LocalDateTime appointmentTime = a.getAppointmentTime();
             String timeString = appointmentTime != null ? dateFormatter.format(appointmentTime) : "Not scheduled";
             String reason = a.getReason() != null ? a.getReason() : "Not specified";
-            String status = a.getAppointmentStatus() != null ? formatEnum(a.getAppointmentStatus().toString()) : "Unknown";
+            String status;
+            if (a.getAppointmentStatus() == AppointmentStatus.PAYMENT_PENDING || a.getAppointmentStatus() == AppointmentStatus.PAID) {
+                status = formatEnum("COMPLETED"); // Display as PAYMENT_PENDING
+            } else {
+                status = a.getAppointmentStatus() != null ? formatEnum(a.getAppointmentStatus().toString()) : "Unknown";
+            }
 
             String optionText = String.format("%s - %s (%s) - %s - %s",
                     appointmentId, patientName, timeString, reason, status);

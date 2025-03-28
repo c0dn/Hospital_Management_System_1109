@@ -354,7 +354,7 @@ public class PatientMainPage extends UiBase {
                     String statusStr = formatEnum(status.toString());
 
                     return switch (status) {
-                        case COMPLETED -> colorText(statusStr, Color.GREEN);
+                        case COMPLETED -> colorText("PAYMENT_PENDING", Color.GREEN);
                         case ACCEPTED -> colorText(statusStr, Color.CYAN);
                         case PENDING -> colorText(statusStr, Color.YELLOW);
                         case DECLINED, CANCELED -> colorText(statusStr, Color.RED);
