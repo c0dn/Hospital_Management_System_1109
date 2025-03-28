@@ -1,9 +1,7 @@
 package org.bee.ui;
 
 
-import org.bee.hms.telemed.Appointment;
 import org.bee.ui.views.NullView;
-import org.bee.ui.views.TableView;
 import org.bee.ui.views.UserInput;
 
 import java.util.*;
