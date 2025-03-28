@@ -42,8 +42,15 @@ public enum AppointmentStatus implements JSONSerializable {
     /** On patient end where they cancel the appointment */
     CANCELED,
 
+    /**
+     * Appointment is complete but payment is outstanding
+     * Used for billable appointments awaiting payment
+     */
     PAYMENT_PENDING,
 
+    /**
+     * Appointment is fully paid
+     */
     PAID;
 
     /**

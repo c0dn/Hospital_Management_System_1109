@@ -13,9 +13,24 @@ import org.bee.utils.JSONSerializable;
  * Consisting of startDate, endDate, id and any additional remarks from the doctor.
  */
 public class MedicalCertificate implements JSONSerializable {
+    /**
+     * Unique medical certificate identifier
+     */
     private String id;
+
+    /**
+     * Medical certificate start date/time
+     */
     private LocalDateTime startDate;
+
+    /**
+     * Medical certificate end date/time
+     */
     private LocalDateTime endDate;
+
+    /**
+     * Doctor's additional notes (optional)
+     */
     private String remarks;
 
     /**
@@ -37,18 +52,30 @@ public class MedicalCertificate implements JSONSerializable {
         this.id = UUID.randomUUID().toString();
     }
 
+    /**
+     * @return The medical certificate end date/time in SGT (UTC+8)
+     */
     public LocalDateTime getEndDate() {
         return endDate;
     }
 
+    /**
+     * @return The medical certificate start date/time in SGT (UTC+8)
+     */
     public LocalDateTime getStartDate() {
         return startDate;
     }
 
+    /**
+     * @return Doctor's additional notes
+     */
     public String getRemarks() {
         return remarks;
     }
 
+    /**
+     * @return Unique medical certificate ID
+     */
     public String getId() {
         return id;
     }

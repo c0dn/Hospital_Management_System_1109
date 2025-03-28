@@ -61,7 +61,13 @@ public class CoverageLimit implements JSONSerializable {
 
 
     /**
-     * JSON Creator method for deserializing CoverageLimit
+     * JSON deserialization factory method for creating CoverageLimit instances
+     * @param annualLimit The yearly coverage limit (optional)
+     * @param lifetimeLimit The lifetime coverage limit (optional)
+     * @param benefitLimits Benefit-type specific limits (optional)
+     * @param wardLimits Ward-class specific limits (optional)
+     * @param accidentSubLimits Accident-type sublimits (optional)
+     * @return New CoverageLimit instance configured with provided values
      */
     @JsonCreator
     public static CoverageLimit create(

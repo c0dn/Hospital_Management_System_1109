@@ -22,19 +22,38 @@ import org.bee.utils.JSONSerializable;
  * appointment.setDoctor(doctor);
  * appointment.approve(doctor, "zoomLinkExample");
  */
-
 public class Appointment implements JSONSerializable {
+    /** Unique appointment ID */
     private String appointmentId;
+
+    /** The patient attending the appointment */
     private Patient patient;
+
+    /** Reason/purpose for the appointment */
     private String reason;
+
+    /** Relevant patient medical history for this appointment */
     private String history;
+
+    /** Scheduled date and time of the appointment */
     private LocalDateTime appointmentTime;
+
+    /** The doctor assigned to the appointment */
     private Doctor doctor;
+
+    /** Current status (PENDING, APPROVED, COMPLETED, etc.) */
     private AppointmentStatus appointmentStatus;
+
+    /** Telemedicine session details */
     private Session session;
+
+    /** Doctor's notes from the appointment */
     private String doctorNotes;
-    //private Billing billing;
+
+    /** Medical certificate issued from this appointment */
     private MedicalCertificate mc;
+
+    /** Patient contact information for the appointment */
     private Contact contact;
 
     /**
@@ -67,70 +86,129 @@ public class Appointment implements JSONSerializable {
     }
 
 
+    /**
+     * @return The telemedicine session details
+     */
     public Session getSession() {
         return session;
     }
 
+    /**
+     * @return The unique appointment ID
+     */
     public String getAppointmentId() {
         return appointmentId;
     }
 
+    /**
+     * Sets the telemedicine session details
+     * @param session The session information to set
+     */
     public void setSession(Session session) {
         this.session = session;
     }
 
+    /**
+     * @return The current status of the appointment
+     */
     public AppointmentStatus getAppointmentStatus() {
         return this.appointmentStatus;
     }
 
+    /**
+     * Updates the appointment status
+     * @param appointmentStatus The new status to set
+     */
     public void setAppointmentStatus(AppointmentStatus appointmentStatus) {
         this.appointmentStatus = appointmentStatus;
     }
 
-
+    /**
+     * @return The doctor assigned to this appointment
+     */
     public Doctor getDoctor() {
         return doctor;
     }
 
+    /**
+     * @return The doctor's notes from the appointment
+     */
     public String getDoctorNotes() {
         return doctorNotes;
     }
 
+    /**
+     * Updates the doctor's notes
+     * @param doctorNotes The notes to record
+     */
     public void setDoctorNotes(String doctorNotes) {
         this.doctorNotes = doctorNotes;
     }
 
+    /**
+     * Assigns a doctor to this appointment
+     * @param doctor The doctor to assign
+     */
     public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
     }
 
+    /**
+     * @return The patient scheduled for this appointment
+     */
     public Patient getPatient() {
         return patient;
     }
 
+    /**
+     * Sets the patient for this appointment
+     * @param patient The patient to schedule
+     */
     public void setPatient(Patient patient) {
         this.patient = patient;
     }
 
+    /**
+     * @return The reason/purpose for the appointment
+     */
     public String getReason() {
         return reason;
     }
 
+    /**
+     * Updates the appointment reason
+     * @param reason The new reason to set
+     */
     public void setReason(String reason) {
         this.reason = reason;
     }
 
+    /**
+     * @return The scheduled date and time of the appointment
+     */
     public LocalDateTime getAppointmentTime() {
         return appointmentTime;
     }
 
+    /**
+     * Updates the patient's relevant medical history for this appointment
+     * @param history The medical history to record
+     */
     public void setHistory(String history) {
         this.history = history;
     }
 
-    public Contact getContact() { return contact; }
+    /**
+     * @return The patient's contact information
+     */
+    public Contact getContact() {
+        return contact;
+    }
 
-
+    /**
+     * Reschedules the appointment time
+     * @param appointmentTime The new date and time to set
+     */
     public void setAppointmentTime(LocalDateTime appointmentTime) {
         this.appointmentTime = appointmentTime;
     }
@@ -164,10 +242,21 @@ public class Appointment implements JSONSerializable {
         this.appointmentStatus = AppointmentStatus.COMPLETED;
     }
 
+    /**
+     * Associates a medical certificate with this appointment
+     *
+     * @param mc The medical certificate containing official diagnosis
+     */
     public void setMedicalCertificate(MedicalCertificate mc) {
         this.mc = mc;
     }
 
+    /**
+     * Retrieves the medical certificate generated from this appointment
+     *
+     * @return The associated {@link MedicalCertificate} containing professional
+     *         medical assessment, or null if no certificate was issued
+     */
     public MedicalCertificate getMc() {
         return mc;
     }
@@ -272,7 +361,12 @@ public class Appointment implements JSONSerializable {
         return appointment;
     }
 
-
+    /**
+     * Returns a string representation of the appointment containing key details:
+     * ID, patient/doctor names, reason, time, status, session, notes, and MC status
+     *
+     * @return Formatted string with essential appointment information
+     */
     @Override
     public String toString() {
         return "Appointment{" +
