@@ -39,11 +39,6 @@ public final class DataGenerator {
             "Ang Mo Kio Ave", "Tampines St", "Jurong East Ave", "Serangoon Road",
             "Bedok North St", "Woodlands Drive", "Yishun Ring Road", "Punggol Way"
     };
-
-    private static final String[] SG_BUILDINGS = {
-            "Plaza", "Tower", "Complex", "Centre", "Building", "Point"
-    };
-
     // Company-related constants
     private static final String[] SG_COMPANIES = {
             "DBS Bank", "Singapore Airlines", "Singtel", "OCBC Bank",
@@ -123,14 +118,6 @@ public final class DataGenerator {
         return medications.getFirst(); // First one since the list is already randomized
     }
 
-    /**
-     * Gets all available Singapore names
-     *
-     * @return Array of Singapore names
-     */
-    public static String[] getStaffNames() {
-        return STAFF_NAMES;
-    }
 
     public static String[] getPatientNames() {
         return PATIENT_NAMES;
