@@ -51,6 +51,7 @@ public class PatientBuilder extends HumanBuilder<PatientBuilder> {
     /** The business address of the patient's company. */
     String companyAddress;
 
+    /** Indicates whether the patient has given consent for treatment */
     Boolean patientConsent;
 
     /**
@@ -179,6 +180,12 @@ public class PatientBuilder extends HumanBuilder<PatientBuilder> {
         return self();
     }
 
+    /**
+     * Sets the patient's consent status for treatment
+     *
+     * @param patientConsent The patient's consent status
+     * @return The current {@code PatientBuilder} instance
+     */
     public PatientBuilder patientConsent(Boolean patientConsent) {
         this.patientConsent = patientConsent;
         return self();

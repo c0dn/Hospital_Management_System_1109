@@ -1,7 +1,7 @@
 package org.bee.hms.humans;
 
 /**
- * Represents staff in the insurance system.
+ * Represents staff in the healthcare management system.
  * <p>
  * Staff members include:
  * </p>
@@ -88,6 +88,11 @@ public class Staff extends Human {
         System.out.printf("\nTitle: " + title);
     }
 
+    /**
+     * Gets the staffId.
+     *
+     * @return the staffId
+     */
     public String getStaffId() {
         return staffId;
     }

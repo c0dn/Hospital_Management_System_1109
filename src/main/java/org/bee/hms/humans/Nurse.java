@@ -7,7 +7,7 @@ import org.bee.hms.auth.SystemUser;
 import java.time.LocalDate;
 
 /**
- * Represents the details of a nurse in the insurance system.
+ * Represents the details of a nurse in the healthcare management system.
  * <p>
  * This class extends {@link Staff} and adds attributes specific to nurses,
  * such as the Registered Nurse ID (RNID). It is constructed using the
@@ -133,10 +133,22 @@ public class Nurse extends Staff implements SystemUser {
         System.out.println("=====================================================================");
     }
 
+    /**
+     * Prints the attending nurse's details
+     * <p>
+     * Displays the nurse's name and Registered Nurse ID (RNID) in the format:
+     * " - Attending Nurse: [name] (RNID: [rnid])".
+     * </p>
+     */
     public void printAsAttending() {
         System.out.printf("  - Attending Nurse: %s (RNID: %s)%n", name, rnid);
     }
 
+    /**
+     * Retrieves the nurse staffId.
+     *
+     * @return the staffId as the nurse's username
+     */
     @Override
     public String getUsername() {
         return staffId;

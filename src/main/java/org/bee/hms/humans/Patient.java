@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.bee.hms.auth.SystemUser;
 
 /**
- * Represents a patient in the insurance system.
+ * Represents a patient in the healthcare management system.
  * <p>
  * Patients have personal details, medical records, drug allergies, next-of-kin (NOK) information,
  * height, weight, occupation, and company-related details.
@@ -201,14 +201,44 @@ public class Patient extends Human implements SystemUser {
         return name;
     }
 
+    /**
+     * Gets the patient's consent status
+     *
+     * @return The patient's consent status
+     */
     public boolean getPatientConsent() { return patientConsent; }
 
+    /**
+     * Sets the patient's consent status
+     *
+     * @param patientConsent The patient's consent status to set
+     */
     public void setPatientConsent(boolean patientConsent) { this.patientConsent = patientConsent; }
 
+    /**
+     * Sets the patient's contact information
+     *
+     * @param contact The contact information to set
+     */
     public void setContact(String contact) {}
 
+    /**
+     * Sets the patient's address
+     *
+     * @param address The address to set
+     */
     public void setAddress(String address) {}
 
+    /**
+     * Displays detailed patient information
+     *
+     * The displayed information includes:
+     * - Patient ID
+     * - Height and weight measurements
+     * - Drug allergies list
+     * - Next of kin details (name, relationship, and address)
+     *
+     */
     public void displayHuman() {
 
         super.displayHuman();
@@ -239,16 +269,31 @@ public class Patient extends Human implements SystemUser {
         return "Patient Name: " + name + ", Patient ID: " + patientId;
     }
 
+    /**
+     * Gets the username for the patient (NRIC/FIN number)
+     *
+     * @return The patient's NRIC/FIN number
+     */
     @JsonIgnore
     @Override
     public String getUsername() {
         return nricFin;
     }
 
+    /**
+     * Gets the patient's height
+     *
+     * @return The patient's height in m
+     */
     public double getHeight() {
         return height;
     }
 
+    /**
+     * Gets the patient's weight.
+     *
+     * @return The patient's weight measurement in kg
+     */
     public double getWeight() {
         return weight;
     }
