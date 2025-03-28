@@ -242,6 +242,13 @@ public class GovernmentProvider extends InsuranceProvider {
         return true;
     }
 
+    /**
+     * Gets the name of this insurance provider
+     * <p>
+     * this method returns the fixed string "Gov Provider" representing government health services
+     * </p>
+     * @return The constant provider name "Gov Provider"
+     */
 
     @Override
     public String getProviderName() {

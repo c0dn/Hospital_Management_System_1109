@@ -1,7 +1,16 @@
 /**
- * This package contains insurance provider classes for the insurance system.
- * It includes classes for insurance the patient has whether if it is private or government.
+ * Contains insurance provider implementations for the healthcare management system.
  *
- * <p>The classes in this package help to provide insurance provider linked to patients.</p>
+ * <p>Key provider types include:
+ * <ul>
+ *   <li>{@link org.bee.hms.insurance.GovernmentProvider} - Government health insurance schemes</li>
+ *   <li>{@link org.bee.hms.insurance.PrivateProvider} - Private insurance plans</li>
+ * </ul>
+ *
+ * <p>These classes:
+ * <ul>
+ *   <li>Manage patient insurance policies</li>
+ *   <li>Process claims</li>
+ * </ul>
  */
 package org.bee.hms.insurance;

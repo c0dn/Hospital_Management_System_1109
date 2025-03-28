@@ -161,6 +161,11 @@ public class PrivateProvider extends InsuranceProvider {
         return true;
     }
 
+    /**
+     * Gets the name of this private insurance provider
+     *
+     * @return Constant string "Private Provider"
+     */
     @Override
     public String getProviderName() {
         return "Private Provider";
