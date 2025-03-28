@@ -23,7 +23,6 @@ public class DetailsView<T> extends View {
     private String header;
     private String footer = "\nOptions:\n | e: Go Back | q: Quit App\nYour input: ";
     private final T dataObject;
-    private View previousView;
     private IDetailsViewAdapter<T> adapter;
 
     // Default section name for items added without a specific section
@@ -85,7 +84,6 @@ public class DetailsView<T> extends View {
 
     private void initialize() {
         sections.put(DEFAULT_SECTION, new ArrayList<>());
-        setupNavigation();
     }
 
     /**
@@ -194,13 +192,6 @@ public class DetailsView<T> extends View {
 
 
     /**
-     * Set the previous view for navigation
-     */
-    public void setPreviousView(View previousView) {
-        this.previousView = previousView;
-    }
-
-    /**
      * Clear all details and sections (except default)
      */
     public void clearDetails() {
@@ -268,18 +259,6 @@ public class DetailsView<T> extends View {
     @Override
     public String getFooter() {
         return footer;
-    }
-
-    /**
-     * Setup default navigation options
-     */
-    protected void setupNavigation() {
-        attachUserInput("Go Back", input -> {
-            if (input.equalsIgnoreCase("e") && previousView != null) {
-                canvas.setCurrentView(previousView);
-                canvas.setRequireRedraw(true);
-            }
-        });
     }
 
     /**

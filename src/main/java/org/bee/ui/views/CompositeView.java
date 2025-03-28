@@ -4,13 +4,10 @@ import org.bee.ui.Canvas;
 import org.bee.ui.Color;
 import org.bee.ui.View;
 
-import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.Enumeration;
-import java.util.List;
+import java.util.*;
 
 /**
- * A view that combines multiple views together, displaying them in sequence and
+ * A view that combines multiple views, displaying them in sequence and
  * merging their options.
  */
 public class CompositeView extends View {
@@ -90,6 +87,28 @@ public class CompositeView extends View {
         }
     }
 
+    /**
+     * Handle direct input by checking all child views.
+     * This allows letter shortcuts from any child view to work.
+     *
+     * @param input The input string
+     * @return true if any child view handled the input, false otherwise
+     */
+    @Override
+    public boolean handleDirectInput(String input) {
+        if (super.handleDirectInput(input)) {
+            return true;
+        }
+
+        for (View child : childViews) {
+            if (child.handleDirectInput(input)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     @Override
     public String getText() {
         StringBuilder content = new StringBuilder();
@@ -112,34 +131,78 @@ public class CompositeView extends View {
 
     @Override
     public String getFooter() {
+        StringBuilder sb;
         if (!useCompactFooter) {
-            return super.getFooter();
-        }
+            sb = new StringBuilder(super.getFooter());
 
-        StringBuilder sb = new StringBuilder();
-        sb.append("\nOptions:\n | e: Go Back");
+            boolean optionsExist = !sb.toString().trim().equals("Options:");
+            String separator = optionsExist ? " | " : " ";
 
-        List<Integer> keys = new ArrayList<>();
-        for (Enumeration<Integer> e = inputOptions.keys(); e.hasMoreElements();) {
-            Integer key = e.nextElement();
-            if (key > 0) {
-                keys.add(key);
+            Map<Character, String> mergedLetterPrompts = new TreeMap<>(); // Use TreeMap for sorted letters
+            for (View child : childViews) {
+                if (child instanceof MenuView menuChild) {
+                    Map<Character, UserInput> childLetterActions = menuChild.getLetterActions();
+                    if (childLetterActions != null) {
+                        for (Map.Entry<Character, UserInput> entry : childLetterActions.entrySet()) {
+                            char letterKey = Character.toLowerCase(entry.getKey());
+                            if (!mergedLetterPrompts.containsKey(letterKey)) {
+                                mergedLetterPrompts.put(letterKey, entry.getValue().promptText());
+                            }
+                        }
+                    }
+                }
             }
-        }
-
-        java.util.Collections.sort(keys);
-
-        for (Integer key : keys) {
-            UserInput input = inputOptions.get(key);
-            if (input != null) {
-                sb.append(" | ");
-                sb.append(key);
-                sb.append(": ");
-                sb.append(input.promptText());
+            for (Map.Entry<Character, String> entry : mergedLetterPrompts.entrySet()) {
+                sb.append(separator).append(entry.getKey()).append(": ").append(entry.getValue());
+                separator = " | ";
             }
-        }
 
-        sb.append(" | q: Quit App\nYour input: ");
+            sb.append(separator).append("e: Go Back");
+            separator = " | ";
+
+            sb.append(separator).append("q: Quit App");
+
+            sb.append("\nYour input: ");
+
+        } else {
+            sb = new StringBuilder();
+            sb.append("\nOptions:\n | e: Go Back");
+
+            List<Integer> keys = new ArrayList<>();
+            for (Enumeration<Integer> e = inputOptions.keys(); e.hasMoreElements();) {
+                Integer key = e.nextElement();
+                if (key > 0) {
+                    keys.add(key);
+                }
+            }
+            Collections.sort(keys);
+            for (Integer key : keys) {
+                UserInput input = inputOptions.get(key);
+                if (input != null) {
+                    sb.append(" | ").append(key).append(": ").append(input.promptText());
+                }
+            }
+
+            Map<Character, String> mergedLetterPrompts = new TreeMap<>();
+            for (View child : childViews) {
+                if (child instanceof MenuView menuChild) { // Use pattern matching
+                    Map<Character, UserInput> childLetterActions = menuChild.getLetterActions();
+                    if (childLetterActions != null) {
+                        for (Map.Entry<Character, UserInput> entry : childLetterActions.entrySet()) {
+                            char letterKey = Character.toLowerCase(entry.getKey());
+                            if (!mergedLetterPrompts.containsKey(letterKey)) {
+                                mergedLetterPrompts.put(letterKey, entry.getValue().promptText());
+                            }
+                        }
+                    }
+                }
+            }
+            for (Map.Entry<Character, String> entry : mergedLetterPrompts.entrySet()) {
+                sb.append(" | ").append(entry.getKey()).append(": ").append(entry.getValue());
+            }
+
+            sb.append(" | q: Quit App\nYour input: ");
+        }
         return sb.toString();
     }
 

@@ -225,11 +225,12 @@ public class Canvas {
                 }
             }
 
+            if (response != null && response.length() == 1 && Character.isLetter(response.charAt(0))) {
+                if (currentView.handleDirectInput(response)) {
+                    continue;
+                }
 
-            if(response != null && !response.isEmpty() && Character.isLetter(response.charAt(0))) {
                 boolean inputHandled = false;
-
-                // Check for letter-based input handlers
                 for (Enumeration<Integer> e = currentView.getInputOptions().keys(); e.hasMoreElements();) {
                     Integer key = e.nextElement();
                     UserInput inputOption = currentView.getInputOptions().get(key);
@@ -254,6 +255,7 @@ public class Canvas {
                 }
             }
 
+            // Handle numeric inputs
             int responseInt;
             try {
                 responseInt = Integer.parseInt(Objects.requireNonNull(response));
@@ -262,7 +264,6 @@ public class Canvas {
                 setRequireRedraw(true);
                 continue;
             }
-
 
             if (currentView.getInputOptions() != null && currentView.getInputOptions().get(responseInt) == null) {
                 setSystemMessage("Invalid input, please try again.", SystemMessageStatus.ERROR);
@@ -274,10 +275,9 @@ public class Canvas {
 
             try {
                 UserInput inputOptions = currentView.getInputOptions().get(responseInt);
-//                System.out.println("[DEBUG] Processing input option: " + responseInt + " - " + inputOptions.promptText());
                 inputOptions.lambda().onInput(response);
-            }catch (Exception e){
-//                System.out.println("[DEBUG] Exception in input handler: " + e.getMessage());
+            } catch (Exception e) {
+                System.out.println("[DEBUG] Exception in input handler: " + e.getMessage());
             }
         }
 

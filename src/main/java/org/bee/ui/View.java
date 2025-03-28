@@ -84,6 +84,17 @@ public abstract class View {
     public void OnApplicationExit(){}
 
     /**
+     * Handle direct input for single-character inputs, like shortcut keys.
+     * This method should be overridden by subclasses that need to handle direct letter inputs.
+     *
+     * @param input The input string (typically a single character)
+     * @return true if the input was handled, false otherwise
+     */
+    public boolean handleDirectInput(String input) {
+        return false;
+    }
+
+    /**
      * Footer contains all the user input options by default, override this method otherwise.
      * @return String representation of the user input options.
      */

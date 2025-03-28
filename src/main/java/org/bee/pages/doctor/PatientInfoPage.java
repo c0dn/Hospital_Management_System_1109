@@ -3,15 +3,11 @@ package org.bee.pages.doctor;
 import org.bee.controllers.HumanController;
 import org.bee.hms.humans.Doctor;
 import org.bee.hms.humans.Patient;
-import org.bee.hms.humans.Sex;
-import org.bee.hms.medical.Consultation;
 import org.bee.ui.*;
 import org.bee.ui.views.*;
 import org.bee.utils.detailAdapters.PatientDetailsViewAdapter;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -49,7 +45,7 @@ public class PatientInfoPage extends UiBase {
         if (patient == null) {
             patientListView = createPatientListView();
         } else {
-            patientListView = createPatientDetailsView(patient);
+            patientListView = createPatientCompositeView(patient);
         }
 
         return patientListView;
@@ -134,6 +130,32 @@ public class PatientInfoPage extends UiBase {
         return detailsView;
     }
 
+    /**
+     * Creates a composite view that includes patient details and action buttons
+     */
+    private View createPatientCompositeView(Patient patient) {
+        DetailsView<Patient> detailsView = (DetailsView<Patient>) createPatientDetailsView(patient);
+
+        CompositeView compositeView = new CompositeView(canvas, "", Color.CYAN);
+        compositeView.addView(detailsView);
+
+        if (humanController.getLoggedInUser() instanceof Doctor) {
+            MenuView actionMenu = new MenuView(canvas, "", Color.CYAN, false, true);
+
+            MenuView.MenuSection actionSection = actionMenu.addSection("");
+            actionSection.addOption(1, "Schedule Appointment (s)");
+
+            actionMenu.attachLetterOption('s', "Schedule Appointment", input -> {
+                canvas.setSystemMessage("Feature coming soon!", SystemMessageStatus.INFO);
+                canvas.setRequireRedraw(true);
+            });
+
+
+            compositeView.addView(actionMenu);
+        }
+
+        return compositeView;
+    }
 
     /**
      * Displays detailed information for the selected patient
@@ -147,26 +169,8 @@ public class PatientInfoPage extends UiBase {
      * with support for returning to the previous view
      */
     public void displaySelectedPatient(Patient patient, View previousView) {
-        PatientDetailsViewAdapter adapter = new PatientDetailsViewAdapter();
-
-        DetailsView<Patient> detailsView = new DetailsView<>(
-                canvas,
-                "PATIENT INFORMATION",
-                patient,
-                Color.CYAN,
-                adapter
-        );
-
-        detailsView.setPreviousView(previousView);
-
-        if (humanController.getLoggedInUser() instanceof Doctor) {
-            detailsView.addAction("Schedule Appointment", "s", () -> {
-                canvas.setSystemMessage("Feature coming soon", SystemMessageStatus.INFO);
-                canvas.setRequireRedraw(true);
-            });
-        }
-
-        canvas.setCurrentView(detailsView);
+        View patientView = createPatientCompositeView(patient);
+        canvas.setCurrentView(patientView);
         canvas.setRequireRedraw(true);
     }
 
@@ -177,5 +181,4 @@ public class PatientInfoPage extends UiBase {
     public void OnBackPressed(){
         super.OnBackPressed();
     }
-
 }

@@ -5,10 +5,7 @@ import org.bee.ui.Color;
 import org.bee.ui.TextStyle;
 import org.bee.ui.View;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Enumeration;
-import java.util.List;
+import java.util.*;
 
 /**
  * A specialized view for displaying menus with sections and options.
@@ -18,7 +15,7 @@ public class MenuView extends View {
     private final List<MenuSection> sections = new ArrayList<>();
     private boolean showCompactFooter;
     private boolean showDetailedOptions;
-
+    private final Map<Character, UserInput> letterActions = new HashMap<>();
 
     public MenuView(Canvas canvas, String title, Color color, boolean showDetailedOptions, boolean showCompactFooter) {
         super(canvas, title, "", color);
@@ -50,6 +47,38 @@ public class MenuView extends View {
         MenuSection section = new MenuSection(title);
         sections.add(section);
         return section;
+    }
+
+    /**
+     * Attach an action to a letter key
+     *
+     * @param letter The letter key to bind the action to
+     * @param optionText The text description of the action
+     * @param lambda The action to execute when the key is pressed
+     */
+    public void attachLetterOption(char letter, String optionText, UserInputResult lambda) {
+        letterActions.put(Character.toLowerCase(letter), new UserInput(optionText, lambda));
+    }
+
+    /**
+     * Handle direct letter inputs
+     */
+    @Override
+    public boolean handleDirectInput(String input) {
+        if (input != null && input.length() == 1) {
+            char key = Character.toLowerCase(input.charAt(0));
+            if (letterActions.containsKey(key)) {
+                UserInput action = letterActions.get(key);
+                action.lambda().onInput(input);
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public Map<Character, UserInput> getLetterActions() {
+        return Collections.unmodifiableMap(this.letterActions);
     }
 
     @Override
@@ -90,7 +119,6 @@ public class MenuView extends View {
 
     @Override
     public String getFooter() {
-
         if (showDetailedOptions && !showCompactFooter) {
             int maxOption = 0;
             for (MenuSection section : sections) {
@@ -101,7 +129,16 @@ public class MenuView extends View {
                 }
             }
 
-            return "\ne: Go Back | q: Quit App\nSelect option (1-" + maxOption + "): ";
+            StringBuilder sb = new StringBuilder("\ne: Go Back");
+
+            if (!letterActions.isEmpty()) {
+                for (Map.Entry<Character, UserInput> entry : letterActions.entrySet()) {
+                    sb.append(" | ").append(entry.getKey()).append(": ").append(entry.getValue().promptText());
+                }
+            }
+
+            sb.append(" | q: Quit App\nSelect option (1-").append(maxOption).append("): ");
+            return sb.toString();
         }
 
         StringBuilder sb = new StringBuilder();
@@ -127,11 +164,16 @@ public class MenuView extends View {
             }
         }
 
+        if (!letterActions.isEmpty()) {
+            for (Map.Entry<Character, UserInput> entry : letterActions.entrySet()) {
+                sb.append(" | ").append(entry.getKey()).append(": ").append(entry.getValue().promptText());
+            }
+        }
+
         sb.append(" | q: Quit App\nYour input: ");
 
         return sb.toString();
     }
-
 
     /**
      * Attach a user input to a specific menu option index
@@ -193,8 +235,8 @@ public class MenuView extends View {
      * Represents a single menu option with an index and text.
      */
     public static class MenuOption {
-        private int index;
-        private String text;
+        private final int index;
+        private final String text;
 
         public MenuOption(int index, String text) {
             this.index = index;

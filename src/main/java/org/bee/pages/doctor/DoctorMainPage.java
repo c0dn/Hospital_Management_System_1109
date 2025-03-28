@@ -43,10 +43,8 @@ public class DoctorMainPage extends UiBase {
         menuView.attachMenuOptionInput(2, "View Appointment", str -> ToPage(new ViewAppointmentPage()));
 
         MenuView.MenuSection outpatientSection = menuView.addSection("Outpatient Management Services");
-        outpatientSection.addOption(3, "View List of Outpatient Cases");
-        outpatientSection.addOption(4, "Update Outpatient Case");
-        menuView.attachMenuOptionInput(3, "View List of Outpatient Cases", str -> ToPage(new OutpatientPatientInfoPage()));
-        menuView.attachMenuOptionInput(4, "Update Outpatient Case", str -> ToPage(new UpdateOutpatientCase()));
+        outpatientSection.addOption(3, "View Outpatient Cases");
+        menuView.attachMenuOptionInput(3, "View Outpatient Cases", str -> ToPage(new ConsultationInfoPage()));
 
         canvas.setRequireRedraw(true);
     }
