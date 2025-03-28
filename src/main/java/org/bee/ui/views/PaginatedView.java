@@ -20,37 +20,6 @@ public class PaginatedView<T, V extends View> extends AbstractPaginatedView<T> {
     private final BiFunction<List<T>, Integer, V> viewFactory;
     private String paginationInfo = "";
     private V currentContentView;
-    private int selectedRowNumber = -1; // Track selected row
-
-    /**
-     * Get the current page number (0-based index)
-     */
-    public int getCurrentPage() {
-        return currentPage;
-    }
-
-    /**
-     * Get the selected row number within the current page (0-based index)
-     */
-    public int getRowNumber() {
-        return selectedRowNumber;
-    }
-
-    /**
-     * Set up row selection capability
-     */
-    public void enableRowSelection() {
-        if (currentContentView instanceof TableView) {
-            ((TableView<?>) currentContentView).setSelectionCallback((row, item) -> {
-                this.selectedRowNumber = row;
-                if (this.selectionCallback != null) {
-                    this.selectionCallback.accept(new MenuOption(String.valueOf(row),
-                            "Row " + (row + 1), item));
-                }
-            });
-        }
-    }
-
 
     /**
      * Creates a new paginated view with a flexible view factory.
@@ -89,7 +58,16 @@ public class PaginatedView<T, V extends View> extends AbstractPaginatedView<T> {
     }
 
     @Override
-    protected void setupContentOptions() { enableRowSelection(); }
+    protected void setupContentOptions() {
+        if (currentContentView instanceof TableView) {
+            ((TableView<?>) currentContentView).setSelectionCallback((row, item) -> {
+                if (this.selectionCallback != null) {
+                    this.selectionCallback.accept(new MenuOption(String.valueOf(row),
+                            "Row " + (row + 1), item));
+                }
+            });
+        }
+    }
 
     @Override
     protected List<T> getCurrentPageItems() {

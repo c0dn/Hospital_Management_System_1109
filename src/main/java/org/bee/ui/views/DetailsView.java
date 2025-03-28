@@ -2,8 +2,10 @@ package org.bee.ui.views;
 
 import org.bee.ui.Canvas;
 import org.bee.ui.Color;
+import org.bee.ui.SystemMessageStatus;
 import org.bee.ui.View;
 import org.bee.ui.TextStyle;
+import org.bee.ui.details.IDetailsViewAdapter;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -14,32 +16,71 @@ import java.util.Map;
  * A generic view for displaying detailed information in a key-value format
  * with support for sections, formatting, and navigation.
  *
- * @param <T> The type of the data object being displayed (optional)
+ * @param <T> The type of the data object being displayed
  */
 public class DetailsView<T> extends View {
     private final Map<String, List<DetailItem>> sections = new LinkedHashMap<>();
     private String header;
     private String footer = "\nOptions:\n | e: Go Back | q: Quit App\nYour input: ";
-    private T dataObject;
+    private final T dataObject;
     private View previousView;
+    private IDetailsViewAdapter<T> adapter;
 
     // Default section name for items added without a specific section
     private static final String DEFAULT_SECTION = "Details";
 
+    /**
+     * Creates a new DetailsView with a color and no data object.
+     * Note: This constructor is kept for backward compatibility but
+     * should generally not be used with adapters.
+     */
     public DetailsView(Canvas canvas, Color color) {
         super(canvas, "", "", color);
+        this.dataObject = null;
         initialize();
     }
 
+    /**
+     * Creates a new DetailsView with a title and color, but no data object.
+     * Note: This constructor is kept for backward compatibility but
+     * should generally not be used with adapters.
+     */
     public DetailsView(Canvas canvas, String title, Color color) {
         super(canvas, "", "", color);
         this.header = title;
+        this.dataObject = null;
         initialize();
     }
 
+    /**
+     * Creates a new DetailsView with a title, data object, and color.
+     * This is the preferred constructor for use without an adapter.
+     */
     public DetailsView(Canvas canvas, String title, T dataObject, Color color) {
-        this(canvas, title, color);
+        super(canvas, "", "", color);
+        this.header = title;
         this.dataObject = dataObject;
+        initialize();
+    }
+
+    /**
+     * Creates a new DetailsView with a title, data object, color, and adapter.
+     * This constructor automatically configures the view using the provided adapter.
+     */
+    public DetailsView(Canvas canvas, String title, T dataObject, Color color, IDetailsViewAdapter<T> adapter) {
+        super(canvas, "", "", color);
+        this.header = title;
+        this.dataObject = dataObject;
+        this.adapter = adapter;
+        initialize();
+        if (adapter != null && dataObject != null) {
+            try {
+                adapter.configureView(this, dataObject);
+            } catch (Exception e) {
+                addDetail("Error", "Failed to load details: " + e.getMessage());
+                canvas.setSystemMessage("Error loading details: " + e.getMessage(), SystemMessageStatus.ERROR);
+            }
+        }
     }
 
     private void initialize() {
@@ -72,6 +113,34 @@ public class DetailsView<T> extends View {
             return labelStyle.getAnsiCode() + label + ": " + TextStyle.RESET.getAnsiCode() +
                     valueStyle.getAnsiCode() + value + TextStyle.RESET.getAnsiCode();
         }
+    }
+
+    /**
+     * Set or update the adapter for this view
+     *
+     * @param adapter The adapter to use for configuring the view
+     * @return This view for method chaining
+     */
+    public DetailsView<T> setAdapter(IDetailsViewAdapter<T> adapter) {
+        this.adapter = adapter;
+        if (adapter != null && dataObject != null) {
+            clearDetails();
+            try {
+                adapter.configureView(this, dataObject);
+                canvas.setRequireRedraw(true);
+            } catch (Exception e) {
+                addDetail("Error", "Failed to load details: " + e.getMessage());
+                canvas.setSystemMessage("Error loading details: " + e.getMessage(), SystemMessageStatus.ERROR);
+            }
+        }
+        return this;
+    }
+
+    /**
+     * Get the current adapter
+     */
+    public IDetailsViewAdapter<T> getAdapter() {
+        return adapter;
     }
 
     /**
@@ -123,12 +192,6 @@ public class DetailsView<T> extends View {
         this.footer = footer;
     }
 
-    /**
-     * Get the associated data object
-     */
-    public T getDataObject() {
-        return dataObject;
-    }
 
     /**
      * Set the previous view for navigation
@@ -145,11 +208,16 @@ public class DetailsView<T> extends View {
         sections.put(DEFAULT_SECTION, new ArrayList<>());
     }
 
+
     /**
-     * Remove a specific section
+     * Reload details using the adapter
      */
-    public void removeSection(String section) {
-        sections.remove(section);
+    public void refreshDetails() {
+        if (adapter != null && dataObject != null) {
+            clearDetails();
+            adapter.configureView(this, dataObject);
+            canvas.setRequireRedraw(true);
+        }
     }
 
     @Override
@@ -176,7 +244,6 @@ public class DetailsView<T> extends View {
                 sb.append("  ").append(item).append("\n");
             }
 
-            // Only add extra line if there are more sections coming
             if (hasMoreSections(sectionName)) {
                 sb.append("\n");
             }
@@ -232,7 +299,6 @@ public class DetailsView<T> extends View {
             }
         }
 
-        // Add the action handler
         attachUserInput(prompt, input -> {
             if (input.equalsIgnoreCase(key)) {
                 action.run();
