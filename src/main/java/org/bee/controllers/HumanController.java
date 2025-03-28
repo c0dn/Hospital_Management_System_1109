@@ -248,4 +248,12 @@ public class HumanController extends BaseController<Human> {
                 .collect(Collectors.toList());
     }
 
+
+    public String maskNRIC(String nric) {
+        // First char + masked middle + last 4 chars
+        return nric.charAt(0) +
+                "X".repeat(Math.max(0, nric.length() - 5)) +
+                nric.substring(nric.length() - 4);
+    }
+
 }

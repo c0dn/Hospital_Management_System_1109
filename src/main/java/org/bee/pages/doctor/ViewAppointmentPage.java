@@ -20,6 +20,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Page for viewing and managing telemedicine appointments for doctors.
@@ -64,6 +65,9 @@ public class ViewAppointmentPage extends UiBase {
         for (Appointment a : appointments) {
             String patientName = a.getPatient() != null ? a.getPatient().getName() : "Unknown";
             String appointmentId = ReflectionHelper.propertyAccessor("appointmentId", "N/A").apply(a);
+            String shortAppointmentId = appointmentId.length() > 8
+                    ? appointmentId.substring(0, 8)
+                    : appointmentId;
             LocalDateTime appointmentTime = a.getAppointmentTime();
             String timeString = appointmentTime != null ? dateFormatter.format(appointmentTime) : "Not scheduled";
             String reason = a.getReason() != null ? a.getReason() : "Not specified";
@@ -73,11 +77,23 @@ public class ViewAppointmentPage extends UiBase {
             } else {
                 status = a.getAppointmentStatus() != null ? formatEnum(a.getAppointmentStatus().toString()) : "Unknown";
             }
+            String coloredStatus = status;
+            if (status.equals(formatEnum("COMPLETED"))) {
+                coloredStatus = colorText(status, Color.GREEN);
+            } else if (status.equals(formatEnum("ACCEPTED"))) {
+                coloredStatus = colorText(status, Color.CYAN);
+            } else if (status.equals(formatEnum("PENDING"))) {
+                coloredStatus = colorText(status, Color.YELLOW);
+            } else if ((status.equals(formatEnum("DECLINED")) || status.equals(formatEnum("CANCELED")))) {
+                coloredStatus = colorText(status, Color.RED);
+            }
+            
+            String patientNRIC = a.getPatient() != null ? humanController.maskNRIC(a.getPatient().getNricFin()) : "Unknown";
 
-            String optionText = String.format("%s - %s (%s) - %s - %s",
-                    appointmentId, patientName, timeString, reason, status);
+            String optionText = String.format("%s - %s, %s (%s) - %s - %s",
+                    shortAppointmentId, patientName, patientNRIC, timeString, reason, coloredStatus);
 
-            menuOptions.add(new PaginatedMenuView.MenuOption(appointmentId, optionText, a));
+            menuOptions.add(new PaginatedMenuView.MenuOption(shortAppointmentId, optionText, a));
         }
 
         PaginatedMenuView paginatedView = new PaginatedMenuView(

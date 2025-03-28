@@ -1,6 +1,7 @@
 package org.bee.pages.clerk;
 
 import org.bee.controllers.AppointmentController;
+import org.bee.controllers.HumanController;
 import org.bee.hms.humans.Doctor;
 import org.bee.hms.humans.Patient;
 import org.bee.hms.telemed.*;
@@ -22,6 +23,7 @@ import java.util.function.BiFunction;
  */
 public class TelemedicineAppointmentPage extends UiBase {
 
+    private static final HumanController humanController = HumanController.getInstance();
     private static final AppointmentController appointmentController = AppointmentController.getInstance();
     private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     private static final int ITEMS_PER_PAGE = 7;
@@ -89,9 +91,13 @@ public class TelemedicineAppointmentPage extends UiBase {
                 })
 
                 // Patient information
-                .addColumn("Patient", 20, a -> {
+                .addColumn("Patient Name", 20, a -> {
                     Patient patient = (Patient) ReflectionHelper.propertyAccessor("patient", null).apply(a);
                     return patient != null ? patient.getName() : "Unknown";
+                })
+                .addColumn("NRIC", 15, a -> {
+                    Patient patient = (Patient) ReflectionHelper.propertyAccessor("patient", null).apply(a);
+                    return patient != null ? humanController.maskNRIC(patient.getNricFin()) : "Unknown";
                 })
 
                 // Reason for appointment
