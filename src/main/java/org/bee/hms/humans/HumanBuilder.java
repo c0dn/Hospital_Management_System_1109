@@ -196,15 +196,7 @@ abstract class HumanBuilder<T extends HumanBuilder<T>> {
      * @return The current builder instance with random data.
      */
     public T withRandomBaseData() {
-        NameType nameType;
-        if (this instanceof StaffBuilder) {
-            nameType = NameType.STAFF;
-        } else if (this instanceof PatientBuilder) {
-            nameType = NameType.PATIENT;
-        } else {
-            nameType = NameType.ALL; // Default fallback
-        }
-        this.name = DataGenerator.getRandomElement(DataGenerator.getAllNames(nameType));
+        this.name = DataGenerator.getRandomElement(DataGenerator.getAllNames(getNameType()));
         this.dateOfBirth = LocalDate.now().minusYears(DataGenerator.generateRandomInt(20, 60)); // Age between 20-60
         this.nricFin = DataGenerator.generateNRICNumber();
         this.maritalStatus = DataGenerator.getRandomEnum(MaritalStatus.class);
@@ -240,5 +232,9 @@ abstract class HumanBuilder<T extends HumanBuilder<T>> {
                 sex == null || bloodType == null) {
             throw new IllegalStateException("All required fields must be set");
         }
+    }
+
+    protected DataGenerator.NameType getNameType() {
+        return DataGenerator.NameType.ALL;
     }
 }

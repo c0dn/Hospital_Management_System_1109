@@ -322,4 +322,10 @@ public class PatientBuilder extends HumanBuilder<PatientBuilder> {
             throw new IllegalStateException("Weight must be greater than 0");
         }
     }
+
+
+    @Override
+    protected DataGenerator.NameType getNameType() {
+        return DataGenerator.NameType.PATIENT;
+    }
 }

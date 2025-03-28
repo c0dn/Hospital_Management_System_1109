@@ -1,12 +1,9 @@
 package org.bee.utils;
 
-import java.time.LocalDateTime;
 import java.util.*;
 
 import org.bee.hms.humans.*;
 import org.bee.hms.medical.*;
-import org.bee.hms.telemed.Appointment;
-import org.bee.hms.telemed.AppointmentStatus;
 
 /**
  * Static utility class for generating common data used across different entities.
@@ -67,6 +64,23 @@ public final class DataGenerator {
             "Early Critical Care", "Critical Illness Plus", "Critical Protect",
             "Crisis Cover", "Critical Care Advantage", "MultiPay Critical Illness"
     };
+
+    public enum NameType {
+        /**
+         * Represents staff names
+         */
+        STAFF,
+
+        /**
+         * Represents patient names
+         */
+        PATIENT,
+
+        /**
+         * Represents all types of names
+         */
+        ALL
+    }
 
     // Private constructor to prevent instantiation
     private DataGenerator() {

@@ -97,4 +97,10 @@ public abstract class StaffBuilder<T extends StaffBuilder<T>> extends HumanBuild
      */
     @Override
     protected abstract Staff build();
+
+
+    @Override
+    protected DataGenerator.NameType getNameType() {
+        return DataGenerator.NameType.STAFF;
+    }
 }
