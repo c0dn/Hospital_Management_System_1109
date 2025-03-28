@@ -1,13 +1,13 @@
 package org.bee.ui.forms;
 
+import org.bee.ui.TextStyle;
+import org.bee.ui.UiBase;
 import org.bee.utils.ReflectionHelper;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 public interface IObjectFormAdapter<T> {
@@ -234,7 +234,7 @@ public interface IObjectFormAdapter<T> {
 
         return new FormField<>(
                 name,
-                prompt + " [Current: " + displayValue + "]:",
+                "\u001b[1m[Current: " + displayValue + "]:\n\u001b[0m\u001b[36m" + prompt,
                 validator,
                 errorMessage,
                 parser
@@ -257,4 +257,34 @@ public interface IObjectFormAdapter<T> {
         return createField(name, prompt, object, validator, errorMessage,
                 s -> s.isEmpty() ? null : Double.parseDouble(s));
     }
+
+    /**
+     * Helper method for Enum fields.
+     * @param <E> The enum type
+     */
+    default <E extends Enum<E>> FormField<E> createEnumField(
+            String name,
+            String prompt,
+            T object,
+            Class<E> enumType,
+            Predicate<String> validator,
+            String errorMessage) {
+
+        return createField(
+                name,
+                prompt,
+                object,
+                validator,
+                errorMessage,
+                input -> {
+                    try {
+                        return Enum.valueOf(enumType, input.toUpperCase());
+                    } catch (IllegalArgumentException e) {
+                        throw new IllegalArgumentException("Invalid selection. Valid options are: " +
+                                Arrays.toString(enumType.getEnumConstants()));
+                    }
+                }
+        );
+    }
+
 }

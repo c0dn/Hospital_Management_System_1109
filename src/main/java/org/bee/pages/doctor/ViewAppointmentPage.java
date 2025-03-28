@@ -52,8 +52,10 @@ public class ViewAppointmentPage extends UiBase {
         List<Appointment> appointments = appointmentController.getAllAppointments().stream()
                 .filter(a -> {
                     Doctor appointmentDoctor = a.getDoctor();
-                    return appointmentDoctor == null ||
-                            appointmentDoctor.getStaffId().equals(currentDoctor.getStaffId());
+                    boolean doctorMatch = appointmentDoctor == null || appointmentDoctor.getStaffId().equals(currentDoctor.getStaffId());
+                    boolean statusMatch = a.getAppointmentStatus() != AppointmentStatus.PAID && a.getAppointmentStatus() != AppointmentStatus.PAYMENT_PENDING;
+
+                    return doctorMatch && statusMatch;
                 })
                 .toList();
 

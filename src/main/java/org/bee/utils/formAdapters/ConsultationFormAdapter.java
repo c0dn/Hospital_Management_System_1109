@@ -16,6 +16,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 public class ConsultationFormAdapter implements IObjectFormAdapter<Consultation> {
 
@@ -65,14 +66,6 @@ public class ConsultationFormAdapter implements IObjectFormAdapter<Consultation>
                         consultation,
                         FormValidators.notEmpty(),
                         "Procedure code cannot be empty."
-                ));
-
-                fields.add(createTextField(
-                        "prescriptions",
-                        "Enter prescription",
-                        consultation,
-                        input -> true,
-                        "Prescription cannot be empty."
                 ));
 
                 fields.add(createTextField(
