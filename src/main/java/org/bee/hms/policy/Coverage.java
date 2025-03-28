@@ -8,6 +8,14 @@ import org.bee.utils.JSONSerializable;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
+/**
+ * Configures polymorphic type handling for JSON serialization/deserialization
+ * <li>Supported subtypes:
+ * <ul>
+ * <li>{@link BaseCoverage} (identified as "base")</li>
+ * <li>{@link CompositeCoverage} (identified as "composite")</li>
+ * </ul>
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,

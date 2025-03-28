@@ -20,9 +20,26 @@ import java.util.stream.Collectors;
  */
 public class ExclusionCriteria implements JSONSerializable {
 
+    /**
+     * Regular expression patterns for matching excluded diagnoses
+     * Any diagnosis description matching these patterns will be excluded
+     */
     private final List<Pattern> excludedDiagnosisPatterns;
+
+    /**
+     * Regular expression patterns for matching excluded procedures
+     * Any procedure description matching these patterns will be excluded
+     */
     private final List<Pattern> excludedProcedurePatterns;
+
+    /**
+     * Set of benefit types that are explicitly excluded
+     */
     private final Set<BenefitType> excludedBenefits;
+
+    /**
+     * Set of accident types that are explicitly excluded
+     */
     private final Set<AccidentType> excludedAccidentTypes;
 
     /**

@@ -21,10 +21,29 @@ import java.util.Optional;
  */
 public class CoverageLimit implements JSONSerializable {
 
+    /**
+     * The maximum claimable amount per policy year
+     */
     private final BigDecimal annualLimit;
+
+    /**
+     * The maximum claimable amount over the policy lifetime
+     */
     private final BigDecimal lifetimeLimit;
+
+    /**
+     * Type-specific benefit limits mapped by {@link BenefitType}
+     */
     private final Map<BenefitType, BigDecimal> benefitLimits;
+
+    /**
+     * Ward class-specific limits mapped by {@link WardClassType}
+     */
     private final Map<WardClassType, BigDecimal> wardLimits;
+
+    /**
+     * Accident-type sublimits mapped by {@link AccidentType}
+     */
     private final Map<AccidentType, BigDecimal> accidentSubLimits;
 
     /**

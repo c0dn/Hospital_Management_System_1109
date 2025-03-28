@@ -18,11 +18,22 @@ import org.bee.utils.JSONSerializable;
  */
 public class HeldInsurancePolicy extends BaseInsurancePolicy implements InsurancePolicy, JSONSerializable {
 
+    /** Unique policy ID */
     private final String policyNumber;
+
+    /** Insured patient */
     private final Patient policyHolder;
+
+    /** Policy name */
     private final String name;
+
+    /** When coverage ends  */
     private final LocalDateTime expirationDate;
+
+    /** When policy was cancelled  */
     private final LocalDateTime cancellationDate;
+
+    /** Current policy status (ACTIVE/EXPIRED/CANCELLED) */
     private InsuranceStatus status;
 
     /**
@@ -147,6 +158,13 @@ public class HeldInsurancePolicy extends BaseInsurancePolicy implements Insuranc
         return false;
     }
 
+    /**
+     * Returns the policy type identifier for JSON serialization
+     * Always returns "held" to indicate this is an active insurance policy instance
+     *
+     * @return Constant string "held" representing this policy type
+     */
+
     @JsonProperty("policyType")
     public String getPolicyType() {
         return "held";
@@ -176,13 +194,28 @@ public class HeldInsurancePolicy extends BaseInsurancePolicy implements Insuranc
      * Builder pattern to create a {@link HeldInsurancePolicy}.
      */
     public static class Builder {
+        /** Unique policy ID */
         private final String policyNumber;
+
+        /** Insured patient */
         private final Patient policyHolder;
+
+        /** Insurance company */
         private final InsuranceProvider provider;
+
+        /** Plan name */
         private final String name;
+
+        /** Coverage rules */
         private final Coverage coverage;
+
+        /** Expiration date */
         private LocalDateTime expirationDate;
+
+        /** Cancellation date */
         private LocalDateTime cancellationDate;
+
+        /** Current status, default is ACTIVE */
         private InsuranceStatus status = InsuranceStatus.ACTIVE;
 
         /**
