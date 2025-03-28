@@ -22,16 +22,47 @@ import org.bee.utils.JSONSerializable;
  */
 public class ProcedureCode implements BillableItem, ClaimableItem, JSONSerializable {
 
+    /**
+     * The unique procedure code identifier
+     * This field is included in JSON serialization under the property name "code"
+     */
     @JsonProperty("code")
     private String code;
+
+    /**
+     * The description of the medical procedure
+     * This field is explicitly excluded from JSON serialization
+     */
     @JsonIgnore
     private String description;
+
+    /**
+     * The standard price for this medical procedure
+     * This field is included in JSON serialization under the property name "cost"
+     */
     @JsonProperty("cost")
     private BigDecimal price;
 
+    /**
+     * Maintains all loaded procedure codes mapped by their code strings
+     *
+     * The map is populated during class initialization from the CSV data source
+     */
     private static final Map<String, ProcedureCode> CODE_REGISTRY = new HashMap<>();
+
+    /**
+     * The default price assigned to procedure codes when no specific price is provided
+     * <p>
+     * Value is set to 1000.00 when pricing information is missing from the data source
+     * </p>
+     */
     private static final BigDecimal DEFAULT_PRICE = new BigDecimal("1000.00");
 
+    /**
+     * Static initialization block that loads procedure codes from CSV file.
+     * Executed once when the class is first loaded into memory.
+     * Reads and parses the procedure code data file
+     */
     static {
         loadCodesFromCsv();
     }
@@ -348,5 +379,9 @@ public class ProcedureCode implements BillableItem, ClaimableItem, JSONSerializa
         return createFromCode(DataGenerator.getRandomElement(matchingCodes));
     }
 
+    /**
+     * Returns procedure code and description
+     * @return procedure code and description
+     */
     public String getPCode() { return code + ": " + description; }
 }

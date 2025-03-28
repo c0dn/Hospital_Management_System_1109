@@ -67,8 +67,19 @@ public class Visit implements JSONSerializable {
      * documentation, and other healthcare-related purposes.
      */
     private List<DiagnosticCode> diagnosticCodes;
+
+    /** The doctor assigned for patient treatment */
     private Doctor attendingDoc;
+
+    /**
+     * The nursing staff assigned to assist with the patient's care during this visit
+     * <p>
+     * This list contains all nurses responsible for providing nursing care,
+     * administering treatments, and monitoring the patient's condition
+     * </p>
+     */
     private List<Nurse> attendingNurses;
+
     /**
      * A map representing the prescriptions associated with a visit.
      * Each entry maps a specific medication to its prescribed quantity.
@@ -92,6 +103,8 @@ public class Visit implements JSONSerializable {
      * This field is used to track and update the lifecycle of the hospital visit.
      */
     private VisitStatus status;
+
+    /** The patient associated with this medical record */
     private Patient patient;
 
     /**
@@ -382,6 +395,21 @@ public class Visit implements JSONSerializable {
         return visit;
     }
 
+    /**
+     * Finds the index of the most expensive billable item that can be removed while maintaining
+     * the minimum target charge amount
+     * <p>
+     * This helper method scans through a list of billable items to identify which item:
+     * <ul>
+     * <li>Has the highest individual cost</li>
+     * <li>Can be removed while keeping the remaining total charges above the specified minimum</li>
+     * </ul>
+     * </p>
+     * @param items The list of {@link BillableItem} objects to evaluate
+     * @param totalCharges The current sum of all item charges
+     * @param minTarget The minimum allowable charge amount after item removal
+     * @return
+     */
     private static int getMostExpensiveIndex(List<BillableItem> items, BigDecimal totalCharges, BigDecimal minTarget) {
         BillableItem mostExpensive = null;
         int mostExpensiveIndex = -1;
@@ -659,12 +687,30 @@ public class Visit implements JSONSerializable {
         return Optional.empty();
     }
 
-
+    /**
+     * Retrieves the patient associated with this visit
+     *
+     * @return The {@link Patient} object for this visit
+     */
     public Patient getPatient() {
         return patient;
     }
 
-
+    /**
+     * Calculates the total charges for all visit components
+     * <p>
+     * Sums charges from:
+     * <ul>
+     *   <li>Ward stays </li>
+     *   <li>Inpatient procedures </li>
+     *   <li>Prescribed medications </li>
+     *   <li>Diagnostic codes </li>
+     * </ul>
+     * All calculations use unsubsidized charge rates
+     * </p>
+     *
+     * @return The total charges as a {@link BigDecimal}
+     */
     public BigDecimal calculateCharges() {
         BigDecimal total = BigDecimal.ZERO;
 

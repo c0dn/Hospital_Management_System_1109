@@ -262,6 +262,11 @@ public class LabTest implements JSONSerializable {
         return null;
     }
 
+    /**
+     * Returns string containing the lab test's ID and type
+     *
+     * @return Concatenated string of lab test ID and type
+     */
     public String getLabTestInfo() { return labTestID + ", " + type; }
 
 }

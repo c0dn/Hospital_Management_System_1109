@@ -100,7 +100,11 @@ public class MedicationBillableItem implements BillableItem, ClaimableItem {
         return isInpatient ? BenefitType.HOSPITALIZATION : BenefitType.OUTPATIENT_TREATMENTS;
     }
 
-
+    /**
+     * Retrieves the medication associated with this instance.
+     *
+     * @return The {@link Medication} object containing medication details
+     */
     @Override
     public Medication getMedication() {
         return medication;

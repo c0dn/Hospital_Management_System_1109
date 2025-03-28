@@ -19,8 +19,24 @@ import org.bee.utils.JSONSerializable;
  */
 public class WardStay implements ClaimableItem, BillableItem, JSONSerializable {
 
+    /**
+     * The hospital ward where the patient was admitted
+     * Represents the physical location and specialized unit
+     * where the patient received care during their stay
+     */
     private final Ward ward;
+
+    /**
+     * The date and time when the ward stay began
+     * Must be before {@code endDateTime} for completed stays
+     */
     private final LocalDateTime startDateTime;
+
+    /**
+     * The date and time when the ward stay concluded
+     * Recorded in the local timezone of the healthcare facility
+     * For current admissions, this field remains null until discharge
+     */
     private final LocalDateTime endDateTime;
 
     /**
@@ -106,20 +122,46 @@ public class WardStay implements ClaimableItem, BillableItem, JSONSerializable {
         );
     }
 
+    /**
+     * Calculates and returns the unsubsidized charges for the ward stay
+     * @return The total unsubsidized charges as a {@link BigDecimal}
+     */
     @Override
     public BigDecimal getUnsubsidisedCharges() {
         return calculateCharges();
     }
 
+    /**
+     * Generates a descriptive text for billing statements
+     * @return Formatted billing description string
+     */
     @Override
     public String getBillItemDescription() {
         return getBenefitDescription(true);
     }
 
+    /**
+     * Returns the category classification for this billing item
+     * @return Constant string "WARD"
+     */
     @Override
     public String getBillItemCategory() {
         return "WARD";
     }
+
+    /**
+     * Generates a standardized billing code for the ward stay
+     * <p>
+     * The code format consists of three parts:
+     * <ul>
+     *   <li>Ward type prefix (LBR, ICU, DSG, or GEN)</li>
+     *   <li>Ward class identifier</li>
+     *   <li>Duration in days</li>
+     * </ul>
+     * </p>
+     *
+     * @return Formatted billing code string
+     */
 
     @Override
     public String getBillingItemCode() {

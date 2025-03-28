@@ -306,6 +306,11 @@ public class Treatment implements JSONSerializable {
         return allTreatments;
     }
 
+    /**
+     * Returns a concatenated string of treatment ID and name
+     *
+     * @return Formatted string containing treatment ID and name
+     */
     public String getTreatmentInfo() { return treatmentID + ", " + treatmentName; }
 
 }

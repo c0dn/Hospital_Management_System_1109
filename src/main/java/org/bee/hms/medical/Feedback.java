@@ -21,14 +21,27 @@ import java.util.List;
  * retrieval
  * and management.
  */
-
 public class Feedback {
+
+    /** Static counter for generating unique feedback IDs, count set to 0 initially */
     private static int count = 0;
+
+    /** Unique identifier feedbackID for this feedback */
     private int feedbackID;
+
+    /** The patient whom provided the feedback. */
     private Patient patient;
+
+    /** Rating for medical care quality  */
     private int medicalCareRating;
+
+    /** Rating for service quality */
     private int serviceRating;
+
+    /** Date and time when the feedback was submitted */
     private Date dateStamp;
+
+    /** Additional comments or notes */
     private String remarks;
 
     /**

@@ -319,6 +319,10 @@ public class DiagnosticCode implements BillableItem, ClaimableItem, JSONSerializ
         return this.fullCode;
     }
 
+    /**
+     * Returns the diagnostic code with abbreviated description
+     * @return Formatted string combining the full code and abbreviated description
+     */
     public String getDCode() { return this.fullCode + ": " + abbreviatedDescription; }
 
     /**

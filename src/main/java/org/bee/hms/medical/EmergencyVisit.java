@@ -15,8 +15,13 @@ import org.bee.utils.JSONSerializable;
  */
 
 public class EmergencyVisit extends Visit implements JSONSerializable {
+    /** The type of accident */
     private final AccidentType accidentType;
     // For hospital reference, should law enforcement or the courts require this information
+    /**
+     * Police report reference number for legal/hospital documentation purposes
+     * For hospital reference, should law enforcement or the courts require this information
+     */
     private String policeReportNumber;
 
     /**
