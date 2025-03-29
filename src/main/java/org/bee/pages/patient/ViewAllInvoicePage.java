@@ -30,7 +30,7 @@ public class ViewAllInvoicePage extends UiBase {
 
     private enum FilterOption {
         ALL("All Bills"),
-//        PAYMENT_PENDING("Pending Payment"),
+        PAYMENT_PENDING("Pending Payment"),
         OVERDUE("Overdue Bills"),
         PAID("Paid Bills"),
         PARTIALLY_PAID("Partially Paid Bills");
@@ -120,9 +120,10 @@ public class ViewAllInvoicePage extends UiBase {
             } else if (status.equals(formatEnum("PAID"))) {
                 coloredStatus = colorText(status, Color.GREEN);
             }
-//            else if (status.equals(formatEnum("PAYMENT_PENDING"))) {
-//                coloredStatus = colorText(status, Color.RED);
-//            }
+            else if (status.equals(formatEnum("PAYMENT_PENDING"))) {
+                coloredStatus = colorText(status, Color.RED);
+            }
+
             String optionText = String.format("%s - %s [%s]",
                     billId, dateString, coloredStatus);
 
@@ -200,9 +201,9 @@ public class ViewAllInvoicePage extends UiBase {
 
     private List<Bill> filterBills(List<Bill> bills, FilterOption filter) {
         return switch (filter) {
-//            case PAYMENT_PENDING -> bills.stream()
-//                    .filter(b -> b.getStatus() == BillingStatus.PAYMENT_PENDING)
-//                    .collect(Collectors.toList());
+            case PAYMENT_PENDING -> bills.stream()
+                    .filter(b -> b.getStatus() == BillingStatus.PAYMENT_PENDING)
+                    .collect(Collectors.toList());
             case OVERDUE -> bills.stream()
                     .filter(b -> b.getStatus() == BillingStatus.OVERDUE)
                     .collect(Collectors.toList());

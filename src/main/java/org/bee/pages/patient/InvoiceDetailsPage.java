@@ -109,9 +109,9 @@ public class InvoiceDetailsPage extends UiBase {
     }
 
     private void setUpActionButtons(View parentView, BillingStatus status) {
-        if ((status == BillingStatus.OVERDUE) || (status == BillingStatus.PARTIALLY_PAID)) {
+        if ((status == BillingStatus.OVERDUE) || (status == BillingStatus.PARTIALLY_PAID) || (status == BillingStatus.PAYMENT_PENDING)){
             setupPaymentOptions(parentView);
-        } //        else if (status == BillingStatus.PAYMENT_PENDING)
+        }
     }
 
     private void saveChangesAndNotify(String message) {

@@ -10,6 +10,7 @@ import org.bee.ui.*;
 import org.bee.ui.details.IObjectDetailsAdapter;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.function.Consumer;
 
 /**
@@ -232,19 +233,20 @@ public class BillDetailsPage extends UiBase {
      */
     private void promptForPaymentAmount(BigDecimal maxAmount, PaymentMethod paymentMethod) {
         try {
+            maxAmount = BigDecimal.valueOf(maxAmount.setScale(2, RoundingMode.HALF_UP).doubleValue());
             double amount = InputHelper.getValidDouble(canvas.getTerminal(),
-                    "Enter payment amount (up to $" + maxAmount + "):",
+                    "Enter payment amount (up to $" + formatCurrency(maxAmount) + "):",
                     0.01, maxAmount.doubleValue());
 
             BigDecimal paymentAmount = new BigDecimal(amount);
 
-            if (paymentAmount.compareTo(bill.getGrandTotal()) >= 0) {
+            if (paymentAmount.compareTo(bill.getOutstandingBalance()) >= 0) {
                 bill.recordFullPayment(paymentMethod);
-                saveChangesAndRefresh("Full payment of $" + paymentAmount + " recorded. Bill status updated to PAID.");
+                saveChangesAndRefresh("Full payment of $" + formatCurrency(paymentAmount) + " recorded. Bill status updated to PAID.");
             } else {
                 bill.recordPartialPayment(paymentAmount, paymentMethod);
-                saveChangesAndRefresh("Partial payment of $" + paymentAmount + " recorded. " +
-                        "Outstanding balance: $" + bill.getOutstandingBalance());
+                saveChangesAndRefresh("Partial payment of $" + formatCurrency(paymentAmount) + " recorded. " +
+                        "Outstanding balance: $" + formatCurrency(bill.getOutstandingBalance()));
             }
         } catch (Exception e) {
             showError("Error recording payment", e);
@@ -313,5 +315,12 @@ public class BillDetailsPage extends UiBase {
         if (onChangeCallback != null) {
             onChangeCallback.run();
         }
+    }
+
+    private String formatCurrency(BigDecimal amount) {
+        if (amount == null) {
+            return "$0.00";
+        }
+        return String.format("$%.2f", amount.doubleValue());
     }
 }
