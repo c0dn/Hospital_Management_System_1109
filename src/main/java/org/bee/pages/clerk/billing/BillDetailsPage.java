@@ -5,12 +5,16 @@ import org.bee.hms.billing.Bill;
 import org.bee.hms.billing.BillingStatus;
 import org.bee.hms.billing.PaymentMethod;
 import org.bee.hms.policy.InsuranceCoverageResult;
-import org.bee.pages.ObjectDetailsPage;
 import org.bee.ui.*;
 import org.bee.ui.details.IObjectDetailsAdapter;
+import org.bee.ui.views.CompositeView;
+import org.bee.ui.views.MenuView;
+import org.bee.ui.views.ObjectDetailsView;
+import org.bee.ui.views.TextView;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Objects;
 import java.util.function.Consumer;
 
 /**
@@ -38,23 +42,48 @@ public class BillDetailsPage extends UiBase {
 
     @Override
     public View createView() {
-        ObjectDetailsPage<Bill> detailsPage = new ObjectDetailsPage<>(bill, adapter);
-        return detailsPage.createView();
+        if (Objects.isNull(bill)) {
+            return new TextView(this.canvas, "Error: No bill selected", Color.RED);
+        }
+
+        CompositeView compositeView = new CompositeView(this.canvas, "Bill Details", Color.CYAN);
+
+        ObjectDetailsView detailsView = new ObjectDetailsView(
+                this.canvas,
+                "Bill Details",
+                bill,
+                Color.CYAN
+        );
+
+        adapter.configureView(detailsView, bill);
+
+        MenuView menuView = new MenuView(this.canvas, "", Color.CYAN, false, true);
+        BillingStatus status = bill.getStatus();
+        setupActionButtons(menuView, status);
+
+        compositeView.addView(detailsView);
+        compositeView.addView(menuView);
+
+        return compositeView;
     }
 
     @Override
     public void OnViewCreated(View parentView) {
-        BillingStatus status = bill.getStatus();
-        setupActionButtons(parentView, status);
         canvas.setRequireRedraw(true);
     }
 
     /**
      * Sets up action buttons based on the current bill status
      */
-    private void setupActionButtons(View parentView, BillingStatus status) {
+    private void setupActionButtons(MenuView menuView, BillingStatus status) {
+        menuView.clearUserInputs();
+
+        MenuView.MenuSection actionSection = menuView.addSection("Available Actions");
+        int optionIndex = 1;
+
         if (status.isInPreparation()) {
-            parentView.attachUserInput("Submit for Processing", input -> {
+            actionSection.addOption(optionIndex, "Submit for Processing");
+            menuView.attachMenuOptionInput(optionIndex++, "Submit for Processing", input -> {
                 try {
                     bill.submitForProcessing();
                     saveChangesAndNotify("Bill has been submitted for processing successfully!");
@@ -65,7 +94,8 @@ public class BillDetailsPage extends UiBase {
         }
         else if (status == BillingStatus.SUBMITTED) {
             if (bill.getInsurancePolicy() != null && bill.getInsurancePolicy().isActive()) {
-                parentView.attachUserInput("Calculate Insurance Coverage", input -> {
+                actionSection.addOption(optionIndex, "Calculate Insurance Coverage");
+                menuView.attachMenuOptionInput(optionIndex++, "Calculate Insurance Coverage", input -> {
                     try {
                         InsuranceCoverageResult result = bill.calculateInsuranceCoverage();
 
@@ -83,10 +113,11 @@ public class BillDetailsPage extends UiBase {
                 });
             }
 
-            setupPaymentOptions(parentView);
+            setupPaymentOptions(actionSection, menuView, optionIndex++);
         }
         else if (status == BillingStatus.INSURANCE_PENDING) {
-            parentView.attachUserInput("Approve Insurance Claim", input -> {
+            actionSection.addOption(optionIndex, "Approve Insurance Claim");
+            menuView.attachMenuOptionInput(optionIndex++, "Approve Insurance Claim", input -> {
                 try {
                     bill.approveInsurance();
                     saveChangesAndRefresh("Insurance claim has been approved.");
@@ -95,7 +126,8 @@ public class BillDetailsPage extends UiBase {
                 }
             });
 
-            parentView.attachUserInput("Reject Insurance Claim", input -> {
+            actionSection.addOption(optionIndex, "Reject Insurance Claim");
+            menuView.attachMenuOptionInput(optionIndex++, "Reject Insurance Claim", input -> {
                 try {
                     bill.rejectInsurance();
                     saveChangesAndRefresh("Insurance claim has been rejected.");
@@ -105,10 +137,11 @@ public class BillDetailsPage extends UiBase {
             });
         }
         else if (status == BillingStatus.INSURANCE_APPROVED) {
-            setupPaymentOptions(parentView);
+            setupPaymentOptions(actionSection, menuView, optionIndex++);
         }
         else if (status == BillingStatus.INSURANCE_REJECTED) {
-            parentView.attachUserInput("Mark in Dispute", input -> {
+            actionSection.addOption(optionIndex, "Mark in Dispute");
+            menuView.attachMenuOptionInput(optionIndex++, "Mark in Dispute", input -> {
                 try {
                     bill.markInDispute();
                     saveChangesAndRefresh("Bill has been marked as in dispute.");
@@ -117,12 +150,13 @@ public class BillDetailsPage extends UiBase {
                 }
             });
 
-            setupPaymentOptions(parentView);
+            setupPaymentOptions(actionSection, menuView, optionIndex++);
         }
         else if (status == BillingStatus.PARTIALLY_PAID) {
             BigDecimal remainingAmount = bill.getOutstandingBalance();
 
-            parentView.attachUserInput("Record Full Payment", input -> {
+            actionSection.addOption(optionIndex, "Record Full Payment");
+            menuView.attachMenuOptionInput(optionIndex++, "Record Full Payment", input -> {
                 promptForPaymentMethod(paymentMethod -> {
                     try {
                         bill.recordFullPayment(paymentMethod);
@@ -133,19 +167,21 @@ public class BillDetailsPage extends UiBase {
                 });
             });
 
-            parentView.attachUserInput("Record Additional Payment", input -> {
+            actionSection.addOption(optionIndex, "Record Additional Payment");
+            menuView.attachMenuOptionInput(optionIndex++, "Record Additional Payment", input -> {
                 promptForPaymentMethod(paymentMethod -> {
                     promptForPaymentAmount(remainingAmount, paymentMethod);
                 });
             });
 
-            setupRefundOption(parentView);
+            setupRefundOption(actionSection, menuView, optionIndex++);
         }
         else if (status == BillingStatus.PAID) {
-            setupRefundOption(parentView);
+            setupRefundOption(actionSection, menuView, optionIndex++);
         }
         else if (status == BillingStatus.REFUND_PENDING) {
-            parentView.attachUserInput("Complete Refund", input -> {
+            actionSection.addOption(optionIndex, "Complete Refund");
+            menuView.attachMenuOptionInput(optionIndex++, "Complete Refund", input -> {
                 try {
                     bill.completeRefund();
                     saveChangesAndRefresh("Refund has been completed. Bill status updated to REFUNDED.");
@@ -155,7 +191,8 @@ public class BillDetailsPage extends UiBase {
             });
         }
         else if (status == BillingStatus.IN_DISPUTE) {
-            parentView.attachUserInput("Resolve Dispute", input -> {
+            actionSection.addOption(optionIndex, "Resolve Dispute");
+            menuView.attachMenuOptionInput(optionIndex++, "Resolve Dispute", input -> {
                 boolean resolved = InputHelper.getYesNoInput(canvas.getTerminal(),
                         "Was the dispute resolved in favor of the patient? (y/n)");
 
@@ -177,9 +214,11 @@ public class BillDetailsPage extends UiBase {
                 }
             });
         }
+
         // Any non-finalized bill can be cancelled
         if (!status.isFinalized()) {
-            parentView.attachUserInput("Cancel Bill", input -> {
+            actionSection.addOption(optionIndex, "Cancel Bill");
+            menuView.attachMenuOptionInput(optionIndex++, "Cancel Bill", input -> {
                 boolean confirm = InputHelper.getYesNoInput(canvas.getTerminal(),
                         "Are you sure you want to cancel this bill? This action cannot be undone. (y/n)");
 
@@ -196,16 +235,43 @@ public class BillDetailsPage extends UiBase {
                 }
             });
         }
+
+        // Set the max range for numeric options
+        menuView.setNumericOptionMaxRange(optionIndex - 1);
     }
 
     /**
      * Sets up payment options for bills that can accept payments
      */
-    private void setupPaymentOptions(View parentView) {
-        parentView.attachUserInput("Record Payment", input -> {
+    private void setupPaymentOptions(MenuView.MenuSection actionSection, MenuView menuView, int optionIndex) {
+        actionSection.addOption(optionIndex, "Record Payment");
+        menuView.attachMenuOptionInput(optionIndex, "Record Payment", input -> {
             promptForPaymentMethod(paymentMethod -> {
                 promptForPaymentAmount(bill.getGrandTotal(), paymentMethod);
             });
+        });
+    }
+
+    /**
+     * Sets up refund option for applicable bills
+     */
+    private void setupRefundOption(MenuView.MenuSection actionSection, MenuView menuView, int optionIndex) {
+        actionSection.addOption(optionIndex, "Initiate Refund");
+        menuView.attachMenuOptionInput(optionIndex, "Initiate Refund", input -> {
+            boolean confirm = InputHelper.getYesNoInput(canvas.getTerminal(),
+                    "Are you sure you want to initiate a refund for this bill? (y/n)");
+
+            if (confirm) {
+                try {
+                    bill.initiateRefund();
+                    saveChangesAndRefresh("Refund has been initiated. Bill status updated to REFUND_PENDING.");
+                } catch (Exception e) {
+                    showError("Error initiating refund", e);
+                }
+            } else {
+                canvas.setSystemMessage("Refund initiation aborted.", SystemMessageStatus.INFO);
+                canvas.setRequireRedraw(true);
+            }
         });
     }
 
@@ -254,28 +320,6 @@ public class BillDetailsPage extends UiBase {
     }
 
     /**
-     * Sets up refund option for applicable bills
-     */
-    private void setupRefundOption(View parentView) {
-        parentView.attachUserInput("Initiate Refund", input -> {
-            boolean confirm = InputHelper.getYesNoInput(canvas.getTerminal(),
-                    "Are you sure you want to initiate a refund for this bill? (y/n)");
-
-            if (confirm) {
-                try {
-                    bill.initiateRefund();
-                    saveChangesAndRefresh("Refund has been initiated. Bill status updated to REFUND_PENDING.");
-                } catch (Exception e) {
-                    showError("Error initiating refund", e);
-                }
-            } else {
-                canvas.setSystemMessage("Refund initiation aborted.", SystemMessageStatus.INFO);
-                canvas.setRequireRedraw(true);
-            }
-        });
-    }
-
-    /**
      * Shows an error message
      */
     private void showError(String message, Exception e) {
@@ -285,42 +329,43 @@ public class BillDetailsPage extends UiBase {
     }
 
     /**
-     * Saves changes and refreshes the view
+     * Saves changes and returns to the parent page (bill list).
+     * This should be used for major status changes where we want to
+     * go back to the bill list after completion.
      */
     private void saveChangesAndRefresh(String message) {
         billController.saveData();
 
-        View refreshedView = createView();
-        navigateToView(refreshedView);
-
-        setupActionButtons(refreshedView, bill.getStatus());
-
         canvas.setSystemMessage(message, SystemMessageStatus.SUCCESS);
-        canvas.setRequireRedraw(true);
 
         if (onChangeCallback != null) {
             onChangeCallback.run();
+        } else {
+            OnBackPressed();
         }
     }
 
     /**
-     * Saves changes and shows a notification without refreshing the view
+     * Saves changes and shows a notification without navigating away
+     * This should be used for intermediate status updates where we want to
+     * remain on the same page after the operation
      */
     private void saveChangesAndNotify(String message) {
         billController.saveData();
 
+        OnBackPressed();
+        View refreshedView = createView();
+        navigateToView(refreshedView);
+
         canvas.setSystemMessage(message, SystemMessageStatus.SUCCESS);
         canvas.setRequireRedraw(true);
 
-        if (onChangeCallback != null) {
-            onChangeCallback.run();
-        }
     }
 
     private String formatCurrency(BigDecimal amount) {
         if (amount == null) {
-            return "$0.00";
+            return "0.00";
         }
-        return String.format("$%.2f", amount.doubleValue());
+        return String.format("%.2f", amount.doubleValue());
     }
 }

@@ -4,11 +4,12 @@ import org.bee.controllers.BillController;
 import org.bee.hms.billing.Bill;
 import org.bee.hms.billing.BillingStatus;
 import org.bee.ui.*;
-import org.bee.ui.views.CompositeView;
 import org.bee.ui.views.PaginatedMenuView;
 import org.bee.ui.views.TextView;
 import org.bee.utils.detailAdapters.BillDetailsAdapter;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -124,13 +125,13 @@ public class ViewAllBillsPage extends UiBase {
             String patientName = bill.getPatient() != null ? bill.getPatient().getName() : "Unknown Patient";
             LocalDateTime billDate = bill.getBillDate();
             String formattedDate = billDate != null ? dateFormatter.format(billDate) : "Unknown Date";
-            String billAmount = bill.getGrandTotal().toString();
+            BigDecimal billAmount = bill.getGrandTotal();
             String status = bill.getStatus() != null ? bill.getStatus().getDisplayName() : "Unknown Status";
 
             String paymentInfo = "";
             if (bill.getStatus() == BillingStatus.PARTIALLY_PAID) {
                 paymentInfo = String.format(" (Paid: $%s, Due: $%s)",
-                        bill.getSettledAmount(), bill.getOutstandingBalance());
+                        formatCurrency(bill.getSettledAmount()), formatCurrency(bill.getOutstandingBalance()));
             }
 
             String coloredStatus = status;
@@ -145,7 +146,7 @@ public class ViewAllBillsPage extends UiBase {
             }
 
             String optionText = String.format("Bill #%s - %s - %s - $%s - %s%s",
-                    bill.getBillId(), patientName, formattedDate, billAmount, coloredStatus, paymentInfo);
+                    bill.getBillId(), patientName, formattedDate, formatCurrency(billAmount), coloredStatus, paymentInfo);
 
             menuOptions.add(new PaginatedMenuView.MenuOption(bill.getBillId(), optionText, bill));
         }
@@ -293,6 +294,16 @@ public class ViewAllBillsPage extends UiBase {
      */
     private void refreshView() {
         View refreshedView = selectBillToView();
-        navigateToView(refreshedView);
+        OnViewCreated(refreshedView);
+        canvas.setCurrentView(refreshedView);
     }
+
+    private String formatCurrency(BigDecimal amount) {
+        if (amount == null) {
+            return "$0.00";
+        }
+        BigDecimal rounded = amount.setScale(2, RoundingMode.HALF_UP);
+        return String.format("$%.2f", rounded);
+    }
+
 }

@@ -53,7 +53,6 @@ public abstract class UiBase {
 
     /**
      * Called when the back button is pressed.
-     * FIXED: Complete rewrite of the back button logic to fix the issues
      */
     public void OnBackPressed() {
 //        System.out.println("[DEBUG] OnBackPressed called in UiBase");

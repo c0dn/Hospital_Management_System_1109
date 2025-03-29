@@ -152,3 +152,14 @@ tasks.register<JavaExec>("runJarOverwriteData") {
     standardInput = System.`in`
     workingDir = layout.buildDirectory.dir("libs").get().asFile
 }
+
+
+tasks.register("buildOnly") {
+    dependsOn(tasks.jar)
+    description = "Builds the JAR file without running it"
+    group = "build"
+
+    doLast {
+        println("JAR built successfully at: ${tasks.jar.get().outputs.files.singleFile}")
+    }
+}
