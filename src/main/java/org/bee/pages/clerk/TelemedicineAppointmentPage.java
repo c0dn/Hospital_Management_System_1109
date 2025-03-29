@@ -45,7 +45,8 @@ public class TelemedicineAppointmentPage extends UiBase {
         List<Appointment> appointments = appointmentController.getAllAppointments();
 
         if (appointments.isEmpty()) {
-            return new TextView(canvas, "No telemedicine appointments found.", Color.YELLOW);
+            return getBlankListView("No Telemedicine Appointments",
+                    "No telemedicine appointments found.\nPlease check scheduling status or contact support for assistance.");
         }
 
         BiFunction<List<Appointment>, Integer, TableView<Appointment>> tableFactory =

@@ -3,7 +3,6 @@ package org.bee.pages.clerk.insurance;
 import org.bee.controllers.BillController;
 import org.bee.controllers.ClaimController;
 import org.bee.hms.billing.Bill;
-import org.bee.hms.billing.BillingStatus;
 import org.bee.hms.claims.InsuranceClaim;
 import org.bee.hms.insurance.InsuranceProvider;
 import org.bee.hms.policy.InsuranceCoverageResult;
@@ -14,6 +13,8 @@ import org.bee.ui.SystemMessageStatus;
 import org.bee.ui.UiBase;
 import org.bee.ui.View;
 import org.bee.ui.details.IObjectDetailsAdapter;
+import org.bee.ui.views.CompositeView;
+import org.bee.ui.views.MenuView;
 import org.bee.ui.views.PaginatedMenuView;
 import org.bee.ui.views.TextView;
 import org.bee.utils.detailAdapters.BillDetailsAdapter;
@@ -53,7 +54,9 @@ public class NewInsuranceClaimPage extends UiBase {
         List<Bill> eligibleBills = getEligibleBills();
 
         if (eligibleBills.isEmpty()) {
-            return new TextView(canvas, "No eligible bills found for insurance claims.", Color.YELLOW);
+
+            return getBlankListView("No Eligible Bills",
+                    "No eligible bills found for insurance claims.\nPlease ensure bills are finalized and have valid insurance policies attached.");
         }
 
         List<PaginatedMenuView.MenuOption> menuOptions = new ArrayList<>();
@@ -97,6 +100,7 @@ public class NewInsuranceClaimPage extends UiBase {
 
         return paginatedView;
     }
+
 
     /**
      * Get bills that are eligible for insurance claims

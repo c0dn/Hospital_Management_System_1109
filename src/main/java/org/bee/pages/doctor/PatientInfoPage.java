@@ -68,7 +68,8 @@ public class PatientInfoPage extends UiBase {
         List<Patient> patients = humanController.getAllPatients();
 
         if (patients.isEmpty()) {
-            return new TextView(canvas, "No patients found.", Color.YELLOW);
+            return getBlankListView("No Patients",
+                    "No patients found.\nPlease check filtering options or add new patient records.");
         }
 
         List<PaginatedMenuView.MenuOption> menuOptions = new ArrayList<>();

@@ -39,7 +39,8 @@ public class OutpatientUpdatePage extends UiBase {
         List<Consultation> consultations = consultationController.getAllOutpatientCases();
 
         if (consultations.isEmpty()) {
-            return new TextView(canvas, "No outpatient cases found to update.", Color.YELLOW);
+            return getBlankListView("No Outpatient Cases",
+                    "No outpatient cases found to update.\nPlease verify case status and ensure all required information is complete.");
         }
 
         List<PaginatedMenuView.MenuOption> menuOptions = new ArrayList<>();

@@ -1,6 +1,11 @@
 package org.bee.ui;
 
 
+import org.bee.ui.views.CompositeView;
+import org.bee.ui.views.MenuView;
+import org.bee.ui.views.TextView;
+import org.jetbrains.annotations.NotNull;
+
 public abstract class UiBase {
     protected Canvas canvas;
     // the application context
@@ -132,5 +137,24 @@ public abstract class UiBase {
 
         return result.toString().trim();
     }
+
+
+    @NotNull
+    protected CompositeView getBlankListView(String titleHeader, String content) {
+        CompositeView compositeView = new CompositeView(this.canvas, titleHeader, Color.YELLOW);
+
+        TextView messageView = new TextView(
+                canvas,
+                content,
+                Color.YELLOW
+        );
+        compositeView.addView(messageView);
+
+        MenuView menuView = new MenuView(canvas, "", Color.WHITE, false, true);
+
+        compositeView.addView(menuView);
+        return compositeView;
+    }
+
 
 }

@@ -68,6 +68,8 @@
 //            menuView.attachMenuOptionInput(6, "Check Claim Status", str -> ToPage(new InsuranceClaimPage(InsuranceClaimPage.Mode.CHECK)));
 //            menuView.attachMenuOptionInput(7, "Update Claim Status", str -> ToPage(new InsuranceClaimPage(InsuranceClaimPage.Mode.UPDATE)));
 
+            menuView.setNumericOptionMaxRange(11);
+
             canvas.setRequireRedraw(true);
         }
 
