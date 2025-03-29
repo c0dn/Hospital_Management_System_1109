@@ -30,6 +30,7 @@ public class ApplicationContext {
 
 //            System.out.println("[DEBUG] ToPage: Pushing new page: " + newPage.getClass().getSimpleName());
             backStack.push(newPage);
+            newPage.setApplicationContext(this);
 
             View view = newPage.OnCreateView();
             newPage.OnViewCreated(view);

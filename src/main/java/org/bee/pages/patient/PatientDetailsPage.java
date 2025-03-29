@@ -7,6 +7,7 @@ import org.bee.ui.SystemMessageStatus;
 import org.bee.ui.UiBase;
 import org.bee.ui.View;
 import org.bee.ui.views.CompositeView;
+import org.bee.ui.views.MenuView;
 import org.bee.ui.views.ObjectDetailsView;
 import org.bee.ui.views.TextView;
 import org.bee.utils.detailAdapters.PatientDetailsAdapter;
@@ -49,16 +50,17 @@ public class PatientDetailsPage extends UiBase {
 
         detailsAdapter.configureView(detailsView, patient);
 
+        MenuView menuView = new MenuView(this.canvas, "", Color.CYAN, false, true);
+        menuView.attachMenuOptionInput(1, "Edit Patient Details", input -> editPatient());
+
         compositeView.addView(detailsView);
+        compositeView.addView(menuView);
 
         return compositeView;
     }
 
     @Override
     public void OnViewCreated(View parentView) {
-        CompositeView compositeView = (CompositeView) parentView;
-        compositeView.attachUserInput("Edit Patient Details", input -> editPatient());
-
         canvas.setRequireRedraw(true);
     }
 

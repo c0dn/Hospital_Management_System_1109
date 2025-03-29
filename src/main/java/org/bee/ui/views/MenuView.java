@@ -6,6 +6,7 @@ import org.bee.ui.TextStyle;
 import org.bee.ui.View;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * A specialized view for displaying menus with sections and options.
@@ -15,7 +16,9 @@ public class MenuView extends View {
     private final List<MenuSection> sections = new ArrayList<>();
     private boolean showCompactFooter;
     private boolean showDetailedOptions;
-    private final Map<Character, UserInput> letterActions = new HashMap<>();
+    private int numericOptionMaxRange = 0;
+    private boolean showNumericHintOnly = false; // New flag for special footer
+    private final Map<Character, UserInput> letterActions = new TreeMap<>();
 
     public MenuView(Canvas canvas, String title, Color color, boolean showDetailedOptions, boolean showCompactFooter) {
         super(canvas, title, "", color);
@@ -23,19 +26,14 @@ public class MenuView extends View {
         this.showCompactFooter = showCompactFooter;
     }
 
-    /**
-     * Control whether to show the detailed options in the menu body
-     */
-    public void setShowDetailedOptions(boolean show) {
-        this.showDetailedOptions = show;
+    public void setShowNumericHintOnly(boolean show) {
+        this.showNumericHintOnly = show;
     }
 
-    /**
-     * Control whether to show the compact options in the footer
-     */
-    public void setShowCompactFooter(boolean show) {
-        this.showCompactFooter = show;
+    public void setNumericOptionMaxRange(int maxRange) {
+        this.numericOptionMaxRange = maxRange;
     }
+
 
     /**
      * Adds a new section to the menu with a header.
@@ -62,19 +60,69 @@ public class MenuView extends View {
 
     /**
      * Handle direct letter inputs
+     * This method processes any non-numeric input (single letters or multi-character strings)
      */
     @Override
     public boolean handleDirectInput(String input) {
+        if (super.handleDirectInput(input)) {
+            return true;
+        }
+
         if (input != null && input.length() == 1) {
             char key = Character.toLowerCase(input.charAt(0));
+
+            // Special case for pagination controls
+            if (key == 'n' && isPaginationOption("Next Page")) {
+                executeOption("Next Page");
+                return true;
+            }
+
+            if (key == 'p' && isPaginationOption("Previous Page")) {
+                executeOption("Previous Page");
+                return true;
+            }
+
+            if (key == 'j' && isPaginationOption("Jump to Page")) {
+                executeOption("Jump to Page");
+                return true;
+            }
+
             if (letterActions.containsKey(key)) {
                 UserInput action = letterActions.get(key);
                 action.lambda().onInput(input);
                 return true;
             }
         }
+
         return false;
     }
+
+    private boolean isPaginationOption(String optionName) {
+        for (Enumeration<Integer> e = inputOptions.keys(); e.hasMoreElements();) {
+            Integer key = e.nextElement();
+            UserInput option = inputOptions.get(key);
+            if (option != null && option.promptText().equalsIgnoreCase(optionName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void executeOption(String optionName) {
+        for (Enumeration<Integer> e = inputOptions.keys(); e.hasMoreElements();) {
+            Integer key = e.nextElement();
+            UserInput option = inputOptions.get(key);
+            if (option != null && option.promptText().equalsIgnoreCase(optionName)) {
+                try {
+                    option.lambda().onInput(String.valueOf(key));
+                } catch (Exception ex) {
+                    System.out.println("[DEBUG] Exception executing option '" + optionName + "': " + ex.getMessage());
+                }
+                break;
+            }
+        }
+    }
+
 
 
     public Map<Character, UserInput> getLetterActions() {
@@ -92,25 +140,27 @@ public class MenuView extends View {
         sb.append(TextStyle.RESET.getAnsiCode())
                 .append(Color.ESCAPE.getAnsiCode());
 
-        for (int i = 0; i < sections.size(); i++) {
-            MenuSection section = sections.get(i);
+        boolean firstSection = true;
+        for (MenuSection section : sections) {
+            if (!section.getOptions().isEmpty() || (section.getTitle() != null && !section.getTitle().isEmpty())) {
+                if (!firstSection && section.getTitle() != null && !section.getTitle().isEmpty()) {
+                    sb.append("\n");
+                }
 
-            if (i > 0) {
-                sb.append("\n");
-            }
+                if (section.getTitle() != null && !section.getTitle().isEmpty()) {
+                    sb.append(TextStyle.BOLD.getAnsiCode())
+                            .append(section.getTitle())
+                            .append(TextStyle.RESET.getAnsiCode())
+                            .append("\n");
+                }
 
-            if (section.getTitle() != null && !section.getTitle().isEmpty()) {
-                sb.append(TextStyle.BOLD.getAnsiCode())
-                        .append(section.getTitle())
-                        .append(TextStyle.RESET.getAnsiCode())
-                        .append("\n");
-            }
-
-            for (MenuOption option : section.getOptions()) {
-                sb.append(option.getIndex())
-                        .append(". ")
-                        .append(option.getText())
-                        .append("\n");
+                for (MenuOption option : section.getOptions()) {
+                    sb.append(option.index())
+                            .append(". ")
+                            .append(option.text())
+                            .append("\n");
+                }
+                firstSection = false;
             }
         }
 
@@ -119,59 +169,50 @@ public class MenuView extends View {
 
     @Override
     public String getFooter() {
-        if (showDetailedOptions && !showCompactFooter) {
-            int maxOption = 0;
-            for (MenuSection section : sections) {
-                for (MenuOption option : section.getOptions()) {
-                    if (option.getIndex() > maxOption) {
-                        maxOption = option.getIndex();
-                    }
+        StringBuilder sb = new StringBuilder();
+        sb.append("\nOptions:\n | e: Go Back");
+
+        if (showNumericHintOnly) {
+            if (numericOptionMaxRange > 0) {
+                sb.append(" | Select field you wish to update (1-").append(numericOptionMaxRange).append(")");
+            }
+            if (!letterActions.isEmpty()) {
+                for (Map.Entry<Character, UserInput> entry : letterActions.entrySet()) {
+                    sb.append(" | ").append(entry.getKey()).append(": ").append(entry.getValue().promptText());
                 }
             }
+        } else {
+            List<Integer> numericKeys = Collections.list(inputOptions.keys()).stream()
+                    .filter(key -> key > 0)
+                    .sorted()
+                    .toList();
 
-            StringBuilder sb = new StringBuilder("\ne: Go Back");
+            boolean numberedOptionsExist = !numericKeys.isEmpty();
+            boolean numberedOptionsDisplayed = showDetailedOptions && sections.stream().anyMatch(s -> !s.getOptions().isEmpty());
+
+            if (numberedOptionsExist) {
+                if (showCompactFooter) {
+                    for (Integer key : numericKeys) {
+                        UserInput input = inputOptions.get(key);
+                        if (input != null && input.promptText() != null && !input.promptText().isEmpty()) {
+                            sb.append(" | ").append(key).append(": ").append(input.promptText());
+                        }
+                    }
+                } else if (showDetailedOptions && numberedOptionsDisplayed) {
+                    sb.append(" | Select option (1-").append(numericOptionMaxRange).append(")");
+                } else if (!showDetailedOptions) {
+                    sb.append(" | Select option (1-").append(numericOptionMaxRange).append(")");
+                }
+            }
 
             if (!letterActions.isEmpty()) {
                 for (Map.Entry<Character, UserInput> entry : letterActions.entrySet()) {
                     sb.append(" | ").append(entry.getKey()).append(": ").append(entry.getValue().promptText());
                 }
             }
-
-            sb.append(" | q: Quit App\nSelect option (1-").append(maxOption).append("): ");
-            return sb.toString();
-        }
-
-        StringBuilder sb = new StringBuilder();
-        sb.append("\nOptions:\n | e: Go Back");
-
-        List<Integer> keys = new ArrayList<>();
-        for (Enumeration<Integer> e = inputOptions.keys(); e.hasMoreElements();) {
-            Integer key = e.nextElement();
-            if (key > 0) {
-                keys.add(key);
-            }
-        }
-
-        Collections.sort(keys);
-
-        for (Integer key : keys) {
-            UserInput input = inputOptions.get(key);
-            if (input != null) {
-                sb.append(" | ");
-                sb.append(key);
-                sb.append(": ");
-                sb.append(input.promptText());
-            }
-        }
-
-        if (!letterActions.isEmpty()) {
-            for (Map.Entry<Character, UserInput> entry : letterActions.entrySet()) {
-                sb.append(" | ").append(entry.getKey()).append(": ").append(entry.getValue().promptText());
-            }
         }
 
         sb.append(" | q: Quit App\nYour input: ");
-
         return sb.toString();
     }
 
@@ -181,30 +222,31 @@ public class MenuView extends View {
      */
     public void attachMenuOptionInput(int optionIndex, String optionText, UserInputResult lambda) {
         if (optionIndex <= 0) {
-            // Don't override the back button
             return;
         }
 
-        boolean found = false;
+        boolean foundInSection = false;
         for (MenuSection section : sections) {
             for (MenuOption option : section.getOptions()) {
-                if (option.getIndex() == optionIndex) {
-                    found = true;
+                if (option.index() == optionIndex) {
+                    foundInSection = true;
                     break;
                 }
             }
-            if (found) break;
+            if (foundInSection) break;
         }
 
-        setUserInputByIndex(optionIndex, optionText, lambda);
+        if (foundInSection || !showDetailedOptions) {
+            setUserInputByIndex(optionIndex, optionText, lambda);
+        }
     }
 
     /**
      * Represents a section in the menu with a title and list of options.
      */
     public static class MenuSection {
-        private String title;
-        private List<MenuOption> options = new ArrayList<>();
+        private final String title;
+        private final List<MenuOption> options = new ArrayList<>();
 
         public MenuSection(String title) {
             this.title = title;
@@ -231,24 +273,6 @@ public class MenuView extends View {
         }
     }
 
-    /**
-     * Represents a single menu option with an index and text.
-     */
-    public static class MenuOption {
-        private final int index;
-        private final String text;
-
-        public MenuOption(int index, String text) {
-            this.index = index;
-            this.text = text;
-        }
-
-        public int getIndex() {
-            return index;
-        }
-
-        public String getText() {
-            return text;
-        }
+    public record MenuOption(int index, String text) {
     }
 }

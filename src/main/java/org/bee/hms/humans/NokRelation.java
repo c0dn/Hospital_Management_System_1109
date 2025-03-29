@@ -2,13 +2,14 @@ package org.bee.hms.humans;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.bee.utils.JSONSerializable;
 
 /**
  * Represents the relationship between a patient and their next of kin.
  */
 
 @JsonFormat(shape = JsonFormat.Shape.STRING)
-public enum NokRelation {
+public enum NokRelation implements JSONSerializable {
     /** Spouse of the patient. */
     SPOUSE("Spouse"),
     /** Parent of the patient. */

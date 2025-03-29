@@ -1,8 +1,7 @@
 package org.bee.ui.views;
 
-import org.bee.ui.Canvas;
-import org.bee.ui.Color;
-import org.bee.ui.View;
+import org.bee.ui.*;
+import org.bee.ui.forms.FormField;
 
 import java.util.*;
 
@@ -12,8 +11,7 @@ import java.util.*;
  */
 public class CompositeView extends View {
     private final List<View> childViews = new ArrayList<>();
-    private boolean useCompactFooter = true;
-    private String separator = "\n\n";
+    private String separator = "\n";
 
     /**
      * Creates a new CompositeView.
@@ -39,17 +37,6 @@ public class CompositeView extends View {
     }
 
     /**
-     * Sets whether to use a compact footer style (like MenuView) or a standard footer.
-     *
-     * @param useCompactFooter True to use compact footer, false for standard
-     * @return This CompositeView for method chaining
-     */
-    public CompositeView useCompactFooter(boolean useCompactFooter) {
-        this.useCompactFooter = useCompactFooter;
-        return this;
-    }
-
-    /**
      * Sets the separator to use between child views.
      *
      * @param separator The separator string
@@ -68,10 +55,6 @@ public class CompositeView extends View {
     private void mergeUserInputs(View view) {
         Dictionary<Integer, UserInput> viewInputs = view.getInputOptions();
         if (viewInputs != null) {
-//            System.out.println("[DEBUG mergeUserInputs] Merging options from: " + view.getClass().getSimpleName());
-//            System.out.println("[DEBUG mergeUserInputs] Child keys: " + Collections.list(viewInputs.keys()));
-//            System.out.println("[DEBUG mergeUserInputs] Composite keys BEFORE: " + Collections.list(this.inputOptions.keys()));
-
             Enumeration<Integer> keys = viewInputs.keys();
             while (keys.hasMoreElements()) {
                 Integer key = keys.nextElement();
@@ -84,17 +67,11 @@ public class CompositeView extends View {
                 int assignedKey = key;
                 int originalKey = key;
                 while (this.inputOptions.get(assignedKey) != null) {
-//                    System.out.println("[DEBUG mergeUserInputs] Clash for key " + originalKey + ". Trying key " + (assignedKey + 1));
                     assignedKey++;
-                }
-
-                if (assignedKey != originalKey) {
-//                    System.out.println("[DEBUG mergeUserInputs] Remapped key " + originalKey + " to " + assignedKey);
                 }
 
                 this.inputOptions.put(assignedKey, input);
             }
-//            System.out.println("[DEBUG mergeUserInputs] Composite keys AFTER: " + Collections.list(this.inputOptions.keys()));
         }
     }
 
@@ -107,13 +84,23 @@ public class CompositeView extends View {
      */
     @Override
     public boolean handleDirectInput(String input) {
+        // First check if any FormView is awaiting input, as it has priority
+        for (View child : childViews) {
+            if (child instanceof FormView formView && formView.isAwaitingValue()) {
+                formView.processValueInput(input);
+                return true;
+            }
+        }
+
         if (super.handleDirectInput(input)) {
             return true;
         }
 
         for (View child : childViews) {
-            if (child.handleDirectInput(input)) {
-                return true;
+            if (!(child instanceof FormView formView && formView.isAwaitingValue())) {
+                if (child.handleDirectInput(input)) {
+                    return true;
+                }
             }
         }
 
@@ -123,6 +110,10 @@ public class CompositeView extends View {
     @Override
     public String getText() {
         StringBuilder content = new StringBuilder();
+
+        content.append(TextStyle.RESET.getAnsiCode())
+                .append(Color.ESCAPE.getAnsiCode())
+                .append('\n');
 
         for (int i = 0; i < childViews.size(); i++) {
             View view = childViews.get(i);
@@ -142,79 +133,38 @@ public class CompositeView extends View {
 
     @Override
     public String getFooter() {
-        StringBuilder sb;
-        if (!useCompactFooter) {
-            sb = new StringBuilder(super.getFooter());
+        for (View child : childViews) {
+            if (child instanceof FormView formView && formView.isAwaitingValue()) {
+                FormField<?> field = formView.getSelectedField();
+                if (field != null) {
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("\nOptions:\n | e: Go Back");
 
-            boolean optionsExist = !sb.toString().trim().equals("Options:");
-            String separator = optionsExist ? " | " : " ";
-
-            Map<Character, String> mergedLetterPrompts = new TreeMap<>(); // Use TreeMap for sorted letters
-            for (View child : childViews) {
-                if (child instanceof MenuView menuChild) {
-                    Map<Character, UserInput> childLetterActions = menuChild.getLetterActions();
-                    if (childLetterActions != null) {
-                        for (Map.Entry<Character, UserInput> entry : childLetterActions.entrySet()) {
-                            char letterKey = Character.toLowerCase(entry.getKey());
-                            if (!mergedLetterPrompts.containsKey(letterKey)) {
-                                mergedLetterPrompts.put(letterKey, entry.getValue().promptText());
-                            }
-                        }
+                    if (formView.getInputOptions() != null && !Collections.list(formView.getInputOptions().keys()).isEmpty()) {
+                        sb.append(" | Select field (1-").append(Collections.list(formView.getInputOptions().keys()).size()).append(")");
                     }
+
+                    sb.append(" | s: Submit Changes | u: Update Selected Field | q: Quit App\n");
+                    sb.append(field.getPrompt()).append(" ");
+
+                    return sb.toString();
                 }
             }
-            for (Map.Entry<Character, String> entry : mergedLetterPrompts.entrySet()) {
-                sb.append(separator).append(entry.getKey()).append(": ").append(entry.getValue());
-                separator = " | ";
-            }
-
-            sb.append(separator).append("e: Go Back");
-            separator = " | ";
-
-            sb.append(separator).append("q: Quit App");
-
-            sb.append("\nYour input: ");
-
-        } else {
-            sb = new StringBuilder();
-            sb.append("\nOptions:\n | e: Go Back");
-
-            List<Integer> keys = new ArrayList<>();
-            for (Enumeration<Integer> e = inputOptions.keys(); e.hasMoreElements();) {
-                Integer key = e.nextElement();
-                if (key > 0) {
-                    keys.add(key);
-                }
-            }
-            Collections.sort(keys);
-            for (Integer key : keys) {
-                UserInput input = inputOptions.get(key);
-                if (input != null) {
-                    sb.append(" | ").append(key).append(": ").append(input.promptText());
-                }
-            }
-
-            Map<Character, String> mergedLetterPrompts = new TreeMap<>();
-            for (View child : childViews) {
-                if (child instanceof MenuView menuChild) { // Use pattern matching
-                    Map<Character, UserInput> childLetterActions = menuChild.getLetterActions();
-                    if (childLetterActions != null) {
-                        for (Map.Entry<Character, UserInput> entry : childLetterActions.entrySet()) {
-                            char letterKey = Character.toLowerCase(entry.getKey());
-                            if (!mergedLetterPrompts.containsKey(letterKey)) {
-                                mergedLetterPrompts.put(letterKey, entry.getValue().promptText());
-                            }
-                        }
-                    }
-                }
-            }
-            for (Map.Entry<Character, String> entry : mergedLetterPrompts.entrySet()) {
-                sb.append(" | ").append(entry.getKey()).append(": ").append(entry.getValue());
-            }
-
-            sb.append(" | q: Quit App\nYour input: ");
         }
-        return sb.toString();
+
+        MenuView menuViewChild = null;
+        for (View child : childViews) {
+            if (child instanceof MenuView) {
+                menuViewChild = (MenuView) child;
+                break;
+            }
+        }
+
+        if (menuViewChild != null) {
+            return menuViewChild.getFooter();
+        } else {
+            return super.getFooter();
+        }
     }
 
     @Override

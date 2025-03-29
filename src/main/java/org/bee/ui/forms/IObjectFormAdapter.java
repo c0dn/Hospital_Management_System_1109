@@ -9,6 +9,7 @@ import java.lang.reflect.Method;
 import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public interface IObjectFormAdapter<T> {
     /**
@@ -223,68 +224,65 @@ public interface IObjectFormAdapter<T> {
         }
     }
 
-    /**
-     * Create a form field with the current value shown in the prompt.
-     */
-    default <V> FormField<V> createField(String name, String prompt, T object,
-                                         Predicate<String> validator, String errorMessage,
-                                         FormField.FormInputParser<V> parser) {
-        Object currentValue = getFieldValue(object, name);
-        String displayValue = currentValue != null ? currentValue.toString() : "Not set";
-
+    // ignored object is there to keep method signature same
+    default <V> FormField<V> createField(
+            String name,
+            String displayName,
+            String prompt,
+            T ignoredObject,
+            Predicate<String> validator,
+            String errorMessage,
+            FormField.FormInputParser<V> parser,
+            boolean isRequired,
+            V initialValue) {
         return new FormField<>(
                 name,
-                "\u001b[1m[Current: " + displayValue + "]:\n\u001b[0m\u001b[36m" + prompt,
-                validator,
-                errorMessage,
-                parser
-        );
-    }
-
-    /**
-     * Helper method for String fields.
-     */
-    default FormField<String> createTextField(String name, String prompt, T object,
-                                              Predicate<String> validator, String errorMessage) {
-        return createField(name, prompt, object, validator, errorMessage, FormValidators.stringParser());
-    }
-
-    /**
-     * Helper method for Double fields.
-     */
-    default FormField<Double> createDoubleField(String name, String prompt, T object,
-                                                Predicate<String> validator, String errorMessage) {
-        return createField(name, prompt, object, validator, errorMessage,
-                s -> s.isEmpty() ? null : Double.parseDouble(s));
-    }
-
-    /**
-     * Helper method for Enum fields.
-     * @param <E> The enum type
-     */
-    default <E extends Enum<E>> FormField<E> createEnumField(
-            String name,
-            String prompt,
-            T object,
-            Class<E> enumType,
-            Predicate<String> validator,
-            String errorMessage) {
-
-        return createField(
-                name,
+                displayName,
                 prompt,
-                object,
                 validator,
                 errorMessage,
-                input -> {
-                    try {
-                        return Enum.valueOf(enumType, input.toUpperCase());
-                    } catch (IllegalArgumentException e) {
-                        throw new IllegalArgumentException("Invalid selection. Valid options are: " +
-                                Arrays.toString(enumType.getEnumConstants()));
-                    }
-                }
+                parser,
+                isRequired,
+                initialValue
         );
+    }
+
+    default FormField<String> createTextField(
+            String name, String displayName, String prompt, T object,
+            Predicate<String> validator, String errorMessage, boolean isRequired,
+            String initialValue) {
+        return createField(name, displayName, prompt, object, validator, errorMessage,
+                FormValidators.stringParser(), isRequired, initialValue);
+    }
+
+    default FormField<Double> createDoubleField(
+            String name, String displayName, String prompt, T object,
+            Predicate<String> validator, String errorMessage, boolean isRequired,
+            Double initialValue) {
+        return createField(name, displayName, prompt, object, validator, errorMessage,
+                s -> (s == null || s.trim().isEmpty()) ? null : Double.parseDouble(s),
+                isRequired, initialValue);
+    }
+
+    default <E extends Enum<E>> FormField<E> createEnumField(
+            String name, String displayName, String prompt, T object, Class<E> enumType,
+            Predicate<String> validator, String errorMessage, boolean isRequired,
+            E initialValue) {
+
+        FormField.FormInputParser<E> parser = input -> {
+            if (input == null || input.trim().isEmpty()) {
+                if (isRequired) { throw new IllegalArgumentException(displayName + " is required."); }
+                else { return null; }
+            }
+            try { return Enum.valueOf(enumType, input.trim().toUpperCase()); }
+            catch (IllegalArgumentException e) {
+                String validOptions = Arrays.stream(enumType.getEnumConstants()).map(Enum::name).collect(Collectors.joining(", "));
+                throw new IllegalArgumentException("Invalid selection for " + displayName + ". Valid options are: " + validOptions);
+            }
+        };
+
+        return createField(name, displayName, prompt, object, validator, errorMessage,
+                parser, isRequired, initialValue);
     }
 
 }

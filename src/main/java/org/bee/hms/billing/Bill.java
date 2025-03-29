@@ -87,7 +87,7 @@ public class Bill implements JSONSerializable {
      * @param lineItems           The list of billing line items included in the bill
      * @param categorizedCharges  The mapping of charges categorized by category name
      * @param status              The current status of the bill
-     * @param settledAmount       The amount already settled for this bill // Added parameter
+     * @param settledAmount       The amount already settled for this bill
      * @param insurancePolicy     The insurance policy associated with the bill
      * @param isInpatient         Flag indicating if this is for an inpatient service
      * @param isEmergency         Flag indicating if this is for an emergency service

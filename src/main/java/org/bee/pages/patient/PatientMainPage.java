@@ -70,6 +70,9 @@ public class PatientMainPage extends UiBase {
         menuView.attachMenuOptionInput(2, "Book Appointment", str -> bookAppointmentPrompt());
         menuView.attachMenuOptionInput(3, "View/Change Appointment", str -> ToPage(new org.bee.pages.patient.ViewAppointmentPage()));
 
+
+        menuView.setNumericOptionMaxRange(4);
+
         MenuView.MenuSection infoSection = menuView.addSection("Information Services");
         infoSection.addOption(4, "View Invoice");
         menuView.attachMenuOptionInput(4, "View Invoice", str -> ToPage(new ViewAllInvoicePage()));

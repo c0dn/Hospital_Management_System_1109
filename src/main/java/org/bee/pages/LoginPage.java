@@ -7,7 +7,6 @@ import org.bee.controllers.HumanController;
 import org.bee.hms.auth.SystemUser;
 import org.bee.hms.humans.Clerk;
 import org.bee.hms.humans.Doctor;
-import org.bee.hms.humans.Nurse;
 import org.bee.hms.humans.Patient;
 import org.bee.pages.clerk.ClerkMainPage;
 import org.bee.pages.doctor.DoctorMainPage;
@@ -74,7 +73,7 @@ public class LoginPage extends UiBase {
 
             switch (user) {
                 case Doctor ignored -> ToPage(new DoctorMainPage());
-                case Nurse ignored -> ToPage(new TestPage());
+//                case Nurse ignored -> ToPage(new TestPage());
                 case Patient ignored -> ToPage(new PatientMainPage());
                 case Clerk ignored -> ToPage(new ClerkMainPage());
                 default -> {

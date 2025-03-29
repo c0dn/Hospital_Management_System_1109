@@ -7,6 +7,7 @@ import org.bee.ui.views.ObjectDetailsView;
 import org.bee.utils.ReflectionHelper;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Adapter for displaying Patient details.
@@ -37,22 +38,22 @@ public class PatientDetailsAdapter implements IObjectDetailsAdapter<Patient> {
         demographicSection.addField(new ObjectDetailsView.Field<Patient>("Home Phone", p -> {
             Contact contact = p.getContact();
             if (contact == null) return "Not available";
-            String homePhone = (String) ReflectionHelper.propertyAccessor("homePhone", null).apply(contact);
-            return homePhone != null && !homePhone.isEmpty() ? homePhone : "Not available";
+            Optional<?> homePhoneOpt = ReflectionHelper.propertyAccessor("homePhone", Optional.empty()).apply(contact);
+            return homePhoneOpt.map(Object::toString).orElse("Not available");
         }));
 
         demographicSection.addField(new ObjectDetailsView.Field<Patient>("Company Phone", p -> {
             Contact contact = p.getContact();
             if (contact == null) return "Not available";
-            String companyPhone = (String) ReflectionHelper.propertyAccessor("companyPhone", null).apply(contact);
-            return companyPhone != null && !companyPhone.isEmpty() ? companyPhone : "Not available";
+            Optional<?> companyPhoneOpt = ReflectionHelper.propertyAccessor("companyPhone", Optional.empty()).apply(contact);
+            return companyPhoneOpt.map(Object::toString).orElse("Not available");
         }));
 
         demographicSection.addField(new ObjectDetailsView.Field<Patient>("Email", p -> {
             Contact contact = p.getContact();
             if (contact == null) return "Not available";
-            String email = (String) ReflectionHelper.propertyAccessor("email", null).apply(contact);
-            return email != null && !email.isEmpty() ? email : "Not available";
+            Optional<?> emailOpt = ReflectionHelper.propertyAccessor("email", Optional.empty()).apply(contact);
+            return emailOpt.map(Object::toString).orElse("Not available");
         }));
 
         demographicSection.addField(view.createField("Marital Status", "maritalStatus", "Not available"));

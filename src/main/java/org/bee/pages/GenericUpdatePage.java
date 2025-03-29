@@ -23,19 +23,6 @@ public class GenericUpdatePage<T> extends UiBase {
     private final IObjectFormAdapter<T> adapter;
     private final Runnable onSuccessCallback;
 
-    private FormView formDisplayView;
-    private MenuView actionMenuView;
-
-    /**
-     * Creates a new GenericUpdatePage.
-     *
-     * @param objectToUpdate The object to be updated
-     * @param adapter The adapter that handles field generation and updates
-     */
-    public GenericUpdatePage(T objectToUpdate, IObjectFormAdapter<T> adapter) {
-        this(objectToUpdate, adapter, null);
-    }
-
     /**
      * Creates a new GenericUpdatePage with a callback on success.
      *
@@ -53,19 +40,18 @@ public class GenericUpdatePage<T> extends UiBase {
     public View createView() {
         String title = "\nUpdate " + adapter.getObjectTypeName();
 
-        formDisplayView = new FormView(this.canvas, "", Color.CYAN);
+        FormView formDisplayView = new FormView(this.canvas, "", Color.WHITE);
         List<FormField<?>> fields = adapter.generateFields(objectToUpdate);
         for (FormField<?> field : fields) {
             formDisplayView.addField(field);
         }
         formDisplayView.setOnSubmitCallback(this::handleFormSubmission);
 
-        actionMenuView = new MenuView(this.canvas, "", Color.CYAN, false, true);
+        MenuView actionMenuView = new MenuView(this.canvas, "", Color.WHITE, false, true);
 
         formDisplayView.setupActionMenu(actionMenuView);
 
-        CompositeView compositeView = new CompositeView(this.canvas, title, Color.CYAN);
-        compositeView.setSeparator("\n");
+        CompositeView compositeView = new CompositeView(this.canvas, title, Color.LAVENDER);
 
         compositeView.addView(formDisplayView);
 

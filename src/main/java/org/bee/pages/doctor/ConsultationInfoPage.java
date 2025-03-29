@@ -25,7 +25,7 @@ public class ConsultationInfoPage extends UiBase {
     private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     private static final int ITEMS_PER_PAGE = 7;
 
-    private Consultation selectedConsultation;
+    private final Consultation selectedConsultation;
     private View consultationListView;
 
     /**

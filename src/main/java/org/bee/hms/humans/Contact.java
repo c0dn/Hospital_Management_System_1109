@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.bee.utils.JSONSerializable;
 
+import java.util.Optional;
+
 /**
  * Stores contact details of a person, such as phone number and email.
  */
@@ -72,11 +74,27 @@ public class Contact implements JSONSerializable {
     }
 
     /**
-     * Sets the personal phone number
-     *
-     * @param personalPhone The new personal phone number
+     * Returns the home phone number as an Optional.
+     * @return Optional containing the home phone number or empty if null
      */
-    public void setPersonalPhone(String personalPhone) {
-        this.personalPhone = personalPhone;
+    public Optional<String> getHomePhone() {
+        return Optional.ofNullable(homePhone);
     }
+
+    /**
+     * Returns the company phone number as an Optional.
+     * @return Optional containing the company phone number or empty if null
+     */
+    public Optional<String> getCompanyPhone() {
+        return Optional.ofNullable(companyPhone);
+    }
+
+    /**
+     * Returns the email as an Optional.
+     * @return Optional containing the email or empty if null
+     */
+    public Optional<String> getEmail() {
+        return Optional.ofNullable(email);
+    }
+
 }

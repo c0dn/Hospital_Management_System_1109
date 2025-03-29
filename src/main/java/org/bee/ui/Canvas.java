@@ -213,78 +213,45 @@ public class Canvas {
             clearSystemMessage();
             String response = terminal.getUserInput();
 
-            if(response != null && !response.isEmpty() && response.toLowerCase().charAt(0) == 'q'){
+
+            if(response == null || response.isEmpty()) {
+                continue;
+            }
+
+            if(response.toLowerCase().charAt(0) == 'q'){
                 stopCanvas = true;
                 break;
             }
 
-            if(response != null && !response.isEmpty() && response.toLowerCase().charAt(0) == 'e'){
+            if(response.toLowerCase().charAt(0) == 'e'){
                 if (backNavigationCallback != null) {
                     backNavigationCallback.callback();
                     continue;
                 }
             }
 
-            if (response != null && response.length() == 1 && Character.isLetter(response.charAt(0))) {
-                if (currentView.handleDirectInput(response)) {
-                    continue;
-                }
-
-                boolean inputHandled = false;
-                for (Enumeration<Integer> e = currentView.getInputOptions().keys(); e.hasMoreElements();) {
-                    Integer key = e.nextElement();
-                    UserInput inputOption = currentView.getInputOptions().get(key);
-
-                    if (inputOption != null &&
-                            (inputOption.promptText().equalsIgnoreCase("Next Page") && response.equalsIgnoreCase("n") ||
-                                    inputOption.promptText().equalsIgnoreCase("Previous Page") && response.equalsIgnoreCase("p") ||
-                                    inputOption.promptText().equalsIgnoreCase("Jump to Page") && response.equalsIgnoreCase("j"))) {
-
-                        try {
-                            inputOption.lambda().onInput(response);
-                            inputHandled = true;
-                            break;
-                        } catch (Exception ex) {
-                            System.out.println("[DEBUG] Exception in letter input handler: " + ex.getMessage());
-                        }
-                    }
-                }
-
-                if (inputHandled) {
-                    continue;
-                }
-            }
-
-            // Handle numeric inputs
-            int responseInt;
-            try {
-                responseInt = Integer.parseInt(Objects.requireNonNull(response));
-//                System.out.println("[DEBUG Canvas.mainLoop] Input: " + responseInt);
-//                if (currentView != null && currentView.getInputOptions() != null) {
-//                    System.out.println("[DEBUG Canvas.mainLoop] CurrentView options: " + Collections.list(currentView.getInputOptions().keys()));
-//                } else {
-//                    System.out.println("[DEBUG Canvas.mainLoop] CurrentView or options are null.");
-//                }
-                assert currentView != null;
-                if (currentView.getInputOptions() != null && currentView.getInputOptions().get(responseInt) == null) {
-                    setSystemMessage("Invalid input, please try again.", SystemMessageStatus.ERROR);
-                    setRequireRedraw(true);
-                    continue;
-                }
-            } catch (Exception e) {
-                setSystemMessage("Invalid input, please try again.", SystemMessageStatus.ERROR);
+            if (currentView.handleDirectInput(response)) {
                 setRequireRedraw(true);
                 continue;
             }
 
-
-            clearSystemMessage();
-
             try {
-                UserInput inputOptions = currentView.getInputOptions().get(responseInt);
-                inputOptions.lambda().onInput(response);
+                int responseInt = Integer.parseInt(response);
+
+                if (currentView.getInputOptions() != null && currentView.getInputOptions().get(responseInt) != null) {
+                    UserInput inputOption = currentView.getInputOptions().get(responseInt);
+                    inputOption.lambda().onInput(response);
+                } else {
+                    setSystemMessage("Invalid input, please try again.", SystemMessageStatus.ERROR);
+                    setRequireRedraw(true);
+                }
+            } catch (NumberFormatException e) {
+                setSystemMessage("Invalid input, please try again.", SystemMessageStatus.ERROR);
+                setRequireRedraw(true);
             } catch (Exception e) {
                 System.out.println("[DEBUG] Exception in input handler: " + e.getMessage());
+                setSystemMessage("An error occurred processing your input.", SystemMessageStatus.ERROR);
+                setRequireRedraw(true);
             }
         }
 

@@ -5,7 +5,6 @@ import org.bee.controllers.HumanController;
 import org.bee.hms.auth.SystemUser;
 import org.bee.hms.humans.Clerk;
 import org.bee.hms.humans.Doctor;
-import org.bee.hms.humans.Human;
 import org.bee.hms.medical.Consultation;
 import org.bee.ui.forms.FormField;
 import org.bee.ui.forms.FormValidators;
@@ -16,7 +15,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
+import java.util.Map;
+import java.util.function.Predicate;
 
 public class ConsultationFormAdapter implements IObjectFormAdapter<Consultation> {
 
@@ -26,94 +26,89 @@ public class ConsultationFormAdapter implements IObjectFormAdapter<Consultation>
 
     @Override
     public List<FormField<?>> generateFields(Consultation consultation) {
-
         List<FormField<?>> fields = new ArrayList<>();
-
         SystemUser systemUser = humanController.getLoggedInUser();
-            if (systemUser instanceof Clerk clerk) {
-                LocalDateTime followUpDate = (LocalDateTime)getFieldValue(consultation, "followUpDate");
-                String currentFollowUp = followUpDate != null ?
-                        followUpDate.format(DATETIME_FORMATTER) : "None";
 
-                fields.add(new FormField<>(
-                        "followUpDate",
-                        "Enter follow-up date and time (yyyy-MM-dd HH:mm) [Current: " + currentFollowUp + "]:",
-                        input -> {
-                            if (input.trim().isEmpty()) return true;
-                            try {
-                                LocalDateTime.parse(input, DATETIME_FORMATTER);
-                                return true;
-                            } catch (DateTimeParseException e) {
-                                return false;
-                            }
-                        },
-                        "Invalid date format. Please use yyyy-MM-dd HH:mm format.",
-                        input -> input.trim().isEmpty() ? null :
-                                LocalDateTime.parse(input, DATETIME_FORMATTER)
-                ));
-            } else if (systemUser instanceof Doctor doctor) {
-                fields.add(createTextField(
-                        "diagnosticCodes",
-                        "Enter diagnostic code",
-                        consultation,
-                        FormValidators.notEmpty(),
-                        "Diagnostic code cannot be empty."
-                ));
+        if (systemUser instanceof Clerk) {
+            LocalDateTime initialFollowUpDate = (LocalDateTime) getFieldValue(consultation, "followUpDate");
 
-                fields.add(createTextField(
-                        "procedureCodes",
-                        "Enter procedure code",
-                        consultation,
-                        FormValidators.notEmpty(),
-                        "Procedure code cannot be empty."
-                ));
+            Predicate<String> followUpValidator = input -> {
+                if (input == null || input.trim().isEmpty()) {
+                    return true;
+                }
+                try {
+                    LocalDateTime.parse(input.trim(), DATETIME_FORMATTER);
+                    return true;
+                } catch (DateTimeParseException e) {
+                    return false;
+                }
+            };
 
-                fields.add(createTextField(
-                        "notes",
-                        "Enter notes",
-                        consultation,
-                        input -> true,
-                        ""
-                ));
+            FormField.FormInputParser<LocalDateTime> dateTimeParser = input ->
+                    (input == null || input.trim().isEmpty()) ? null : LocalDateTime.parse(input.trim(), DATETIME_FORMATTER);
 
-                fields.add(createTextField(
-                        "diagnosis",
-                        "Enter diagnosis",
-                        consultation,
-                        input -> true,
-                        "Diagnosis cannot be empty."
-                ));
+            fields.add(createField(
+                    "followUpDate",
+                    "Follow-up Date",
+                    "Enter follow-up date (yyyy-MM-dd HH:mm, optional):",
+                    consultation,
+                    followUpValidator,
+                    "Invalid date format. Use yyyy-MM-dd HH:mm or leave empty.",
+                    dateTimeParser,
+                    false,
+                    initialFollowUpDate
+            ));
 
-                fields.add(createTextField(
-                        "instructions",
-                        "Enter instructions",
-                        consultation,
-                        input -> true,
-                        ""
-                ));
+        } else if (systemUser instanceof Doctor) {
+            String initialDiagnosis = (String) getFieldValue(consultation, "diagnosis");
+            fields.add(createTextField(
+                    "diagnosis", "Diagnosis", "Enter diagnosis:", consultation,
+                    FormValidators.notEmpty(),
+                    "Diagnosis cannot be empty.",
+                    true,
+                    initialDiagnosis
+            ));
 
-                fields.add(createTextField(
-                        "treatments",
-                        "Enter treatments" +
-                                "",
-                        consultation,
-                        input -> true,
-                        "Treatment cannot be empty."
-                ));
+            String initialNotes = (String) getFieldValue(consultation, "notes");
+            fields.add(createTextField(
+                    "notes", "Notes", "Enter notes:", consultation,
+                    FormValidators.notEmpty(),
+                    "Notes cannot be empty.",
+                    true,
+                    initialNotes
+            ));
 
-                fields.add(createTextField(
-                        "labTests",
-                        "Enter lab tests" +
-                                "",
-                        consultation,
-                        input -> true,
-                        ""
-                ));
-            }
+            String initialInstructions = (String) getFieldValue(consultation, "instructions");
+            fields.add(createTextField(
+                    "instructions", "Instructions", "Enter patient instructions:", consultation,
+                    FormValidators.notEmpty(),
+                    "Instructions cannot be empty.",
+                    true,
+                    initialInstructions
+            ));
 
-        // Add more fields as needed...
+            String initialTreatments = (String) getFieldValue(consultation, "treatments");
+            fields.add(createTextField(
+                    "treatments", "Treatments", "Enter treatments description:", consultation,
+                    FormValidators.notEmpty(),
+                    "Treatments description cannot be empty.",
+                    true,
+                    initialTreatments
+            ));
+        }
 
         return fields;
+    }
+
+    @Override
+    public String getObjectTypeName() {
+        return "Consultation";
+    }
+
+    @Override
+    public Consultation applyUpdates(Consultation consultation, Map<String, Object> formData) {
+        IObjectFormAdapter.super.applyUpdates(consultation, formData);
+        return consultation;
     }
 
     @Override
@@ -121,32 +116,13 @@ public class ConsultationFormAdapter implements IObjectFormAdapter<Consultation>
         try {
             if (genericSaveObject(consultation, ConsultationController.class, "saveData")) {
                 return true;
-            }
-
-            ConsultationController controller = ConsultationController.getInstance();
-
-            Consultation existingConsultation = controller.getAllOutpatientCases().stream()
-                    .filter(c -> c.getConsultationId().equals(consultation.getConsultationId()))
-                    .findFirst()
-                    .orElse(null);
-
-            if (existingConsultation != null) {
-                copyNonNullFields(consultation, existingConsultation);
-
-                controller.saveData();
-                return true;
             } else {
-                System.err.println("Consultation not found in the system");
+                System.err.println("Failed to save consultation using generic method for ID: " + consultation.getConsultationId());
                 return false;
             }
         } catch (Exception e) {
-            System.err.println("Error saving consultation: " + e.getMessage());
+            System.err.println("Exception during consultation saving: " + e.getMessage());
             return false;
         }
-    }
-
-    @Override
-    public String getObjectTypeName() {
-        return "Consultation";
     }
 }
