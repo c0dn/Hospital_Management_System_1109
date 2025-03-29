@@ -3,6 +3,7 @@ package org.bee.pages.patient;
 import org.bee.controllers.AppointmentController;
 import org.bee.controllers.HumanController;
 import org.bee.hms.auth.SystemUser;
+import org.bee.hms.humans.Doctor;
 import org.bee.hms.humans.Patient;
 import org.bee.hms.telemed.Appointment;
 import org.bee.hms.telemed.AppointmentStatus;
@@ -10,8 +11,8 @@ import org.bee.ui.Color;
 import org.bee.ui.SystemMessageStatus;
 import org.bee.ui.UiBase;
 import org.bee.ui.View;
-import org.bee.ui.views.PaginatedMenuView;
-import org.bee.ui.views.TextView;
+import org.bee.ui.views.*;
+import org.bee.utils.detailAdapters.AppointmentDetailsViewAdapter;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -68,7 +69,7 @@ public class ViewAppointmentPage extends UiBase {
 
                     String statusText = formatEnum(status.toString());
                     String coloredStatus = switch (status) {
-                        case COMPLETED -> colorText(String.valueOf(AppointmentStatus.PAYMENT_PENDING), Color.UND_RED);
+                        case COMPLETED -> colorText(formatEnum(AppointmentStatus.PAYMENT_PENDING.toString()), Color.UND_RED);
                         case ACCEPTED -> colorText(statusText, Color.CYAN);
                         case PENDING -> colorText(statusText, Color.YELLOW);
                         case DECLINED, CANCELED -> colorText(statusText, Color.RED);
@@ -100,7 +101,7 @@ public class ViewAppointmentPage extends UiBase {
                 try {
                     if (option != null && option.getData() != null) {
                         Appointment selectedAppointment = (Appointment) option.getData();
-                        displayAppointmentDetails(selectedAppointment);
+                        displayAppointmentDetails(selectedAppointment, canvas.getCurrentView());
                     } else {
                         canvas.setSystemMessage("Error: Invalid selection", SystemMessageStatus.ERROR);
                         canvas.setRequireRedraw(true);
@@ -117,8 +118,51 @@ public class ViewAppointmentPage extends UiBase {
         return new TextView(canvas, "Access denied. Only patients can view appointments.", Color.RED);
     }
 
-    private void displayAppointmentDetails(Appointment appointment) {
-        ViewAppointmentSummaryPage.setAppointment(appointment);
-        ToPage(new ViewAppointmentSummaryPage());
+    private void displayAppointmentDetails(Appointment appointment, View previousView) {
+        View appointmentView = createAppointmentCompositeView(appointment);
+        canvas.setCurrentView(appointmentView);
+        canvas.setRequireRedraw(true);
+    }
+
+    private View createAppointmentCompositeView(Appointment appointment) {
+        DetailsView<Appointment> detailsView = (DetailsView<Appointment>) createAppointmentDetailsView(appointment);
+
+        CompositeView compositeView = new CompositeView(canvas, "", Color.CYAN);
+        compositeView.addView(detailsView);
+
+        if (humanController.getLoggedInUser() instanceof Patient) {
+            MenuView actionMenu = new MenuView(canvas, "", Color.CYAN, false, true);
+
+            MenuView.MenuSection actionSection = actionMenu.addSection("");
+
+            if (appointment.getAppointmentStatus() == AppointmentStatus.PAYMENT_PENDING) {
+                actionSection.addOption(1, "Make Payment");
+                actionMenu.attachMenuOptionInput(1, "Make Payment", input -> {
+                    // open payment?
+                });
+            } else if (appointment.getAppointmentStatus() == AppointmentStatus.PAID){
+                actionSection.addOption(1, "View Bill");
+                actionMenu.attachMenuOptionInput(1, "View Bill", input -> {
+                    // open bill?
+                });
+            }
+
+            compositeView.addView(actionMenu);
+        }
+
+        return compositeView;
+    }
+    private View createAppointmentDetailsView(Appointment appointment) {
+        AppointmentDetailsViewAdapter adapter = new AppointmentDetailsViewAdapter();
+
+        DetailsView<Appointment> detailsView = new DetailsView<>(
+                canvas,
+                "APPOINTMENT INFORMATION",
+                appointment,
+                Color.CYAN,
+                adapter
+        );
+
+        return detailsView;
     }
 }

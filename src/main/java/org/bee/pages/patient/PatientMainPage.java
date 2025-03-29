@@ -65,16 +65,16 @@ public class PatientMainPage extends UiBase {
         MenuView.MenuSection patientSection = menuView.addSection("Patient Services");
         patientSection.addOption(1, "View/Update Particulars - To update user particular");
         patientSection.addOption(2, "Book Appointment - To schedule teleconsult appointment");
-        patientSection.addOption(3, "View/Change Appointment - To view or reschedule an existing teleconsult appointment");
+        patientSection.addOption(3, "View/Change Appointment - To view current and past appointments or reschedule an existing teleconsult appointment");
         menuView.attachMenuOptionInput(1, "View/Update Particulars", str -> viewPatientDetails());
         menuView.attachMenuOptionInput(2, "Book Appointment", str -> bookAppointmentPrompt());
         menuView.attachMenuOptionInput(3, "View/Change Appointment", str -> ToPage(new org.bee.pages.patient.ViewAppointmentPage()));
 
         MenuView.MenuSection infoSection = menuView.addSection("Information Services");
         infoSection.addOption(4, "View Billing - To view unpaid bills");
-        infoSection.addOption(5, "View Appointment Summary");
+//        infoSection.addOption(5, "View Appointment Summary");
 //        menuView.attachMenuOptionInput(4, "View Billing", str -> ToPage(new ViewAppointmentPage()));
-        menuView.attachMenuOptionInput(5, "View Appointment Summary", str -> ToPage(new ViewAppointmentSummaryPage()));
+//        menuView.attachMenuOptionInput(5, "View Appointment Summary", str -> ToPage(new ViewAppointmentSummaryPage()));
 
         canvas.setRequireRedraw(true);
     }
