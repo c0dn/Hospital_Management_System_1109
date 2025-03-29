@@ -73,7 +73,7 @@ public class ViewAppointmentPage extends UiBase {
             String reason = a.getReason() != null ? a.getReason() : "Not specified";
             String status;
             if (a.getAppointmentStatus() == AppointmentStatus.PAYMENT_PENDING || a.getAppointmentStatus() == AppointmentStatus.PAID) {
-                status = formatEnum("COMPLETED"); // Display as PAYMENT_PENDING
+                status = formatEnum(String.valueOf(AppointmentStatus.COMPLETED));
             } else {
                 status = a.getAppointmentStatus() != null ? formatEnum(a.getAppointmentStatus().toString()) : "Unknown";
             }

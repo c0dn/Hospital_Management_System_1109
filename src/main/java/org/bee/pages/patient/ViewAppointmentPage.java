@@ -68,7 +68,7 @@ public class ViewAppointmentPage extends UiBase {
 
                     String statusText = formatEnum(status.toString());
                     String coloredStatus = switch (status) {
-                        case COMPLETED -> colorText("PAYMENT_PENDING", Color.GREEN);
+                        case COMPLETED -> colorText(String.valueOf(AppointmentStatus.PAYMENT_PENDING), Color.UND_RED);
                         case ACCEPTED -> colorText(statusText, Color.CYAN);
                         case PENDING -> colorText(statusText, Color.YELLOW);
                         case DECLINED, CANCELED -> colorText(statusText, Color.RED);
