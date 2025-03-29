@@ -141,8 +141,8 @@ public class ViewAppointmentPage extends UiBase {
                     // open payment?
                 });
             } else if (appointment.getAppointmentStatus() == AppointmentStatus.PAID){
-                actionSection.addOption(1, "View Bill");
-                actionMenu.attachMenuOptionInput(1, "View Bill", input -> {
+                actionSection.addOption(1, "View Invoice");
+                actionMenu.attachMenuOptionInput(1, "View Invoice", input -> {
                     // open bill?
                 });
             }

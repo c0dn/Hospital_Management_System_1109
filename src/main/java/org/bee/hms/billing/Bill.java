@@ -380,7 +380,7 @@ public class Bill implements JSONSerializable {
         }
 
         this.paymentMethod = paymentMethod;
-        this.settledAmount = amount; // Record the actual amount paid
+        this.settledAmount = this.settledAmount.add(amount); // Record the actual amount paid
         this.status = BillingStatus.PARTIALLY_PAID;
     }
 

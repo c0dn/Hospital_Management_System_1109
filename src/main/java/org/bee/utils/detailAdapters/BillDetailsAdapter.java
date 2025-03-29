@@ -1,7 +1,10 @@
 package org.bee.utils.detailAdapters;
 
+import org.bee.controllers.HumanController;
+import org.bee.hms.auth.SystemUser;
 import org.bee.hms.billing.Bill;
 import org.bee.hms.billing.BillingItemLine;
+import org.bee.hms.humans.Clerk;
 import org.bee.hms.humans.Patient;
 import org.bee.hms.policy.InsurancePolicy;
 import org.bee.ui.details.IObjectDetailsAdapter;
@@ -21,10 +24,13 @@ import java.util.Optional;
  */
 public class BillDetailsAdapter implements IObjectDetailsAdapter<Bill> {
 
+    private static final HumanController humanController = HumanController.getInstance();
+
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     @Override
     public ObjectDetailsView configureView(ObjectDetailsView view, Bill bill) {
+
         view.setSectionWidth(80);
 
         // Bill basic information section
@@ -58,22 +64,26 @@ public class BillDetailsAdapter implements IObjectDetailsAdapter<Bill> {
             return residentialStatus != null ? residentialStatus.toString() : "Not available";
         }));
 
-        // Insurance section
-        ObjectDetailsView.Section insuranceSection = view.addSection("Insurance Information");
-        insuranceSection.addField(new ObjectDetailsView.Field<Bill>("Insurance Provider", b -> {
-            InsurancePolicy policy = b.getInsurancePolicy();
-            return policy != null ? policy.getInsuranceProvider().getProviderName() : "No insurance";
-        }));
+        SystemUser systemUser = humanController.getLoggedInUser();
+        if (systemUser instanceof Clerk) {
 
-        insuranceSection.addField(new ObjectDetailsView.Field<Bill>("Policy Number", b -> {
-            InsurancePolicy policy = b.getInsurancePolicy();
-            return policy != null ? policy.getPolicyNumber() : "No policy";
-        }));
+            // Insurance section
+            ObjectDetailsView.Section insuranceSection = view.addSection("Insurance Information");
+            insuranceSection.addField(new ObjectDetailsView.Field<Bill>("Insurance Provider", b -> {
+                InsurancePolicy policy = b.getInsurancePolicy();
+                return policy != null ? policy.getInsuranceProvider().getProviderName() : "No insurance";
+            }));
 
-        insuranceSection.addField(new ObjectDetailsView.Field<Bill>("Policy Active", b -> {
-            InsurancePolicy policy = b.getInsurancePolicy();
-            return policy != null ? (policy.isActive() ? "Yes" : "No") : "No policy";
-        }));
+            insuranceSection.addField(new ObjectDetailsView.Field<Bill>("Policy Number", b -> {
+                InsurancePolicy policy = b.getInsurancePolicy();
+                return policy != null ? policy.getPolicyNumber() : "No policy";
+            }));
+
+            insuranceSection.addField(new ObjectDetailsView.Field<Bill>("Policy Active", b -> {
+                InsurancePolicy policy = b.getInsurancePolicy();
+                return policy != null ? (policy.isActive() ? "Yes" : "No") : "No policy";
+            }));
+        }
 
         // Bill amounts section
         ObjectDetailsView.Section amountsSection = view.addSection("Bill Amounts");
@@ -95,31 +105,40 @@ public class BillDetailsAdapter implements IObjectDetailsAdapter<Bill> {
 
         amountsSection.addField(new ObjectDetailsView.Field<Bill>("Grand Total", b ->
                 formatCurrency(b.getGrandTotal())));
+        if (systemUser instanceof Clerk) {
+            ObjectDetailsView.Section itemsSection = view.addSection("Line Items");
 
-        ObjectDetailsView.Section itemsSection = view.addSection("Line Items");
+            @SuppressWarnings("unchecked")
+            List<BillingItemLine> lineItems = (List<BillingItemLine>) ReflectionHelper.propertyAccessor("lineItems", null).apply(bill);
 
-        @SuppressWarnings("unchecked")
-        List<BillingItemLine> lineItems = (List<BillingItemLine>) ReflectionHelper.propertyAccessor("lineItems", null).apply(bill);
-
-        if (lineItems != null && !lineItems.isEmpty()) {
-            for (int i = 0; i < lineItems.size(); i++) {
-                final int itemIndex = i;
-                itemsSection.addField(new ObjectDetailsView.Field<>("Item " + (i + 1), b -> {
-                    @SuppressWarnings("unchecked")
-                    List<BillingItemLine> items = (List<BillingItemLine>) ReflectionHelper.propertyAccessor("lineItems", null).apply(b);
-                    if (items != null && items.size() > itemIndex) {
-                        BillingItemLine item = items.get(itemIndex);
-                        return String.format("%s - %s: %s",
-                                item.getItem().getBillingItemCode(),
-                                item.getItem().getBillItemDescription(),
-                                formatCurrency(item.getTotalPrice()));
-                    }
-                    return "Item information not available";
-                }));
+            if (lineItems != null && !lineItems.isEmpty()) {
+                for (int i = 0; i < lineItems.size(); i++) {
+                    final int itemIndex = i;
+                    itemsSection.addField(new ObjectDetailsView.Field<>("Item " + (i + 1), b -> {
+                        @SuppressWarnings("unchecked")
+                        List<BillingItemLine> items = (List<BillingItemLine>) ReflectionHelper.propertyAccessor("lineItems", null).apply(b);
+                        if (items != null && items.size() > itemIndex) {
+                            BillingItemLine item = items.get(itemIndex);
+                            return String.format("%s - %s: %s",
+                                    item.getItem().getBillingItemCode(),
+                                    item.getItem().getBillItemDescription(),
+                                    formatCurrency(item.getTotalPrice()));
+                        }
+                        return "Item information not available";
+                    }));
+                }
+            } else {
+                itemsSection.addField(new ObjectDetailsView.Field<>("Items", b -> "No line items available"));
             }
-        } else {
-            itemsSection.addField(new ObjectDetailsView.Field<>("Items", b -> "No line items available"));
         }
+            // Payable
+            ObjectDetailsView.Section payableSection = view.addSection("Amount Payable");
+            payableSection.addField(new ObjectDetailsView.Field<Bill>("Settled Amount", b ->
+                    formatCurrency(b.getSettledAmount())));
+
+            payableSection.addField(new ObjectDetailsView.Field<Bill>("Outstanding Balance", b ->
+                    formatCurrency(b.getOutstandingBalance())));
+
 
         return view;
     }

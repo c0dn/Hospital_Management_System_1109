@@ -71,10 +71,8 @@ public class PatientMainPage extends UiBase {
         menuView.attachMenuOptionInput(3, "View/Change Appointment", str -> ToPage(new org.bee.pages.patient.ViewAppointmentPage()));
 
         MenuView.MenuSection infoSection = menuView.addSection("Information Services");
-        infoSection.addOption(4, "View Billing - To view unpaid bills");
-//        infoSection.addOption(5, "View Appointment Summary");
-//        menuView.attachMenuOptionInput(4, "View Billing", str -> ToPage(new ViewAppointmentPage()));
-//        menuView.attachMenuOptionInput(5, "View Appointment Summary", str -> ToPage(new ViewAppointmentSummaryPage()));
+        infoSection.addOption(4, "View Invoice");
+        menuView.attachMenuOptionInput(4, "View Invoice", str -> ToPage(new ViewAllInvoicePage()));
 
         canvas.setRequireRedraw(true);
     }
