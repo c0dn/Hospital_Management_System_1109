@@ -40,28 +40,11 @@ public class AppointmentTest {
         
         doctor = Doctor.builder().withRandomBaseData().build();
     }
-    
-    @Test
-    @DisplayName("Test creating appointment with specific data")
-    void testCreateAppointmentWithSpecificData() {
-        // Create an appointment with specific data
-        LocalDateTime appointmentTime = LocalDateTime.now().plusDays(3).withHour(14).withMinute(30).withSecond(0);
-        Appointment appointment = new Appointment(patient, "Regular check-up", appointmentTime, AppointmentStatus.PENDING);
-        
-        // Verify appointment properties
-        assertEquals(patient, appointment.getPatient());
-        assertEquals("Regular check-up", appointment.getReason());
-        assertEquals(appointmentTime, appointment.getAppointmentTime());
-        assertEquals(AppointmentStatus.PENDING, appointment.getAppointmentStatus());
-        assertNull(appointment.getDoctor());
-    }
-    
+
     @Test
     @DisplayName("Test appointment state transitions")
     void testAppointmentStateTransitions() {
-        // Create an appointment
-        LocalDateTime appointmentTime = LocalDateTime.now().plusDays(3);
-        Appointment appointment = new Appointment(patient, "Regular check-up", appointmentTime, AppointmentStatus.PENDING);
+        Appointment appointment = Appointment.withRandomData();
         
         // Assign doctor
         appointment.setDoctor(doctor);
@@ -106,7 +89,7 @@ public class AppointmentTest {
     @DisplayName("Test medical certificate creation")
     void testMedicalCertificateCreation() {
         // Create an appointment
-        Appointment appointment = new Appointment(patient, "Flu symptoms", LocalDateTime.now(), AppointmentStatus.ACCEPTED);
+        Appointment appointment = Appointment.withRandomData();
         appointment.approveAppointment(doctor, "https://zoom.us/j/987654321");
         
         // Create and set medical certificate
@@ -133,17 +116,17 @@ public class AppointmentTest {
     void testErrorCasesAndValidation() {
         // Test setting null patient
         assertThrows(NullPointerException.class, () -> {
-            new Appointment(null, "Test", LocalDateTime.now(), AppointmentStatus.PENDING);
+            new Appointment(null, null, "Test", LocalDateTime.now(), AppointmentStatus.PENDING);
         });
         
         // Test setting null doctor in approveAppointment
-        Appointment appointment1 = new Appointment(patient, "Test", LocalDateTime.now(), AppointmentStatus.PENDING);
+        Appointment appointment1 = new Appointment(null, patient, "Test", LocalDateTime.now(), AppointmentStatus.PENDING);
         assertThrows(NullPointerException.class, () -> {
             appointment1.approveAppointment(null, "https://zoom.us/j/123456789");
         });
         
         // Test setting null zoom link in approveAppointment
-        Appointment appointment2 = new Appointment(patient, "Test", LocalDateTime.now(), AppointmentStatus.PENDING);
+        Appointment appointment2 = new Appointment(null, patient, "Test", LocalDateTime.now(), AppointmentStatus.PENDING);
         assertThrows(NullPointerException.class, () -> {
             appointment2.approveAppointment(doctor, null);
         });

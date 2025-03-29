@@ -172,33 +172,17 @@ public class AppointmentSerializationTest {
      * Creates a test Appointment object with various properties set.
      */
     private Appointment createTestAppointment() {
-
-        // Create a patient
-        Patient patient = Patient.builder()
-                .patientId(DataGenerator.generatePatientId())
-                .withRandomBaseData()
-                .build();
-        
-        // Create a doctor
         Doctor doctor = Doctor.builder().withRandomBaseData().build();
         
-        // Create appointment time (future date)
-        LocalDateTime appointmentTime = LocalDateTime.now().plusDays(3);
-        
-        // Create an appointment
-        Appointment appointment = new Appointment(patient, "Annual checkup", appointmentTime, AppointmentStatus.PENDING);
-        
-        // Assign doctor and approve appointment
+        Appointment appointment = Appointment.withRandomData();
+
         appointment.setDoctor(doctor);
         appointment.approveAppointment(doctor, "https://zoom.us/j/" + DataGenerator.generateRandomInt(10000000, 99999999));
         
-        // Set history
         appointment.setHistory("Patient has a history of hypertension and diabetes");
         
-        // Set doctor notes
         appointment.setDoctorNotes("Patient's condition is stable. Recommended follow-up in 3 months.");
         
-        // Create and set medical certificate
         LocalDateTime startDate = LocalDateTime.now();
         LocalDateTime endDate = startDate.plusDays(2);
         MedicalCertificate mc = new MedicalCertificate(startDate, endDate, "Rest recommended for 2 days");

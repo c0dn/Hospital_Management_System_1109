@@ -362,6 +362,7 @@ public class InsuranceClaimTest {
                 .withVisit(visit)
                 .withInsurancePolicy(policy)
                 .build();
+        bill.submitForProcessing();
 
         // Override the benefit type resolution to return the excluded benefit
         TestBillableItem item = new TestBillableItem(new BigDecimal("1000.00")) {
