@@ -16,7 +16,7 @@ public class Canvas {
         void navigateToPage(UiBase newPage);
     }
 
-    private static record SystemMessage(String message, SystemMessageStatus status) {}
+    private record SystemMessage(String message, SystemMessageStatus status) {}
 
 
     private final Terminal terminal;
@@ -259,17 +259,24 @@ public class Canvas {
             int responseInt;
             try {
                 responseInt = Integer.parseInt(Objects.requireNonNull(response));
+//                System.out.println("[DEBUG Canvas.mainLoop] Input: " + responseInt);
+//                if (currentView != null && currentView.getInputOptions() != null) {
+//                    System.out.println("[DEBUG Canvas.mainLoop] CurrentView options: " + Collections.list(currentView.getInputOptions().keys()));
+//                } else {
+//                    System.out.println("[DEBUG Canvas.mainLoop] CurrentView or options are null.");
+//                }
+                assert currentView != null;
+                if (currentView.getInputOptions() != null && currentView.getInputOptions().get(responseInt) == null) {
+                    setSystemMessage("Invalid input, please try again.", SystemMessageStatus.ERROR);
+                    setRequireRedraw(true);
+                    continue;
+                }
             } catch (Exception e) {
                 setSystemMessage("Invalid input, please try again.", SystemMessageStatus.ERROR);
                 setRequireRedraw(true);
                 continue;
             }
 
-            if (currentView.getInputOptions() != null && currentView.getInputOptions().get(responseInt) == null) {
-                setSystemMessage("Invalid input, please try again.", SystemMessageStatus.ERROR);
-                setRequireRedraw(true);
-                continue;
-            }
 
             clearSystemMessage();
 

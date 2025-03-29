@@ -147,11 +147,7 @@ public abstract class View {
      * Clears all user inputs from the view/page
      */
     public void clearUserInputs(){
-        UserInput back = inputOptions.get(0);
         inputOptions = new Hashtable<>();
-        if (back != null) {
-            inputOptions.put(0, back);
-        }
     }
 
     /**

@@ -1,10 +1,12 @@
 package org.bee.pages;
 
 import org.bee.ui.Color;
+import org.bee.ui.SystemMessageStatus;
 import org.bee.ui.UiBase;
 import org.bee.ui.View;
+import org.bee.ui.views.CompositeView;
 import org.bee.ui.views.FormView;
-import org.bee.ui.views.TextView;
+import org.bee.ui.views.MenuView;
 import org.bee.ui.forms.FormField;
 import org.bee.ui.forms.IObjectFormAdapter;
 
@@ -20,6 +22,9 @@ public class GenericUpdatePage<T> extends UiBase {
     private final T objectToUpdate;
     private final IObjectFormAdapter<T> adapter;
     private final Runnable onSuccessCallback;
+
+    private FormView formDisplayView;
+    private MenuView actionMenuView;
 
     /**
      * Creates a new GenericUpdatePage.
@@ -47,54 +52,49 @@ public class GenericUpdatePage<T> extends UiBase {
     @Override
     public View createView() {
         String title = "\nUpdate " + adapter.getObjectTypeName();
-        return new FormView(this.canvas, title, Color.CYAN);
+
+        formDisplayView = new FormView(this.canvas, "", Color.CYAN);
+        List<FormField<?>> fields = adapter.generateFields(objectToUpdate);
+        for (FormField<?> field : fields) {
+            formDisplayView.addField(field);
+        }
+        formDisplayView.setOnSubmitCallback(this::handleFormSubmission);
+
+        actionMenuView = new MenuView(this.canvas, "", Color.CYAN, false, true);
+
+        formDisplayView.setupActionMenu(actionMenuView);
+
+        CompositeView compositeView = new CompositeView(this.canvas, title, Color.CYAN);
+        compositeView.setSeparator("\n");
+
+        compositeView.addView(formDisplayView);
+
+        compositeView.addView(actionMenuView);
+
+        return compositeView;
     }
 
     @Override
     public void OnViewCreated(View parentView) {
-        FormView formView = (FormView) parentView;
-
-        List<FormField<?>> fields = adapter.generateFields(objectToUpdate);
-        for (FormField<?> field : fields) {
-            formView.addField(field);
-        }
-
-        formView.setOnSubmitCallback(this::handleFormSubmission);
-
-        formView.setupForm();
         canvas.setRequireRedraw(true);
     }
 
     private void handleFormSubmission(Map<String, Object> formData) {
         T updatedObject = adapter.applyUpdates(objectToUpdate, formData);
-
         boolean saved = adapter.saveObject(updatedObject);
-
         if (saved) {
-            TextView successView = new TextView(
-                    this.canvas,
-                    adapter.getObjectTypeName() + " updated successfully!",
-                    Color.GREEN
-            );
-            navigateToView(successView);
-
             if (onSuccessCallback != null) {
                 onSuccessCallback.run();
+            } else {
+                canvas.setSystemMessage(adapter.getObjectTypeName() + " updated successfully!", SystemMessageStatus.SUCCESS);
+                try {
+                    Thread.sleep(1500);
+                } catch (InterruptedException ignored) { }
             }
-
-            try {
-                // Return to the previous screen
-                Thread.sleep(1500);
-                OnBackPressed();
-            } catch (InterruptedException ignored) {
-            }
+            OnBackPressed();
         } else {
-            TextView errorView = new TextView(
-                    this.canvas,
-                    "Error saving " + adapter.getObjectTypeName() + ". Please try again.",
-                    Color.RED
-            );
-            navigateToView(errorView);
+            canvas.setSystemMessage("Error saving " + adapter.getObjectTypeName() + ". Please try again.", SystemMessageStatus.ERROR);
+            canvas.setRequireRedraw(true);
         }
     }
 }

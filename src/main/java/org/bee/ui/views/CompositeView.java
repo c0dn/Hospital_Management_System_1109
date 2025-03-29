@@ -68,6 +68,10 @@ public class CompositeView extends View {
     private void mergeUserInputs(View view) {
         Dictionary<Integer, UserInput> viewInputs = view.getInputOptions();
         if (viewInputs != null) {
+//            System.out.println("[DEBUG mergeUserInputs] Merging options from: " + view.getClass().getSimpleName());
+//            System.out.println("[DEBUG mergeUserInputs] Child keys: " + Collections.list(viewInputs.keys()));
+//            System.out.println("[DEBUG mergeUserInputs] Composite keys BEFORE: " + Collections.list(this.inputOptions.keys()));
+
             Enumeration<Integer> keys = viewInputs.keys();
             while (keys.hasMoreElements()) {
                 Integer key = keys.nextElement();
@@ -78,12 +82,19 @@ public class CompositeView extends View {
                 }
 
                 int assignedKey = key;
+                int originalKey = key;
                 while (this.inputOptions.get(assignedKey) != null) {
+//                    System.out.println("[DEBUG mergeUserInputs] Clash for key " + originalKey + ". Trying key " + (assignedKey + 1));
                     assignedKey++;
+                }
+
+                if (assignedKey != originalKey) {
+//                    System.out.println("[DEBUG mergeUserInputs] Remapped key " + originalKey + " to " + assignedKey);
                 }
 
                 this.inputOptions.put(assignedKey, input);
             }
+//            System.out.println("[DEBUG mergeUserInputs] Composite keys AFTER: " + Collections.list(this.inputOptions.keys()));
         }
     }
 
