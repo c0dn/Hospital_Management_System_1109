@@ -48,6 +48,11 @@ public class BillingItemLine implements JSONSerializable {
         return String.format("%s %s - %s %s%n%s", item.getBillingItemCode(), item.getBillItemDescription(), quantity, unitPrice, item.getBillItemCategory());
     }
 
+    /**
+     * Retrieves the billable item associated with this billing line item
+     *
+     * @return the associated billable item
+     */
     public BillableItem getItem() {
         return item;
     }

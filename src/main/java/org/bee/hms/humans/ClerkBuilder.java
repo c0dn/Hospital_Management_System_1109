@@ -6,7 +6,8 @@ package org.bee.hms.humans;
  */
 public class ClerkBuilder extends StaffBuilder<ClerkBuilder> {
     /**
-     * Creates a new instance of ClerkBuilder.
+     * Creates a new instance of ClerkBuilder
+     * @return a new instance of ClerkBuilder object
      */
     public static ClerkBuilder builder() {
         return new ClerkBuilder();

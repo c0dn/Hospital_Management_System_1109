@@ -65,7 +65,6 @@ public class Patient extends Human implements SystemUser {
         this.companyName = builder.companyName;
         this.companyAddress = builder.companyAddress;
         this.patientConsent = builder.patientConsent;
-
         this.humanType = "patient";
     }
 
@@ -98,6 +97,7 @@ public class Patient extends Human implements SystemUser {
      * @param companyName         The company name of the patient
      * @param companyAddress      The company address of the patient
      * @param patientConsent      Patient consent information
+     * @param humanType           The type classification of the human
      *
      * @return A fully constructed Patient object with all properties set from JSON data
      */
@@ -150,26 +150,56 @@ public class Patient extends Human implements SystemUser {
                 .build();
     }
 
+    /**
+     * Sets the height of the patient
+     *
+     * @param height The height value to set
+     */
     public void setHeight(double height) {
         this.height = height;
     }
 
+    /**
+     * Sets the weight of the patient
+     *
+     * @param weight The weight value to se
+     */
     public void setWeight(double weight) {
         this.weight = weight;
     }
 
+    /**
+     * Sets the drug allergies of the patient.
+     *
+     * @param drugAllergies The list of drug allergies to set
+     */
     public void setDrugAllergies(List<String> drugAllergies) {
         this.drugAllergies = new ArrayList<>(drugAllergies);
     }
 
+    /**
+     * Sets the name of the next of kin.
+     *
+     * @param nokName The next of kin name to set
+     */
     public void setNokName(String nokName) {
         this.nokName = nokName;
     }
 
+    /**
+     * Sets the relationship with the next of kin.
+     *
+     * @param nokRelation The next of kin relationship to set
+     */
     public void setNokRelation(NokRelation nokRelation) {
         this.nokRelation = nokRelation;
     }
 
+    /**
+     * Sets the address of the next of kin.
+     *
+     * @param nokAddress The next of kin address to set
+     */
     public void setNokAddress(String nokAddress) {
         this.nokAddress = nokAddress;
     }
@@ -231,7 +261,6 @@ public class Patient extends Human implements SystemUser {
 
     /**
      * Displays detailed patient information
-     *
      * The displayed information includes:
      * - Patient ID
      * - Height and weight measurements
@@ -298,6 +327,11 @@ public class Patient extends Human implements SystemUser {
         return weight;
     }
 
+    /**
+     * Retrieves the drug allergies of the patient.
+     *
+     * @return The list of drug allergies
+     */
     public List<String> getDrugAllergies() {
         return drugAllergies;
     }

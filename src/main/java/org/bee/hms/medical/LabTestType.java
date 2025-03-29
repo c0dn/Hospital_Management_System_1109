@@ -9,8 +9,13 @@ import org.bee.utils.JSONSerializable;
  */
 @JsonFormat(shape = JsonFormat.Shape.STRING)
 public enum LabTestType implements JSONSerializable {
+    /** Blood specimen */
     BLOOD,
+
+    /** Urine specimen */
     URINE,
+
+    /** Stool specimen */
     STOOL;
 
 

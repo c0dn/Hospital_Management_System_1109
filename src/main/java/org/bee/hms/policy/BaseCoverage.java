@@ -36,7 +36,7 @@ public class BaseCoverage implements Coverage {
     protected ExclusionCriteria exclusions;
 
     /**
-     * Private constructor for initializing a {@link BaseCoverage} object using a builder.
+     * Private constructor for initializing a BaseCoverage object using a builder.
      *
      * @param builder The builder containing the configuration for the coverage.
      */

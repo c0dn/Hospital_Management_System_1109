@@ -229,7 +229,9 @@ public class AppointmentController extends BaseController<Appointment> {
      * @return The Zoom meeting join URL
      * @throws IllegalArgumentException If input parameters are invalid
      * @throws ZoomApiException If there's an error communicating with the Zoom API
+     * @throws IOException for network/communication errors
      */
+
     public String generateZoomLink(String appointmentTitle, int durationMinutes)
             throws IllegalArgumentException, ZoomApiException, IOException {
 

@@ -129,8 +129,10 @@ public class Medication implements JSONSerializable {
     }
 
     /**
-     * Creates a {@link Medication} from the given code and sets its cost.
-     * This is used for deserialization.
+     * Creates a Medication from the given medication code.
+     *
+     * @param code The medication code identifier (must exist in the medication registry)
+     * @return A Medication instance corresponding to the given code
      */
     @JsonCreator
     public static Medication createFromCodeAndCost(

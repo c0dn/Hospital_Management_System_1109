@@ -248,7 +248,12 @@ public class HumanController extends BaseController<Human> {
                 .collect(Collectors.toList());
     }
 
-
+    /**
+     * Masks NRIC number for privacy
+     *
+     * @param nric The NRIC number to mask (e.g., "S1234567A")
+     * @return Masked NRIC (e.g., "SXXXX567A")
+     */
     public String maskNRIC(String nric) {
         // First char + masked middle + last 4 chars
         return nric.charAt(0) +

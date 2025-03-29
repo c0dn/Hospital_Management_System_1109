@@ -82,7 +82,7 @@ public class WardStay implements ClaimableItem, BillableItem, JSONSerializable {
 
     /**
      * Returns the charges for the patient's stay.
-     * This is an implementation of the {@link ClaimableItem#getCharges} method.
+     * This is an implementation of the ClaimableItem#getCharges method.
      *
      * @return A BigDecimal representing the total charges for the ward stay.
      */

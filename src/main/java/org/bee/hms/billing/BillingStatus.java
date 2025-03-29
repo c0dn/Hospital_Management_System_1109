@@ -36,6 +36,7 @@ public enum BillingStatus implements JSONSerializable {
     REFUND_PENDING("Refund Pending", "Refund is being processed"),
     /** The refund for the bill has been processed successfully. */
     REFUNDED("Refunded", "Refund has been processed"),
+    /** The payment is awaiting settlement confirmation */
     PAYMENT_PENDING("Payment Pending", "Payment not settled.");
 
     /** The display name of the billing status. */

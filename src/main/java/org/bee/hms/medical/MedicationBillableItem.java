@@ -32,6 +32,15 @@ public class MedicationBillableItem implements BillableItem, ClaimableItem {
         this.quantity = quantity;
     }
 
+    /**
+     * Creates a MedicationBillableItem from the given medication and quantity
+     * <p>
+     * This is used for JSON deserialization.
+     *
+     * @param medication The medication to bill
+     * @param quantity The quantity of medication units
+     * @return A new MedicationBillableItem instance
+     */
     @JsonCreator
     public static MedicationBillableItem create(
             @JsonProperty("medication") Medication medication,

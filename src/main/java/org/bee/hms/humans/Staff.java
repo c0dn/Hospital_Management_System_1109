@@ -73,16 +73,9 @@ public class Staff extends Human {
      */
     public void displayHuman() {
         super.displayHuman();
-//        System.out.format("Name: %s%n", name);
-//        System.out.format("Title: %s%n", title);
-//        System.out.format("Department: %s%n", department);
-//        System.out.format("Staff ID: %s%n", staffId);
-
         System.out.printf("%n%n");
         System.out.println("STAFF DETAILS");
         System.out.println("---------------------------------------------------------------------");
-
-//        System.out.printf("%nName: " + name);
         System.out.printf("Staff ID: " + staffId);
         System.out.printf("\nDepartment: " + department);
         System.out.printf("\nTitle: " + title);

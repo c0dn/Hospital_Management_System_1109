@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 /**
  * Base class for human entities in the system.
  * Uses JSON type information for polymorphic deserialization.
- *
  * The "humanType" property in JSON determines the concrete class.
  */
 @JsonTypeInfo(
@@ -20,15 +19,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
     property = "humanType",
     visible = true)
 
-/**
- * Specifies subtypes for JSON deserialization.
- * Maps JSON "humanType" property to their corresponding classes:
- * - "patient" → Patient
- * - "staff" → Staff
- * - "clerk" → Clerk
- * - "doctor" → Doctor
- * - "nurse" → Nurse
- */
+
 @JsonSubTypes({
     @JsonSubTypes.Type(value = Patient.class, name = "patient"),
     @JsonSubTypes.Type(value = Staff.class, name = "staff"),
@@ -37,14 +28,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
     @JsonSubTypes.Type(value = Nurse.class, name = "nurse")
 })
 
-/**
- * Abstract base class for all human entities in the system.
- * Implements JSONSerializable for JSON conversion.
- *
- * Subclasses include:
- * - Patient
- * - Staff (and its subclasses: Clerk, Doctor, Nurse)
- */
+
 public abstract class Human implements JSONSerializable {
 
     /**
@@ -192,11 +176,23 @@ public abstract class Human implements JSONSerializable {
         return nricFin;
     }
 
+    /**
+     * Retrieves the address of the person
+     *
+     * @return The address of the person
+     */
     public String getAddress() {
         return address;
     }
 
-    public Sex getSex() { return sex; }
+    /**
+     * Retrieves the sex of the person
+     *
+     * @return The sex of the person
+     */
+    public Sex getSex() {
+        return sex;
+    }
 
 
     /**
@@ -319,6 +315,11 @@ public abstract class Human implements JSONSerializable {
         return contact;
     }
 
+    /**
+     * Retrieves the vaccination status of the person
+     *
+     * @return The vaccination status of the person
+     */
     public boolean isVaccinated() {
         return isVaccinated;
     }

@@ -117,22 +117,32 @@ public class PolicyController extends BaseController<InsurancePolicy> {
     }
 
     /**
-     * Gets government policy for a patient
+     * Retrieves the government insurance policy associated with the specified patient
+     *
+     * @param patient the patient whose policy to retrieve
+     * @return an Optional containing the government policy if found, empty otherwise
      */
     public Optional<InsurancePolicy> getGovernmentPolicy(Patient patient) {
         return Optional.ofNullable(governmentPolicies.get(patient.getPatientId()));
     }
 
     /**
-     * Gets private policy for a patient
+     * Retrieves the private insurance policy associated with the specified patient
+     *
+     * @param patient the patient whose policy to retrieve
+     * @return an Optional containing the private policy if found, empty otherwise
      */
     public Optional<InsurancePolicy> getPrivatePolicy(Patient patient) {
         return Optional.ofNullable(privatePolicies.get(patient.getPatientId()));
     }
 
     /**
-     * Gets all policies for a patient
-     */
+     * Retrieves all insurance policies associated with the specified patient
+     *
+     * @param patient the patient whose policies to retrieve
+     * @return a List containing all found policies for the patient, which may be empty
+     *         but never null
+    */
     public List<InsurancePolicy> getAllPoliciesForPatient(Patient patient) {
         List<InsurancePolicy> patientPolicies = new ArrayList<>();
 

@@ -60,7 +60,12 @@ public class ExclusionCriteria implements JSONSerializable {
 
 
     /**
-     * JSON Creator method for deserializing ExclusionCriteria
+     * Creates an ExclusionCriteria instance from JSON deserialization.
+     * @param excludedDiagnosis     Set of diagnosis patterns to exclude
+     * @param excludedProcedures    Set of procedure patterns to exclude
+     * @param excludedBenefits      Set of benefit types to exclude
+     * @param excludedAccidentTypes Set of accident types to exclude
+     * @return New ExclusionCriteria with non-null sets
      */
     @JsonCreator
     public static ExclusionCriteria create(

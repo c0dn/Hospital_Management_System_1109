@@ -62,19 +62,9 @@ public class Consultation implements JSONSerializable {
      */
     @JsonProperty("procedure_codes")
     private List<ProcedureCode> procedureCodes;
-
-    /**
-     * The list of medications prescribed during the consultation with their quantities
-     */
     @JsonSerialize(using = PrescriptionMapSerializer.class)
-
-    /** Custom JSON deserialization configuration */
     @JsonDeserialize(using = PrescriptionMapDeserializer.class)
-
-    /** JSON property name for prescriptions */
     @JsonProperty("prescriptions")
-
-    /** Medication: Quantity mappings from consultation */
     private Map<Medication, Integer> prescriptions;
 
     /**
@@ -146,12 +136,12 @@ public class Consultation implements JSONSerializable {
     /**
      * Creates a consultation with random data for testing purposes.
      * <p>
-     * This method generates a {@link Consultation} instance with random values for various fields, including
+     * This method generates a instance with random values for various fields, including
      * consultation ID, type, doctor ID, consultation time, diagnostic codes, procedure codes, prescriptions, notes,
      * visit reason, diagnosis, instructions, and medical history.
      * </p>
      *
-     * @return A randomly populated {@link Consultation} instance.
+     * @return A randomly populated instance.
      */
     public static Consultation withRandomData() {
         Consultation consultation = new Consultation();

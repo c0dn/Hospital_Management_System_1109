@@ -62,8 +62,7 @@ public class DiagnosticCode implements BillableItem, ClaimableItem, JSONSerializ
     }
 
     /**
-     * Private constructor to initialize a {@link DiagnosticCode}.
-     *
+     * Private constructor to initialize a DiagnosticCode.
      * @param categoryCode          Category code of the diagnosis.
      * @param diagnosisCode         The diagnosis code.
      * @param fullCode              The full code (ICD-10 CM code).
@@ -117,11 +116,11 @@ public class DiagnosticCode implements BillableItem, ClaimableItem, JSONSerializ
     }
 
     /**
-     * Creates a {@link DiagnosticCode} from the given code.
+     * Creates a DiagnosticCode from the given code.
      * If the code does not exist, an exception will be thrown.
      *
      * @param code The diagnostic code to create from.
-     * @return The corresponding {@link DiagnosticCode} object.
+     * @return The corresponding DiagnosticCode object.
      * @throws IllegalArgumentException if the code is invalid.
      */
     public static DiagnosticCode createFromCode(String code) {
@@ -140,8 +139,15 @@ public class DiagnosticCode implements BillableItem, ClaimableItem, JSONSerializ
     }
 
     /**
-     * Creates a {@link DiagnosticCode} from the given code and sets its cost.
-     * This is used for deserialization.
+     * Creates a DiagnosticCode from the given code and cost
+     * <p>
+     * This factory method is primarily used for JSON deserialization and constructs
+     * a DiagnosticCode with both the code identifier and associated treatment cost.
+     * The created instance will have all properties set according to the code registry.
+     *
+     * @param code The diagnostic code identifier
+     * @param cost The treatment cost associated with this diagnostic code
+     * @return A fully configured DiagnosticCode instance with the specified cost
      */
     @JsonCreator
     public static DiagnosticCode createFromCodeAndCost(
@@ -338,9 +344,10 @@ public class DiagnosticCode implements BillableItem, ClaimableItem, JSONSerializ
      * Gets a random diagnostic code that matches the specified benefit type
      * 
      * @param benefitType The benefit type to match
+     * @param isInPatient Flag indicating whether the care is inpatient/outpatient
      * @return A randomly selected DiagnosticCode that matches the specified benefit type
-     * @throws IllegalArgumentException if no diagnostic codes match the specified benefit type
      */
+
     public static DiagnosticCode getRandomCodeForBenefitType(BenefitType benefitType, boolean isInPatient) {
         // Create a list to store matching codes
         List<String> matchingCodes = new java.util.ArrayList<>();

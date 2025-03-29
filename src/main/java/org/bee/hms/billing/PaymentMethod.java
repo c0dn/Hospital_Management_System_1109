@@ -10,10 +10,20 @@ import org.bee.utils.JSONSerializable;
  */
 @JsonFormat(shape = JsonFormat.Shape.STRING)
 public enum PaymentMethod implements JSONSerializable {
+
+    /** Payment made with cash  */
     CASH,
+
+    /** Payment made using a credit card */
     CREDIT_CARD,
+
+    /** Payment made through PayNow */
     PAYNOW,
+
+    /** Payment covered by an insurance policy */
     INSURANCE,
+
+    /** Payment method is not applicable  */
     NOT_APPLICABLE;
 
     /**

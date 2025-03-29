@@ -20,16 +20,6 @@ import java.util.Optional;
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
     property = "type")
-
-/**
- * Defines supported concrete implementations for JSON polymorphism
- *
- * <p>Recognized subtypes:
- * <ul>
- *   <li>"government" → {@link GovernmentProvider}</li>
- *   <li>"private" → {@link PrivateProvider}</li>
- * </ul>
- */
 @JsonSubTypes({
     @JsonSubTypes.Type(value = GovernmentProvider.class, name = "government"),
     @JsonSubTypes.Type(value = PrivateProvider.class, name = "private")

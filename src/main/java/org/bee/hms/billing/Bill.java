@@ -168,7 +168,8 @@ public class Bill implements JSONSerializable {
         if (this.status == BillingStatus.DRAFT) {
             this.status = BillingStatus.SUBMITTED;
         } else {
-            throw new IllegalStateException("Bill cannot be submitted. Current status is '" + this.status.getDisplayName() + "', required status is '" + BillingStatus.DRAFT.getDisplayName() + "'.");
+            throw new IllegalStateException("Bill cannot be submitted. Current status is '" + this.status.getDisplayName() +
+                    "', required status is '" + BillingStatus.DRAFT.getDisplayName() + "'.");
         }
     }
 
@@ -176,7 +177,11 @@ public class Bill implements JSONSerializable {
      * Calculates the insurance coverage based on the associated insurance policy.
      * Updates the {@code insuranceCoverage} and {@code patientResponsibility} values.
      * The billing status is also updated to {@code BillingStatus.INSURANCE_PENDING} if insurance is active.
+     * @return {@link InsuranceCoverageResult} containing either:
+     *      - An approved insurance claim with coverage details
+     *      - A denial reason if coverage cannot be provided
      */
+
     public InsuranceCoverageResult calculateInsuranceCoverage() {
         if (insurancePolicy == null) {
             return InsuranceCoverageResult.denied("No insurance policy associated with this bill");
@@ -310,10 +315,19 @@ public class Bill implements JSONSerializable {
         return getTotalAmount().subtract(getDiscountAmount());
     }
 
+    /**
+     * Gets the payment method used for this transaction
+     * @return the payment method
+     */
     public PaymentMethod getPaymentMethod() {
         return paymentMethod;
     }
 
+    /**
+     * Gets the amount that has been settled
+     * Returns {@link BigDecimal#ZERO} if no amount has been settled yet
+     * @return the settled amount
+     */
     public BigDecimal getSettledAmount() {
         return settledAmount == null ? BigDecimal.ZERO : settledAmount;
     }

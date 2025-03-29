@@ -74,7 +74,6 @@ public class VisitController extends BaseController<Visit> {
     /**
      * Generates initial visit data for tye healthcare management system
      * Creates visits for all patients
-     *
      * Requires existing patients and doctors to generate visits
      * Displays warnings if no patients or doctors are available
      */

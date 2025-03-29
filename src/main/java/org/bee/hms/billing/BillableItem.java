@@ -13,17 +13,11 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 /**
  * Interface representing a billable item in the hospital management system.
- * <p>
  * This interface defines the common structure for various types of billable items
  * such as medications, procedures, diagnostics, and ward stays. It provides methods
  * for retrieving essential billing information and supports JSON serialization with
  * type information for proper deserialization of concrete implementations.
  *
- * @see JSONSerializable
- * @see MedicationBillableItem
- * @see ProcedureCode
- * @see DiagnosticCode
- * @see WardStay
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
@@ -35,9 +29,29 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
     @JsonSubTypes.Type(value = DiagnosticCode.class, name = "diagnostic"),
     @JsonSubTypes.Type(value = WardStay.class, name = "wardStay")
 })
+
 public interface BillableItem extends JSONSerializable {
+    /**
+     * Gets the full unsubsidised charges before any insurance or discounts
+     * @return the base price as BigDecimal
+     */
     BigDecimal getUnsubsidisedCharges();
+
+    /**
+     * Gets the bill description
+     * @return a descriptive name for display purposes
+     */
     String getBillItemDescription();
+
+    /**
+     * Gets the category classification for this bill (e.g., "MEDICATION", "PROCEDURE")
+     * @return the category string
+     */
     String getBillItemCategory();
+
+    /**
+     * Gets the unique billing code that identifies this item in the system
+     * @return the standardized billing code
+     */
     String getBillingItemCode();
 }

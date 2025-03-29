@@ -53,7 +53,24 @@ public class HeldInsurancePolicy extends BaseInsurancePolicy implements Insuranc
 
 
     /**
-     * JSON Creator method for deserializing HeldInsurancePolicy
+     * Creates a HeldInsurancePolicy instance from JSON deserialization
+     * <p>
+     * This factory method constructs a policy using the builder pattern and handles:
+     * <ul>
+     * <li>Optional expiration and cancellation dates </li>
+     * <li>Default status (ACTIVE) if status is null</li>
+     * <li>All required policy fields</li>
+     * </ul>
+     *
+     * @param policyNumber The unique policy identifier
+     * @param policyHolder The patient who holds this policy
+     * @param coverage The coverage details of the policy
+     * @param provider The insurance provider
+     * @param name The display name of the policy
+     * @param expirationDate When the policy expires (optional)
+     * @param cancellationDate When the policy was cancelled (optional)
+     * @param status The current status of the policy (defaults to ACTIVE if null)
+     * @return A fully constructed HeldInsurancePolicy
      */
     @JsonCreator
     public static HeldInsurancePolicy create(

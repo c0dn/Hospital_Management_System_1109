@@ -191,7 +191,7 @@ public class Visit implements JSONSerializable {
      * diagnostic codes, and medical staff.
      * </p>
      *
-     * @return A randomly populated {@link Visit} instance
+     * @return A randomly populated Visit instance
      * @see #withRandomData(Patient) to create a random visit for a specific patient
      */
     public static Visit withRandomData() {
@@ -215,7 +215,7 @@ public class Visit implements JSONSerializable {
      * </p>
      *
      * @param patient The patient for whom the visit is created (must not be null)
-     * @return A randomly populated {@link Visit} instance for the specified patient
+     * @return A randomly populated Visit instance for the specified patient
      * @throws NullPointerException if the patient is null
      * @see #withRandomData() to create a random visit with a random patient
      */
@@ -408,7 +408,7 @@ public class Visit implements JSONSerializable {
      * @param items The list of {@link BillableItem} objects to evaluate
      * @param totalCharges The current sum of all item charges
      * @param minTarget The minimum allowable charge amount after item removal
-     * @return
+     * @return Index of the removable item with highest cost, or -1 if no item can be removed
      */
     private static int getMostExpensiveIndex(List<BillableItem> items, BigDecimal totalCharges, BigDecimal minTarget) {
         BillableItem mostExpensive = null;
@@ -434,7 +434,6 @@ public class Visit implements JSONSerializable {
      *
      * @param medication The medication to prescribe
      * @param quantity   The quantity to prescribe
-     * @throws IllegalStateException if the visit is not in an active state
      */
     public void prescribeMedicine(Medication medication, int quantity) {
         if (status != VisitStatus.ADMITTED && status != VisitStatus.IN_PROGRESS) {
@@ -749,6 +748,8 @@ public class Visit implements JSONSerializable {
     /**
      * Returns all related charges as separate BillableItems
      * This includes diagnostics, procedures, medications with their quantities, and ward stays
+     * @return List of all billable items associated with this treatment,
+     *  *         or empty list if no items exist
      */
     public List<BillableItem> getRelatedBillableItems() {
         List<BillableItem> items = new ArrayList<>();

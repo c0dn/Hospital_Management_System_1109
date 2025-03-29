@@ -18,10 +18,10 @@ public class ZoomApiException extends Exception {
     }
 
     /**
-     * Construct a new ZoomApiException with the specific detail message and cause.
+     * Constructs a new Zoom API exception with the specified detail message and cause.
      *
+     * @param message the detail message (
      * @param cause the cause
-     * A null value is permitted, and indicate that the cause is nonexistent/unknown
      */
     public ZoomApiException(String message, Throwable cause) {
         super(message, cause);

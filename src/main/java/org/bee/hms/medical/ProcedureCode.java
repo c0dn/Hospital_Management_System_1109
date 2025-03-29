@@ -45,7 +45,7 @@ public class ProcedureCode implements BillableItem, ClaimableItem, JSONSerializa
 
     /**
      * Maintains all loaded procedure codes mapped by their code strings
-     *
+
      * The map is populated during class initialization from the CSV data source
      */
     private static final Map<String, ProcedureCode> CODE_REGISTRY = new HashMap<>();
@@ -58,11 +58,6 @@ public class ProcedureCode implements BillableItem, ClaimableItem, JSONSerializa
      */
     private static final BigDecimal DEFAULT_PRICE = new BigDecimal("1000.00");
 
-    /**
-     * Static initialization block that loads procedure codes from CSV file.
-     * Executed once when the class is first loaded into memory.
-     * Reads and parses the procedure code data file
-     */
     static {
         loadCodesFromCsv();
     }
@@ -101,8 +96,7 @@ public class ProcedureCode implements BillableItem, ClaimableItem, JSONSerializa
      * Creates a ProcedureCode from the provided procedure code string.
      *
      * @param code The procedure code to retrieve from the registry.
-     * @return A {@link ProcedureCode} corresponding to the provided code.
-     * @throws IllegalArgumentException If the procedure code is invalid.
+     * @return A ProcedureCode corresponding to the provided code.
      */
     public static ProcedureCode createFromCode(String code) {
         ProcedureCode procedureCode = CODE_REGISTRY.get(code);
@@ -117,8 +111,13 @@ public class ProcedureCode implements BillableItem, ClaimableItem, JSONSerializa
 
 
     /**
-     * Creates a {@link ProcedureCode} from the given code and sets its cost.
-     * This is used for deserialization.
+     * Creates a ProcedureCode from the given code and cost
+     * This factory method is used for JSON deserialization, creating a ProcedureCode
+     * instance with both the procedure code and associated cost
+     *
+     * @param code The procedure code identifier
+     * @param cost The cost associated with this procedure
+     * @return A ProcedureCode instance with the specified cost
      */
     @JsonCreator
     public static ProcedureCode createFromCodeAndCost(
@@ -353,13 +352,14 @@ public class ProcedureCode implements BillableItem, ClaimableItem, JSONSerializa
         Set<String> codes = CODE_REGISTRY.keySet();
         return createFromCode(DataGenerator.getRandomElement(codes));
     }
-    
+
     /**
-     * Gets a random procedure code that matches the specified benefit type
-     * 
+     * Gets a random procedure code that matches the specified benefit type and care setting
+     *
      * @param benefitType The benefit type to match
-     * @return A randomly selected ProcedureCode that matches the specified benefit type
-     * @throws IllegalArgumentException if no procedure codes match the specified benefit type
+     * @param isInPatient Whether the procedure is for inpatient/outpatient
+     * @return A randomly selected ProcedureCode
+
      */
     public static ProcedureCode getRandomCodeForBenefitType(BenefitType benefitType, boolean isInPatient) {
         List<String> matchingCodes = new java.util.ArrayList<>();

@@ -19,7 +19,7 @@ public class BaseInsurancePolicy {
     protected final InsuranceProvider provider;
 
     /**
-     * Constructs a new {@link BaseInsurancePolicy} with the specified coverage and provider.
+     * Constructs a new BaseInsurancePolicy with the specified coverage and provider.
      * <p>
      * The coverage must not be {@code null}. If the coverage is {@code null}, an {@link IllegalArgumentException}
      * will be thrown. The provider can be {@code null}, but it's generally preferred to provide a valid provider.

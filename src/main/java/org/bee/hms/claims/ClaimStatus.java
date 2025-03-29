@@ -23,6 +23,9 @@ import org.bee.utils.JSONSerializable;
 @JsonFormat(shape = JsonFormat.Shape.STRING)
 public enum ClaimStatus implements JSONSerializable {
 
+    /**
+     * Claim is in draft state, meaning it's not yet submitted
+     */
     DRAFT("Claim is draft"),
 
     /**
