@@ -19,14 +19,25 @@ import java.util.List;
  */
 public class OutpatientUpdatePage extends UiBase {
 
+    /** Controller for managing consultation operations */
     private static final ConsultationController consultationController = ConsultationController.getInstance();
+
+    /** Number of items displayed per page in lists */
     private static final int ITEMS_PER_PAGE = 7;
 
+    /**
+     * Creates the outpatient case update view.
+     * @return View for updating outpatient case details
+     */
     @Override
     public View createView() {
         return updateOutpatientCase();
     }
 
+    /**
+     * Triggers UI refresh after view creation.
+     * @param parentView The parent view container
+     */
     @Override
     public void OnViewCreated(View parentView) {
         canvas.setRequireRedraw(true);

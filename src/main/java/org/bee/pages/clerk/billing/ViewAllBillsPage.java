@@ -23,11 +23,19 @@ import java.util.stream.Collectors;
  */
 public class ViewAllBillsPage extends UiBase {
 
+    /** Controller for bill operations */
     private static final BillController billController = BillController.getInstance();
+
+    /** Formats bill dates (yyyy-MM-dd HH:mm) */
     private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+    /** Number of bills per page in lists, set to 7*/
     private static final int ITEMS_PER_PAGE = 7;
 
+    /** Current bill filter  */
     private FilterOption currentFilter = FilterOption.ALL;
+
+    /** Current bill sort order */
     private SortOption currentSort = SortOption.DATE_DESC;
 
     /**
@@ -71,11 +79,19 @@ public class ViewAllBillsPage extends UiBase {
         }
     }
 
+    /**
+     * Creates the bill selection view.
+     * @return View showing selectable list of bills
+     */
     @Override
     public View createView() {
         return selectBillToView();
     }
 
+    /**
+     * Triggers UI refresh after view creation.
+     * @param parentView The parent view container
+     */
     @Override
     public void OnViewCreated(View parentView) {
         canvas.setRequireRedraw(true);
@@ -298,6 +314,13 @@ public class ViewAllBillsPage extends UiBase {
         canvas.setCurrentView(refreshedView);
     }
 
+    /**
+     * Formats a monetary amount as currency
+     * Handles null values by returning "$0.00"
+     *
+     * @param amount The amount to format
+     * @return Formatted currency string with 2 decimal places
+     */
     private String formatCurrency(BigDecimal amount) {
         if (amount == null) {
             return "$0.00";

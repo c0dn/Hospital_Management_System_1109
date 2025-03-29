@@ -23,16 +23,32 @@ import java.util.function.BiFunction;
  */
 public class TelemedicineAppointmentPage extends UiBase {
 
+    /** Controller for managing patient/doctor data */
     private static final HumanController humanController = HumanController.getInstance();
+
+    /** Controller for appointment operations */
     private static final AppointmentController appointmentController = AppointmentController.getInstance();
+
+    /** Formats appointment dates (yyyy-MM-dd HH:mm) */
     private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+    /** Number of appointments displayed per page, set to 7 */
     private static final int ITEMS_PER_PAGE = 7;
 
+    /**
+     * Creates the appointment list view.
+     * @return Paginated view of all appointments
+     */
     @Override
     public View createView() {
         return viewAllAppointments();
     }
 
+    /**
+     * Handles post-creation view initialization.
+     * Forces immediate UI refresh for proper rendering.
+     * @param parentView The parent view container
+     */
     @Override
     public void OnViewCreated(View parentView) {
         canvas.setRequireRedraw(true);

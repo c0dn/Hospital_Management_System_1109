@@ -22,9 +22,16 @@ import java.util.function.Consumer;
  * Provides different actions based on the current bill status.
  */
 public class BillDetailsPage extends UiBase {
+    /** Bill being displayed and managed */
     private final Bill bill;
+
+    /** Adapter for customizing bill details display */
     private final IObjectDetailsAdapter<Bill> adapter;
+
+    /** Callback to execute when bill changes */
     private final Runnable onChangeCallback;
+
+    /** Controller for bill operations */
     private final static BillController billController = BillController.getInstance();
 
     /**
@@ -40,6 +47,10 @@ public class BillDetailsPage extends UiBase {
         this.onChangeCallback = onChangeCallback;
     }
 
+    /**
+     * Creates the bill details view
+     * @return CompositeView containing bill details and action menu, or error view if no bill is selected
+     */
     @Override
     public View createView() {
         if (Objects.isNull(bill)) {
@@ -67,6 +78,10 @@ public class BillDetailsPage extends UiBase {
         return compositeView;
     }
 
+    /**
+     * Triggers UI refresh after view creation.
+     * @param parentView The parent view container
+     */
     @Override
     public void OnViewCreated(View parentView) {
         canvas.setRequireRedraw(true);

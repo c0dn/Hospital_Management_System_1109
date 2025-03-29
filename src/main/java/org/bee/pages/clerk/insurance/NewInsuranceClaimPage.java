@@ -32,16 +32,31 @@ import java.util.stream.Collectors;
  */
 public class NewInsuranceClaimPage extends UiBase {
 
+    /** Manages bill operations and data */
     private static final BillController billController = BillController.getInstance();
+
+    /** Handles insurance claim processing */
     private static final ClaimController claimController = ClaimController.getInstance();
+
+    /** Number of items per page in lists,set to 7 */
     private static final int ITEMS_PER_PAGE = 7;
+
+    /** Formats dates as yyyy-MM-dd HH:mm */
     private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
+    /**
+     * Creates the bill selection view for claim processing.
+     * @return View showing bills available for claiming
+     */
     @Override
     public View createView() {
         return selectBillForClaim();
     }
 
+    /**
+     * Refreshes the UI after view creation.
+     * @param parentView The parent view container
+     */
     @Override
     public void OnViewCreated(View parentView) {
         canvas.setRequireRedraw(true);
