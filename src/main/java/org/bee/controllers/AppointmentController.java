@@ -141,7 +141,7 @@ public class AppointmentController extends BaseController<Appointment> {
      */
     public List<Appointment> getAppointmentsForPatient(Patient patient) {
         return items.stream()
-                .filter(appointment -> appointment.getPatient().equals(patient))
+                .filter(appointment -> appointment.getPatient().getPatientId().equals(patient.getPatientId()))
                 .collect(Collectors.toList());
     }
 
