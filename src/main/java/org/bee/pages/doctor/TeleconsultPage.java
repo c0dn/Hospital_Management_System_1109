@@ -17,13 +17,28 @@ import java.util.Scanner;
  * Allows doctors to add notes, medical certificates, and complete the consultation.
  */
 public class TeleconsultPage extends UiBase {
+    /**
+     * Current appointment being processed
+     */
     private static Appointment appointment;
+
+    /**
+     * View component displaying appointment details
+     */
     private ObjectDetailsView detailsView;
 
+    /**
+     * Sets the current appointment for teleconsultation
+     * @param appointment The appointment to process
+     */
     public static void setAppointment(Appointment appointment) {
         TeleconsultPage.appointment = appointment;
     }
 
+    /**
+     * Creates the teleconsultation session view
+     * @return CompositeView containing appointment details or error message if no appointment
+     */
     @Override
     protected View createView() {
         if (appointment == null) {
@@ -31,14 +46,16 @@ public class TeleconsultPage extends UiBase {
         }
 
         CompositeView compositeView = new CompositeView(canvas, "Teleconsultation Session", Color.CYAN);
-
         detailsView = new ObjectDetailsView(canvas, "", appointment, Color.CYAN);
         configureDetailsView();
-
         compositeView.addView(detailsView);
         return compositeView;
     }
 
+    /**
+     * Configures the teleconsultation interface after view creation
+     * @param parentView The parent container view
+     */
     @Override
     public void OnViewCreated(View parentView) {
         if (appointment == null) {
@@ -49,6 +66,7 @@ public class TeleconsultPage extends UiBase {
 
         CompositeView compositeView = (CompositeView) parentView;
 
+        // Configure available actions
         compositeView.attachUserInput("Update Doctor Notes", input -> updateDoctorNotes());
         compositeView.attachUserInput("Add Medical Certificate", input -> addMedicalCertificate());
 
@@ -60,7 +78,6 @@ public class TeleconsultPage extends UiBase {
 
         canvas.setRequireRedraw(true);
     }
-
     /**
      * Configure the details view with appointment information
      */

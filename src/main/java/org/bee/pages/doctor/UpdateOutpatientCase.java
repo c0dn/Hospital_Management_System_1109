@@ -20,9 +20,13 @@ import java.util.List;
  */
 public class UpdateOutpatientCase extends UiBase {
 
+    /** Controller instance for managing consultation operations */
     private static final ConsultationController consultationController = ConsultationController.getInstance();
+
+    /** Number of items to display per page in paginated views,set to 7 */
     private static final int ITEMS_PER_PAGE = 7;
 
+    /** Currently selected consultation  */
     private Consultation selectedConsultation;
 
     /**
@@ -33,12 +37,17 @@ public class UpdateOutpatientCase extends UiBase {
     }
 
     /**
-     * Constructor with pre-selected consultation
+     * Creates an UpdateOutpatientCase with a specific consultation pre-selected
+     * @param consultation The consultation to update
      */
     public UpdateOutpatientCase(Consultation consultation) {
         this.selectedConsultation = consultation;
     }
 
+    /**
+     * Creates the appropriate update view based on current state.
+     * @return The created View for either form or selection interface
+     */
     @Override
     public View createView() {
         if (selectedConsultation != null) {
@@ -47,6 +56,10 @@ public class UpdateOutpatientCase extends UiBase {
         return selectConsultationToUpdate();
     }
 
+    /**
+     * Handles post-view creation initialization
+     * @param parentView The parent view container
+     */
     @Override
     public void OnViewCreated(View parentView) {
         canvas.setRequireRedraw(true);

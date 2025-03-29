@@ -16,21 +16,46 @@ import org.bee.utils.formAdapters.ClaimFormAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Page for updating and modifying insurance claims
+ * <p>
+ * Provides functionality to:
+ * <ul>
+ * <li>Browse and select claims for modification</li>
+ * <li>Open claim update forms</li>
+ * <li>Handle claim selection errors</li>
+ * </ul>
+ */
 public class UpdateClaimPage extends UiBase {
 
+    /** Controller for claim operations */
     private static final ClaimController claimController = ClaimController.getInstance();
+
+    /** Number of claims to display per page, set to 7 */
     private static final int ITEMS_PER_PAGE = 7;
 
+    /**
+     * Creates the initial claim selection view
+     * @return View containing paginated list of claims
+     */
     @Override
     protected View createView() {
         return updateClaim();
     }
 
+    /**
+     * Handles view creation event by marking canvas for redraw
+     * @param parentView The parent view container
+     */
     @Override
     public void OnViewCreated(View parentView) {
         canvas.setRequireRedraw(true);
     }
 
+    /**
+     * Creates the claim selection interface with paginated results
+     * @return View displaying claims or message if none found
+     */
     private View updateClaim() {
         List<InsuranceClaim> claims = claimController.getAllClaims();
 
@@ -75,6 +100,10 @@ public class UpdateClaimPage extends UiBase {
         return paginatedMenuView;
     }
 
+    /**
+     * Opens the claim update form for the selected claim
+     * @param claim The claim to be updated
+     */
     private void openUpdateForm(InsuranceClaim claim) {
         try {
             ClaimFormAdapter adapter = new ClaimFormAdapter();

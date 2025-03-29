@@ -159,15 +159,21 @@ public class PatientInfoPage extends UiBase {
     }
 
     /**
-     * Displays detailed information for the selected patient
+     * Displays detailed patient information
+     * Uses the current view as the fallback return point
+     *
+     * @param patient The patient to display
      */
     public void displaySelectedPatient(Patient patient) {
         displaySelectedPatient(patient, canvas.getCurrentView());
     }
 
     /**
-     * Displays detailed information for the selected patient
-     * with support for returning to the previous view
+     * Displays detailed patient information with custom return navigation
+     *
+     * @param patient The patient to display
+     * @param previousView The view to return to when exiting patient details
+     *
      */
     public void displaySelectedPatient(Patient patient, View previousView) {
         View patientView = createPatientCompositeView(patient);

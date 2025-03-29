@@ -27,18 +27,35 @@ import java.util.Objects;
  */
 public class ViewAppointmentPage extends UiBase {
 
+    /** Controller for managing human-related data (patients, doctors) */
     private static final HumanController humanController = HumanController.getInstance();
+
+    /** Controller for appointment management operations */
     private static final AppointmentController appointmentController = AppointmentController.getInstance();
+
+    /** Formatter for displaying appointment times (format: yyyy-MM-dd HH:mm) */
     private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+    /** Number of appointments to display per page, set to 7*/
     private static final int ITEMS_PER_PAGE = 7;
+
+    /** Reference to the current appointment list view */
     private View appointmentListView;
 
+    /**
+     * Creates and returns the appointment list view
+     * @return Configured View showing paginated appointments
+     */
     @Override
     public View createView() {
         appointmentListView = createAppointmentListView();
         return appointmentListView;
     }
 
+    /**
+     * Handles post-creation view initialization
+     * @param parentView The parent view container
+     */
     @Override
     public void OnViewCreated(View parentView) {
         canvas.setRequireRedraw(true);
@@ -253,7 +270,8 @@ public class ViewAppointmentPage extends UiBase {
     }
 
     /**
-     * Start the consultation
+     * Initiates a teleconsultation session for the specified appointment
+     * @param appointment The appointment to consult
      */
     private void startConsultation(Appointment appointment) {
         try {
@@ -272,15 +290,17 @@ public class ViewAppointmentPage extends UiBase {
     }
 
     /**
-     * Displays the selected appointment
+     * Displays an appointment's details using the current view
+     * @param appointment Appointment to display
      */
     public void displaySelectedAppointment(Appointment appointment) {
         displaySelectedAppointment(appointment, canvas.getCurrentView());
     }
 
     /**
-     * Displays detailed information for the selected appointment
-     * with support for returning to the previous view
+     * Shows appointment details with navigation support
+     * @param appointment Appointment to display
+     * @param previousView View to return to
      */
     public void displaySelectedAppointment(Appointment appointment, View previousView) {
         View appointmentView = createAppointmentDetailsView(appointment);

@@ -16,18 +16,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Page for viewing outpatient cases for doctors.
+ * Displays and manages outpatient consultation information for doctors
+ * <p>
+ * This page operates in two modes:
+ * <ul>
+ * <li><b>List View</b>: Shows paginated list of all outpatient cases </li>
+ * <li><b>Detail View</b>: Displays complete case details when a consultation is selected</li>
+ * </ul>
+ * <p>Key features:
+ * <ul>
+ * <li>Displays consultations with patient info, timing and diagnosis</li>
+ * <li>Provides case update functionality for doctors</li>
+ * <li>Supports paginated browsing (7 items per page)</li>
+ * <li>Handles consultation selection and display</li>
+ * </ul>
  */
 public class ConsultationInfoPage extends UiBase {
 
+    /** Controller for human-related operations (e.g., doctor/patient data) */
     private static final HumanController humanController = HumanController.getInstance();
+
+    /** Controller for consultation  operations */
     private static final ConsultationController consultationController = ConsultationController.getInstance();
+
+    /** Display consultation timestamps (format: yyyy-MM-dd HH:mm) */
     private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+    /** Number of consultations to display per page in list view, set to 7*/
     private static final int ITEMS_PER_PAGE = 7;
 
+    /** Currently selected consultation  */
     private final Consultation selectedConsultation;
-    private View consultationListView;
 
+    /** Reference to the current view being displayed */
+    private View consultationListView;
     /**
      * Default constructor - shows list of outpatient cases
      */
@@ -36,12 +58,17 @@ public class ConsultationInfoPage extends UiBase {
     }
 
     /**
-     * Constructor with pre-selected consultation
+     * Creates a ConsultationInfoPage with a specific consultation pre-selected for detail view.
+     * @param consultation The consultation to display in detail view
      */
     public ConsultationInfoPage(Consultation consultation) {
         this.selectedConsultation = consultation;
     }
 
+    /**
+     * Creates the appropriate consultation view
+     * @return The constructed View object for display
+     */
     @Override
     public View createView() {
         if (selectedConsultation != null) {
@@ -49,10 +76,16 @@ public class ConsultationInfoPage extends UiBase {
         } else {
             consultationListView = createConsultationListView();
         }
-
         return consultationListView;
     }
 
+    /**
+     * Handles post-view creation initialization
+     * <p>
+     * Marks the canvas for redraw to ensure proper rendering
+     *
+     * @param parentView The parent view container
+     */
     @Override
     public void OnViewCreated(View parentView) {
         canvas.setRequireRedraw(true);
@@ -172,7 +205,9 @@ public class ConsultationInfoPage extends UiBase {
     }
 
     /**
-     * Displays the selected consultation
+     * Displays the detailed view for a selected consultation
+     *
+     * @param consultation The consultation to display, cannot be null
      */
     public void displaySelectedConsultation(Consultation consultation) {
         View consultationView = createConsultationDetailsView(consultation);
@@ -180,7 +215,9 @@ public class ConsultationInfoPage extends UiBase {
         canvas.setRequireRedraw(true);
     }
 
-
+    /**
+     * Handles back button press events
+    */
     @Override
     public void OnBackPressed() {
         super.OnBackPressed();

@@ -8,6 +8,16 @@ import org.bee.utils.JSONSerializable;
 import org.bee.utils.jackson.WardDeserializer;
 import org.bee.utils.jackson.WardSerializer;
 
+/**
+ * Represents a hospital ward with custom JSON serialization capabilities
+ * <p>
+ * Implementations of this interface will be:
+ * <ul>
+ * <li>Serialized using {@link WardSerializer}</li>
+ * <li>Deserialized using {@link WardDeserializer}</li>
+ * </ul>
+ *
+ */
 @JsonSerialize(using = WardSerializer.class)
 @JsonDeserialize(using = WardDeserializer.class)
 public interface Ward extends JSONSerializable {
