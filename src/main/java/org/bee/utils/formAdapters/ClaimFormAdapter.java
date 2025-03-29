@@ -63,7 +63,7 @@ public class ClaimFormAdapter implements IObjectFormAdapter<InsuranceClaim> {
 
     @Override
     public String getObjectTypeName() {
-        return "Insurance Claim";
+        return "InsuranceClaim";
     }
 
     @Override

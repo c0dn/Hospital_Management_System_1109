@@ -63,14 +63,14 @@ public class UpdateClaimPage extends UiBase {
             return new TextView(canvas, "No claims found to update.", Color.YELLOW);
         }
 
-        List<AbstractPaginatedView.MenuOption> menuOptions = new ArrayList<>();
+        List<PaginatedMenuView.MenuOption> menuOptions = new ArrayList<>();
 
         for (InsuranceClaim i : claims) {
             String claimId = i.getClaimId();
             String patientName = i.getPatient() != null ? i.getPatient().getName() : "Unknown Patient";
 
             String optionText = String.format("%s - %s", claimId, patientName);
-            menuOptions.add(new AbstractPaginatedView.MenuOption(claimId, optionText, i));
+            menuOptions.add(new PaginatedMenuView.MenuOption(claimId, optionText, i));
         }
 
         PaginatedMenuView paginatedMenuView = new PaginatedMenuView(

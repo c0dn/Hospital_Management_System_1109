@@ -1,7 +1,5 @@
 package org.bee.ui.forms;
 
-import org.bee.ui.TextStyle;
-import org.bee.ui.UiBase;
 import org.bee.utils.ReflectionHelper;
 
 import java.lang.reflect.Field;
@@ -70,8 +68,6 @@ public interface IObjectFormAdapter<T> {
             System.err.println("Error setting field " + fieldName + ": " + e.getMessage());
         }
     }
-
-
     default boolean genericSaveObject(T object, Class<?> controllerClass, String controllerMethodName) {
         try {
             Method getInstanceMethod = controllerClass.getMethod("getInstance");
@@ -126,7 +122,7 @@ public interface IObjectFormAdapter<T> {
      * Helper method to find the ID field name based on common patterns
      */
     default String findIdFieldName(Class<?> clazz) {
-        String[] commonIdFields = {"id", "patientId", "consultationId", "staffId", "appointmentId"};
+        String[] commonIdFields = {"id", "patientId", "consultationId", "staffId", "appointmentId", "claimId"};
 
         for (String fieldName : commonIdFields) {
             if (hasField(clazz, fieldName) || hasGetter(clazz, fieldName)) {
