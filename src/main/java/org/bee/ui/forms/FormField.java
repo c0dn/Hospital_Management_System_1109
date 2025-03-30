@@ -59,7 +59,7 @@ public class FormField<T> {
     }
 
     /**
-     * Gets the field's identifier name.
+     * Get the field's identifier name.
      * This name is used for data binding when submitting form data.
      *
      * @return The field's identifier name
@@ -80,7 +80,6 @@ public class FormField<T> {
 
     /**
      * Gets the display name for the field.
-     * This is the human-readable label shown in the form UI.
      *
      * @return The display name
      */

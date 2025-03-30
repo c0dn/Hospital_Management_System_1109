@@ -17,6 +17,10 @@ import java.util.*;
  * and maintains the main application loop that drives the UI interactions.
  */
 public class Canvas {
+    /**
+     * Functional interface for handling page navigation events.
+     * Implementations define how to navigate to a new page in the application.
+     */
 
     @FunctionalInterface
     public interface IPageNavigationCallback {
