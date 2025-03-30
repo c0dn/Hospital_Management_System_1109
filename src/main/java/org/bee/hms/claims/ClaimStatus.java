@@ -101,6 +101,11 @@ public enum ClaimStatus implements JSONSerializable {
         return description;
     }
 
+    /**
+     * Returns the display name of this billing status.
+     *
+     * @return the display name of this billing status
+     */
     public String getDisplayName() {
         return displayName;
     }

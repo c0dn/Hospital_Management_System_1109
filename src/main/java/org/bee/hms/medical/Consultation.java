@@ -747,10 +747,20 @@ public class Consultation implements JSONSerializable {
         this.doctor = doctor;
     }
 
+    /**
+     * Returns the list of treatments associated with this medical claim.
+     *
+     * @return a mutable {@code ArrayList} of treatments associated with this claim
+     */
     public ArrayList<Treatment> getTreatments() {
         return treatments;
     }
 
+    /**
+     * Returns the list of lab tests associated with this medical claim.
+     *
+     * @return a mutable {@code ArrayList} of lab tests associated with this claim
+     */
     public ArrayList<LabTest> getLabTests() {
         return labTests;
     }

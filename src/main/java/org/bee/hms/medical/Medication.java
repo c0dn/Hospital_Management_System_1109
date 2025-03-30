@@ -237,6 +237,12 @@ public class Medication implements JSONSerializable {
         return drugCode;
     }
 
+    /**
+     * Creates a parser function that converts drug codes to {@code Medication} instances.
+     *
+     * @return a function that parses drug codes into {@code Medication} instances
+     */
+
     public static Function<String, Medication> createMedicationParser() {
         return input -> {
             try {

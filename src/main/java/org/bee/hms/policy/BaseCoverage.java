@@ -115,6 +115,10 @@ public class BaseCoverage implements Coverage {
      * calling {@link #build()} to create the {@link BaseCoverage} object.
      */
     public static class Builder {
+
+        /**
+         * Constructs a new Builder instance
+         */
         public Builder() {}
 
         /**

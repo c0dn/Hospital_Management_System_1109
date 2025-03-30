@@ -140,6 +140,16 @@ public enum BillingStatus implements JSONSerializable {
         return this == INSURANCE_PENDING || this == INSURANCE_APPROVED || this == INSURANCE_REJECTED;
     }
 
+    /**
+     * Creates a {@code BillingStatus} from a string value. The string can be either:
+     * <ul>
+     *   <li>The exact enum name</li>
+     *   <li>A value matching the display name</li>
+     * </ul>
+     *
+     * @param value the string value to convert to a {@code BillingStatus}
+     * @return the corresponding {@code BillingStatus}
+     * */
     @JsonCreator
     public static BillingStatus fromString(String value) {
         try {

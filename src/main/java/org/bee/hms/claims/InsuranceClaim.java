@@ -482,7 +482,11 @@ public class InsuranceClaim implements JSONSerializable {
         return submissionDate;
     }
 
-
+    /**
+     * Submits the claim for processing if it's in DRAFT status.
+     *
+     * Changes the claim status to SUBMITTED if successful.
+     */
     public void submitForProcessing() {
         if (this.claimStatus == ClaimStatus.DRAFT) {
             this.claimStatus = ClaimStatus.SUBMITTED;
@@ -492,6 +496,12 @@ public class InsuranceClaim implements JSONSerializable {
         }
     }
 
+
+    /**
+     * Retrieves the supporting documents associated with this claim.
+
+     * @return A supporting documents with their submission timestamps
+     */
     public Map<LocalDateTime, String> getSupportingDocuments() {
         return supportingDocuments;
     }

@@ -68,7 +68,22 @@ public class Appointment implements JSONSerializable {
     @JsonProperty("prescriptions")
     private Map<Medication, Integer> prescriptions;
 
-
+    /**
+     * Constructs a new Appointment instance from JSON deserialization.
+     *
+     * @param appointmentId     The unique identifier for this appointment (auto-generated if null or empty)
+     * @param patient           The patient associated with this appointment (required)
+     * @param reason            The reason for the appointment (required)
+     * @param history           The patient's medical history relevant to this appointment
+     * @param appointmentTime   The scheduled date and time of the appointment (required)
+     * @param doctor            The doctor assigned to this appointment
+     * @param appointmentStatus The current status of the appointment (required)
+     * @param session           The clinical session this appointment belongs to
+     * @param doctorNotes       Any notes made by the doctor during/after the appointment
+     * @param mc                The medical certificate associated with this appointment
+     * @param contact           Contact information for follow-up
+     * @param prescriptions     Map of prescribed medications with their quantities (empty map if null)
+     */
     @JsonCreator
     public Appointment(
             @JsonProperty("appointmentId") String appointmentId,
@@ -404,6 +419,10 @@ public class Appointment implements JSONSerializable {
         return appointment;
     }
 
+    /**
+     * Returns the medications prescribed during this appointment
+     * @return a non-null map of prescribed medications with their quantities
+     */
     public Map<Medication, Integer> getPrescriptions() {
         if (this.prescriptions == null) {
             this.prescriptions = new HashMap<>();
