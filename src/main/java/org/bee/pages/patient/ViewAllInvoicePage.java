@@ -17,6 +17,11 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+/**
+
+ A page that displays all invoice involving
+ This class extends UiBase and implements functionality for viewing and managing bill details.
+ */
 
 public class ViewAllInvoicePage extends UiBase {
 

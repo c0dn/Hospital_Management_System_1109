@@ -17,7 +17,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
-
+/**
+ * Adapter for displaying Consultation form.
+ * This adapter generates form fields for consultation details and handles
+ * the conversion between form data and consultation objects.
+ */
 public class ConsultationFormAdapter implements IObjectFormAdapter<Consultation> {
 
     private static final DateTimeFormatter DATETIME_FORMATTER =

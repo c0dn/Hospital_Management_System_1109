@@ -13,7 +13,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
+/**
+ * Adapter for displaying Patient form.
+ * This adapter generates form fields for patients details and handles
+ * the conversion between form data and patient objects.
+ */
 public class PatientFormAdapter implements IObjectFormAdapter<Patient> {
 
     @Override

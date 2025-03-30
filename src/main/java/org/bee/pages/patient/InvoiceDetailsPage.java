@@ -16,6 +16,11 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Objects;
 import java.util.function.Consumer;
+/**
+
+ A page that displays detailed information about a patient's invoice.
+ This class extends UiBase and implements functionality for viewing and managing bill details.
+ */
 
 public class InvoiceDetailsPage extends UiBase {
 

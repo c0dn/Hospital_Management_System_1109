@@ -13,8 +13,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-
-public class ClaimFormAdapter implements IObjectFormAdapter<InsuranceClaim> {
+/**
+ * Adapter for displaying claim form.
+ * This adapter generates form fields for insurance claims and handles
+ * the conversion between form data and claim objects.
+ */
+ public class ClaimFormAdapter implements IObjectFormAdapter<InsuranceClaim> {
     @Override
     public List<FormField<?>> generateFields(InsuranceClaim claim) {
         List<FormField<?>> fields = new ArrayList<>();

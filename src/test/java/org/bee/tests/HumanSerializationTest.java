@@ -16,7 +16,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+/**
+ * Tests for serialization and deserialization of Human objects using JSONHelper.
+ * This test class verifies that Human objects can be properly converted to JSON and back.
+ */
 public class HumanSerializationTest {
     private Patient patient;
     private Doctor doctor;

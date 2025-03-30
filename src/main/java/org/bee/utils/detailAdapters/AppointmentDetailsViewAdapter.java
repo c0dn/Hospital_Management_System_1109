@@ -11,7 +11,11 @@ import org.bee.utils.ReflectionHelper;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
+/**
+ * Adapter for displaying Appointment details.
+ * This adapter configures an ObjectDetailsView to show appointment information
+ * organized into relevant sections.
+ */
 public class AppointmentDetailsViewAdapter implements IDetailsViewAdapter<Appointment> {
 
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
