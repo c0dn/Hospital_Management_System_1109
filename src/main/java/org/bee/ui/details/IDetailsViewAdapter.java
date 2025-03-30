@@ -30,6 +30,16 @@ public interface IDetailsViewAdapter<T> {
      */
     String getObjectTypeName();
 
+    /**
+     * Helper method to add multiple detail properties to a view from a properties array.
+     * Each property in the array should contain display name, property name, and fallback value.
+     *
+     * @param <Z> The type of the object to extract properties from
+     * @param view The DetailsView to add details to
+     * @param sectionName The name of the section to add details to
+     * @param obj The object to extract properties from
+     * @param properties A 2D array where each inner array contains [displayName, propertyName, fallbackValue]
+     */
     default <Z> void addDetailsFromProperties(DetailsView<Z> view, String sectionName, Z obj, String[][] properties) {
         for (String[] property : properties) {
             String displayName = property[0];

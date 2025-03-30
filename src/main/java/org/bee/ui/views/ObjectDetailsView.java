@@ -11,12 +11,28 @@ import java.util.function.Function;
 
 /**
  * A view that displays detailed information about an object in a structured format with sections and fields.
- * This view is designed to be used with any object type and can be configured with custom field accessors.
+ * <p>
+ * This view organizes object data into sections with labeled fields, each extracted from
+ * the target object using accessor functions. It supports both direct property access and
+ * nested property access through reflection, with configurable formatting and layout options.
+ * <p>
+ * The view is designed to be used with any object type and integrates with the
+ * {@link org.bee.ui.details.IObjectDetailsAdapter} system to provide standardized display
+ * of different domain objects like patients, consultations, appointments, etc.
+ *
+ * @see org.bee.ui.details.IObjectDetailsAdapter
+ * @see org.bee.utils.ReflectionHelper
+ * @see org.bee.utils.detailAdapters.PatientDetailsAdapter
+ * @see org.bee.utils.detailAdapters.BillDetailsAdapter
  */
+
 public class ObjectDetailsView extends View {
 
     /**
-     * Represents a section in the details view.
+     * Represents a section in the details view that contains a group of related fields.
+     * <p>
+     * Each section has a title and contains multiple fields that display information
+     * about the target object.
      */
     public static class Section {
         private final String title;
@@ -25,7 +41,7 @@ public class ObjectDetailsView extends View {
         /**
          * Creates a new section with the given title.
          *
-         * @param title The title of the section
+         * @param title The title of the section to be displayed in the header
          */
         public Section(String title) {
             this.title = title;
@@ -34,8 +50,8 @@ public class ObjectDetailsView extends View {
         /**
          * Adds a field to this section.
          *
-         * @param field The field to add
-         * @return This section for method chaining
+         * @param field The field to add to this section
+         * @return This section instance for method chaining
          */
         public Section addField(Field<?> field) {
             fields.add(field);
@@ -54,7 +70,7 @@ public class ObjectDetailsView extends View {
         /**
          * Gets the fields in this section.
          *
-         * @return The list of fields
+         * @return The list of fields contained in this section
          */
         public List<Field<?>> getFields() {
             return fields;
@@ -62,19 +78,22 @@ public class ObjectDetailsView extends View {
     }
 
     /**
-     * Represents a field in a details section.
+     * Represents a field in a details section with a name and a value accessor.
+     * <p>
+     * Fields use function-based value extraction to enable flexible access to object properties,
+     * supporting both simple property access and complex transformations.
      *
-     * @param <T> The type of object the field is for
+     * @param <T> The type of object the field's accessor function handles
      */
     public static class Field<T> {
         private final String name;
         private final Function<T, String> valueAccessor;
 
         /**
-         * Creates a new field with a name and value accessor.
+         * Creates a new field with a name and value accessor function.
          *
-         * @param name          The name of the field
-         * @param valueAccessor Function to extract the field value as a string
+         * @param name          The display name of the field
+         * @param valueAccessor Function to extract and format the field value as a string
          */
         public Field(String name, Function<T, String> valueAccessor) {
             this.name = name;
@@ -82,19 +101,22 @@ public class ObjectDetailsView extends View {
         }
 
         /**
-         * Gets the name of this field.
+         * Gets the display name of this field.
          *
-         * @return The field name
+         * @return The field name that appears in the view
          */
         public String getName() {
             return name;
         }
 
         /**
-         * Extracts the value from the given object.
+         * Extracts the value from the given object using the field's accessor function.
+         * <p>
+         * This method safely handles type casting and exceptions, returning an error
+         * message if value extraction fails.
          *
          * @param object The object to extract the value from
-         * @return The extracted value as a string
+         * @return The extracted value formatted as a string, or an error message
          */
         @SuppressWarnings("unchecked")
         public String getValue(Object object) {
@@ -114,12 +136,12 @@ public class ObjectDetailsView extends View {
     private String fieldDivider = "-".repeat(sectionWidth);
 
     /**
-     * Creates a new ObjectDetailsView.
+     * Creates a new ObjectDetailsView for displaying information about the specified object.
      *
      * @param canvas       The canvas to render on
      * @param title        The title for the view
      * @param targetObject The object to display details for
-     * @param color        The color for the view
+     * @param color        The color for the view's text
      */
     public ObjectDetailsView(Canvas canvas, String title, Object targetObject, Color color) {
         super(canvas, title, "", color);
@@ -129,9 +151,11 @@ public class ObjectDetailsView extends View {
 
     /**
      * Sets the width of the section display.
+     * <p>
+     * This affects the width of section headers and dividers to provide consistent formatting.
      *
-     * @param width The width in characters
-     * @return This view for method chaining
+     * @param width The width in characters for sections
+     * @return This view instance for method chaining
      */
     public ObjectDetailsView setSectionWidth(int width) {
         this.sectionWidth = width;
@@ -141,10 +165,12 @@ public class ObjectDetailsView extends View {
     }
 
     /**
-     * Adds a section to the details view.
+     * Adds a new section to the details view.
+     * <p>
+     * Sections are displayed in the order they are added.
      *
      * @param title The title for the section
-     * @return The newly created section
+     * @return The newly created section that can be used to add fields
      */
     public Section addSection(String title) {
         Section section = new Section(title);
@@ -153,13 +179,16 @@ public class ObjectDetailsView extends View {
     }
 
     /**
-     * Helper method to create a field from a property name.
+     * Creates a field that accesses a property directly from the target object.
+     * <p>
+     * Uses the {@link ReflectionHelper} to safely access object properties through
+     * getters or direct field access.
      *
      * @param displayName  The display name for the field
-     * @param propertyName The object property name
+     * @param propertyName The object property name to access
      * @param fallback     The fallback value if the property can't be accessed
      * @param <T>          The object type
-     * @return A new Field instance
+     * @return A new Field instance configured to access the specified property
      */
     public <T> Field<T> createField(String displayName, String propertyName, String fallback) {
         return new Field<>(displayName, obj ->
@@ -167,14 +196,16 @@ public class ObjectDetailsView extends View {
     }
 
     /**
-     * Helper method to create a nested field.
+     * Creates a field that accesses a nested property (property of a property).
+     * <p>
+     * This is useful for accessing properties of embedded objects, like a patient's contact information.
      *
      * @param displayName    The display name for the field
-     * @param parentProperty The parent property name
-     * @param childProperty  The child property name
-     * @param fallback       The fallback value if the property can't be accessed
+     * @param parentProperty The parent property name (the containing object)
+     * @param childProperty  The child property name (the property of the parent)
+     * @param fallback       The fallback value if either property can't be accessed
      * @param <T>            The object type
-     * @return A new Field instance
+     * @return A new Field instance configured to access the nested property
      */
     public <T> Field<T> createNestedField(String displayName, String parentProperty,
                                           String childProperty, String fallback) {
@@ -182,6 +213,14 @@ public class ObjectDetailsView extends View {
                 ReflectionHelper.nestedStringPropertyAccessor(parentProperty, childProperty, fallback).apply(obj));
     }
 
+    /**
+     * Generates the formatted text representation of the object details.
+     * <p>
+     * The output includes all sections with their titles and fields, formatted with
+     * appropriate headers, dividers, and layout.
+     *
+     * @return The formatted text containing all object details
+     */
     @Override
     public String getText() {
         StringBuilder sb = new StringBuilder();
@@ -209,11 +248,11 @@ public class ObjectDetailsView extends View {
     }
 
     /**
-     * Centers text within a specified width.
+     * Centers text within a specified width by adding padding on both sides.
      *
      * @param text  The text to center
      * @param width The width to center within
-     * @return The centered text
+     * @return The centered text with appropriate padding
      */
     private String centerText(String text, int width) {
         if (text.length() >= width) {

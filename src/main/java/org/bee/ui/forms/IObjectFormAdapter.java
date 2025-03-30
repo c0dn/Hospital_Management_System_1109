@@ -9,20 +9,56 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+/**
+ * Interface for adapters that convert domain objects to form representations and back.
+ * <p>
+ * This interface provides functionality to:
+ * <ul>
+ *   <li>Generate form fields from domain objects</li>
+ *   <li>Apply form data back to domain objects</li>
+ *   <li>Save updated objects to their data stores</li>
+ * </ul>
+ * </p>
+ * <p>
+ * Implementations of this interface serve as a bridge between the UI form system
+ * and domain model objects, handling the bidirectional mapping of data.
+ * </p>
+ *
+ * @param <T> The type of domain object this adapter handles
+ */
 public interface IObjectFormAdapter<T> {
     /**
-     * Generate form fields for the given object.
+     * Generates form fields for the given object.
+     * <p>
+     * This method analyzes the provided object and creates appropriate form fields
+     * with validators, parsers, and initial values based on the object's current state.
+     * </p>
+     *
+     * @param object The object to generate form fields for
+     * @return A list of form fields representing the object's editable properties
      */
     List<FormField<?>> generateFields(T object);
 
     /**
-     * Get a descriptive name for the object type.
+     * Gets a descriptive name for the object type.
+     * <p>
+     * Used for display purposes in UI elements such as form headers and titles.
+     * </p>
+     *
+     * @return A user-friendly name describing the object type
      */
     String getObjectTypeName();
 
     /**
-     * Apply form values to the object.
-     * Default implementation uses reflection to set field values.
+     * Applies form values to the object.
+     * <p>
+     * The default implementation uses reflection to set field values,
+     * attempting to use setter methods before resorting to direct field access.
+     * </p>
+     *
+     * @param object The object to update
+     * @param formData A map of field names to their new values
+     * @return The updated object
      */
     default T applyUpdates(T object, Map<String, Object> formData) {
         for (Map.Entry<String, Object> entry : formData.entrySet()) {
@@ -32,14 +68,27 @@ public interface IObjectFormAdapter<T> {
     }
 
     /**
-     * Save the updated object.
-     * This still needs implementation for each object type to handle controller interactions.
+     * Saves the updated object.
+     * <p>
+     * This method must be implemented to handle controller interactions for each
+     * object type, typically by calling the appropriate service or repository method.
+     * </p>
+     *
+     * @param object The object to save
+     * @return true if the save operation was successful, false otherwise
      */
     boolean saveObject(T object);
 
     /**
-     * Set a field value in an object using reflection.
-     * Function will attempt to use setter methods before resorting to direct field access
+     * Sets a field value in an object using reflection.
+     * <p>
+     * This method first attempts to use setter methods before resorting to direct field access.
+     * It handles both primitive types and objects appropriately.
+     * </p>
+     *
+     * @param object The object to modify
+     * @param fieldName The name of the field to set
+     * @param value The new value for the field
      */
     default void setFieldValue(Object object, String fieldName, Object value) {
         try {
@@ -68,6 +117,24 @@ public interface IObjectFormAdapter<T> {
             System.err.println("Error setting field " + fieldName + ": " + e.getMessage());
         }
     }
+
+    /**
+     * Generic implementation for saving an object using a controller class.
+     * <p>
+     * This method:
+     * <ol>
+     *   <li>Gets the controller instance</li>
+     *   <li>Finds the object in the controller's collection using its ID field</li>
+     *   <li>Copies non-null fields from source to existing object</li>
+     *   <li>Calls the save method on the controller</li>
+     * </ol>
+     * </p>
+     *
+     * @param object The object to save
+     * @param controllerClass The controller class that manages this object type
+     * @param controllerMethodName The name of the save method on the controller
+     * @return true if save was successful, false otherwise
+     */
     default boolean genericSaveObject(T object, Class<?> controllerClass, String controllerMethodName) {
         try {
             Method getInstanceMethod = controllerClass.getMethod("getInstance");
@@ -119,7 +186,13 @@ public interface IObjectFormAdapter<T> {
     }
 
     /**
-     * Helper method to find the ID field name based on common patterns
+     * Helper method to find the ID field name based on common naming patterns.
+     * <p>
+     * Checks for common ID field names like "id", "patientId".
+     * </p>
+     *
+     * @param clazz The class to search for ID fields
+     * @return The name of the identified ID field, or null if none found
      */
     default String findIdFieldName(Class<?> clazz) {
         String[] commonIdFields = {"id", "patientId", "consultationId", "staffId", "appointmentId", "claimId"};
@@ -134,14 +207,22 @@ public interface IObjectFormAdapter<T> {
     }
 
     /**
-     * Check if a class has a field with the given name
+     * Checks if a class has a field with the given name.
+     *
+     * @param clazz The class to check
+     * @param fieldName The field name to look for
+     * @return true if the field exists, false otherwise
      */
     default boolean hasField(Class<?> clazz, String fieldName) {
         return ReflectionHelper.findField(clazz, fieldName) != null;
     }
 
     /**
-     * Check if a class has a getter for the given field name
+     * Checks if a class has a getter method for the given field name.
+     *
+     * @param clazz The class to check
+     * @param fieldName The field name to look for a getter
+     * @return true if the getter exists, false otherwise
      */
     default boolean hasGetter(Class<?> clazz, String fieldName) {
         String getterName = "get" + fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1);
@@ -154,7 +235,14 @@ public interface IObjectFormAdapter<T> {
     }
 
     /**
-     * Copy all non-null fields from source to target
+     * Copies all non-null fields from source to target object.
+     * <p>
+     * This method is used to update an existing object with new values,
+     * preserving existing values where the source has null fields.
+     * </p>
+     *
+     * @param source The object containing the new values
+     * @param target The object to update
      */
     default void copyNonNullFields(Object source, Object target) {
         Class<?> clazz = source.getClass();
@@ -172,7 +260,10 @@ public interface IObjectFormAdapter<T> {
     }
 
     /**
-     * Get all fields from a class including its superclasses
+     * Gets all fields from a class including those from its superclasses.
+     *
+     * @param clazz The class to get fields from
+     * @return A list of all fields declared in the class hierarchy
      */
     default List<Field> getAllFields(Class<?> clazz) {
         List<Field> fields = new ArrayList<>();
@@ -185,8 +276,15 @@ public interface IObjectFormAdapter<T> {
     }
 
     /**
-     * Get a field value from an object using reflection.
-     * Function will attempt to use getter methods first before trying direct field access
+     * Gets a field value from an object using reflection.
+     * <p>
+     * This method attempts to use getter methods first before trying direct field access.
+     * It checks for both standard getters and boolean isGetter methods.
+     * </p>
+     *
+     * @param object The object to get the value from
+     * @param fieldName The name of the field to get
+     * @return The field value, or null if not found or an error occurs
      */
     default Object getFieldValue(Object object, String fieldName) {
         try {
@@ -220,7 +318,25 @@ public interface IObjectFormAdapter<T> {
         }
     }
 
-    // ignored object is there to keep method signature same
+    /**
+     * Creates a generic form field with the specified properties.
+     * <p>
+     * The ignoredObject parameter is included to maintain consistent method signatures
+     * across helper methods but is not used in the implementation.
+     * </p>
+     *
+     * @param <V> The type of value the field will hold
+     * @param name The field identifier name
+     * @param displayName The human-readable field name
+     * @param prompt The input prompt shown to the user
+     * @param ignoredObject Unused parameter (maintained for signature consistency)
+     * @param validator The validation predicate
+     * @param errorMessage The error message shown on validation failure
+     * @param parser The function to parse input strings to the value type
+     * @param isRequired Whether the field is required
+     * @param initialValue The initial value of the field
+     * @return A configured FormField instance
+     */
     default <V> FormField<V> createField(
             String name,
             String displayName,
@@ -243,6 +359,22 @@ public interface IObjectFormAdapter<T> {
         );
     }
 
+    /**
+     * Creates a text field with the specified properties.
+     * <p>
+     * This is a convenience method for creating string-based form fields.
+     * </p>
+     *
+     * @param name The field identifier name
+     * @param displayName The human-readable field name
+     * @param prompt The input prompt shown to the user
+     * @param object The source object (unused but maintained for consistency)
+     * @param validator The validation predicate
+     * @param errorMessage The error message shown on validation failure
+     * @param isRequired Whether the field is required
+     * @param initialValue The initial value of the field
+     * @return A configured string FormField instance
+     */
     default FormField<String> createTextField(
             String name, String displayName, String prompt, T object,
             Predicate<String> validator, String errorMessage, boolean isRequired,
@@ -251,6 +383,22 @@ public interface IObjectFormAdapter<T> {
                 FormValidators.stringParser(), isRequired, initialValue);
     }
 
+    /**
+     * Creates a numeric field for double values with the specified properties.
+     * <p>
+     * This is a convenience method for creating double-based form fields.
+     * </p>
+     *
+     * @param name The field identifier name
+     * @param displayName The human-readable field name
+     * @param prompt The input prompt shown to the user
+     * @param object The source object (unused but maintained for consistency)
+     * @param validator The validation predicate
+     * @param errorMessage The error message shown on validation failure
+     * @param isRequired Whether the field is required
+     * @param initialValue The initial value of the field
+     * @return A configured double FormField instance
+     */
     default FormField<Double> createDoubleField(
             String name, String displayName, String prompt, T object,
             Predicate<String> validator, String errorMessage, boolean isRequired,
@@ -260,6 +408,25 @@ public interface IObjectFormAdapter<T> {
                 isRequired, initialValue);
     }
 
+    /**
+     * Creates an enum field with the specified properties.
+     * <p>
+     * This method handles enum parsing and validation, providing user-friendly
+     * error messages that include the list of valid enum values.
+     * </p>
+     *
+     * @param <E> The enum type for the field
+     * @param name The field identifier name
+     * @param displayName The human-readable field name
+     * @param prompt The input prompt shown to the user
+     * @param object The source object (unused but maintained for consistency)
+     * @param enumType The Class object for the enum type
+     * @param validator The validation predicate
+     * @param errorMessage The error message shown on validation failure
+     * @param isRequired Whether the field is required
+     * @param initialValue The initial value of the field
+     * @return A configured enum FormField instance
+     */
     default <E extends Enum<E>> FormField<E> createEnumField(
             String name, String displayName, String prompt, T object, Class<E> enumType,
             Predicate<String> validator, String errorMessage, boolean isRequired,
@@ -280,5 +447,4 @@ public interface IObjectFormAdapter<T> {
         return createField(name, displayName, prompt, object, validator, errorMessage,
                 parser, isRequired, initialValue);
     }
-
 }

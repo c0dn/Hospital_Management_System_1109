@@ -9,7 +9,22 @@ import org.bee.ui.View;
 import org.bee.ui.forms.FormField;
 
 /**
- * A form view for collecting multiple pieces of related data with validation.
+ * A form view for collecting and validating user input across multiple fields.
+ * <p>
+ * FormView implements an interactive form with field selection, validation, and submission
+ * capabilities. It manages the entire form lifecycle including:
+ * <ul>
+ *   <li>Field display and formatting</li>
+ *   <li>Field selection and highlighting</li>
+ *   <li>Input validation and error handling</li>
+ *   <li>Form submission and data collection</li>
+ * </ul>
+ * </p>
+ * <p>
+ * The view maintains internal state to track the currently selected field and
+ * whether it's awaiting user input. It can be integrated with MenuView for
+ * additional navigation controls.
+ * </p>
  */
 public class FormView extends View {
     private final List<FormField<?>> fields = new ArrayList<>();
@@ -18,27 +33,76 @@ public class FormView extends View {
     private SystemMessageStatus lastMessageStatus = SystemMessageStatus.INFO;
     private boolean showRequiredFieldMessage = false;
 
-
-    private enum FormState { IDLE, FIELD_SELECTED, AWAITING_VALUE }
+    /**
+     * Represents the possible states of the form.
+     */
+    private enum FormState {
+        /** No field is selected or active */
+        IDLE,
+        /** A field has been selected but is not yet being edited */
+        FIELD_SELECTED,
+        /** A field is currently awaiting user input */
+        AWAITING_VALUE
+    }
     private FormState currentState = FormState.IDLE;
 
-
+    /**
+     * Creates a new form view with the specified title and color.
+     *
+     * @param canvas The canvas to render on
+     * @param formTitle The title of the form
+     * @param color The color for the form's text
+     */
     public FormView(Canvas canvas, String formTitle, Color color) {
         super(canvas, formTitle, "", color);
     }
 
+    /**
+     * Adds a field to the form.
+     * <p>
+     * Fields are displayed in the order they are added.
+     * </p>
+     *
+     * @param <T> The type of value stored in the field
+     * @param field The form field to add
+     */
     public <T> void addField(FormField<T> field) {
         fields.add(field);
     }
 
+    /**
+     * Sets the callback to be invoked when the form is submitted.
+     * <p>
+     * The callback receives a map of field names to their values.
+     * </p>
+     *
+     * @param callback The callback to handle form submission
+     */
     public void setOnSubmitCallback(FormSubmitCallback callback) {
         this.onSubmit = callback;
     }
 
+    /**
+     * Checks if the form is currently awaiting input for a field.
+     * <p>
+     * This is used by composite views and other containers to properly
+     * route input to this form when a field is being edited.
+     * </p>
+     *
+     * @return true if a field is actively awaiting input, false otherwise
+     */
     public boolean isAwaitingValue() {
         return currentState == FormState.AWAITING_VALUE;
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Generates the form content showing all fields with appropriate highlighting
+     * for the selected field. Also displays additional context information when
+     * a field is selected.
+     * </p>
+     */
     @Override
     public String getText() {
         StringBuilder sb = new StringBuilder();
@@ -64,6 +128,13 @@ public class FormView extends View {
         return sb.toString();
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Generates the footer with context-sensitive options based on the current form state.
+     * When a field is awaiting input, the footer includes the field's prompt.
+     * </p>
+     */
     @Override
     public String getFooter() {
         StringBuilder sb = new StringBuilder();
@@ -93,6 +164,17 @@ public class FormView extends View {
 
     /**
      * Sets up the actions available in the associated MenuView.
+     * <p>
+     * This method configures a MenuView to work with this form, adding options for:
+     * <ul>
+     *   <li>Field selection</li>
+     *   <li>Form submission</li>
+     *   <li>Field updating</li>
+     * </ul>
+     * It also adds a warning message if required fields are empty.
+     * </p>
+     *
+     * @param menuView The MenuView to configure with form actions
      */
     public void setupActionMenu(MenuView menuView) {
         boolean needsReqMessage = false;
@@ -135,7 +217,13 @@ public class FormView extends View {
 
     /**
      * Processes the value entered by the user when in AWAITING_VALUE state.
-     * @param valueInput The user's input for the field value.
+     * <p>
+     * This method validates the input, updates the field value if valid,
+     * and provides appropriate feedback through system messages. It handles
+     * error cases such as validation failures and parsing errors.
+     * </p>
+     *
+     * @param valueInput The user's input for the field value
      */
     public void processValueInput(String valueInput) {
         if (currentState != FormState.AWAITING_VALUE) {
@@ -145,7 +233,7 @@ public class FormView extends View {
 
         if (selectedFieldIndex < 0 || selectedFieldIndex >= fields.size()) {
             lastMessageStatus = SystemMessageStatus.ERROR;
-            canvas.setSystemMessage("Internal Error: No field selected to receive value.",lastMessageStatus);
+            canvas.setSystemMessage("Internal Error: No field selected to receive value.", lastMessageStatus);
             currentState = FormState.IDLE;
             selectedFieldIndex = -1;
             canvas.setRequireRedraw(true);
@@ -163,13 +251,11 @@ public class FormView extends View {
             } catch (Exception e) {
                 lastMessageStatus = SystemMessageStatus.ERROR;
                 canvas.setSystemMessage("Error setting value: " + e.getMessage(), lastMessageStatus);
-
             }
         } else {
-            if (currentField.isRequired() || (valueInput != null && !valueInput.trim().isEmpty()) ) {
+            if (currentField.isRequired() || (valueInput != null && !valueInput.trim().isEmpty())) {
                 lastMessageStatus = SystemMessageStatus.ERROR;
                 canvas.setSystemMessage(currentField.getErrorMessage(), lastMessageStatus);
-
             } else {
                 try {
                     currentField.setValue(null);
@@ -180,7 +266,6 @@ public class FormView extends View {
                 } catch (Exception e) {
                     lastMessageStatus = SystemMessageStatus.ERROR;
                     canvas.setSystemMessage("Error clearing field: " + e.getMessage(), lastMessageStatus);
-
                 }
             }
         }
@@ -188,7 +273,11 @@ public class FormView extends View {
     }
 
     /**
-     * Handles the 'u' command trigger.
+     * Handles the 'u' command trigger for updating a field.
+     * <p>
+     * If a field is already selected, this transitions to the AWAITING_VALUE state.
+     * If no field is selected, it shows an error message.
+     * </p>
      */
     private void handleUpdateTrigger() {
         if (currentState == FormState.FIELD_SELECTED) {
@@ -203,6 +292,15 @@ public class FormView extends View {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Handles direct input by processing field values when in AWAITING_VALUE state.
+     * </p>
+     *
+     * @param input The input string from the user
+     * @return true if the input was handled, false otherwise
+     */
     @Override
     public boolean handleDirectInput(String input) {
         if (currentState == FormState.AWAITING_VALUE) {
@@ -212,15 +310,38 @@ public class FormView extends View {
         return false;
     }
 
+    /**
+     * Gets the currently selected field.
+     * <p>
+     * This method is used by composite views to access the field awaiting input.
+     * </p>
+     *
+     * @return The currently selected field, or null if none is selected
+     */
     public FormField<?> getSelectedField() {
-        return fields.get(selectedFieldIndex);
+        if (selectedFieldIndex >= 0 && selectedFieldIndex < fields.size()) {
+            return fields.get(selectedFieldIndex);
+        }
+        return null;
     }
 
-
+    /**
+     * Handles the form submission process.
+     * <p>
+     * This method:
+     * <ol>
+     *   <li>Validates all required fields have values</li>
+     *   <li>Collects all field values into a map</li>
+     *   <li>Invokes the submission callback</li>
+     *   <li>Handles error cases (missing values, no callback)</li>
+     * </ol>
+     * </p>
+     */
     private void handleSubmit() {
         currentState = FormState.IDLE;
         selectedFieldIndex = -1;
 
+        // Validate all required fields have values
         for (int i = 0; i < fields.size(); i++) {
             FormField<?> field = fields.get(i);
             Object value = field.getValue();
@@ -234,11 +355,13 @@ public class FormView extends View {
             }
         }
 
+        // Collect field values
         Map<String, Object> results = new HashMap<>();
         for (FormField<?> field : fields) {
             results.put(field.getName(), field.getValue());
         }
 
+        // Submit or show error
         if (onSubmit != null) {
             onSubmit.onSubmit(results);
         } else {
@@ -250,9 +373,18 @@ public class FormView extends View {
 
     /**
      * Interface for handling form submission.
+     * <p>
+     * Implementations receive a map of field names to their values when
+     * the form is submitted.
+     * </p>
      */
     @FunctionalInterface
     public interface FormSubmitCallback {
+        /**
+         * Called when the form is submitted with valid data.
+         *
+         * @param formData A map of field names to their values
+         */
         void onSubmit(Map<String, Object> formData);
     }
 }
