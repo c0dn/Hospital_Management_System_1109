@@ -208,7 +208,6 @@ public class PatientMainPage extends UiBase {
                     }
                 }
 
-                // set the consent.
                 appointment.getPatient().setPatientConsent(true);
             }
 
@@ -260,7 +259,7 @@ public class PatientMainPage extends UiBase {
                     "Your Appointments",
                     "Select an appointment to manage",
                     menuOptions,
-                    5, // Show 5 items per page
+                    5,
                     Color.CYAN
             );
 

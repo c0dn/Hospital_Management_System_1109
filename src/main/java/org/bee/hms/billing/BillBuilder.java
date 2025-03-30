@@ -3,16 +3,13 @@ package org.bee.hms.billing;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 import org.bee.hms.humans.Patient;
-import org.bee.hms.medical.Consultation;
-import org.bee.hms.medical.EmergencyVisit;
-import org.bee.hms.medical.Visit;
+import org.bee.hms.medical.*;
 import org.bee.hms.policy.InsurancePolicy;
+import org.bee.hms.telemed.Appointment;
+import org.bee.hms.telemed.TelemedicineFeeItem;
 
 /**
  * A builder class for creating instances of {@link org.bee.hms.billing.Bill}.
@@ -60,6 +57,8 @@ public class BillBuilder {
      */
     BigDecimal settledAmount;
 
+
+    Appointment appointment;
 
     /**
      * Constructs a new {@code BillBuilder} instance.
@@ -134,6 +133,14 @@ public class BillBuilder {
         return this;
     }
 
+
+    public BillBuilder withAppointment(Appointment appointment) {
+        this.appointment = appointment;
+        this.isEmergency = false;
+        this.isInpatient = false;
+        return this;
+    }
+
     /**
      * Adds a consultation to the bill.
      *
@@ -170,6 +177,19 @@ public class BillBuilder {
                     bill.addLineItem(item, 1));
         }
 
+        if (appointment != null) {
+            bill.setSourceAppointmentId(appointment.getAppointmentId());
+            bill.addLineItem(new TelemedicineFeeItem(), 1);
+            Map<Medication, Integer> prescriptions = appointment.getPrescriptions();
+            if (prescriptions != null && !prescriptions.isEmpty()) {
+                prescriptions.forEach((medication, quantity) -> {
+                    MedicationBillableItem medItem = new MedicationBillableItem(medication, quantity);
+                    bill.addLineItem(medItem, quantity);
+                });
+            }
+        }
+
+
         return bill;
     }
 
@@ -183,8 +203,8 @@ public class BillBuilder {
             throw new IllegalStateException("Patient is required");
         }
 
-        if (Objects.isNull(visit) && consultations.isEmpty()) {
-            throw new IllegalStateException("Either a visit or at least one consultation is required");
+        if (Objects.isNull(visit) && (consultations.isEmpty() && appointment == null)) {
+            throw new IllegalStateException("Either a visit or at least one consultation or appointment is required");
         }
     }
 }

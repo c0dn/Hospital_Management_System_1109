@@ -237,4 +237,13 @@ public class CompositeView extends View {
     public Dictionary<Integer, UserInput> getInputOptions() {
         return super.getInputOptions();
     }
+
+    /**
+     * Gets the list of child views contained within this composite view.
+     *
+     * @return An unmodifiable list of the child views.
+     */
+    public List<View> getChildViews() {
+        return Collections.unmodifiableList(childViews);
+    }
 }

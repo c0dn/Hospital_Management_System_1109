@@ -262,26 +262,11 @@ public class DetailsView<T> extends View {
     }
 
     /**
-     * Add a custom action to the view
-     * @param prompt The prompt shown in the footer
-     * @param key The key to trigger the action
-     * @param action The action to execute
+     * Gets the data object associated with this DetailsView.
+     *
+     * @return The data object of type T being displayed, or null if none was provided.
      */
-    public void addAction(String prompt, String key, Runnable action) {
-        // Update footer to show the new option
-        if (!footer.contains(" | " + key + ": " + prompt)) {
-            int lastNewline = footer.lastIndexOf("\n");
-            if (lastNewline > 0) {
-                footer = footer.substring(0, lastNewline) +
-                        " | " + key + ": " + prompt +
-                        footer.substring(lastNewline);
-            }
-        }
-
-        attachUserInput(prompt, input -> {
-            if (input.equalsIgnoreCase(key)) {
-                action.run();
-            }
-        });
+    public T getDataObject() {
+        return dataObject;
     }
 }

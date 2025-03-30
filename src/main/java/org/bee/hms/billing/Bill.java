@@ -54,6 +54,9 @@ public class Bill implements JSONSerializable {
     /** Indicates whether the bill is for an emergency service */
     private final boolean isEmergency;
 
+    /** Appointment ID linked to this bill */
+    private String sourceAppointmentId;
+
     /**
      * Constructs a {@code Bill} object using the {@link BillBuilder}.
      * Initializes the bill with default values.
@@ -107,7 +110,8 @@ public class Bill implements JSONSerializable {
             @JsonProperty("insurancePolicy") InsurancePolicy insurancePolicy,
             @JsonProperty("isInpatient") boolean isInpatient,
             @JsonProperty("isEmergency") boolean isEmergency,
-            @JsonProperty("paymentMethod") PaymentMethod paymentMethod
+            @JsonProperty("paymentMethod") PaymentMethod paymentMethod,
+            @JsonProperty("sourceAppointmentId") String sourceAppointmentId
     ) {
         BillBuilder builder = new BillBuilder();
         builder.billId = billId;
@@ -120,6 +124,8 @@ public class Bill implements JSONSerializable {
         builder.settledAmount = settledAmount != null ? settledAmount : BigDecimal.ZERO;
 
         Bill bill = new Bill(builder);
+
+        bill.sourceAppointmentId = sourceAppointmentId;
 
         if (lineItems != null) {
             bill.lineItems = lineItems;
@@ -281,6 +287,40 @@ public class Bill implements JSONSerializable {
         return categorizedCharges.getOrDefault(category, BigDecimal.ZERO);
     }
 
+
+    /**
+     * Sets the unique identifier of the source Appointment that generated this bill.
+     * <p>
+     * This method is typically called during the bill creation process (e.g., within
+     * the {@link org.bee.hms.billing.BillBuilder}) to establish a direct link
+     * between the bill and the specific {@link org.bee.hms.telemed.Appointment}
+     * that resulted in these charges. Storing this ID allows for easy lookup and
+     * association between billing records and the originating consultation.
+     * </p>
+     *
+     * @param sourceAppointmentId The unique ID of the source {@link org.bee.hms.telemed.Appointment}.
+     * Should be {@code null} if the bill did not originate
+     * from an Appointment.
+     */
+    public void setSourceAppointmentId(String sourceAppointmentId) {
+        this.sourceAppointmentId = sourceAppointmentId;
+    }
+
+    /**
+     * Retrieves the unique identifier of the source Appointment that generated this bill.
+     * <p>
+     * This method returns the ID of the specific {@link org.bee.hms.telemed.Appointment}
+     * from which this bill originated. This provides a direct link back to the
+     * source telemedicine consultation for traceability and context.
+     * </p>
+     *
+     * @return The source appointment's unique ID as a String, or {@code null} if this
+     * bill was not generated from an Appointment (e.g., generated from a
+     * {@link org.bee.hms.medical.Visit} or {@link org.bee.hms.medical.Consultation}).
+     */
+    public String getSourceAppointmentId() {
+        return sourceAppointmentId;
+    }
 
     /**
      * Gets the discount percentage applicable to this patient based on their residential status.

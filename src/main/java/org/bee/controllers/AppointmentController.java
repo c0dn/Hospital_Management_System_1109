@@ -2,11 +2,9 @@ package org.bee.controllers;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 
@@ -14,11 +12,13 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.bee.execeptions.ZoomApiException;
+import org.bee.hms.billing.Bill;
+import org.bee.hms.billing.BillBuilder;
+import org.bee.hms.billing.BillingStatus;
 import org.bee.hms.humans.Doctor;
 import org.bee.hms.humans.Patient;
 import org.bee.hms.telemed.Appointment;
 import org.bee.hms.telemed.AppointmentStatus;
-import org.bee.utils.DataGenerator;
 
 import okhttp3.FormBody;
 import okhttp3.MediaType;
@@ -105,13 +105,27 @@ public class AppointmentController extends BaseController<Appointment> {
         AppointmentStatus[] statuses = AppointmentStatus.values();
 
         for (Doctor doctor : doctors) {
-            for (AppointmentStatus status : statuses) {
-                Patient patient = DataGenerator.getRandomElement(patients);
+            List<Patient> doctorPatients = patients.subList(0, Math.min(5, patients.size()));
+            for (Patient patient : doctorPatients) {
+                for (AppointmentStatus status : statuses) {
+                    Appointment appointment = Appointment.withRandomData(patient, doctor);
+                    appointment.setAppointmentStatus(status);
 
-                Appointment appointment = Appointment.withRandomData(patient, doctor);
-                appointment.setAppointmentStatus(status);
+                    if (status == AppointmentStatus.PAYMENT_PENDING) {
+                        BillController billController = BillController.getInstance();
+                        BillBuilder billBuilder = new BillBuilder()
+                                .withPatient(patient)
+                                .withAppointment(appointment);
 
-                items.add(appointment);
+                        billBuilder.build();
+
+                        Bill bill = billBuilder.build();
+                        bill.setStatus(BillingStatus.PAYMENT_PENDING);
+                        billController.addItem(bill);
+                    }
+
+                    items.add(appointment);
+                }
             }
         }
 

@@ -176,7 +176,7 @@ public class BillController extends BaseController<Bill> {
      */
     public List<Bill> getBillsForPatient(Patient patient) {
         return getAllItems().stream()
-                .filter(bill -> bill.getPatient().equals(patient))
+                .filter(bill -> bill.getPatient().getPatientId().equals(patient.getPatientId()))
                 .collect(Collectors.toList());
     }
 
