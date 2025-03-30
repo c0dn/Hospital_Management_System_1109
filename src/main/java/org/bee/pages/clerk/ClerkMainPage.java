@@ -45,31 +45,21 @@
 
             // Outpatient section
             MenuView.MenuSection outpatientSection = menuView.addSection("Outpatient Management");
-            outpatientSection.addOption(2, "View All Outpatient Cases");
-            outpatientSection.addOption(3, "Update Outpatient Case Details");
-            menuView.attachMenuOptionInput(2, "View Outpatient Cases", str -> ToPage(new OutpatientCasesPage()));
-            menuView.attachMenuOptionInput(3, "Update Outpatient Case", str -> ToPage(new OutpatientUpdatePage()));
+            outpatientSection.addOption(2, "View All/Update Outpatient Cases");
+//            outpatientSection.addOption(3, "Update Outpatient Case Details");
+            menuView.attachMenuOptionInput(2, "View All/Update Outpatient Cases", str -> ToPage(new OutpatientCasesPage()));
+//            menuView.attachMenuOptionInput(3, "Update Outpatient Case", str -> ToPage(new OutpatientUpdatePage()));
 
 
             // billing section
             MenuView.MenuSection billingSection = menuView.addSection("Billing and Invoicing");
-            billingSection.addOption(4, "View all bills");
-            menuView.attachMenuOptionInput(4, "View all bills", str -> ToPage(new ViewAllBillsPage()));
+            billingSection.addOption(3, "View All/Update bills");
+            menuView.attachMenuOptionInput(3, "View All/Update bills", str -> ToPage(new ViewAllBillsPage()));
 
             // Insurance section
             MenuView.MenuSection insuranceSection = menuView.addSection("Insurance Claims");
-//            insuranceSection.addOption(8, "Submit New Claim");
-//            insuranceSection.addOption(9, "Manage Existing Claims");
-//            insuranceSection.addOption(10, "Check Claim Status");
-//            insuranceSection.addOption(11, "Update Claim Status");
-            insuranceSection.addOption(5, "View All Claims");
-//            menuView.attachMenuOptionInput(8, "Submit New Claim", str -> ToPage(new NewInsuranceClaimPage()));
-//            menuView.attachMenuOptionInput(9, "Manage Existing Claim", str -> ToPage(new UpdateClaimPage()));
-            menuView.attachMenuOptionInput(5, "View All Claims", str -> ToPage(new ViewAllClaimsPage()));
-
-//            menuView.attachMenuOptionInput(5, "Manage Claims", str -> ToPage(new InsuranceClaimPage(InsuranceClaimPage.Mode.MANAGE)));
-//            menuView.attachMenuOptionInput(6, "Check Claim Status", str -> ToPage(new InsuranceClaimPage(InsuranceClaimPage.Mode.CHECK)));
-//            menuView.attachMenuOptionInput(7, "Update Claim Status", str -> ToPage(new InsuranceClaimPage(InsuranceClaimPage.Mode.UPDATE)));
+            insuranceSection.addOption(4, "View All/Update Claims");
+            menuView.attachMenuOptionInput(4, "View All/Update Claims", str -> ToPage(new ViewAllClaimsPage()));
 
             menuView.setNumericOptionMaxRange(5);
 

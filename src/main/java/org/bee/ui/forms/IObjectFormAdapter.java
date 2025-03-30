@@ -5,6 +5,7 @@ import org.bee.utils.ReflectionHelper;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.*;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -483,7 +484,7 @@ public interface IObjectFormAdapter<T> {
 //        return createField(name, displayName, prompt, object, validator, errorMessage,
 //                listParser, isRequired, initialValue);
 //    }
-//
+
     default <K, V> FormField<Map<K, V>> createHashMapField(
             String name,
             String displayName,

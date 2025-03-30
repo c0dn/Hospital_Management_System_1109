@@ -46,6 +46,7 @@ public class DoctorMainPage extends UiBase {
         outpatientSection.addOption(3, "View Outpatient Cases");
         menuView.attachMenuOptionInput(3, "View Outpatient Cases", str -> ToPage(new ConsultationInfoPage()));
 
+        menuView.setNumericOptionMaxRange(3);
         canvas.setRequireRedraw(true);
     }
 }

@@ -2,6 +2,7 @@ package org.bee.pages.clerk.insurance;
 
 import org.bee.controllers.ClaimController;
 import org.bee.controllers.HumanController;
+import org.bee.hms.claims.ClaimStatus;
 import org.bee.hms.claims.InsuranceClaim;
 import org.bee.ui.Color;
 import org.bee.ui.SystemMessageStatus;
