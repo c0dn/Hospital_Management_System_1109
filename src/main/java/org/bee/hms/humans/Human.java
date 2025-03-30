@@ -278,33 +278,7 @@ public abstract class Human implements JSONSerializable {
         return dateOfBirth;
     }
 
-    /**
-     * Displays the full details of the person including personal, demographic, residential,
-     * and medical information.
-     */
-    public void displayHuman() {
-        System.out.printf("%n");
-        System.out.println("=====================================================================");
-        System.out.printf("                           PERSON DETAILS%n");
-        System.out.println("=====================================================================");
-        System.out.println("PERSONAL INFORMATION");
-        System.out.println("---------------------------------------------------------------------");
-        System.out.printf("Name: " + name);
-        System.out.printf("\nNRIF/FIN: " + nricFin);
-        System.out.printf("%nDate of Birth: " + dateOfBirth);
-        System.out.printf("\nNationality: " + nationality);
-        System.out.println("\n\nDEMOGRAPHIC & RESIDENTIAL INFORMATION");
-        System.out.println("---------------------------------------------------------------------");
-        System.out.printf("Contact: " + contact);
-        System.out.printf("\ntMarital Status: " + maritalStatus);
-        System.out.printf("%n%nResidential Status: " + residentialStatus);
-        System.out.printf("\nAddress: " + address);
-        System.out.println("\n\nMEDICAL INFORMATION");
-        System.out.println("---------------------------------------------------------------------");
-        System.out.printf("Sex: " + sex);
-        System.out.printf("\nBlood Type: " + bloodType);
-        System.out.printf("\nVaccinated: " + isVaccinated);
-    }
+
 
     /**
      * Retrieves the contact information f

@@ -62,6 +62,8 @@ public class Consultation implements JSONSerializable {
      */
     @JsonProperty("procedure_codes")
     private List<ProcedureCode> procedureCodes;
+
+
     @JsonSerialize(using = PrescriptionMapSerializer.class)
     @JsonDeserialize(using = PrescriptionMapDeserializer.class)
     @JsonProperty("prescriptions")

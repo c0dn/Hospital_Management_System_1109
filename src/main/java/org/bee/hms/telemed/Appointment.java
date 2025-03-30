@@ -1,15 +1,22 @@
 package org.bee.hms.telemed;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.bee.hms.humans.Contact;
 import org.bee.hms.humans.Doctor;
 import org.bee.hms.humans.Patient;
+import org.bee.hms.medical.Medication;
 import org.bee.utils.DataGenerator;
 import org.bee.utils.JSONSerializable;
+import org.bee.utils.jackson.PrescriptionMapDeserializer;
+import org.bee.utils.jackson.PrescriptionMapSerializer;
 
 /**
  * This class represents an appointment for a telemedicine integration for a hospital
@@ -56,24 +63,26 @@ public class Appointment implements JSONSerializable {
     /** Patient contact information for the appointment */
     private Contact contact;
 
-    /**
-     * Constructs a new Appointment with the specified details.
-     * Handles initialization of appointmentId (from JSON or generated).
-     *
-     * @param appointmentId     the unique ID for the appointment (optional, will be generated if null/missing)
-     * @param patient           the patient involved in the appointment (must not be null)
-     * @param reason            the reason for the appointment (must not be null)
-     * @param appointmentTime   the time the appointment is scheduled (must not be null)
-     * @param appointmentStatus the initial status of the appointment (must not be null)
-     * @throws NullPointerException if patient, reason, appointmentTime, or appointmentStatus are null
-     */
+    @JsonSerialize(using = PrescriptionMapSerializer.class)
+    @JsonDeserialize(using = PrescriptionMapDeserializer.class)
+    @JsonProperty("prescriptions")
+    private Map<Medication, Integer> prescriptions;
+
+
     @JsonCreator
     public Appointment(
             @JsonProperty("appointmentId") String appointmentId,
             @JsonProperty("patient") Patient patient,
             @JsonProperty("reason") String reason,
+            @JsonProperty("history") String history,
             @JsonProperty("appointmentTime") LocalDateTime appointmentTime,
-            @JsonProperty("appointmentStatus") AppointmentStatus appointmentStatus) {
+            @JsonProperty("doctor") Doctor doctor,
+            @JsonProperty("appointmentStatus") AppointmentStatus appointmentStatus,
+            @JsonProperty("session") Session session,
+            @JsonProperty("doctorNotes") String doctorNotes,
+            @JsonProperty("mc") MedicalCertificate mc,
+            @JsonProperty("contact") Contact contact,
+            @JsonProperty("prescriptions") Map<Medication, Integer> prescriptions) {
 
         this.appointmentId = (appointmentId != null && !appointmentId.isEmpty())
                 ? appointmentId
@@ -83,6 +92,43 @@ public class Appointment implements JSONSerializable {
         this.reason = Objects.requireNonNull(reason, "Reason cannot be null");
         this.appointmentTime = Objects.requireNonNull(appointmentTime, "Appointment time cannot be null");
         this.appointmentStatus = Objects.requireNonNull(appointmentStatus, "Appointment status cannot be null");
+
+        this.history = history;
+        this.doctor = doctor;
+        this.session = session;
+        this.doctorNotes = doctorNotes;
+        this.mc = mc;
+        this.contact = contact;
+
+        // Initialize prescriptions - using empty HashMap if null
+        this.prescriptions = prescriptions != null ? prescriptions : new HashMap<>();
+    }
+
+    /**
+     * Creates a new blank appointment with default PENDING status.
+     * This factory method simplifies creating new appointments by requiring only essential fields.
+     *
+     * @param patient           the patient for the appointment
+     * @param reason            the reason for the appointment
+     * @param appointmentTime   the scheduled time for the appointment
+     * @return                  a new Appointment instance with the specified parameters and default values for other fields
+     * @throws NullPointerException if patient, reason or appointmentTime are null
+     */
+    public static Appointment createNewAppointment(Patient patient, String reason, LocalDateTime appointmentTime) {
+        return new Appointment(
+                null,
+                patient,
+                reason,
+                null,
+                appointmentTime,
+                null,
+                AppointmentStatus.PENDING,
+                null,
+                null,
+                null,
+                null,
+                new HashMap<>()
+        );
     }
 
 
@@ -305,11 +351,11 @@ public class Appointment implements JSONSerializable {
         int hoursToAdd = DataGenerator.generateRandomInt(9, 16); // 9 AM to 4 PM
         LocalDateTime appointmentTime = now.plusDays(daysToAdd).withHour(hoursToAdd).withMinute(0).withSecond(0);
 
-        // Randomly select an appointment status
-        AppointmentStatus[] statuses = AppointmentStatus.values();
-        AppointmentStatus status = statuses[DataGenerator.generateRandomInt(statuses.length)];
+        var status = DataGenerator.getRandomEnum(AppointmentStatus.class);
 
-        Appointment appointment = new Appointment(null, patient, reason, appointmentTime, status);
+        var appointment = Appointment.createNewAppointment(patient, reason, appointmentTime);
+        
+        appointment.setAppointmentStatus(status);
 
         // If doctor is provided, assign it to the appointment
         if (doctor != null) {
@@ -333,12 +379,10 @@ public class Appointment implements JSONSerializable {
                 appointment.setDoctorNotes(notes[DataGenerator.generateRandomInt(notes.length)]);
             }
         }
-        // If no doctor is provided, randomly decide if a doctor should be assigned (50% chance)
         else if (DataGenerator.generateRandomInt(2) == 1) {
             Doctor randomDoctor = Doctor.builder().withRandomBaseData().build();
             appointment.setDoctor(randomDoctor);
 
-            // If the appointment has a doctor and is ACCEPTED, create a session
             if (status == AppointmentStatus.ACCEPTED) {
                 String zoomLink = "https://zoom.us/j/" + (10000000 + DataGenerator.generateRandomInt(90000000));
                 appointment.approveAppointment(randomDoctor, zoomLink);
@@ -359,6 +403,43 @@ public class Appointment implements JSONSerializable {
 
         return appointment;
     }
+
+    public Map<Medication, Integer> getPrescriptions() {
+        if (this.prescriptions == null) {
+            this.prescriptions = new HashMap<>();
+        }
+        return this.prescriptions;
+    }
+
+    /**
+     * Adds or updates a prescription in this consultation.
+     *
+     * @param medication The medication to prescribe
+     * @param quantity The quantity to prescribe
+     */
+    public void addPrescription(Medication medication, int quantity) {
+        if (medication == null || quantity <= 0) {
+            return;
+        }
+        if (this.prescriptions == null) {
+            this.prescriptions = new HashMap<>();
+        }
+        this.prescriptions.put(medication, quantity);
+    }
+
+    /**
+     * Removes a prescription from this consultation.
+     *
+     * @param medication The medication to remove
+     * @return true if the prescription was removed successfully
+     */
+    public boolean removePrescription(Medication medication) {
+        if (this.prescriptions == null || medication == null) {
+            return false;
+        }
+        return this.prescriptions.remove(medication) != null;
+    }
+
 
     /**
      * Returns a string representation of the appointment containing key details:

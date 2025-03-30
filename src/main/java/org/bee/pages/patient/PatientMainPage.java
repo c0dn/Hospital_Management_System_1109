@@ -7,12 +7,9 @@ import org.bee.hms.humans.Patient;
 
 import org.bee.hms.telemed.Appointment;
 import org.bee.hms.telemed.AppointmentStatus;
-import org.bee.pages.GenericUpdatePage;
-import org.bee.pages.doctor.ViewAppointmentPage;
 import org.bee.ui.*;
 import org.bee.ui.views.*;
 import org.bee.utils.ReflectionHelper;
-import org.bee.utils.formAdapters.PatientFormAdapter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -68,7 +65,7 @@ public class PatientMainPage extends UiBase {
         patientSection.addOption(3, "View/Change Appointment - To view current and past appointments or reschedule an existing teleconsult appointment");
         menuView.attachMenuOptionInput(1, "View/Update Particulars", str -> viewPatientDetails());
         menuView.attachMenuOptionInput(2, "Book Appointment", str -> bookAppointmentPrompt());
-        menuView.attachMenuOptionInput(3, "View/Change Appointment", str -> ToPage(new org.bee.pages.patient.ViewAppointmentPage()));
+        menuView.attachMenuOptionInput(3, "View/Change Appointment", str -> ToPage(new ViewAppointmentPage()));
 
 
         menuView.setNumericOptionMaxRange(4);
@@ -172,7 +169,7 @@ public class PatientMainPage extends UiBase {
 
         SystemUser systemUser = humanController.getLoggedInUser();
         if (systemUser instanceof Patient patient) {
-            Appointment appointment = new Appointment(null, patient, reason, selectedDateTime, AppointmentStatus.PENDING);
+            var appointment = Appointment.createNewAppointment(patient, reason, selectedDateTime);
 
 
             // check if consent is already given before asking.

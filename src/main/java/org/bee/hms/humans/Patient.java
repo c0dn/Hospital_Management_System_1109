@@ -260,35 +260,6 @@ public class Patient extends Human implements SystemUser {
     public void setAddress(String address) {}
 
     /**
-     * Displays detailed patient information
-     * The displayed information includes:
-     * - Patient ID
-     * - Height and weight measurements
-     * - Drug allergies list
-     * - Next of kin details (name, relationship, and address)
-     *
-     */
-    public void displayHuman() {
-
-        super.displayHuman();
-        System.out.printf("%n%n");
-        System.out.println("PATIENT DETAILS");
-        System.out.println("---------------------------------------------------------------------");
-
-//        System.out.printf("%nName: " + name);
-        System.out.printf("Patient ID: " + patientId);
-        System.out.printf("\nHeight: %3.2f", height);
-        System.out.printf("\nWeight: %3.2f", weight);
-        System.out.println("\nDrug Allergies: " + drugAllergies);
-        System.out.println("\nNEXT OF KIN (NOK) DETAILS");
-        System.out.println("---------------------------------------------------------------------");
-        System.out.printf("Name: " + nokName);
-        System.out.printf("\nRelationship: " + nokRelation);
-        System.out.printf("\nAddress: " + nokAddress);
-        System.out.println();
-    }
-
-    /**
      * Returns a string representation of the patient.
      *
      * @return A formatted string containing the patient's name and ID.

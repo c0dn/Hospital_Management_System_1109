@@ -115,34 +115,6 @@ public class Nurse extends Staff implements SystemUser {
      */
     public String getRnid() { return rnid; }
 
-     /**
-     * Displays the nurse's Registered Nurse ID (RNID) along with the inherited staff details.
-     * <p>
-     * This method first calls {@code displayStaff()} from the {@link Staff} class
-     * and then prints the RNID specific to the nurse.
-     * </p>
-     */
-    @Override
-    public void displayHuman() {
-        super.displayHuman();
-//        System.out.format("RNID: %s%n", rnid);
-
-        System.out.println("\n\nROLE: NURSE");
-        System.out.println("---------------------------------------------------------------------");
-        System.out.format("RNID: %s%n", rnid);
-        System.out.println("=====================================================================");
-    }
-
-    /**
-     * Prints the attending nurse's details
-     * <p>
-     * Displays the nurse's name and Registered Nurse ID (RNID) in the format:
-     * " - Attending Nurse: [name] (RNID: [rnid])".
-     * </p>
-     */
-    public void printAsAttending() {
-        System.out.printf("  - Attending Nurse: %s (RNID: %s)%n", name, rnid);
-    }
 
     /**
      * Retrieves the nurse staffId.

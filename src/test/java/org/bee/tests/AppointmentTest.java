@@ -116,17 +116,17 @@ public class AppointmentTest {
     void testErrorCasesAndValidation() {
         // Test setting null patient
         assertThrows(NullPointerException.class, () -> {
-            new Appointment(null, null, "Test", LocalDateTime.now(), AppointmentStatus.PENDING);
+            Appointment.createNewAppointment(null, "Test", LocalDateTime.now());
         });
         
         // Test setting null doctor in approveAppointment
-        Appointment appointment1 = new Appointment(null, patient, "Test", LocalDateTime.now(), AppointmentStatus.PENDING);
+        Appointment appointment1 = Appointment.createNewAppointment(patient, "Test", LocalDateTime.now());
         assertThrows(NullPointerException.class, () -> {
             appointment1.approveAppointment(null, "https://zoom.us/j/123456789");
         });
         
         // Test setting null zoom link in approveAppointment
-        Appointment appointment2 = new Appointment(null, patient, "Test", LocalDateTime.now(), AppointmentStatus.PENDING);
+        Appointment appointment2 = Appointment.createNewAppointment(patient, "Test", LocalDateTime.now());
         assertThrows(NullPointerException.class, () -> {
             appointment2.approveAppointment(doctor, null);
         });

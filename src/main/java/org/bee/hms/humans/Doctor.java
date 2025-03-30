@@ -118,30 +118,6 @@ public class Doctor extends Staff implements SystemUser {
     }
 
     /**
-     * Prints the doctor's information as attending doctor
-     * Output format: "Attending Doctor : [name] (ID: [mcr])"
-     */
-    public void printAsAttending() {
-        System.out.format("%-20s: %s (ID: %s)%n",
-                "Attending Doctor",
-                name,
-                mcr);
-    }
-
-
-    /**
-     * Displays doctor's Medical Council Registration (MCR) number, including the inherited staff details.
-     */
-    @Override
-    public void displayHuman() {
-        super.displayHuman();
-        System.out.println("\n\nROLE: DOCTOR");
-        System.out.println("---------------------------------------------------------------------");
-        System.out.format("MCR: %s%n", mcr);
-        System.out.println("=====================================================================");
-    }
-
-    /**
      * Returns the staffId as the username
      *
      * @return The staffId
