@@ -9,6 +9,8 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.bee.hms.billing.Bill;
+import org.bee.hms.billing.BillingStatus;
+import org.bee.hms.humans.Doctor;
 import org.bee.hms.humans.Patient;
 import org.bee.hms.insurance.InsuranceProvider;
 import org.bee.hms.policy.InsurancePolicy;
@@ -456,6 +458,7 @@ public class InsuranceClaim implements JSONSerializable {
         this.comments = comments;
     }
 
+
     /**
      * Generates a unique ClaimID using current date and a random string.
      * Format: CLM-YYYYMMDD-XXXX, where XXXX is a random 4-character string.
@@ -478,4 +481,16 @@ public class InsuranceClaim implements JSONSerializable {
     public LocalDateTime getSubmissionDate() {
         return submissionDate;
     }
+
+
+    public void submitForProcessing() {
+        if (this.claimStatus == ClaimStatus.DRAFT) {
+            this.claimStatus = ClaimStatus.SUBMITTED;
+        } else {
+            throw new IllegalStateException("Claim cannot be submitted. Current status is '" + this.claimStatus.getDisplayName() +
+                    "', required status is '" + BillingStatus.DRAFT.getDisplayName() + "'.");
+        }
+    }
+
+
 }

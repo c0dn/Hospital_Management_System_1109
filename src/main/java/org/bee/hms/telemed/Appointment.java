@@ -297,7 +297,6 @@ public class Appointment implements JSONSerializable {
                 "Chronic condition management",
                 "Mental health consultation"
         };
-
         String reason = reasons[DataGenerator.generateRandomInt(reasons.length)];
 
         // Generate a random appointment time between now and 30 days in the future

@@ -4,6 +4,7 @@
     import org.bee.pages.clerk.billing.ViewAllBillsPage;
     import org.bee.pages.clerk.insurance.NewInsuranceClaimPage;
     import org.bee.pages.clerk.insurance.UpdateClaimPage;
+    import org.bee.pages.clerk.insurance.ViewAllClaimsPage;
     import org.bee.ui.*;
     import org.bee.ui.views.*;
 
@@ -57,18 +58,20 @@
 
             // Insurance section
             MenuView.MenuSection insuranceSection = menuView.addSection("Insurance Claims");
-            insuranceSection.addOption(8, "Submit New Claim");
-            insuranceSection.addOption(9, "Manage Existing Claims");
-            insuranceSection.addOption(10, "Check Claim Status");
-            insuranceSection.addOption(11, "Update Claim Status");
-            menuView.attachMenuOptionInput(8, "Submit New Claim", str -> ToPage(new NewInsuranceClaimPage()));
-            menuView.attachMenuOptionInput(9, "Manage Existing Claim", str -> ToPage(new UpdateClaimPage()));
+//            insuranceSection.addOption(8, "Submit New Claim");
+//            insuranceSection.addOption(9, "Manage Existing Claims");
+//            insuranceSection.addOption(10, "Check Claim Status");
+//            insuranceSection.addOption(11, "Update Claim Status");
+            insuranceSection.addOption(5, "View All Claims");
+//            menuView.attachMenuOptionInput(8, "Submit New Claim", str -> ToPage(new NewInsuranceClaimPage()));
+//            menuView.attachMenuOptionInput(9, "Manage Existing Claim", str -> ToPage(new UpdateClaimPage()));
+            menuView.attachMenuOptionInput(5, "View All Claims", str -> ToPage(new ViewAllClaimsPage()));
 
 //            menuView.attachMenuOptionInput(5, "Manage Claims", str -> ToPage(new InsuranceClaimPage(InsuranceClaimPage.Mode.MANAGE)));
 //            menuView.attachMenuOptionInput(6, "Check Claim Status", str -> ToPage(new InsuranceClaimPage(InsuranceClaimPage.Mode.CHECK)));
 //            menuView.attachMenuOptionInput(7, "Update Claim Status", str -> ToPage(new InsuranceClaimPage(InsuranceClaimPage.Mode.UPDATE)));
 
-            menuView.setNumericOptionMaxRange(11);
+            menuView.setNumericOptionMaxRange(5);
 
             canvas.setRequireRedraw(true);
         }

@@ -130,6 +130,20 @@ public class ConsultationDetailsViewAdapter implements IDetailsViewAdapter<Consu
             view.addDetail("Medical Details", "Instructions", instructions);
         }
 
+//        String treatments = ReflectionHelper.stringPropertyAccessor("treatments", null).apply(consultation);
+//        if (treatments != null && !treatments.isEmpty()) {
+//            view.addDetail("Medical Details", "Treatments", treatments);
+//        } else {
+//            view.addDetail("Medical Details", "Treatments", "Not available");
+//        }
+//
+//        String labTests = ReflectionHelper.stringPropertyAccessor("labTests", null).apply(consultation);
+//        if (labTests != null && !labTests.isEmpty()) {
+//            view.addDetail("Medical Details", "Lab Tests", labTests);
+//        } else {
+//            view.addDetail("Medical Details", "Lab Tests", "Not available");
+//        }
+
         // Follow-up Information
         LocalDateTime followUpDate = (LocalDateTime) ReflectionHelper.propertyAccessor("followUpDate", null).apply(consultation);
         if (followUpDate != null) {

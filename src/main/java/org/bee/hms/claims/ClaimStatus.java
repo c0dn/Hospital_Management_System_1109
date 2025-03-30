@@ -26,66 +26,69 @@ public enum ClaimStatus implements JSONSerializable {
     /**
      * Claim is in draft state, meaning it's not yet submitted
      */
-    DRAFT("Claim is draft"),
+    DRAFT("Draft", "Claim is draft"),
 
     /**
      * Claim has been submitted.
      */
-    SUBMITTED("Claim has been submitted"),
+    SUBMITTED("Submitted", "Claim has been submitted"),
 
     /**
      * Claim is under review.
      */
-    IN_REVIEW("Claim is under review"),
+    IN_REVIEW("In Review", "Claim is under review"),
 
     /**
      * Additional information has been requested.
      */
-    PENDING_INFORMATION("Additional information requested"),
+    PENDING_INFORMATION("Pending Information", "Additional information requested"),
 
     /**
      * Claim has been approved.
      */
-    APPROVED("Claim has been approved"),
+    APPROVED("Approved", "Claim has been approved"),
 
     /**
      * Claim has been approved with adjustments.
      */
-    PARTIALLY_APPROVED("Claim approved with adjustments"),
+    PARTIALLY_APPROVED("Partially Approved", "Claim approved with adjustments"),
 
     /**
      * Claim has been denied.
      */
-    DENIED("Claim has been denied"),
+    DENIED("Denied", "Claim has been denied"),
 
     /**
      * Claim is under appeal.
      */
-    APPEALED("Claim is under appeal"),
+    APPEALED("Appealed", "Claim is under appeal"),
 
     /**
      * Payment has been processed.
      */
-    PAID("Payment has been processed"),
+    PAID("Paid", "Payment has been processed"),
 
     /**
      * Claim has been cancelled.
      */
-    CANCELLED("Claim has been cancelled"),
+    CANCELLED("Cancelled", "Claim has been cancelled"),
 
     /**
      * Claim has expired.
      */
-    EXPIRED("Claim has expired");
+    EXPIRED("Expired", "Claim has expired");
 
     private final String description;
+
+    private final String displayName;
 
     /**
      * Constructor for ClaimStatus.
      *
      * @param description A brief description of the claim status.
      */
-    ClaimStatus(String description) {
+    ClaimStatus(String displayName, String description) {
+        this.displayName = displayName;
         this.description = description;
     }
 
@@ -96,5 +99,9 @@ public enum ClaimStatus implements JSONSerializable {
      */
     public String getDescription() {
         return description;
+    }
+
+    public String getDisplayName() {
+        return displayName;
     }
 }

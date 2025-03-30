@@ -6,6 +6,7 @@ import org.bee.hms.auth.SystemUser;
 import org.bee.hms.humans.Clerk;
 import org.bee.hms.humans.Doctor;
 import org.bee.hms.medical.Consultation;
+import org.bee.hms.medical.LabTest;
 import org.bee.ui.forms.FormField;
 import org.bee.ui.forms.FormValidators;
 import org.bee.ui.forms.IObjectFormAdapter;
@@ -13,10 +14,10 @@ import org.bee.ui.forms.IObjectFormAdapter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
 /**
  * Adapter for displaying Consultation form.
  * This adapter generates form fields for consultation details and handles
@@ -64,6 +65,17 @@ public class ConsultationFormAdapter implements IObjectFormAdapter<Consultation>
             ));
 
         } else if (systemUser instanceof Doctor) {
+
+            String initialDiagnosticCode = (String) getFieldValue(consultation, "diagnosticCodes");
+            fields.add(createTextField(
+                    "diagnosticCodes", "Diagnostic Codes", "Enter diagnostic code:", consultation,
+                    FormValidators.notEmpty(),
+                    "Diagnostic code cannot be empty.",
+                    true,
+                    initialDiagnosticCode
+            ));
+
+
             String initialDiagnosis = (String) getFieldValue(consultation, "diagnosis");
             fields.add(createTextField(
                     "diagnosis", "Diagnosis", "Enter diagnosis:", consultation,
@@ -91,6 +103,15 @@ public class ConsultationFormAdapter implements IObjectFormAdapter<Consultation>
                     initialInstructions
             ));
 
+//            String initialProcedureCode = (String) getFieldValue(consultation, "procedureCodes");
+//            fields.add(createTextField(
+//                    "procedureCodes", "Procedure Codes", "Enter procedure codes:", consultation,
+//                    FormValidators.notEmpty(),
+//                    "Procedure codes cannot be empty.",
+//                    true,
+//                    initialProcedureCode
+//            ));
+
             String initialTreatments = (String) getFieldValue(consultation, "treatments");
             fields.add(createTextField(
                     "treatments", "Treatments", "Enter treatments description:", consultation,
@@ -99,6 +120,36 @@ public class ConsultationFormAdapter implements IObjectFormAdapter<Consultation>
                     true,
                     initialTreatments
             ));
+//
+//            // Get initial lab tests (assuming consultation has getLabTests() method)
+//            List<LabTest> initialLabTests = consultation.getLabTests();
+//
+//// Create parser for LabTest objects
+//            FormField.FormInputParser<LabTest> labTestParser = input -> {
+//                try {
+//                    int id = Integer.parseInt(input.trim());
+//                    LabTest test = LabTest.searchLabTestByID(id);
+//                    if (test == null) {
+//                        throw new IllegalArgumentException("No lab test found with ID: " + id);
+//                    }
+//                    return test;
+//                } catch (NumberFormatException e) {
+//                    throw new IllegalArgumentException("Please enter valid lab test IDs (numbers)");
+//                }
+//            };
+//
+//// Create the field
+//            fields.add(createListField(
+//                    "labTests",
+//                    "Lab Tests",
+//                    "Enter lab test IDs (comma separated):",
+//                    consultation,
+//                    FormValidators.notEmpty(),
+//                    "At least one valid lab test ID is required.",
+//                    labTestParser,
+//                    false,  // or true if required
+//                    initialLabTests != null ? initialLabTests : Collections.emptyList()
+//            ));
         }
 
         return fields;
