@@ -6,6 +6,7 @@ import org.bee.ui.Canvas;
 import org.bee.ui.Color;
 import org.bee.ui.SystemMessageStatus;
 import org.bee.ui.View;
+import org.bee.ui.forms.CollectionFormField;
 import org.bee.ui.forms.FormField;
 
 /**
@@ -21,7 +22,7 @@ import org.bee.ui.forms.FormField;
  * </ul>
  *
  * <p>
- * The view maintains internal state to track the currently selected field and
+ * The view maintains an internal state to track the currently selected field and
  * whether it's awaiting user input. It can be integrated with MenuView for
  * additional navigation controls.
  * </p>
@@ -37,21 +38,31 @@ public class FormView extends View {
      * Represents the possible states of the form.
      */
     private enum FormState {
-        /** No field is selected or active */
+        /**
+         * No field is selected or active
+         */
         IDLE,
-        /** A field has been selected but is not yet being edited */
+        /**
+         * A field has been selected but is not yet being edited
+         */
         FIELD_SELECTED,
-        /** A field is currently awaiting user input */
-        AWAITING_VALUE
+        /**
+         * A field is currently awaiting user input
+         */
+        AWAITING_VALUE,
+        COLLECTION_BROWSING,
+        COLLECTION_ADDING,
+        COLLECTION_REMOVING
     }
+
     private FormState currentState = FormState.IDLE;
 
     /**
      * Creates a new form view with the specified title and color.
      *
-     * @param canvas The canvas to render on
+     * @param canvas    The canvas to render on
      * @param formTitle The title of the form
-     * @param color The color for the form's text
+     * @param color     The color for the form's text
      */
     public FormView(Canvas canvas, String formTitle, Color color) {
         super(canvas, formTitle, "", color);
@@ -63,7 +74,7 @@ public class FormView extends View {
      * Fields are displayed in the order they are added.
      * </p>
      *
-     * @param <T> The type of value stored in the field
+     * @param <T>   The type of value stored in the field
      * @param field The form field to add
      */
     public <T> void addField(FormField<T> field) {
@@ -108,13 +119,29 @@ public class FormView extends View {
         for (int i = 0; i < fields.size(); i++) {
             FormField<?> field = fields.get(i);
             if (field == null) continue;
-            boolean isHighlighted = (i == selectedFieldIndex && (currentState == FormState.FIELD_SELECTED || currentState == FormState.AWAITING_VALUE));
+            boolean isHighlighted = (i == selectedFieldIndex && (currentState == FormState.FIELD_SELECTED ||
+                    currentState == FormState.AWAITING_VALUE || currentState == FormState.COLLECTION_BROWSING));
             sb.append(i + 1).append(". ").append(field.getDisplayString(isHighlighted));
             sb.append("\n");
         }
         sb.append("\n");
 
-        if (currentState == FormState.FIELD_SELECTED && selectedFieldIndex != -1) {
+        if (currentState == FormState.COLLECTION_BROWSING && selectedFieldIndex != -1) {
+            FormField<?> selectedFieldRaw = getSelectedField();
+            if (selectedFieldRaw instanceof CollectionFormField<?, ?> field) {
+                sb.append("\n").append(Color.CYAN.getAnsiCode());
+                sb.append("--- Managing: ").append(field.getDisplayName()).append(" ---\n");
+                List<String> items = field.getDisplayItems();
+                if (items.isEmpty()) {
+                    sb.append("  (No items)\n");
+                } else {
+                    for (int i = 0; i < items.size(); i++) {
+                        sb.append("  ").append(i + 1).append(". ").append(items.get(i)).append("\n");
+                    }
+                }
+                sb.append(Color.ESCAPE.getAnsiCode());
+            }
+        } else if (currentState == FormState.FIELD_SELECTED && selectedFieldIndex != -1) {
             sb.append(Color.CYAN.getAnsiCode())
                     .append("Selected Field: ").append(selectedFieldIndex + 1).append(". ")
                     .append(fields.get(selectedFieldIndex).getDisplayName())
@@ -123,6 +150,7 @@ public class FormView extends View {
                     .append("\n");
         }
 
+
         return sb.toString();
     }
 
@@ -130,31 +158,47 @@ public class FormView extends View {
      * {@inheritDoc}
      *
      * <p>Generates the footer with context-sensitive options based on the current form state.
-     *  When a field is awaiting input, the footer includes the field's prompt.</p>
-     *
+     * When a field is awaiting input, the footer includes the field's prompt.</p>
      */
     @Override
     public String getFooter() {
         StringBuilder sb = new StringBuilder();
         sb.append("\nOptions:\n | e: Go Back");
 
-        List<Integer> numericKeys = Collections.list(inputOptions.keys()).stream()
-                .filter(key -> key > 0)
-                .sorted()
-                .toList();
+        if (currentState == FormState.COLLECTION_BROWSING) {
+            sb.append(" | a: Add Item | r: Remove Item | s: Submit Changes | q: Quit App\n");
+            sb.append("Your input (a, r, e, s, q): ");
 
-        if (!numericKeys.isEmpty()) {
-            sb.append(" | Select field you wish to update (1-").append(fields.size()).append(")");
-        }
+        } else if (currentState == FormState.COLLECTION_ADDING) {
+            CollectionFormField<?, ?> field = (CollectionFormField<?, ?>) getSelectedField();
+            sb.append(" | q: Quit App\n");
+            sb.append("Enter new item for ").append(field.getDisplayName()).append(" (or 'e' to go back): ");
 
-        sb.append(" | s: Submit Changes | u: Update Selected Field");
+        } else if (currentState == FormState.COLLECTION_REMOVING) {
+            CollectionFormField<?, ?> field = (CollectionFormField<?, ?>) getSelectedField();
+            sb.append(" | q: Quit App\n");
+            sb.append("Enter item number (1-").append(field.getCollectionSize()).append(") to remove (or 'e' to go back): ");
 
-        if (currentState == FormState.AWAITING_VALUE && selectedFieldIndex != -1) {
-            FormField<?> currentField = fields.get(selectedFieldIndex);
-            String currentFieldPrompt = currentField.getPrompt();
-            sb.append(" | q: Quit App\n").append(currentFieldPrompt).append(": ");
+        } else if (currentState == FormState.AWAITING_VALUE) {
+            if (selectedFieldIndex != -1) {
+                FormField<?> currentField = fields.get(selectedFieldIndex);
+                sb.append(" | q: Quit App\n");
+                sb.append(currentField.getPrompt()).append(" ");
+            } else {
+                sb.append(" | Select field (1-").append(fields.size()).append(")");
+                sb.append(" | s: Submit Changes | u: Update Selected Field | q: Quit App\n");
+                sb.append("Your input: ");
+            }
         } else {
-            sb.append(" | q: Quit App\nYour input: ");
+            if (!fields.isEmpty()) {
+                sb.append(" | Select field (1-").append(fields.size()).append(")");
+            }
+            sb.append(" | s: Submit Changes");
+            if (selectedFieldIndex != -1) { // Only show 'u' if a field IS selected
+                sb.append(" | u: Update Selected Field");
+            }
+            sb.append(" | q: Quit App\n");
+            sb.append("Your input: ");
         }
 
         return sb.toString();
@@ -271,14 +315,24 @@ public class FormView extends View {
     /**
      * Handles the 'u' command trigger for updating a field.
      * <p>
-     * If a field is already selected, this transitions to the AWAITING_VALUE state.
+     * If a field is already selected, this transitions to the appropriate state:
+     * - COLLECTION_Browse for collection fields (List, Map).
+     * - AWAITING_VALUE for single-value fields.
      * If no field is selected, it shows an error message.
      * </p>
      */
     private void handleUpdateTrigger() {
-        if (currentState == FormState.FIELD_SELECTED) {
-            currentState = FormState.AWAITING_VALUE;
+        if (currentState == FormState.FIELD_SELECTED && selectedFieldIndex >= 0 && selectedFieldIndex < fields.size()) {
+            FormField<?> selectedField = fields.get(selectedFieldIndex);
+
+            if (selectedField instanceof CollectionFormField) {
+                currentState = FormState.COLLECTION_BROWSING;
+                canvas.setSystemMessage("Manage " + selectedField.getDisplayName() + ": (a: Add, r: Remove)", SystemMessageStatus.INFO);
+            } else {
+                currentState = FormState.AWAITING_VALUE;
+            }
             canvas.setRequireRedraw(true);
+
         } else {
             lastMessageStatus = SystemMessageStatus.ERROR;
             currentState = FormState.IDLE;
@@ -299,11 +353,46 @@ public class FormView extends View {
      */
     @Override
     public boolean handleDirectInput(String input) {
-        if (currentState == FormState.AWAITING_VALUE) {
-            processValueInput(input);
+        if (currentState == FormState.COLLECTION_BROWSING) {
+            CollectionFormField<?, ?> field = (CollectionFormField<?, ?>) getSelectedField();
+
+            if (input.equalsIgnoreCase("a")) {
+                // Switch to adding mode
+                currentState = FormState.COLLECTION_ADDING;
+                canvas.setRequireRedraw(true);
+                return true;
+            } else if (input.equalsIgnoreCase("r")) {
+                // Switch to removing mode
+                currentState = FormState.COLLECTION_REMOVING;
+                canvas.setRequireRedraw(true);
+                return true;
+            }
+        } else if (currentState == FormState.COLLECTION_ADDING) {
+            CollectionFormField<?, ?> field = (CollectionFormField<?, ?>) getSelectedField();
+            try {
+                field.addItem(input);
+                canvas.setSystemMessage("Item added successfully", SystemMessageStatus.SUCCESS);
+                currentState = FormState.COLLECTION_BROWSING;
+            } catch (Exception e) {
+                canvas.setSystemMessage("Error adding item: " + e.getMessage(), SystemMessageStatus.ERROR);
+            }
+            canvas.setRequireRedraw(true);
+            return true;
+        } else if (currentState == FormState.COLLECTION_REMOVING) {
+            try {
+                int index = Integer.parseInt(input) - 1;
+                CollectionFormField<?, ?> field = (CollectionFormField<?, ?>) getSelectedField();
+                field.removeItem(index);
+                canvas.setSystemMessage("Item removed successfully", SystemMessageStatus.SUCCESS);
+            } catch (Exception e) {
+                canvas.setSystemMessage("Error removing item: " + e.getMessage(), SystemMessageStatus.ERROR);
+            }
+            currentState = FormState.COLLECTION_BROWSING;
+            canvas.setRequireRedraw(true);
             return true;
         }
-        return false;
+
+        return super.handleDirectInput(input);
     }
 
     /**

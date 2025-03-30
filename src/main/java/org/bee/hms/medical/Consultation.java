@@ -210,10 +210,6 @@ public class Consultation implements JSONSerializable {
         };
         consultation.medicalHistory = DataGenerator.getRandomElement(histories);
 
-        consultation.notes = "Consultation for " + consultation.visitReason.toLowerCase() +
-                ". Diagnosed with " + consultation.diagnosis.toLowerCase() +
-                ". " + DataGenerator.getRandomElement(instructionOptions);
-
         consultation.diagnosticCodes = new ArrayList<>();
         int diagCount = DataGenerator.generateRandomInt(1, 3);
         for (int i = 0; i < diagCount; i++) {
@@ -444,108 +440,6 @@ public class Consultation implements JSONSerializable {
     }
 
     /**
-     * Displays consultation details including:
-     * <ul>
-     *   <li>Patient information (via displayHuman())</li>
-     *   <li>Consultation metadata (ID, date, type, status)</li>
-     *   <li>Medical details (diagnosis, procedures, lab tests)</li>
-     *   <li>Treatment plan (prescriptions, follow-up)</li>
-     *   <li>Doctor information and notes</li>
-     * </ul>
-     * <p>
-     * Display "-" when data is missing.
-     * </p>
-     */
-    public void displayConsultation() {
-        patient.displayHuman();
-        System.out.printf("%n");
-        System.out.println("CONSULTATION DETAILS");
-        System.out.println("---------------------------------------------------------------------");
-
-//        System.out.printf("%nName: " + name);
-        System.out.println("Case ID: " + consultationId);
-        System.out.println("Appointment Date: " + (appointmentDate != null ? appointmentDate : "-"));
-        System.out.println("Type: " + type);
-        System.out.println("Status: " + (status != null ? status : "-"));
-        System.out.println("Medical History: " + (medicalHistory != null ? medicalHistory : "-"));
-        System.out.println("Visit Reason: " + (visitReason != null ? visitReason : "-"));
-
-        System.out.print("Diagnostic Code: ");
-        if (diagnosticCodes != null && !diagnosticCodes.isEmpty()) {
-            System.out.println();
-            for (int i = 0; i < diagnosticCodes.size(); i++) {
-                System.out.print("    ");
-                System.out.print(i + 1);
-                System.out.print(". ");
-                System.out.println(diagnosticCodes.get(i).getDCode());
-            }
-        } else {
-            System.out.println("-");
-        }
-
-        System.out.println("Diagnosis: " + (diagnosis != null ? diagnosis : "-"));
-
-        System.out.print("Procedure Code: ");
-        if (procedureCodes != null && !procedureCodes.isEmpty()) {
-            System.out.println();
-            for (int i = 0; i < procedureCodes.size(); i++) {
-                System.out.print("    ");
-                System.out.print(i + 1);
-                System.out.print(". ");
-                System.out.println(procedureCodes.get(i).getPCode());
-            }
-        } else {
-            System.out.println("-");
-        }
-
-        System.out.print("Lab Test: ");
-        if (labTests != null && !labTests.isEmpty()) {
-            System.out.println();
-            for (int i = 0; i < labTests.size(); i++) {
-                System.out.print("    ");
-                System.out.print(i + 1);
-                System.out.print(". ");
-                System.out.println(labTests.get(i).getLabTestInfo());
-            }
-        } else {
-            System.out.println("-");
-        }
-
-        System.out.print("Treatment: ");
-        if (treatments != null && !treatments.isEmpty()) {
-            System.out.println();
-            for (int i = 0; i < treatments.size(); i++) {
-                System.out.print("    ");
-                System.out.print(i + 1);
-                System.out.print(". ");
-                System.out.println(treatments.get(i).getTreatmentInfo());
-            }
-        } else {
-            System.out.println("-");
-        }
-
-        System.out.print("Prescription: ");
-        int i = 1;
-        if (prescriptions != null && !prescriptions.isEmpty()) {
-            System.out.println();
-            for (Medication drugCode : prescriptions.keySet()) {
-                System.out.print("    ");
-                System.out.print(i);
-                System.out.print(". ");
-                System.out.println(drugCode.getDrugCode() + ", " + drugCode.name);
-                i++;
-            }
-        } else {
-            System.out.println("-");
-        }
-
-        System.out.println("Follow Up Date: " + (followUpDate != null ? followUpDate : "-"));
-        System.out.println("Doctor's Notes: " + (notes != null ? notes : "-"));
-        System.out.println("Instructions: " + (instructions != null ? instructions : "-"));
-        System.out.printf("Doctor Name: " + doctor.getName());
-        System.out.println();
-    }
-
     /**
      * Gets the time when the consultation occurred
      * @return LocalDateTime of the consultation

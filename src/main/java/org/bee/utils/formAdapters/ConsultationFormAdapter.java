@@ -5,9 +5,7 @@ import org.bee.controllers.HumanController;
 import org.bee.hms.auth.SystemUser;
 import org.bee.hms.humans.Clerk;
 import org.bee.hms.humans.Doctor;
-import org.bee.hms.medical.Consultation;
-import org.bee.hms.medical.LabTest;
-import org.bee.hms.medical.Medication;
+import org.bee.hms.medical.*;
 import org.bee.ui.forms.FormField;
 import org.bee.ui.forms.FormValidators;
 import org.bee.ui.forms.IObjectFormAdapter;
@@ -69,16 +67,6 @@ public class ConsultationFormAdapter implements IObjectFormAdapter<Consultation>
 
         } else if (systemUser instanceof Doctor) {
 
-//            String initialDiagnosticCode = (String) getFieldValue(consultation, "diagnosticCodes");
-//            fields.add(createTextField(
-//                    "diagnosticCodes", "Diagnostic Codes", "Enter diagnostic code:", consultation,
-//                    FormValidators.notEmpty(),
-//                    "Diagnostic code cannot be empty.",
-//                    true,
-//                    initialDiagnosticCode
-//            ));
-
-
             String initialDiagnosis = (String) getFieldValue(consultation, "diagnosis");
             fields.add(createTextField(
                     "diagnosis", "Diagnosis", "Enter diagnosis:", consultation,
@@ -106,61 +94,97 @@ public class ConsultationFormAdapter implements IObjectFormAdapter<Consultation>
                     initialInstructions
             ));
 
-            @SuppressWarnings("unchecked")
-            Map<Medication, Integer> initialPrescriptions = (Map<Medication, Integer>) getFieldValue(consultation, "prescriptions");
-            Function<String, Medication> medicationParser = medication.createMedicationParser();
-            fields.add(createHashMapField("prescriptions", "Prescriptions", "Enter prescription (drugCode:quantity)", consultation,
-                    FormValidators.notEmpty(), "Prescriptions cannot be empty.", medicationParser, Integer::parseInt, ":",
-                    ",", true, initialPrescriptions != null ? initialPrescriptions : new HashMap<>()));
+            List<DiagnosticCode> initialDiagnosticCodes = consultation.getDiagnosticCodes();
+            fields.add(createListField(
+                    "diagnosticCodes",
+                    "Diagnostic Codes",
+                    "Manage diagnostic codes:",
+                    consultation,
+                    FormValidators.combine(
+                            FormValidators.notEmpty(),
+                            FormValidators.validDiagnosticCode()
+                    ),
+                    "Diagnostic code cannot be empty.",
+                    input -> DiagnosticCode.createFromCode(input.trim().toUpperCase()),
+                    true,
+                    initialDiagnosticCodes
+            ));
 
+            // Get procedure codes from consultation
+            List<ProcedureCode> initialProcedureCodes = consultation.getProcedureCodes();
+            fields.add(createListField(
+                    "procedureCodes",
+                    "Procedure Codes",
+                    "Enter procedure code (e.g., 31500):",
+                    consultation,
+                    input -> {
+                        try {
+                            if (input == null || input.trim().isEmpty()) {
+                                return false;
+                            }
+                            ProcedureCode.createFromCode(input.trim().toUpperCase());
+                            return true;
+                        } catch (IllegalArgumentException e) {
+                            return false;
+                        }
+                    },
+                    "Invalid procedure code. Please enter a valid code.",
+                    input -> ProcedureCode.createFromCode(input.trim().toUpperCase()),
+                    false,
+                    initialProcedureCodes
+            ));
 
-//            String initialProcedureCode = (String) getFieldValue(consultation, "procedureCodes");
-//            fields.add(createTextField(
-//                    "procedureCodes", "Procedure Codes", "Enter procedure codes:", consultation,
-//                    FormValidators.notEmpty(),
-//                    "Procedure codes cannot be empty.",
-//                    true,
-//                    initialProcedureCode
-//            ));
+            // Get prescriptions from consultation
+            Map<Medication, Integer> initialPrescriptions = consultation.getPrescriptions();
+            fields.add(createMapField(
+                    "prescriptions",
+                    "Prescriptions",
+                    "Enter medication code and quantity (e.g., AMOX:30):",
+                    consultation,
+                    input -> {
+                        if (input == null || input.trim().isEmpty()) {
+                            return false;
+                        }
 
-//            String initialTreatments = (String) getFieldValue(consultation, "treatments");
-//            fields.add(createTextField(
-//                    "treatments", "Treatments", "Enter treatments description:", consultation,
-//                    FormValidators.notEmpty(),
-//                    "Treatments description cannot be empty.",
-//                    true,
-//                    initialTreatments
-//            ));
-//
-//            // Get initial lab tests (assuming consultation has getLabTests() method)
-//            List<LabTest> initialLabTests = consultation.getLabTests();
-//
-//// Create parser for LabTest objects
-//            FormField.FormInputParser<LabTest> labTestParser = input -> {
-//                try {
-//                    int id = Integer.parseInt(input.trim());
-//                    LabTest test = LabTest.searchLabTestByID(id);
-//                    if (test == null) {
-//                        throw new IllegalArgumentException("No lab test found with ID: " + id);
-//                    }
-//                    return test;
-//                } catch (NumberFormatException e) {
-//                    throw new IllegalArgumentException("Please enter valid lab test IDs (numbers)");
-//                }
-//            };
-//
-//// Create the field
-//            fields.add(createListField(
-//                    "labTests",
-//                    "Lab Tests",
-//                    "Enter lab test IDs (comma separated):",
-//                    consultation,
-//                    FormValidators.notEmpty(),
-//                    "At least one valid lab test ID is required.",
-//                    labTestParser,
-//                    false,  // or true if required
-//                    initialLabTests != null ? initialLabTests : Collections.emptyList()
-//            ));
+                        String[] parts = input.trim().split(":", 2);
+                        if (parts.length != 2) {
+                            return false;
+                        }
+
+                        try {
+                            String medicationCode = parts[0].trim().toUpperCase();
+                            String quantityStr = parts[1].trim();
+
+                            // Check if medication is valid
+                            Medication.createFromCode(medicationCode);
+
+                            // Check if quantity is valid
+                            try {
+                                int quantity = Integer.parseInt(quantityStr);
+                                return quantity > 0;
+                            } catch (NumberFormatException e) {
+                                return false;
+                            }
+                        } catch (Exception e) {
+                            return false;
+                        }
+                    },
+                    "Invalid prescription format. Use 'CODE:QUANTITY' with a valid medication code and positive quantity.",
+                    input -> {
+                        String medicationCode = input.trim().toUpperCase();
+                        return Medication.createFromCode(medicationCode);
+                    },
+                    input -> {
+                        int quantity = Integer.parseInt(input.trim());
+                        if (quantity <= 0) {
+                            throw new IllegalArgumentException("Quantity must be greater than 0");
+                        }
+                        return quantity;
+                    },
+                    false,
+                    initialPrescriptions
+            ));
+
         }
 
         return fields;

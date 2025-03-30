@@ -1,5 +1,9 @@
 package org.bee.ui.forms;
 
+import org.bee.hms.medical.DiagnosticCode;
+import org.bee.hms.medical.Medication;
+import org.bee.hms.medical.ProcedureCode;
+
 import java.util.function.Predicate;
 
 /**
@@ -127,6 +131,59 @@ public class FormValidators {
      */
     public static FormField.FormInputParser<Double> doubleParser() {
         return Double::parseDouble;
+    }
+
+
+    public static Predicate<String> validDiagnosticCode() {
+        return input -> {
+            if (input == null || input.trim().isEmpty()) {
+                return false;
+            }
+            try {
+                DiagnosticCode.createFromCode(input.trim().toUpperCase());
+                return true;
+            } catch (IllegalArgumentException e) {
+                return false;
+            }
+        };
+    }
+
+    /**
+     * Creates a validator that checks if a string is a valid procedure code.
+     *
+     * @return A predicate that validates procedure codes
+     */
+    public static Predicate<String> validProcedureCode() {
+        return input -> {
+            if (input == null || input.trim().isEmpty()) {
+                return false;
+            }
+            try {
+                ProcedureCode.createFromCode(input.trim().toUpperCase());
+                return true;
+            } catch (IllegalArgumentException e) {
+                return false;
+            }
+        };
+    }
+
+    /**
+     * Creates a validator that checks if a string is a valid medication code.
+     *
+     * @return A predicate that validates medication codes
+     */
+    public static Predicate<String> validMedicationCode() {
+        return input -> {
+            if (input == null || input.trim().isEmpty()) {
+                return false;
+            }
+            try {
+                Medication medication = Medication.createFromCode(input.trim().toUpperCase());
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+        };
     }
 
     /**

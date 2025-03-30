@@ -5,7 +5,6 @@ import org.bee.utils.ReflectionHelper;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.*;
-import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -445,101 +444,63 @@ public interface IObjectFormAdapter<T> {
                 parser, isRequired, initialValue);
     }
 
-//    default <V> FormField<List<V>> createListField(
-//            String name,
-//            String displayName,
-//            String prompt,
-//            T object,
-//            Predicate<String> validator,
-//            String errorMessage,
-//            FormField.FormInputParser<V> itemParser,
-//            boolean isRequired,
-//            List<V> initialValue) {
-//
-//        FormField.FormInputParser<List<V>> listParser = input -> {
-//            if (input == null || input.trim().isEmpty()) {
-//                if (isRequired) {
-//                    throw new IllegalArgumentException(displayName + " is required.");
-//                }
-//                return Collections.emptyList();
-//            }
-//
-//            String[] items = input.split("\\s*,\\s*");
-//            List<V> result = new ArrayList<>();
-//
-//            for (String item : items) {
-//                try {
-//                    V parsedItem = itemParser.parse(item);
-//                    if (parsedItem != null) {
-//                        result.add(parsedItem);
-//                    }
-//                } catch (Exception e) {
-//                    throw new IllegalArgumentException("Invalid item in list for " + displayName + ": " + e.getMessage());
-//                }
-//            }
-//
-//            return result;
-//        };
-//
-//        return createField(name, displayName, prompt, object, validator, errorMessage,
-//                listParser, isRequired, initialValue);
-//    }
 
-    default <K, V> FormField<Map<K, V>> createHashMapField(
-            String name,
-            String displayName,
-            String prompt,
-            T object,
-            Predicate<String> validator,
-            String errorMessage,
-            Function<String, K> keyParser,
-            Function<String, V> valueParser,
-            String keySeparator,
-            String pairSeparator,
-            boolean isRequired,
-            Map<K, V> initialValue) {
+    /**
+     * Creates a form field for editing a list of elements.
+     *
+     * @param <E> The type of elements in the list
+     * @param name The field identifier name
+     * @param displayName The human-readable field name
+     * @param prompt The input prompt shown to the user
+     * @param object The source object (of type T)
+     * @param validator The validation predicate
+     * @param errorMessage The error message shown on validation failure
+     * @param itemParser The parser for list elements (type E)
+     * @param isRequired Whether the field is required
+     * @param initialValue The initial list of elements
+     * @return A configured ListFormField instance
+     */
+    default <E> FormField<List<E>> createListField(
+            String name, String displayName, String prompt, T object,
+            Predicate<String> validator, String errorMessage,
+            FormField.FormInputParser<E> itemParser, boolean isRequired,
+            List<E> initialValue) {
 
-        FormField.FormInputParser<Map<K, V>> parser = input -> {
-            if (input == null || input.trim().isEmpty()) {
-                if (isRequired) {
-                    throw new IllegalArgumentException(displayName + " is required.");
-                } else {
-                    return new HashMap<>();
-                }
-            }
-
-            Map<K, V> result = new HashMap<>();
-            String[] pairs = input.split(pairSeparator);
-
-            for (String pair : pairs) {
-                String[] keyValue = pair.trim().split(keySeparator, 2);
-
-                if (keyValue.length != 2) {
-                    throw new IllegalArgumentException("Invalid format for " + displayName +
-                            ". Expected format: key" + keySeparator + "value" + pairSeparator + "...");
-                }
-
-                K key;
-                V value;
-
-                try {
-                    key = keyParser.apply(keyValue[0].trim());
-                } catch (Exception e) {
-                    throw new IllegalArgumentException("Invalid key format in " + displayName + ": " + keyValue[0]);
-                }
-
-                try {
-                    value = valueParser.apply(keyValue[1].trim());
-                } catch (Exception e) {
-                    throw new IllegalArgumentException("Invalid value format in " + displayName + ": " + keyValue[1]);
-                }
-
-                result.put(key, value);
-            }
-
-            return result;
-        };
-
-        return createField(name, displayName, prompt, object, validator, errorMessage, parser, isRequired, initialValue != null ? initialValue : new HashMap<>());
+        return new ListFormField<>(
+                name, displayName, prompt, validator,
+                errorMessage, itemParser, isRequired,
+                initialValue != null ? new ArrayList<>(initialValue) : new ArrayList<>());
     }
+
+
+    /**
+     * Creates a form field for editing a map.
+     *
+     * @param <K> The key type in the map
+     * @param <V> The value type in the map
+     * @param name The field identifier name
+     * @param displayName The human-readable field name
+     * @param prompt The input prompt shown to the user
+     * @param object The source object (of type T)
+     * @param validator The validation predicate
+     * @param errorMessage The error message shown on validation failure
+     * @param keyParser The parser for map keys
+     * @param valueParser The parser for map values
+     * @param isRequired Whether the field is required
+     * @param initialValue The initial map
+     * @return A configured MapFormField instance
+     */
+    default <K, V> FormField<Map<K, V>> createMapField(
+            String name, String displayName, String prompt, T object,
+            Predicate<String> validator, String errorMessage,
+            FormField.FormInputParser<K> keyParser,
+            FormField.FormInputParser<V> valueParser,
+            boolean isRequired, Map<K, V> initialValue) {
+
+        return new MapFormField<>(
+                name, displayName, prompt, validator,
+                errorMessage, keyParser, valueParser, isRequired,
+                initialValue != null ? new HashMap<>(initialValue) : new HashMap<>());
+    }
+
 }
