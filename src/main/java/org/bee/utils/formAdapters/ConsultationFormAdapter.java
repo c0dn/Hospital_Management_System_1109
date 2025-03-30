@@ -7,6 +7,7 @@ import org.bee.hms.humans.Clerk;
 import org.bee.hms.humans.Doctor;
 import org.bee.hms.medical.Consultation;
 import org.bee.hms.medical.LabTest;
+import org.bee.hms.medical.Medication;
 import org.bee.ui.forms.FormField;
 import org.bee.ui.forms.FormValidators;
 import org.bee.ui.forms.IObjectFormAdapter;
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.*;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -25,6 +27,7 @@ import java.util.stream.Collectors;
  */
 public class ConsultationFormAdapter implements IObjectFormAdapter<Consultation> {
 
+    private Medication medication;
     private static final DateTimeFormatter DATETIME_FORMATTER =
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     private static final HumanController humanController = HumanController.getInstance();
@@ -66,14 +69,14 @@ public class ConsultationFormAdapter implements IObjectFormAdapter<Consultation>
 
         } else if (systemUser instanceof Doctor) {
 
-            String initialDiagnosticCode = (String) getFieldValue(consultation, "diagnosticCodes");
-            fields.add(createTextField(
-                    "diagnosticCodes", "Diagnostic Codes", "Enter diagnostic code:", consultation,
-                    FormValidators.notEmpty(),
-                    "Diagnostic code cannot be empty.",
-                    true,
-                    initialDiagnosticCode
-            ));
+//            String initialDiagnosticCode = (String) getFieldValue(consultation, "diagnosticCodes");
+//            fields.add(createTextField(
+//                    "diagnosticCodes", "Diagnostic Codes", "Enter diagnostic code:", consultation,
+//                    FormValidators.notEmpty(),
+//                    "Diagnostic code cannot be empty.",
+//                    true,
+//                    initialDiagnosticCode
+//            ));
 
 
             String initialDiagnosis = (String) getFieldValue(consultation, "diagnosis");
@@ -103,6 +106,14 @@ public class ConsultationFormAdapter implements IObjectFormAdapter<Consultation>
                     initialInstructions
             ));
 
+            @SuppressWarnings("unchecked")
+            Map<Medication, Integer> initialPrescriptions = (Map<Medication, Integer>) getFieldValue(consultation, "prescriptions");
+            Function<String, Medication> medicationParser = medication.createMedicationParser();
+            fields.add(createHashMapField("prescriptions", "Prescriptions", "Enter prescription (drugCode:quantity)", consultation,
+                    FormValidators.notEmpty(), "Prescriptions cannot be empty.", medicationParser, Integer::parseInt, ":",
+                    ",", true, initialPrescriptions != null ? initialPrescriptions : new HashMap<>()));
+
+
 //            String initialProcedureCode = (String) getFieldValue(consultation, "procedureCodes");
 //            fields.add(createTextField(
 //                    "procedureCodes", "Procedure Codes", "Enter procedure codes:", consultation,
@@ -112,14 +123,14 @@ public class ConsultationFormAdapter implements IObjectFormAdapter<Consultation>
 //                    initialProcedureCode
 //            ));
 
-            String initialTreatments = (String) getFieldValue(consultation, "treatments");
-            fields.add(createTextField(
-                    "treatments", "Treatments", "Enter treatments description:", consultation,
-                    FormValidators.notEmpty(),
-                    "Treatments description cannot be empty.",
-                    true,
-                    initialTreatments
-            ));
+//            String initialTreatments = (String) getFieldValue(consultation, "treatments");
+//            fields.add(createTextField(
+//                    "treatments", "Treatments", "Enter treatments description:", consultation,
+//                    FormValidators.notEmpty(),
+//                    "Treatments description cannot be empty.",
+//                    true,
+//                    initialTreatments
+//            ));
 //
 //            // Get initial lab tests (assuming consultation has getLabTests() method)
 //            List<LabTest> initialLabTests = consultation.getLabTests();
@@ -180,4 +191,6 @@ public class ConsultationFormAdapter implements IObjectFormAdapter<Consultation>
             return false;
         }
     }
+
+
 }

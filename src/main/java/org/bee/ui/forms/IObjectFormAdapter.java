@@ -484,61 +484,61 @@ public interface IObjectFormAdapter<T> {
 //                listParser, isRequired, initialValue);
 //    }
 //
-//    default <K, V> FormField<Map<K, V>> createHashMapField(
-//            String name,
-//            String displayName,
-//            String prompt,
-//            T object,
-//            Predicate<String> validator,
-//            String errorMessage,
-//            Function<String, K> keyParser,
-//            Function<String, V> valueParser,
-//            String keySeparator,
-//            String pairSeparator,
-//            boolean isRequired,
-//            Map<K, V> initialValue) {
-//
-//        FormField.FormInputParser<Map<K, V>> parser = input -> {
-//            if (input == null || input.trim().isEmpty()) {
-//                if (isRequired) {
-//                    throw new IllegalArgumentException(displayName + " is required.");
-//                } else {
-//                    return new HashMap<>();
-//                }
-//            }
-//
-//            Map<K, V> result = new HashMap<>();
-//            String[] pairs = input.split(pairSeparator);
-//
-//            for (String pair : pairs) {
-//                String[] keyValue = pair.trim().split(keySeparator, 2);
-//
-//                if (keyValue.length != 2) {
-//                    throw new IllegalArgumentException("Invalid format for " + displayName +
-//                            ". Expected format: key" + keySeparator + "value" + pairSeparator + "...");
-//                }
-//
-//                K key;
-//                V value;
-//
-//                try {
-//                    key = keyParser.apply(keyValue[0].trim());
-//                } catch (Exception e) {
-//                    throw new IllegalArgumentException("Invalid key format in " + displayName + ": " + keyValue[0]);
-//                }
-//
-//                try {
-//                    value = valueParser.apply(keyValue[1].trim());
-//                } catch (Exception e) {
-//                    throw new IllegalArgumentException("Invalid value format in " + displayName + ": " + keyValue[1]);
-//                }
-//
-//                result.put(key, value);
-//            }
-//
-//            return result;
-//        };
-//
-//        return createField(name, displayName, prompt, object, validator, errorMessage, parser, isRequired, initialValue != null ? initialValue : new HashMap<>());
-//    }
+    default <K, V> FormField<Map<K, V>> createHashMapField(
+            String name,
+            String displayName,
+            String prompt,
+            T object,
+            Predicate<String> validator,
+            String errorMessage,
+            Function<String, K> keyParser,
+            Function<String, V> valueParser,
+            String keySeparator,
+            String pairSeparator,
+            boolean isRequired,
+            Map<K, V> initialValue) {
+
+        FormField.FormInputParser<Map<K, V>> parser = input -> {
+            if (input == null || input.trim().isEmpty()) {
+                if (isRequired) {
+                    throw new IllegalArgumentException(displayName + " is required.");
+                } else {
+                    return new HashMap<>();
+                }
+            }
+
+            Map<K, V> result = new HashMap<>();
+            String[] pairs = input.split(pairSeparator);
+
+            for (String pair : pairs) {
+                String[] keyValue = pair.trim().split(keySeparator, 2);
+
+                if (keyValue.length != 2) {
+                    throw new IllegalArgumentException("Invalid format for " + displayName +
+                            ". Expected format: key" + keySeparator + "value" + pairSeparator + "...");
+                }
+
+                K key;
+                V value;
+
+                try {
+                    key = keyParser.apply(keyValue[0].trim());
+                } catch (Exception e) {
+                    throw new IllegalArgumentException("Invalid key format in " + displayName + ": " + keyValue[0]);
+                }
+
+                try {
+                    value = valueParser.apply(keyValue[1].trim());
+                } catch (Exception e) {
+                    throw new IllegalArgumentException("Invalid value format in " + displayName + ": " + keyValue[1]);
+                }
+
+                result.put(key, value);
+            }
+
+            return result;
+        };
+
+        return createField(name, displayName, prompt, object, validator, errorMessage, parser, isRequired, initialValue != null ? initialValue : new HashMap<>());
+    }
 }

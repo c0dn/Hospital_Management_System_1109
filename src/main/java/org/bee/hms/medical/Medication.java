@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.bee.utils.CSVHelper;
@@ -236,5 +237,15 @@ public class Medication implements JSONSerializable {
         return drugCode;
     }
 
+    public static Function<String, Medication> createMedicationParser() {
+        return input -> {
+            try {
+                return Medication.createFromCode(input.trim());
+            } catch (IllegalArgumentException e) {
+                throw new IllegalArgumentException("Invalid drug code: " + input +
+                        ". Valid codes are: " + String.join(", ", Medication.DRUG_REGISTRY.keySet()));
+            }
+        };
+    }
 
 }
