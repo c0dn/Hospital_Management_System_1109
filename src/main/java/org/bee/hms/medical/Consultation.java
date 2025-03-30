@@ -747,4 +747,11 @@ public class Consultation implements JSONSerializable {
         this.doctor = doctor;
     }
 
+    public ArrayList<Treatment> getTreatments() {
+        return treatments;
+    }
+
+    public ArrayList<LabTest> getLabTests() {
+        return labTests;
+    }
 }

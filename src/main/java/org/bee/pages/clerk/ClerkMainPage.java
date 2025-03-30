@@ -61,7 +61,7 @@
             insuranceSection.addOption(4, "View All/Update Claims");
             menuView.attachMenuOptionInput(4, "View All/Update Claims", str -> ToPage(new ViewAllClaimsPage()));
 
-            menuView.setNumericOptionMaxRange(5);
+            menuView.setNumericOptionMaxRange(4);
 
             canvas.setRequireRedraw(true);
         }

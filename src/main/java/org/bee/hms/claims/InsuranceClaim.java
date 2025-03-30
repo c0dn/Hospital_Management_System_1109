@@ -492,5 +492,7 @@ public class InsuranceClaim implements JSONSerializable {
         }
     }
 
-
+    public Map<LocalDateTime, String> getSupportingDocuments() {
+        return supportingDocuments;
+    }
 }
