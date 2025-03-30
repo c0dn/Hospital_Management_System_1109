@@ -19,24 +19,54 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A paginated view displaying all insurance claims in the system for selection.
+ * <p>
+ * This page provides:
+ * <ul>
+ *   <li>A paginated menu of all claims with key details</li>
+ *   <li>Ability to select a claim to view its details</li>
+ *   <li>Automatic refresh capability</li>
+ * </ul>
+ * Claims are displayed with ID, patient name, masked NRIC, submission date and status.
+ * </p>
+ */
 public class ViewAllClaimsPage extends UiBase {
 
+    /** Controller for human/patient related operations */
     private static final HumanController humanController = HumanController.getInstance();
+
+    /** Controller for claim related operations */
     private static final ClaimController claimController = ClaimController.getInstance();
+
+    /** Formatter for claim submission dates */
     private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+    /** Number of claims to display per page, set to 7 */
     private static final int ITEMS_PER_PAGE = 7;
 
-
+    /**
+     * Creates the main view for displaying all claims.
+     * @return the root view component
+     */
     @Override
     protected View createView() {
         return selectClaimToView();
     }
 
+    /**
+     * Handles post-creation view initialization.
+     * @param parentView the parent view container
+     */
     @Override
     public void OnViewCreated(View parentView) {
         canvas.setRequireRedraw(true);
     }
 
+    /**
+     * Creates and configures the claim selection menu view.
+     * @return the configured paginated menu view
+     */
     private View selectClaimToView() {
         claimController.loadData();
         List<InsuranceClaim> allClaims = claimController.getAllClaims();
@@ -87,12 +117,19 @@ public class ViewAllClaimsPage extends UiBase {
         return paginatedMenuView;
     }
 
+    /**
+     * Opens the details view for a selected claim.
+     * @param claim the claim to display details for
+     */
     private void openClaimDetails(InsuranceClaim claim) {
         ClaimDetailsViewAdaptor adaptor = new ClaimDetailsViewAdaptor();
         ClaimDetailsPage detailsPage = new ClaimDetailsPage(claim, adaptor, this::refreshView);
         ToPage(detailsPage);
     }
 
+    /**
+     * Refreshes the claims list view.
+     */
     private void refreshView() {
         View refreshedView = selectClaimToView();
         OnViewCreated(refreshedView);

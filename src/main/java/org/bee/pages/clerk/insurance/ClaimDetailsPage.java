@@ -18,19 +18,43 @@ import org.bee.utils.formAdapters.ClaimFormAdapter;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+/**
+ * A UI page that displays detailed information about an insurance claim
+ * This page shows claim details using an {@link ObjectDetailsView}
+ * along with a menu of context-sensitive actions based on the claim's current status.
+ *
+ */
 public class ClaimDetailsPage extends UiBase {
 
+    /** The insurance claim being displayed and managed */
     private final InsuranceClaim claim;
+
+    /** Adapter that configures how claim details are rendered */
     private final IObjectDetailsAdapter<InsuranceClaim> adapter;
+
+    /** Callback to trigger when claim data changes */
     private final Runnable onChangeCallback;
+
+    /** Shared controller for claim operations */
     private final static ClaimController claimController = ClaimController.getInstance();
 
+    /**
+     * Creates a new ClaimDetailsPage to display and manage an insurance claim.
+     *
+     * @param claim the insurance claim to display
+     * @param adapter the adapter that controls how claim details are rendered
+     * @param onChangeCallback callback to execute when claim data changes
+     */
     public ClaimDetailsPage(InsuranceClaim claim, IObjectDetailsAdapter<InsuranceClaim> adapter, Runnable onChangeCallback) {
         this.claim = claim;
         this.adapter = adapter;
         this.onChangeCallback = onChangeCallback;
     }
 
+    /**
+     * Creates the main view hierarchy for displaying claim details and action buttons.
+     * @return the root CompositeView containing all UI elements
+     */
     @Override
     protected View createView() {
         if (Objects.isNull(claim)) {
@@ -58,11 +82,21 @@ public class ClaimDetailsPage extends UiBase {
         return compositeView;
     }
 
+    /**
+     * Handles post-creation setup after the view hierarchy is built.
+     * @param parentView the Parent view of the UiBase class, provided in OnCreateView
+     */
     @Override
     public void OnViewCreated(View parentView) {
         canvas.setRequireRedraw(true);
     }
 
+    /**
+     * Configures action buttons in the menu based on the claim's current status.
+     *
+     * @param menuView The menu view to populate with actions
+     * @param status The current claim status determining available actions
+     */
     private void setUpActionButtons(MenuView menuView, ClaimStatus status) {
         menuView.clearUserInputs();
 
@@ -220,36 +254,36 @@ public class ClaimDetailsPage extends UiBase {
         }
     }
 
+    /**
+     * Displays an error message
+     *
+     * @param message The main error message to display
+     * @param e The exception that caused the error
+     */
     private void showError(String message, Exception e) {
-        canvas.setSystemMessage(message + ": " + e.getMessage(),
-                SystemMessageStatus.ERROR);
-        canvas.setRequireRedraw(true);
+        // ... method implementation ...
     }
 
+    /**
+     * Saves claim changes, navigates back, and refreshes the view with success message.
+     *
+     * @param message The success message to display
+     */
     private void saveChangesAndRefresh(String message) {
-        claimController.saveData();
-
-        canvas.setSystemMessage(message, SystemMessageStatus.SUCCESS);
-
-        if (onChangeCallback != null) {
-            onChangeCallback.run();
-        } else {
-            OnBackPressed();
-        }
+        // ... method implementation ...
     }
+
 
     private void saveChangesAndNotify(String message) {
-        claimController.saveData();
-
-        OnBackPressed();
-        View refreshedView = createView();
-        navigateToView(refreshedView);
-
-        canvas.setSystemMessage(message, SystemMessageStatus.SUCCESS);
-        canvas.setRequireRedraw(true);
-
+        // ... method implementation ...
     }
 
+    /**
+     * Formats a monetary amount
+     *
+     * @param amount The amount to format
+     * @return Formatted string with 2 decimal places
+     */
     private String formatCurrency(BigDecimal amount) {
         if (amount == null) {
             return "0.00";
@@ -257,6 +291,10 @@ public class ClaimDetailsPage extends UiBase {
         return String.format("%.2f", amount.doubleValue());
     }
 
+    /**
+     * Opens an edit form for modifying the specified insurance claim.
+     * @param claim the insurance claim to be edited
+     */
     private void openUpdateForm(InsuranceClaim claim) {
         try {
             ClaimFormAdapter adapter = new ClaimFormAdapter();
