@@ -163,3 +163,41 @@ tasks.register("buildOnly") {
         println("JAR built successfully at: ${tasks.jar.get().outputs.files.singleFile}")
     }
 }
+
+tasks.register<Javadoc>("generateJavadoc") {
+    description = "Generates JavaDoc documentation for the project"
+    group = "documentation"
+
+    source = sourceSets.main.get().allJava
+    classpath = configurations.compileClasspath.get()
+
+    setDestinationDir(file("$projectDir/docs"))
+
+    (options as StandardJavadocDocletOptions).apply {
+        outputLevel = JavadocOutputLevel.QUIET
+        encoding = "UTF-8"
+        charSet = "UTF-8"
+        setAuthor(true)
+        setVersion(true)
+        windowTitle = "${project.name} API Documentation"
+        docTitle = "${project.name} API Documentation (v${project.version})"
+
+        addStringOption("link", "https://docs.oracle.com/en/java/javase/21/docs/api/")
+        addStringOption("link", "https://square.github.io/okhttp/4.x/okhttp/")
+        addStringOption("link", "https://fasterxml.github.io/jackson-core/javadoc/2.15/")
+        addStringOption("link", "https://fasterxml.github.io/jackson-databind/javadoc/2.15/")
+        addStringOption("link", "https://fasterxml.github.io/jackson-annotations/javadoc/2.15/")
+    }
+
+    doFirst {
+        val docsDir = file("$projectDir/docs")
+        if (docsDir.exists()) {
+            docsDir.deleteRecursively()
+            docsDir.mkdirs()
+        }
+    }
+
+    doLast {
+        println("JavaDocs generated successfully at: ${destinationDir?.absolutePath}")
+    }
+}
