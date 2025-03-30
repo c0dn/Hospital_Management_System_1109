@@ -6,8 +6,23 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import org.bee.hms.wards.*;
 
 import java.io.IOException;
-
+/**
+ * Custom Jackson serializer for converting {@link Ward} objects into JSON format.
+ *
+ * <p>This serializer handles different types of {@link Ward} subclasses, such as {@link LabourWard},
+ * {@link ICUWard}, {@link DaySurgeryWard}, and {@link GeneralWard}. It outputs type-specific information
+ * along with common properties like name, daily rate, and inferred ward class type.</p>
+ *
+ */
 public class WardSerializer extends JsonSerializer<Ward> {
+    /**
+     * Serializes a {@link Ward} object into JSON format.
+     *
+     * @param ward       The {@link Ward} object to be serialized.
+     * @param gen        The {@link JsonGenerator} used to write the JSON output.
+     * @param serializers The {@link SerializerProvider} that can be used to get serializers for serializing objects.
+     * @throws IOException If an error occurs during serialization.
+     */
     @Override
     public void serialize(Ward ward, JsonGenerator gen, SerializerProvider serializers) throws IOException {
         gen.writeStartObject();
@@ -38,7 +53,12 @@ public class WardSerializer extends JsonSerializer<Ward> {
 
         gen.writeEndObject();
     }
-
+    /**
+     * Infers the {@link WardClassType} based on the concrete subclass of {@link Ward} and its daily rate.
+     *
+     * @param ward The {@link Ward} object for which the class type is inferred.
+     * @return The inferred {@link WardClassType}, or {@code null} if no matching type is found.
+     */
     private WardClassType inferWardClassType(Ward ward) {
         // Infer WardClassType based on the concrete class and daily rate
         double rate = ward.getDailyRate();

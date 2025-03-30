@@ -5,6 +5,7 @@ import org.bee.utils.ReflectionHelper;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.*;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.function.Function;

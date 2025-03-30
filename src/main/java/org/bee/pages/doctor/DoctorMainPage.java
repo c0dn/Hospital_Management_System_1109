@@ -37,13 +37,14 @@ public class DoctorMainPage extends UiBase {
         MenuView menuView = (MenuView) parentView;
 
         MenuView.MenuSection telemedSection = menuView.addSection("Telemedicine Services");
-        telemedSection.addOption(1, "View List of Patients - To view patient information");
-        telemedSection.addOption(2, "View Appointment - To view new / scheduled appointments for teleconsultation");
-        menuView.attachMenuOptionInput(1, "View List of Patients", str -> ToPage(new PatientInfoPage()));
-        menuView.attachMenuOptionInput(2, "View Appointment", str -> ToPage(new ViewAppointmentPage()));
+        telemedSection.addOption(1, "View List of Patients...");
+        telemedSection.addOption(2, "View Appointments...");
 
         MenuView.MenuSection outpatientSection = menuView.addSection("Outpatient Management Services");
         outpatientSection.addOption(3, "View Outpatient Cases");
+
+        menuView.attachMenuOptionInput(1, "View Patients", str -> ToPage(new PatientInfoPage()));
+        menuView.attachMenuOptionInput(2, "View Appointments", str -> ToPage(new ViewAppointmentPage()));
         menuView.attachMenuOptionInput(3, "View Outpatient Cases", str -> ToPage(new ConsultationInfoPage()));
 
         menuView.setNumericOptionMaxRange(3);
