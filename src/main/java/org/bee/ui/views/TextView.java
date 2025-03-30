@@ -7,16 +7,41 @@ import org.bee.ui.TextStyle;
 import org.bee.ui.View;
 
 /**
- * Simple view that displays a simple text, Can add a text format as well.
+ * A simple view component that displays text with optional styling and coloring.
+ * <p>
+ * TextView is the most basic display component in the UI framework, designed to render
+ * single-block text content with configurable visual formatting. It extends the base
+ * {@link View} class and enhances it with text styling capabilities through the
+ * {@link TextStyle} enum.
+ * <p>
+ * This view is often used for:
+ * <ul>
+ *   <li>Displaying headings and labels</li>
+ *   <li>Showing messages, notifications, and informational text</li>
+ *   <li>Rendering plain text content with consistent styling</li>
+ *   <li>Building blocks within {@link CompositeView} components</li>
+ * </ul>
+ * <p>
+ * The class handles ANSI escape sequences automatically to apply colors and text styles
+ * (bold, italic, etc.) in terminal output.
+ *
+ * @see View
+ * @see TextStyle
+ * @see Color
+ * @see CompositeView
  */
 public class TextView extends View {
     public TextStyle textStyle;
 
     /**
-     * Constructor overload which sets textStyle as none (default)
-     * @param canvas canvas to render on
-     * @param content the content of the textview
-     * @param color the color of the textview
+     * Creates a TextView with default text style (NONE).
+     * <p>
+     * This constructor initializes a simple text view with the specified content
+     * and color, but without any additional text styling.
+     *
+     * @param canvas Canvas to render on
+     * @param content The text content to display
+     * @param color The color to apply to the text
      */
     public TextView(Canvas canvas, String content, Color color) {
         super(canvas, content, color);
@@ -24,11 +49,15 @@ public class TextView extends View {
     }
 
     /**
-     * Constructor overload which allows you to set a textStyle
-     * @param canvas canvas to render on
-     * @param content the content of the textview
-     * @param color the color of the textview
-     * @param textStyle the text style of the textview
+     * Creates a TextView with custom text style.
+     * <p>
+     * This constructor allows specifying both color and text style (bold, italic, etc.)
+     * to be applied to the content text.
+     *
+     * @param canvas Canvas to render on
+     * @param content The text content to display
+     * @param color The color to apply to the text
+     * @param textStyle The text style to apply (bold, italic, etc.)
      */
     public TextView(Canvas canvas, String content, Color color, TextStyle textStyle) {
         super(canvas, content, color);
@@ -36,8 +65,15 @@ public class TextView extends View {
     }
 
     /**
-     * Textview is a simple view that includes Text styling.
-     * @return Returns a printable String with formatting. null if otherwise, please handle the null case gracefully.
+     * Generates the formatted text content with proper styling.
+     * <p>
+     * This override applies the configured text style and color to the content
+     * using ANSI escape sequences. If the text style is set to NONE, it delegates
+     * to the parent class implementation.
+     * <p>
+     * The method preserves null handling from the parent class implementation.
+     *
+     * @return The formatted text with appropriate ANSI styling codes, or null if the base text is null
      */
     @Override
     public String getText() {

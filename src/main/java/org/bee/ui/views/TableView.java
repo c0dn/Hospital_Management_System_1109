@@ -12,45 +12,97 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 /**
- * A view that displays data in a formatted table.
- * Supports custom column definitions and data formatting.
+ * A view that displays data in a formatted table with customizable columns and styling.
+ * <p>
+ * TableView provides a flexible way to display tabular data in the terminal UI, with
+ * support for:
+ * <ul>
+ *   <li>Custom column definitions with fixed widths</li>
+ *   <li>Dynamic data extraction from any object type</li>
+ *   <li>Row selection with callback integration</li>
+ *   <li>ANSI color and style preservation</li>
+ *   <li>Automatic text truncation and padding</li>
+ *   <li>Optional row numbers and header dividers</li>
+ * </ul>
+ * <p>
+ * This view is commonly used within {@link PaginatedView} to display lists of domain
+ * objects like patients, appointments, bills, etc. It integrates with the broader UI
+ * framework to provide consistent styling and navigation.
+ *
+ * @param <T> The type of data items to be displayed in the table rows
+ *
+ * @see View
+ * @see PaginatedView
+ * @see org.bee.ui.Canvas
  */
 public class TableView<T> extends View {
     private Consumer<BiConsumer<Integer, T>> selectionCallback;
 
-
+    /**
+     * Defines a column in the table with header text, width, and a value extractor function.
+     * <p>
+     * Each column is responsible for extracting and formatting a specific piece of data
+     * from the row objects.
+     *
+     * @param <T> The type of data item the column extracts values from
+     */
     public static class Column<T> {
         private final String header;
         private final int width;
         private final Function<T, String> valueExtractor;
 
         /**
-         * Creates a new column definition.
+         * Creates a new column definition with fixed width and value extraction.
          *
-         * @param header The column header text
-         * @param width The width of the column in characters
-         * @param valueExtractor Function to extract the cell value from an item
+         * @param header The column header text displayed at the top of the table
+         * @param width The fixed width of the column in characters
+         * @param valueExtractor Function to extract and format cell values from data items
          */
         public Column(String header, int width, Function<T, String> valueExtractor) {
             this.header = header;
             this.width = width;
             this.valueExtractor = valueExtractor;
         }
-
+        /**
+         * Gets the header text for this column.
+         *
+         * @return The column header text
+         */
         public String getHeader() {
             return header;
         }
-
+        /**
+         * Gets the configured width for this column.
+         *
+         * @return The column width in characters
+         */
         public int getWidth() {
             return width;
         }
-
+        /**
+         * Extracts a formatted value from an item for display in this column.
+         * <p>
+         * If the extracted value is null, an empty string is returned.
+         *
+         * @param item The data item to extract a value from
+         * @return The formatted string value for the cell, never null
+         */
         public String extractValue(T item) {
             String value = valueExtractor.apply(item);
             return value != null ? value : "";
         }
     }
-
+    /**
+     * Sets a callback to be invoked when a row is selected.
+     * <p>
+     * This method both registers the callback and sets up the input handler to process
+     * numeric inputs for row selection. The callback receives both the row index and
+     * the row's data item.
+     * <p>
+     * This is primarily used by {@link PaginatedView} to handle row selection in paginated tables.
+     *
+     * @param callback The function to call when a row is selected, receiving the row index and data item
+     */
     public void setSelectionCallback(BiConsumer<Integer, T> callback) {
         this.selectionCallback = (consumer) -> {
             // This allows the PaginatedView to set up its own callback
@@ -78,22 +130,25 @@ public class TableView<T> extends View {
     private final int rowNumWidth = 4;
 
     /**
-     * Creates a new TableView.
+     * Creates a new empty TableView.
      *
      * @param canvas The canvas to render on
-     * @param titleHeader The title for the view
-     * @param color The color for the view
+     * @param titleHeader The title for the table view
+     * @param color The color for the table text
      */
     public TableView(Canvas canvas, String titleHeader, Color color) {
         super(canvas, titleHeader, "", color);
     }
 
     /**
-     * Adds a column to the table.
+     * Adds a column to the table with the specified properties.
+     * <p>
+     * This method creates and adds a column definition with custom header text,
+     * width, and value extraction function.
      *
      * @param header The column header text
      * @param width The width of the column in characters
-     * @param valueExtractor Function to extract the cell value from an item
+     * @param valueExtractor Function to extract cell values from data items
      * @return This TableView instance for method chaining
      */
     public TableView<T> addColumn(String header, int width, Function<T, String> valueExtractor) {
@@ -102,9 +157,11 @@ public class TableView<T> extends View {
     }
 
     /**
-     * Sets whether to show row numbers in the table.
+     * Sets whether to show row numbers in the leftmost column.
+     * <p>
+     * When enabled, each row is prefixed with its sequential number starting from 1.
      *
-     * @param show Whether to show row numbers
+     * @param show True to show row numbers, false to hide them
      * @return This TableView instance for method chaining
      */
     public TableView<T> showRowNumbers(boolean show) {
@@ -113,9 +170,9 @@ public class TableView<T> extends View {
     }
 
     /**
-     * Sets whether to show dividers in the table.
+     * Sets whether to show a divider line between the header and data rows.
      *
-     * @param show Whether to show dividers
+     * @param show True to show the divider, false to hide it
      * @return This TableView instance for method chaining
      */
     public TableView<T> showDivider(boolean show) {
@@ -124,9 +181,9 @@ public class TableView<T> extends View {
     }
 
     /**
-     * Sets the message to display when there is no data.
+     * Sets the message to display when the table has no data.
      *
-     * @param message The message to display
+     * @param message The message to display when data is empty
      * @return This TableView instance for method chaining
      */
     public TableView<T> setEmptyMessage(String message) {
@@ -135,16 +192,27 @@ public class TableView<T> extends View {
     }
 
     /**
-     * Sets the data to display in the table.
+     * Sets the data items to display in the table rows.
+     * <p>
+     * The data is copied to prevent external modifications affecting the display.
      *
-     * @param data The list of items to display
+     * @param data The list of items to display in the table
      * @return This TableView instance for method chaining
      */
     public TableView<T> setData(List<T> data) {
         this.data = new ArrayList<>(data);
         return this;
     }
-
+    /**
+     * Generates the formatted text representation of the table.
+     * <p>
+     * The output includes headers, column dividers, row numbers (if enabled),
+     * and properly formatted and truncated cell values with ANSI color preservation.
+     * <p>
+     * If there is no data, the configured empty message is returned.
+     *
+     * @return The formatted table text ready for display
+     */
     @Override
     public String getText() {
         if (columns.isEmpty()) {
@@ -235,14 +303,27 @@ public class TableView<T> extends View {
     }
 
     /**
-     * Removes ANSI color codes from a string to get its visible length
+     * Removes ANSI color codes from a string to determine its visible length.
+     * <p>
+     * This is important for proper truncation and padding calculations, as ANSI
+     * color codes don't take up visible space in the terminal.
+     *
+     * @param text The text containing ANSI color codes
+     * @return The text with all ANSI codes removed
      */
     private String stripAnsiCodes(String text) {
         return text.replaceAll("\u001b\\[[0-9;]*m", "");
     }
 
     /**
-     * Truncates text that contains ANSI color codes, preserving the codes
+     * Truncates text containing ANSI color codes while preserving the codes.
+     * <p>
+     * This ensures that colored text is properly truncated at the visible character
+     * limit without breaking color formatting.
+     *
+     * @param text The text containing ANSI color codes
+     * @param maxWidth The maximum visible width in characters
+     * @return The truncated text with color codes preserved
      */
     private String truncateWithColorCodes(String text, int maxWidth) {
         StringBuilder result = new StringBuilder();
@@ -289,7 +370,13 @@ public class TableView<T> extends View {
     }
 
     /**
-     * Counts the total length of ANSI codes in a string
+     * Counts the total length of ANSI escape sequences in a string.
+     * <p>
+     * This is used for calculating padding adjustments to account for invisible
+     * color codes in the output.
+     *
+     * @param text The text containing ANSI color codes
+     * @return The total number of characters in all ANSI sequences
      */
     private int countAnsiCodeLength(String text) {
         int count = 0;
@@ -311,7 +398,13 @@ public class TableView<T> extends View {
 
         return count;
     }
-
+    /**
+     * Calculates the total display width of the table.
+     * <p>
+     * This includes all column widths plus dividers and row numbers if enabled.
+     *
+     * @return The total width of the table in characters
+     */
     private int calculateTotalWidth() {
         int width = 0;
 
@@ -331,6 +424,10 @@ public class TableView<T> extends View {
 
     /**
      * Pads a string with spaces to the right to ensure it has the specified width.
+     *
+     * @param s The string to pad
+     * @param width The desired width in characters
+     * @return The padded string
      */
     private String padRight(String s, int width) {
         if (s.length() >= width) {
@@ -341,6 +438,10 @@ public class TableView<T> extends View {
 
     /**
      * Truncates a string to the specified width, adding "..." if necessary.
+     *
+     * @param s The string to truncate
+     * @param width The maximum width in characters
+     * @return The truncated string
      */
     private String truncate(String s, int width) {
         if (s.length() <= width) {
@@ -354,6 +455,10 @@ public class TableView<T> extends View {
 
     /**
      * Creates a string by repeating a character a specified number of times.
+     *
+     * @param s The string to repeat
+     * @param count The number of times to repeat
+     * @return The repeated string
      */
     private String repeat(String s, int count) {
         return String.valueOf(s).repeat(Math.max(0, count));
