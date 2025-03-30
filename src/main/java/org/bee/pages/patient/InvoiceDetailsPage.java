@@ -77,14 +77,16 @@ public class InvoiceDetailsPage extends UiBase {
      */
     private void promptForPaymentAmount(BigDecimal maxAmount, PaymentMethod paymentMethod) {
         try {
-            maxAmount = BigDecimal.valueOf(maxAmount.setScale(2, RoundingMode.HALF_UP).doubleValue());
+            // Ensure both amounts have the same scale for accurate comparison
+            maxAmount = maxAmount.setScale(2, RoundingMode.HALF_UP);
             double amount = InputHelper.getValidDouble(canvas.getTerminal(),
                     "Enter payment amount (up to $" + formatCurrency(maxAmount) + "):",
                     0.01, maxAmount.doubleValue());
 
-            BigDecimal paymentAmount = new BigDecimal(amount);
+            BigDecimal paymentAmount = new BigDecimal(amount).setScale(2, RoundingMode.HALF_UP);
+            BigDecimal outstandingBalance = bill.getOutstandingBalance().setScale(2, RoundingMode.HALF_UP);
 
-            if (paymentAmount.compareTo(bill.getOutstandingBalance()) >= 0) {
+            if (paymentAmount.compareTo(outstandingBalance) == 0) {
                 bill.recordFullPayment(paymentMethod);
                 saveChangesAndRefresh("Full payment of $" + formatCurrency(paymentAmount) + " recorded. Bill status updated to PAID.");
             } else {
