@@ -15,14 +15,12 @@ import java.util.List;
  * either vertically (like a traditional list) or horizontally (like a row of items).
  * Each child view is rendered in sequence with configurable separators between them.
  * </p>
- * <p>
- * This view is useful for creating:
+ * <p> This view is useful for creating:</p>
  * <ul>
  *   <li>Simple lists of repeating elements</li>
  *   <li>Horizontal row layouts</li>
  *   <li>Composite layouts with consistent spacing</li>
  * </ul>
- * </p>
  */
 public class ListView extends View {
     protected List<View> views = new ArrayList<>();
@@ -45,13 +43,11 @@ public class ListView extends View {
 
     /**
      * Creates a list view with the specified orientation.
-     * <p>
-     * This constructor allows choosing between vertical and horizontal layouts:
+     * <p>This constructor allows choosing between vertical and horizontal layouts:</p>
      * <ul>
      *   <li>VERTICAL: Items stacked top to bottom (default separator: newline)</li>
      *   <li>HORIZONTAL: Items arranged left to right (default separator: tab)</li>
      * </ul>
-     * </p>
      *
      * @param canvas The canvas to render on
      * @param color The color for the view's text

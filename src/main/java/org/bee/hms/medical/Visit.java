@@ -697,8 +697,7 @@ public class Visit implements JSONSerializable {
 
     /**
      * Calculates the total charges for all visit components
-     * <p>
-     * Sums charges from:
+     * <p> Sums charges from: </p>
      * <ul>
      *   <li>Ward stays </li>
      *   <li>Inpatient procedures </li>
@@ -706,7 +705,6 @@ public class Visit implements JSONSerializable {
      *   <li>Diagnostic codes </li>
      * </ul>
      * All calculations use unsubsidized charge rates
-     * </p>
      *
      * @return The total charges as a {@link BigDecimal}
      */

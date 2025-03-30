@@ -109,8 +109,13 @@ public class BaseCoverage implements Coverage {
      * This builder ensures that all fields necessary for creating a valid coverage plan are configured,
      * and it validates the required fields before constructing the {@link BaseCoverage} instance.
      * </p>
+     *
+     * Creates a new Builder instance with default values.
+     * Call the setter methods to configure the coverage properties before
+     * calling {@link #build()} to create the {@link BaseCoverage} object.
      */
     public static class Builder {
+        public Builder() {}
 
         /**
          * The coverage limits for this coverage plan.

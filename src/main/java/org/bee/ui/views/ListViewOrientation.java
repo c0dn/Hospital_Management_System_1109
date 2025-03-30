@@ -7,13 +7,11 @@ package org.bee.ui.views;
  * horizontally (side by side) or vertically (stacked). The orientation affects
  * both the layout and the separator used between items.
  * </p>
- * <p>
- * Used by {@link ListView} to determine how to arrange and separate its child views:
+ * <p>Used by {@link ListView} to determine how to arrange and separate its child views:</p>
  * <ul>
  *   <li>HORIZONTAL: Items are arranged from left to right, typically separated by tabs or spaces</li>
  *   <li>VERTICAL: Items are stacked from top to bottom, typically separated by newlines</li>
  * </ul>
- * </p>
  *
  * @see ListView
  */

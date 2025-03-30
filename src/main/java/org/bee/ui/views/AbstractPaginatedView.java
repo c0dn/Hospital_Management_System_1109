@@ -14,11 +14,10 @@ import java.util.function.Consumer;
  *   <li>Navigation controls in footer</li>
  *   <li>Selection callback handling</li>
  * </ul>
- * </p>
- * <p>
- * Concrete subclasses must implement methods to provide content-specific options
- * and retrieve the items for the current page.
- * </p>
+ *
+ * <p>Concrete subclasses must implement methods to provide content-specific options
+ *  * and retrieve the items for the current page.</p>
+ *
  *
  * @param <T> The type of items being paginated
  */
@@ -173,7 +172,7 @@ public abstract class AbstractPaginatedView<T> extends View {
      *   <li>"p" for previous page (if not on the first page)</li>
      *   <li>"j" for jump to page (if more than 3 pages)</li>
      * </ul>
-     * </p>
+     *
      */
     protected void setupNavigationOptions() {
         if (totalPages > 1) {

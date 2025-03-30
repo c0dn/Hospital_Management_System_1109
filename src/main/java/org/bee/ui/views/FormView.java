@@ -19,7 +19,7 @@ import org.bee.ui.forms.FormField;
  *   <li>Input validation and error handling</li>
  *   <li>Form submission and data collection</li>
  * </ul>
- * </p>
+ *
  * <p>
  * The view maintains internal state to track the currently selected field and
  * whether it's awaiting user input. It can be integrated with MenuView for
@@ -97,11 +97,9 @@ public class FormView extends View {
 
     /**
      * {@inheritDoc}
-     * <p>
-     * Generates the form content showing all fields with appropriate highlighting
+     * <p>Generates the form content showing all fields with appropriate highlighting
      * for the selected field. Also displays additional context information when
-     * a field is selected.
-     * </p>
+     * a field is selected.</p>
      */
     @Override
     public String getText() {
@@ -130,10 +128,10 @@ public class FormView extends View {
 
     /**
      * {@inheritDoc}
-     * <p>
-     * Generates the footer with context-sensitive options based on the current form state.
-     * When a field is awaiting input, the footer includes the field's prompt.
-     * </p>
+     *
+     * <p>Generates the footer with context-sensitive options based on the current form state.
+     *  When a field is awaiting input, the footer includes the field's prompt.</p>
+     *
      */
     @Override
     public String getFooter() {
@@ -164,15 +162,13 @@ public class FormView extends View {
 
     /**
      * Sets up the actions available in the associated MenuView.
-     * <p>
-     * This method configures a MenuView to work with this form, adding options for:
+     * <p>This method configures a MenuView to work with this form, adding options for:</p>
      * <ul>
      *   <li>Field selection</li>
      *   <li>Form submission</li>
      *   <li>Field updating</li>
      * </ul>
      * It also adds a warning message if required fields are empty.
-     * </p>
      *
      * @param menuView The MenuView to configure with form actions
      */

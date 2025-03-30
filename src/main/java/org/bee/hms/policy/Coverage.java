@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 /**
  * Configures polymorphic type handling for JSON serialization/deserialization
- * <li>Supported subtypes:
+ * Supported subtypes:
  * <ul>
  * <li>{@link BaseCoverage} (identified as "base")</li>
  * <li>{@link CompositeCoverage} (identified as "composite")</li>

@@ -19,7 +19,6 @@ import java.util.function.Predicate;
  *   <li>Required/optional state</li>
  *   <li>Error messaging</li>
  * </ul>
- * </p>
  *
  * @param <T> The type that this field will store after parsing raw input
  */
@@ -239,7 +238,6 @@ public class FormField<T> {
          *
          * @param input The input string to parse
          * @return The parsed object of type T
-         * @throws Exception if parsing fails
          */
         T parse(String input);
     }

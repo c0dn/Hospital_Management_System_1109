@@ -11,6 +11,8 @@ import org.bee.utils.ReflectionHelper;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+
 /**
  * Adapter for displaying Appointment details.
  * This adapter configures an ObjectDetailsView to show appointment information

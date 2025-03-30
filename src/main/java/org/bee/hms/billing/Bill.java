@@ -377,7 +377,7 @@ public class Bill implements JSONSerializable {
      * @param amount          The partial amount that has been paid. Must be greater than zero and less than the grand total.
      * @param paymentMethod   The method used for making the payment.
      * @throws IllegalStateException    if the bill is already in a finalized state (e.g., PAID, CANCELLED).
-     * @throws IllegalArgumentException if the payment amount is invalid (null, <= 0, or >= grand total).
+     * @throws IllegalArgumentException if the payment amount is invalid (null, &lt;= 0, or &gt;= grand total).
      */
     public void recordPartialPayment(BigDecimal amount, PaymentMethod paymentMethod) {
         if (this.status.isFinalized()) {

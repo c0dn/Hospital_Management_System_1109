@@ -96,14 +96,12 @@ public class CompositeView extends View {
 
     /**
      * Handles direct input by delegating to child views in priority order.
-     * <p>
-     * The input handling priority is:
+     * <p>The input handling priority is:</p>
      * <ol>
      *   <li>FormViews that are awaiting value input</li>
      *   <li>This view's own direct input handlers</li>
      *   <li>All other child views</li>
      * </ol>
-     * </p>
      *
      * @param input The input string from the user
      * @return true if the input was handled by this view or any child view, false otherwise
@@ -170,14 +168,12 @@ public class CompositeView extends View {
 
     /**
      * Generates the footer content with appropriate context-sensitive options.
-     * <p>
-     * The footer display prioritizes:
+     * <p>The footer display prioritizes:</p>
      * <ol>
      *   <li>FormView fields that are awaiting input</li>
      *   <li>MenuView footer if present</li>
      *   <li>Default view footer</li>
      * </ol>
-     * </p>
      *
      * @return The footer content with user input options
      */

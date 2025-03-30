@@ -5,7 +5,6 @@ import org.bee.utils.ReflectionHelper;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.*;
-import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -18,11 +17,10 @@ import java.util.stream.Collectors;
  *   <li>Apply form data back to domain objects</li>
  *   <li>Save updated objects to their data stores</li>
  * </ul>
- * </p>
- * <p>
- * Implementations of this interface serve as a bridge between the UI form system
- * and domain model objects, handling the bidirectional mapping of data.
- * </p>
+ *
+ * <p>Implementations of this interface serve as a bridge between the UI form system
+ * and domain model objects, handling the bidirectional mapping of data.</p>
+ *
  *
  * @param <T> The type of domain object this adapter handles
  */
@@ -119,8 +117,7 @@ public interface IObjectFormAdapter<T> {
     }
 
     /**
-     * Generic implementation for saving an object using a controller class.
-     * <p>
+     * <p>Generic implementation for saving an object using a controller class.</p>
      * This method:
      * <ol>
      *   <li>Gets the controller instance</li>
@@ -128,7 +125,6 @@ public interface IObjectFormAdapter<T> {
      *   <li>Copies non-null fields from source to existing object</li>
      *   <li>Calls the save method on the controller</li>
      * </ol>
-     * </p>
      *
      * @param object The object to save
      * @param controllerClass The controller class that manages this object type

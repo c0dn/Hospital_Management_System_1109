@@ -151,18 +151,15 @@ public class WardStay implements ClaimableItem, BillableItem, JSONSerializable {
 
     /**
      * Generates a standardized billing code for the ward stay
-     * <p>
-     * The code format consists of three parts:
+     * <p>The code format consists of three parts:</p>
      * <ul>
      *   <li>Ward type prefix (LBR, ICU, DSG, or GEN)</li>
      *   <li>Ward class identifier</li>
      *   <li>Duration in days</li>
      * </ul>
-     * </p>
      *
      * @return Formatted billing code string
      */
-
     @Override
     public String getBillingItemCode() {
         String wardTypePart = switch (ward) {

@@ -2,13 +2,12 @@ package org.bee.utils;
 
 /**
  * An interface defining the contract for objects that can be serialized to CSV format.
- * <p>
- * Any class implementing this interface must provide:
+ * <p>Any class implementing this interface must provide:</p>
  * <ul>
  *     <li>A method to convert object data to a CSV-formatted string.</li>
  *     <li>A method to parse CSV data back into an object of the same type.</li>
  * </ul>
- * </p>
+ *
  * <br><br>This ensures consistency when saving and loading system data.
  * @param <T> The type of object that can be serialized and deserialized.
  */
