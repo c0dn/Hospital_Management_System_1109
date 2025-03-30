@@ -20,6 +20,11 @@ public class Canvas {
 
     @FunctionalInterface
     public interface IPageNavigationCallback {
+        /**
+         * Navigates to a specified page.
+         *
+         * @param newPage The new page to navigate to.
+         */
         void navigateToPage(UiBase newPage);
     }
 
@@ -75,16 +80,29 @@ public class Canvas {
         return this.currentView;
     }
 
-
+    /**
+     * Sets a callback for page navigation events.
+     *
+     * @param callback The callback to set.
+     */
     public void setPageNavigationCallback(IPageNavigationCallback callback) {
         this.pageNavigationCallback = callback;
     }
 
+    /**
+     * Sets a callback for back navigation events.
+     *
+     * @param callback The callback to set.
+     */
     public void setBackNavigationCallback(IGenericCallbackInterface callback) {
         this.backNavigationCallback = callback;
     }
 
-
+    /**
+     * Navigates to a specified page using the registered navigation callback.
+     *
+     * @param newPage The page to navigate to.
+     */
     public void navigateToPage(UiBase newPage) {
         if (pageNavigationCallback != null) {
             pageNavigationCallback.navigateToPage(newPage);
@@ -187,7 +205,16 @@ public class Canvas {
         this.setRequireRedraw(true);
     }
 
-
+    /**
+     * Sets the current view to be displayed on the Canvas.
+     * <p>
+     * This method updates the `currentView` field to the provided view, ensures that a back button is present
+     * for navigation, and sets up necessary callbacks for the new view. It also triggers a redraw of the Canvas
+     * to reflect the updated view.
+     * </p>
+     *
+     * @param view The new view to set as the current view. Must not be null.
+     */
     public void setCurrentView(View view) {
         this.currentView = view;
         ensureBackButton(view);
@@ -267,7 +294,14 @@ public class Canvas {
         }
         System.out.println("Bye! Have a Nice Day!");
     }
-
+    /**
+     * Renders the current view on the terminal.
+     * <p>
+     * The `renderView` method is responsible for clearing the screen, drawing the current view's title, content, footer,
+     * and system messages (if available). It uses the terminal object to handle screen updates and ensures that
+     * the view is displayed with proper formatting and colors.
+     * </p>
+     */
     public void renderView() {
         if(currentView instanceof NullView){
             return;

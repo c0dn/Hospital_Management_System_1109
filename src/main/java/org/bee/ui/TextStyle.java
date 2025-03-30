@@ -25,6 +25,11 @@ public enum TextStyle {
         this.ansiCode = ansiCode;
     }
 
+    /**
+     * Retrieves the ANSI escape code for the text style.
+     *
+     * @return The ANSI escape code associated with the text style.
+     */
     public String getAnsiCode() {
         return ansiCode;
     }

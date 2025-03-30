@@ -8,7 +8,15 @@ import org.bee.ui.views.TextView;
  * This avoids cases where the backstack is empty.
  */
 public class NullPage extends UiBase {
-
+    /**
+     * Creates a view for the `NullPage`.
+     * <p>
+     * This method returns a `TextView` with an error message indicating that the application has encountered
+     * an unexpected state.
+     * </p>
+     *
+     * @return A `TextView` instance containing the error message.
+     */
     @Override
     public View createView() {
         return new TextView(this.canvas, "If you see this screen, this should not happen, exit the app immediately", Color.RED);

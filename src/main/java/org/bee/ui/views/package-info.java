@@ -1,5 +1,5 @@
 /**
- * Provides view components for the BEE UI framework terminal-based interface.
+ * Provides view components for the UI framework terminal-based interface.
  * <p>
  * This package contains various view implementations that form the building blocks
  * of the user interface. These components work together with the core UI framework

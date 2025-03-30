@@ -21,15 +21,31 @@ public abstract class UiBase {
     // the application context
     protected ApplicationContext context;
     protected View lastCreatedView;
-
+    /**
+     * Sets the canvas for this page.
+     *
+     * @param canvas The canvas to be set.
+     */
     public void setCanvas(Canvas canvas) {
         this.canvas = canvas;
     }
-
+    /**
+     * Sets the application context for this page.
+     *
+     * @param context The application context to be set.
+     */
     public void setApplicationContext(ApplicationContext context) {
         this.context = context;
     }
 
+    /**
+     * Creates the view for this page.
+     * <p>
+     * Subclasses must implement this method to define the UI components for their page.
+     * </p>
+     *
+     * @return A {@link View} instance representing the UI components of the page.
+     */
     protected abstract View createView();
 
     /**
@@ -147,7 +163,18 @@ public abstract class UiBase {
         return result.toString().trim();
     }
 
-
+    /**
+     * Creates a blank composite list view with a title header and content message.
+     * <p>
+     * This method generates a `CompositeView` that includes a title header, a content message,
+     * and an empty menu view. It is styled with default colors and can be used as a template
+     * for creating simple list views.
+     * </p>
+     *
+     * @param titleHeader The title to display at the top of the composite view.
+     * @param content     The main content message to display in the view.
+     * @return A `CompositeView` containing the title, content, and an empty menu.
+     */
     @NotNull
     protected CompositeView getBlankListView(String titleHeader, String content) {
         CompositeView compositeView = new CompositeView(this.canvas, titleHeader, Color.YELLOW);
