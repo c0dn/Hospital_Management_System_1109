@@ -186,7 +186,7 @@ tasks.register<Javadoc>("generateJavadoc") {
         addStringOption("link", "https://square.github.io/okhttp/4.x/okhttp/")
         addStringOption("link", "https://fasterxml.github.io/jackson-core/javadoc/2.15/")
         addStringOption("link", "https://fasterxml.github.io/jackson-databind/javadoc/2.15/")
-        addStringOption("link", "https://fasterxml.github.io/jackson-annotations/javadoc/2.15/")
+        addStringOption("link", "https://javadoc.io/doc/com.fasterxml.jackson.core/jackson-annotations/2.15.1/")
     }
 
     doFirst {
