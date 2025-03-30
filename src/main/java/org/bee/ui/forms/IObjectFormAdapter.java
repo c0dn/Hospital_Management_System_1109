@@ -1,5 +1,6 @@
 package org.bee.ui.forms;
 
+import org.bee.hms.medical.Treatment;
 import org.bee.utils.ReflectionHelper;
 
 import java.lang.reflect.Field;

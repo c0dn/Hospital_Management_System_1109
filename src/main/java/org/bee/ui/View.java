@@ -6,6 +6,15 @@ import org.bee.ui.views.UserInputResult;
 
 import java.util.*;
 
+/**
+ * Abstract base class for all visual components in the UI framework.
+ * <p>
+ * A View represents a displayable component with content, styling, and optional user interactions.
+ * Views can have headers, content text, and a footer with user input options. The class provides
+ * methods for handling user input and navigation.
+ * <p>
+ * This class is designed to be extended by specific view implementations like TextView, CompositeView, etc.
+ */
 public abstract class View {
     protected String titleHeader;
     protected Canvas canvas;

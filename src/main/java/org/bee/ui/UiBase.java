@@ -6,6 +6,16 @@ import org.bee.ui.views.MenuView;
 import org.bee.ui.views.TextView;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Abstract base class for UI components that defines the core lifecycle and navigation functionality.
+ * <p>
+ * This class implements the concept of a "page" in the UI framework, managing the lifecycle
+ * of views from creation to destruction. It also handles navigation between pages and maintains
+ * the application's back stack.
+ * <p>
+ * Subclasses must implement {@link #createView()} and {@link #OnViewCreated(View)} to define
+ * the UI components and initialization logic for the page.
+ */
 public abstract class UiBase {
     protected Canvas canvas;
     // the application context

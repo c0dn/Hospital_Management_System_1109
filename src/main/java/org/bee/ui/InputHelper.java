@@ -5,7 +5,11 @@ import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
 /**
- * Helper class which contains logic to prompt the user for inputs and handles error handling.
+ * Utility class providing methods to prompt users for input with built-in validation.
+ * <p>
+ * This helper simplifies common input tasks by handling error checking, retrying on invalid
+ * input, and providing type-specific validation for various kinds of data input including
+ * integers, strings, and selections from lists.
  */
 public class InputHelper {
     /**

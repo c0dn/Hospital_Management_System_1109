@@ -1,7 +1,10 @@
 package org.bee.ui;
 
 /**
- * Simple enum that contains the color ANSI codes.
+ * Enum that encapsulates ANSI color codes for text coloring in the console.
+ * <p>
+ * This enum provides a set of predefined colors for UI elements, including standard colors,
+ * underlined variants, and special formatting options like ESCAPE for resetting colors.
  */
 public enum Color {
     BLACK("\u001b[30m"),

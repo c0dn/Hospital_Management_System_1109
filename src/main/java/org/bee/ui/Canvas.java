@@ -6,8 +6,15 @@ import org.bee.ui.views.UserInput;
 
 import java.util.*;
 
-/** handles page rendering, lifecycle, and callbacks (application exit and onBackPressed callbacks).
- * Also handles view backstack, but backstack management will be removed from canvas in the near future.
+/**
+ * Central class for rendering UI components and managing the application lifecycle.
+ * <p>
+ * Canvas handles page rendering, view lifecycle, and callbacks for application events such as
+ * back navigation and application exit. It manages the current view, processes user input,
+ * and coordinates the display of system messages.
+ * <p>
+ * The class provides methods for drawing text with specific formatting and positioning,
+ * and maintains the main application loop that drives the UI interactions.
  */
 public class Canvas {
 
