@@ -7,6 +7,7 @@ import java.lang.reflect.Method;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.function.Function;
 
 /**
  * Interface for adapters that convert domain objects to form representations and back.

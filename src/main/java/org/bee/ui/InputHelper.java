@@ -8,19 +8,36 @@ import java.util.regex.Pattern;
  * Utility class providing methods to prompt users for input with built-in validation.
  * <p>
  * This helper simplifies common input tasks by handling error checking, retrying on invalid
- * input, and providing type-specific validation for various kinds of data input including
- * integers, strings, and selections from lists.
+ * input, and providing type-specific validation for various kinds of data including:
+ * <ul>
+ *   <li>Integer values within ranges</li>
+ *   <li>String input with regex pattern validation</li>
+ *   <li>String input with custom predicate validation</li>
+ *   <li>Decimal (double) values within ranges</li>
+ *   <li>Yes/No binary choices</li>
+ *   <li>Selection from a list of options</li>
+ * </ul>
+ * <p>
+ * All methods handle validation errors by displaying appropriate messages and
+ * repeatedly prompting the user until valid input is provided. This simplifies
+ * application code by centralizing input validation logic.
  */
+
 public class InputHelper {
     /**
      * Prompts the user to enter an integer index within a specified range.
-     * Handles invalid input (non-integer, out-of-range) gracefully.
+     * <p>
+     * This method will continue prompting until the user enters a valid integer
+     * that falls within the specified range (inclusive). Error messages are displayed
+     * for non-integer input and out-of-range values.
+     * </p>
      *
-     * @param terminal The terminal to use for input/output.
-     * @param prompt   The message to display to the user.
-     * @param min      The minimum valid index (inclusive).
-     * @param max      The maximum valid index (inclusive).
-     * @return The valid integer index entered by the user.
+     * @param terminal The terminal to use for input/output
+     * @param prompt   The message to display to the user
+     * @param min      The minimum valid index (inclusive)
+     * @param max      The maximum valid index (inclusive)
+     * @return The valid integer index entered by the user
+     * @throws IllegalArgumentException If min is greater than max
      */
     public static int getValidIndex(Terminal terminal, String prompt, int min, int max) {
         if (min > max) {
@@ -51,13 +68,18 @@ public class InputHelper {
     }
 
     /**
-     * Overloaded getValidIndex to work more seamlessly with List objects.
-     * Automatically determines the valid index range based on the list size.
+     * Prompts the user to enter an index for selecting an item from a list.
+     * <p>
+     * This method automatically determines the valid range based on the list size,
+     * using zero-based indexing to match common list implementations. It will continue
+     * prompting until a valid index is entered.
+     * </p>
      *
-     * @param terminal The terminal to use for input/output.
-     * @param prompt   The message to display to the user.
-     * @param list     The list object
-     * @return The valid integer index entered by the user.
+     * @param terminal The terminal to use for input/output
+     * @param prompt   The message to display to the user
+     * @param list     The list from which the user is selecting an item
+     * @return The valid list index entered by the user (0 to list.size()-1)
+     * @throws IllegalArgumentException If the list is null or empty
      */
     public static int getValidIndex(Terminal terminal, String prompt, List<?> list) {
         if (list == null || list.isEmpty()) {

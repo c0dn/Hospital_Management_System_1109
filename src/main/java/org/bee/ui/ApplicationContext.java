@@ -3,13 +3,48 @@ package org.bee.ui;
 import java.util.Stack;
 
 /**
- * Defines the application start point. And gracefully starts the application.
- */
+ * Manages the application lifecycle and navigation stack.
+ * <p>
+ * The ApplicationContext class serves as the central controller for the application,
+ * maintaining the navigation history through a stack of UI pages and handling the
+ * logic for navigation between pages. It acts as the bridge between the Canvas
+ * rendering system and the UI pages.
+ * </p>
+ * <p>
+ * Key responsibilities:
+ * <ul>
+ *   <li>Initializing the application with an entry point</li>
+ *   <li>Managing the back stack for navigation history</li>
+ *   <li>Coordinating page transitions and view creation</li>
+ *   <li>Setting up navigation callbacks for the Canvas</li>
+ *   <li>Ensuring the application has a fallback page (NullPage) to prevent empty states</li>
+ * </ul>
+ * */
 public class ApplicationContext {
+    /**
+     * The Canvas instance responsible for rendering the UI.
+     */
     protected Canvas canvas;
-    protected Stack<UiBase> backStack = new Stack<>();
-    protected NullPage nullPage;
 
+    /**
+     * Stack that keeps track of page navigation history.
+     * The top of the stack represents the currently active page.
+     */
+    protected Stack<UiBase> backStack = new Stack<>();
+    /**
+     * A placeholder page that serves as the bottom of the navigation stack.
+     * This prevents empty stack situations and provides a fallback.
+     */
+    protected NullPage nullPage;
+    /**
+     * Creates a new ApplicationContext associated with the provided Canvas.
+     * <p>
+     * Initializes the navigation stack with a NullPage at the bottom to ensure
+     * there is always at least one page in the stack, preventing empty stack exceptions.
+     * </p>
+     *
+     * @param canvas The Canvas instance to use for rendering the UI
+     */
     public ApplicationContext(Canvas canvas) {
         this.canvas = canvas;
 
@@ -21,8 +56,27 @@ public class ApplicationContext {
     }
 
     /**
-     * Sets the entry point of the application.
-     * @param initialUi the UiBase class entry point
+     * Starts the application with the specified initial UI page.
+     * <p>
+     * This method:
+     * <ol>
+     *   <li>Sets up navigation callbacks for the Canvas</li>
+     *   <li>Initializes the first UI page and adds it to the navigation stack</li>
+     *   <li>Creates and renders the initial view</li>
+     *   <li>Sets up back navigation handling logic</li>
+     *   <li>Starts the main application loop</li>
+     * </ol>
+     * <p>
+     * The back navigation logic handles:
+     * <ul>
+     *   <li>Internal view navigation within a page</li>
+     *   <li>Navigation between pages in the stack</li>
+     *   <li>Proper restoration of previous pages' views</li>
+     *   <li>Boundary conditions (such as being on the first page)</li>
+     * </ul>
+     *
+     * @param initialUi The entry point UI page to start the application with
+     * @throws IllegalArgumentException If initialUi is null
      */
     public void startApplication(UiBase initialUi) {
         canvas.setPageNavigationCallback(newPage -> {

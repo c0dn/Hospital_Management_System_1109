@@ -21,9 +21,9 @@ public class Canvas {
      * Functional interface for handling page navigation events.
      * Implementations define how to navigate to a new page in the application.
      */
-
     @FunctionalInterface
     public interface IPageNavigationCallback {
+
         /**
          * Navigates to a specified page.
          *
@@ -32,6 +32,13 @@ public class Canvas {
         void navigateToPage(UiBase newPage);
     }
 
+    /**
+     * Record class representing a system message with its associated status.
+     * System messages are displayed to the user with color-coding based on their status.
+     *
+     * @param message The text content of the message
+     * @param status The status determining the message's color and importance
+     */
     private record SystemMessage(String message, SystemMessageStatus status) {}
 
 
@@ -46,13 +53,18 @@ public class Canvas {
     protected List<IGenericCallbackInterface> applicationStopCallback = new ArrayList<>();
     protected boolean stopCanvas = false;
 
+    /**
+     * Constructs a new Canvas instance.
+     * Initializes a terminal for user interaction and sets the current view to a NullView.
+     */
     public Canvas() {
         this.terminal = new Terminal(); // Handles terminal interaction (see notes below)
         this.currentView = new NullView(this);
     }
 
     /**
-     * drawText overload method, that allows drawing at a specified x and y coordinate in the terminal
+     * Draws text at a specific position in the terminal with the specified color.
+     * This method allows precise placement of text in the terminal interface.
      * @param text the text to draw.
      * @param color the color of the text.
      * @param x the x coordinate of the text.
@@ -66,9 +78,11 @@ public class Canvas {
     }
 
     /**
-     * drawText overload method, that draws on the current line of the terminal.
-     * @param text The text to draw.
-     * @param color The color of the text.
+     * Draws text on the current line of the terminal with the specified color.
+     * This method appends text at the current cursor position with the given color.
+     *
+     * @param text The text to draw
+     * @param color The color to use for the text
      */
     public void drawText(String text, Color color) {
         terminal.setTextColor(color);
@@ -77,35 +91,39 @@ public class Canvas {
     }
 
     /**
-     * Gets the current page from the Stack.
-     * @return the current page.
+     * Gets the current view being displayed by the canvas.
+     *
+     * @return The current View instance
      */
     public View getCurrentView() {
         return this.currentView;
     }
 
     /**
-     * Sets a callback for page navigation events.
+     * Sets the callback for page navigation events.
+     * This callback is invoked when the application needs to navigate to a new page.
      *
-     * @param callback The callback to set.
+     * @param callback The callback to invoke when navigating to a new page
      */
     public void setPageNavigationCallback(IPageNavigationCallback callback) {
         this.pageNavigationCallback = callback;
     }
 
     /**
-     * Sets a callback for back navigation events.
+     * Sets the callback for back navigation events.
+     * This callback is invoked when the user requests to navigate back to the previous page.
      *
-     * @param callback The callback to set.
+     * @param callback The callback to invoke when back navigation occurs
      */
     public void setBackNavigationCallback(IGenericCallbackInterface callback) {
         this.backNavigationCallback = callback;
     }
 
     /**
-     * Navigates to a specified page using the registered navigation callback.
+     * Navigates to a new page using the registered page navigation callback.
+     * If no callback is registered, this method has no effect.
      *
-     * @param newPage The page to navigate to.
+     * @param newPage The page to navigate to
      */
     public void navigateToPage(UiBase newPage) {
         if (pageNavigationCallback != null) {
@@ -123,8 +141,10 @@ public class Canvas {
     }
 
     /**
-     * Adds an app exit callback for the current page
-     * @param callback callback to add
+     * Adds a callback to be executed when the application is exiting.
+     * Multiple callbacks can be registered and will be executed in the order they were added.
+     *
+     * @param callback The callback to add
      */
     public void addApplicationStopCallback(IGenericCallbackInterface callback) {
         this.applicationStopCallback.add(callback);
@@ -134,9 +154,10 @@ public class Canvas {
     /**
      * Sets a system message with the specified status.
      * The message will be displayed with a color corresponding to its status.
+     * Setting a message automatically triggers a redraw of the canvas.
      *
-     * @param message The message to be displayed
-     * @param status The status determining the message's color
+     * @param message The message text to be displayed
+     * @param status The status determining the message's color and importance
      */
     public void setSystemMessage(String message, SystemMessageStatus status) {
         if (message == null || message.isBlank()) {
@@ -149,9 +170,10 @@ public class Canvas {
 
     /**
      * Sets a system message with the default INFO status.
-     * This maintains backward compatibility with existing code.
+     * This is a convenience method that calls {@link #setSystemMessage(String, SystemMessageStatus)}
+     * with {@link SystemMessageStatus#INFO} as the status.
      *
-     * @param message The message to be displayed
+     * @param message The message text to be displayed
      */
     public void setSystemMessage(String message) {
         setSystemMessage(message, SystemMessageStatus.INFO);
@@ -159,6 +181,7 @@ public class Canvas {
 
     /**
      * Clears the current system message.
+     * After this method is called, no system message will be displayed until a new one is set.
      */
     public void clearSystemMessage() {
         this.systemMessage = null;
@@ -166,7 +189,8 @@ public class Canvas {
 
 
     /**
-     * clears all the callbacks for the current page.
+     * Clears all callback registrations for the current page.
+     * This includes both back navigation and application stop callbacks.
      */
     protected void clearCallbacks(){
         this.backPressedCallback.clear();
@@ -174,8 +198,11 @@ public class Canvas {
     }
 
     /**
-     * Ensures the back button is present for the view
-     * @param view the view to ensure has a back button
+     * Ensures the back button is present for the view.
+     * If the view doesn't already have a back navigation option registered at index 0,
+     * this method adds one that will trigger the appropriate callbacks.
+     *
+     * @param view The view to ensure has a back button
      */
     private void ensureBackButton(View view) {
         if(view.getInputOptions().get(0) == null) {
@@ -197,8 +224,11 @@ public class Canvas {
     }
 
     /**
-     * Sets up callbacks and prepares the view for rendering
-     * @param view the view to setup callbacks for
+     * Sets up callbacks and prepares the view for rendering.
+     * This method registers the view's lifecycle methods as callbacks and
+     * marks the canvas for redrawing.
+     *
+     * @param view The view to setup callbacks for
      */
     private void setupViewCallbacks(View view) {
         this.clearCallbacks();
@@ -226,17 +256,32 @@ public class Canvas {
     }
 
     /**
-     * Simple utility function that tells the main loop to redraw the current page.
-     * Call this when updates are required.
-     * @param requireRedraw boolean value to set the requireRedraw flag
+     * Sets the redraw flag to indicate whether the view needs to be redrawn.
+     * Call this method when updates to the view content require a refresh of the display.
+     *
+     * @param requireRedraw true if the view needs to be redrawn, false otherwise
      */
     public void setRequireRedraw(boolean requireRedraw) {
         this.requireRedraw = requireRedraw;
     }
 
     /**
-     * The program's main loop, handles logic for the user interface, including inputs, rudimentary error handling and input validation
-     * As well as gracefully stopping the application.
+     * The main application loop that handles UI interactions.
+     * <p>
+     * This method continuously processes user input, manages view rendering, handles navigation
+     * and exit events. It runs until the application is explicitly stopped via the 'q' command
+     * or when the stopCanvas flag is set to true.
+     * </p>
+     * <p>
+     * The loop performs the following operations:
+     * <ul>
+     *   <li>Renders the current view if updates are required</li>
+     *   <li>Handles special command inputs ('q' for quit, 'e' for back navigation)</li>
+     *   <li>Processes view-specific direct inputs</li>
+     *   <li>Handles numeric option selections</li>
+     *   <li>Displays appropriate error messages for invalid inputs</li>
+     *   <li>Executes application stop callbacks when exiting</li>
+     * </ul>
      */
     public void mainLoop(){
         while(!stopCanvas) {
@@ -301,11 +346,20 @@ public class Canvas {
     /**
      * Renders the current view on the terminal.
      * <p>
-     * The `renderView` method is responsible for clearing the screen, drawing the current view's title, content, footer,
-     * and system messages (if available). It uses the terminal object to handle screen updates and ensures that
-     * the view is displayed with proper formatting and colors.
-     * </p>
+     * This method is responsible for:
+     * <ul>
+     *   <li>Clearing the screen</li>
+     *   <li>Drawing the current view's title header if present</li>
+     *   <li>Drawing the view's main content</li>
+     *   <li>Drawing any active system messages with appropriate color coding</li>
+     *   <li>Drawing the view's footer with navigation options</li>
+     *   <li>Flushing the terminal to ensure all content is displayed</li>
+     * </ul>
+     *
+     * After rendering is complete, the requireRedraw flag is reset to false.
+     * If the current view is a NullView, this method does nothing.
      */
+
     public void renderView() {
         if(currentView instanceof NullView){
             return;
@@ -341,8 +395,9 @@ public class Canvas {
     }
 
     /**
-     * Gets the terminal object.
-     * @return terminal object.
+     * Gets the terminal object used for input/output operations.
+     *
+     * @return The Terminal instance being used by this Canvas
      */
     public Terminal getTerminal() {
         return terminal;
