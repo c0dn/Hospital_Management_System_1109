@@ -86,7 +86,7 @@ public class ConsultationDetailsViewAdapter implements IDetailsViewAdapter<Consu
         if (diagnosticCodes != null && !diagnosticCodes.isEmpty()) {
             StringBuilder codesStr = new StringBuilder();
             for (int i = 0; i < diagnosticCodes.size(); i++) {
-                if (i > 0) codesStr.append("\n");
+                if (i >= 0) codesStr.append("\n    ");
                 codesStr.append(i+1).append(". ").append(diagnosticCodes.get(i).getDCode());
             }
             view.addDetail("Medical Details", "Diagnostic Codes", codesStr.toString());
@@ -97,7 +97,7 @@ public class ConsultationDetailsViewAdapter implements IDetailsViewAdapter<Consu
         if (procedureCodes != null && !procedureCodes.isEmpty()) {
             StringBuilder codesStr = new StringBuilder();
             for (int i = 0; i < procedureCodes.size(); i++) {
-                if (i > 0) codesStr.append("\n");
+                if (i >= 0) codesStr.append("\n    ");
                 codesStr.append(i+1).append(". ").append(procedureCodes.get(i).getPCode());
             }
             view.addDetail("Medical Details", "Procedure Codes", codesStr.toString());
@@ -109,8 +109,10 @@ public class ConsultationDetailsViewAdapter implements IDetailsViewAdapter<Consu
             StringBuilder rxStr = new StringBuilder();
             int i = 0;
             for (Map.Entry<?, Integer> entry : prescriptions.entrySet()) {
-                if (i > 0) rxStr.append("\n");
-                rxStr.append(i+1).append(". ").append(entry.getKey().toString())
+                if (i >= 0) rxStr.append("\n    ");
+                String[] parts = entry.getKey().toString().split("\\(")[0].split(":");
+                String drugInfo = parts[0].trim() + ": " + parts[1].trim();
+                rxStr.append(i+1).append(". ").append(drugInfo)
                         .append(" - Qty: ").append(entry.getValue());
                 i++;
             }
