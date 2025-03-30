@@ -37,7 +37,7 @@ public class FormView extends View {
     /**
      * Represents the possible states of the form.
      */
-    private enum FormState {
+    enum FormState {
         /**
          * No field is selected or active
          */
@@ -55,7 +55,7 @@ public class FormView extends View {
         COLLECTION_REMOVING
     }
 
-    private FormState currentState = FormState.IDLE;
+    FormState currentState = FormState.IDLE;
 
     /**
      * Creates a new form view with the specified title and color.

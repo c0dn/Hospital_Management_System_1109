@@ -2,8 +2,6 @@
 
     import org.bee.controllers.HumanController;
     import org.bee.pages.clerk.billing.ViewAllBillsPage;
-    import org.bee.pages.clerk.insurance.NewInsuranceClaimPage;
-    import org.bee.pages.clerk.insurance.UpdateClaimPage;
     import org.bee.pages.clerk.insurance.ViewAllClaimsPage;
     import org.bee.ui.*;
     import org.bee.ui.views.*;
@@ -46,9 +44,7 @@
             // Outpatient section
             MenuView.MenuSection outpatientSection = menuView.addSection("Outpatient Management");
             outpatientSection.addOption(2, "View All/Update Outpatient Cases");
-//            outpatientSection.addOption(3, "Update Outpatient Case Details");
             menuView.attachMenuOptionInput(2, "View All/Update Outpatient Cases", str -> ToPage(new OutpatientCasesPage()));
-//            menuView.attachMenuOptionInput(3, "Update Outpatient Case", str -> ToPage(new OutpatientUpdatePage()));
 
 
             // billing section

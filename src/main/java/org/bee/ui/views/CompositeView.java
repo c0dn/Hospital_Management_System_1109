@@ -170,36 +170,33 @@ public class CompositeView extends View {
      * Generates the footer content with appropriate context-sensitive options.
      * <p>The footer display prioritizes:</p>
      * <ol>
-     *   <li>FormView fields that are awaiting input</li>
-     *   <li>MenuView footer if present</li>
-     *   <li>Default view footer</li>
+     * <li>FormView fields that are awaiting input</li>
+     * <li>MenuView footer if present</li>
+     * <li>Default view footer</li>
      * </ol>
+     * <p>Ensures "Your input" prompt is always included at the end.</p>
      *
-     * @return The footer content with user input options
+     * @return The footer content with user input options and the input prompt.
      */
     @Override
     public String getFooter() {
-        // Check for form views awaiting input first
         for (View child : childViews) {
             if (child instanceof FormView formView && formView.isAwaitingValue()) {
                 FormField<?> field = formView.getSelectedField();
                 if (field != null) {
-                    StringBuilder sb = new StringBuilder();
-                    sb.append("\nOptions:\n | e: Go Back");
-
-                    if (formView.getInputOptions() != null && !Collections.list(formView.getInputOptions().keys()).isEmpty()) {
-                        sb.append(" | Select field (1-").append(Collections.list(formView.getInputOptions().keys()).size()).append(")");
-                    }
-
-                    sb.append(" | s: Submit Changes | u: Update Selected Field | q: Quit App\n");
-                    sb.append(field.getPrompt()).append(" ");
-
-                    return sb.toString();
+                    String formOptions = "\nOptions:\n | e: Go Back | q: Quit App\n";
+                    return formOptions + field.getPrompt() + " ";
                 }
+            }
+            else if (child instanceof FormView formView &&
+                    (formView.currentState == FormView.FormState.COLLECTION_ADDING ||
+                            formView.currentState == FormView.FormState.COLLECTION_REMOVING ||
+                            formView.currentState == FormView.FormState.COLLECTION_BROWSING)) {
+                return formView.getFooter();
             }
         }
 
-        // If no form field is active, try to find a MenuView to provide footer
+
         MenuView menuViewChild = null;
         for (View child : childViews) {
             if (child instanceof MenuView) {
@@ -208,12 +205,16 @@ public class CompositeView extends View {
             }
         }
 
+        String baseFooter;
         if (menuViewChild != null) {
-            return menuViewChild.getFooter();
+            baseFooter = menuViewChild.getFooter();
+            return baseFooter;
         } else {
-            return super.getFooter();
+            baseFooter = super.getFooter();
+            return baseFooter + "\nYour input: ";
         }
     }
+
 
     /**
      * {@inheritDoc}

@@ -6,7 +6,6 @@ import org.bee.controllers.HumanController;
 import org.bee.hms.auth.SystemUser;
 import org.bee.hms.billing.Bill;
 import org.bee.hms.billing.BillingStatus;
-import org.bee.hms.humans.Doctor;
 import org.bee.hms.humans.Patient;
 import org.bee.hms.telemed.Appointment;
 import org.bee.hms.telemed.AppointmentStatus;
@@ -152,7 +151,7 @@ public class ViewAppointmentPage extends UiBase {
                         InvoiceDetailsPage paymentPage = new InvoiceDetailsPage(
                                 billOpt.get(),
                                 new BillDetailsAdapter(),
-                                this::refreshCurrentView // Refresh after payment attempt
+                                this::refreshCurrentView
                         );
                         ToPage(paymentPage);
                     } else {

@@ -4,13 +4,11 @@ import org.bee.controllers.BillController;
 import org.bee.hms.billing.Bill;
 import org.bee.hms.billing.BillingStatus;
 import org.bee.hms.billing.PaymentMethod;
-import org.bee.pages.ObjectDetailsPage;
-import org.bee.ui.InputHelper;
-import org.bee.ui.SystemMessageStatus;
-import org.bee.ui.UiBase;
-import org.bee.ui.View;
+import org.bee.ui.*;
 import org.bee.ui.details.IObjectDetailsAdapter;
-import org.bee.utils.detailAdapters.BillDetailsAdapter;
+import org.bee.ui.views.CompositeView;
+import org.bee.ui.views.MenuView;
+import org.bee.ui.views.ObjectDetailsView;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -37,14 +35,30 @@ public class InvoiceDetailsPage extends UiBase {
 
     @Override
     protected View createView() {
-        ObjectDetailsPage<Bill> detailsPage = new ObjectDetailsPage<>(bill, adapter);
-        return detailsPage.createView();
+        if (Objects.isNull(bill)) {
+            return getBlankListView("No Bill", "Bill data missing you donkey");
+        }
+
+        CompositeView compositeView = new CompositeView(this.canvas, adapter.getObjectTypeName() + " Details", Color.CYAN); //
+
+        ObjectDetailsView detailsView = new ObjectDetailsView(
+                this.canvas,
+                "",
+                bill,
+                Color.CYAN
+        );
+        adapter.configureView(detailsView, bill);
+        MenuView menuView = new MenuView(this.canvas, "", Color.CYAN, false, true);
+        setUpActionButtons(menuView, bill.getStatus());
+
+        compositeView.addView(detailsView);
+        compositeView.addView(menuView);
+
+        return compositeView;
     }
 
     @Override
     public void OnViewCreated(View parentView) {
-        BillingStatus status = bill.getStatus();
-        setUpActionButtons(parentView, status);
         canvas.setRequireRedraw(true);
     }
 
@@ -105,8 +119,6 @@ public class InvoiceDetailsPage extends UiBase {
         View refreshedView = createView();
         navigateToView(refreshedView);
 
-        setUpActionButtons(refreshedView, bill.getStatus());
-
         canvas.setSystemMessage(message, SystemMessageStatus.SUCCESS);
         canvas.setRequireRedraw(true);
 
@@ -115,10 +127,21 @@ public class InvoiceDetailsPage extends UiBase {
         }
     }
 
-    private void setUpActionButtons(View parentView, BillingStatus status) {
+    private void setUpActionButtons(MenuView menuView, BillingStatus status) {
+
+        MenuView.MenuSection actionSection = menuView.addSection("Available Actions");
+        int optionIndex = 1;
+
         if ((status == BillingStatus.OVERDUE) || (status == BillingStatus.PARTIALLY_PAID) || (status == BillingStatus.PAYMENT_PENDING)){
-            setupPaymentOptions(parentView);
+            actionSection.addOption(optionIndex, "Record Payment");
+            menuView.attachMenuOptionInput(optionIndex, "Record Payment", input -> {
+                promptForPaymentMethod(paymentMethod -> {
+                    promptForPaymentAmount(bill.getOutstandingBalance(), paymentMethod);
+                });
+            });
+            optionIndex++;
         }
+        menuView.setNumericOptionMaxRange(optionIndex - 1);
     }
 
     private void saveChangesAndNotify(String message) {
