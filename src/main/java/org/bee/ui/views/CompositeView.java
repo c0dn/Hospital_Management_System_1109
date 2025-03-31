@@ -98,9 +98,10 @@ public class CompositeView extends View {
      * Handles direct input by delegating to child views in priority order.
      * <p>The input handling priority is:</p>
      * <ol>
-     *   <li>FormViews that are awaiting value input</li>
-     *   <li>This view's own direct input handlers</li>
-     *   <li>All other child views</li>
+     * <li>FormViews that are awaiting value input</li>
+     * <li>Paginated views for pagination-specific keys ('n', 'p', 'j')</li> // <-- New Priority
+     * <li>This view's own direct input handlers</li>
+     * <li>All other child views</li>
      * </ol>
      *
      * @param input The input string from the user
@@ -108,22 +109,55 @@ public class CompositeView extends View {
      */
     @Override
     public boolean handleDirectInput(String input) {
-        // First check if any FormView is awaiting input, as it has priority
+        // 1. Priority: FormView awaiting input
         for (View child : childViews) {
             if (child instanceof FormView formView && formView.isAwaitingValue()) {
                 formView.processValueInput(input);
                 return true;
             }
+            if (child instanceof FormView formView &&
+                    (formView.currentState == FormView.FormState.COLLECTION_ADDING ||
+                            formView.currentState == FormView.FormState.COLLECTION_REMOVING)) {
+                if (formView.handleDirectInput(input)) {
+                    return true;
+                }
+            }
         }
 
-        // Try handling with this view's own input handlers
+        // 2. Priority: Paginated views for pagination keys (n, p, j)
+        if (input != null && input.length() == 1) {
+            char key = Character.toLowerCase(input.charAt(0));
+            if (key == 'n' || key == 'p' || key == 'j') {
+                for (View child : childViews) {
+                    if (child instanceof PaginatedMenuView paginatedMenu) {
+                        if (paginatedMenu.handleDirectInput(input)) {
+                            return true;
+                        }
+                    } else if (child instanceof AbstractPaginatedView<?> paginatedView) {
+                        if (paginatedView.handleDirectInput(input)) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+
+        // 3. Priority: This view's own handlers (if any)
         if (super.handleDirectInput(input)) {
             return true;
         }
 
-        // Try all other child views that aren't awaiting form input
+        // 4. Priority: All other child views (that aren't FormView awaiting input)
         for (View child : childViews) {
-            if (!(child instanceof FormView formView && formView.isAwaitingValue())) {
+            boolean alreadyHandledForm = child instanceof FormView formView &&
+                    (formView.isAwaitingValue() ||
+                            formView.currentState == FormView.FormState.COLLECTION_ADDING ||
+                            formView.currentState == FormView.FormState.COLLECTION_REMOVING);
+
+            boolean isPaginationKey = input != null && input.length() == 1 && "npj".contains(input.toLowerCase());
+            boolean alreadyHandledPagination = isPaginationKey && child instanceof PaginatedMenuView;
+
+            if (!alreadyHandledForm && !alreadyHandledPagination) {
                 if (child.handleDirectInput(input)) {
                     return true;
                 }

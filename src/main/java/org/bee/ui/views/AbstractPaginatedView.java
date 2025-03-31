@@ -205,6 +205,40 @@ public abstract class AbstractPaginatedView<T> extends View {
     }
 
     /**
+     * Handles direct keyboard input for pagination keys ('n', 'p', 'j').
+     *
+     * @param input The input string from the user
+     * @return true if the input was a handled pagination key, false otherwise
+     */
+    @Override
+    public boolean handleDirectInput(String input) {
+        if (input != null && input.length() == 1) {
+            char key = Character.toLowerCase(input.charAt(0));
+            switch (key) {
+                case 'n':
+                    if (currentPage < totalPages - 1) {
+                        nextPage();
+                        return true;
+                    }
+                    break;
+                case 'p':
+                    if (currentPage > 0) {
+                        previousPage();
+                        return true;
+                    }
+                    break;
+                case 'j':
+                    if (totalPages > 3) {
+                        promptForPageJump();
+                        return true;
+                    }
+                    break;
+            }
+        }
+        return super.handleDirectInput(input);
+    }
+
+    /**
      * Prompts the user to enter a page number for direct navigation.
      * <p>
      * Displays an input prompt, validates the entered page number,

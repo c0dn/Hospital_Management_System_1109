@@ -47,7 +47,7 @@ public class ViewAppointmentPage extends UiBase {
             List<Appointment> appointments = appointmentController.getAppointmentsForPatient(patient);
 
             if (appointments.isEmpty()) {
-                return new TextView(canvas, "No appointments found.", Color.YELLOW);
+                return getBlankListView("No appointments found", "You do not have any appointments");
             }
 
             List<PaginatedMenuView.MenuOption> menuOptions = new ArrayList<>();
