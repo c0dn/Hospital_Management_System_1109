@@ -23,6 +23,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * A user interface page that allows patients to view their appointments.
+ *
+ * This class extends {@code UiBase} and enables users to browse their appointment history,
+ * view appointment details, and manage related actions, such as processing pending payments.
+ *
+ * It interacts with {@code AppointmentController}, {@code BillController}, and
+ * {@code HumanController} to fetch relevant data and update the UI accordingly.
+ */
 public class ViewAppointmentPage extends UiBase {
 
     private static final HumanController humanController = HumanController.getInstance();

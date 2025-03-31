@@ -134,6 +134,12 @@ public class FormValidators {
     }
 
 
+    /**
+     * Returns a {@link Predicate} that checks if a string is a valid diagnostic code.
+     * The input is trimmed, converted to uppercase, and validated.
+     *
+     * @return A {@link Predicate<String>} that returns {@code true} if the code is valid, {@code false} otherwise.
+     */
     public static Predicate<String> validDiagnosticCode() {
         return input -> {
             if (input == null || input.trim().isEmpty()) {

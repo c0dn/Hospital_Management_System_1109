@@ -42,6 +42,20 @@ public class MapFormField<K, V> extends CollectionFormField<Map.Entry<K, V>, Map
         this.entrySeparator = ":";
     }
 
+    /**
+     * Constructs a {@code MapFormField} with the specified parameters and a custom entry separator.
+     *
+     * @param name            The name of the form field.
+     * @param displayName     The name displayed to the user for this form field.
+     * @param prompt          A prompt or instruction displayed to the user.
+     * @param validator       A {@link Predicate} to validate the user input.
+     * @param errorMessage    The error message to show if the input is invalid.
+     * @param keyParser       A {@link FormInputParser} to parse the key of the map.
+     * @param valueParser     A {@link FormInputParser} to parse the value of the map.
+     * @param isRequired      A boolean indicating if the field is required.
+     * @param initialValue    The initial value for the map field.
+     * @param entrySeparator  The separator used to divide map entries in the input.
+     */
     // Constructor with custom separator
     public MapFormField(String name, String displayName, String prompt,
                         Predicate<String> validator, String errorMessage,

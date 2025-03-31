@@ -95,10 +95,24 @@ public class DetailsView<T> extends View {
         private final TextStyle labelStyle;
         private final TextStyle valueStyle;
 
+        /**
+         * Constructs a {@code DetailItem} with the specified label and value, using default text styles.
+         *
+         * @param label The label for the detail item.
+         * @param value The value associated with the label.
+         */
         public DetailItem(String label, String value) {
             this(label, value, TextStyle.BOLD, TextStyle.RESET);
         }
 
+        /**
+         * Constructs a {@code DetailItem} with the specified label, value, and text styles.
+         *
+         * @param label        The label for the detail item.
+         * @param value        The value associated with the label.
+         * @param labelStyle   The text style to be applied to the label.
+         * @param valueStyle   The text style to be applied to the value.
+         */
         public DetailItem(String label, String value, TextStyle labelStyle, TextStyle valueStyle) {
             this.label = label;
             this.value = value;

@@ -13,8 +13,24 @@ package org.bee.ui;
  * </ul>
  */
 public enum SystemMessageStatus {
+    /**
+     * Represents general information messages.
+     */
     INFO,
+
+    /**
+     * Represents warning messages that require attention.
+     */
     WARNING,
+
+    /**
+     * Represents error messages indicating failures.
+     */
     ERROR,
+
+    /**
+     * Represents success messages confirming completed operations.
+     */
     SUCCESS
 }
+

@@ -31,6 +31,10 @@ import org.bee.ui.View;
  * @see CompositeView
  */
 public class TextView extends View {
+    /**
+     * The {@link TextStyle} applied to the text.
+     * This field determines how the text is styled, such as bold, italic, etc.
+     */
     public TextStyle textStyle;
 
     /**

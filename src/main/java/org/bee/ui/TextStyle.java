@@ -13,11 +13,30 @@ package org.bee.ui;
  * </ul>
  */
 public enum TextStyle {
+    /**
+     * Resets all text formatting to default settings.
+     */
     RESET("\u001b[0m"),
+
+    /**
+     * Applies bold text formatting.
+     */
     BOLD("\u001b[1m"),          // Bold
+
+    /**
+     * Applies italic text formatting.
+     */
     ITALIC("\u001b[3m"),
+
+    /**
+     * Applies underlined text formatting.
+     */
     ESCAPE("\u001b[4m"),
-    NONE("");        // Italic
+
+    /**
+     * No specific text formatting.
+     */
+    NONE("");        // No formatting
 
     private final String ansiCode;
 
@@ -34,3 +53,4 @@ public enum TextStyle {
         return ansiCode;
     }
 }
+

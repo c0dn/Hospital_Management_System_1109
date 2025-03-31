@@ -92,6 +92,12 @@ public class Terminal {
         System.out.flush();
     }
 
+    /**
+     * Reads and returns the user input as a string.
+     * If an error occurs during input reading, {@code null} is returned.
+     *
+     * @return The user input as a string, or {@code null} if an error occurs.
+     */
     public String getUserInput() {
         try {
             return scanner.nextLine();
