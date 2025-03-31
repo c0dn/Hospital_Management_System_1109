@@ -60,6 +60,13 @@ public final class DataGenerator {
             "Crisis Cover", "Critical Care Advantage", "MultiPay Critical Illness"
     };
 
+    /**
+     * Enum representing different types of names.
+     * <p>
+     * This enum can be used to categorize or classify various name-related information.
+     * Specific types of names can be added as needed.
+     * </p>
+     */
     public enum NameType {
         /**
          * Represents staff names
@@ -103,6 +110,16 @@ public final class DataGenerator {
         return RANDOM.nextInt(max);
     }
 
+    /**
+     * Retrieves a random {@link Medication} from a randomly selected category.
+     * <p>
+     * The method selects a random category from the available medication categories,
+     * retrieves up to 5 medications from that category, and then randomly selects one
+     * medication from the list. If no medications are available, an exception is thrown.
+     * </p>
+     *
+     * @return A randomly selected {@link Medication} from one of the available categories.
+     */
     public static Medication getRandomMedication() {
         List<String> categories = Medication.getAllCategories();
         String randomCategory = categories.get(RANDOM.nextInt(categories.size()));
@@ -119,10 +136,32 @@ public final class DataGenerator {
     }
 
 
+    /**
+     * Retrieves an array of patient names.
+     * <p>
+     * This method returns a pre-defined list of patient names stored in the system.
+     * </p>
+     *
+     * @return An array of {@link String} containing patient names.
+     */
     public static String[] getPatientNames() {
         return PATIENT_NAMES;
     }
 
+    /**
+     * Retrieves an array of names based on the specified {@link NameType}.
+     * <p>
+     * The method returns different sets of names depending on the provided {@link NameType}:
+     * <ul>
+     *   <li>{@link NameType#STAFF} returns a list of staff names.</li>
+     *   <li>{@link NameType#PATIENT} returns a list of patient names.</li>
+     *   <li>{@link NameType#ALL} returns a list of all names (e.g., staff and patient names).</li>
+     * </ul>
+     * </p>
+     *
+     * @param nameType The type of names to retrieve (e.g., STAFF, PATIENT, ALL).
+     * @return An array of names corresponding to the provided {@link NameType}.
+     */
     public static String[] getAllNames(NameType nameType) {
         return switch (nameType) {
             case STAFF -> STAFF_NAMES;
@@ -131,19 +170,62 @@ public final class DataGenerator {
         };
     }
 
+    /**
+     * Generates a unique staff ID.
+     * <p>
+     * The method generates a random UUID, extracts the first 8 characters,
+     * and prepends the letter 'S' to create a unique staff ID.
+     * </p>
+     *
+     * @return A unique staff ID, which consists of the letter 'S' followed by the first 8 characters
+     *         of a randomly generated UUID.
+     */
     public static String generateStaffId() {
         String uuid = UUID.randomUUID().toString();
         return "S" + uuid.substring(0, 8).toUpperCase();
     }
 
+    /**
+     * Generates a unique MCR (Medical Council Registration) number.
+     * <p>
+     * The method generates a random integer between 0 and 100,000, formats it
+     * into a string with leading zeros (if necessary), and appends the letter 'A'
+     * at the end to create the MCR number.
+     * </p>
+     *
+     * @return A unique MCR number in the format "MxxxxxA", where "xxxxx" is a
+     *         5-digit random number.
+     */
     public static String generateMCRNumber() {
         return String.format("M%05dA", generateRandomInt(100000));
     }
 
+    /**
+     * Generates a unique RNID (Registered Nurse Identification) number.
+     * <p>
+     * The method generates a random integer between 0 and 100,000, formats it
+     * into a 5-digit string with leading zeros (if necessary), and appends the letter 'B'
+     * at the end to create the RNID number.
+     * </p>
+     *
+     * @return A unique RNID number in the format "RNxxxxxB", where "xxxxx" is a
+     *         5-digit random number.
+     */
     public static String generateRNIDNumber() {
         return String.format("RN%05dB", generateRandomInt(100000));
     }
 
+    /**
+     * Generates a unique Patient ID.
+     * <p>
+     * The method combines the current year and a random UUID to generate a unique Patient ID.
+     * The format of the ID is "P-yyyyXXXXXXX", where "yyyy" is the current year and
+     * "XXXXXXX" is the first 8 characters of a randomly generated UUID.
+     * </p>
+     *
+     * @return A unique Patient ID in the format "P-yyyyXXXXXXX", where "yyyy" is the current year
+     *         and "XXXXXXX" is the first 8 characters of a randomly generated UUID.
+     */
     public static String generatePatientId() {
         int year = java.time.LocalDate.now().getYear();
         String uuid = UUID.randomUUID().toString();
@@ -151,6 +233,17 @@ public final class DataGenerator {
         return String.format("P-%d%s", year, uuid.substring(0, 8).toUpperCase());
     }
 
+    /**
+     * Generates a unique NRIC (National Registration Identity Card) number.
+     * <p>
+     * The method generates a random NRIC number using a random prefix from a set of valid prefixes
+     * ("S", "T", "F", "G"), followed by 7 random digits, and then appends a checksum value calculated
+     * from the prefix and the generated digits.
+     * </p>
+     *
+     * @return A unique NRIC number in the format "PXXXXXXXC", where "P" is the prefix, "XXXXXXX"
+     *         is a 7-digit random number, and "C" is the calculated checksum.
+     */
     public static String generateNRICNumber() {
         String[] prefixes = {"S", "T", "F", "G"};
         String prefix = prefixes[generateRandomInt(prefixes.length)];
@@ -262,6 +355,13 @@ public final class DataGenerator {
         return allNames[RANDOM.nextInt(allNames.length)];
     }
 
+    /**
+     * Generates a random string of the specified length consisting of uppercase letters
+     * (A-Z) and digits (0-9).
+     *
+     * @param length the length of the random string to generate
+     * @return a randomly generated string of the specified length
+     */
     public static String generateRandomString(int length) {
         String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         StringBuilder sb = new StringBuilder();

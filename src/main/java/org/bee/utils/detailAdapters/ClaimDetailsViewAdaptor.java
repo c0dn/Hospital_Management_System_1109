@@ -17,6 +17,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
+/**
+ * Adapter for displaying detailed information about an {@link InsuranceClaim}.
+ * This class configures the view to show various sections, including Claim Information,
+ * Patient Information, Insurance Information, and Bill Information, formatted appropriately.
+ */
 public class ClaimDetailsViewAdaptor implements IObjectDetailsAdapter<InsuranceClaim> {
 
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
