@@ -21,15 +21,13 @@ import java.util.List;
 
 /**
  * A paginated view displaying all insurance claims in the system for selection.
- * <p>
- * This page provides:
+ * <p>This page provides:</p>
  * <ul>
  *   <li>A paginated menu of all claims with key details</li>
  *   <li>Ability to select a claim to view its details</li>
  *   <li>Automatic refresh capability</li>
  * </ul>
  * Claims are displayed with ID, patient name, masked NRIC, submission date and status.
- * </p>
  */
 public class ViewAllClaimsPage extends UiBase {
 
