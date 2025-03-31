@@ -1,6 +1,7 @@
 package org.bee.hms.insurance;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -160,8 +161,7 @@ public class GovernmentProvider extends InsuranceProvider {
 
     /**
      * Processes an insurance claim for a given patient.
-     * Updates the claim status to "IN_REVIEW" and subsequently to "APPROVED".
-     * This method always approves the claim during testing.
+     * Updates the claim status and may fully approve or partially approve
      *
      * @param patient The patient for whom the claim is being processed.
      * @param claim The insurance claim to be reviewed and updated.
@@ -169,9 +169,26 @@ public class GovernmentProvider extends InsuranceProvider {
      */
     @Override
     public boolean processClaim(Patient patient, InsuranceClaim claim) {
-        // Always approve fully for testing purposes
-        claim.updateStatus(ClaimStatus.IN_REVIEW);
-        claim.updateStatus(ClaimStatus.APPROVED);
+        // In the real world, this method will be sending information to the provider for claim processing
+        claim.startReview();
+
+        BigDecimal claimAmount = claim.getClaimAmount();
+
+        int approvalType = DataGenerator.generateRandomInt(1, 10);
+
+        if (approvalType <= 7) {
+            // 70% chance of full approval
+            claim.approveClaim(claimAmount);
+        } else {
+            // 20% chance of partial approval
+            // Approve between 50% and 90% of the claimed amount
+            int percentage = DataGenerator.generateRandomInt(50, 90);
+            BigDecimal approvedAmount = claimAmount.multiply(
+                    BigDecimal.valueOf(percentage).divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP)
+            );
+            claim.processPartialApproval(approvedAmount, "Some expenses not covered under policy terms");
+        }
+
         return true;
     }
 
@@ -185,7 +202,7 @@ public class GovernmentProvider extends InsuranceProvider {
     @Override
     public boolean submitClaim(Patient patient, InsuranceClaim claim) {
         // In the real world, this will be the step where we submit a claim and it's details to the provider's system.
-        claim.updateStatus(ClaimStatus.SUBMITTED);
+        claim.submitForProcessing();
         return true;
     }
 

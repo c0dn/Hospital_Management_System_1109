@@ -54,7 +54,7 @@ public class InsuranceClaim implements JSONSerializable {
     /**
      * The date when the claim was submitted.
      */
-    private final LocalDateTime submissionDate;
+    private LocalDateTime submissionDate;
 
     /**
      * The current status of the claim.
@@ -265,9 +265,7 @@ public class InsuranceClaim implements JSONSerializable {
      * @throws IllegalStateException if the claim is not in review or the amount is invalid
      */
     public void processPartialApproval(BigDecimal approvedAmount, String reason) {
-        if (claimStatus != ClaimStatus.IN_REVIEW) {
-            throw new IllegalStateException("Claim must be under review to process partial approval");
-        }
+        validateStatusTransition(ClaimStatus.PARTIALLY_APPROVED);
 
         if (approvedAmount == null || approvedAmount.compareTo(BigDecimal.ZERO) <= 0) {
             throw new IllegalArgumentException("Approved amount must be greater than zero");
@@ -279,7 +277,7 @@ public class InsuranceClaim implements JSONSerializable {
 
         this.approvedAmount = approvedAmount;
         this.reviewerComments = reason;
-        updateStatus(ClaimStatus.PARTIALLY_APPROVED);
+        this.claimStatus = ClaimStatus.PARTIALLY_APPROVED;
     }
 
     /**
@@ -482,18 +480,46 @@ public class InsuranceClaim implements JSONSerializable {
         return submissionDate;
     }
 
-    /**
-     * Submits the claim for processing if it's in DRAFT status.
-     *
-     * Changes the claim status to SUBMITTED if successful.
-     */
+
     public void submitForProcessing() {
-        if (this.claimStatus == ClaimStatus.DRAFT) {
-            this.claimStatus = ClaimStatus.SUBMITTED;
-        } else {
-            throw new IllegalStateException("Claim cannot be submitted. Current status is '" + this.claimStatus.getDisplayName() +
-                    "', required status is '" + BillingStatus.DRAFT.getDisplayName() + "'.");
+        validateStatusTransition(ClaimStatus.SUBMITTED);
+        this.claimStatus = ClaimStatus.SUBMITTED;
+        this.submissionDate = LocalDateTime.now();
+        this.lastUpdatedDate = LocalDateTime.now();
+    }
+
+    public void startReview() {
+        validateStatusTransition(ClaimStatus.IN_REVIEW);
+        this.claimStatus = ClaimStatus.IN_REVIEW;
+        this.submissionDate = LocalDateTime.now();
+        this.lastUpdatedDate = LocalDateTime.now();
+    }
+
+
+    /**
+     * Approves the claim with the specified amount.
+     *
+     * @param amount The approved amount
+     * @throws IllegalStateException if the claim is not under review
+     * @throws IllegalArgumentException if the amount is invalid
+     */
+    public void approveClaim(BigDecimal amount) {
+        if (claimStatus != ClaimStatus.IN_REVIEW) {
+            throw new IllegalStateException("Claim must be under review to approve");
         }
+
+        if (amount == null || amount.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("Approved amount must be greater than zero");
+        }
+
+        if (amount.compareTo(claimAmount) >= 0) {
+            this.approvedAmount = claimAmount;
+            updateStatus(ClaimStatus.APPROVED);
+        } else {
+            processPartialApproval(amount, "Approved for partial payment based on policy coverage");
+        }
+
+        this.lastUpdatedDate = LocalDateTime.now();
     }
 
 

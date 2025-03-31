@@ -1,6 +1,7 @@
 package org.bee.hms.insurance;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -31,20 +32,37 @@ import org.bee.hms.wards.WardClassType;
 public class PrivateProvider extends InsuranceProvider {
 
 
+
     /**
-     * Processes an insurance claim for the given patient.
-     * This method updates the status of the insurance claim to "IN_REVIEW" and then "APPROVED".
-     * It always approves the claim for testing purposes.
+     * Processes an insurance claim for a given patient.
+     * Updates the claim status and may fully approve or partially approve
      *
-     * @param patient The patient for whom the insurance claim is being processed.
-     * @param claim The insurance claim to be processed.
-     * @return A boolean value indicating the success of the claim processing. Always returns true.
+     * @param patient The patient for whom the claim is being processed.
+     * @param claim The insurance claim to be reviewed and updated.
+     * @return {@code true} indicating that the claim has been successfully processed.
      */
     @Override
     public boolean processClaim(Patient patient, InsuranceClaim claim) {
-        // Always approve fully for testing purposes
-        claim.updateStatus(ClaimStatus.IN_REVIEW);
-        claim.updateStatus(ClaimStatus.APPROVED);
+        // In the real world, this method will be sending information to the provider for claim processing
+        claim.startReview();
+
+        BigDecimal claimAmount = claim.getClaimAmount();
+
+        int approvalType = DataGenerator.generateRandomInt(1, 10);
+
+        if (approvalType <= 7) {
+            // 70% chance of full approval
+            claim.approveClaim(claimAmount);
+        } else {
+            // 20% chance of partial approval
+            // Approve between 50% and 90% of the claimed amount
+            int percentage = DataGenerator.generateRandomInt(50, 90);
+            BigDecimal approvedAmount = claimAmount.multiply(
+                    BigDecimal.valueOf(percentage).divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP)
+            );
+            claim.processPartialApproval(approvedAmount, "Some expenses not covered under policy terms");
+        }
+
         return true;
     }
 
@@ -59,7 +77,7 @@ public class PrivateProvider extends InsuranceProvider {
     @Override
     public boolean submitClaim(Patient patient, InsuranceClaim claim) {
         // In the real world, this will be the step where we submit a claim and it's details to the provider's system.
-        claim.updateStatus(ClaimStatus.SUBMITTED);
+        claim.submitForProcessing();
         return true;
     }
 
