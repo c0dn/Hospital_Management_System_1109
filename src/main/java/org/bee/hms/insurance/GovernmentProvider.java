@@ -186,7 +186,7 @@ public class GovernmentProvider extends InsuranceProvider {
             BigDecimal approvedAmount = claimAmount.multiply(
                     BigDecimal.valueOf(percentage).divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP)
             );
-            claim.processPartialApproval(approvedAmount, "Some expenses not covered under policy terms");
+            claim.processPartialApproval(approvedAmount, "We wish to please our shareholders");
         }
 
         return true;

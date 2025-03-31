@@ -70,7 +70,7 @@ public class ViewAllClaimsPage extends UiBase {
         List<InsuranceClaim> allClaims = claimController.getAllClaims();
 
         if (allClaims.isEmpty()) {
-            return new TextView(canvas, "No claims found in the system.", Color.YELLOW);
+            return getBlankListView("No claims", "No claims found in the system.");
         }
 
         List<PaginatedMenuView.MenuOption> menuOptions = new ArrayList<>();
@@ -78,10 +78,12 @@ public class ViewAllClaimsPage extends UiBase {
         for (InsuranceClaim claim : allClaims) {
             String claimId = claim.getClaimId();
             String patientName = claim.getPatient() != null ? claim.getPatient().getName() : "Unknown Patient";
+            LocalDateTime lastUpdatedDate = claim.getLastUpdatedDate();
             String patientNRIC = claim.getPatient() != null ? humanController.maskNRIC(claim.getPatient().getNricFin()) : "Unknown Patient";
             String status = String.valueOf(claim.getClaimStatus());
+            String formattedDate = lastUpdatedDate != null ? dateFormatter.format(lastUpdatedDate) : "Unknown Date";
 
-            String optionText = String.format("%s - %s, %s (%s)", claimId, patientName, patientNRIC, status);
+            String optionText = String.format("%s - %s, %s - %s (%s)", claimId, patientName, patientNRIC, formattedDate, status);
             menuOptions.add(new PaginatedMenuView.MenuOption(claimId, optionText, claim));
         }
 

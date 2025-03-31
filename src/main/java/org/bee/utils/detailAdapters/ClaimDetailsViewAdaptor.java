@@ -1,6 +1,7 @@
 package org.bee.utils.detailAdapters;
 
 import org.bee.hms.billing.Bill;
+import org.bee.hms.claims.ClaimStatus;
 import org.bee.hms.claims.InsuranceClaim;
 import org.bee.hms.humans.Patient;
 import org.bee.hms.policy.InsuranceCoverageResult;
@@ -24,18 +25,12 @@ public class ClaimDetailsViewAdaptor implements IObjectDetailsAdapter<InsuranceC
     public ObjectDetailsView configureView(ObjectDetailsView view, InsuranceClaim claim) {
         view.setSectionWidth(80);
 
-        // Get the associated bill from the claim
-        Bill bill = claim.getBill();
-
-        // Calculate insurance coverage (this will return an InsuranceCoverageResult)
-        InsuranceCoverageResult coverageResult = bill.calculateInsuranceCoverage();
-
         ObjectDetailsView.Section basicSection = view.addSection("Claim Information");
         basicSection.addField(new ObjectDetailsView.Field<InsuranceClaim>("Claim ID", c ->
                 ReflectionHelper.propertyAccessor("claimId", "Not available").apply(c)));
 
         basicSection.addField(new ObjectDetailsView.Field<InsuranceClaim>("Submission Date", c -> {
-            LocalDateTime claimSubmissionDate = (LocalDateTime) ReflectionHelper.propertyAccessor("submissionDate", null).apply(claim);
+            LocalDateTime claimSubmissionDate = (LocalDateTime) ReflectionHelper.propertyAccessor("submissionDate", null).apply(c);
             return claimSubmissionDate != null ? DATE_FORMATTER.format(claimSubmissionDate) : "Not available";
         }));
 
@@ -74,25 +69,15 @@ public class ClaimDetailsViewAdaptor implements IObjectDetailsAdapter<InsuranceC
             return formatCurrency(b.getGrandTotal());
         }));
 
-        billSection.addField(new ObjectDetailsView.Field<InsuranceClaim>("Insurance Coverage", c -> {
-            Bill b = c.getBill();
-            if (coverageResult.isApproved()) {
-                return formatCurrency(c.getClaimAmount());
-            } else {
-                return String.valueOf(coverageResult.getDenialReason()); // Shows why coverage was denied
-            }
-        }));
+        billSection.addField(new ObjectDetailsView.Field<InsuranceClaim>("Claim amount", c -> formatCurrency(c.getClaimAmount())));
 
-        billSection.addField(new ObjectDetailsView.Field<InsuranceClaim>("Coverage Status", c ->
-                coverageResult.isApproved() ? "Approved" : "Denied: " + coverageResult.getDenialReason()));
+        billSection.addField(new ObjectDetailsView.Field<InsuranceClaim>("Claim Status", c -> c.getClaimStatus().getDisplayName()));
 
-        billSection.addField(new ObjectDetailsView.Field<InsuranceClaim>("Approved Amount", b -> {
-            if (claim.isApproved()) {
-                return formatCurrency(claim.getApprovedAmount());
-            } else {
-                return "Claim not approved";
-            }
-        }));
+        if (claim.isApproved()) {
+            billSection.addField(new ObjectDetailsView.Field<InsuranceClaim>("Approved Amount", c -> formatCurrency(c.getApprovedAmount())));
+
+        }
+
 
         return view;
     }

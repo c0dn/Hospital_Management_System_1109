@@ -280,6 +280,11 @@ public class InsuranceClaim implements JSONSerializable {
         this.claimStatus = ClaimStatus.PARTIALLY_APPROVED;
     }
 
+
+    public String getReviewerComments() {
+        return reviewerComments;
+    }
+
     /**
      * Gets the most recent supporting document.
      *
@@ -478,6 +483,10 @@ public class InsuranceClaim implements JSONSerializable {
      */
     public LocalDateTime getSubmissionDate() {
         return submissionDate;
+    }
+
+    public LocalDateTime getLastUpdatedDate() {
+        return lastUpdatedDate;
     }
 
 
