@@ -78,12 +78,10 @@ public class ViewAllClaimsPage extends UiBase {
         for (InsuranceClaim claim : allClaims) {
             String claimId = claim.getClaimId();
             String patientName = claim.getPatient() != null ? claim.getPatient().getName() : "Unknown Patient";
-            LocalDateTime claimSubmissionDate = claim.getSubmissionDate();
             String patientNRIC = claim.getPatient() != null ? humanController.maskNRIC(claim.getPatient().getNricFin()) : "Unknown Patient";
-            String formattedDate = claimSubmissionDate != null ? dateFormatter.format(claimSubmissionDate) : "Unknown Date";
             String status = String.valueOf(claim.getClaimStatus());
 
-            String optionText = String.format("%s - %s, %s - %s (%s)", claimId, patientName, patientNRIC, formattedDate, status);
+            String optionText = String.format("%s - %s, %s (%s)", claimId, patientName, patientNRIC, status);
             menuOptions.add(new PaginatedMenuView.MenuOption(claimId, optionText, claim));
         }
 
