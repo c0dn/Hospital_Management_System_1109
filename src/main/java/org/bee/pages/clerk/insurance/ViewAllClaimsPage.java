@@ -79,7 +79,6 @@ public class ViewAllClaimsPage extends UiBase {
             String claimId = claim.getClaimId();
             String patientName = claim.getPatient() != null ? claim.getPatient().getName() : "Unknown Patient";
             LocalDateTime claimSubmissionDate = claim.getSubmissionDate();
-            System.out.println(claim.getSubmissionDate());
             String patientNRIC = claim.getPatient() != null ? humanController.maskNRIC(claim.getPatient().getNricFin()) : "Unknown Patient";
             String formattedDate = claimSubmissionDate != null ? dateFormatter.format(claimSubmissionDate) : "Unknown Date";
             String status = String.valueOf(claim.getClaimStatus());
