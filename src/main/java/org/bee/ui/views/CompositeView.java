@@ -99,7 +99,7 @@ public class CompositeView extends View {
      * <p>The input handling priority is:</p>
      * <ol>
      * <li>FormViews that are awaiting value input</li>
-     * <li>Paginated views for pagination-specific keys ('n', 'p', 'j')</li> // <-- New Priority
+     * <li>Paginated views for pagination-specific keys ('n', 'p', 'j')</li>
      * <li>This view's own direct input handlers</li>
      * <li>All other child views</li>
      * </ol>
