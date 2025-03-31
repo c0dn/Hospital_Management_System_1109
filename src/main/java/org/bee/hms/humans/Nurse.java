@@ -14,7 +14,7 @@ import java.time.LocalDate;
  * {@link NurseBuilder} to ensure proper initialization of required fields.
  * </p>
  */
-public class Nurse extends Staff implements SystemUser {
+public class Nurse extends Staff {
 
     /** The Registered Nurse ID (RNID) of a nurse. */
     private String rnid;
@@ -115,14 +115,4 @@ public class Nurse extends Staff implements SystemUser {
      */
     public String getRnid() { return rnid; }
 
-
-    /**
-     * Retrieves the nurse staffId.
-     *
-     * @return the staffId as the nurse's username
-     */
-    @Override
-    public String getUsername() {
-        return staffId;
-    }
 }

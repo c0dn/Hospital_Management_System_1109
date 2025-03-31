@@ -73,7 +73,6 @@ public class LoginPage extends UiBase {
 
             switch (user) {
                 case Doctor ignored -> ToPage(new DoctorMainPage());
-//                case Nurse ignored -> ToPage(new TestPage());
                 case Patient ignored -> ToPage(new PatientMainPage());
                 case Clerk ignored -> ToPage(new ClerkMainPage());
                 default -> {
