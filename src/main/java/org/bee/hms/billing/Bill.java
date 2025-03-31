@@ -215,6 +215,15 @@ public class Bill implements JSONSerializable {
             if (itemLine.getItem() instanceof ClaimableItem claimableItem) {
                 if (coverage.isItemCovered(claimableItem, isInpatient)) {
                     BigDecimal itemAmount = itemLine.getTotalPrice();
+
+                    Optional<Double> discountPercentage = getDiscountPercentage();
+                    if (discountPercentage.isPresent()) {
+                        double discount = discountPercentage.get();
+                        itemAmount = itemAmount.multiply(BigDecimal.valueOf(1.0 - discount));
+                    }
+
+                    itemAmount = itemAmount.multiply(BigDecimal.ONE.add(SINGAPORE_TAX_RATE));
+
                     claimableAmount = claimableAmount.add(itemAmount);
 
                     if (isEmergency && claimableItem.getAccidentSubType() != null) {
