@@ -77,6 +77,11 @@ public class PatientMainPage extends UiBase {
         canvas.setRequireRedraw(true);
     }
 
+    /**
+     * Navigates to the patient details page for the currently logged-in patient.
+     * Retrieves the logged-in user from the {@code HumanController} and
+     * displays their details in a {@code PatientDetailsPage}.
+     */
     public void viewPatientDetails() {
         try {
             HumanController humanController = HumanController.getInstance();

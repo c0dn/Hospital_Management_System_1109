@@ -27,6 +27,13 @@ public class InvoiceDetailsPage extends UiBase {
     private final Runnable onChangeCallback;
     private final static BillController billController = BillController.getInstance();
 
+    /**
+     * Constructs an {@code InvoiceDetailsPage} with the given bill, adapter, and change callback.
+     *
+     * @param bill             The bill associated with this invoice details page.
+     * @param adapter          The adapter used to manage bill details.
+     * @param onChangeCallback A callback function that is triggered when changes occur.
+     */
     public InvoiceDetailsPage(Bill bill, IObjectDetailsAdapter<Bill> adapter, Runnable onChangeCallback) {
         this.bill = bill;
         this.adapter = adapter;

@@ -252,6 +252,13 @@ public class ViewAllInvoicePage extends UiBase {
         return sortedBills;
     }
 
+    /**
+     * Displays the details of the selected bill.
+     * Creates an {@code InvoiceDetailsPage} with the provided bill and a {@code BillDetailsAdapter},
+     * then navigates to the invoice details page.
+     *
+     * @param bill The bill to be displayed in the invoice details page.
+     */
     public void displaySelectedBill(Bill bill) {
         BillDetailsAdapter adapter = new BillDetailsAdapter();
         InvoiceDetailsPage detailsPage = new InvoiceDetailsPage(bill, adapter, this::refreshView);

@@ -141,10 +141,21 @@ public class OutpatientCasesPage extends UiBase {
         return compositeView;
     }
 
+    /**
+     * Displays the selected consultation using the current view.
+     *
+     * @param consultation The consultation to display.
+     */
     public void displaySelectedConsultation(Consultation consultation) {
         displaySelectedConsultation(consultation, canvas.getCurrentView());
     }
 
+    /**
+     * Displays the selected consultation in a new view while keeping track of the previous view.
+     *
+     * @param consultation  The consultation to display.
+     * @param previousView  The previous view before displaying the consultation.
+     */
     public void displaySelectedConsultation(Consultation consultation, View previousView) {
         View patientView = createConsultationCompositeView(consultation);
         canvas.setCurrentView(patientView);
