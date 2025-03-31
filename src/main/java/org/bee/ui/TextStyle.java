@@ -21,7 +21,7 @@ public enum TextStyle {
     /**
      * Applies bold text formatting.
      */
-    BOLD("\u001b[1m"),          // Bold
+    BOLD("\u001b[1m"),
 
     /**
      * Applies italic text formatting.
@@ -36,7 +36,7 @@ public enum TextStyle {
     /**
      * No specific text formatting.
      */
-    NONE("");        // No formatting
+    NONE("");
 
     private final String ansiCode;
 
