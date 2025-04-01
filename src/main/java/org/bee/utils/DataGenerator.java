@@ -150,14 +150,12 @@ public final class DataGenerator {
 
     /**
      * Retrieves an array of names based on the specified {@link NameType}.
-     * <p>
-     * The method returns different sets of names depending on the provided {@link NameType}:
+     * <p>The method returns different sets of names depending on the provided {@link NameType}:</p>
      * <ul>
      *   <li>{@link NameType#STAFF} returns a list of staff names.</li>
      *   <li>{@link NameType#PATIENT} returns a list of patient names.</li>
      *   <li>{@link NameType#ALL} returns a list of all names (e.g., staff and patient names).</li>
      * </ul>
-     * </p>
      *
      * @param nameType The type of names to retrieve (e.g., STAFF, PATIENT, ALL).
      * @return An array of names corresponding to the provided {@link NameType}.
