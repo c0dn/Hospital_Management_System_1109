@@ -1,4 +1,4 @@
-# Hospital Management System (HMS) - [CSC1109 School project]
+# Hospital Management System (HMS) - CSC1109 School project
 
 A comprehensive **simulation** of a Hospital Management System built with Java and Gradle. 
 This application provides a command-line interface for managing various aspects of hospital operations, including
