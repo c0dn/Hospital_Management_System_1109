@@ -1,0 +1,2599 @@
+[ {
+  "consultationId" : "C17434150980828968",
+  "medicalHistory" : "Family history of cardiovascular disease.",
+  "diagnosis" : "Hypertension",
+  "visitReason" : "Follow-up consultation",
+  "instructions" : "Apply cream twice daily. Return if symptoms worsen.",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Rohan Aand",
+    "dateOfBirth" : [ 1969, 3, 31 ],
+    "nricFin" : "F7938381M",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 198 Yishun Ring Road 8, #39-637, Singapore 479924",
+    "contact" : {
+      "personalPhone" : "96346499",
+      "homePhone" : "64799817",
+      "companyPhone" : "69927229",
+      "email" : "user170@hotmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "A_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-202599EA99FD",
+    "drugAllergies" : [ "Penicillin", "Ibuprofen" ],
+    "nokName" : "Aisha Aand",
+    "nokAddress" : "Blk 123 Jurong East Ave 4, #49-313, Singapore 515697",
+    "nokRelation" : "Sibling",
+    "height" : 1.614702822279868,
+    "weight" : 98.55261514760099,
+    "occupation" : "Teacher",
+    "companyName" : "ComfortDelGro",
+    "companyAddress" : "Blk 233 Bedok North St 1, #14-692, Singapore 492051",
+    "patientConsent" : true,
+    "humanType" : "patient"
+  },
+  "doctor" : {
+    "humanType" : "doctor",
+    "name" : "Siti Nurhaliza",
+    "dateOfBirth" : [ 1995, 3, 31 ],
+    "nricFin" : "G9203915W",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "VISITOR",
+    "nationality" : "Singaporean",
+    "address" : "Blk 214 Ang Mo Kio Ave 3, #48-668, Singapore 483146",
+    "contact" : {
+      "personalPhone" : "92899524",
+      "homePhone" : "63690153",
+      "companyPhone" : "68254285",
+      "email" : "user244@hotmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "AB_NEGATIVE",
+    "isVaccinated" : true,
+    "staffId" : "S6E5C62E8",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M39549A",
+    "humanType" : "doctor"
+  },
+  "consult_type" : "EMERGENCY",
+  "time" : [ 2025, 3, 26, 17, 58, 18, 82389800 ],
+  "fee" : 226,
+  "diagnostic_codes" : [ {
+    "type" : "diagnostic",
+    "code" : "N185",
+    "cost" : 324
+  }, {
+    "type" : "diagnostic",
+    "code" : "M85561",
+    "cost" : 138
+  } ],
+  "procedure_codes" : [ {
+    "type" : "procedure",
+    "code" : "CW2BYZZ",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "BW30ZZZ",
+    "cost" : 1000.00
+  } ],
+  "prescriptions" : {
+    "D0066" : 2,
+    "D0252" : 2,
+    "D0151" : 2
+  }
+}, {
+  "consultationId" : "C17434150984504042",
+  "medicalHistory" : "History of hypertension.",
+  "diagnosis" : "Respiratory infection",
+  "visitReason" : "Regular check-up",
+  "instructions" : "Take medication as prescribed. Rest for 2-3 days.",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Wee Jun Kiat",
+    "dateOfBirth" : [ 1992, 3, 31 ],
+    "nricFin" : "G9620713T",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "PERMANENT_RESIDENT",
+    "nationality" : "Singaporean",
+    "address" : "Blk 481 Punggol Way 1, #39-950, Singapore 531460",
+    "contact" : {
+      "personalPhone" : "90270277",
+      "homePhone" : "64317738",
+      "companyPhone" : "60503704",
+      "email" : "user523@hotmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "A_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-2025A25CC921",
+    "drugAllergies" : [ ],
+    "nokName" : "Wee Kiat",
+    "nokAddress" : "Blk 678 Jurong East Ave 3, #29-666, Singapore 526215",
+    "nokRelation" : "Grandchild",
+    "height" : 1.533188638030537,
+    "weight" : 63.38942232325335,
+    "occupation" : "Engineer",
+    "companyName" : "Singtel",
+    "companyAddress" : "Blk 643 Yishun Ring Road 7, #06-907, Singapore 536632",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "doctor" : {
+    "humanType" : "doctor",
+    "name" : "Siti Nurhaliza",
+    "dateOfBirth" : [ 1995, 3, 31 ],
+    "nricFin" : "G9203915W",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "VISITOR",
+    "nationality" : "Singaporean",
+    "address" : "Blk 214 Ang Mo Kio Ave 3, #48-668, Singapore 483146",
+    "contact" : {
+      "personalPhone" : "92899524",
+      "homePhone" : "63690153",
+      "companyPhone" : "68254285",
+      "email" : "user244@hotmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "AB_NEGATIVE",
+    "isVaccinated" : true,
+    "staffId" : "S6E5C62E8",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M39549A",
+    "humanType" : "doctor"
+  },
+  "consult_type" : "EMERGENCY",
+  "time" : [ 2025, 3, 10, 17, 58, 18, 450338500 ],
+  "fee" : 167,
+  "diagnostic_codes" : [ {
+    "type" : "diagnostic",
+    "code" : "Z526",
+    "cost" : 285
+  }, {
+    "type" : "diagnostic",
+    "code" : "C8443",
+    "cost" : 234
+  } ],
+  "procedure_codes" : [ {
+    "type" : "procedure",
+    "code" : "CD171ZZ",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "B538ZZZ",
+    "cost" : 1000.00
+  } ],
+  "prescriptions" : {
+    "D0252" : 1,
+    "D0151" : 3,
+    "D0039" : 3
+  }
+}, {
+  "consultationId" : "C17434150987362686",
+  "medicalHistory" : "Previous allergic reaction to penicillin.",
+  "diagnosis" : "Seasonal allergies",
+  "visitReason" : "Medication review",
+  "instructions" : "Apply cream twice daily. Return if symptoms worsen.",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Wee Jun Kiat",
+    "dateOfBirth" : [ 1989, 3, 31 ],
+    "nricFin" : "S6471596H",
+    "maritalStatus" : "MARRIED",
+    "residentialStatus" : "CITIZEN",
+    "nationality" : "Singaporean",
+    "address" : "Blk 858 Serangoon Road 7, #23-315, Singapore 463516",
+    "contact" : {
+      "personalPhone" : "96863396",
+      "homePhone" : "61951675",
+      "companyPhone" : "61241051",
+      "email" : "user869@gmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "AB_POSITIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-20257538E2AF",
+    "drugAllergies" : [ "Sulfa", "Aspirin" ],
+    "nokName" : "Lim Kiat",
+    "nokAddress" : "Blk 135 Serangoon Road 8, #26-776, Singapore 545183",
+    "nokRelation" : "Child",
+    "height" : 1.6192546497518414,
+    "weight" : 56.02301201985263,
+    "occupation" : "Chef",
+    "companyName" : "ST Engineering",
+    "companyAddress" : "Blk 477 Yishun Ring Road 11, #05-93, Singapore 463106",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "doctor" : {
+    "humanType" : "doctor",
+    "name" : "Lee Hui Ling",
+    "dateOfBirth" : [ 1981, 3, 31 ],
+    "nricFin" : "F0052106W",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "VISITOR",
+    "nationality" : "Singaporean",
+    "address" : "Blk 153 Jurong East Ave 1, #50-366, Singapore 509219",
+    "contact" : {
+      "personalPhone" : "93765241",
+      "homePhone" : "62551922",
+      "companyPhone" : "66880759",
+      "email" : "user591@hotmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "A_POSITIVE",
+    "isVaccinated" : false,
+    "staffId" : "SD5F94C24",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M95928A",
+    "humanType" : "doctor"
+  },
+  "consult_type" : "EMERGENCY",
+  "time" : [ 2025, 3, 30, 17, 58, 18, 737479100 ],
+  "fee" : 156,
+  "diagnostic_codes" : [ {
+    "type" : "diagnostic",
+    "code" : "Z5211",
+    "cost" : 419
+  }, {
+    "type" : "diagnostic",
+    "code" : "C8144",
+    "cost" : 161
+  } ],
+  "procedure_codes" : [ {
+    "type" : "procedure",
+    "code" : "DWY57ZZ",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "BV081ZZ",
+    "cost" : 1000.00
+  } ],
+  "prescriptions" : {
+    "D0066" : 3,
+    "D0252" : 1,
+    "D0151" : 3
+  }
+}, {
+  "consultationId" : "C17434150990228142",
+  "medicalHistory" : "Previous appendectomy in 2018.",
+  "diagnosis" : "Anxiety disorder",
+  "visitReason" : "Stomach pain",
+  "instructions" : "Apply cream twice daily. Return if symptoms worsen.",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Ong Li Ting",
+    "dateOfBirth" : [ 1982, 3, 31 ],
+    "nricFin" : "F0772935U",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "PERMANENT_RESIDENT",
+    "nationality" : "Singaporean",
+    "address" : "Blk 107 Yishun Ring Road 1, #42-952, Singapore 559306",
+    "contact" : {
+      "personalPhone" : "92493103",
+      "homePhone" : "61224364",
+      "companyPhone" : "60750941",
+      "email" : "user585@hotmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "O_NEGATIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-2025B4860C70",
+    "drugAllergies" : [ ],
+    "nokName" : "Wee Ting",
+    "nokAddress" : "Blk 289 Punggol Way 5, #08-480, Singapore 493633",
+    "nokRelation" : "Child",
+    "height" : 1.8928656073940249,
+    "weight" : 85.83733834479574,
+    "occupation" : "Engineer",
+    "companyName" : "ComfortDelGro",
+    "companyAddress" : "Blk 746 Ang Mo Kio Ave 1, #49-356, Singapore 474765",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "doctor" : {
+    "humanType" : "doctor",
+    "name" : "Lee Hui Ling",
+    "dateOfBirth" : [ 1981, 3, 31 ],
+    "nricFin" : "F0052106W",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "VISITOR",
+    "nationality" : "Singaporean",
+    "address" : "Blk 153 Jurong East Ave 1, #50-366, Singapore 509219",
+    "contact" : {
+      "personalPhone" : "93765241",
+      "homePhone" : "62551922",
+      "companyPhone" : "66880759",
+      "email" : "user591@hotmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "A_POSITIVE",
+    "isVaccinated" : false,
+    "staffId" : "SD5F94C24",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M95928A",
+    "humanType" : "doctor"
+  },
+  "consult_type" : "ROUTINE_CHECKUP",
+  "time" : [ 2025, 3, 13, 17, 58, 19, 22203800 ],
+  "fee" : 213,
+  "diagnostic_codes" : [ {
+    "type" : "diagnostic",
+    "code" : "Z5309",
+    "cost" : 128
+  }, {
+    "type" : "diagnostic",
+    "code" : "C6941",
+    "cost" : 264
+  } ],
+  "procedure_codes" : [ {
+    "type" : "procedure",
+    "code" : "DU1099Z",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "B029ZZZ",
+    "cost" : 1000.00
+  } ],
+  "prescriptions" : {
+    "D0102" : 1,
+    "D0252" : 3,
+    "D0151" : 1
+  }
+}, {
+  "consultationId" : "C17434150993041974",
+  "medicalHistory" : "Family history of cardiovascular disease.",
+  "diagnosis" : "Seasonal allergies",
+  "visitReason" : "Regular check-up",
+  "instructions" : "Apply cream twice daily. Return if symptoms worsen.",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Aisha Fatimah",
+    "dateOfBirth" : [ 2001, 3, 31 ],
+    "nricFin" : "F0635934P",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "DEPENDENT_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 206 Ang Mo Kio Ave 8, #10-139, Singapore 537762",
+    "contact" : {
+      "personalPhone" : "94144640",
+      "homePhone" : "61229078",
+      "companyPhone" : "62784718",
+      "email" : "user985@gmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "B_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-20259330D578",
+    "drugAllergies" : [ "None", "Sulfa" ],
+    "nokName" : "Aisha Fatimah",
+    "nokAddress" : "Blk 911 Punggol Way 1, #31-859, Singapore 482562",
+    "nokRelation" : "Grandchild",
+    "height" : 1.6139883232607874,
+    "weight" : 74.81116702469787,
+    "occupation" : "Engineer",
+    "companyName" : "Keppel Corporation",
+    "companyAddress" : "Blk 752 Ang Mo Kio Ave 5, #15-286, Singapore 562250",
+    "patientConsent" : true,
+    "humanType" : "patient"
+  },
+  "doctor" : {
+    "humanType" : "doctor",
+    "name" : "Kumar Ravi",
+    "dateOfBirth" : [ 1999, 3, 31 ],
+    "nricFin" : "G3163081P",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "CITIZEN",
+    "nationality" : "Singaporean",
+    "address" : "Blk 991 Ang Mo Kio Ave 1, #29-175, Singapore 463986",
+    "contact" : {
+      "personalPhone" : "93353108",
+      "homePhone" : "68291853",
+      "companyPhone" : "64481815",
+      "email" : "user219@gmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "A_NEGATIVE",
+    "isVaccinated" : false,
+    "staffId" : "SE0A73006",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M96626A",
+    "humanType" : "doctor"
+  },
+  "consult_type" : "NEW_CONSULTATION",
+  "time" : [ 2025, 3, 27, 17, 58, 19, 304750000 ],
+  "fee" : 83,
+  "diagnostic_codes" : [ {
+    "type" : "diagnostic",
+    "code" : "J45909",
+    "cost" : 472
+  }, {
+    "type" : "diagnostic",
+    "code" : "N498",
+    "cost" : 455
+  } ],
+  "procedure_codes" : [ {
+    "type" : "procedure",
+    "code" : "DM10B6Z",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "BF261ZZ",
+    "cost" : 1000.00
+  } ],
+  "prescriptions" : {
+    "D0102" : 3,
+    "D0252" : 3,
+    "D0151" : 1
+  }
+}, {
+  "consultationId" : "C17434150996464355",
+  "medicalHistory" : "Previous allergic reaction to penicillin.",
+  "diagnosis" : "Common cold",
+  "visitReason" : "Stomach pain",
+  "instructions" : "Take medication as prescribed. Rest for 2-3 days.",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Lim Boon Teck",
+    "dateOfBirth" : [ 1979, 3, 31 ],
+    "nricFin" : "S8701624B",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "PERMANENT_RESIDENT",
+    "nationality" : "Singaporean",
+    "address" : "Blk 146 Yishun Ring Road 4, #49-600, Singapore 467973",
+    "contact" : {
+      "personalPhone" : "96116981",
+      "homePhone" : "63742209",
+      "companyPhone" : "60690135",
+      "email" : "user756@gmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "AB_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-202591070421",
+    "drugAllergies" : [ "None" ],
+    "nokName" : "Wee Teck",
+    "nokAddress" : "Blk 617 Jurong East Ave 6, #25-688, Singapore 530390",
+    "nokRelation" : "Grandchild",
+    "height" : 1.5500105677940317,
+    "weight" : 57.11862625900153,
+    "occupation" : "Engineer",
+    "companyName" : "ST Engineering",
+    "companyAddress" : "Blk 873 Yishun Ring Road 7, #31-316, Singapore 492668",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "doctor" : {
+    "humanType" : "doctor",
+    "name" : "Zhang Wei",
+    "dateOfBirth" : [ 1967, 3, 31 ],
+    "nricFin" : "S3880590H",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "CITIZEN",
+    "nationality" : "Singaporean",
+    "address" : "Blk 805 Bedok North St 7, #36-768, Singapore 550770",
+    "contact" : {
+      "personalPhone" : "92011101",
+      "homePhone" : "67677337",
+      "companyPhone" : "63264277",
+      "email" : "user258@hotmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "O_NEGATIVE",
+    "isVaccinated" : true,
+    "staffId" : "S84ED9EAD",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M60847A",
+    "humanType" : "doctor"
+  },
+  "consult_type" : "NEW_CONSULTATION",
+  "time" : [ 2025, 3, 8, 17, 58, 19, 646167400 ],
+  "fee" : 204,
+  "diagnostic_codes" : [ {
+    "type" : "diagnostic",
+    "code" : "H401393",
+    "cost" : 498
+  } ],
+  "procedure_codes" : [ {
+    "type" : "procedure",
+    "code" : "D7015ZZ",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "BR09ZZZ",
+    "cost" : 1000.00
+  } ],
+  "prescriptions" : {
+    "D0252" : 1,
+    "D0093" : 1,
+    "D0151" : 2
+  }
+}, {
+  "consultationId" : "C17434150999840421",
+  "medicalHistory" : "History of hypertension.",
+  "diagnosis" : "Gastritis",
+  "visitReason" : "Follow-up consultation",
+  "instructions" : "Apply cream twice daily. Return if symptoms worsen.",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Lim Boon Teck",
+    "dateOfBirth" : [ 1989, 3, 31 ],
+    "nricFin" : "T1094572G",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "DEPENDENT_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 797 Jurong East Ave 5, #40-84, Singapore 563900",
+    "contact" : {
+      "personalPhone" : "94658456",
+      "homePhone" : "69718041",
+      "companyPhone" : "67105279",
+      "email" : "user646@hotmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "A_POSITIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-20256A732A74",
+    "drugAllergies" : [ "Ibuprofen" ],
+    "nokName" : "Aisha Teck",
+    "nokAddress" : "Blk 103 Bedok North St 7, #25-726, Singapore 537440",
+    "nokRelation" : "Grandchild",
+    "height" : 1.9179123293686717,
+    "weight" : 65.20790122135118,
+    "occupation" : "Engineer",
+    "companyName" : "DBS Bank",
+    "companyAddress" : "Blk 294 Tampines St 6, #39-182, Singapore 474646",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "doctor" : {
+    "humanType" : "doctor",
+    "name" : "Kumar Ravi",
+    "dateOfBirth" : [ 1987, 3, 31 ],
+    "nricFin" : "G2828597W",
+    "maritalStatus" : "MARRIED",
+    "residentialStatus" : "DEPENDENT_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 590 Serangoon Road 3, #15-995, Singapore 498046",
+    "contact" : {
+      "personalPhone" : "92305793",
+      "homePhone" : "67829270",
+      "companyPhone" : "63171194",
+      "email" : "user701@gmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "O_NEGATIVE",
+    "isVaccinated" : true,
+    "staffId" : "S103ADA65",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M47274A",
+    "humanType" : "doctor"
+  },
+  "consult_type" : "REGULAR_CONSULTATION",
+  "time" : [ 2025, 3, 18, 17, 58, 19, 984852300 ],
+  "fee" : 162,
+  "diagnostic_codes" : [ {
+    "type" : "diagnostic",
+    "code" : "J4542",
+    "cost" : 180
+  }, {
+    "type" : "diagnostic",
+    "code" : "Y0704",
+    "cost" : 179
+  } ],
+  "procedure_codes" : [ {
+    "type" : "procedure",
+    "code" : "DG1099Z",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "BH030ZZ",
+    "cost" : 1000.00
+  } ],
+  "prescriptions" : {
+    "D0102" : 2,
+    "D0252" : 3,
+    "D0151" : 1
+  }
+}, {
+  "consultationId" : "C17434151003238397",
+  "medicalHistory" : "No significant medical history.",
+  "diagnosis" : "Common cold",
+  "visitReason" : "Follow-up consultation",
+  "instructions" : "Follow the diet plan provided. Schedule follow-up in 2 weeks.",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Muhammad Danial",
+    "dateOfBirth" : [ 1990, 3, 31 ],
+    "nricFin" : "T5488260I",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "DEPENDENT_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 215 Punggol Way 6, #03-367, Singapore 526594",
+    "contact" : {
+      "personalPhone" : "92009105",
+      "homePhone" : "61049456",
+      "companyPhone" : "65716625",
+      "email" : "user499@gmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "B_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-202573189CAB",
+    "drugAllergies" : [ "None" ],
+    "nokName" : "Ong Li Ting",
+    "nokAddress" : "Blk 188 Punggol Way 12, #12-565, Singapore 476061",
+    "nokRelation" : "Grandparent",
+    "height" : 1.9740712930708253,
+    "weight" : 76.93100958730554,
+    "occupation" : "Chef",
+    "companyName" : "Keppel Corporation",
+    "companyAddress" : "Blk 366 Jurong East Ave 2, #21-559, Singapore 490060",
+    "patientConsent" : true,
+    "humanType" : "patient"
+  },
+  "doctor" : {
+    "humanType" : "doctor",
+    "name" : "Siti Nurhaliza",
+    "dateOfBirth" : [ 2003, 3, 31 ],
+    "nricFin" : "S8568226A",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "CITIZEN",
+    "nationality" : "Singaporean",
+    "address" : "Blk 362 Punggol Way 11, #06-251, Singapore 537117",
+    "contact" : {
+      "personalPhone" : "94238993",
+      "homePhone" : "67001184",
+      "companyPhone" : "60203055",
+      "email" : "user668@gmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "A_POSITIVE",
+    "isVaccinated" : false,
+    "staffId" : "S03EEBC9B",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M74097A",
+    "humanType" : "doctor"
+  },
+  "consult_type" : "REGULAR_CONSULTATION",
+  "time" : [ 2025, 3, 12, 17, 58, 20, 323900600 ],
+  "fee" : 51,
+  "diagnostic_codes" : [ {
+    "type" : "diagnostic",
+    "code" : "E662",
+    "cost" : 370
+  }, {
+    "type" : "diagnostic",
+    "code" : "L102",
+    "cost" : 437
+  } ],
+  "procedure_codes" : [ {
+    "type" : "procedure",
+    "code" : "DT12BBZ",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "B2070ZZ",
+    "cost" : 1000.00
+  } ],
+  "prescriptions" : {
+    "D0252" : 2,
+    "D0012" : 3,
+    "D0151" : 1
+  }
+}, {
+  "consultationId" : "C17434151006662516",
+  "medicalHistory" : "History of hypertension.",
+  "diagnosis" : "Vitamin D deficiency",
+  "visitReason" : "Stomach pain",
+  "instructions" : "Follow the diet plan provided. Schedule follow-up in 2 weeks.",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Lim Boon Teck",
+    "dateOfBirth" : [ 1984, 3, 31 ],
+    "nricFin" : "T5110002B",
+    "maritalStatus" : "MARRIED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 833 Yishun Ring Road 11, #38-700, Singapore 498888",
+    "contact" : {
+      "personalPhone" : "91291533",
+      "homePhone" : "67546785",
+      "companyPhone" : "66717062",
+      "email" : "user723@gmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "B_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-2025829AEF7F",
+    "drugAllergies" : [ ],
+    "nokName" : "Wee Teck",
+    "nokAddress" : "Blk 732 Serangoon Road 12, #11-684, Singapore 531949",
+    "nokRelation" : "Spouse",
+    "height" : 1.67001620745312,
+    "weight" : 90.31115512260072,
+    "occupation" : "Programmer",
+    "companyName" : "ComfortDelGro",
+    "companyAddress" : "Blk 264 Serangoon Road 8, #10-988, Singapore 490010",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "doctor" : {
+    "humanType" : "doctor",
+    "name" : "Siti Nurhaliza",
+    "dateOfBirth" : [ 2003, 3, 31 ],
+    "nricFin" : "S8568226A",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "CITIZEN",
+    "nationality" : "Singaporean",
+    "address" : "Blk 362 Punggol Way 11, #06-251, Singapore 537117",
+    "contact" : {
+      "personalPhone" : "94238993",
+      "homePhone" : "67001184",
+      "companyPhone" : "60203055",
+      "email" : "user668@gmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "A_POSITIVE",
+    "isVaccinated" : false,
+    "staffId" : "S03EEBC9B",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M74097A",
+    "humanType" : "doctor"
+  },
+  "consult_type" : "SPECIALIZED_CONSULTATION",
+  "time" : [ 2025, 3, 12, 17, 58, 20, 666178800 ],
+  "fee" : 277,
+  "diagnostic_codes" : [ {
+    "type" : "diagnostic",
+    "code" : "I10",
+    "cost" : 265
+  }, {
+    "type" : "diagnostic",
+    "code" : "M4723",
+    "cost" : 148
+  } ],
+  "procedure_codes" : [ {
+    "type" : "procedure",
+    "code" : "D911B7Z",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "BQ01ZZ1",
+    "cost" : 1000.00
+  } ],
+  "prescriptions" : {
+    "D0066" : 1,
+    "D0252" : 2,
+    "D0151" : 3
+  }
+}, {
+  "consultationId" : "C17434151010049829",
+  "medicalHistory" : "No significant medical history.",
+  "diagnosis" : "Gastritis",
+  "visitReason" : "Regular check-up",
+  "instructions" : "Apply cream twice daily. Return if symptoms worsen.",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Muhammad Danial",
+    "dateOfBirth" : [ 1979, 3, 31 ],
+    "nricFin" : "G2473666R",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "VISITOR",
+    "nationality" : "Singaporean",
+    "address" : "Blk 206 Ang Mo Kio Ave 6, #03-249, Singapore 509920",
+    "contact" : {
+      "personalPhone" : "95108453",
+      "homePhone" : "66250024",
+      "companyPhone" : "63610818",
+      "email" : "user905@gmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "A_POSITIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-20258CC05B46",
+    "drugAllergies" : [ "Aspirin", "Sulfa" ],
+    "nokName" : "Divya Singh",
+    "nokAddress" : "Blk 451 Jurong East Ave 6, #25-281, Singapore 500788",
+    "nokRelation" : "Other",
+    "height" : 1.9601399200851664,
+    "weight" : 47.2084173276094,
+    "occupation" : "Programmer",
+    "companyName" : "OCBC Bank",
+    "companyAddress" : "Blk 922 Woodlands Drive 2, #04-49, Singapore 538935",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "doctor" : {
+    "humanType" : "doctor",
+    "name" : "Siti Nurhaliza",
+    "dateOfBirth" : [ 1989, 3, 31 ],
+    "nricFin" : "S1068702J",
+    "maritalStatus" : "MARRIED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 624 Jurong East Ave 8, #33-824, Singapore 490678",
+    "contact" : {
+      "personalPhone" : "98067525",
+      "homePhone" : "68001318",
+      "companyPhone" : "60619071",
+      "email" : "user698@gmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "O_NEGATIVE",
+    "isVaccinated" : true,
+    "staffId" : "SB8B53D01",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M31514A",
+    "humanType" : "doctor"
+  },
+  "consult_type" : "FOLLOW_UP",
+  "time" : [ 2025, 3, 11, 17, 58, 21, 5975600 ],
+  "fee" : 93,
+  "diagnostic_codes" : [ {
+    "type" : "diagnostic",
+    "code" : "E6609",
+    "cost" : 298
+  }, {
+    "type" : "diagnostic",
+    "code" : "M438X6",
+    "cost" : 134
+  } ],
+  "procedure_codes" : [ {
+    "type" : "procedure",
+    "code" : "D9012ZZ",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "BQ2WZZZ",
+    "cost" : 1000.00
+  } ],
+  "prescriptions" : {
+    "D0048" : 3,
+    "D0252" : 1,
+    "D0151" : 3
+  }
+}, {
+  "consultationId" : "C17434151013410290",
+  "medicalHistory" : "Previous allergic reaction to penicillin.",
+  "diagnosis" : "Hypertension",
+  "visitReason" : "Flu symptoms",
+  "instructions" : "Continue with current treatment plan. No changes needed.",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Wee Jun Kiat",
+    "dateOfBirth" : [ 2005, 3, 31 ],
+    "nricFin" : "T2527626J",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 722 Tampines St 9, #31-693, Singapore 490355",
+    "contact" : {
+      "personalPhone" : "96934153",
+      "homePhone" : "66268822",
+      "companyPhone" : "67316514",
+      "email" : "user943@gmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "B_POSITIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-2025814D9E82",
+    "drugAllergies" : [ ],
+    "nokName" : "Muhammad Kiat",
+    "nokAddress" : "Blk 782 Serangoon Road 7, #10-121, Singapore 522894",
+    "nokRelation" : "Sibling",
+    "height" : 1.8728282545290675,
+    "weight" : 90.59040786685202,
+    "occupation" : "Teacher",
+    "companyName" : "OCBC Bank",
+    "companyAddress" : "Blk 995 Jurong East Ave 11, #01-141, Singapore 489252",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "doctor" : {
+    "humanType" : "doctor",
+    "name" : "Kumar Ravi",
+    "dateOfBirth" : [ 1987, 3, 31 ],
+    "nricFin" : "G2828597W",
+    "maritalStatus" : "MARRIED",
+    "residentialStatus" : "DEPENDENT_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 590 Serangoon Road 3, #15-995, Singapore 498046",
+    "contact" : {
+      "personalPhone" : "92305793",
+      "homePhone" : "67829270",
+      "companyPhone" : "63171194",
+      "email" : "user701@gmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "O_NEGATIVE",
+    "isVaccinated" : true,
+    "staffId" : "S103ADA65",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M47274A",
+    "humanType" : "doctor"
+  },
+  "consult_type" : "FOLLOW_UP",
+  "time" : [ 2025, 3, 5, 17, 58, 21, 341019500 ],
+  "fee" : 107,
+  "diagnostic_codes" : [ {
+    "type" : "diagnostic",
+    "code" : "I10",
+    "cost" : 138
+  }, {
+    "type" : "diagnostic",
+    "code" : "L049",
+    "cost" : 396
+  } ],
+  "procedure_codes" : [ {
+    "type" : "procedure",
+    "code" : "D91F98Z",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "BW33Y0Z",
+    "cost" : 1000.00
+  } ],
+  "prescriptions" : {
+    "D0252" : 2,
+    "D0151" : 2,
+    "D0030" : 1
+  }
+}, {
+  "consultationId" : "C17434151016840971",
+  "medicalHistory" : "Previous appendectomy in 2018.",
+  "diagnosis" : "Type 2 Diabetes",
+  "visitReason" : "Mental health consultation",
+  "instructions" : "Follow the diet plan provided. Schedule follow-up in 2 weeks.",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Lim Boon Teck",
+    "dateOfBirth" : [ 1977, 3, 31 ],
+    "nricFin" : "G7476582W",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "CITIZEN",
+    "nationality" : "Singaporean",
+    "address" : "Blk 894 Punggol Way 9, #48-415, Singapore 568027",
+    "contact" : {
+      "personalPhone" : "91179537",
+      "homePhone" : "66521513",
+      "companyPhone" : "64757038",
+      "email" : "user214@gmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "B_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-20254E694D00",
+    "drugAllergies" : [ "Penicillin" ],
+    "nokName" : "Divya Teck",
+    "nokAddress" : "Blk 973 Bedok North St 4, #33-263, Singapore 514933",
+    "nokRelation" : "Parent",
+    "height" : 1.9074920691962576,
+    "weight" : 81.38544974437391,
+    "occupation" : "Artist",
+    "companyName" : "CapitaLand",
+    "companyAddress" : "Blk 313 Serangoon Road 10, #45-578, Singapore 482488",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "doctor" : {
+    "humanType" : "doctor",
+    "name" : "Tan Wei Ming",
+    "dateOfBirth" : [ 1987, 3, 31 ],
+    "nricFin" : "S7783555E",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 137 Tampines St 5, #43-343, Singapore 470623",
+    "contact" : {
+      "personalPhone" : "98769829",
+      "homePhone" : "60253282",
+      "companyPhone" : "64308102",
+      "email" : "user968@gmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "O_NEGATIVE",
+    "isVaccinated" : true,
+    "staffId" : "SE7AA98FE",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M63927A",
+    "humanType" : "doctor"
+  },
+  "consult_type" : "FOLLOW_UP",
+  "time" : [ 2025, 3, 15, 17, 58, 21, 684658200 ],
+  "fee" : 295,
+  "diagnostic_codes" : [ {
+    "type" : "diagnostic",
+    "code" : "M67833",
+    "cost" : 458
+  } ],
+  "procedure_codes" : [ {
+    "type" : "procedure",
+    "code" : "D0119CZ",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "BP0CZZZ",
+    "cost" : 1000.00
+  } ],
+  "prescriptions" : {
+    "D0252" : 1,
+    "D0012" : 1,
+    "D0151" : 1
+  }
+}, {
+  "consultationId" : "C17434151020482513",
+  "medicalHistory" : "History of hypertension.",
+  "diagnosis" : "Gastritis",
+  "visitReason" : "Regular check-up",
+  "instructions" : "Increase fluid intake. Monitor symptoms.",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Aisha Fatimah",
+    "dateOfBirth" : [ 1980, 3, 31 ],
+    "nricFin" : "F5520316N",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 586 Punggol Way 9, #36-268, Singapore 515535",
+    "contact" : {
+      "personalPhone" : "96211491",
+      "homePhone" : "62657867",
+      "companyPhone" : "67141714",
+      "email" : "user764@gmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "B_NEGATIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-202531C893B1",
+    "drugAllergies" : [ "Ibuprofen", "None" ],
+    "nokName" : "Lim Fatimah",
+    "nokAddress" : "Blk 893 Bedok North St 1, #42-952, Singapore 563948",
+    "nokRelation" : "Sibling",
+    "height" : 1.5552461672009383,
+    "weight" : 72.7887467422201,
+    "occupation" : "Teacher",
+    "companyName" : "ComfortDelGro",
+    "companyAddress" : "Blk 648 Serangoon Road 5, #44-726, Singapore 543127",
+    "patientConsent" : true,
+    "humanType" : "patient"
+  },
+  "doctor" : {
+    "humanType" : "doctor",
+    "name" : "Siti Nurhaliza",
+    "dateOfBirth" : [ 1967, 3, 31 ],
+    "nricFin" : "F7388759M",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 148 Yishun Ring Road 3, #01-522, Singapore 564373",
+    "contact" : {
+      "personalPhone" : "90022550",
+      "homePhone" : "65677324",
+      "companyPhone" : "67057251",
+      "email" : "user259@hotmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "A_NEGATIVE",
+    "isVaccinated" : true,
+    "staffId" : "S35984866",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M95766A",
+    "humanType" : "doctor"
+  },
+  "consult_type" : "SPECIALIZED_CONSULTATION",
+  "time" : [ 2025, 3, 18, 17, 58, 22, 48530700 ],
+  "fee" : 164,
+  "diagnostic_codes" : [ {
+    "type" : "diagnostic",
+    "code" : "J45909",
+    "cost" : 223
+  }, {
+    "type" : "diagnostic",
+    "code" : "A3984",
+    "cost" : 159
+  } ],
+  "procedure_codes" : [ {
+    "type" : "procedure",
+    "code" : "D718BYZ",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "BP0G1ZZ",
+    "cost" : 1000.00
+  } ],
+  "prescriptions" : {
+    "D0066" : 3,
+    "D0252" : 1,
+    "D0151" : 2
+  }
+}, {
+  "consultationId" : "C17434151023860790",
+  "medicalHistory" : "Family history of cardiovascular disease.",
+  "diagnosis" : "Gastritis",
+  "visitReason" : "Mental health consultation",
+  "instructions" : "Increase fluid intake. Monitor symptoms.",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Lim Boon Teck",
+    "dateOfBirth" : [ 1978, 3, 31 ],
+    "nricFin" : "G9890359W",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "VISITOR",
+    "nationality" : "Singaporean",
+    "address" : "Blk 783 Yishun Ring Road 6, #02-677, Singapore 480215",
+    "contact" : {
+      "personalPhone" : "99364394",
+      "homePhone" : "65817102",
+      "companyPhone" : "66068923",
+      "email" : "user123@hotmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "A_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-202548C7A7E2",
+    "drugAllergies" : [ "Ibuprofen" ],
+    "nokName" : "Ben Tan",
+    "nokAddress" : "Blk 445 Jurong East Ave 2, #29-912, Singapore 539874",
+    "nokRelation" : "Other",
+    "height" : 1.8907181543252947,
+    "weight" : 85.59397140684663,
+    "occupation" : "Teacher",
+    "companyName" : "Singtel",
+    "companyAddress" : "Blk 910 Woodlands Drive 4, #48-61, Singapore 515508",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "doctor" : {
+    "humanType" : "doctor",
+    "name" : "Kumar Ravi",
+    "dateOfBirth" : [ 1987, 3, 31 ],
+    "nricFin" : "G2828597W",
+    "maritalStatus" : "MARRIED",
+    "residentialStatus" : "DEPENDENT_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 590 Serangoon Road 3, #15-995, Singapore 498046",
+    "contact" : {
+      "personalPhone" : "92305793",
+      "homePhone" : "67829270",
+      "companyPhone" : "63171194",
+      "email" : "user701@gmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "O_NEGATIVE",
+    "isVaccinated" : true,
+    "staffId" : "S103ADA65",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M47274A",
+    "humanType" : "doctor"
+  },
+  "consult_type" : "EMERGENCY",
+  "time" : [ 2025, 3, 22, 17, 58, 22, 386566100 ],
+  "fee" : 154,
+  "diagnostic_codes" : [ {
+    "type" : "diagnostic",
+    "code" : "J45909",
+    "cost" : 162
+  }, {
+    "type" : "diagnostic",
+    "code" : "I69292",
+    "cost" : 173
+  } ],
+  "procedure_codes" : [ {
+    "type" : "procedure",
+    "code" : "CW3NYZZ",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "BN250ZZ",
+    "cost" : 1000.00
+  } ],
+  "prescriptions" : {
+    "D0048" : 2,
+    "D0252" : 2,
+    "D0151" : 2
+  }
+}, {
+  "consultationId" : "C17434151027261724",
+  "medicalHistory" : "Previous appendectomy in 2018.",
+  "diagnosis" : "Seasonal allergies",
+  "visitReason" : "Regular check-up",
+  "instructions" : "Take blood pressure readings daily and log them.",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Aisha Fatimah",
+    "dateOfBirth" : [ 1990, 3, 31 ],
+    "nricFin" : "T6417594C",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 149 Jurong East Ave 7, #42-713, Singapore 478028",
+    "contact" : {
+      "personalPhone" : "94018405",
+      "homePhone" : "69097538",
+      "companyPhone" : "65297725",
+      "email" : "user548@hotmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "O_POSITIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-202543ECA0D8",
+    "drugAllergies" : [ "None", "Penicillin" ],
+    "nokName" : "Divya Singh",
+    "nokAddress" : "Blk 515 Ang Mo Kio Ave 1, #11-512, Singapore 498297",
+    "nokRelation" : "Other",
+    "height" : 1.5069843993115735,
+    "weight" : 58.04557147969975,
+    "occupation" : "Chef",
+    "companyName" : "Singapore Airlines",
+    "companyAddress" : "Blk 467 Jurong East Ave 7, #47-412, Singapore 475018",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "doctor" : {
+    "humanType" : "doctor",
+    "name" : "Siti Nurhaliza",
+    "dateOfBirth" : [ 1995, 3, 31 ],
+    "nricFin" : "G9203915W",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "VISITOR",
+    "nationality" : "Singaporean",
+    "address" : "Blk 214 Ang Mo Kio Ave 3, #48-668, Singapore 483146",
+    "contact" : {
+      "personalPhone" : "92899524",
+      "homePhone" : "63690153",
+      "companyPhone" : "68254285",
+      "email" : "user244@hotmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "AB_NEGATIVE",
+    "isVaccinated" : true,
+    "staffId" : "S6E5C62E8",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M39549A",
+    "humanType" : "doctor"
+  },
+  "consult_type" : "NEW_CONSULTATION",
+  "time" : [ 2025, 3, 28, 17, 58, 22, 726045500 ],
+  "fee" : 180,
+  "diagnostic_codes" : [ {
+    "type" : "diagnostic",
+    "code" : "J45901",
+    "cost" : 487
+  }, {
+    "type" : "diagnostic",
+    "code" : "L751",
+    "cost" : 207
+  } ],
+  "procedure_codes" : [ {
+    "type" : "procedure",
+    "code" : "D9011ZZ",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "B50F1ZZ",
+    "cost" : 1000.00
+  } ],
+  "prescriptions" : {
+    "D0252" : 3,
+    "D0151" : 2,
+    "D0075" : 1
+  }
+}, {
+  "consultationId" : "C17434151030652760",
+  "medicalHistory" : "Previous appendectomy in 2018.",
+  "diagnosis" : "Seasonal allergies",
+  "visitReason" : "Flu symptoms",
+  "instructions" : "Avoid strenuous activity for one week.",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Lim Boon Teck",
+    "dateOfBirth" : [ 1989, 3, 31 ],
+    "nricFin" : "S6197801A",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "PERMANENT_RESIDENT",
+    "nationality" : "Singaporean",
+    "address" : "Blk 290 Jurong East Ave 5, #28-546, Singapore 525180",
+    "contact" : {
+      "personalPhone" : "97363835",
+      "homePhone" : "66595499",
+      "companyPhone" : "66727139",
+      "email" : "user253@hotmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "B_NEGATIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-20251EE7EE99",
+    "drugAllergies" : [ ],
+    "nokName" : "Lim Teck",
+    "nokAddress" : "Blk 880 Serangoon Road 4, #22-617, Singapore 471860",
+    "nokRelation" : "Spouse",
+    "height" : 1.656530747696515,
+    "weight" : 91.72740578138459,
+    "occupation" : "Engineer",
+    "companyName" : "Singapore Airlines",
+    "companyAddress" : "Blk 145 Tampines St 11, #47-634, Singapore 514336",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "doctor" : {
+    "humanType" : "doctor",
+    "name" : "Kumar Ravi",
+    "dateOfBirth" : [ 1987, 3, 31 ],
+    "nricFin" : "G2828597W",
+    "maritalStatus" : "MARRIED",
+    "residentialStatus" : "DEPENDENT_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 590 Serangoon Road 3, #15-995, Singapore 498046",
+    "contact" : {
+      "personalPhone" : "92305793",
+      "homePhone" : "67829270",
+      "companyPhone" : "63171194",
+      "email" : "user701@gmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "O_NEGATIVE",
+    "isVaccinated" : true,
+    "staffId" : "S103ADA65",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M47274A",
+    "humanType" : "doctor"
+  },
+  "consult_type" : "ROUTINE_CHECKUP",
+  "time" : [ 2025, 3, 30, 17, 58, 23, 65662800 ],
+  "fee" : 87,
+  "diagnostic_codes" : [ {
+    "type" : "diagnostic",
+    "code" : "Z52091",
+    "cost" : 375
+  }, {
+    "type" : "diagnostic",
+    "code" : "C7231",
+    "cost" : 229
+  } ],
+  "procedure_codes" : [ {
+    "type" : "procedure",
+    "code" : "DTY1FZZ",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "BG33Y0Z",
+    "cost" : 1000.00
+  } ],
+  "prescriptions" : {
+    "D0048" : 3,
+    "D0252" : 1,
+    "D0151" : 3
+  }
+}, {
+  "consultationId" : "C17434151033414686",
+  "medicalHistory" : "No significant medical history.",
+  "diagnosis" : "Respiratory infection",
+  "visitReason" : "Skin rash",
+  "instructions" : "Take medication as prescribed. Rest for 2-3 days.",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Ong Li Ting",
+    "dateOfBirth" : [ 1983, 3, 31 ],
+    "nricFin" : "G5980204L",
+    "maritalStatus" : "MARRIED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 461 Yishun Ring Road 2, #02-807, Singapore 461438",
+    "contact" : {
+      "personalPhone" : "98331833",
+      "homePhone" : "66523186",
+      "companyPhone" : "67359699",
+      "email" : "user445@hotmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "A_POSITIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-2025A75DEEDB",
+    "drugAllergies" : [ ],
+    "nokName" : "Ben Tan",
+    "nokAddress" : "Blk 156 Yishun Ring Road 1, #29-132, Singapore 520447",
+    "nokRelation" : "Legal Guardian",
+    "height" : 1.968006654936574,
+    "weight" : 65.29098980796046,
+    "occupation" : "Engineer",
+    "companyName" : "Keppel Corporation",
+    "companyAddress" : "Blk 909 Woodlands Drive 11, #04-516, Singapore 564546",
+    "patientConsent" : true,
+    "humanType" : "patient"
+  },
+  "doctor" : {
+    "humanType" : "doctor",
+    "name" : "Tan Wei Ming",
+    "dateOfBirth" : [ 1987, 3, 31 ],
+    "nricFin" : "S7783555E",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 137 Tampines St 5, #43-343, Singapore 470623",
+    "contact" : {
+      "personalPhone" : "98769829",
+      "homePhone" : "60253282",
+      "companyPhone" : "64308102",
+      "email" : "user968@gmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "O_NEGATIVE",
+    "isVaccinated" : true,
+    "staffId" : "SE7AA98FE",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M63927A",
+    "humanType" : "doctor"
+  },
+  "consult_type" : "NEW_CONSULTATION",
+  "time" : [ 2025, 3, 20, 17, 58, 23, 341948500 ],
+  "fee" : 185,
+  "diagnostic_codes" : [ {
+    "type" : "diagnostic",
+    "code" : "E6609",
+    "cost" : 132
+  }, {
+    "type" : "diagnostic",
+    "code" : "M4100",
+    "cost" : 404
+  } ],
+  "procedure_codes" : [ {
+    "type" : "procedure",
+    "code" : "DD109BZ",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "B802YZZ",
+    "cost" : 1000.00
+  } ],
+  "prescriptions" : {
+    "D0066" : 1,
+    "D0252" : 1,
+    "D0151" : 3
+  }
+}, {
+  "consultationId" : "C17434151036811673",
+  "medicalHistory" : "Previous appendectomy in 2018.",
+  "diagnosis" : "Common cold",
+  "visitReason" : "Headache",
+  "instructions" : "Increase fluid intake. Monitor symptoms.",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Ben Tan",
+    "dateOfBirth" : [ 1996, 3, 31 ],
+    "nricFin" : "G5450119L",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "VISITOR",
+    "nationality" : "Singaporean",
+    "address" : "Blk 527 Punggol Way 5, #29-198, Singapore 487425",
+    "contact" : {
+      "personalPhone" : "96057966",
+      "homePhone" : "68378669",
+      "companyPhone" : "69053534",
+      "email" : "user509@hotmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "A_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-2025C86DEAFE",
+    "drugAllergies" : [ "Penicillin" ],
+    "nokName" : "Aisha Tan",
+    "nokAddress" : "Blk 873 Punggol Way 6, #09-844, Singapore 544654",
+    "nokRelation" : "Grandchild",
+    "height" : 1.5710466117726343,
+    "weight" : 46.77085753165108,
+    "occupation" : "Doctor",
+    "companyName" : "Singtel",
+    "companyAddress" : "Blk 864 Ang Mo Kio Ave 2, #24-837, Singapore 559632",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "doctor" : {
+    "humanType" : "doctor",
+    "name" : "Siti Nurhaliza",
+    "dateOfBirth" : [ 1995, 3, 31 ],
+    "nricFin" : "G9203915W",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "VISITOR",
+    "nationality" : "Singaporean",
+    "address" : "Blk 214 Ang Mo Kio Ave 3, #48-668, Singapore 483146",
+    "contact" : {
+      "personalPhone" : "92899524",
+      "homePhone" : "63690153",
+      "companyPhone" : "68254285",
+      "email" : "user244@hotmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "AB_NEGATIVE",
+    "isVaccinated" : true,
+    "staffId" : "S6E5C62E8",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M39549A",
+    "humanType" : "doctor"
+  },
+  "consult_type" : "EMERGENCY",
+  "time" : [ 2025, 3, 6, 17, 58, 23, 681033200 ],
+  "fee" : 192,
+  "diagnostic_codes" : [ {
+    "type" : "diagnostic",
+    "code" : "E668",
+    "cost" : 203
+  }, {
+    "type" : "diagnostic",
+    "code" : "Q822",
+    "cost" : 374
+  } ],
+  "procedure_codes" : [ {
+    "type" : "procedure",
+    "code" : "DH0B5ZZ",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "B31U1ZZ",
+    "cost" : 1000.00
+  } ],
+  "prescriptions" : {
+    "D0252" : 3,
+    "D0151" : 2,
+    "D0112" : 3
+  }
+}, {
+  "consultationId" : "C17434151040485239",
+  "medicalHistory" : "Type 2 diabetes diagnosed 5 years ago.",
+  "diagnosis" : "Vitamin D deficiency",
+  "visitReason" : "Skin rash",
+  "instructions" : "Avoid strenuous activity for one week.",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Ong Li Ting",
+    "dateOfBirth" : [ 1974, 3, 31 ],
+    "nricFin" : "S5974155A",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "DEPENDENT_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 605 Serangoon Road 10, #15-926, Singapore 489503",
+    "contact" : {
+      "personalPhone" : "98183532",
+      "homePhone" : "66556197",
+      "companyPhone" : "65222786",
+      "email" : "user737@gmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "A_POSITIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-2025671F88E9",
+    "drugAllergies" : [ "Aspirin" ],
+    "nokName" : "Divya Ting",
+    "nokAddress" : "Blk 715 Ang Mo Kio Ave 2, #31-554, Singapore 471203",
+    "nokRelation" : "Child",
+    "height" : 1.863319964300263,
+    "weight" : 85.54833914755002,
+    "occupation" : "Programmer",
+    "companyName" : "CapitaLand",
+    "companyAddress" : "Blk 491 Bedok North St 12, #18-12, Singapore 525471",
+    "patientConsent" : true,
+    "humanType" : "patient"
+  },
+  "doctor" : {
+    "humanType" : "doctor",
+    "name" : "Zhang Wei",
+    "dateOfBirth" : [ 1967, 3, 31 ],
+    "nricFin" : "S3880590H",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "CITIZEN",
+    "nationality" : "Singaporean",
+    "address" : "Blk 805 Bedok North St 7, #36-768, Singapore 550770",
+    "contact" : {
+      "personalPhone" : "92011101",
+      "homePhone" : "67677337",
+      "companyPhone" : "63264277",
+      "email" : "user258@hotmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "O_NEGATIVE",
+    "isVaccinated" : true,
+    "staffId" : "S84ED9EAD",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M60847A",
+    "humanType" : "doctor"
+  },
+  "consult_type" : "FOLLOW_UP",
+  "time" : [ 2025, 3, 28, 17, 58, 24, 48538100 ],
+  "fee" : 188,
+  "diagnostic_codes" : [ {
+    "type" : "diagnostic",
+    "code" : "N184",
+    "cost" : 183
+  }, {
+    "type" : "diagnostic",
+    "code" : "M05721",
+    "cost" : 143
+  } ],
+  "procedure_codes" : [ {
+    "type" : "procedure",
+    "code" : "DP051ZZ",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "B24BYZZ",
+    "cost" : 1000.00
+  } ],
+  "prescriptions" : {
+    "D0252" : 2,
+    "D0151" : 3,
+    "D0109" : 1
+  }
+}, {
+  "consultationId" : "C17434151043889550",
+  "medicalHistory" : "Type 2 diabetes diagnosed 5 years ago.",
+  "diagnosis" : "Type 2 Diabetes",
+  "visitReason" : "Regular check-up",
+  "instructions" : "Take medication as prescribed. Rest for 2-3 days.",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Muhammad Danial",
+    "dateOfBirth" : [ 2002, 3, 31 ],
+    "nricFin" : "T7683655D",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 980 Woodlands Drive 1, #08-739, Singapore 475923",
+    "contact" : {
+      "personalPhone" : "95507588",
+      "homePhone" : "62925173",
+      "companyPhone" : "61647861",
+      "email" : "user930@gmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "A_NEGATIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-20257995A676",
+    "drugAllergies" : [ ],
+    "nokName" : "Lim Boon Teck",
+    "nokAddress" : "Blk 735 Tampines St 8, #30-989, Singapore 554997",
+    "nokRelation" : "Legal Guardian",
+    "height" : 1.8141165300799797,
+    "weight" : 77.02576499640969,
+    "occupation" : "Teacher",
+    "companyName" : "ComfortDelGro",
+    "companyAddress" : "Blk 366 Punggol Way 1, #13-806, Singapore 473238",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "doctor" : {
+    "humanType" : "doctor",
+    "name" : "Kumar Ravi",
+    "dateOfBirth" : [ 1987, 3, 31 ],
+    "nricFin" : "G2828597W",
+    "maritalStatus" : "MARRIED",
+    "residentialStatus" : "DEPENDENT_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 590 Serangoon Road 3, #15-995, Singapore 498046",
+    "contact" : {
+      "personalPhone" : "92305793",
+      "homePhone" : "67829270",
+      "companyPhone" : "63171194",
+      "email" : "user701@gmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "O_NEGATIVE",
+    "isVaccinated" : true,
+    "staffId" : "S103ADA65",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M47274A",
+    "humanType" : "doctor"
+  },
+  "consult_type" : "ROUTINE_CHECKUP",
+  "time" : [ 2025, 3, 20, 17, 58, 24, 388475200 ],
+  "fee" : 186,
+  "diagnostic_codes" : [ {
+    "type" : "diagnostic",
+    "code" : "J4540",
+    "cost" : 197
+  }, {
+    "type" : "diagnostic",
+    "code" : "L80",
+    "cost" : 207
+  } ],
+  "procedure_codes" : [ {
+    "type" : "procedure",
+    "code" : "D9065ZZ",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "BQ2VYZZ",
+    "cost" : 1000.00
+  } ],
+  "prescriptions" : {
+    "D0048" : 2,
+    "D0252" : 2,
+    "D0151" : 2
+  }
+}, {
+  "consultationId" : "C17434151047332240",
+  "medicalHistory" : "Chronic asthma since childhood.",
+  "diagnosis" : "Dermatitis",
+  "visitReason" : "Medication review",
+  "instructions" : "Take blood pressure readings daily and log them.",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Ong Li Ting",
+    "dateOfBirth" : [ 1999, 3, 31 ],
+    "nricFin" : "S9147924I",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "CITIZEN",
+    "nationality" : "Singaporean",
+    "address" : "Blk 407 Punggol Way 11, #19-271, Singapore 545508",
+    "contact" : {
+      "personalPhone" : "90210909",
+      "homePhone" : "62241963",
+      "companyPhone" : "65508388",
+      "email" : "user335@hotmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "AB_NEGATIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-202583FB92FC",
+    "drugAllergies" : [ "Ibuprofen" ],
+    "nokName" : "Rohan Ting",
+    "nokAddress" : "Blk 949 Bedok North St 9, #45-290, Singapore 556563",
+    "nokRelation" : "Sibling",
+    "height" : 1.8832866132168895,
+    "weight" : 92.09875852860972,
+    "occupation" : "Programmer",
+    "companyName" : "CapitaLand",
+    "companyAddress" : "Blk 467 Punggol Way 6, #19-372, Singapore 559035",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "doctor" : {
+    "humanType" : "doctor",
+    "name" : "Zhang Wei",
+    "dateOfBirth" : [ 1967, 3, 31 ],
+    "nricFin" : "S3880590H",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "CITIZEN",
+    "nationality" : "Singaporean",
+    "address" : "Blk 805 Bedok North St 7, #36-768, Singapore 550770",
+    "contact" : {
+      "personalPhone" : "92011101",
+      "homePhone" : "67677337",
+      "companyPhone" : "63264277",
+      "email" : "user258@hotmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "O_NEGATIVE",
+    "isVaccinated" : true,
+    "staffId" : "S84ED9EAD",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M60847A",
+    "humanType" : "doctor"
+  },
+  "consult_type" : "NEW_CONSULTATION",
+  "time" : [ 2025, 3, 9, 17, 58, 24, 733273900 ],
+  "fee" : 194,
+  "diagnostic_codes" : [ {
+    "type" : "diagnostic",
+    "code" : "Z5189",
+    "cost" : 309
+  }, {
+    "type" : "diagnostic",
+    "code" : "C12",
+    "cost" : 290
+  } ],
+  "procedure_codes" : [ {
+    "type" : "procedure",
+    "code" : "DM1099Z",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "BF13YZZ",
+    "cost" : 1000.00
+  } ],
+  "prescriptions" : {
+    "D0252" : 2,
+    "D0084" : 2,
+    "D0151" : 3
+  }
+}, {
+  "consultationId" : "C17434151050113474",
+  "medicalHistory" : "Type 2 diabetes diagnosed 5 years ago.",
+  "diagnosis" : "Respiratory infection",
+  "visitReason" : "Follow-up consultation",
+  "instructions" : "Avoid strenuous activity for one week.",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Aisha Fatimah",
+    "dateOfBirth" : [ 1974, 3, 31 ],
+    "nricFin" : "T8523233E",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "CITIZEN",
+    "nationality" : "Singaporean",
+    "address" : "Blk 602 Woodlands Drive 6, #34-986, Singapore 514768",
+    "contact" : {
+      "personalPhone" : "92465647",
+      "homePhone" : "64500892",
+      "companyPhone" : "65934444",
+      "email" : "user493@hotmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "A_POSITIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-2025C2485B4C",
+    "drugAllergies" : [ "Sulfa", "Aspirin" ],
+    "nokName" : "Wee Jun Kiat",
+    "nokAddress" : "Blk 127 Serangoon Road 12, #43-430, Singapore 500687",
+    "nokRelation" : "Legal Guardian",
+    "height" : 1.636619591289187,
+    "weight" : 70.57719778896083,
+    "occupation" : "Artist",
+    "companyName" : "OCBC Bank",
+    "companyAddress" : "Blk 237 Punggol Way 5, #08-842, Singapore 567983",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "doctor" : {
+    "humanType" : "doctor",
+    "name" : "Lee Hui Ling",
+    "dateOfBirth" : [ 1981, 3, 31 ],
+    "nricFin" : "F0052106W",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "VISITOR",
+    "nationality" : "Singaporean",
+    "address" : "Blk 153 Jurong East Ave 1, #50-366, Singapore 509219",
+    "contact" : {
+      "personalPhone" : "93765241",
+      "homePhone" : "62551922",
+      "companyPhone" : "66880759",
+      "email" : "user591@hotmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "A_POSITIVE",
+    "isVaccinated" : false,
+    "staffId" : "SD5F94C24",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M95928A",
+    "humanType" : "doctor"
+  },
+  "consult_type" : "REGULAR_CONSULTATION",
+  "time" : [ 2025, 3, 9, 17, 58, 25, 11265300 ],
+  "fee" : 154,
+  "diagnostic_codes" : [ {
+    "type" : "diagnostic",
+    "code" : "M166",
+    "cost" : 290
+  } ],
+  "procedure_codes" : [ {
+    "type" : "procedure",
+    "code" : "DD10BBZ",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "B31H110",
+    "cost" : 1000.00
+  } ],
+  "prescriptions" : {
+    "D0252" : 1,
+    "D0084" : 2,
+    "D0151" : 2
+  }
+}, {
+  "consultationId" : "C17434151053533119",
+  "medicalHistory" : "No significant medical history.",
+  "diagnosis" : "Migraine",
+  "visitReason" : "Skin rash",
+  "instructions" : "Take medication as prescribed. Rest for 2-3 days.",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Wee Jun Kiat",
+    "dateOfBirth" : [ 1965, 3, 31 ],
+    "nricFin" : "S7070485D",
+    "maritalStatus" : "MARRIED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 133 Punggol Way 3, #06-106, Singapore 565048",
+    "contact" : {
+      "personalPhone" : "98710884",
+      "homePhone" : "62853021",
+      "companyPhone" : "61037572",
+      "email" : "user729@hotmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "AB_NEGATIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-2025DC1FA8FA",
+    "drugAllergies" : [ "Penicillin" ],
+    "nokName" : "Rohan Kiat",
+    "nokAddress" : "Blk 803 Woodlands Drive 6, #49-215, Singapore 540596",
+    "nokRelation" : "Grandchild",
+    "height" : 1.5758826820672946,
+    "weight" : 66.11376261830279,
+    "occupation" : "Teacher",
+    "companyName" : "Singtel",
+    "companyAddress" : "Blk 611 Serangoon Road 11, #33-542, Singapore 542021",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "doctor" : {
+    "humanType" : "doctor",
+    "name" : "Kumar Ravi",
+    "dateOfBirth" : [ 1987, 3, 31 ],
+    "nricFin" : "G2828597W",
+    "maritalStatus" : "MARRIED",
+    "residentialStatus" : "DEPENDENT_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 590 Serangoon Road 3, #15-995, Singapore 498046",
+    "contact" : {
+      "personalPhone" : "92305793",
+      "homePhone" : "67829270",
+      "companyPhone" : "63171194",
+      "email" : "user701@gmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "O_NEGATIVE",
+    "isVaccinated" : true,
+    "staffId" : "S103ADA65",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M47274A",
+    "humanType" : "doctor"
+  },
+  "consult_type" : "ROUTINE_CHECKUP",
+  "time" : [ 2025, 3, 15, 17, 58, 25, 353454300 ],
+  "fee" : 268,
+  "diagnostic_codes" : [ {
+    "type" : "diagnostic",
+    "code" : "N184",
+    "cost" : 160
+  }, {
+    "type" : "diagnostic",
+    "code" : "M1A4191",
+    "cost" : 426
+  } ],
+  "procedure_codes" : [ {
+    "type" : "procedure",
+    "code" : "DDY7FZZ",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "BR031ZZ",
+    "cost" : 1000.00
+  } ],
+  "prescriptions" : {
+    "D0252" : 3,
+    "D0151" : 2,
+    "D0030" : 2
+  }
+}, {
+  "consultationId" : "C17434151056981747",
+  "medicalHistory" : "Previous appendectomy in 2018.",
+  "diagnosis" : "Common cold",
+  "visitReason" : "Medication review",
+  "instructions" : "Follow the diet plan provided. Schedule follow-up in 2 weeks.",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Lim Boon Teck",
+    "dateOfBirth" : [ 1989, 3, 31 ],
+    "nricFin" : "T4816478H",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "PERMANENT_RESIDENT",
+    "nationality" : "Singaporean",
+    "address" : "Blk 757 Bedok North St 4, #46-162, Singapore 484746",
+    "contact" : {
+      "personalPhone" : "96992438",
+      "homePhone" : "61153261",
+      "companyPhone" : "61299028",
+      "email" : "user936@hotmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "A_NEGATIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-20254E53272E",
+    "drugAllergies" : [ "Sulfa" ],
+    "nokName" : "Lim Teck",
+    "nokAddress" : "Blk 963 Tampines St 4, #42-288, Singapore 569275",
+    "nokRelation" : "Child",
+    "height" : 1.5131201995376715,
+    "weight" : 76.05201593986004,
+    "occupation" : "Programmer",
+    "companyName" : "OCBC Bank",
+    "companyAddress" : "Blk 927 Woodlands Drive 1, #50-552, Singapore 478702",
+    "patientConsent" : true,
+    "humanType" : "patient"
+  },
+  "doctor" : {
+    "humanType" : "doctor",
+    "name" : "Siti Nurhaliza",
+    "dateOfBirth" : [ 1967, 3, 31 ],
+    "nricFin" : "F7388759M",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 148 Yishun Ring Road 3, #01-522, Singapore 564373",
+    "contact" : {
+      "personalPhone" : "90022550",
+      "homePhone" : "65677324",
+      "companyPhone" : "67057251",
+      "email" : "user259@hotmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "A_NEGATIVE",
+    "isVaccinated" : true,
+    "staffId" : "S35984866",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M95766A",
+    "humanType" : "doctor"
+  },
+  "consult_type" : "FOLLOW_UP",
+  "time" : [ 2025, 3, 22, 17, 58, 25, 698014800 ],
+  "fee" : 179,
+  "diagnostic_codes" : [ {
+    "type" : "diagnostic",
+    "code" : "Z52098",
+    "cost" : 288
+  }, {
+    "type" : "diagnostic",
+    "code" : "C8319",
+    "cost" : 488
+  } ],
+  "procedure_codes" : [ {
+    "type" : "procedure",
+    "code" : "CW161ZZ",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "B54TZZ3",
+    "cost" : 1000.00
+  } ],
+  "prescriptions" : {
+    "D0066" : 2,
+    "D0252" : 1,
+    "D0151" : 1
+  }
+}, {
+  "consultationId" : "C17434151059729120",
+  "medicalHistory" : "No significant medical history.",
+  "diagnosis" : "Hypertension",
+  "visitReason" : "Chronic condition management",
+  "instructions" : "Avoid strenuous activity for one week.",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Divya Singh",
+    "dateOfBirth" : [ 1969, 3, 31 ],
+    "nricFin" : "F9733809N",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 899 Ang Mo Kio Ave 3, #35-343, Singapore 475708",
+    "contact" : {
+      "personalPhone" : "98935444",
+      "homePhone" : "67570789",
+      "companyPhone" : "66936770",
+      "email" : "user316@hotmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "AB_NEGATIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-202518D16155",
+    "drugAllergies" : [ ],
+    "nokName" : "Muhammad Singh",
+    "nokAddress" : "Blk 444 Yishun Ring Road 7, #48-148, Singapore 544097",
+    "nokRelation" : "Spouse",
+    "height" : 1.7735795117351283,
+    "weight" : 94.44634826861486,
+    "occupation" : "Artist",
+    "companyName" : "Singtel",
+    "companyAddress" : "Blk 777 Jurong East Ave 8, #29-47, Singapore 550542",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "doctor" : {
+    "humanType" : "doctor",
+    "name" : "Zhang Wei",
+    "dateOfBirth" : [ 1967, 3, 31 ],
+    "nricFin" : "S3880590H",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "CITIZEN",
+    "nationality" : "Singaporean",
+    "address" : "Blk 805 Bedok North St 7, #36-768, Singapore 550770",
+    "contact" : {
+      "personalPhone" : "92011101",
+      "homePhone" : "67677337",
+      "companyPhone" : "63264277",
+      "email" : "user258@hotmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "O_NEGATIVE",
+    "isVaccinated" : true,
+    "staffId" : "S84ED9EAD",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M60847A",
+    "humanType" : "doctor"
+  },
+  "consult_type" : "FOLLOW_UP",
+  "time" : [ 2025, 3, 27, 17, 58, 25, 972055000 ],
+  "fee" : 90,
+  "diagnostic_codes" : [ {
+    "type" : "diagnostic",
+    "code" : "N185",
+    "cost" : 262
+  }, {
+    "type" : "diagnostic",
+    "code" : "E0849",
+    "cost" : 126
+  } ],
+  "procedure_codes" : [ {
+    "type" : "procedure",
+    "code" : "CP191ZZ",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "B510ZZA",
+    "cost" : 1000.00
+  } ],
+  "prescriptions" : {
+    "D0252" : 2,
+    "D0012" : 3,
+    "D0151" : 3
+  }
+}, {
+  "consultationId" : "C17434151063148211",
+  "medicalHistory" : "Family history of cardiovascular disease.",
+  "diagnosis" : "Respiratory infection",
+  "visitReason" : "Flu symptoms",
+  "instructions" : "Follow the diet plan provided. Schedule follow-up in 2 weeks.",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Aisha Fatimah",
+    "dateOfBirth" : [ 1984, 3, 31 ],
+    "nricFin" : "T6155506J",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "PERMANENT_RESIDENT",
+    "nationality" : "Singaporean",
+    "address" : "Blk 139 Woodlands Drive 10, #13-359, Singapore 520361",
+    "contact" : {
+      "personalPhone" : "91789626",
+      "homePhone" : "60370432",
+      "companyPhone" : "60053494",
+      "email" : "user437@hotmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "AB_NEGATIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-20258E8BBD70",
+    "drugAllergies" : [ "Sulfa", "Sulfa" ],
+    "nokName" : "Aisha Fatimah",
+    "nokAddress" : "Blk 492 Serangoon Road 10, #15-21, Singapore 517379",
+    "nokRelation" : "Child",
+    "height" : 1.6467998529171737,
+    "weight" : 81.53177805013235,
+    "occupation" : "Teacher",
+    "companyName" : "OCBC Bank",
+    "companyAddress" : "Blk 999 Yishun Ring Road 10, #30-272, Singapore 540167",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "doctor" : {
+    "humanType" : "doctor",
+    "name" : "Tan Wei Ming",
+    "dateOfBirth" : [ 1987, 3, 31 ],
+    "nricFin" : "S7783555E",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 137 Tampines St 5, #43-343, Singapore 470623",
+    "contact" : {
+      "personalPhone" : "98769829",
+      "homePhone" : "60253282",
+      "companyPhone" : "64308102",
+      "email" : "user968@gmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "O_NEGATIVE",
+    "isVaccinated" : true,
+    "staffId" : "SE7AA98FE",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M63927A",
+    "humanType" : "doctor"
+  },
+  "consult_type" : "SPECIALIZED_CONSULTATION",
+  "time" : [ 2025, 3, 1, 17, 58, 26, 314491900 ],
+  "fee" : 139,
+  "diagnostic_codes" : [ {
+    "type" : "diagnostic",
+    "code" : "Z52812",
+    "cost" : 414
+  }, {
+    "type" : "diagnostic",
+    "code" : "C55",
+    "cost" : 236
+  } ],
+  "procedure_codes" : [ {
+    "type" : "procedure",
+    "code" : "DB073Z0",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "B244ZZZ",
+    "cost" : 1000.00
+  } ],
+  "prescriptions" : {
+    "D0252" : 1,
+    "D0151" : 1,
+    "D0109" : 3
+  }
+}, {
+  "consultationId" : "C17434151065946177",
+  "medicalHistory" : "No significant medical history.",
+  "diagnosis" : "Migraine",
+  "visitReason" : "Fever",
+  "instructions" : "Avoid strenuous activity for one week.",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Ong Li Ting",
+    "dateOfBirth" : [ 1996, 3, 31 ],
+    "nricFin" : "G0954499U",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "VISITOR",
+    "nationality" : "Singaporean",
+    "address" : "Blk 450 Jurong East Ave 5, #17-687, Singapore 506856",
+    "contact" : {
+      "personalPhone" : "94240860",
+      "homePhone" : "62833555",
+      "companyPhone" : "67492965",
+      "email" : "user194@gmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "A_NEGATIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-202512C5FCCD",
+    "drugAllergies" : [ "Sulfa", "Sulfa" ],
+    "nokName" : "Rohan Aand",
+    "nokAddress" : "Blk 985 Tampines St 1, #11-814, Singapore 496203",
+    "nokRelation" : "Legal Guardian",
+    "height" : 1.9127182080787,
+    "weight" : 81.51572555354986,
+    "occupation" : "Doctor",
+    "companyName" : "Keppel Corporation",
+    "companyAddress" : "Blk 459 Punggol Way 4, #49-273, Singapore 491165",
+    "patientConsent" : true,
+    "humanType" : "patient"
+  },
+  "doctor" : {
+    "humanType" : "doctor",
+    "name" : "Muhammad Ibrahim",
+    "dateOfBirth" : [ 1991, 3, 31 ],
+    "nricFin" : "T0379862Z",
+    "maritalStatus" : "MARRIED",
+    "residentialStatus" : "VISITOR",
+    "nationality" : "Singaporean",
+    "address" : "Blk 803 Yishun Ring Road 7, #46-130, Singapore 480176",
+    "contact" : {
+      "personalPhone" : "91424177",
+      "homePhone" : "63197609",
+      "companyPhone" : "68595222",
+      "email" : "user593@hotmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "O_NEGATIVE",
+    "isVaccinated" : false,
+    "staffId" : "SE055E1F8",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M51096A",
+    "humanType" : "doctor"
+  },
+  "consult_type" : "SPECIALIZED_CONSULTATION",
+  "time" : [ 2025, 3, 15, 17, 58, 26, 594836900 ],
+  "fee" : 54,
+  "diagnostic_codes" : [ {
+    "type" : "diagnostic",
+    "code" : "E662",
+    "cost" : 461
+  }, {
+    "type" : "diagnostic",
+    "code" : "Q443",
+    "cost" : 300
+  } ],
+  "procedure_codes" : [ {
+    "type" : "procedure",
+    "code" : "DWY5FZZ",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "B31D0ZZ",
+    "cost" : 1000.00
+  } ],
+  "prescriptions" : {
+    "D0252" : 3,
+    "D0151" : 3,
+    "D0112" : 2
+  }
+}, {
+  "consultationId" : "C17434151069330595",
+  "medicalHistory" : "No significant medical history.",
+  "diagnosis" : "Respiratory infection",
+  "visitReason" : "Skin rash",
+  "instructions" : "Follow the diet plan provided. Schedule follow-up in 2 weeks.",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Wee Jun Kiat",
+    "dateOfBirth" : [ 1981, 3, 31 ],
+    "nricFin" : "S8673872D",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "VISITOR",
+    "nationality" : "Singaporean",
+    "address" : "Blk 338 Punggol Way 9, #14-90, Singapore 489245",
+    "contact" : {
+      "personalPhone" : "92151951",
+      "homePhone" : "67800554",
+      "companyPhone" : "67715273",
+      "email" : "user766@gmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "O_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-2025EE13B8F3",
+    "drugAllergies" : [ ],
+    "nokName" : "Aisha Fatimah",
+    "nokAddress" : "Blk 630 Tampines St 8, #13-934, Singapore 565177",
+    "nokRelation" : "Legal Guardian",
+    "height" : 1.5236372252780808,
+    "weight" : 86.97440927438923,
+    "occupation" : "Artist",
+    "companyName" : "OCBC Bank",
+    "companyAddress" : "Blk 367 Jurong East Ave 12, #25-942, Singapore 568519",
+    "patientConsent" : true,
+    "humanType" : "patient"
+  },
+  "doctor" : {
+    "humanType" : "doctor",
+    "name" : "Tan Wei Ming",
+    "dateOfBirth" : [ 1987, 3, 31 ],
+    "nricFin" : "S7783555E",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 137 Tampines St 5, #43-343, Singapore 470623",
+    "contact" : {
+      "personalPhone" : "98769829",
+      "homePhone" : "60253282",
+      "companyPhone" : "64308102",
+      "email" : "user968@gmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "O_NEGATIVE",
+    "isVaccinated" : true,
+    "staffId" : "SE7AA98FE",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M63927A",
+    "humanType" : "doctor"
+  },
+  "consult_type" : "REGULAR_CONSULTATION",
+  "time" : [ 2025, 3, 13, 17, 58, 26, 933050000 ],
+  "fee" : 57,
+  "diagnostic_codes" : [ {
+    "type" : "diagnostic",
+    "code" : "E6609",
+    "cost" : 459
+  }, {
+    "type" : "diagnostic",
+    "code" : "A3781",
+    "cost" : 230
+  } ],
+  "procedure_codes" : [ {
+    "type" : "procedure",
+    "code" : "DP092ZZ",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "B3000ZZ",
+    "cost" : 1000.00
+  } ],
+  "prescriptions" : {
+    "D0252" : 1,
+    "D0084" : 3,
+    "D0151" : 3
+  }
+}, {
+  "consultationId" : "C17434151072739658",
+  "medicalHistory" : "History of hypertension.",
+  "diagnosis" : "Common cold",
+  "visitReason" : "Regular check-up",
+  "instructions" : "Increase fluid intake. Monitor symptoms.",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Divya Singh",
+    "dateOfBirth" : [ 2001, 3, 31 ],
+    "nricFin" : "G6810283P",
+    "maritalStatus" : "MARRIED",
+    "residentialStatus" : "DEPENDENT_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 271 Tampines St 2, #30-529, Singapore 529162",
+    "contact" : {
+      "personalPhone" : "92274513",
+      "homePhone" : "62904451",
+      "companyPhone" : "62955019",
+      "email" : "user828@gmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "A_NEGATIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-2025160267C6",
+    "drugAllergies" : [ "None" ],
+    "nokName" : "Ong Li Ting",
+    "nokAddress" : "Blk 175 Jurong East Ave 5, #38-86, Singapore 535298",
+    "nokRelation" : "Legal Guardian",
+    "height" : 1.5327099886327324,
+    "weight" : 78.6740200323653,
+    "occupation" : "Chef",
+    "companyName" : "ST Engineering",
+    "companyAddress" : "Blk 933 Tampines St 3, #35-716, Singapore 515031",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "doctor" : {
+    "humanType" : "doctor",
+    "name" : "Lee Hui Ling",
+    "dateOfBirth" : [ 1981, 3, 31 ],
+    "nricFin" : "F0052106W",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "VISITOR",
+    "nationality" : "Singaporean",
+    "address" : "Blk 153 Jurong East Ave 1, #50-366, Singapore 509219",
+    "contact" : {
+      "personalPhone" : "93765241",
+      "homePhone" : "62551922",
+      "companyPhone" : "66880759",
+      "email" : "user591@hotmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "A_POSITIVE",
+    "isVaccinated" : false,
+    "staffId" : "SD5F94C24",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M95928A",
+    "humanType" : "doctor"
+  },
+  "consult_type" : "NEW_CONSULTATION",
+  "time" : [ 2025, 3, 12, 17, 58, 27, 273800200 ],
+  "fee" : 118,
+  "diagnostic_codes" : [ {
+    "type" : "diagnostic",
+    "code" : "N184",
+    "cost" : 270
+  }, {
+    "type" : "diagnostic",
+    "code" : "M84629D",
+    "cost" : 447
+  } ],
+  "procedure_codes" : [ {
+    "type" : "procedure",
+    "code" : "DP0C4ZZ",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "B92DYZZ",
+    "cost" : 1000.00
+  } ],
+  "prescriptions" : {
+    "D0252" : 1,
+    "D0151" : 3,
+    "D0030" : 3
+  }
+}, {
+  "consultationId" : "C17434151076124919",
+  "medicalHistory" : "Type 2 diabetes diagnosed 5 years ago.",
+  "diagnosis" : "Anxiety disorder",
+  "visitReason" : "Medication review",
+  "instructions" : "Avoid strenuous activity for one week.",
+  "patient" : {
+    "humanType" : "patient",
+    "name" : "Rohan Aand",
+    "dateOfBirth" : [ 1997, 3, 31 ],
+    "nricFin" : "F1692551U",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "DEPENDENT_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 362 Serangoon Road 11, #35-468, Singapore 484525",
+    "contact" : {
+      "personalPhone" : "99820186",
+      "homePhone" : "68118803",
+      "companyPhone" : "67990822",
+      "email" : "user606@gmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "B_POSITIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-2025C3C3450A",
+    "drugAllergies" : [ ],
+    "nokName" : "Wee Jun Kiat",
+    "nokAddress" : "Blk 637 Tampines St 6, #23-641, Singapore 561103",
+    "nokRelation" : "Other",
+    "height" : 1.7999791089456616,
+    "weight" : 53.95317184374033,
+    "occupation" : "Chef",
+    "companyName" : "Singapore Airlines",
+    "companyAddress" : "Blk 806 Jurong East Ave 4, #11-336, Singapore 524464",
+    "patientConsent" : true,
+    "humanType" : "patient"
+  },
+  "doctor" : {
+    "humanType" : "doctor",
+    "name" : "Siti Nurhaliza",
+    "dateOfBirth" : [ 2003, 3, 31 ],
+    "nricFin" : "S8568226A",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "CITIZEN",
+    "nationality" : "Singaporean",
+    "address" : "Blk 362 Punggol Way 11, #06-251, Singapore 537117",
+    "contact" : {
+      "personalPhone" : "94238993",
+      "homePhone" : "67001184",
+      "companyPhone" : "60203055",
+      "email" : "user668@gmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "A_POSITIVE",
+    "isVaccinated" : false,
+    "staffId" : "S03EEBC9B",
+    "title" : "Doctor",
+    "department" : "Medical",
+    "mcr" : "M74097A",
+    "humanType" : "doctor"
+  },
+  "consult_type" : "REGULAR_CONSULTATION",
+  "time" : [ 2025, 3, 28, 17, 58, 27, 612173800 ],
+  "fee" : 53,
+  "diagnostic_codes" : [ {
+    "type" : "diagnostic",
+    "code" : "J45901",
+    "cost" : 171
+  }, {
+    "type" : "diagnostic",
+    "code" : "V569XXS",
+    "cost" : 311
+  } ],
+  "procedure_codes" : [ {
+    "type" : "procedure",
+    "code" : "C23GYZZ",
+    "cost" : 1000.00
+  }, {
+    "type" : "procedure",
+    "code" : "BF5020Z",
+    "cost" : 1000.00
+  } ],
+  "prescriptions" : {
+    "D0252" : 2,
+    "D0012" : 2,
+    "D0151" : 1
+  }
+} ]

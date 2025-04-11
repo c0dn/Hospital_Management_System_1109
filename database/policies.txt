@@ -1,0 +1,2966 @@
+[ {
+  "policyNumber" : "PRIV-716862",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Rohan Aand",
+    "dateOfBirth" : [ 1969, 3, 31 ],
+    "nricFin" : "F7938381M",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 198 Yishun Ring Road 8, #39-637, Singapore 479924",
+    "contact" : {
+      "personalPhone" : "96346499",
+      "homePhone" : "64799817",
+      "companyPhone" : "69927229",
+      "email" : "user170@hotmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "A_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-202599EA99FD",
+    "drugAllergies" : [ "Penicillin", "Ibuprofen" ],
+    "nokName" : "Aisha Aand",
+    "nokAddress" : "Blk 123 Jurong East Ave 4, #49-313, Singapore 515697",
+    "nokRelation" : "Sibling",
+    "height" : 1.614702822279868,
+    "weight" : 98.55261514760099,
+    "occupation" : "Teacher",
+    "companyName" : "ComfortDelGro",
+    "companyAddress" : "Blk 233 Bedok North St 1, #14-692, Singapore 492051",
+    "patientConsent" : true,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 702868,
+      "lifetimeLimit" : 7768769,
+      "benefitLimits" : {
+        "ONCOLOGY_TREATMENTS" : 14518,
+        "DIAGNOSTIC_IMAGING" : 4384,
+        "HOSPITALIZATION" : 3169,
+        "SURGERY" : 64149
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_B1" : 118994,
+        "GENERAL_CLASS_A" : 202307,
+        "GENERAL_CLASS_C" : 181988
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 4748,
+    "coinsurance" : 0.19,
+    "deathBenefitAmount" : 0,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "CHRONIC_CONDITIONS", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z41\\.1", "Z51\\.*", "Z34\\.*", "Z52\\.*" ],
+      "excludedProcedurePatterns" : [ "0BH.*", "0FJ.*", "0DJ.*", "0BJ.*" ],
+      "excludedBenefits" : [ "ACCIDENT", "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY", "PERMANENT_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "private",
+    "providerName" : "Private Provider"
+  },
+  "name" : "AccidentCare Plus",
+  "expirationDate" : [ 2027, 12, 15, 17, 58, 13, 485994900 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "GOVT-0990045053-P-2025A25CC921",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Wee Jun Kiat",
+    "dateOfBirth" : [ 1992, 3, 31 ],
+    "nricFin" : "G9620713T",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "PERMANENT_RESIDENT",
+    "nationality" : "Singaporean",
+    "address" : "Blk 481 Punggol Way 1, #39-950, Singapore 531460",
+    "contact" : {
+      "personalPhone" : "90270277",
+      "homePhone" : "64317738",
+      "companyPhone" : "60503704",
+      "email" : "user523@hotmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "A_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-2025A25CC921",
+    "drugAllergies" : [ ],
+    "nokName" : "Wee Kiat",
+    "nokAddress" : "Blk 678 Jurong East Ave 3, #29-666, Singapore 526215",
+    "nokRelation" : "Grandchild",
+    "height" : 1.533188638030537,
+    "weight" : 63.38942232325335,
+    "occupation" : "Engineer",
+    "companyName" : "Singtel",
+    "companyAddress" : "Blk 643 Yishun Ring Road 7, #06-907, Singapore 536632",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "composite",
+    "coverages" : [ {
+      "type" : "base",
+      "limits" : {
+        "annualLimit" : 150000,
+        "lifetimeLimit" : 2000000,
+        "benefitLimits" : {
+          "ACCIDENT" : 150000,
+          "ONCOLOGY_TREATMENTS" : 3000,
+          "HOSPITALIZATION" : 1200,
+          "SURGERY" : 4500
+        },
+        "wardLimits" : {
+          "GENERAL_CLASS_C" : 150000,
+          "GENERAL_CLASS_B2" : 150000
+        },
+        "accidentSubLimits" : { }
+      },
+      "deductible" : 1500,
+      "coinsurance" : 0.1,
+      "deathBenefitAmount" : 100000,
+      "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+      "exclusions" : {
+        "excludedDiagnosisPatterns" : [ "Z00.*", "Z41\\.1", "E66\\..*" ],
+        "excludedProcedurePatterns" : [ "0B[HJQ]", "3E0.*" ],
+        "excludedBenefits" : [ "DENTAL", "MATERNITY" ],
+        "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY" ]
+      }
+    }, {
+      "type" : "base",
+      "limits" : {
+        "annualLimit" : 50000,
+        "benefitLimits" : {
+          "CRITICAL_ILLNESS" : 120000
+        },
+        "wardLimits" : { },
+        "accidentSubLimits" : {
+          "PERMANENT_DISABILITY" : 600
+        }
+      },
+      "deductible" : 0,
+      "coinsurance" : 0.05,
+      "deathBenefitAmount" : 50000,
+      "coveredBenefits" : [ "CRITICAL_ILLNESS", "PREVENTIVE_CARE" ],
+      "exclusions" : {
+        "excludedDiagnosisPatterns" : [ "^M1[5-9]\\..*", "^N18\\..*", "^K7[0-4]\\..*", "^I1[0-5]\\..*", "^B20\\..*", "^C3[0-4]\\..*", "^F2[0-9]\\..*", "^E1[0-4]\\..*", "^J4[0-5]\\..*" ],
+        "excludedProcedurePatterns" : [ ],
+        "excludedBenefits" : [ "MINOR_SURGERY" ],
+        "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY" ]
+      }
+    } ]
+  },
+  "provider" : {
+    "type" : "government",
+    "providerName" : "Gov Provider"
+  },
+  "name" : "Government base policy",
+  "expirationDate" : [ 2026, 3, 31, 17, 58, 13, 487998600 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "PRIV-834742",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Wee Jun Kiat",
+    "dateOfBirth" : [ 1992, 3, 31 ],
+    "nricFin" : "G9620713T",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "PERMANENT_RESIDENT",
+    "nationality" : "Singaporean",
+    "address" : "Blk 481 Punggol Way 1, #39-950, Singapore 531460",
+    "contact" : {
+      "personalPhone" : "90270277",
+      "homePhone" : "64317738",
+      "companyPhone" : "60503704",
+      "email" : "user523@hotmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "A_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-2025A25CC921",
+    "drugAllergies" : [ ],
+    "nokName" : "Wee Kiat",
+    "nokAddress" : "Blk 678 Jurong East Ave 3, #29-666, Singapore 526215",
+    "nokRelation" : "Grandchild",
+    "height" : 1.533188638030537,
+    "weight" : 63.38942232325335,
+    "occupation" : "Engineer",
+    "companyName" : "Singtel",
+    "companyAddress" : "Blk 643 Yishun Ring Road 7, #06-907, Singapore 536632",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 801582,
+      "lifetimeLimit" : 7202744,
+      "benefitLimits" : {
+        "ONCOLOGY_TREATMENTS" : 5906,
+        "DIAGNOSTIC_IMAGING" : 2427,
+        "HOSPITALIZATION" : 6529,
+        "SURGERY" : 27978
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_B1" : 159154,
+        "GENERAL_CLASS_A" : 283943,
+        "GENERAL_CLASS_C" : 133745
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 3164,
+    "coinsurance" : 0.21,
+    "deathBenefitAmount" : 0,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "CHRONIC_CONDITIONS", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z41\\.1", "Z51\\.*", "Z34\\.*", "Z52\\.*" ],
+      "excludedProcedurePatterns" : [ "0BH.*", "0FJ.*", "0DJ.*", "0BJ.*" ],
+      "excludedBenefits" : [ "ACCIDENT", "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY", "PERMANENT_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "private",
+    "providerName" : "Private Provider"
+  },
+  "name" : "Elite Health Plus",
+  "expirationDate" : [ 2028, 10, 31, 17, 58, 13, 487998600 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "GOVT-0625015895-P-20257538E2AF",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Wee Jun Kiat",
+    "dateOfBirth" : [ 1989, 3, 31 ],
+    "nricFin" : "S6471596H",
+    "maritalStatus" : "MARRIED",
+    "residentialStatus" : "CITIZEN",
+    "nationality" : "Singaporean",
+    "address" : "Blk 858 Serangoon Road 7, #23-315, Singapore 463516",
+    "contact" : {
+      "personalPhone" : "96863396",
+      "homePhone" : "61951675",
+      "companyPhone" : "61241051",
+      "email" : "user869@gmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "AB_POSITIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-20257538E2AF",
+    "drugAllergies" : [ "Sulfa", "Aspirin" ],
+    "nokName" : "Lim Kiat",
+    "nokAddress" : "Blk 135 Serangoon Road 8, #26-776, Singapore 545183",
+    "nokRelation" : "Child",
+    "height" : 1.6192546497518414,
+    "weight" : 56.02301201985263,
+    "occupation" : "Chef",
+    "companyName" : "ST Engineering",
+    "companyAddress" : "Blk 477 Yishun Ring Road 11, #05-93, Singapore 463106",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "composite",
+    "coverages" : [ {
+      "type" : "base",
+      "limits" : {
+        "annualLimit" : 150000,
+        "lifetimeLimit" : 2000000,
+        "benefitLimits" : {
+          "ACCIDENT" : 150000,
+          "ONCOLOGY_TREATMENTS" : 3000,
+          "HOSPITALIZATION" : 1200,
+          "SURGERY" : 4500
+        },
+        "wardLimits" : {
+          "GENERAL_CLASS_C" : 150000,
+          "GENERAL_CLASS_B2" : 150000
+        },
+        "accidentSubLimits" : { }
+      },
+      "deductible" : 1500,
+      "coinsurance" : 0.1,
+      "deathBenefitAmount" : 100000,
+      "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+      "exclusions" : {
+        "excludedDiagnosisPatterns" : [ "Z00.*", "Z41\\.1", "E66\\..*" ],
+        "excludedProcedurePatterns" : [ "0B[HJQ]", "3E0.*" ],
+        "excludedBenefits" : [ "DENTAL", "MATERNITY" ],
+        "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY" ]
+      }
+    }, {
+      "type" : "base",
+      "limits" : {
+        "annualLimit" : 50000,
+        "benefitLimits" : {
+          "CRITICAL_ILLNESS" : 120000
+        },
+        "wardLimits" : { },
+        "accidentSubLimits" : {
+          "PERMANENT_DISABILITY" : 600
+        }
+      },
+      "deductible" : 0,
+      "coinsurance" : 0.05,
+      "deathBenefitAmount" : 50000,
+      "coveredBenefits" : [ "CRITICAL_ILLNESS", "PREVENTIVE_CARE" ],
+      "exclusions" : {
+        "excludedDiagnosisPatterns" : [ "^M1[5-9]\\..*", "^N18\\..*", "^K7[0-4]\\..*", "^I1[0-5]\\..*", "^B20\\..*", "^C3[0-4]\\..*", "^F2[0-9]\\..*", "^E1[0-4]\\..*", "^J4[0-5]\\..*" ],
+        "excludedProcedurePatterns" : [ ],
+        "excludedBenefits" : [ "MINOR_SURGERY" ],
+        "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY" ]
+      }
+    } ]
+  },
+  "provider" : {
+    "type" : "government",
+    "providerName" : "Gov Provider"
+  },
+  "name" : "Government base policy",
+  "expirationDate" : [ 2026, 3, 31, 17, 58, 13, 487998600 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "PRIV-592729",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Wee Jun Kiat",
+    "dateOfBirth" : [ 1989, 3, 31 ],
+    "nricFin" : "S6471596H",
+    "maritalStatus" : "MARRIED",
+    "residentialStatus" : "CITIZEN",
+    "nationality" : "Singaporean",
+    "address" : "Blk 858 Serangoon Road 7, #23-315, Singapore 463516",
+    "contact" : {
+      "personalPhone" : "96863396",
+      "homePhone" : "61951675",
+      "companyPhone" : "61241051",
+      "email" : "user869@gmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "AB_POSITIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-20257538E2AF",
+    "drugAllergies" : [ "Sulfa", "Aspirin" ],
+    "nokName" : "Lim Kiat",
+    "nokAddress" : "Blk 135 Serangoon Road 8, #26-776, Singapore 545183",
+    "nokRelation" : "Child",
+    "height" : 1.6192546497518414,
+    "weight" : 56.02301201985263,
+    "occupation" : "Chef",
+    "companyName" : "ST Engineering",
+    "companyAddress" : "Blk 477 Yishun Ring Road 11, #05-93, Singapore 463106",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 795826,
+      "lifetimeLimit" : 3231556,
+      "benefitLimits" : {
+        "ONCOLOGY_TREATMENTS" : 10438,
+        "DIAGNOSTIC_IMAGING" : 2091,
+        "HOSPITALIZATION" : 8804,
+        "SURGERY" : 71640
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_B1" : 136397,
+        "GENERAL_CLASS_A" : 188105,
+        "GENERAL_CLASS_C" : 114698
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 3823,
+    "coinsurance" : 0.13,
+    "deathBenefitAmount" : 0,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "CHRONIC_CONDITIONS", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z41\\.1", "Z51\\.*", "Z34\\.*", "Z52\\.*" ],
+      "excludedProcedurePatterns" : [ "0BH.*", "0FJ.*", "0DJ.*", "0BJ.*" ],
+      "excludedBenefits" : [ "ACCIDENT", "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY", "PERMANENT_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "private",
+    "providerName" : "Private Provider"
+  },
+  "name" : "AccidentCare Plus",
+  "expirationDate" : [ 2030, 8, 1, 17, 58, 13, 487998600 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "GOVT-0890749203-P-2025B4860C70",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Ong Li Ting",
+    "dateOfBirth" : [ 1982, 3, 31 ],
+    "nricFin" : "F0772935U",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "PERMANENT_RESIDENT",
+    "nationality" : "Singaporean",
+    "address" : "Blk 107 Yishun Ring Road 1, #42-952, Singapore 559306",
+    "contact" : {
+      "personalPhone" : "92493103",
+      "homePhone" : "61224364",
+      "companyPhone" : "60750941",
+      "email" : "user585@hotmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "O_NEGATIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-2025B4860C70",
+    "drugAllergies" : [ ],
+    "nokName" : "Wee Ting",
+    "nokAddress" : "Blk 289 Punggol Way 5, #08-480, Singapore 493633",
+    "nokRelation" : "Child",
+    "height" : 1.8928656073940249,
+    "weight" : 85.83733834479574,
+    "occupation" : "Engineer",
+    "companyName" : "ComfortDelGro",
+    "companyAddress" : "Blk 746 Ang Mo Kio Ave 1, #49-356, Singapore 474765",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "composite",
+    "coverages" : [ {
+      "type" : "base",
+      "limits" : {
+        "annualLimit" : 150000,
+        "lifetimeLimit" : 2000000,
+        "benefitLimits" : {
+          "ACCIDENT" : 150000,
+          "ONCOLOGY_TREATMENTS" : 3000,
+          "HOSPITALIZATION" : 1200,
+          "SURGERY" : 4500
+        },
+        "wardLimits" : {
+          "GENERAL_CLASS_C" : 150000,
+          "GENERAL_CLASS_B2" : 150000
+        },
+        "accidentSubLimits" : { }
+      },
+      "deductible" : 1500,
+      "coinsurance" : 0.1,
+      "deathBenefitAmount" : 100000,
+      "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+      "exclusions" : {
+        "excludedDiagnosisPatterns" : [ "Z00.*", "Z41\\.1", "E66\\..*" ],
+        "excludedProcedurePatterns" : [ "0B[HJQ]", "3E0.*" ],
+        "excludedBenefits" : [ "DENTAL", "MATERNITY" ],
+        "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY" ]
+      }
+    }, {
+      "type" : "base",
+      "limits" : {
+        "annualLimit" : 50000,
+        "benefitLimits" : {
+          "CRITICAL_ILLNESS" : 120000
+        },
+        "wardLimits" : { },
+        "accidentSubLimits" : {
+          "PERMANENT_DISABILITY" : 600
+        }
+      },
+      "deductible" : 0,
+      "coinsurance" : 0.05,
+      "deathBenefitAmount" : 50000,
+      "coveredBenefits" : [ "CRITICAL_ILLNESS", "PREVENTIVE_CARE" ],
+      "exclusions" : {
+        "excludedDiagnosisPatterns" : [ "^M1[5-9]\\..*", "^N18\\..*", "^K7[0-4]\\..*", "^I1[0-5]\\..*", "^B20\\..*", "^C3[0-4]\\..*", "^F2[0-9]\\..*", "^E1[0-4]\\..*", "^J4[0-5]\\..*" ],
+        "excludedProcedurePatterns" : [ ],
+        "excludedBenefits" : [ "MINOR_SURGERY" ],
+        "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY" ]
+      }
+    } ]
+  },
+  "provider" : {
+    "type" : "government",
+    "providerName" : "Gov Provider"
+  },
+  "name" : "Government base policy",
+  "expirationDate" : [ 2026, 3, 31, 17, 58, 13, 487998600 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "PRIV-823100",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Ong Li Ting",
+    "dateOfBirth" : [ 1982, 3, 31 ],
+    "nricFin" : "F0772935U",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "PERMANENT_RESIDENT",
+    "nationality" : "Singaporean",
+    "address" : "Blk 107 Yishun Ring Road 1, #42-952, Singapore 559306",
+    "contact" : {
+      "personalPhone" : "92493103",
+      "homePhone" : "61224364",
+      "companyPhone" : "60750941",
+      "email" : "user585@hotmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "O_NEGATIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-2025B4860C70",
+    "drugAllergies" : [ ],
+    "nokName" : "Wee Ting",
+    "nokAddress" : "Blk 289 Punggol Way 5, #08-480, Singapore 493633",
+    "nokRelation" : "Child",
+    "height" : 1.8928656073940249,
+    "weight" : 85.83733834479574,
+    "occupation" : "Engineer",
+    "companyName" : "ComfortDelGro",
+    "companyAddress" : "Blk 746 Ang Mo Kio Ave 1, #49-356, Singapore 474765",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 505149,
+      "lifetimeLimit" : 9965228,
+      "benefitLimits" : {
+        "ONCOLOGY_TREATMENTS" : 15301,
+        "DIAGNOSTIC_IMAGING" : 1943,
+        "HOSPITALIZATION" : 7384,
+        "SURGERY" : 93481
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_B1" : 134720,
+        "GENERAL_CLASS_A" : 160184,
+        "GENERAL_CLASS_C" : 122813
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 1059,
+    "coinsurance" : 0.21,
+    "deathBenefitAmount" : 0,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "CHRONIC_CONDITIONS", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z41\\.1", "Z51\\.*", "Z34\\.*", "Z52\\.*" ],
+      "excludedProcedurePatterns" : [ "0BH.*", "0FJ.*", "0DJ.*", "0BJ.*" ],
+      "excludedBenefits" : [ "ACCIDENT", "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY", "PERMANENT_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "private",
+    "providerName" : "Private Provider"
+  },
+  "name" : "PRUShield",
+  "expirationDate" : [ 2030, 7, 17, 17, 58, 13, 487998600 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "PRIV-326992",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Aisha Fatimah",
+    "dateOfBirth" : [ 2001, 3, 31 ],
+    "nricFin" : "F0635934P",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "DEPENDENT_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 206 Ang Mo Kio Ave 8, #10-139, Singapore 537762",
+    "contact" : {
+      "personalPhone" : "94144640",
+      "homePhone" : "61229078",
+      "companyPhone" : "62784718",
+      "email" : "user985@gmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "B_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-20259330D578",
+    "drugAllergies" : [ "None", "Sulfa" ],
+    "nokName" : "Aisha Fatimah",
+    "nokAddress" : "Blk 911 Punggol Way 1, #31-859, Singapore 482562",
+    "nokRelation" : "Grandchild",
+    "height" : 1.6139883232607874,
+    "weight" : 74.81116702469787,
+    "occupation" : "Engineer",
+    "companyName" : "Keppel Corporation",
+    "companyAddress" : "Blk 752 Ang Mo Kio Ave 5, #15-286, Singapore 562250",
+    "patientConsent" : true,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 411071,
+      "lifetimeLimit" : 5003522,
+      "benefitLimits" : {
+        "ONCOLOGY_TREATMENTS" : 18728,
+        "DIAGNOSTIC_IMAGING" : 4483,
+        "HOSPITALIZATION" : 2933,
+        "SURGERY" : 70403
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_B1" : 173729,
+        "GENERAL_CLASS_A" : 277521,
+        "GENERAL_CLASS_C" : 171666
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 4508,
+    "coinsurance" : 0.23,
+    "deathBenefitAmount" : 0,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "CHRONIC_CONDITIONS", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z41\\.1", "Z51\\.*", "Z34\\.*", "Z52\\.*" ],
+      "excludedProcedurePatterns" : [ "0BH.*", "0FJ.*", "0DJ.*", "0BJ.*" ],
+      "excludedBenefits" : [ "ACCIDENT", "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY", "PERMANENT_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "private",
+    "providerName" : "Private Provider"
+  },
+  "name" : "HealthShield Gold Max",
+  "expirationDate" : [ 2029, 12, 31, 17, 58, 13, 487998600 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "GOVT-0746739396-P-202591070421",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Lim Boon Teck",
+    "dateOfBirth" : [ 1979, 3, 31 ],
+    "nricFin" : "S8701624B",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "PERMANENT_RESIDENT",
+    "nationality" : "Singaporean",
+    "address" : "Blk 146 Yishun Ring Road 4, #49-600, Singapore 467973",
+    "contact" : {
+      "personalPhone" : "96116981",
+      "homePhone" : "63742209",
+      "companyPhone" : "60690135",
+      "email" : "user756@gmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "AB_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-202591070421",
+    "drugAllergies" : [ "None" ],
+    "nokName" : "Wee Teck",
+    "nokAddress" : "Blk 617 Jurong East Ave 6, #25-688, Singapore 530390",
+    "nokRelation" : "Grandchild",
+    "height" : 1.5500105677940317,
+    "weight" : 57.11862625900153,
+    "occupation" : "Engineer",
+    "companyName" : "ST Engineering",
+    "companyAddress" : "Blk 873 Yishun Ring Road 7, #31-316, Singapore 492668",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 150000,
+      "lifetimeLimit" : 2000000,
+      "benefitLimits" : {
+        "ACCIDENT" : 150000,
+        "ONCOLOGY_TREATMENTS" : 3000,
+        "HOSPITALIZATION" : 1200,
+        "SURGERY" : 4500
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_C" : 150000,
+        "GENERAL_CLASS_B2" : 150000
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 1500,
+    "coinsurance" : 0.1,
+    "deathBenefitAmount" : 100000,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z00.*", "Z41\\.1", "E66\\..*" ],
+      "excludedProcedurePatterns" : [ "0B[HJQ]", "3E0.*" ],
+      "excludedBenefits" : [ "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "government",
+    "providerName" : "Gov Provider"
+  },
+  "name" : "Government base policy",
+  "expirationDate" : [ 2026, 3, 31, 17, 58, 13, 487998600 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "PRIV-765812",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Lim Boon Teck",
+    "dateOfBirth" : [ 1979, 3, 31 ],
+    "nricFin" : "S8701624B",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "PERMANENT_RESIDENT",
+    "nationality" : "Singaporean",
+    "address" : "Blk 146 Yishun Ring Road 4, #49-600, Singapore 467973",
+    "contact" : {
+      "personalPhone" : "96116981",
+      "homePhone" : "63742209",
+      "companyPhone" : "60690135",
+      "email" : "user756@gmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "AB_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-202591070421",
+    "drugAllergies" : [ "None" ],
+    "nokName" : "Wee Teck",
+    "nokAddress" : "Blk 617 Jurong East Ave 6, #25-688, Singapore 530390",
+    "nokRelation" : "Grandchild",
+    "height" : 1.5500105677940317,
+    "weight" : 57.11862625900153,
+    "occupation" : "Engineer",
+    "companyName" : "ST Engineering",
+    "companyAddress" : "Blk 873 Yishun Ring Road 7, #31-316, Singapore 492668",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 425229,
+      "lifetimeLimit" : 3878431,
+      "benefitLimits" : {
+        "ONCOLOGY_TREATMENTS" : 17516,
+        "DIAGNOSTIC_IMAGING" : 3269,
+        "HOSPITALIZATION" : 3766,
+        "SURGERY" : 37597
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_B1" : 188655,
+        "GENERAL_CLASS_A" : 215158,
+        "GENERAL_CLASS_C" : 193257
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 4355,
+    "coinsurance" : 0.1,
+    "deathBenefitAmount" : 0,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "CHRONIC_CONDITIONS", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z41\\.1", "Z51\\.*", "Z34\\.*", "Z52\\.*" ],
+      "excludedProcedurePatterns" : [ "0BH.*", "0FJ.*", "0DJ.*", "0BJ.*" ],
+      "excludedBenefits" : [ "ACCIDENT", "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY", "PERMANENT_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "private",
+    "providerName" : "Private Provider"
+  },
+  "name" : "Critical Illness Plus",
+  "expirationDate" : [ 2026, 4, 2, 17, 58, 13, 488998800 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "PRIV-185788",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Lim Boon Teck",
+    "dateOfBirth" : [ 1989, 3, 31 ],
+    "nricFin" : "T1094572G",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "DEPENDENT_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 797 Jurong East Ave 5, #40-84, Singapore 563900",
+    "contact" : {
+      "personalPhone" : "94658456",
+      "homePhone" : "69718041",
+      "companyPhone" : "67105279",
+      "email" : "user646@hotmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "A_POSITIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-20256A732A74",
+    "drugAllergies" : [ "Ibuprofen" ],
+    "nokName" : "Aisha Teck",
+    "nokAddress" : "Blk 103 Bedok North St 7, #25-726, Singapore 537440",
+    "nokRelation" : "Grandchild",
+    "height" : 1.9179123293686717,
+    "weight" : 65.20790122135118,
+    "occupation" : "Engineer",
+    "companyName" : "DBS Bank",
+    "companyAddress" : "Blk 294 Tampines St 6, #39-182, Singapore 474646",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 850869,
+      "lifetimeLimit" : 5503835,
+      "benefitLimits" : {
+        "ONCOLOGY_TREATMENTS" : 14154,
+        "DIAGNOSTIC_IMAGING" : 4807,
+        "HOSPITALIZATION" : 9329,
+        "SURGERY" : 31614
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_B1" : 110178,
+        "GENERAL_CLASS_A" : 236257,
+        "GENERAL_CLASS_C" : 154081
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 4898,
+    "coinsurance" : 0.25,
+    "deathBenefitAmount" : 0,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "CHRONIC_CONDITIONS", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z41\\.1", "Z51\\.*", "Z34\\.*", "Z52\\.*" ],
+      "excludedProcedurePatterns" : [ "0BH.*", "0FJ.*", "0DJ.*", "0BJ.*" ],
+      "excludedBenefits" : [ "ACCIDENT", "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY", "PERMANENT_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "private",
+    "providerName" : "Private Provider"
+  },
+  "name" : "Enhanced IncomeShield",
+  "expirationDate" : [ 2028, 4, 23, 17, 58, 13, 488998800 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "PRIV-245976",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Muhammad Danial",
+    "dateOfBirth" : [ 1990, 3, 31 ],
+    "nricFin" : "T5488260I",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "DEPENDENT_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 215 Punggol Way 6, #03-367, Singapore 526594",
+    "contact" : {
+      "personalPhone" : "92009105",
+      "homePhone" : "61049456",
+      "companyPhone" : "65716625",
+      "email" : "user499@gmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "B_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-202573189CAB",
+    "drugAllergies" : [ "None" ],
+    "nokName" : "Ong Li Ting",
+    "nokAddress" : "Blk 188 Punggol Way 12, #12-565, Singapore 476061",
+    "nokRelation" : "Grandparent",
+    "height" : 1.9740712930708253,
+    "weight" : 76.93100958730554,
+    "occupation" : "Chef",
+    "companyName" : "Keppel Corporation",
+    "companyAddress" : "Blk 366 Jurong East Ave 2, #21-559, Singapore 490060",
+    "patientConsent" : true,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 414338,
+      "lifetimeLimit" : 8507498,
+      "benefitLimits" : {
+        "ONCOLOGY_TREATMENTS" : 8300,
+        "DIAGNOSTIC_IMAGING" : 1331,
+        "HOSPITALIZATION" : 5178,
+        "SURGERY" : 10628
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_B1" : 173517,
+        "GENERAL_CLASS_A" : 252318,
+        "GENERAL_CLASS_C" : 109394
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 1250,
+    "coinsurance" : 0.14,
+    "deathBenefitAmount" : 0,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "CHRONIC_CONDITIONS", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z41\\.1", "Z51\\.*", "Z34\\.*", "Z52\\.*" ],
+      "excludedProcedurePatterns" : [ "0BH.*", "0FJ.*", "0DJ.*", "0BJ.*" ],
+      "excludedBenefits" : [ "ACCIDENT", "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY", "PERMANENT_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "private",
+    "providerName" : "Private Provider"
+  },
+  "name" : "HealthShield Gold Max",
+  "expirationDate" : [ 2030, 11, 30, 17, 58, 13, 488998800 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "PRIV-407598",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Lim Boon Teck",
+    "dateOfBirth" : [ 1984, 3, 31 ],
+    "nricFin" : "T5110002B",
+    "maritalStatus" : "MARRIED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 833 Yishun Ring Road 11, #38-700, Singapore 498888",
+    "contact" : {
+      "personalPhone" : "91291533",
+      "homePhone" : "67546785",
+      "companyPhone" : "66717062",
+      "email" : "user723@gmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "B_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-2025829AEF7F",
+    "drugAllergies" : [ ],
+    "nokName" : "Wee Teck",
+    "nokAddress" : "Blk 732 Serangoon Road 12, #11-684, Singapore 531949",
+    "nokRelation" : "Spouse",
+    "height" : 1.67001620745312,
+    "weight" : 90.31115512260072,
+    "occupation" : "Programmer",
+    "companyName" : "ComfortDelGro",
+    "companyAddress" : "Blk 264 Serangoon Road 8, #10-988, Singapore 490010",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 581812,
+      "lifetimeLimit" : 6380327,
+      "benefitLimits" : {
+        "ONCOLOGY_TREATMENTS" : 7896,
+        "DIAGNOSTIC_IMAGING" : 2852,
+        "HOSPITALIZATION" : 5759,
+        "SURGERY" : 22106
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_B1" : 119682,
+        "GENERAL_CLASS_A" : 229511,
+        "GENERAL_CLASS_C" : 161060
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 3832,
+    "coinsurance" : 0.28,
+    "deathBenefitAmount" : 0,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "CHRONIC_CONDITIONS", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z41\\.1", "Z51\\.*", "Z34\\.*", "Z52\\.*" ],
+      "excludedProcedurePatterns" : [ "0BH.*", "0FJ.*", "0DJ.*", "0BJ.*" ],
+      "excludedBenefits" : [ "ACCIDENT", "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY", "PERMANENT_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "private",
+    "providerName" : "Private Provider"
+  },
+  "name" : "Enhanced IncomeShield",
+  "expirationDate" : [ 2029, 2, 15, 17, 58, 13, 488998800 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "PRIV-500964",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Muhammad Danial",
+    "dateOfBirth" : [ 1979, 3, 31 ],
+    "nricFin" : "G2473666R",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "VISITOR",
+    "nationality" : "Singaporean",
+    "address" : "Blk 206 Ang Mo Kio Ave 6, #03-249, Singapore 509920",
+    "contact" : {
+      "personalPhone" : "95108453",
+      "homePhone" : "66250024",
+      "companyPhone" : "63610818",
+      "email" : "user905@gmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "A_POSITIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-20258CC05B46",
+    "drugAllergies" : [ "Aspirin", "Sulfa" ],
+    "nokName" : "Divya Singh",
+    "nokAddress" : "Blk 451 Jurong East Ave 6, #25-281, Singapore 500788",
+    "nokRelation" : "Other",
+    "height" : 1.9601399200851664,
+    "weight" : 47.2084173276094,
+    "occupation" : "Programmer",
+    "companyName" : "OCBC Bank",
+    "companyAddress" : "Blk 922 Woodlands Drive 2, #04-49, Singapore 538935",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 175551,
+      "lifetimeLimit" : 4707772,
+      "benefitLimits" : {
+        "ONCOLOGY_TREATMENTS" : 19073,
+        "DIAGNOSTIC_IMAGING" : 3668,
+        "HOSPITALIZATION" : 2113,
+        "SURGERY" : 43791
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_B1" : 102649,
+        "GENERAL_CLASS_A" : 179842,
+        "GENERAL_CLASS_C" : 179075
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 3350,
+    "coinsurance" : 0.19,
+    "deathBenefitAmount" : 0,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "CHRONIC_CONDITIONS", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z41\\.1", "Z51\\.*", "Z34\\.*", "Z52\\.*" ],
+      "excludedProcedurePatterns" : [ "0BH.*", "0FJ.*", "0DJ.*", "0BJ.*" ],
+      "excludedBenefits" : [ "ACCIDENT", "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY", "PERMANENT_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "private",
+    "providerName" : "Private Provider"
+  },
+  "name" : "MultiPay Critical Illness",
+  "expirationDate" : [ 2026, 6, 11, 17, 58, 13, 488998800 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "PRIV-116546",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Wee Jun Kiat",
+    "dateOfBirth" : [ 2005, 3, 31 ],
+    "nricFin" : "T2527626J",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 722 Tampines St 9, #31-693, Singapore 490355",
+    "contact" : {
+      "personalPhone" : "96934153",
+      "homePhone" : "66268822",
+      "companyPhone" : "67316514",
+      "email" : "user943@gmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "B_POSITIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-2025814D9E82",
+    "drugAllergies" : [ ],
+    "nokName" : "Muhammad Kiat",
+    "nokAddress" : "Blk 782 Serangoon Road 7, #10-121, Singapore 522894",
+    "nokRelation" : "Sibling",
+    "height" : 1.8728282545290675,
+    "weight" : 90.59040786685202,
+    "occupation" : "Teacher",
+    "companyName" : "OCBC Bank",
+    "companyAddress" : "Blk 995 Jurong East Ave 11, #01-141, Singapore 489252",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 681520,
+      "lifetimeLimit" : 9425943,
+      "benefitLimits" : {
+        "ONCOLOGY_TREATMENTS" : 9810,
+        "DIAGNOSTIC_IMAGING" : 1378,
+        "HOSPITALIZATION" : 4347,
+        "SURGERY" : 87361
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_B1" : 127530,
+        "GENERAL_CLASS_A" : 224156,
+        "GENERAL_CLASS_C" : 168508
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 4205,
+    "coinsurance" : 0.26,
+    "deathBenefitAmount" : 0,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "CHRONIC_CONDITIONS", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z41\\.1", "Z51\\.*", "Z34\\.*", "Z52\\.*" ],
+      "excludedProcedurePatterns" : [ "0BH.*", "0FJ.*", "0DJ.*", "0BJ.*" ],
+      "excludedBenefits" : [ "ACCIDENT", "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY", "PERMANENT_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "private",
+    "providerName" : "Private Provider"
+  },
+  "name" : "Great Eastern Supreme Health",
+  "expirationDate" : [ 2026, 10, 26, 17, 58, 13, 488998800 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "GOVT-0234798088-P-20254E694D00",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Lim Boon Teck",
+    "dateOfBirth" : [ 1977, 3, 31 ],
+    "nricFin" : "G7476582W",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "CITIZEN",
+    "nationality" : "Singaporean",
+    "address" : "Blk 894 Punggol Way 9, #48-415, Singapore 568027",
+    "contact" : {
+      "personalPhone" : "91179537",
+      "homePhone" : "66521513",
+      "companyPhone" : "64757038",
+      "email" : "user214@gmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "B_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-20254E694D00",
+    "drugAllergies" : [ "Penicillin" ],
+    "nokName" : "Divya Teck",
+    "nokAddress" : "Blk 973 Bedok North St 4, #33-263, Singapore 514933",
+    "nokRelation" : "Parent",
+    "height" : 1.9074920691962576,
+    "weight" : 81.38544974437391,
+    "occupation" : "Artist",
+    "companyName" : "CapitaLand",
+    "companyAddress" : "Blk 313 Serangoon Road 10, #45-578, Singapore 482488",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 150000,
+      "lifetimeLimit" : 2000000,
+      "benefitLimits" : {
+        "ACCIDENT" : 150000,
+        "ONCOLOGY_TREATMENTS" : 3000,
+        "HOSPITALIZATION" : 1200,
+        "SURGERY" : 4500
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_C" : 150000,
+        "GENERAL_CLASS_B2" : 150000
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 1500,
+    "coinsurance" : 0.1,
+    "deathBenefitAmount" : 100000,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z00.*", "Z41\\.1", "E66\\..*" ],
+      "excludedProcedurePatterns" : [ "0B[HJQ]", "3E0.*" ],
+      "excludedBenefits" : [ "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "government",
+    "providerName" : "Gov Provider"
+  },
+  "name" : "Government base policy",
+  "expirationDate" : [ 2026, 3, 31, 17, 58, 13, 488998800 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "PRIV-293714",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Lim Boon Teck",
+    "dateOfBirth" : [ 1977, 3, 31 ],
+    "nricFin" : "G7476582W",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "CITIZEN",
+    "nationality" : "Singaporean",
+    "address" : "Blk 894 Punggol Way 9, #48-415, Singapore 568027",
+    "contact" : {
+      "personalPhone" : "91179537",
+      "homePhone" : "66521513",
+      "companyPhone" : "64757038",
+      "email" : "user214@gmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "B_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-20254E694D00",
+    "drugAllergies" : [ "Penicillin" ],
+    "nokName" : "Divya Teck",
+    "nokAddress" : "Blk 973 Bedok North St 4, #33-263, Singapore 514933",
+    "nokRelation" : "Parent",
+    "height" : 1.9074920691962576,
+    "weight" : 81.38544974437391,
+    "occupation" : "Artist",
+    "companyName" : "CapitaLand",
+    "companyAddress" : "Blk 313 Serangoon Road 10, #45-578, Singapore 482488",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 570594,
+      "lifetimeLimit" : 6672872,
+      "benefitLimits" : {
+        "ONCOLOGY_TREATMENTS" : 19540,
+        "DIAGNOSTIC_IMAGING" : 3425,
+        "HOSPITALIZATION" : 2511,
+        "SURGERY" : 41959
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_B1" : 114140,
+        "GENERAL_CLASS_A" : 242231,
+        "GENERAL_CLASS_C" : 141109
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 1999,
+    "coinsurance" : 0.15,
+    "deathBenefitAmount" : 0,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "CHRONIC_CONDITIONS", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z41\\.1", "Z51\\.*", "Z34\\.*", "Z52\\.*" ],
+      "excludedProcedurePatterns" : [ "0BH.*", "0FJ.*", "0DJ.*", "0BJ.*" ],
+      "excludedBenefits" : [ "ACCIDENT", "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY", "PERMANENT_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "private",
+    "providerName" : "Private Provider"
+  },
+  "name" : "AccidentCare Plus",
+  "expirationDate" : [ 2034, 7, 12, 17, 58, 13, 488998800 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "PRIV-773930",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Aisha Fatimah",
+    "dateOfBirth" : [ 1980, 3, 31 ],
+    "nricFin" : "F5520316N",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 586 Punggol Way 9, #36-268, Singapore 515535",
+    "contact" : {
+      "personalPhone" : "96211491",
+      "homePhone" : "62657867",
+      "companyPhone" : "67141714",
+      "email" : "user764@gmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "B_NEGATIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-202531C893B1",
+    "drugAllergies" : [ "Ibuprofen", "None" ],
+    "nokName" : "Lim Fatimah",
+    "nokAddress" : "Blk 893 Bedok North St 1, #42-952, Singapore 563948",
+    "nokRelation" : "Sibling",
+    "height" : 1.5552461672009383,
+    "weight" : 72.7887467422201,
+    "occupation" : "Teacher",
+    "companyName" : "ComfortDelGro",
+    "companyAddress" : "Blk 648 Serangoon Road 5, #44-726, Singapore 543127",
+    "patientConsent" : true,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 484302,
+      "lifetimeLimit" : 9307276,
+      "benefitLimits" : {
+        "ONCOLOGY_TREATMENTS" : 7922,
+        "DIAGNOSTIC_IMAGING" : 3247,
+        "HOSPITALIZATION" : 2158,
+        "SURGERY" : 39796
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_B1" : 185403,
+        "GENERAL_CLASS_A" : 212124,
+        "GENERAL_CLASS_C" : 154829
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 3668,
+    "coinsurance" : 0.12,
+    "deathBenefitAmount" : 0,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "CHRONIC_CONDITIONS", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z41\\.1", "Z51\\.*", "Z34\\.*", "Z52\\.*" ],
+      "excludedProcedurePatterns" : [ "0BH.*", "0FJ.*", "0DJ.*", "0BJ.*" ],
+      "excludedBenefits" : [ "ACCIDENT", "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY", "PERMANENT_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "private",
+    "providerName" : "Private Provider"
+  },
+  "name" : "PA Secure",
+  "expirationDate" : [ 2029, 2, 8, 17, 58, 13, 488998800 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "PRIV-549413",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Lim Boon Teck",
+    "dateOfBirth" : [ 1978, 3, 31 ],
+    "nricFin" : "G9890359W",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "VISITOR",
+    "nationality" : "Singaporean",
+    "address" : "Blk 783 Yishun Ring Road 6, #02-677, Singapore 480215",
+    "contact" : {
+      "personalPhone" : "99364394",
+      "homePhone" : "65817102",
+      "companyPhone" : "66068923",
+      "email" : "user123@hotmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "A_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-202548C7A7E2",
+    "drugAllergies" : [ "Ibuprofen" ],
+    "nokName" : "Ben Tan",
+    "nokAddress" : "Blk 445 Jurong East Ave 2, #29-912, Singapore 539874",
+    "nokRelation" : "Other",
+    "height" : 1.8907181543252947,
+    "weight" : 85.59397140684663,
+    "occupation" : "Teacher",
+    "companyName" : "Singtel",
+    "companyAddress" : "Blk 910 Woodlands Drive 4, #48-61, Singapore 515508",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 908043,
+      "lifetimeLimit" : 8945888,
+      "benefitLimits" : {
+        "ONCOLOGY_TREATMENTS" : 9770,
+        "DIAGNOSTIC_IMAGING" : 4738,
+        "HOSPITALIZATION" : 6357,
+        "SURGERY" : 95150
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_B1" : 174092,
+        "GENERAL_CLASS_A" : 172587,
+        "GENERAL_CLASS_C" : 174898
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 4345,
+    "coinsurance" : 0.15,
+    "deathBenefitAmount" : 0,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "CHRONIC_CONDITIONS", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z41\\.1", "Z51\\.*", "Z34\\.*", "Z52\\.*" ],
+      "excludedProcedurePatterns" : [ "0BH.*", "0FJ.*", "0DJ.*", "0BJ.*" ],
+      "excludedBenefits" : [ "ACCIDENT", "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY", "PERMANENT_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "private",
+    "providerName" : "Private Provider"
+  },
+  "name" : "MyShield",
+  "expirationDate" : [ 2030, 12, 28, 17, 58, 13, 488998800 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "PRIV-181513",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Aisha Fatimah",
+    "dateOfBirth" : [ 1990, 3, 31 ],
+    "nricFin" : "T6417594C",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 149 Jurong East Ave 7, #42-713, Singapore 478028",
+    "contact" : {
+      "personalPhone" : "94018405",
+      "homePhone" : "69097538",
+      "companyPhone" : "65297725",
+      "email" : "user548@hotmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "O_POSITIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-202543ECA0D8",
+    "drugAllergies" : [ "None", "Penicillin" ],
+    "nokName" : "Divya Singh",
+    "nokAddress" : "Blk 515 Ang Mo Kio Ave 1, #11-512, Singapore 498297",
+    "nokRelation" : "Other",
+    "height" : 1.5069843993115735,
+    "weight" : 58.04557147969975,
+    "occupation" : "Chef",
+    "companyName" : "Singapore Airlines",
+    "companyAddress" : "Blk 467 Jurong East Ave 7, #47-412, Singapore 475018",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 899710,
+      "lifetimeLimit" : 6488965,
+      "benefitLimits" : {
+        "ONCOLOGY_TREATMENTS" : 11909,
+        "DIAGNOSTIC_IMAGING" : 4699,
+        "HOSPITALIZATION" : 5966,
+        "SURGERY" : 99325
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_B1" : 140729,
+        "GENERAL_CLASS_A" : 240798,
+        "GENERAL_CLASS_C" : 166370
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 4619,
+    "coinsurance" : 0.19,
+    "deathBenefitAmount" : 0,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "CHRONIC_CONDITIONS", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z41\\.1", "Z51\\.*", "Z34\\.*", "Z52\\.*" ],
+      "excludedProcedurePatterns" : [ "0BH.*", "0FJ.*", "0DJ.*", "0BJ.*" ],
+      "excludedBenefits" : [ "ACCIDENT", "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY", "PERMANENT_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "private",
+    "providerName" : "Private Provider"
+  },
+  "name" : "Critical Illness Plus",
+  "expirationDate" : [ 2032, 7, 27, 17, 58, 13, 488998800 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "GOVT-0650616082-P-20251EE7EE99",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Lim Boon Teck",
+    "dateOfBirth" : [ 1989, 3, 31 ],
+    "nricFin" : "S6197801A",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "PERMANENT_RESIDENT",
+    "nationality" : "Singaporean",
+    "address" : "Blk 290 Jurong East Ave 5, #28-546, Singapore 525180",
+    "contact" : {
+      "personalPhone" : "97363835",
+      "homePhone" : "66595499",
+      "companyPhone" : "66727139",
+      "email" : "user253@hotmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "B_NEGATIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-20251EE7EE99",
+    "drugAllergies" : [ ],
+    "nokName" : "Lim Teck",
+    "nokAddress" : "Blk 880 Serangoon Road 4, #22-617, Singapore 471860",
+    "nokRelation" : "Spouse",
+    "height" : 1.656530747696515,
+    "weight" : 91.72740578138459,
+    "occupation" : "Engineer",
+    "companyName" : "Singapore Airlines",
+    "companyAddress" : "Blk 145 Tampines St 11, #47-634, Singapore 514336",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "composite",
+    "coverages" : [ {
+      "type" : "base",
+      "limits" : {
+        "annualLimit" : 150000,
+        "lifetimeLimit" : 2000000,
+        "benefitLimits" : {
+          "ACCIDENT" : 150000,
+          "ONCOLOGY_TREATMENTS" : 3000,
+          "HOSPITALIZATION" : 1200,
+          "SURGERY" : 4500
+        },
+        "wardLimits" : {
+          "GENERAL_CLASS_C" : 150000,
+          "GENERAL_CLASS_B2" : 150000
+        },
+        "accidentSubLimits" : { }
+      },
+      "deductible" : 1500,
+      "coinsurance" : 0.1,
+      "deathBenefitAmount" : 100000,
+      "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+      "exclusions" : {
+        "excludedDiagnosisPatterns" : [ "Z00.*", "Z41\\.1", "E66\\..*" ],
+        "excludedProcedurePatterns" : [ "0B[HJQ]", "3E0.*" ],
+        "excludedBenefits" : [ "DENTAL", "MATERNITY" ],
+        "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY" ]
+      }
+    }, {
+      "type" : "base",
+      "limits" : {
+        "annualLimit" : 50000,
+        "benefitLimits" : {
+          "CRITICAL_ILLNESS" : 120000
+        },
+        "wardLimits" : { },
+        "accidentSubLimits" : {
+          "PERMANENT_DISABILITY" : 600
+        }
+      },
+      "deductible" : 0,
+      "coinsurance" : 0.05,
+      "deathBenefitAmount" : 50000,
+      "coveredBenefits" : [ "CRITICAL_ILLNESS", "PREVENTIVE_CARE" ],
+      "exclusions" : {
+        "excludedDiagnosisPatterns" : [ "^M1[5-9]\\..*", "^N18\\..*", "^K7[0-4]\\..*", "^I1[0-5]\\..*", "^B20\\..*", "^C3[0-4]\\..*", "^F2[0-9]\\..*", "^E1[0-4]\\..*", "^J4[0-5]\\..*" ],
+        "excludedProcedurePatterns" : [ ],
+        "excludedBenefits" : [ "MINOR_SURGERY" ],
+        "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY" ]
+      }
+    } ]
+  },
+  "provider" : {
+    "type" : "government",
+    "providerName" : "Gov Provider"
+  },
+  "name" : "Government base policy",
+  "expirationDate" : [ 2026, 3, 31, 17, 58, 13, 488998800 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "PRIV-770765",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Lim Boon Teck",
+    "dateOfBirth" : [ 1989, 3, 31 ],
+    "nricFin" : "S6197801A",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "PERMANENT_RESIDENT",
+    "nationality" : "Singaporean",
+    "address" : "Blk 290 Jurong East Ave 5, #28-546, Singapore 525180",
+    "contact" : {
+      "personalPhone" : "97363835",
+      "homePhone" : "66595499",
+      "companyPhone" : "66727139",
+      "email" : "user253@hotmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "B_NEGATIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-20251EE7EE99",
+    "drugAllergies" : [ ],
+    "nokName" : "Lim Teck",
+    "nokAddress" : "Blk 880 Serangoon Road 4, #22-617, Singapore 471860",
+    "nokRelation" : "Spouse",
+    "height" : 1.656530747696515,
+    "weight" : 91.72740578138459,
+    "occupation" : "Engineer",
+    "companyName" : "Singapore Airlines",
+    "companyAddress" : "Blk 145 Tampines St 11, #47-634, Singapore 514336",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 681744,
+      "lifetimeLimit" : 2728989,
+      "benefitLimits" : {
+        "ONCOLOGY_TREATMENTS" : 13736,
+        "DIAGNOSTIC_IMAGING" : 4450,
+        "HOSPITALIZATION" : 4571,
+        "SURGERY" : 39492
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_B1" : 168281,
+        "GENERAL_CLASS_A" : 183362,
+        "GENERAL_CLASS_C" : 168118
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 1288,
+    "coinsurance" : 0.1,
+    "deathBenefitAmount" : 0,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "CHRONIC_CONDITIONS", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z41\\.1", "Z51\\.*", "Z34\\.*", "Z52\\.*" ],
+      "excludedProcedurePatterns" : [ "0BH.*", "0FJ.*", "0DJ.*", "0BJ.*" ],
+      "excludedBenefits" : [ "ACCIDENT", "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY", "PERMANENT_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "private",
+    "providerName" : "Private Provider"
+  },
+  "name" : "AccidentCare Plus",
+  "expirationDate" : [ 2031, 1, 11, 17, 58, 13, 488998800 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "PRIV-627179",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Ong Li Ting",
+    "dateOfBirth" : [ 1983, 3, 31 ],
+    "nricFin" : "G5980204L",
+    "maritalStatus" : "MARRIED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 461 Yishun Ring Road 2, #02-807, Singapore 461438",
+    "contact" : {
+      "personalPhone" : "98331833",
+      "homePhone" : "66523186",
+      "companyPhone" : "67359699",
+      "email" : "user445@hotmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "A_POSITIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-2025A75DEEDB",
+    "drugAllergies" : [ ],
+    "nokName" : "Ben Tan",
+    "nokAddress" : "Blk 156 Yishun Ring Road 1, #29-132, Singapore 520447",
+    "nokRelation" : "Legal Guardian",
+    "height" : 1.968006654936574,
+    "weight" : 65.29098980796046,
+    "occupation" : "Engineer",
+    "companyName" : "Keppel Corporation",
+    "companyAddress" : "Blk 909 Woodlands Drive 11, #04-516, Singapore 564546",
+    "patientConsent" : true,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 209809,
+      "lifetimeLimit" : 2000586,
+      "benefitLimits" : {
+        "ONCOLOGY_TREATMENTS" : 13581,
+        "DIAGNOSTIC_IMAGING" : 1472,
+        "HOSPITALIZATION" : 2223,
+        "SURGERY" : 59462
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_B1" : 170571,
+        "GENERAL_CLASS_A" : 186293,
+        "GENERAL_CLASS_C" : 161071
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 1075,
+    "coinsurance" : 0.26,
+    "deathBenefitAmount" : 0,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "CHRONIC_CONDITIONS", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z41\\.1", "Z51\\.*", "Z34\\.*", "Z52\\.*" ],
+      "excludedProcedurePatterns" : [ "0BH.*", "0FJ.*", "0DJ.*", "0BJ.*" ],
+      "excludedBenefits" : [ "ACCIDENT", "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY", "PERMANENT_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "private",
+    "providerName" : "Private Provider"
+  },
+  "name" : "AccidentCare Plus",
+  "expirationDate" : [ 2029, 10, 31, 17, 58, 13, 488998800 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "PRIV-428853",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Ben Tan",
+    "dateOfBirth" : [ 1996, 3, 31 ],
+    "nricFin" : "G5450119L",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "VISITOR",
+    "nationality" : "Singaporean",
+    "address" : "Blk 527 Punggol Way 5, #29-198, Singapore 487425",
+    "contact" : {
+      "personalPhone" : "96057966",
+      "homePhone" : "68378669",
+      "companyPhone" : "69053534",
+      "email" : "user509@hotmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "A_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-2025C86DEAFE",
+    "drugAllergies" : [ "Penicillin" ],
+    "nokName" : "Aisha Tan",
+    "nokAddress" : "Blk 873 Punggol Way 6, #09-844, Singapore 544654",
+    "nokRelation" : "Grandchild",
+    "height" : 1.5710466117726343,
+    "weight" : 46.77085753165108,
+    "occupation" : "Doctor",
+    "companyName" : "Singtel",
+    "companyAddress" : "Blk 864 Ang Mo Kio Ave 2, #24-837, Singapore 559632",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 721677,
+      "lifetimeLimit" : 7823420,
+      "benefitLimits" : {
+        "ONCOLOGY_TREATMENTS" : 18905,
+        "DIAGNOSTIC_IMAGING" : 2545,
+        "HOSPITALIZATION" : 2150,
+        "SURGERY" : 74586
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_B1" : 147089,
+        "GENERAL_CLASS_A" : 194436,
+        "GENERAL_CLASS_C" : 129890
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 1922,
+    "coinsurance" : 0.16,
+    "deathBenefitAmount" : 0,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "CHRONIC_CONDITIONS", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z41\\.1", "Z51\\.*", "Z34\\.*", "Z52\\.*" ],
+      "excludedProcedurePatterns" : [ "0BH.*", "0FJ.*", "0DJ.*", "0BJ.*" ],
+      "excludedBenefits" : [ "ACCIDENT", "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY", "PERMANENT_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "private",
+    "providerName" : "Private Provider"
+  },
+  "name" : "Accident Protect Plus",
+  "expirationDate" : [ 2026, 6, 4, 17, 58, 13, 489998100 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "PRIV-929779",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Ong Li Ting",
+    "dateOfBirth" : [ 1974, 3, 31 ],
+    "nricFin" : "S5974155A",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "DEPENDENT_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 605 Serangoon Road 10, #15-926, Singapore 489503",
+    "contact" : {
+      "personalPhone" : "98183532",
+      "homePhone" : "66556197",
+      "companyPhone" : "65222786",
+      "email" : "user737@gmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "A_POSITIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-2025671F88E9",
+    "drugAllergies" : [ "Aspirin" ],
+    "nokName" : "Divya Ting",
+    "nokAddress" : "Blk 715 Ang Mo Kio Ave 2, #31-554, Singapore 471203",
+    "nokRelation" : "Child",
+    "height" : 1.863319964300263,
+    "weight" : 85.54833914755002,
+    "occupation" : "Programmer",
+    "companyName" : "CapitaLand",
+    "companyAddress" : "Blk 491 Bedok North St 12, #18-12, Singapore 525471",
+    "patientConsent" : true,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 266689,
+      "lifetimeLimit" : 2842972,
+      "benefitLimits" : {
+        "ONCOLOGY_TREATMENTS" : 16181,
+        "DIAGNOSTIC_IMAGING" : 1777,
+        "HOSPITALIZATION" : 4013,
+        "SURGERY" : 77063
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_B1" : 144542,
+        "GENERAL_CLASS_A" : 215456,
+        "GENERAL_CLASS_C" : 130344
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 2044,
+    "coinsurance" : 0.26,
+    "deathBenefitAmount" : 0,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "CHRONIC_CONDITIONS", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z41\\.1", "Z51\\.*", "Z34\\.*", "Z52\\.*" ],
+      "excludedProcedurePatterns" : [ "0BH.*", "0FJ.*", "0DJ.*", "0BJ.*" ],
+      "excludedBenefits" : [ "ACCIDENT", "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY", "PERMANENT_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "private",
+    "providerName" : "Private Provider"
+  },
+  "name" : "AccidentCare Plus",
+  "expirationDate" : [ 2030, 9, 1, 17, 58, 13, 489998100 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "PRIV-879249",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Muhammad Danial",
+    "dateOfBirth" : [ 2002, 3, 31 ],
+    "nricFin" : "T7683655D",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 980 Woodlands Drive 1, #08-739, Singapore 475923",
+    "contact" : {
+      "personalPhone" : "95507588",
+      "homePhone" : "62925173",
+      "companyPhone" : "61647861",
+      "email" : "user930@gmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "A_NEGATIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-20257995A676",
+    "drugAllergies" : [ ],
+    "nokName" : "Lim Boon Teck",
+    "nokAddress" : "Blk 735 Tampines St 8, #30-989, Singapore 554997",
+    "nokRelation" : "Legal Guardian",
+    "height" : 1.8141165300799797,
+    "weight" : 77.02576499640969,
+    "occupation" : "Teacher",
+    "companyName" : "ComfortDelGro",
+    "companyAddress" : "Blk 366 Punggol Way 1, #13-806, Singapore 473238",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 702929,
+      "lifetimeLimit" : 6579572,
+      "benefitLimits" : {
+        "ONCOLOGY_TREATMENTS" : 18574,
+        "DIAGNOSTIC_IMAGING" : 2774,
+        "HOSPITALIZATION" : 2943,
+        "SURGERY" : 27382
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_B1" : 192792,
+        "GENERAL_CLASS_A" : 200033,
+        "GENERAL_CLASS_C" : 132557
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 2259,
+    "coinsurance" : 0.23,
+    "deathBenefitAmount" : 0,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "CHRONIC_CONDITIONS", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z41\\.1", "Z51\\.*", "Z34\\.*", "Z52\\.*" ],
+      "excludedProcedurePatterns" : [ "0BH.*", "0FJ.*", "0DJ.*", "0BJ.*" ],
+      "excludedBenefits" : [ "ACCIDENT", "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY", "PERMANENT_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "private",
+    "providerName" : "Private Provider"
+  },
+  "name" : "HealthShield Gold Max",
+  "expirationDate" : [ 2035, 5, 25, 17, 58, 13, 489998100 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "GOVT-0452628269-P-202583FB92FC",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Ong Li Ting",
+    "dateOfBirth" : [ 1999, 3, 31 ],
+    "nricFin" : "S9147924I",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "CITIZEN",
+    "nationality" : "Singaporean",
+    "address" : "Blk 407 Punggol Way 11, #19-271, Singapore 545508",
+    "contact" : {
+      "personalPhone" : "90210909",
+      "homePhone" : "62241963",
+      "companyPhone" : "65508388",
+      "email" : "user335@hotmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "AB_NEGATIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-202583FB92FC",
+    "drugAllergies" : [ "Ibuprofen" ],
+    "nokName" : "Rohan Ting",
+    "nokAddress" : "Blk 949 Bedok North St 9, #45-290, Singapore 556563",
+    "nokRelation" : "Sibling",
+    "height" : 1.8832866132168895,
+    "weight" : 92.09875852860972,
+    "occupation" : "Programmer",
+    "companyName" : "CapitaLand",
+    "companyAddress" : "Blk 467 Punggol Way 6, #19-372, Singapore 559035",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "composite",
+    "coverages" : [ {
+      "type" : "base",
+      "limits" : {
+        "annualLimit" : 150000,
+        "lifetimeLimit" : 2000000,
+        "benefitLimits" : {
+          "ACCIDENT" : 150000,
+          "ONCOLOGY_TREATMENTS" : 3000,
+          "HOSPITALIZATION" : 1200,
+          "SURGERY" : 4500
+        },
+        "wardLimits" : {
+          "GENERAL_CLASS_C" : 150000,
+          "GENERAL_CLASS_B2" : 150000
+        },
+        "accidentSubLimits" : { }
+      },
+      "deductible" : 1500,
+      "coinsurance" : 0.1,
+      "deathBenefitAmount" : 100000,
+      "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+      "exclusions" : {
+        "excludedDiagnosisPatterns" : [ "Z00.*", "Z41\\.1", "E66\\..*" ],
+        "excludedProcedurePatterns" : [ "0B[HJQ]", "3E0.*" ],
+        "excludedBenefits" : [ "DENTAL", "MATERNITY" ],
+        "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY" ]
+      }
+    }, {
+      "type" : "base",
+      "limits" : {
+        "annualLimit" : 50000,
+        "benefitLimits" : {
+          "CRITICAL_ILLNESS" : 120000
+        },
+        "wardLimits" : { },
+        "accidentSubLimits" : {
+          "PERMANENT_DISABILITY" : 600
+        }
+      },
+      "deductible" : 0,
+      "coinsurance" : 0.05,
+      "deathBenefitAmount" : 50000,
+      "coveredBenefits" : [ "CRITICAL_ILLNESS", "PREVENTIVE_CARE" ],
+      "exclusions" : {
+        "excludedDiagnosisPatterns" : [ "^M1[5-9]\\..*", "^N18\\..*", "^K7[0-4]\\..*", "^I1[0-5]\\..*", "^B20\\..*", "^C3[0-4]\\..*", "^F2[0-9]\\..*", "^E1[0-4]\\..*", "^J4[0-5]\\..*" ],
+        "excludedProcedurePatterns" : [ ],
+        "excludedBenefits" : [ "MINOR_SURGERY" ],
+        "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY" ]
+      }
+    } ]
+  },
+  "provider" : {
+    "type" : "government",
+    "providerName" : "Gov Provider"
+  },
+  "name" : "Government base policy",
+  "expirationDate" : [ 2026, 3, 31, 17, 58, 13, 489998100 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "PRIV-680443",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Ong Li Ting",
+    "dateOfBirth" : [ 1999, 3, 31 ],
+    "nricFin" : "S9147924I",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "CITIZEN",
+    "nationality" : "Singaporean",
+    "address" : "Blk 407 Punggol Way 11, #19-271, Singapore 545508",
+    "contact" : {
+      "personalPhone" : "90210909",
+      "homePhone" : "62241963",
+      "companyPhone" : "65508388",
+      "email" : "user335@hotmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "AB_NEGATIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-202583FB92FC",
+    "drugAllergies" : [ "Ibuprofen" ],
+    "nokName" : "Rohan Ting",
+    "nokAddress" : "Blk 949 Bedok North St 9, #45-290, Singapore 556563",
+    "nokRelation" : "Sibling",
+    "height" : 1.8832866132168895,
+    "weight" : 92.09875852860972,
+    "occupation" : "Programmer",
+    "companyName" : "CapitaLand",
+    "companyAddress" : "Blk 467 Punggol Way 6, #19-372, Singapore 559035",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 823246,
+      "lifetimeLimit" : 7285633,
+      "benefitLimits" : {
+        "ONCOLOGY_TREATMENTS" : 5688,
+        "DIAGNOSTIC_IMAGING" : 1320,
+        "HOSPITALIZATION" : 6107,
+        "SURGERY" : 83908
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_B1" : 123570,
+        "GENERAL_CLASS_A" : 274213,
+        "GENERAL_CLASS_C" : 140647
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 3456,
+    "coinsurance" : 0.11,
+    "deathBenefitAmount" : 0,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "CHRONIC_CONDITIONS", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z41\\.1", "Z51\\.*", "Z34\\.*", "Z52\\.*" ],
+      "excludedProcedurePatterns" : [ "0BH.*", "0FJ.*", "0DJ.*", "0BJ.*" ],
+      "excludedBenefits" : [ "ACCIDENT", "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY", "PERMANENT_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "private",
+    "providerName" : "Private Provider"
+  },
+  "name" : "Early Critical Care",
+  "expirationDate" : [ 2035, 11, 30, 17, 58, 13, 489998100 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "GOVT-0936335604-P-2025C2485B4C",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Aisha Fatimah",
+    "dateOfBirth" : [ 1974, 3, 31 ],
+    "nricFin" : "T8523233E",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "CITIZEN",
+    "nationality" : "Singaporean",
+    "address" : "Blk 602 Woodlands Drive 6, #34-986, Singapore 514768",
+    "contact" : {
+      "personalPhone" : "92465647",
+      "homePhone" : "64500892",
+      "companyPhone" : "65934444",
+      "email" : "user493@hotmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "A_POSITIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-2025C2485B4C",
+    "drugAllergies" : [ "Sulfa", "Aspirin" ],
+    "nokName" : "Wee Jun Kiat",
+    "nokAddress" : "Blk 127 Serangoon Road 12, #43-430, Singapore 500687",
+    "nokRelation" : "Legal Guardian",
+    "height" : 1.636619591289187,
+    "weight" : 70.57719778896083,
+    "occupation" : "Artist",
+    "companyName" : "OCBC Bank",
+    "companyAddress" : "Blk 237 Punggol Way 5, #08-842, Singapore 567983",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 150000,
+      "lifetimeLimit" : 2000000,
+      "benefitLimits" : {
+        "ACCIDENT" : 150000,
+        "ONCOLOGY_TREATMENTS" : 3000,
+        "HOSPITALIZATION" : 1200,
+        "SURGERY" : 4500
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_C" : 150000,
+        "GENERAL_CLASS_B2" : 150000
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 1500,
+    "coinsurance" : 0.1,
+    "deathBenefitAmount" : 100000,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z00.*", "Z41\\.1", "E66\\..*" ],
+      "excludedProcedurePatterns" : [ "0B[HJQ]", "3E0.*" ],
+      "excludedBenefits" : [ "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "government",
+    "providerName" : "Gov Provider"
+  },
+  "name" : "Government base policy",
+  "expirationDate" : [ 2026, 3, 31, 17, 58, 13, 489998100 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "PRIV-232473",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Aisha Fatimah",
+    "dateOfBirth" : [ 1974, 3, 31 ],
+    "nricFin" : "T8523233E",
+    "maritalStatus" : "DIVORCED",
+    "residentialStatus" : "CITIZEN",
+    "nationality" : "Singaporean",
+    "address" : "Blk 602 Woodlands Drive 6, #34-986, Singapore 514768",
+    "contact" : {
+      "personalPhone" : "92465647",
+      "homePhone" : "64500892",
+      "companyPhone" : "65934444",
+      "email" : "user493@hotmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "A_POSITIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-2025C2485B4C",
+    "drugAllergies" : [ "Sulfa", "Aspirin" ],
+    "nokName" : "Wee Jun Kiat",
+    "nokAddress" : "Blk 127 Serangoon Road 12, #43-430, Singapore 500687",
+    "nokRelation" : "Legal Guardian",
+    "height" : 1.636619591289187,
+    "weight" : 70.57719778896083,
+    "occupation" : "Artist",
+    "companyName" : "OCBC Bank",
+    "companyAddress" : "Blk 237 Punggol Way 5, #08-842, Singapore 567983",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 444052,
+      "lifetimeLimit" : 2558503,
+      "benefitLimits" : {
+        "ONCOLOGY_TREATMENTS" : 5179,
+        "DIAGNOSTIC_IMAGING" : 3925,
+        "HOSPITALIZATION" : 4909,
+        "SURGERY" : 43395
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_B1" : 158177,
+        "GENERAL_CLASS_A" : 198067,
+        "GENERAL_CLASS_C" : 187059
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 2649,
+    "coinsurance" : 0.19,
+    "deathBenefitAmount" : 0,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "CHRONIC_CONDITIONS", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z41\\.1", "Z51\\.*", "Z34\\.*", "Z52\\.*" ],
+      "excludedProcedurePatterns" : [ "0BH.*", "0FJ.*", "0DJ.*", "0BJ.*" ],
+      "excludedBenefits" : [ "ACCIDENT", "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY", "PERMANENT_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "private",
+    "providerName" : "Private Provider"
+  },
+  "name" : "AccidentCare Plus",
+  "expirationDate" : [ 2033, 8, 20, 17, 58, 13, 489998100 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "PRIV-127032",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Wee Jun Kiat",
+    "dateOfBirth" : [ 1965, 3, 31 ],
+    "nricFin" : "S7070485D",
+    "maritalStatus" : "MARRIED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 133 Punggol Way 3, #06-106, Singapore 565048",
+    "contact" : {
+      "personalPhone" : "98710884",
+      "homePhone" : "62853021",
+      "companyPhone" : "61037572",
+      "email" : "user729@hotmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "AB_NEGATIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-2025DC1FA8FA",
+    "drugAllergies" : [ "Penicillin" ],
+    "nokName" : "Rohan Kiat",
+    "nokAddress" : "Blk 803 Woodlands Drive 6, #49-215, Singapore 540596",
+    "nokRelation" : "Grandchild",
+    "height" : 1.5758826820672946,
+    "weight" : 66.11376261830279,
+    "occupation" : "Teacher",
+    "companyName" : "Singtel",
+    "companyAddress" : "Blk 611 Serangoon Road 11, #33-542, Singapore 542021",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 988222,
+      "lifetimeLimit" : 8115911,
+      "benefitLimits" : {
+        "ONCOLOGY_TREATMENTS" : 17497,
+        "DIAGNOSTIC_IMAGING" : 2543,
+        "HOSPITALIZATION" : 8896,
+        "SURGERY" : 56822
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_B1" : 184432,
+        "GENERAL_CLASS_A" : 264192,
+        "GENERAL_CLASS_C" : 138987
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 4652,
+    "coinsurance" : 0.12,
+    "deathBenefitAmount" : 0,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "CHRONIC_CONDITIONS", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z41\\.1", "Z51\\.*", "Z34\\.*", "Z52\\.*" ],
+      "excludedProcedurePatterns" : [ "0BH.*", "0FJ.*", "0DJ.*", "0BJ.*" ],
+      "excludedBenefits" : [ "ACCIDENT", "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY", "PERMANENT_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "private",
+    "providerName" : "Private Provider"
+  },
+  "name" : "Total Protect",
+  "expirationDate" : [ 2030, 5, 27, 17, 58, 13, 489998100 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "GOVT-0308100398-P-20254E53272E",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Lim Boon Teck",
+    "dateOfBirth" : [ 1989, 3, 31 ],
+    "nricFin" : "T4816478H",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "PERMANENT_RESIDENT",
+    "nationality" : "Singaporean",
+    "address" : "Blk 757 Bedok North St 4, #46-162, Singapore 484746",
+    "contact" : {
+      "personalPhone" : "96992438",
+      "homePhone" : "61153261",
+      "companyPhone" : "61299028",
+      "email" : "user936@hotmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "A_NEGATIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-20254E53272E",
+    "drugAllergies" : [ "Sulfa" ],
+    "nokName" : "Lim Teck",
+    "nokAddress" : "Blk 963 Tampines St 4, #42-288, Singapore 569275",
+    "nokRelation" : "Child",
+    "height" : 1.5131201995376715,
+    "weight" : 76.05201593986004,
+    "occupation" : "Programmer",
+    "companyName" : "OCBC Bank",
+    "companyAddress" : "Blk 927 Woodlands Drive 1, #50-552, Singapore 478702",
+    "patientConsent" : true,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "composite",
+    "coverages" : [ {
+      "type" : "base",
+      "limits" : {
+        "annualLimit" : 150000,
+        "lifetimeLimit" : 2000000,
+        "benefitLimits" : {
+          "ACCIDENT" : 150000,
+          "ONCOLOGY_TREATMENTS" : 3000,
+          "HOSPITALIZATION" : 1200,
+          "SURGERY" : 4500
+        },
+        "wardLimits" : {
+          "GENERAL_CLASS_C" : 150000,
+          "GENERAL_CLASS_B2" : 150000
+        },
+        "accidentSubLimits" : { }
+      },
+      "deductible" : 1500,
+      "coinsurance" : 0.1,
+      "deathBenefitAmount" : 100000,
+      "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+      "exclusions" : {
+        "excludedDiagnosisPatterns" : [ "Z00.*", "Z41\\.1", "E66\\..*" ],
+        "excludedProcedurePatterns" : [ "0B[HJQ]", "3E0.*" ],
+        "excludedBenefits" : [ "DENTAL", "MATERNITY" ],
+        "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY" ]
+      }
+    }, {
+      "type" : "base",
+      "limits" : {
+        "annualLimit" : 50000,
+        "benefitLimits" : {
+          "CRITICAL_ILLNESS" : 120000
+        },
+        "wardLimits" : { },
+        "accidentSubLimits" : {
+          "PERMANENT_DISABILITY" : 600
+        }
+      },
+      "deductible" : 0,
+      "coinsurance" : 0.05,
+      "deathBenefitAmount" : 50000,
+      "coveredBenefits" : [ "CRITICAL_ILLNESS", "PREVENTIVE_CARE" ],
+      "exclusions" : {
+        "excludedDiagnosisPatterns" : [ "^M1[5-9]\\..*", "^N18\\..*", "^K7[0-4]\\..*", "^I1[0-5]\\..*", "^B20\\..*", "^C3[0-4]\\..*", "^F2[0-9]\\..*", "^E1[0-4]\\..*", "^J4[0-5]\\..*" ],
+        "excludedProcedurePatterns" : [ ],
+        "excludedBenefits" : [ "MINOR_SURGERY" ],
+        "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY" ]
+      }
+    } ]
+  },
+  "provider" : {
+    "type" : "government",
+    "providerName" : "Gov Provider"
+  },
+  "name" : "Government base policy",
+  "expirationDate" : [ 2026, 3, 31, 17, 58, 13, 489998100 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "PRIV-376707",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Lim Boon Teck",
+    "dateOfBirth" : [ 1989, 3, 31 ],
+    "nricFin" : "T4816478H",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "PERMANENT_RESIDENT",
+    "nationality" : "Singaporean",
+    "address" : "Blk 757 Bedok North St 4, #46-162, Singapore 484746",
+    "contact" : {
+      "personalPhone" : "96992438",
+      "homePhone" : "61153261",
+      "companyPhone" : "61299028",
+      "email" : "user936@hotmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "A_NEGATIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-20254E53272E",
+    "drugAllergies" : [ "Sulfa" ],
+    "nokName" : "Lim Teck",
+    "nokAddress" : "Blk 963 Tampines St 4, #42-288, Singapore 569275",
+    "nokRelation" : "Child",
+    "height" : 1.5131201995376715,
+    "weight" : 76.05201593986004,
+    "occupation" : "Programmer",
+    "companyName" : "OCBC Bank",
+    "companyAddress" : "Blk 927 Woodlands Drive 1, #50-552, Singapore 478702",
+    "patientConsent" : true,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 847390,
+      "lifetimeLimit" : 3837497,
+      "benefitLimits" : {
+        "ONCOLOGY_TREATMENTS" : 10047,
+        "DIAGNOSTIC_IMAGING" : 1526,
+        "HOSPITALIZATION" : 3649,
+        "SURGERY" : 79709
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_B1" : 135623,
+        "GENERAL_CLASS_A" : 253128,
+        "GENERAL_CLASS_C" : 176334
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 2186,
+    "coinsurance" : 0.23,
+    "deathBenefitAmount" : 0,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "CHRONIC_CONDITIONS", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z41\\.1", "Z51\\.*", "Z34\\.*", "Z52\\.*" ],
+      "excludedProcedurePatterns" : [ "0BH.*", "0FJ.*", "0DJ.*", "0BJ.*" ],
+      "excludedBenefits" : [ "ACCIDENT", "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY", "PERMANENT_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "private",
+    "providerName" : "Private Provider"
+  },
+  "name" : "Total Protect",
+  "expirationDate" : [ 2033, 1, 20, 17, 58, 13, 489998100 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "PRIV-508718",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Divya Singh",
+    "dateOfBirth" : [ 1969, 3, 31 ],
+    "nricFin" : "F9733809N",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "WORK_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 899 Ang Mo Kio Ave 3, #35-343, Singapore 475708",
+    "contact" : {
+      "personalPhone" : "98935444",
+      "homePhone" : "67570789",
+      "companyPhone" : "66936770",
+      "email" : "user316@hotmail.com"
+    },
+    "sex" : "MALE",
+    "bloodType" : "AB_NEGATIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-202518D16155",
+    "drugAllergies" : [ ],
+    "nokName" : "Muhammad Singh",
+    "nokAddress" : "Blk 444 Yishun Ring Road 7, #48-148, Singapore 544097",
+    "nokRelation" : "Spouse",
+    "height" : 1.7735795117351283,
+    "weight" : 94.44634826861486,
+    "occupation" : "Artist",
+    "companyName" : "Singtel",
+    "companyAddress" : "Blk 777 Jurong East Ave 8, #29-47, Singapore 550542",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 664889,
+      "lifetimeLimit" : 2675832,
+      "benefitLimits" : {
+        "ONCOLOGY_TREATMENTS" : 14397,
+        "DIAGNOSTIC_IMAGING" : 1128,
+        "HOSPITALIZATION" : 7115,
+        "SURGERY" : 48767
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_B1" : 108001,
+        "GENERAL_CLASS_A" : 155137,
+        "GENERAL_CLASS_C" : 149156
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 4774,
+    "coinsurance" : 0.25,
+    "deathBenefitAmount" : 0,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "CHRONIC_CONDITIONS", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z41\\.1", "Z51\\.*", "Z34\\.*", "Z52\\.*" ],
+      "excludedProcedurePatterns" : [ "0BH.*", "0FJ.*", "0DJ.*", "0BJ.*" ],
+      "excludedBenefits" : [ "ACCIDENT", "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY", "PERMANENT_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "private",
+    "providerName" : "Private Provider"
+  },
+  "name" : "Personal Accident Guard",
+  "expirationDate" : [ 2033, 10, 13, 17, 58, 13, 489998100 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "GOVT-0362076928-P-20258E8BBD70",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Aisha Fatimah",
+    "dateOfBirth" : [ 1984, 3, 31 ],
+    "nricFin" : "T6155506J",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "PERMANENT_RESIDENT",
+    "nationality" : "Singaporean",
+    "address" : "Blk 139 Woodlands Drive 10, #13-359, Singapore 520361",
+    "contact" : {
+      "personalPhone" : "91789626",
+      "homePhone" : "60370432",
+      "companyPhone" : "60053494",
+      "email" : "user437@hotmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "AB_NEGATIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-20258E8BBD70",
+    "drugAllergies" : [ "Sulfa", "Sulfa" ],
+    "nokName" : "Aisha Fatimah",
+    "nokAddress" : "Blk 492 Serangoon Road 10, #15-21, Singapore 517379",
+    "nokRelation" : "Child",
+    "height" : 1.6467998529171737,
+    "weight" : 81.53177805013235,
+    "occupation" : "Teacher",
+    "companyName" : "OCBC Bank",
+    "companyAddress" : "Blk 999 Yishun Ring Road 10, #30-272, Singapore 540167",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "composite",
+    "coverages" : [ {
+      "type" : "base",
+      "limits" : {
+        "annualLimit" : 150000,
+        "lifetimeLimit" : 2000000,
+        "benefitLimits" : {
+          "ACCIDENT" : 150000,
+          "ONCOLOGY_TREATMENTS" : 3000,
+          "HOSPITALIZATION" : 1200,
+          "SURGERY" : 4500
+        },
+        "wardLimits" : {
+          "GENERAL_CLASS_C" : 150000,
+          "GENERAL_CLASS_B2" : 150000
+        },
+        "accidentSubLimits" : { }
+      },
+      "deductible" : 1500,
+      "coinsurance" : 0.1,
+      "deathBenefitAmount" : 100000,
+      "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+      "exclusions" : {
+        "excludedDiagnosisPatterns" : [ "Z00.*", "Z41\\.1", "E66\\..*" ],
+        "excludedProcedurePatterns" : [ "0B[HJQ]", "3E0.*" ],
+        "excludedBenefits" : [ "DENTAL", "MATERNITY" ],
+        "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY" ]
+      }
+    }, {
+      "type" : "base",
+      "limits" : {
+        "annualLimit" : 50000,
+        "benefitLimits" : {
+          "CRITICAL_ILLNESS" : 120000
+        },
+        "wardLimits" : { },
+        "accidentSubLimits" : {
+          "PERMANENT_DISABILITY" : 600
+        }
+      },
+      "deductible" : 0,
+      "coinsurance" : 0.05,
+      "deathBenefitAmount" : 50000,
+      "coveredBenefits" : [ "CRITICAL_ILLNESS", "PREVENTIVE_CARE" ],
+      "exclusions" : {
+        "excludedDiagnosisPatterns" : [ "^M1[5-9]\\..*", "^N18\\..*", "^K7[0-4]\\..*", "^I1[0-5]\\..*", "^B20\\..*", "^C3[0-4]\\..*", "^F2[0-9]\\..*", "^E1[0-4]\\..*", "^J4[0-5]\\..*" ],
+        "excludedProcedurePatterns" : [ ],
+        "excludedBenefits" : [ "MINOR_SURGERY" ],
+        "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY" ]
+      }
+    } ]
+  },
+  "provider" : {
+    "type" : "government",
+    "providerName" : "Gov Provider"
+  },
+  "name" : "Government base policy",
+  "expirationDate" : [ 2026, 3, 31, 17, 58, 13, 489998100 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "PRIV-883128",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Aisha Fatimah",
+    "dateOfBirth" : [ 1984, 3, 31 ],
+    "nricFin" : "T6155506J",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "PERMANENT_RESIDENT",
+    "nationality" : "Singaporean",
+    "address" : "Blk 139 Woodlands Drive 10, #13-359, Singapore 520361",
+    "contact" : {
+      "personalPhone" : "91789626",
+      "homePhone" : "60370432",
+      "companyPhone" : "60053494",
+      "email" : "user437@hotmail.com"
+    },
+    "sex" : "OTHERS",
+    "bloodType" : "AB_NEGATIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-20258E8BBD70",
+    "drugAllergies" : [ "Sulfa", "Sulfa" ],
+    "nokName" : "Aisha Fatimah",
+    "nokAddress" : "Blk 492 Serangoon Road 10, #15-21, Singapore 517379",
+    "nokRelation" : "Child",
+    "height" : 1.6467998529171737,
+    "weight" : 81.53177805013235,
+    "occupation" : "Teacher",
+    "companyName" : "OCBC Bank",
+    "companyAddress" : "Blk 999 Yishun Ring Road 10, #30-272, Singapore 540167",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 352121,
+      "lifetimeLimit" : 6125669,
+      "benefitLimits" : {
+        "ONCOLOGY_TREATMENTS" : 15497,
+        "DIAGNOSTIC_IMAGING" : 4572,
+        "HOSPITALIZATION" : 2917,
+        "SURGERY" : 36236
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_B1" : 172706,
+        "GENERAL_CLASS_A" : 222807,
+        "GENERAL_CLASS_C" : 139653
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 1380,
+    "coinsurance" : 0.23,
+    "deathBenefitAmount" : 0,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "CHRONIC_CONDITIONS", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z41\\.1", "Z51\\.*", "Z34\\.*", "Z52\\.*" ],
+      "excludedProcedurePatterns" : [ "0BH.*", "0FJ.*", "0DJ.*", "0BJ.*" ],
+      "excludedBenefits" : [ "ACCIDENT", "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY", "PERMANENT_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "private",
+    "providerName" : "Private Provider"
+  },
+  "name" : "Accident Protect Plus",
+  "expirationDate" : [ 2030, 12, 14, 17, 58, 13, 489998100 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "PRIV-956643",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Ong Li Ting",
+    "dateOfBirth" : [ 1996, 3, 31 ],
+    "nricFin" : "G0954499U",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "VISITOR",
+    "nationality" : "Singaporean",
+    "address" : "Blk 450 Jurong East Ave 5, #17-687, Singapore 506856",
+    "contact" : {
+      "personalPhone" : "94240860",
+      "homePhone" : "62833555",
+      "companyPhone" : "67492965",
+      "email" : "user194@gmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "A_NEGATIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-202512C5FCCD",
+    "drugAllergies" : [ "Sulfa", "Sulfa" ],
+    "nokName" : "Rohan Aand",
+    "nokAddress" : "Blk 985 Tampines St 1, #11-814, Singapore 496203",
+    "nokRelation" : "Legal Guardian",
+    "height" : 1.9127182080787,
+    "weight" : 81.51572555354986,
+    "occupation" : "Doctor",
+    "companyName" : "Keppel Corporation",
+    "companyAddress" : "Blk 459 Punggol Way 4, #49-273, Singapore 491165",
+    "patientConsent" : true,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 221936,
+      "lifetimeLimit" : 3364793,
+      "benefitLimits" : {
+        "ONCOLOGY_TREATMENTS" : 14169,
+        "DIAGNOSTIC_IMAGING" : 4256,
+        "HOSPITALIZATION" : 7581,
+        "SURGERY" : 25923
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_B1" : 124615,
+        "GENERAL_CLASS_A" : 293791,
+        "GENERAL_CLASS_C" : 112299
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 2808,
+    "coinsurance" : 0.13,
+    "deathBenefitAmount" : 0,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "CHRONIC_CONDITIONS", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z41\\.1", "Z51\\.*", "Z34\\.*", "Z52\\.*" ],
+      "excludedProcedurePatterns" : [ "0BH.*", "0FJ.*", "0DJ.*", "0BJ.*" ],
+      "excludedBenefits" : [ "ACCIDENT", "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY", "PERMANENT_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "private",
+    "providerName" : "Private Provider"
+  },
+  "name" : "Personal Accident Elite",
+  "expirationDate" : [ 2027, 7, 22, 17, 58, 13, 489998100 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "PRIV-249732",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Wee Jun Kiat",
+    "dateOfBirth" : [ 1981, 3, 31 ],
+    "nricFin" : "S8673872D",
+    "maritalStatus" : "WIDOWED",
+    "residentialStatus" : "VISITOR",
+    "nationality" : "Singaporean",
+    "address" : "Blk 338 Punggol Way 9, #14-90, Singapore 489245",
+    "contact" : {
+      "personalPhone" : "92151951",
+      "homePhone" : "67800554",
+      "companyPhone" : "67715273",
+      "email" : "user766@gmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "O_POSITIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-2025EE13B8F3",
+    "drugAllergies" : [ ],
+    "nokName" : "Aisha Fatimah",
+    "nokAddress" : "Blk 630 Tampines St 8, #13-934, Singapore 565177",
+    "nokRelation" : "Legal Guardian",
+    "height" : 1.5236372252780808,
+    "weight" : 86.97440927438923,
+    "occupation" : "Artist",
+    "companyName" : "OCBC Bank",
+    "companyAddress" : "Blk 367 Jurong East Ave 12, #25-942, Singapore 568519",
+    "patientConsent" : true,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 379003,
+      "lifetimeLimit" : 5949812,
+      "benefitLimits" : {
+        "ONCOLOGY_TREATMENTS" : 5530,
+        "DIAGNOSTIC_IMAGING" : 3230,
+        "HOSPITALIZATION" : 9957,
+        "SURGERY" : 94482
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_B1" : 111955,
+        "GENERAL_CLASS_A" : 297066,
+        "GENERAL_CLASS_C" : 113464
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 1736,
+    "coinsurance" : 0.15,
+    "deathBenefitAmount" : 0,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "CHRONIC_CONDITIONS", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z41\\.1", "Z51\\.*", "Z34\\.*", "Z52\\.*" ],
+      "excludedProcedurePatterns" : [ "0BH.*", "0FJ.*", "0DJ.*", "0BJ.*" ],
+      "excludedBenefits" : [ "ACCIDENT", "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY", "PERMANENT_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "private",
+    "providerName" : "Private Provider"
+  },
+  "name" : "Total Protect",
+  "expirationDate" : [ 2026, 6, 10, 17, 58, 13, 489998100 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "PRIV-263696",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Divya Singh",
+    "dateOfBirth" : [ 2001, 3, 31 ],
+    "nricFin" : "G6810283P",
+    "maritalStatus" : "MARRIED",
+    "residentialStatus" : "DEPENDENT_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 271 Tampines St 2, #30-529, Singapore 529162",
+    "contact" : {
+      "personalPhone" : "92274513",
+      "homePhone" : "62904451",
+      "companyPhone" : "62955019",
+      "email" : "user828@gmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "A_NEGATIVE",
+    "isVaccinated" : true,
+    "patientId" : "P-2025160267C6",
+    "drugAllergies" : [ "None" ],
+    "nokName" : "Ong Li Ting",
+    "nokAddress" : "Blk 175 Jurong East Ave 5, #38-86, Singapore 535298",
+    "nokRelation" : "Legal Guardian",
+    "height" : 1.5327099886327324,
+    "weight" : 78.6740200323653,
+    "occupation" : "Chef",
+    "companyName" : "ST Engineering",
+    "companyAddress" : "Blk 933 Tampines St 3, #35-716, Singapore 515031",
+    "patientConsent" : false,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 513809,
+      "lifetimeLimit" : 8822590,
+      "benefitLimits" : {
+        "ONCOLOGY_TREATMENTS" : 11205,
+        "DIAGNOSTIC_IMAGING" : 3501,
+        "HOSPITALIZATION" : 8184,
+        "SURGERY" : 12567
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_B1" : 164896,
+        "GENERAL_CLASS_A" : 182425,
+        "GENERAL_CLASS_C" : 131886
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 2126,
+    "coinsurance" : 0.26,
+    "deathBenefitAmount" : 0,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "CHRONIC_CONDITIONS", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z41\\.1", "Z51\\.*", "Z34\\.*", "Z52\\.*" ],
+      "excludedProcedurePatterns" : [ "0BH.*", "0FJ.*", "0DJ.*", "0BJ.*" ],
+      "excludedBenefits" : [ "ACCIDENT", "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY", "PERMANENT_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "private",
+    "providerName" : "Private Provider"
+  },
+  "name" : "HealthShield Gold Max",
+  "expirationDate" : [ 2033, 5, 2, 17, 58, 13, 489998100 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+}, {
+  "policyNumber" : "PRIV-822904",
+  "policyHolder" : {
+    "humanType" : "patient",
+    "name" : "Rohan Aand",
+    "dateOfBirth" : [ 1997, 3, 31 ],
+    "nricFin" : "F1692551U",
+    "maritalStatus" : "SINGLE",
+    "residentialStatus" : "DEPENDENT_PASS",
+    "nationality" : "Singaporean",
+    "address" : "Blk 362 Serangoon Road 11, #35-468, Singapore 484525",
+    "contact" : {
+      "personalPhone" : "99820186",
+      "homePhone" : "68118803",
+      "companyPhone" : "67990822",
+      "email" : "user606@gmail.com"
+    },
+    "sex" : "FEMALE",
+    "bloodType" : "B_POSITIVE",
+    "isVaccinated" : false,
+    "patientId" : "P-2025C3C3450A",
+    "drugAllergies" : [ ],
+    "nokName" : "Wee Jun Kiat",
+    "nokAddress" : "Blk 637 Tampines St 6, #23-641, Singapore 561103",
+    "nokRelation" : "Other",
+    "height" : 1.7999791089456616,
+    "weight" : 53.95317184374033,
+    "occupation" : "Chef",
+    "companyName" : "Singapore Airlines",
+    "companyAddress" : "Blk 806 Jurong East Ave 4, #11-336, Singapore 524464",
+    "patientConsent" : true,
+    "humanType" : "patient"
+  },
+  "coverage" : {
+    "type" : "base",
+    "limits" : {
+      "annualLimit" : 515643,
+      "lifetimeLimit" : 6063239,
+      "benefitLimits" : {
+        "ONCOLOGY_TREATMENTS" : 12903,
+        "DIAGNOSTIC_IMAGING" : 1980,
+        "HOSPITALIZATION" : 5834,
+        "SURGERY" : 35959
+      },
+      "wardLimits" : {
+        "GENERAL_CLASS_B1" : 163834,
+        "GENERAL_CLASS_A" : 170405,
+        "GENERAL_CLASS_C" : 183710
+      },
+      "accidentSubLimits" : { }
+    },
+    "deductible" : 2795,
+    "coinsurance" : 0.22,
+    "deathBenefitAmount" : 0,
+    "coveredBenefits" : [ "ONCOLOGY_TREATMENTS", "DIAGNOSTIC_IMAGING", "CHRONIC_CONDITIONS", "HOSPITALIZATION", "OUTPATIENT_TREATMENTS", "SURGERY" ],
+    "exclusions" : {
+      "excludedDiagnosisPatterns" : [ "Z41\\.1", "Z51\\.*", "Z34\\.*", "Z52\\.*" ],
+      "excludedProcedurePatterns" : [ "0BH.*", "0FJ.*", "0DJ.*", "0BJ.*" ],
+      "excludedBenefits" : [ "ACCIDENT", "DENTAL", "MATERNITY" ],
+      "excludedAccidentTypes" : [ "TEMPORARY_DISABILITY", "PERMANENT_DISABILITY" ]
+    }
+  },
+  "provider" : {
+    "type" : "private",
+    "providerName" : "Private Provider"
+  },
+  "name" : "PRUShield",
+  "expirationDate" : [ 2033, 5, 16, 17, 58, 13, 490998800 ],
+  "status" : "ACTIVE",
+  "policyType" : "held"
+} ]
